@@ -1,0 +1,94 @@
+{
+  "protocol_id": "C3-actuator-discretization-v1",
+  "scope": "C3_ACTUATOR_DISCRETIZATION",
+  "authorization": "Detailed task book section 6 (C3): the nine frozen-command actuator update interval segments.",
+  "output": "results/20260917_C3_ACTUATOR_01",
+  "what_it_is": "An open-loop replay of the frozen accel/request_delta command sequence recorded in the 100M05 P0 0.5 ms source, advanced through the plant at actuator update intervals of 2, 1 and 0.5 ms over three 2 s windows. No MPC is solved, so the control-rate-penalty fix of 2026-09-16 cannot affect these runs, and there is no finite-difference linearisation to accelerate on the GPU.",
+  "source_raw": "../paper_v4_results/20260909_E01_100M05/P0_0.5ms/raw.npz",
+  "source_raw_sha256": "C68CCAF51CACBA8FEFD17E135C5CDA1808417E67B76209F6F04D5A697EB4CC92",
+  "source_identity_verified": true,
+  "windows": {
+    "straight_acceleration": [
+      0.0,
+      2.0
+    ],
+    "steering_onset": [
+      11.5,
+      2.0
+    ],
+    "reverse_switch": [
+      16.5,
+      2.0
+    ]
+  },
+  "update_intervals_ms": [
+    2.0,
+    1.0,
+    0.5
+  ],
+  "plant_max_step_ms": 0.5,
+  "gates": {
+    "two_ms_reproduces_frozen_source_abs": 1e-12,
+    "decisive_pair": "1ms_to_0.5ms per window",
+    "peak_relative": 0.02,
+    "impulse_vector_relative": 0.02,
+    "terminal_position_m": 0.001,
+    "terminal_heading_deg": 0.01
+  },
+  "budget": {
+    "registered_total_hours_cap": 2.0
+  },
+  "c1_prerequisite_supersession": {
+    "registered_prerequisite": "C1 total PASS",
+    "situation": "C1 total PASS (analysis/20260916_R4_GATE_01/r4_gate.json) was obtained from six R4 cells produced with the control-rate-penalty sign defect. The user decided on 2026-09-16 not to re-run the six cells and to produce one corrected 2 ms reference instead, which retires that C1 total PASS.",
+    "why_C3_is_unaffected": "C3 contains no MPC: it replays a frozen command sequence recorded on 2026-09-09 through the plant. The rate-penalty sign therefore cannot enter these nine segments, and the plant source itself is unchanged and pinned by SHA-256.",
+    "decision": "C3 proceeds against the frozen 100M05 source with the C1 gate consumed as a schema/identity check only, not as a live numeric prerequisite.",
+    "not_a_gate_change": "No gate, threshold, window, update interval or tolerance is modified."
+  },
+  "identity_files": [
+    {
+      "path": "src/paper_v4_core/actuator_discretization.py",
+      "sha256": "dbc18f99bb62d53218a6b8b0c55163e6c8b3574bce547c8555adf457241bc3b5"
+    },
+    {
+      "path": "src/paper_v4_core/actuator_discretization_batch.py",
+      "sha256": "f8f1a05da2d586b4d632f7f91de42f3b70093a478273e61cd094e9c3c6195ee7"
+    },
+    {
+      "path": "src/paper_v4_core/actuator_discretization_analyze.py",
+      "sha256": "37ae7dae51703efb7212a7cdf9cf797362e437abdcd432ea82a46f1e363f5435"
+    },
+    {
+      "path": "src/paper_v4_core/e01_100m.py",
+      "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"
+    },
+    {
+      "path": "src/paper_v4_core/plant/event_substep.py",
+      "sha256": "aad77aa5b9d45cefc72769062550a07c6f2593e5038f2e9e35fcd8242ab41726"
+    },
+    {
+      "path": "src/paper_v4_core/plant/four_vehicle_common.py",
+      "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"
+    },
+    {
+      "path": "src/paper_v4_core/failure_boundary.py",
+      "sha256": "1bb27d9310005a1cd7db235e1505e530c160a4b89da140eb6f2c399669a604bd"
+    },
+    {
+      "path": "../paper_v4_results/20260909_E01_100M05/P0_0.5ms/raw.npz",
+      "sha256": "c68ccaf51cacba8fefd17e135c5cda1808417e67b76209f6f04d5a697eb4cc92"
+    },
+    {
+      "path": "analysis/20260916_R4_GATE_01/r4_gate.json",
+      "sha256": "8e7aa6c76c55f3c63da634ecdbfad7161993cf877d24432010350742393f6905"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    },
+    {
+      "path": "qp_rate_penalty_sign_defect_20260916.md",
+      "sha256": "3c00b9a6e2463e0625250173960383cd27a25d980d80909072a233bee8f2c790"
+    }
+  ]
+}

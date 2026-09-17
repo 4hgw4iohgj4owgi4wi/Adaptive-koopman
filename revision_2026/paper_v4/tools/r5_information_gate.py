@@ -88,8 +88,35 @@ def main() -> None:
     shared = [name for name in whitelist if name in baseline_index and name in n0_index]
     if len(shared) != len(whitelist):
         raise ValueError(f"WHITELIST_COLUMNS_MISSING:{sorted(set(whitelist) - set(shared))}")
-    if baseline_raw.shape != n0_raw.shape:
-        raise ValueError("SHAPE_MISMATCH_BETWEEN_BASELINE_AND_N0")
+    if baseline_raw.shape[0] != n0_raw.shape[0]:
+        raise ValueError("ROW_COUNT_MISMATCH_BETWEEN_BASELINE_AND_N0")
+
+    # The strict-chain task book (section 6) requires the gate to read the three single-run
+    # audits and the three figure manifests and to refuse a total PASS unless all of them are
+    # green.  Without this the gate could emit an interface PASS while an individual run had
+    # failed its own acceptance, which is exactly what happened to the first R5-N1.
+    def run_evidence(folder: Path) -> dict:
+        audit_path = folder / "single_run_audit.json"
+        manifest_path = folder / "figures" / "figure_manifest.json"
+        audit = json.loads(audit_path.read_text(encoding="utf-8")) if audit_path.is_file() else None
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.is_file() else None
+        return {
+            "audit_present": audit is not None,
+            "audit_status": audit.get("status") if audit else None,
+            "audit_items": f"{audit['items_passed']}/{audit['items_total']}" if audit else None,
+            "audit_sha256": sha(audit_path) if audit_path.is_file() else None,
+            "figure_status": manifest.get("figure_status") if manifest else None,
+            "figure_manifest_sha256": sha(manifest_path) if manifest_path.is_file() else None,
+        }
+
+    evidence = {"baseline": run_evidence(baseline_run), "n0": run_evidence(n0_run), "n1": run_evidence(n1_run)}
+    settings_seen = {"baseline": baseline_metrics.get("solver_settings"),
+                     "n0": n0_metrics.get("solver_settings"),
+                     "n1": n1_metrics.get("solver_settings")}
+    acceptance_seen = {"baseline": baseline_metrics.get("acceptance_tolerances"),
+                       "n0": n0_metrics.get("acceptance_tolerances"),
+                       "n1": n1_metrics.get("acceptance_tolerances")}
+
     no_op_difference = float(
         np.max(np.abs(baseline_raw[:, [baseline_index[name] for name in shared]] - n0_raw[:, [n0_index[name] for name in shared]]))
     )
@@ -107,6 +134,26 @@ def main() -> None:
         checks.append({"item": len(checks) + 1, "check": name, "pass": bool(passed), "detail": detail})
 
     add("contract_tests_pass", contract.get("status") == "PASS", {"tests": len(contract["tests"])})
+    for label in ("baseline", "n0", "n1"):
+        item = evidence[label]
+        add(f"{label}_single_run_audit_passes",
+            item["audit_status"] == "PASS_SINGLE_RUN_AUDIT",
+            {"present": item["audit_present"], "status": item["audit_status"], "items": item["audit_items"],
+             "sha256": item["audit_sha256"],
+             "rule": "a total interface PASS requires every constituent run to have passed its own single-run audit"})
+        add(f"{label}_figure_qa_passes",
+            item["figure_status"] == "PASS_VISUAL_QA",
+            {"figure_status": item["figure_status"], "manifest_sha256": item["figure_manifest_sha256"]})
+    add("all_three_runs_share_one_solver_identity",
+        all(isinstance(settings_seen[label], dict) for label in ("baseline", "n0", "n1"))
+        and settings_seen["baseline"] == settings_seen["n0"] == settings_seen["n1"],
+        {"solver_settings": settings_seen,
+         "rule": "the strict chain compares only runs sharing one identical solver configuration; a tightened N1 must not be compared against an older N0"})
+    add("all_three_runs_share_one_acceptance_identity",
+        all(isinstance(acceptance_seen[label], dict) for label in ("baseline", "n0", "n1"))
+        and acceptance_seen["baseline"] == acceptance_seen["n0"] == acceptance_seen["n1"],
+        {"acceptance_tolerances": acceptance_seen,
+         "rule": "geometric limits and their separately registered numerical acceptance tolerances must be identical across the strict chain"})
     add("no_op_columns_are_all_genuinely_computed", True,
         {"excluded_with_reason": excluded_with_reason,
          "columns_compared": len(shared),
@@ -118,7 +165,7 @@ def main() -> None:
          "comparison_partner_note": "same-backend by rule P2; the CPU baseline is the cross-backend reference only"})
     add("time_series_within_time_identity_contract", time_relative <= TIME_EPSILON,
         {"maximum_relative_difference": time_relative, "bound": TIME_EPSILON})
-    for label, metrics in (("n0", n0_metrics), ("n1", n1_metrics)):
+    for label, metrics in (("baseline", baseline_metrics), ("n0", n0_metrics), ("n1", n1_metrics)):
         add(f"{label}_completed_full_route",
             metrics["status"] == "COMPLETED"
             and metrics["iterations"] == 2379
@@ -228,6 +275,9 @@ def main() -> None:
             "role": "cross-backend equivalence reference only, not the no-op partner",
             "measured_agreement_over_2200_ticks_m": 2.398450764928839e-05,
         },
+        "run_evidence": evidence,
+        "solver_identity": settings_seen,
+        "acceptance_identity": acceptance_seen,
         "performance": performance,
         "metrics": {"n0": n0_metrics, "n1": n1_metrics, "baseline": baseline_metrics},
         "what_this_releases": "Interface transfer is verified. R5 does NOT register P0/P0N as validated distributed or communication-robust methods; it does not establish statistical robustness, and impairment injection remains at E03/E05.",

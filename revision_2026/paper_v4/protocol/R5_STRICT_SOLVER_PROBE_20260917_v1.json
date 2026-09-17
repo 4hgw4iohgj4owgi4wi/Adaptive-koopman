@@ -1,0 +1,148 @@
+{
+  "protocol_id": "R5-STRICT-SOLVER-PROBE-v1",
+  "scope": "R5_STRICT_SOLVER_PROBE",
+  "authorization": "User instruction 2026-09-17: verify the repairs and update the MD to guide execution.",
+  "source_run": "results/20260916_R5_N1_GPU01",
+  "source_files": [
+    {
+      "path": "results/20260916_R5_N1_GPU01/raw.npz",
+      "sha256": "debc98427f820ed2103787c179efeb57210444909d8be48fe16d1c504f7e5992"
+    },
+    {
+      "path": "results/20260916_R5_N1_GPU01/estimates.npz",
+      "sha256": "26b8aea5c5b7e3fb7346396d14204bb12da3b83e87d82ed5edfb5348edeaccb5"
+    },
+    {
+      "path": "results/20260916_R5_N1_GPU01/solver.jsonl",
+      "sha256": "df63a5109e955d07bbcd0c27f7f1a087785ecd4ec46536d2b39b55df7ffd7c6d"
+    },
+    {
+      "path": "results/20260916_R5_N1_GPU01/metrics.json",
+      "sha256": "575ff5390d66cc831112ed2f565c8230e584aefda576cfec6cd27513b528455d"
+    }
+  ],
+  "output": "analysis/20260917_R5_STRICT_SOLVER_PROBE_01",
+  "ticks": [
+    834,
+    839,
+    853,
+    930,
+    963,
+    1112,
+    1180,
+    1194,
+    1298,
+    1301,
+    1370,
+    1384,
+    1524,
+    1538,
+    1549
+  ],
+  "legacy_solver_settings": {
+    "eps_abs": 0.0002,
+    "eps_rel": 0.0002,
+    "scaled_termination": false,
+    "max_iter": 4000,
+    "polishing": true
+  },
+  "candidate_solver_settings": {
+    "eps_abs": 1e-06,
+    "eps_rel": 1e-06,
+    "scaled_termination": false,
+    "max_iter": 4000,
+    "polishing": true
+  },
+  "acceptance_tolerances": {
+    "requested_steering_acceptance_tolerance_rad": 1e-06,
+    "applied_steering_machine_tolerance_rad": 1e-12
+  },
+  "gates": {
+    "legacy_first_control_max_abs_difference": 1e-10,
+    "strict_solver_status": "solved",
+    "strict_validation_status": "PASS",
+    "strict_requested_steering_overshoot_rad": 1e-06
+  },
+  "identity_files": [
+    {
+      "path": "tools/r5_solver_tolerance_probe.py",
+      "sha256": "0acab0dc7ace852f9675bb425c8ea70c98d956de4e77063d38b428fcc5e5b9f3"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "426b5a65ba4b61169ae69509aea96d6e78f4ee9a07ae649c6ea70492e6a4127f"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/full_route_gpu_runner.py",
+      "sha256": "4959306ae6f0b1879bfff35609cf06afdd736b4ef8fd68dbc4c6a6dbbee79c44"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "426b5a65ba4b61169ae69509aea96d6e78f4ee9a07ae649c6ea70492e6a4127f"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/__init__.py",
+      "sha256": "c0c603e663221615bb6dd3119021fcad617232239c2caa44cb5d384baa23365d"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/physics_torch.py",
+      "sha256": "8eaaac3e431d5b4b112d2e46722761f6b28092ac7fb07ca4f1b867ddbdef54dd"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/rollout_batch.py",
+      "sha256": "80bad4fdd7833e3a775f8dd3fe211f4034e038242bfcc91bdc8a5fa433ee603e"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/gpu_worker.py",
+      "sha256": "e41ca0ee45386b2a5dc9d796cbdf27c77d483a8aefe870412b55e418844206f1"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/ipc_backend.py",
+      "sha256": "c1449856a13e33ccbcd278a4444ea99e297173099c5f3b8c2d0a40d0e980244f"
+    },
+    {
+      "path": "src/paper_v4_core/plant/four_vehicle_common.py",
+      "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_adapter.py",
+      "sha256": "dd56ccb6e7117a6a101dba57884dda81cc04e2fecc520cc7d44568419e177dd7"
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_r3.py",
+      "sha256": "2c6ef95ac9e9c4afe88e005bc99d4644373f44dfd0448b07a6ac78e5e03de1de"
+    },
+    {
+      "path": "src/paper_v4_core/plant/internal_force.py",
+      "sha256": "5a9f24f6fbc7540847574a3d5ce435d40caa29cb99be1dd9dbb1282c804bdf2e"
+    },
+    {
+      "path": "src/paper_v4_core/plant/load_transfer.py",
+      "sha256": "0da410a3da05e538464c83ed1a02e081c1196631c121c6ab750ebc1068c8e74b"
+    },
+    {
+      "path": "src/paper_v4_core/plant/event_substep.py",
+      "sha256": "aad77aa5b9d45cefc72769062550a07c6f2593e5038f2e9e35fcd8242ab41726"
+    },
+    {
+      "path": "src/paper_v4_core/e01_100m.py",
+      "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"
+    },
+    {
+      "path": "src/paper_v4_core/pilot_runner.py",
+      "sha256": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728"
+    },
+    {
+      "path": "src/paper_v4_core/reference_geometry.py",
+      "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d"
+    },
+    {
+      "path": "src/paper_v4_core/references.py",
+      "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"
+    },
+    {
+      "path": "src/paper_v4_core/failure_boundary.py",
+      "sha256": "1bb27d9310005a1cd7db235e1505e530c160a4b89da140eb6f2c399669a604bd"
+    }
+  ]
+}

@@ -68,6 +68,8 @@ def main() -> None:
     metrics_path = run / "metrics.json"
     metrics = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.is_file() else None
     status = json.loads((run / "status.json").read_text(encoding="utf-8"))
+    audit_path = run / "single_run_audit.json"
+    audit = json.loads(audit_path.read_text(encoding="utf-8")) if audit_path.is_file() else None
     interruption_path = run / "interruption.json"
     interruption = json.loads(interruption_path.read_text(encoding="utf-8")) if interruption_path.is_file() else None
 
@@ -128,8 +130,16 @@ def main() -> None:
     else:
         forces = forces_endpoint
         substep_peak_value = float(forces_endpoint.max())
-    tire = raw[:, [index[f"tire_utilization{i}"] for i in range(4)]]
-    support = raw[:, [index[f"support_load{i}"] for i in range(4)]]
+    tire_endpoint = raw[:, [index[f"tire_utilization{i}"] for i in range(4)]]
+    support_endpoint = raw[:, [index[f"support_load{i}"] for i in range(4)]]
+    if sub.shape[0] and all(f"tire_utilization{i}" in sub_index for i in range(4)):
+        tire_substep = sub[:, [sub_index[f"tire_utilization{i}"] for i in range(4)]]
+        support_substep = sub[:, [sub_index[f"support_load{i}"] for i in range(4)]]
+        tire_gate_peak = max(float(tire_endpoint.max()), float(tire_substep.max()))
+        support_gate_min = min(float(support_endpoint.min()), float(support_substep.min()))
+    else:
+        tire_gate_peak = float(tire_endpoint.max())
+        support_gate_min = float(support_endpoint.min())
     actual_steering = np.rad2deg(raw[:, [index[f"actual_delta{i}"] for i in range(4)]])
     request_steering = np.rad2deg(raw[:, [index[f"request_delta{i}"] for i in range(4)]])
     wall = raw[:, index["solver_wall_s"]]
@@ -227,17 +237,27 @@ def main() -> None:
 
     # 5 tyre and support
     for i in range(4):
-        axes[1, 2].plot(time, tire[:, i], linewidth=1.0, label=f"tyre {i + 1}")
+        axes[1, 2].plot(time, tire_endpoint[:, i], linewidth=1.0, label=f"tyre {i + 1} (endpoint)")
     axes[1, 2].axhline(1.0, color="red", linestyle=":", label="tyre limit 1.0")
     axes[1, 2].set(xlabel="time (s)", ylabel="tyre raw utilisation",
-                   title=f"Tyre utilisation — peak {tire.max():.6f}; min support {support.min():.1f} N")
+                   title=(f"Tyre endpoints — all-sample gate peak {tire_gate_peak:.6f}\n"
+                          f"all-sample minimum support {support_gate_min:.1f} N"))
+    axes[1, 2].title.set_fontsize(9.0)
     axes[1, 2].legend(fontsize=7.5)
     axes[1, 2].grid(alpha=0.25)
 
     # steering and cost are added as a separate row via insets is avoided; instead annotate
+    request_peak_deg = float(np.abs(request_steering).max())
+    request_overshoot_deg = max(0.0, request_peak_deg - 15.0)
+    request_gate_note = (
+        "PASS request box <= 15.000000 deg"
+        if request_overshoot_deg <= 1e-12
+        else f"FAIL request box: +{request_overshoot_deg:.6f} deg over 15.000000"
+    )
     steering_note = (
         f"requested steering |max| {np.abs(request_steering).max():.6f} deg, "
         f"actual |max| {np.abs(actual_steering).max():.6f} deg\n"
+        f"{request_gate_note}; single-run audit: {(audit or {}).get('status', 'NOT_AVAILABLE')}\n"
         f"max |request - actual| {np.abs(request_steering - actual_steering).max():.6f} deg\n"
         f"solve cost: mean {wall.mean():.3f} s, max {wall.max():.3f} s, "
         f"{int(np.count_nonzero(wall <= 5.0))}/{wall.size} within the 5 s budget"
@@ -288,13 +308,17 @@ def main() -> None:
         "peak_point_force_n_substeps": substep_peak_value,
         "peak_point_force_n_endpoint": float(forces_endpoint.max()),
         "peak_internal_force_n": float(internal.max()),
-        "peak_tyre_utilisation": float(tire.max()),
-        "minimum_support_load_n": float(support.min()),
+        "peak_tyre_utilisation": tire_gate_peak,
+        "peak_tyre_utilisation_endpoint": float(tire_endpoint.max()),
+        "minimum_support_load_n": support_gate_min,
+        "minimum_support_load_n_endpoint": float(support_endpoint.min()),
         "final_position_error_m": float(position_error[-1]),
         "max_position_error_m": float(position_error.max()),
         "final_lateral_error_m": float(lateral[-1]),
         "heading_rmse_deg": float(np.sqrt(np.mean(heading_error_deg ** 2))),
-        "max_requested_steering_deg": float(np.abs(request_steering).max()),
+        "max_requested_steering_deg": request_peak_deg,
+        "request_steering_overshoot_deg": request_overshoot_deg,
+        "single_run_audit_status": (audit or {}).get("status", "NOT_AVAILABLE"),
         "max_actual_steering_deg": float(np.abs(actual_steering).max()),
         "max_request_minus_actual_steering_deg": float(np.abs(request_steering - actual_steering).max()),
         "solve_wall_mean_s": float(wall.mean()),
@@ -303,26 +327,44 @@ def main() -> None:
     }
     (figures / "figure_data.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
 
+    if family_label == "R5 legal-information interface":
+        default_question = ("What does the registered legal-information interface and configured measurement noise "
+                            "do to the full-route run, and does the run pass its single-run audit?")
+        claim_boundary = ("One deterministic information-interface run; it contains no network impairment and states "
+                          "no statistical robustness. Completion and physical hard gates do not override the recorded "
+                          "single-run audit status.")
+    elif window_mode:
+        default_question = "Does this bounded G3 window preserve the registered hard gates and backend comparison evidence?"
+        claim_boundary = "A bounded implementation window; it is not a full-route method result or a real-time claim."
+    else:
+        default_question = ("Does this R4 cell complete the frozen route inside the original hard gates, and what do "
+                            "its trajectory, error, force, input and cost records show?")
+        claim_boundary = ("Physical-gate passing and tracking quality are separate statements; this figure does not "
+                          "claim P1 tracking quality is acceptable or infer real-time behaviour from offline wall clock.")
+
     manifest = {
-        "science_status": state,
+        "science_status": (audit or {}).get("status", state),
+        "run_status": state,
         "figure_status": "PENDING_VISUAL_QA",
         "run": run.name,
         "candidate_id": (metrics or {}).get("candidate_id", (status or {}).get("candidate_id", "EXP-R3-unfrozen-v1")),
         "implementation_id": (metrics or {}).get("implementation_id", (status or {}).get("implementation_id")),
         "protocol_sha256": (metrics or {}).get("protocol_sha256"),
-        "experiment_question": args.question or "Does this R4 cell complete the frozen route inside the original hard gates, and what do its trajectory, error, force, input and cost records show?",
+        "experiment_question": args.question or default_question,
         "figures": names,
         "fields": {
             "trajectory": "state x0..x29: four vehicle poses and the payload pose in world coordinates",
             "error": "payload error against the route interpolated at the recorded reference distance, projected onto the reference heading (D1 convention)",
             "force": "four point-force norms, internal force norm, cumulative impulse from accepted substeps",
-            "constraint": "tyre raw utilisation and payload support load",
+            "constraint": ("tyre utilisation curves at controller-tick endpoints; hard-gate extrema recomputed over "
+                           "accepted substeps and endpoints; payload support reported by the same convention"),
             "input": "requested versus actual steering, maximum and maximum difference",
             "cost": "per-solve wall clock against the frozen 5 s budget",
         },
         "units": "m, s, N, N s, deg, dimensionless utilisation",
         "window": (f"window {window_name}, ticks {int((metrics or {}).get(chr(115)+chr(116)+chr(97)+chr(114)+chr(116)+chr(95)+chr(116)+chr(105)+chr(99)+chr(107), 0))}..{int((metrics or {}).get(chr(115)+chr(116)+chr(97)+chr(114)+chr(116)+chr(95)+chr(116)+chr(105)+chr(99)+chr(107), 0)) + ticks - 1}" if window_mode else f"ticks 0..{ticks - 1} of {expected}") + "; {'whole route' if complete else 'accepted segment only, unobserved remainder not drawn'}",
-        "statistics_convention": "single trajectory, no confidence interval; peaks are taken over all accepted substeps",
+        "statistics_convention": ("single trajectory, no confidence interval; force and constraint hard-gate extrema "
+                                  "combine all accepted substeps and controller-tick endpoints; plotted tyre curves are endpoints"),
         "generating_script": "tools/r4_cell_figure.py",
         "generating_script_sha256": args.script_sha or sha(Path(__file__)),
         "source_files": [
@@ -330,20 +372,23 @@ def main() -> None:
             {"path": f"results/{run.name}/substeps.npz", "sha256": sha(run / "substeps.npz")},
             {"path": f"results/{run.name}/status.json", "sha256": sha(run / "status.json")},
         ] + ([{"path": f"results/{run.name}/metrics.json", "sha256": sha(metrics_path)}] if metrics else [])
+        + ([{"path": f"results/{run.name}/single_run_audit.json", "sha256": sha(audit_path)}] if audit else [])
         + ([{"path": f"results/{run.name}/interruption.json", "sha256": sha(interruption_path)}] if interruption else []),
         "caption": (
             f"{family_label}: {run.name}, plant step {step_label}, {state}. "
             f"{ticks} of {expected} ticks accepted, reference distance {distance[-1]:.3f} m of {route['s_m'][-1]:.3f} m. "
-            f"Substep peak point force {substep_peak_value:.3f} N against the 15000 N gate; peak tyre utilisation {tire.max():.6f}; "
-            f"minimum support {support.min():.1f} N; final payload position error {position_error[-1]:.4f} m."
+            f"Substep peak point force {substep_peak_value:.3f} N against the 15000 N gate; all-sample peak tyre "
+            f"utilisation {tire_gate_peak:.6f}; all-sample minimum support {support_gate_min:.1f} N; final payload "
+            f"position error {position_error[-1]:.4f} m; single-run audit {(audit or {}).get('status', 'NOT_AVAILABLE')}."
             + ("" if complete else " The run was terminated externally; only the accepted segment is shown and the remainder is not extrapolated.")
         ),
-        "claim_boundary": "Physical-gate passing and tracking quality are separate statements; this figure does not claim P1 tracking quality is acceptable, nor real-time behaviour from offline wall clock.",
+        "claim_boundary": claim_boundary,
     }
     (figures / "figure_manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
     (figures / "README.md").write_text(
         f"# {run.name} 单条六面板图\n\n"
         f"状态：**{state}**，植物步长 {step_label}，{ticks}/{expected} 周期，参考距离 {distance[-1]:.3f} m / {route['s_m'][-1]:.3f} m。\n\n"
+        f"单条审计：**{(audit or {}).get('status', 'NOT_AVAILABLE')}**。轮胎与支承曲线绘制控制周期端点；标题与图注中的硬门极值合并全部接受子步和端点，避免把端点值误写为全子步门值。\n\n"
         "六个面板覆盖§25.4对该类实验要求的五类信息：\n\n"
         "1. **XY 轨迹**：路线参考 vs 实际四车与货物（§25.4 明确要求）；\n"
         "2. **误差**：货物位置误差按 D1 口径分解为纵向/横向，另给位置范数；\n"

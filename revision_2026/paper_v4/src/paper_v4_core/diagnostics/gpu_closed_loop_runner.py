@@ -31,7 +31,9 @@ from ..controllers.parallel_fd_backend import ParallelFiniteDifferenceBackend, i
 from ..controllers.physical_tracking_pilot import PilotConfig
 from ..e01_100m import DT, params
 from ..failure_boundary import consume_audit
-from ..pilot_runner import ROUTE_LENGTH, SPEED, make_preview
+from ..pilot_runner import ROUTE_LENGTH, SPEED, _path_sample, make_preview
+from ..reference_geometry import transition_targets
+from .relative_motion import extract
 from ..plant.event_substep import EventSubstepConfig, advance_outer_step
 from ..plant.four_vehicle_common import connector_diagnostics, system_derivative
 from .reference_memory import recover_interval_duration, replay_reference_chain, verify_replay
@@ -160,7 +162,20 @@ def validate_protocol(path: Path, expected_sha: str, paper: Path, window_name: s
     return {"protocol": protocol, "run": run, "window": window}
 
 
-def execute(out: Path, model, parameter: str, backend_kind: str, window: dict, checkpoint_state: dict, max_step_s: float, deadline: float, protocol_sha: str) -> None:
+def execute(
+    out: Path,
+    model,
+    parameter: str,
+    backend_kind: str,
+    window: dict,
+    checkpoint_state: dict,
+    max_step_s: float,
+    deadline: float,
+    protocol_sha: str,
+    solver_settings: dict | None = None,
+    acceptance_tolerances: dict | None = None,
+    solver_settings_source: str | None = None,
+) -> None:
     # ``model`` is the caller's instance, i.e. the very object the linearisation
     # backend was constructed with.  Re-deriving it here with params(parameter)
     # would produce a *different* object and trip the backend's model-identity
@@ -178,6 +193,18 @@ def execute(out: Path, model, parameter: str, backend_kind: str, window: dict, c
     last_payload = state[24:26].copy()
     rows, subrows = [], []
     max_force = max_internal = max_tire = max_eg = 0.0
+    settings = dict(solver_settings) if solver_settings else {
+        "eps_abs": 2e-4, "eps_rel": 2e-4, "scaled_termination": False,
+        "max_iter": 4000, "polishing": True,
+    }
+    config = PilotConfig(
+        horizon=20,
+        lambda_internal=2.0,
+        frozen_dynamics_jacobian=False,
+        finite_difference_scale=1.0,
+        **settings,
+    )
+    effective_settings = None
     min_support = float("inf")
     status, reason = "RUNNING", None
     started = time.perf_counter()
@@ -213,8 +240,17 @@ def execute(out: Path, model, parameter: str, backend_kind: str, window: dict, c
             t = k * DT
             distance_before = distance
             u_nom, refs, _ = make_preview(distance, beta, model, previous_u, 20)
-            config = PilotConfig(horizon=20, lambda_internal=2.0, frozen_dynamics_jacobian=False, finite_difference_scale=1.0)
             result = controller.solve(np.r_[state, delta], u_nom, refs, model, config)
+            effective_settings = result.get("solver_settings_effective", config.solver_settings())
+            if dict(effective_settings) != dict(settings):
+                save(out, "solver_mismatch.json", {
+                    "tick": k,
+                    "declared": settings,
+                    "effective": effective_settings,
+                    "rule": "protocol-declared and runtime-effective solver settings must agree item by item",
+                })
+                status, reason = "FAILED", "SOLVER_SETTINGS_RUNTIME_MISMATCH"
+                break
             record = {key: result[key] for key in ("status", "solver_status", "iterations", "primal_residual", "dual_residual", "objective", "wall_s")}
             record.update({"tick": k, "time_s": t, "validation": result["validation"], "first_control": result["control"][0].tolist(), "last_control": result["control"][-1].tolist(), "problem_hashes": None})
             try:
@@ -280,10 +316,17 @@ def execute(out: Path, model, parameter: str, backend_kind: str, window: dict, c
             max_force = max(max_force, float(np.max(force)))
             max_internal = max(max_internal, float(diag["internal_force_norm_n"]))
             max_tire, min_support = max(max_tire, float(np.max(tire))), min(min_support, float(np.min(support)))
+            # The configuration error is computed with the same formula r5_runner uses.  The
+            # previous version wrote a literal 0.0 here, which made the baseline column a stub
+            # and forced the no-op gate to exclude it.
+            q_star = transition_targets(np.asarray([SPEED, 0.0]), SPEED * _path_sample(distance)[3], beta, model)["centers"]
+            relative = extract(state, model, q_star, beta)
+            e_g = float(np.max(np.linalg.norm(relative["e_g_m"], axis=1)))
+            max_eg = max(max_eg, e_g)
             rows.append(np.r_[
                 t + interval_duration, distance, actual_path, 2.0, state,
                 command[:, 0], command[:, 1], delta, force, body[:, 0], body[:, 1], tire, support,
-                diag["internal_force_norm_n"], diag["tension_x_n"], diag["tension_y_n"], 0.0, result["wall_s"],
+                diag["internal_force_norm_n"], diag["tension_x_n"], diag["tension_y_n"], e_g, result["wall_s"],
                 float(k), float(distance_before), beta.copy(), previous_u.copy(),
             ])
             if max_force > 15000.0 + 1e-6:
@@ -319,6 +362,9 @@ def execute(out: Path, model, parameter: str, backend_kind: str, window: dict, c
         "maximum_point_force_n": max_force, "maximum_internal_force_norm_n": max_internal,
         "maximum_tire_utilization": max_tire, "minimum_support_load_n": min_support,
         "maximum_configuration_error_m": max_eg, "frozen_dynamics_jacobian": False,
+        "solver_settings": config.solver_settings(), "solver_settings_effective": effective_settings,
+        "solver_settings_source": solver_settings_source or ("protocol" if solver_settings else "runner_default_historical"),
+        "acceptance_tolerances": dict(acceptance_tolerances) if acceptance_tolerances else None,
         "finite_difference_scale": 1.0, "wall_s": time.perf_counter() - started,
         "deadline_unix": deadline, "protocol_sha256": protocol_sha, "source_sha256": sha(__file__),
     }

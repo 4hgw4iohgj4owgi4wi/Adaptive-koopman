@@ -22,8 +22,15 @@ def main():
     args = parser.parse_args()
     out, r4_path, source_raw = Path(args.out), Path(args.r4_report), Path(args.source_raw)
     r4 = _load(r4_path)
-    if r4.get("status") != "PASS" or r4.get("scope") != "P1/P2 full-route parameter and numerical pairing for the R2c-selected controller":
-        raise SystemExit("A passing R4 parameter/resolution report is required")
+    # Gate consumption migrated on 2026-09-17: the old check required the R2c-era scope string,
+    # which the current C1 gate does not carry.  Either the historical R4 report schema or the
+    # new C1 total gate is accepted, and which one was used is recorded in the registration.
+    legacy_r4 = (r4.get("status") == "PASS"
+                 and r4.get("scope") == "P1/P2 full-route parameter and numerical pairing for the R2c-selected controller")
+    new_c1_gate = (r4.get("status") == "PASS_C1_R4_TOTAL" and r4.get("scope") == "R4_C1_GATE")
+    if not (legacy_r4 or new_c1_gate):
+        raise SystemExit("A passing R4 parameter/resolution report or the C1 total gate is required")
+    gate_schema = "new_c1_total_gate" if new_c1_gate else "legacy_r4_report"
     out.mkdir(parents=True, exist_ok=False)
     registration = {
         "status": "RUNNING",
@@ -32,6 +39,7 @@ def main():
         "source_raw": str(source_raw),
         "source_raw_sha256": SOURCE_RAW_SHA256,
         "r4_report_sha256": sha(r4_path),
+        "gate_schema_used": gate_schema,
         "runner_sha256": sha(Path(__file__).with_name("actuator_discretization.py")),
         "batch_sha256": sha(__file__),
         "stop_rule": "stop all remaining actuator runs after the first dynamic or independent evidence/hard-gate failure",

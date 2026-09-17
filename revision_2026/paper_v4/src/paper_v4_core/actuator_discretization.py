@@ -61,10 +61,14 @@ def run(out, source_raw, window, actuator_update_s):
         raise ValueError("unregistered window or actuator update interval")
     if abs(round(DT / actuator_update_s) * actuator_update_s - DT) > 1e-15:
         raise ValueError("actuator update interval must divide 20 ms")
+    start_s, duration_s = WINDOWS[window]
+    # The source identity and window completeness are validated BEFORE the output directory is
+    # created.  The first version created the directory first, so a rejected source still left an
+    # empty run directory behind, which the task book forbids ("rejection must happen before any
+    # formal run output is created").
+    state, steering, commands, source_end, command_digest = _source_data(Path(source_raw), start_s, duration_s)
     out = Path(out)
     out.mkdir(parents=True, exist_ok=False)
-    start_s, duration_s = WINDOWS[window]
-    state, steering, commands, source_end, command_digest = _source_data(Path(source_raw), start_s, duration_s)
     model = params("P0")
     update_rows, control_rows, subrows = [], [], []
     point_peak = np.zeros(4)

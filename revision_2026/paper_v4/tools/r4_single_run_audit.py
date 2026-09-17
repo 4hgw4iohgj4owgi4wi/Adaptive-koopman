@@ -1,4 +1,4 @@
-"""Independent 21-item single-run audit for R4 cells.
+"""Independent scientific single-run audit for R4 cells.
 
 Task-book section 4 requires "每条单独审计" and names the checks: complete tick, raw
 accepted substep and solver counts, non-finite values, true force peak / tyre / support,
@@ -116,20 +116,34 @@ def audit(paper: Path, run_rel: str) -> dict:
     add("request_equals_optimiser_first_control", mismatch == 0.0,
         {"ticks_compared": compared, "max_abs_difference": mismatch})
 
-    # 13-15 steering bounds and rate
+    # 13-15 steering bounds and rate.  Strict-chain runs register the request and applied
+    # tolerances independently; historical runs retain the original 1e-9 audit convention.
     requested = np.abs(raw[:, [index[f"request_delta{i}"] for i in range(4)]]).max()
     actual = np.abs(raw[:, [index[f"actual_delta{i}"] for i in range(4)]]).max()
     rate = float(np.abs(np.diff(raw[:, [index[f"actual_delta{i}"] for i in range(4)]], axis=0)).max())
-    add("requested_steering_within_limit", requested <= STEERING_LIMIT_RAD + 1e-9,
-        {"max_requested_rad": float(requested), "limit_rad": STEERING_LIMIT_RAD})
-    add("actual_steering_within_limit", actual <= STEERING_LIMIT_RAD + 1e-9,
-        {"max_actual_rad": float(actual), "limit_rad": STEERING_LIMIT_RAD})
+    tolerance_record = metrics.get("acceptance_tolerances") or {}
+    request_tolerance = float(tolerance_record.get("requested_steering_acceptance_tolerance_rad", 1e-9))
+    applied_tolerance = float(tolerance_record.get("applied_steering_machine_tolerance_rad", 1e-9))
+    add("requested_steering_within_limit", requested <= STEERING_LIMIT_RAD + request_tolerance,
+        {"max_requested_rad": float(requested), "limit_rad": STEERING_LIMIT_RAD,
+         "acceptance_tolerance_rad": request_tolerance})
+    add("actual_steering_within_limit", actual <= STEERING_LIMIT_RAD + applied_tolerance,
+        {"max_actual_rad": float(actual), "limit_rad": STEERING_LIMIT_RAD,
+         "machine_tolerance_rad": applied_tolerance})
     add("steering_rate_within_limit", rate <= STEERING_RATE_LIMIT_RADPS * 0.02 + 1e-12,
         {"max_per_tick_change_rad": rate, "limit_per_tick_rad": STEERING_RATE_LIMIT_RADPS * 0.02})
 
     # 16 solver status
     solver_failures = [record["tick"] for record in solver if record.get("status") != "PASS"]
     add("all_solver_records_pass", not solver_failures, {"failures": solver_failures[:5], "count": len(solver_failures)})
+
+    if metrics.get("solver_settings") is not None:
+        add("solver_settings_recorded_and_self_consistent",
+            isinstance(metrics.get("solver_settings_effective"), dict)
+            and metrics["solver_settings_effective"] == metrics["solver_settings"],
+            {"declared": metrics.get("solver_settings"),
+             "effective": metrics.get("solver_settings_effective"),
+             "source": metrics.get("solver_settings_source")})
 
     # 17 source identity: the protocol named by the run still matches its recorded hash
     protocol_sha = metrics.get("protocol_sha256")
@@ -166,12 +180,6 @@ def audit(paper: Path, run_rel: str) -> dict:
     add("wall_clock_recorded", bool(np.isfinite(wall).all() and wall.size == ticks),
         {"mean_s": float(wall.mean()), "max_s": float(wall.max()), "within_5s": int(np.count_nonzero(wall <= 5.0)), "ticks": ticks})
 
-    # 21 figures delivered
-    manifest_path = run / "figures" / "figure_manifest.json"
-    figure_ok = manifest_path.is_file() and json.loads(manifest_path.read_text(encoding="utf-8")).get("figure_status") == "PASS_VISUAL_QA"
-    add("figures_delivered_and_qa_pass", figure_ok,
-        {"manifest": str(manifest_path.relative_to(paper)).replace("\\", "/"), "figure_status": (json.loads(manifest_path.read_text(encoding="utf-8")).get("figure_status") if manifest_path.is_file() else None)})
-
     passed = sum(1 for check in checks if check["pass"])
     return {
         "run": run_rel,
@@ -185,7 +193,10 @@ def audit(paper: Path, run_rel: str) -> dict:
             {"path": f"{run_rel}/solver.jsonl", "sha256": sha(run / "solver.jsonl")},
             {"path": f"{run_rel}/metrics.json", "sha256": sha(run / "metrics.json")},
         ],
-        "claim_boundary": "Artifact-level audit of one deterministic run. It does not establish statistical significance, tracking quality, real-time behaviour or any method-level advantage.",
+        "claim_boundary": ("Artifact-level scientific audit of one deterministic run. Figure delivery and visual QA "
+                           "are checked independently by the release gate, avoiding a circular dependency between "
+                           "the audit and the figure that displays its status. It does not establish statistical "
+                           "significance, tracking quality, real-time behaviour or any method-level advantage."),
     }
 
 

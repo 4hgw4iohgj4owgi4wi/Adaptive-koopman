@@ -1,0 +1,53 @@
+{
+  "protocol_id": "C4-E01-evidence-matrix-v2",
+  "scope": "C4_E01_EVIDENCE_MATRIX",
+  "authorization": "Detailed task book section 6 (C4): build the E01 evidence matrix and reconcile the plant gate.",
+  "output": "analysis/20260917_C4_E01_EVIDENCE_MATRIX_02",
+  "requirement_source": "experiment.md E01 section, five steps producing 33 trajectories (27 + 6)",
+  "rules_applied": [
+    "the existing 33-item plan is not reduced by subtracting recent runs",
+    "old input generators are not mixed with the new controller",
+    "failed trajectories are retained as FAIL",
+    "100M05 covers only its own 100 m sub-gate",
+    "no overall E01-complete verdict is invented"
+  ],
+  "identity_files": [
+    {
+      "path": "tools/c4_e01_evidence_matrix.py",
+      "sha256": "142af2244989764b560547ba07764f9a042a3102f71aca6c87145fbf99971c6f"
+    },
+    {
+      "path": "experiment.md",
+      "sha256": "ecc5d72ebe468a6f87e4dbf67f37dd3d5dc461396d4ae3f0f683d5d15f173b75"
+    },
+    {
+      "path": "protocol/后续实验详细任务书_20260915.md",
+      "sha256": "5e6114b9f0bcf4bee38ab2dd652e8c7728102282b480567d02a45b9ee89bb944"
+    },
+    {
+      "path": "protocol/C3_ACTUATOR_DISCRETIZATION_20260917_v1.json",
+      "sha256": "50d4d8dbad7e974b2d89373f32b1f086f24e6e176265433d183c099e5c0bb652"
+    },
+    {
+      "path": "gates/E00.json",
+      "sha256": "f54b69f1145219e9bab2421cec5e69abf4d0a15ade04bac857686e65d637fcd6"
+    },
+    {
+      "path": "audit/data_roles.json",
+      "sha256": "a5db479ba6d538f62638692cfbf8e3467967b7af204c8608c3c0bafa65ae1be7"
+    },
+    {
+      "path": "analysis/20260916_R4_GATE_01/r4_gate.json",
+      "sha256": "8e7aa6c76c55f3c63da634ecdbfad7161993cf877d24432010350742393f6905"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    }
+  ],
+  "supersedes_protocol": {
+    "path": "protocol/C4_E01_EVIDENCE_MATRIX_20260917_v1.json",
+    "sha256": "a43fc3e3870ea062d5a8495d895e770740453e1f10bd652c729df833feb23f40",
+    "reason": "v1's matrix counted zero covered trajectories because the 2026-09-09 E01 runs report status PASS while the check required COMPLETED, and its glob P?_?ms missed every 0.5 ms cell due to the decimal point."
+  }
+}

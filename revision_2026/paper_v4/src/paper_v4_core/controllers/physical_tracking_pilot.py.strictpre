@@ -26,25 +26,8 @@ class PilotConfig:
     max_iter: int = 4000
     eps_abs: float = 2e-4
     eps_rel: float = 2e-4
-    # scaled_termination and polishing are carried explicitly so that no solver setting is
-    # inherited from a library default.  The local OSQP 1.1.1 defaults were measured on
-    # 2026-09-17 as scaled_termination=false, polishing=false, eps_abs=eps_rel=0.001,
-    # max_iter=4000; the call site below previously relied on the scaled_termination and
-    # polishing defaults without recording them.
-    scaled_termination: bool = False
-    polishing: bool = True
     frozen_dynamics_jacobian: bool = True
     finite_difference_scale: float = 1.0
-
-    def solver_settings(self) -> dict:
-        """The five solver settings, for protocol, metrics and audit to share."""
-        return {
-            "eps_abs": float(self.eps_abs),
-            "eps_rel": float(self.eps_rel),
-            "scaled_termination": bool(self.scaled_termination),
-            "max_iter": int(self.max_iter),
-            "polishing": bool(self.polishing),
-        }
 
 
 def actuator_step(request, actual, dt=PLANT_DT):
@@ -151,33 +134,16 @@ def build_problem(z0, u_nom, refs, model, config=PilotConfig()):
     return {"P":0.5*(H+H.T),"q":g,"A":Aall,"l":lall,"u":uall,"u_nom":u_nom,"zbar":zbar,"sensitivities":sensitivities}
 
 
-def _effective_solver_settings(solver) -> dict:
-    """The settings the OSQP object actually holds after setup.
-
-    Reporting these rather than the requested values is what makes a run able to restore
-    its own numerical configuration; a mismatch between requested and effective is itself
-    a defect worth failing on.
-    """
-    settings = solver.settings
-    return {
-        "eps_abs": float(settings.eps_abs),
-        "eps_rel": float(settings.eps_rel),
-        "scaled_termination": bool(settings.scaled_termination),
-        "max_iter": int(settings.max_iter),
-        "polishing": bool(settings.polishing),
-    }
-
-
 def solve(z0,u_nom,refs,model,config=PilotConfig()):
     started=time.perf_counter()
     try:
         problem=build_problem(z0,u_nom,refs,model,config)
     except Exception as error:
         return {"status":"FAIL","solver_status":"MODEL_DOMAIN_ERROR","iterations":0,"primal_residual":float("inf"),"dual_residual":float("inf"),"objective":float("inf"),"wall_s":time.perf_counter()-started,"control":np.asarray(u_nom,float).reshape(config.horizon,8),"validation":{"status":"FAIL","reason":f"{type(error).__name__}: {error}"},"problem":None}
-    solver=osqp.OSQP();solver.setup(P=sparse.csc_matrix(problem["P"]),q=problem["q"],A=sparse.csc_matrix(problem["A"]),l=problem["l"],u=problem["u"],verbose=False,eps_abs=config.eps_abs,eps_rel=config.eps_rel,scaled_termination=config.scaled_termination,max_iter=config.max_iter,polishing=config.polishing);result=solver.solve();ok=result.info.status in ("solved","solved inaccurate")
+    solver=osqp.OSQP();solver.setup(P=sparse.csc_matrix(problem["P"]),q=problem["q"],A=sparse.csc_matrix(problem["A"]),l=problem["l"],u=problem["u"],verbose=False,eps_abs=config.eps_abs,eps_rel=config.eps_rel,max_iter=config.max_iter,polishing=True);result=solver.solve();ok=result.info.status in ("solved","solved inaccurate")
     candidate=problem["u_nom"].ravel()+result.x if ok and result.x is not None else problem["u_nom"].ravel();validation=validate(z0,candidate.reshape(config.horizon,8),model)
     accepted=bool(ok and validation["status"]=="PASS")
-    return {"status":"PASS" if accepted else "FAIL","solver_status":result.info.status,"iterations":int(result.info.iter),"primal_residual":float(result.info.prim_res),"dual_residual":float(result.info.dual_res),"objective":float(result.info.obj_val),"wall_s":time.perf_counter()-started,"control":candidate.reshape(config.horizon,8),"validation":validation,"problem":problem,"solver_settings":config.solver_settings(),"solver_settings_effective":_effective_solver_settings(solver)}
+    return {"status":"PASS" if accepted else "FAIL","solver_status":result.info.status,"iterations":int(result.info.iter),"primal_residual":float(result.info.prim_res),"dual_residual":float(result.info.dual_res),"objective":float(result.info.obj_val),"wall_s":time.perf_counter()-started,"control":candidate.reshape(config.horizon,8),"validation":validation,"problem":problem}
 
 
 def validate(z0,controls,model):

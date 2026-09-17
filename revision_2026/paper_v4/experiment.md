@@ -1,8 +1,8 @@
 # 四车协同运输完整实验执行书
 
-版本：P1-LATE-DIVERGENCE-GPU-20260915。当前入口为第36节。按用户最新指定，将P1的2200周期试验归为“后期跟踪发散、该工况未通过”，旧中断记录及原始数据保留；后续转入GPU实现资格核对及P1晚段问题分析，不续跑旧CPU轨迹、不据完成92.48%放行后继。GPU搭建状态与数值资格分开登记，每类实验结束出图。第34节登记D1+只读回放。第35节RTX5080 G0—G2资格**全部PASS**（G1/G2数值等价，GPU端到端4.3216s≤原5s预算、加速3.255976×），并否证第33节登记的D2根因、替换为“TorchVersion回包使父进程被迫import torch”。第36节完成G3有界闭环窗口：**CUDA后端等价与原硬门在三个窗口全部通过**，但**重启等价在晚段free-play窗口失败**，据此确认中断的P1前缀不可续接（D1原始结论被证实）；全路线GPU运行已启动。
+版本：PROGRESS-AUDIT-20260917。**当前入口为第58节及独立启动任务书`R5_STRICT_CHAIN_EXECUTION_20260917.md`**。GPU资格与C3执行器诊断已经通过；速率惩罚符号缺陷已修复。旧R5-N0完成，旧R5-N1虽已跑满2379/2379并出图，但请求转角箱式约束使单条审计为`33/34 FAIL`，故旧R5总门未执行。严格链S0—S2现已完成：代码显式登记求解器/验收容差，五项拒绝测试通过，15个历史越界tick固定QP探针通过并完成图QA；严格P0基线v2协议已冻结并只读验明，当前状态为`READY_TO_START_S3_BASELINE`，全路线尚未启动。后续必须用同一严格设置依次重跑基线、N0和N1，逐条完成科学审计与图QA。C4显示完整`plant_gate`仅有9/33条通过证据、24条无通过证据；六方法核心消融仍为0条。旧CPU前缀、缺陷版R4六条、旧R5结果及其历史裁决全部保留，不得与严格链混算。
 
-本书把[基础描述查缺补漏](D:/PDxc/Review/describe_review.md)扩展为可以逐项实施的实验方案，保留其参考几何、速度分配、信息边界、算法身份和审稿覆盖的修正。当前执行定义以本书为准；旧任务书、代码、数据和失败记录保留，不追认通过。本文中的“应实现”“验收通过后”不是已有成果。
+本书把旧外部文档“基础描述查缺补漏”（原路径`D:/PDxc/Review/describe_review.md`，当前工作区未保留）扩展为可以逐项实施的实验方案，保留其参考几何、速度分配、信息边界、算法身份和审稿覆盖的修正。当前执行定义以本书为准；旧任务书、代码、数据和失败记录保留，不追认通过。本文中的“应实现”“验收通过后”不是已有成果。
 
 ## 0. 先读：目标、权限与停止规则
 
@@ -51,7 +51,7 @@
 | ABL-DELAY | 900 | 180 | 工程调试历史 |
 | ABL-COMMON | 360 | 0 | 工程调试历史 |
 
-实际控制器以固定反馈增益产生输入，未加载Koopman权重、未执行相应多步预测优化；部分“改进”名称只是增益变化。还存在发送时间戳错位、突发丢包转移概率写反、回头弯参考不真实、旧积分配置、回退模式无正常退出等问题。详见[真实控制数学审查](D:/PDxc/Review/control_math.md)。以上批次统一登记为INVALID_FOR_REGISTERED_COMPARISON；不删除，也不据此宣布Koopman、管状MPC或时延补偿有效/无效。
+实际控制器以固定反馈增益产生输入，未加载Koopman权重、未执行相应多步预测优化；部分“改进”名称只是增益变化。还存在发送时间戳错位、突发丢包转移概率写反、回头弯参考不真实、旧积分配置、回退模式无正常退出等问题。原审查记录位于旧外部路径`D:/PDxc/Review/control_math.md`，当前工作区未保留。以上批次统一登记为INVALID_FOR_REGISTERED_COMPARISON；不删除，也不据此宣布Koopman、管状MPC或时延补偿有效/无效。
 
 ### 1.3 本轮发现的两个必须补查项
 
@@ -1484,7 +1484,7 @@ R3-7：标题中的时延补偿缺少支持
 
 D:\LEARNING\ZNN\ZNN\Adaptive-koopman\Adaptive-koopman-main\paper_dcn_tf12_draft\dcn_latex_zh_comm_update_r42_2026-05-14\manuscript_en_ch4_ch7_balanced_full_2026_05_26_figrev25_affiliation_keylab_20260604.tex
 
-当前冻结预测源码为REV\koopman_predict_v3y\src\lift.py及与其相同身份的v3w实现；输入补充由v3w\scripts\build_control11.py核实；力读出由v3w\src\guard_core.py核实。原数学审查见[control_math.md](D:/PDxc/Review/control_math.md)，既有工作域/门规则见[paper_run.md](D:/PDxc/Review/paper_run.md)。旧文档的历史结果与当前执行入口分开。
+当前冻结预测源码为REV\koopman_predict_v3y\src\lift.py及与其相同身份的v3w实现；输入补充由v3w\scripts\build_control11.py核实；力读出由v3w\src\guard_core.py核实。原数学审查位于旧外部路径`D:/PDxc/Review/control_math.md`（当前工作区未保留），既有工作域/门规则见仓库内[paper_run.md](../../paper_run.md)。旧文档的历史结果与当前执行入口分开。
 
 ## 17. 本次完成和仍未完成
 
@@ -3379,7 +3379,374 @@ diag["internal_force_norm_n"], diag["tension_x_n"], diag["tension_y_n"], 0.0, re
 1. **`sample_packets`计算了`schema`/`noise_seed`/`noise_indexing`/`noise_entropy_sha256`，但`r5_runner`写`information.jsonl`时只落`tick/time/noise/measurements/audit`，把这四个字段丢掉了** → "噪声按绝对tick索引"这一性质**实现了、被负例验证了，却没有逐tick落盘**。处理：审计改为**从产物直接恢复噪声实现**（`估计−真值`），这比哈希更强（哈希不能证明取值）；缺口作为**落盘偏差**如实登记，并列入R5类运行的后续修复项。
 2. **区间错位**：`raw.npz`第k行是tick k**推进之后**的状态，而`estimates.npz`第k行是tick k**开始时**的估计——两者差一个20 ms区间。我的初版直接相减，把**一个区间的状态变化（4.6e-02）误当噪声**。已改为对`raw[k−1]`比较，并新增一项"重建与runner自身误差块逐位一致"来锁定对齐。
 
-N1仍在飞行中，接口图按§25.3**不绘制其曲线、只标PENDING**；N1完成后重跑该工具即可纳入。
+
+
+### 53.9 R5-N1完成、噪声影响量化、逐条审计（2026-09-17）
+
+`results/20260916_R5_N1_GPU01`于14:05:11启动、16:58:52结束（2.90 h），`COMPLETED`、`2379/2379`、全长。
+
+#### 噪声影响（单seed描述性结果；R5总门尚未通过）
+
+| 量 | N0（无噪声） | N1（基础噪声） | 变化 |
+|---|---:|---:|---:|
+| 点力峰值 | 398.5295746870941 N | **2202.3407626853927 N** | **+452.62%** |
+| 内部力范数 | 342.8075377908096 N | **3021.1482833612267 N** | **+781.30%** |
+| 轮胎利用率 | 0.04928516371250939 | **0.24818229297654815** | **+403.56%** |
+| 最小支承 | 4686.285138588243 N | 4520.708558902985 N | −3.53% |
+| 构形误差 | 0.013752533261648514 m | **0.07166094047327183 m** | **+421.07%** |
+| 状态估计RMSE | 0.0 | **0.013129840413317115** | — |
+| 转向估计RMSE | 0.0 | 0.0 | 按仿真假设零噪声 |
+
+**描述性结论：该物理基线在这个固定seed下对传感噪声高度敏感**——仅1 cm位置噪声与0.2°航向噪声，就使连接器力峰提高**4.5倍**、内力**7.8倍**、轮胎利用率**4.0倍**、构形误差**4.2倍**。三项物理硬门仍通过（力峰余量6.8倍、轮胎0.248、支承为正），但请求转角单条验收失败，且单seed不构成统计鲁棒性结论。**“无噪声下的余量”不能代表“带噪声下的余量”**；单独看N0会低估这个固定噪声实现下的受力。
+
+#### 逐条审计
+
+新增`tools/r5_single_run_audit.py`，在R4的21项之外增加接口专属检查，共**34项**：
+
+- `R5-N0`：**34/34 PASS**
+- `R5-N1`：**33/34**，唯一失败为下述**请求转角箱式约束**项
+
+#### 一处如实上报的偏差（第17项，**未洗成通过**）
+
+| 事实 | 数值 |
+|---|---|
+| N1 请求转角最大 | `0.26216113327950147 rad = 15.020726°` |
+| 硬限值 | `0.2617993877991494 rad = 15.000000°` |
+| **超出量** | `3.6174548035206033e-04 rad = 0.0207°` |
+| 与登记 `eps_abs=2e-4` 之比 | **1.81倍** |
+| 超出元素数 | **16 / 9516** |
+| N0 请求转角 | 恰好`15.000000°`，零超出 |
+| **实际转角** | N0 `14.997707°`、N1 `14.993929°`，**两者零超出** |
+
+**判定与处理**：D1物理上起作用的是**实际转角**（执行器模型`np.clip`硬裁），它**严格在限值内**，审计中单列为机器精度检查并通过；超限的是**QP决策变量（请求）**，其箱式约束只满足到求解器容差。逐条审计**没有**把该项改宽以使其通过，而是：
+
+1. 新增一项**测量项**记录超出量、占eps_abs倍数与元素计数；
+2. 新增一项**实际转角按机器精度**的检查（PASS）；
+3. **保留**`requested_steering_box_bound_within_registered_solver_tolerance`为**失败**，并在`detail`中写明"为什么不构成物理违约"与"为什么仍报失败"（任务书把请求转角边界列为单条验收内容，静默放行等于改门）。
+
+**机理纠错**：先前写成“OSQP默认`scaled_termination=True`”是错误的。本机两个实际可用Python环境（`E:\anaconda\envs\pytorch_new\python.exe`与`E:\anaconda\python.exe`）中的OSQP均为`1.1.1`，实测默认`scaled_termination=False`；当前`physical_tracking_pilot.py`的`solver.setup(...)`没有显式传该项，所以实际继承`False`。约束可行性仍同时受绝对/相对停止准则、问题尺度和抛光影响，不能把`eps_abs`单独解释成未缩放箱约束的严格上界；现有数据只证明请求量超出了任务书已登记的验收阈值，**不能据此把根因归给缩放终止**。处理选择也随之修正：保持15°请求边界，显式冻结全部求解器设置并重跑同配置的基准/N0/N1三条链；不得只重跑N1后与旧N0作“唯一变量为噪声”的比较。**在新链通过前R5总门不应判PASS。**
+
+#### 出图
+
+`R5-N1`单条六面板图与接口图（纳入N1曲线）均已产出，`PASS_VISUAL_QA`。
+
+## 54. C3执行器九片段与C4的E01证据矩阵（2026-09-17）
+
+### 54.1 C3：源身份核验与两处修复
+
+C3的代码与源**均已存在**：`actuator_discretization{,_batch,_analyze}.py`，源为`paper_v4_results/20260909_E01_100M05/P0_0.5ms/raw.npz`。**源的SHA-256与代码内登记的`SOURCE_RAW_SHA256`逐位匹配**（`C68CCAF5...4CC92`），源raw的101列齐备。
+
+**C3的本质是开环重放**：读取源run记录的固定`accel`/`request_delta`指令序列，用不同执行器更新间隔（2/1/0.5ms）推进植物，窗口为0—2s、11.5—13.5s、16.5—18.5s，共九条。**不含MPC**——因此①**09-16的速率惩罚符号修复不可能影响C3**；②**没有有限差分要加速，GPU平台决定对C3不适用**。
+
+**两处修复**：
+
+1. `actuator_discretization_batch.py`的`--r4-report`要求R2c时代的旧scope字符串，吃不了新的C1总门 → 迁移为**同时接受旧R4报告 schema 与新的`PASS_C1_R4_TOTAL`门**，并在registration中登记实际用了哪一个；
+2. `actuator_discretization.py`**先建输出目录再校验源身份**，导致被拒的源仍留下空目录——违反任务书"拒绝必须发生在创建正式run输出之前" → 改为**先校验源与窗口完整性，再建目录**。
+
+负例复测：错误源（`P0_1ms`）→ `100m source raw identity mismatch`，**退出1且无输出目录**（修复前会留下空目录）。
+
+**协议冻结**：`protocol/C3_ACTUATOR_DISCRETIZATION_20260917_v1.json`（SHA-256=`50d4d8dbad7e974b2d89373f32b1f086f24e6e176265433d183c099e5c0bb652`），内含**C1前置取代登记**：C1总PASS由带缺陷控制器产生并已退役，而C3**不含MPC**、源植物未变且被SHA钉住，故C3对C1门只作schema/身份检查、不作活数值前置——**不改任何门、阈值、窗口、间隔**。
+
+**估时**（任务书要求"启动前小范围估时并登记总2小时上限"）：单段（2ms/2s窗）**49.69 s**，九段约**7.5分钟**，远低于2 h上限。单段探针的`source_replay_max_abs_difference = 0.0`——**2ms重放精确复现冻结源**。
+
+以分离进程启动（PID 44360，18:16:43），九段串行，任一失败即停。
+
+### 54.2 C4：E01证据矩阵（`PLANT_GATE_NOT_READY`）
+
+原E01清单在仓库中**不存在**，已从任务书`### E01：植物和100m激励验收`一节（第756—772行）取权威要求：**五步、33条轨迹（27＋6）**。
+
+新增`tools/c4_e01_evidence_matrix.py` → `analysis/20260917_C4_E01_EVIDENCE_MATRIX_02/`：
+
+| 步 | 要求 | 需要 | 现有证据 | 状态 |
+|---|---|---:|---:|---|
+| 1 | 单元测试（静态平衡/单连接器伸缩/匀速平移/纯几何转弯；作用反作用、坐标旋转、力矩、Wf_int≈0、Fz平衡） | 0 | 3 | 几何证据存在，但**作用反作用/力矩残差未按1e-8门逐项登记** |
+| 2a | 100m阶跃诊断 × 3参数点 × 3步长 | 9 | **9 PASS** | ✅ 完成（`100M05`） |
+| 2b | 真实回头弯 × 3参数点 × 3步长 | 9 | 1 | ❌ 仅`P0_2ms`且**状态FAIL/`STOP_ULTIMATE_FORCE`**，缺8条 |
+| 2c | 转向切换 × 3参数点 × 3步长 | 9 | 6 | ❌ 现有HS/HG为短测试与几何证据，**未构成3×3矩阵**，缺9条 |
+| 3 | 参考时间对齐比较峰值/冲量/能量/位置/横摆 | 0 | 1 | 仅100m有`convergence_100m.json` |
+| 4 | 100ms延迟与0.4s中断各3族（2ms主积分） | 6 | 0 | ❌ **未找到任何通信植物诊断证据** |
+| 5 | 四点箭头/横摆/Fx-Fy-Fz/拉伸代理/输入与实际转角图 | 0 | 3 | 仅100m四张图；失败轨迹无诊断图 |
+
+**`required=33 / covered=9 / outstanding=24 / failed_retained=1`**，`plant_gate.json` = **`PLANT_GATE_NOT_READY`**，独立审查`NOT_PERFORMED`。
+
+**严格按§6口径行事**：不把33条减去最近运行条数；旧输入器与新控制器不混算；**失败轨迹保留FAIL**（`HAIRPIN01/P0_2ms`未删、未改门）；`100M05`只代表其100m子门；**不发明"已完成E01"总判定**。转向切换与通信植物诊断按§6**冻结确切数量后再执行**。
+
+**开发中自查两处错误**：①矩阵首版把`covered`算成0——因为2026-09-09的E01 run用`status="PASS"`而我的判据要求`"COMPLETED"`；②glob `P?_?ms`**因小数点匹配不到`P0_0.5ms`**，只找到6个单元而非9个。两处均已修正并重出`_02`。
+
+### 54.3 C3九段全部完成并通过
+
+`results/20260917_C3_ACTUATOR_01`：批次`COMPLETED`，**九段全部`COMPLETED`且独立审计全`PASS`**；三段2ms的`source_replay_max_abs_difference`均为**恰为`0.0`**——2ms重放精确复现冻结源（1e-12门以位级精确通过）。
+
+分析器`analysis/20260917_C3_ACTUATOR_DIAGNOSTIC_01`状态`PASS`。**三窗的决定性门（1ms→0.5ms）全部通过**：
+
+| 窗 | 力峰相对差 | 冲量向量相对差 | 终点位置 | 终点航向 | 门 |
+|---|---:|---:|---:|---:|---|
+| straight_acceleration | 1.078e-05 % | 8.825e-04 % | 7.551e-06 mm | 0 | 2%／2%／1mm／0.01° |
+| steering_onset | **6.370e-02 %** | 4.682e-02 % | 1.670e-01 mm | 1.294e-03° | 同上 |
+| reverse_switch | **2.323e-02 %** | 1.043e-01 % | 3.387e-01 mm | 2.790e-03° | 同上 |
+
+**两处值得注意的物理判断**：①`steering_onset`与`reverse_switch`的步长敏感度比直线段高**约三个数量级**（力峰0.064% vs 0.00001%）——符合物理，执行器离散只在转向变化时才起作用；②各段力峰192.06／913～914／1541～1542 N、最小支承4077～4813 N、轮胎≤0.237，**都在硬门内且余量充足**。
+
+### 54.4 C3/C4出图
+
+| 图 | 位置 | 说明 |
+|---|---|---|
+| **C3只读重绘** | `analysis/20260917_C3_ACTUATOR_DIAGNOSTIC_02/figures/` | 原图四面板y轴均拉到登记阈值（比实测值高**约三个数量级**），数据挤成贴底一条、面板大部分空白——**与09-17力面板同一类缺陷**。重绘为**轴拟合实测值＋限值降级为离轴标注**（每个面板写明“registered limit X is N× above this panel's scale”），**纯呈现重绘、不改任何数据/阈值/窗口/门**。`PASS_VISUAL_QA`；原目录补manifest标`FAIL_VISUAL_QA_SUPERSEDED`并写明理由。 |
+| **C4覆盖图** | `analysis/20260917_C4_E01_EVIDENCE_MATRIX_02/figures/` | §25.4对审计类要求"没有物理轨迹时用覆盖图，**不硬造动力学曲线**"。左：各E01步骤的登记要求vs已通过证据（2a为9/9，2b/2c为0/9，step4为0/6）；右：gate状态、失败保留数与**执行前必须先冻结的缺口清单**。`PASS_VISUAL_QA`。 |
+
+### 54.5 C3/C4的状态
+
+| | 状态 |
+|---|---|
+| **C3** | ✅ **通过**：九段全COMPLETED、独立审计全PASS、三窗决定性门全过、2ms重放位级复现源 |
+| **C4** | ⚠️ **`PLANT_GATE_NOT_READY`**：33条登记轨迹中**9条有通过证据、24条无通过证据**；后者含1条已执行但FAIL及23条尚未形成合格证据，独立审查`NOT_PERFORMED` |
+
+**C4的24条无通过证据项**：回头弯9条均无PASS（其中1条已执行但FAIL、另8条未完成），转向切换9条未形成合格3×3矩阵，**通信植物诊断6条零覆盖**（100ms延迟＋0.4s中断各3族）。此外，单元测试残差尚未按1e-8门登记。按§6均须**先冻结确切数量与身份再执行**——尤其通信植物诊断那6条是`plant_gate`最大的洞。
+
+## 55. 最新实验进度与文档一致性审计（2026-09-17）
+
+### 55.1 当前可信进度
+
+本节以磁盘产物、冻结身份和独立审计为准；截至本次核查，没有相关Python实验进程在运行。
+
+| 阶段 | 当前状态 | 可用结论 | 仍不能写的结论 |
+|---|---|---|---|
+| RTX 5080资格与G3 | G0—G2通过；G3三个窗口的CUDA等价与原硬门通过 | GPU可作为后续离线执行平台；同后端可做严格对拍 | 不代表实时性；不得拼接CPU前缀与GPU后缀 |
+| 缺陷版R4六条 | 6/6完成、四个步长门通过，但控制律含速率惩罚符号缺陷 | 数值步长敏感性和历史硬门事实可保留 | 绝对跟踪质量、参数点稳健性及旧`C1总PASS`不得作为当前控制律结论 |
+| 修复版P0基准 | `R5_BASELINE_P0_2MS_GPU02`完成2379/2379 | 相比缺陷版，横向末值下降72.45%、位置RMSE下降51.08%；同时力峰上升38.35%、纵向末值恶化4.5倍 | 不能由单条P0基准恢复完整R4参数×步长矩阵 |
+| R5-N0 | 完成2379/2379；`34/34 PASS_SINGLE_RUN_AUDIT`；图QA通过 | 合法信息接口在无噪声下对修复版同后端基准为无操作，59个有效白名单列逐位相同 | 不证明分布式控制或通信鲁棒性 |
+| R5-N1 | 完成2379/2379；物理硬门通过；图QA通过；**单条审计33/34 FAIL** | 单seed基础噪声下，力、内力、轮胎和构形误差显著增大，说明该物理基线对测量噪声敏感 | R5总PASS、统计鲁棒性、网络延迟/丢包鲁棒性 |
+| C3执行器诊断 | 9/9完成、独立审计全PASS、三窗决定性门全过、图QA通过 | 固定指令重放下的执行器离散收敛成立 | 不含MPC，不是方法级控制比较 |
+| C4 / E01证据矩阵 | `PLANT_GATE_NOT_READY`；9/33有通过证据，24/33无通过证据；独立审查未做 | 已明确完整植物门的证据缺口 | 不能开展控制方法排名 |
+| 六方法核心消融E05 | **0条** | 无 | 不能声明Koopman优势、网络保护贡献或模块收益 |
+
+### 55.2 本次发现并修正的文档问题
+
+1. 文档首行仍把第36节写成当前入口，实际正文已到第54节；现改为第55节。
+2. `exp_status.md`和`ABLATION_MATRIX_20260917.md`仍写R5-N1运行中、C3未运行；现按产物回填为N1执行完成但审计失败、C3通过、C4未就绪。
+3. 消融矩阵H3配对误写为`P1 vs P0`；六格方法中不存在P1，应为`P0N vs P0`。
+4. C3图注中的英文所有格误写为`panel"s`；现改为`panel's`。
+5. C4的“24条尚缺”会把已执行但FAIL的回头弯也误读成未运行；现统一写为“24条无通过证据”，并拆成1条FAIL与23条尚未形成合格证据。
+6. 任务书有4个链接指向不存在的旧目录`D:/PDxc/Review`。可确认同源的`paper_run.md`已改链到仓库文件；缺失的`describe_review.md`和`control_math.md`改为保留原路径的历史来源说明，不再提供失效链接。
+
+### 55.3 R5当前硬阻塞：执行完成不等于验收通过
+
+`results/20260916_R5_N1_GPU01/single_run_audit.json`唯一失败项是`requested_steering_box_bound_within_registered_solver_tolerance`：请求转角最大`0.26216113327950147 rad = 15.020726°`，比15°上界高`0.020726°`，为登记`eps_abs=2e-4`的1.81倍，共16/9516个元素越界。实际施加转角最大`14.993929°`，物理上未越界；但任务书把请求边界列为单条验收项，所以不得把该运行静默改写成PASS。
+
+默认处理应保持原门，但**不能只重跑N1**：收紧求解器容差会改变控制器的数值配置；若新N1继续与旧N0比较，噪声与求解器设置两个变量同时改变。正确处理是先完成第56节的配置落盘、固定QP探针与身份负例，再用同一严格设置重跑修复版基准、R5-N0、R5-N1三条链，逐条审计和出图。若以后决定登记请求界容差，必须作为前瞻性协议变更重新冻结，不能追溯性地把现有33/34改成34/34。
+
+### 55.4 R5总门协议的两处身份错误和一处门实现缺口
+
+冻结的`protocol/R5_INFORMATION_GATE_20260917_v2.json`当前不能合法执行：
+
+1. `inputs.baseline`仍指向`R5_BASELINE_P0_2MS_GPU01`；该运行在920/2379因符号缺陷被主动停止，没有`metrics.json`。正确对拍对象应是修复版`R5_BASELINE_P0_2MS_GPU02`。
+2. 协议登记的N1协议SHA仍为旧值`7b992345...67d8e`，当前冻结文件实际SHA为`67a9ed729...f1e21`；现有门工具会在创建输出前以`IDENTITY_MISMATCH`拒绝。
+3. 门工具目前只读取合同测试、三条metrics和raw，不读取N0/N1的`single_run_audit.json`。即使修正前两项，它也可能忽略N1的33/34失败而生成接口PASS，违反“总门等待两条单条审计”的任务书口径。
+
+不得覆盖v2。后续应新建v3：改指修复版GPU02、钉住当前或重跑后的N1协议身份、把N0/N1单条审计列为身份文件并硬要求二者均为`PASS_SINGLE_RUN_AUDIT`。在N1验收解决前，不运行R5总门、不创建`analysis/20260917_R5_INFORMATION_GATE_01`。
+
+### 55.5 从当前状态继续的顺序
+
+1. 按第56节和`R5_STRICT_CHAIN_EXECUTION_20260917.md`完成求解器配置注册、固定QP探针和身份负例；保持原边界，使用同一严格设置依次重跑修复版基准、N0、N1。三条均须单条审计与出图，不得把新N1与旧N0拼成正式比较。
+2. 修正R5门工具的审计前置，等新三条单条审计全部通过后另冻门协议新版本，再执行R5总门与最终接口图。
+3. R5链路关闭后，处理第52节已确认的GPU支撑clamp、FD域语义、常量同步和purity聚合判据，并重新冻结GPU实现身份。
+4. 为E01剩余24条无通过证据项冻结确切身份，补回头弯、转向切换、通信植物诊断、单元残差登记、失败段诊断图及独立审查，直到`plant_gate`通过。
+5. 依次完成E02预测器资格、E03控制器/因果信息门、E04共同架构，再启动E05六格核心消融。
+
+### 55.6 最新图表QA复核与修正
+
+实际查看N1六面板、R5接口图、C3诊断图和C4覆盖图后，发现R5两处图表语义错误：
+
+1. N1六面板把控制周期端点的轮胎峰值`0.246672`和最小支承`4522.6 N`写进标题，但manifest声称峰值覆盖全部接受子步；正式全样本门值应为`0.248182`和`4520.709 N`。
+2. 旧R5接口图已画入N1曲线，却没有显示N1单条审计失败，容易被误读为R5阶段通过。
+
+处理结果：旧N0/N1六面板分别保存在两个`figures_superseded_*`目录并标`FAIL_VISUAL_QA_SUPERSEDED`；当前`figures/`按“曲线画端点、标题和caption写全子步＋端点门值”的口径重绘，N1图底部明确显示请求转角FAIL和`FAIL_SINGLE_RUN_AUDIT`，视觉复核为`PASS_VISUAL_QA`。旧接口图`analysis/20260917_R5_INFORMATION_FIGURES_01`标为被取代，新图位于`analysis/20260917_R5_INFORMATION_FIGURES_02`，明确显示`N1 audit 33/34 FAIL`与`R5 total gate BLOCKED`，视觉复核为`PASS_VISUAL_QA`。C3和C4图未发现新的数值或标签矛盾。
+
+状态：`LATEST_ENTRY_55 / R5_N1_EXECUTION_COMPLETED_BUT_SINGLE_RUN_AUDIT_FAIL / R5_TOTAL_GATE_BLOCKED / R5_GATE_V2_WRONG_BASELINE_AND_STALE_IDENTITY / R5_FIGURES_CORRECTED_PASS_VISUAL_QA / C3_PASS / PLANT_GATE_9_OF_33_PASSING_EVIDENCE / CORE_METHOD_ABLATION_0 / NO_EXPERIMENT_PROCESS_RUNNING`。
+
+## 56. R5严格求解器重试链：修补说明与启动入口（2026-09-17）
+
+### 56.1 本轮已经做了什么
+
+本轮完成的是**证据、图表与文档修补**，没有启动新动力学实验，也没有修改旧raw/substeps/metrics或把失败裁决改成通过：
+
+1. 修正R5单条图的统计口径：轮胎利用率与最小支承的正式门值改为覆盖全部接受子步；控制周期端点曲线仍可画，但标题和图注必须明确“端点曲线”和“全子步极值”。旧图保留并标`FAIL_VISUAL_QA_SUPERSEDED`。
+2. 修正R5接口图的裁决表达：当前图显式显示`N1 audit 33/34 FAIL`和`R5 total gate BLOCKED`，避免“图画完即阶段通过”的误读。旧接口图保留为被取代版本。
+3. 修正图manifest的科学状态：图表视觉通过只记`figure_status=PASS_VISUAL_QA`；N1的`science_status`仍为`FAIL_SINGLE_RUN_AUDIT`，R5总门仍为`BLOCKED`。
+4. 修正C3/C4和消融矩阵的状态文字、缺口计数、失效链接及错误配对名；完成证据、拟修项和未运行工作继续分列。
+5. 纠正第53.9节的OSQP解释：本机OSQP 1.1.1实测`scaled_termination=False`，不能再把请求越界归因于`scaled_termination=True`。
+6. 复核请求越界计数：按审计使用的`limit + 1e-12`口径为**16个元素、15个tick**；若直接使用浮点`> limit`会得到17个元素、16个tick，其中tick 1652仅高`5.55e-17 rad`，属于浮点等值尘埃，不应与16个实质越界元素混报。最大值位于tick 963。
+
+### 56.2 还没有做、启动前必须做的代码修补
+
+以下项目尚未实现，未完成前状态为`NOT_READY_TO_LAUNCH`：
+
+| 项 | 必须修改的位置 | 验收证据 |
+|---|---|---|
+| 求解器设置显式化 | `physical_tracking_pilot.PilotConfig`和`solver.setup`显式传入并记录`eps_abs`、`eps_rel`、`scaled_termination`、`max_iter`、`polishing` | 运行产物能复原实际设置；不再依赖库默认值 |
+| 两类runner使用同一设置 | `diagnostics/full_route_gpu_runner.py`、`diagnostics/gpu_closed_loop_runner.py`及`r5_runner.py`从各自冻结协议读取同一`solver_settings` | 协议值、metrics值和运行时值逐项一致；错误值在建输出前拒绝 |
+| 审计取消硬编码 | `tools/r5_single_run_audit.py`不再写死`2e-4`，改从本条运行的已登记设置读取阈值 | 缺字段、字段矛盾、非法值均FAIL，不自动回退 |
+| 基准构形误差去桩值 | 基准runner不再把`max_e_g_m`写死0.0，按R5同一公式计算 | 严格N0与严格基准可比较全部有效共同列 |
+| R5总门前置补全 | 门工具读取基准/N0/N1的单条审计及图manifest，并硬要求三条科学审计与图QA均通过 | 任一FAIL/BLOCKED时不得生成总PASS |
+| 图工具参数化 | R5接口图工具接受新run和新输出目录，不覆盖`_02`旧图 | 新严格链形成独立`_03`或新日期目录 |
+| 环境登记 | 启动回执写入Python可执行文件、Python/OSQP/NumPy/SciPy/Torch版本、CUDA设备及完整命令 | 可证明使用RTX 5080对应环境 |
+
+推荐的首个严格候选为`eps_abs=1e-6`、`eps_rel=1e-6`、`scaled_termination=false`、`max_iter=4000`、`polishing=true`。另以独立字段前瞻性登记`requested_steering_acceptance_tolerance_rad=1e-6`；它是任务书的数值验收阈值，不从`eps_abs`自动推导，也不改变15°物理边界。这些都只是**待探针验证的前瞻性候选**，不是已经生效的设置。不得在看完完整N1结果后再改阈值；若固定QP探针失败，应停止并另冻候选版本。
+
+### 56.3 为什么要重跑三条而不是一条
+
+收紧求解器设置可能改变每个QP解、控制序列和闭环轨迹。旧基准、旧N0与旧N1都使用`eps_abs=eps_rel=2e-4`；新N1若改为`1e-6`，就不能继续与旧N0作“只有噪声不同”的正式对照。新链必须使用同一求解器设置完成：
+
+1. **严格修复版P0基准**：集中全状态、无噪声；
+2. **严格R5-N0**：合法信息接口、无噪声；先做与严格基准的无操作门；
+3. **严格R5-N1**：合法信息接口、基础噪声、seed 5105；与严格N0构成唯一变量为噪声的正式对照。
+
+三条预计约9小时，严格设置可能增加耗时，单条冻结上限为5小时。任一条失败就保留产物并停止依赖项，不自动放宽容差、不回退旧run拼接。
+
+### 56.4 启动前探针不能用3 tick冒充
+
+旧N1首个实质请求越界在tick 834，最大越界在tick 963（19.28 s、参考距离约38.56 m）。从零开始的3 tick烟测看不到问题。正式启动前必须二选一：
+
+1. 首选构建只读固定QP重放工具，读取旧N1在15个实质越界tick处已保存的估计、参考记忆、上一控制与预览输入；先用旧设置复现原首控制，再用严格候选求解并输出JSON及“tick—请求越界—迭代数”图。
+2. 若固定QP输入无法无歧义重建，则冻结从初值到tick 970的严格前缀探针；该探针约占全路线41%，不得用更短前缀替代。
+
+探针必须满足：旧设置复现检查通过；严格候选每个QP求解成功、非线性复核通过；请求越界不超过新登记阈值；没有`solved inaccurate`、迭代耗尽或耗时异常。否则不启动三条全路线。
+
+### 56.5 每条实验结束后的强制交付
+
+每种实验跑完都必须立即生成对应PNG/SVG和`figure_manifest.json`，并把科学状态与视觉状态分开：
+
+| 实验 | 必须出的图 | 下一条的释放条件 |
+|---|---|---|
+| 固定QP/970 tick探针 | 各候选请求越界、迭代数、求解耗时，标15°与登记数值阈值 | 探针科学判定PASS、图QA PASS |
+| 严格P0基准 | 单条六面板：轨迹/误差、受力、冲量、轮胎与支承、请求/实际转角、耗时 | 单条审计PASS、图QA PASS |
+| 严格R5-N0 | 同上，另加信息误差与节点可用性 | 单条审计PASS、图QA PASS；与严格基准无操作门PASS |
+| 严格R5-N1 | 同上，图内明确请求最大值、15°界、全子步物理门和单条审计状态 | 单条审计全部PASS、图QA PASS |
+| R5严格总门 | N0/N1信息误差、真实/估计轨迹、可用性、无操作对拍、噪声影响与状态板 | 才可写`PASS_R5_INFORMATION_GATE` |
+
+图不能覆盖旧目录；视觉失败只允许重绘呈现层，原图标`FAIL_VISUAL_QA_SUPERSEDED`保留。任何数值、阈值、白名单或裁决逻辑变化都必须另冻协议，不能借“重绘”修改。
+
+### 56.6 唯一启动入口
+
+详细的文件名、预检、PowerShell命令、顺序、回执、短检查、停止规则和完成清单见[`R5_STRICT_CHAIN_EXECUTION_20260917.md`](R5_STRICT_CHAIN_EXECUTION_20260917.md)。当前状态：
+
+`DOCUMENTATION_AND_FIGURE_REPAIRS_COMPLETE / OSQP_MECHANISM_TEXT_CORRECTED / STRICT_CHAIN_CODE_CHANGES_PENDING / STRICT_CHAIN_NOT_STARTED / NO_EXPERIMENT_PROCESS_RUNNING / R5_TOTAL_GATE_BLOCKED`。
+
+## 57. R5严格链S0/S1执行记录（2026-09-17）
+
+按`R5_STRICT_CHAIN_EXECUTION_20260917.md`第3节执行S0与S1。
+
+### 57.1 S0环境与进程核实（通过）
+
+| 项 | 实测 |
+|---|---|
+| Python | `E:\anaconda\envs\pytorch_new\python.exe`，3.11.14 (Anaconda) |
+| 依赖 | osqp 1.1.1、numpy 2.0.1、scipy 1.17.1、torch 2.12.0.dev20260304+cu128 |
+| CUDA | **True，NVIDIA GeForce RTX 5080** |
+| 冲突进程 | **无**（无`paper_v4_core`实验进程） |
+| GPU占用 | 36 MiB / 0% |
+
+**实测OSQP库默认值**：`scaled_termination=0`(False)、`eps_abs=eps_rel=0.001`、`max_iter=4000`、`polishing=0`(False)。这**证实了§56.1第5条的纠正**：本机`scaled_termination`默认为**False**，故第53.9节把请求越界归因于`scaled_termination=True`**是错的**；同时说明旧代码的`eps_abs=2e-4`与`polishing=True`是显式传入的，而`scaled_termination`**一直依赖库默认值**——正是S1要消除的。
+
+### 57.2 S1六组代码修补（全部完成）
+
+| # | 文件 | 改动 | 状态 |
+|---|---|---|---|
+| 1 | `controllers/physical_tracking_pilot.py` | `PilotConfig`新增`scaled_termination`与`polishing`字段及`solver_settings()`方法；`solver.setup`**显式传入五项**；新增`_effective_solver_settings(solver)`从**OSQP对象读取实际生效值**并随结果返回；**未改**约束、权重、预测模型或控制映射 | ✅ |
+| 2 | `diagnostics/gpu_closed_loop_runner.py` | `execute()`新增`solver_settings`形参并由`PilotConfig(**settings)`构造；**构形误差去桩值**——按与`r5_runner`同一公式（`transition_targets`→`extract`→范数最大值）计算`e_g`并写入`max_e_g_m`，同时更新`max_eg`；metrics登记`solver_settings`与`solver_settings_effective` | ✅ |
+| 3 | `diagnostics/full_route_gpu_runner.py` | 新增`resolve_solver_settings()`：协议必须声明**全部五项**且类型/范围合法，否则在建输出前拒绝；协议缺失时回落并**记录来源**为`runner_default_historical_protocol_omits_solver_settings`；两处`execute`调用传入设置 | ✅ |
+| 4 | `r5_runner.py` | 从协议读同一`solver_settings`（缺失即拒绝）；协议须声明`acceptance_tolerances`；**新增`--deadline-unix`并在循环内执行绝对截止**；首次求解后**核对协议声明值与运行实际生效值**，不一致即写`solver_mismatch.json`并FAILED；metrics登记`acceptance_tolerances`与`environment`（python/版本/osqp/numpy） | ✅ |
+| 5 | `tools/r5_single_run_audit.py` | **重写**：删除`2e-4`硬编码；从本条metrics读求解器设置与**独立的**请求转角验收容差；新增"设置齐备且声明=实际"、"验收容差独立于`eps_abs`"两项检查；**同时报告`>15°`原始计数与`>15°+1e-12`实质计数**；应用转角按机器精度独立检查 | ✅ |
+| 6 | `tools/r5_information_gate.py` | 新增`run_evidence()`读取三条`single_run_audit.json`与三个`figure_manifest.json`，新增六项检查硬要求三条科学审计均`PASS_SINGLE_RUN_AUDIT`、三个图均`PASS_VISUAL_QA`，并新增"三条共享同一求解器身份"检查 | ✅ |
+| 7 | `tools/r5_information_figures.py` | 参数化为`--baseline/--n0/--n1/--out`；新增**拒绝覆盖**已存在输出目录 | ✅ |
+
+### 57.3 验收证据
+
+- **编译**：任务书S2的七文件`py_compile`全部通过（退出0）。
+- **设置校验负例**（`resolve_solver_settings`）：缺字段→`SOLVER_SETTINGS_MALFORMED`；类型错→`SOLVER_SETTINGS_NOT_BOOLEAN`；越界→`SOLVER_SETTINGS_OUT_OF_RANGE`；合法严格候选→接受且`source=protocol`；历史协议缺失→接受且`source=runner_default_historical...`。
+- **审计去硬编码验证**：新审计在旧`R5-N0`上给出**32/35 FAIL**——三项新检查（设置齐备、验收容差独立、请求界按登记容差）**如实FAIL且不回落**，其余32项通过。**这正是"缺字段即FAIL、不自动回退"的要求**；同时说明**旧run的磁盘审计文件由上一版工具产生，不得当作严格链证据**。
+- **图工具**：参数化后冒烟测试通过（独立输出目录）；重复运行同一目录→`REFUSING_TO_OVERWRITE_OUTPUT`退出1。
+
+### 57.4 本轮我自己的错误（均已在执行中修正）
+
+1. `execute()`签名补丁把新形参插在**返回注解之后**，产生语法错；已改为在`)`前插入。
+2. `PilotConfig`替换块缩进写成4空格而原行在`with`块内是8空格，产生`IndentationError`；已按实际缩进修正。
+3. 引用了未定义的`expected_solver_settings`；已按任务书本意改为**协议声明值与运行实际生效值**的核对。
+4. `r5_runner.main()`里`--backend`分支前的初始化**覆盖了协议分支的赋值**；已把初始化移到协议块之前。
+5. **对`tools/r5_single_run_audit.py`的补丁把文件改坏到927907行**（切片与删除正则错位）；因该工具无备份，已**整文件重写**而非继续打补丁。
+6. 图工具参数化补丁**未匹配**——因为该文件已被§55.6的修补改过（已引用`baseline_rel`等却缺argparse块，属半成品重构）；已按其实际结构修正并补上缺口。
+
+### 57.5 当前状态与下一步
+
+**S1完成，S2进行中**。S2尚缺：冻结三个v1协议（`R5_STRICT_BASELINE_P0_2MS_GPU_20260917_v1.json`、`R5_STRICT_N0_GPU_20260917_v1.json`、`R5_STRICT_N1_GPU_20260917_v1.json`，三者`solver_settings`逐位相同）、三类负例（错SHA／篡改solver字段不更新SHA／输出目录已存在）、以及**只读固定QP重放探针**（旧N1的15个实质越界tick：834, 839, 853, 930, 963, 1112, 1180, 1194, 1298, 1301, 1370, 1384, 1524, 1538, 1549；最大在tick 963）。探针须先以旧`2e-4`设置**复现已保存首控制**，再以`1e-6`候选求解，并出JSON＋PNG/SVG＋manifest。**探针未通过前不得启动S3/S4/S5三条全路线。**
+
+状态：`S0_ENVIRONMENT_FROZEN_NO_CONFLICTS / S1_SIX_CODE_PATCHES_COMPLETE / S2_COMPILE_PASS / SOLVER_SETTINGS_VALIDATION_NEGATIVES_PASS / AUDIT_DEHARDCODED_AND_OLD_RUNS_FAIL_AS_REQUIRED / FIGURE_TOOL_PARAMETERIZED / S2_PROTOCOLS_AND_PROBE_PENDING / STRICT_CHAIN_NOT_STARTED / R5_TOTAL_GATE_BLOCKED`。
+
+## 58. R5严格链S2完成、协议修订与S3启动就绪（2026-09-17）
+
+### 58.1 本轮确认已经修好的内容
+
+对S1代码重新执行`-W error -m py_compile`，控制器、两类GPU runner、R5 runner、两套单条审计、总门、绘图、协议构建、预检和探针工具均通过。现场未发现相关实验进程。关键修补现在形成一条闭环：
+
+1. `PilotConfig`和OSQP setup显式使用`eps_abs`、`eps_rel`、`scaled_termination`、`max_iter`、`polishing`，运行时再从OSQP对象读取实际值；声明值与生效值不等即停止。
+2. 全状态GPU基准和R5接口runner从各自冻结协议读取同一设置与独立验收容差；metrics写入声明值、生效值、来源、协议SHA、Python/OSQP/NumPy环境和绝对截止。
+3. 全状态基准按与R5相同的公式计算`max_e_g_m`，不再写死0；严格链无操作门将比较全部60个有效白名单列。
+4. 单条审计不再硬编码`2e-4`，分别检查15°几何界、已登记的请求数值验收容差和实际转角机器精度容差，同时报告直接`>15°`与`>15°+1e-12`两个计数。
+5. 总门独立读取三条科学审计和三条图manifest，要求三条solver设置及验收容差逐项相同。
+6. 修正新发现的执行顺序循环：原工具把图QA列入科学审计，而绘图又要读取审计状态。现在科学审计与图QA相互独立，顺序统一为**科学审计→绘图→人工视觉QA**，总门再同时检查两者。
+
+### 58.2 S2拒绝测试与图
+
+`analysis/20260917_R5_STRICT_PREFLIGHT_01/preflight.json`状态为`PASS_R5_STRICT_PREFLIGHT`。五项均按预期在动力学/正式输出前拒绝：错误协议SHA、非法solver设置、已有输出目录、R5协议缺验收容差、R5协议缺绝对截止。对应PNG/SVG已人工检查，标签和状态无裁切或矛盾，根目录`figure_manifest.json`已登记`PASS_VISUAL_QA`。
+
+该预检**没有运行GPU动力学或完整路线**，只证明身份和拒绝路径生效。
+
+### 58.3 15个历史越界tick固定QP探针
+
+探针协议：`protocol/R5_STRICT_SOLVER_PROBE_20260917_v1.json`，SHA `d7d8511d6bc01f9b00afa470cf001c6329ae836a05827b0023f5c2d7e63acdbd`。输出：`analysis/20260917_R5_STRICT_SOLVER_PROBE_01/`。
+
+| 检查 | 实测 | 判定 |
+|---|---:|---|
+| 旧`2e-4`设置复现已保存首控制 | 15/15最大绝对差`0.0` | PASS |
+| 旧设置求解/复核 | 15/15 `solved` / `PASS` | PASS |
+| 严格`1e-6`设置求解/复核 | 15/15 `solved` / `PASS` | PASS |
+| 严格请求转角越界 | 15/15为`0.0 rad`，门`1e-6 rad` | PASS |
+| 严格OSQP迭代数 | 200—825，小于4000 | PASS |
+| 探针墙钟 | 总170.477 s；严格单次约5.19—5.83 s | 仅离线记录，不宣称5 s实时门PASS |
+
+探针PNG/SVG已人工视觉检查，四个面板清晰显示越界、旧解复现差、迭代数和墙钟，manifest已登记`PASS_VISUAL_QA`。环境记录里的`worker_boundary_clean=false`是`torch`启动即带入NumPy造成的旧聚合口径；本次`imported_after_startup=[]`且SciPy/OSQP/Pandas未进入worker，没有观察到新的运行期污染。
+
+边界：这是固定QP数值探针，**没有推进植物轨迹，也不能替代2379周期全路线**。
+
+### 58.4 发现并修正的协议问题
+
+首个基线v1文件已冻结但未运行。复核发现它从旧R4协议继承了`closed_loop_authorized=false`、过时的“构形误差未维护”分析文字和旧控制器短SHA说明，也未把本次预检/探针PASS钉为父证据。该文件保留、不得覆盖、**不用于启动**。
+
+协议构建器已改为逐级冻结并去重身份文件：
+
+- S2只冻结基线v2；
+- S3的`single_run_audit.json`与`figures/figure_manifest.json`均通过后才允许生成N0 v2；
+- S4通过后才允许生成N1 v2；
+- 三条均通过后才允许生成总门v3。
+
+正式S3协议为`protocol/R5_STRICT_BASELINE_P0_2MS_GPU_20260917_v2.json`，SHA `ded690eb5bcf1ea5df3346a530bbb8e44a498ec6f5b9a0406e089ab7c3493477`，钉住34项源码/父证据/S2证据。已用正确SHA执行只读`validate_protocol()`，身份全部匹配，声明输出`results/20260917_R5_STRICT_BASELINE_P0_2MS_GPU02`不存在。
+
+### 58.5 当前唯一允许的下一步
+
+状态为`READY_TO_START_S3_BASELINE`。只允许启动严格P0基准GPU02；N0/N1协议当前不存在，这是顺序门的正常表现。启动前重新核对没有相关进程、协议SHA仍为上述值、输出和三份日志/回执均不存在；随后使用`R5_STRICT_CHAIN_EXECUTION_20260917.md`第4节函数和第5节S3命令，5小时绝对截止。
+
+S3结束后的强制顺序：
+
+1. `r4_single_run_audit.py --write`；
+2. `r4_cell_figure.py`生成PNG/SVG/manifest；
+3. 人工打开PNG核对六面板，图QA通过后登记`PASS_VISUAL_QA`；
+4. 执行`build_r5_strict_protocols.py --stage n0`。
+
+S4 N0结束后还必须运行`r5_strict_no_op_gate.py`，比较新N0与新基线的60个协议白名单列和时间列，并为该对拍另出JSON、PNG、SVG和manifest；科学状态与图QA均通过后，构建器才允许生成N1协议。已实测在S3未完成时调用`--stage n0`会因缺少基线`metrics.json`非零退出，顺序门生效。
+
+任何科学审计FAIL、图缺失/错标、身份不一致、求解异常、物理门失败或超过5小时都停止，不生成N0协议。当前没有启动S3，没有新全路线数据，旧R5总门仍为`R5_TOTAL_GATE_BLOCKED`。
+
+状态：`S0_PASS / S1_PASS / S2_PREFLIGHT_5_OF_5_PASS / S2_FIXED_QP_15_OF_15_PASS / S2_FIGURES_PASS_VISUAL_QA / BASELINE_V1_RETIRED_UNRUN / BASELINE_V2_IDENTITY_VALIDATED / READY_TO_START_S3_BASELINE / FULL_ROUTE_NOT_STARTED / R5_TOTAL_GATE_BLOCKED`。
 
 
 

@@ -10,15 +10,16 @@ with zero steering, zero previous control, zero reference distance and zero beta
 which is exactly where ``post_r3_r4_runner.execute`` starts, so a CPU run of this
 module is directly comparable with the historical 2 ms reference.
 
-The shared ``execute`` path computes the per-tick configuration error with the same
-definition as the R5 information runner.  This keeps ``max_e_g_m`` a genuinely
-computed no-op comparison column instead of the historical literal-zero stub.
+Known limitation, declared rather than hidden: ``execute`` does not maintain the
+per-tick configuration error, so after the run this module replaces that one
+metric with ``null`` plus an explicit note; the comparator computes the true value
+from the persisted state, reference distance and beta columns.
 """
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import json
-import osqp
 from pathlib import Path
 import sys
 import time
@@ -88,8 +89,6 @@ def validate_protocol(path: Path, expected_sha: str, paper: Path, parameter: str
     if sha(qualification) != protocol["parent_qualification"]["sha256"] or qualification_data.get("status") != "PASS_G0_G2_GPU_QUALIFIED":
         raise ValueError("PARENT_QUALIFICATION_NOT_PASS")
     run = protocol["run"]
-    resolve_solver_settings(protocol)
-    resolve_acceptance_tolerances(protocol)
     if run["parameter_id"] != parameter or run["backend"] != backend:
         raise ValueError("RUN_IDENTITY_MISMATCH")
     if backend not in ("cpu", "gpu") or parameter not in ("P0", "P1", "P2"):
@@ -98,57 +97,6 @@ def validate_protocol(path: Path, expected_sha: str, paper: Path, parameter: str
     if expanded_parameters(model) != protocol["absolute_parameters"]:
         raise ValueError("ABSOLUTE_PARAMETER_IDENTITY_MISMATCH")
     return protocol
-
-
-SOLVER_SETTING_KEYS = ("eps_abs", "eps_rel", "scaled_termination", "max_iter", "polishing")
-
-
-def resolve_solver_settings(protocol: dict) -> dict:
-    """Read the five solver settings from the frozen protocol.
-
-    A protocol that declares them must declare all five with the right types, otherwise the
-    run is refused before any output is created.  A protocol that omits them (the historical
-    R4/G3 protocols) falls back to the settings those runs actually used, and the metrics
-    record that the values came from the runner fallback rather than the protocol.
-    """
-    declared = protocol.get("solver_settings")
-    if declared is None:
-        return {"settings": {"eps_abs": 2e-4, "eps_rel": 2e-4, "scaled_termination": False,
-                             "max_iter": 4000, "polishing": True},
-                "source": "runner_default_historical_protocol_omits_solver_settings"}
-    if not isinstance(declared, dict) or set(declared) != set(SOLVER_SETTING_KEYS):
-        raise ValueError("SOLVER_SETTINGS_MALFORMED:" + repr(sorted(declared) if isinstance(declared, dict) else declared))
-    for key in ("eps_abs", "eps_rel"):
-        if not isinstance(declared[key], (int, float)) or not (0.0 < float(declared[key]) < 1.0):
-            raise ValueError("SOLVER_SETTINGS_OUT_OF_RANGE:" + key)
-    for key in ("scaled_termination", "polishing"):
-        if not isinstance(declared[key], bool):
-            raise ValueError("SOLVER_SETTINGS_NOT_BOOLEAN:" + key)
-    if not isinstance(declared["max_iter"], int) or declared["max_iter"] <= 0:
-        raise ValueError("SOLVER_SETTINGS_OUT_OF_RANGE:max_iter")
-    return {"settings": {key: declared[key] for key in SOLVER_SETTING_KEYS}, "source": "protocol"}
-
-
-ACCEPTANCE_TOLERANCE_KEYS = (
-    "requested_steering_acceptance_tolerance_rad",
-    "applied_steering_machine_tolerance_rad",
-)
-
-
-def resolve_acceptance_tolerances(protocol: dict) -> dict | None:
-    """Validate the two task-book tolerances independently of OSQP settings."""
-    declared = protocol.get("acceptance_tolerances")
-    if declared is None:
-        if protocol.get("solver_settings") is not None:
-            raise ValueError("ACCEPTANCE_TOLERANCES_MISSING")
-        return None
-    if not isinstance(declared, dict) or set(declared) != set(ACCEPTANCE_TOLERANCE_KEYS):
-        raise ValueError("ACCEPTANCE_TOLERANCES_MALFORMED")
-    for key in ACCEPTANCE_TOLERANCE_KEYS:
-        value = declared[key]
-        if not isinstance(value, (int, float)) or not np.isfinite(float(value)) or float(value) < 0.0:
-            raise ValueError("ACCEPTANCE_TOLERANCE_OUT_OF_RANGE:" + key)
-    return {key: float(declared[key]) for key in ACCEPTANCE_TOLERANCE_KEYS}
 
 
 def main() -> None:
@@ -162,9 +110,6 @@ def main() -> None:
     protocol_path = Path(args.protocol).resolve()
     declared = json.loads(protocol_path.read_text(encoding="utf-8"))["run"]["parameter_id"]
     protocol = validate_protocol(protocol_path, args.protocol_sha, paper, declared, args.backend)
-    solver_resolution = resolve_solver_settings(protocol)
-    solver_settings = solver_resolution["settings"]
-    acceptance_tolerances = resolve_acceptance_tolerances(protocol)
     run = protocol["run"]
     parameter = run["parameter_id"]
     out = (paper / run["output"]).resolve()
@@ -206,11 +151,7 @@ def main() -> None:
             warmup = backend.warm(np.r_[checkpoint_state["state"], checkpoint_state["delta"]], np.zeros(8), model)
             save(out, "pool.json", {"workers": workers, "warmup_s": warmup})
             with install_parallel_linearization(backend):
-                execute(
-                    out, model, parameter, "cpu", window, checkpoint_state, max_step_s,
-                    args.deadline_unix, args.protocol_sha.lower(), solver_settings,
-                    acceptance_tolerances, solver_resolution["source"],
-                )
+                execute(out, model, parameter, "cpu", window, checkpoint_state, max_step_s, args.deadline_unix, args.protocol_sha.lower())
     else:
         from ..gpu_port.ipc_backend import CudaIpcFiniteDifferenceBackend, install_cuda_linearization
 
@@ -222,35 +163,20 @@ def main() -> None:
                 "warmup_s": warmup, "worker_module_audit": environment.get("worker_module_audit"),
             })
             with install_cuda_linearization(backend):
-                execute(
-                    out, model, parameter, "gpu", window, checkpoint_state, max_step_s,
-                    args.deadline_unix, args.protocol_sha.lower(), solver_settings,
-                    acceptance_tolerances, solver_resolution["source"],
-                )
+                execute(out, model, parameter, "gpu", window, checkpoint_state, max_step_s, args.deadline_unix, args.protocol_sha.lower())
 
-    # Add the host-side environment and configuration provenance after the shared runner
-    # has written its final metrics.  The numerical configuration error is already computed
-    # by execute() and must not be overwritten here.
+    # Declare the one metric this implementation does not maintain, instead of
+    # leaving a zero that could be misread as a measured value.
     metrics_path = out / "metrics.json"
     metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
-    metrics["environment"] = {
-        "python": sys.executable,
-        "version": sys.version.split()[0],
-        "osqp": osqp.__version__,
-        "numpy": np.__version__,
-    }
+    metrics["maximum_configuration_error_m"] = None
+    metrics["maximum_configuration_error_note"] = "not maintained by the windowed runner; compute from raw state/reference_distance_m/reference_beta* with tools/full_route_compare.py"
     save(out, "metrics.json", metrics)
     status_path = out / "status.json"
     if status_path.is_file():
         status = json.loads(status_path.read_text(encoding="utf-8"))
-        status.update({
-            "maximum_configuration_error_m": metrics["maximum_configuration_error_m"],
-            "solver_settings": metrics["solver_settings"],
-            "solver_settings_effective": metrics["solver_settings_effective"],
-            "solver_settings_source": metrics["solver_settings_source"],
-            "acceptance_tolerances": metrics["acceptance_tolerances"],
-            "environment": metrics["environment"],
-        })
+        status["maximum_configuration_error_m"] = None
+        status["maximum_configuration_error_note"] = metrics["maximum_configuration_error_note"]
         save(out, "status.json", status)
     print(json.dumps({"out": str(out), "status": metrics["status"], "ticks": metrics["iterations"]}, ensure_ascii=False))
 

@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import osqp
+import sys
 import time
 from pathlib import Path
 
@@ -39,7 +41,19 @@ def _checkpoint(out, rows, columns, subrows, subcolumns, estimates, status):
     save(out, "status.json", status)
 
 
-def run(out, noise_name="none", seed=5105, segment_s=None, backend_name="gpu", output_ready=False, model=None):
+def run(
+    out,
+    noise_name="none",
+    seed=5105,
+    segment_s=None,
+    backend_name="gpu",
+    output_ready=False,
+    model=None,
+    solver_settings=None,
+    acceptance_tolerances=None,
+    deadline_unix=None,
+    protocol_sha256=None,
+):
     out = Path(out)
     # output_ready is set by main() for the GPU and CPU-parallel branches, which must
     # create the directory early in order to record pool.json before the loop starts.
@@ -73,6 +87,14 @@ def run(out, noise_name="none", seed=5105, segment_s=None, backend_name="gpu", o
     min_support = float("inf")
     iterations = 0
     lambda_internal = 2.0
+    pilot_config = PilotConfig(
+        horizon=20,
+        lambda_internal=lambda_internal,
+        frozen_dynamics_jacobian=False,
+        finite_difference_scale=1.0,
+        **(solver_settings or {}),
+    )
+    effective_settings = None
     requested_segment_s = float(segment_s) if segment_s is not None else ROUTE_LENGTH / SPEED
     count = int(np.ceil(requested_segment_s / DT))
     columns = (
@@ -93,6 +115,9 @@ def run(out, noise_name="none", seed=5105, segment_s=None, backend_name="gpu", o
 
     with solver_path.open("w", encoding="utf-8") as solver_handle, information_path.open("w", encoding="utf-8") as information_handle:
         for k in range(count):
+            if deadline_unix is not None and time.time() > float(deadline_unix):
+                status, reason = "TIMEOUT_INCOMPLETE", "RUN_DEADLINE"
+                break
             t = k * DT
             u_nom, refs, _ = make_preview(distance, beta, model, previous_u, 20)
             packet_bundle = sample_packets(state, delta, k, noise, int(seed))
@@ -102,8 +127,17 @@ def run(out, noise_name="none", seed=5105, segment_s=None, backend_name="gpu", o
                 u_nom,
                 refs,
                 model,
-                PilotConfig(horizon=20, lambda_internal=lambda_internal, frozen_dynamics_jacobian=False, finite_difference_scale=1.0),
+                pilot_config,
             )
+            effective = result.get("solver_settings_effective")
+            effective_settings = effective
+            if effective is not None and solver_settings and dict(effective) != dict(solver_settings):
+                save(out, "solver_mismatch.json", {
+                    "tick": k, "declared": dict(solver_settings), "effective": dict(effective),
+                    "rule": "protocol-declared and runtime-effective solver settings must agree item by item",
+                })
+                status, reason = "FAILED", "SOLVER_SETTINGS_RUNTIME_MISMATCH"
+                break
             estimate = np.asarray(result.pop("initial_estimate"), float)
             information_audit = result.pop("information_audit")
             estimate_error = estimate - np.r_[state, delta]
@@ -170,6 +204,9 @@ def run(out, noise_name="none", seed=5105, segment_s=None, backend_name="gpu", o
                     status, reason = "FAILED", audit["status"]
                     break
 
+            if status != "RUNNING":
+                break
+
             distance_before = float(distance)
             distance = min(distance + SPEED * interval_duration, ROUTE_LENGTH)
             beta = beta + (interval_duration / DT) * (np.asarray(refs[0]["beta_star"]) - beta)
@@ -210,6 +247,13 @@ def run(out, noise_name="none", seed=5105, segment_s=None, backend_name="gpu", o
         "reason": reason,
         "role": "DEV",
         "execution_backend": backend_name,
+        "solver_settings": pilot_config.solver_settings(),
+        "solver_settings_effective": effective_settings,
+        "solver_settings_source": "protocol" if solver_settings else "runner_default_historical",
+        "acceptance_tolerances": dict(acceptance_tolerances) if acceptance_tolerances else None,
+        "environment": {"python": sys.executable, "version": sys.version.split()[0],
+                        "osqp": osqp.__version__, "numpy": np.__version__},
+        "deadline_unix": float(deadline_unix) if deadline_unix is not None else None,
         "frozen_dynamics_jacobian": False,
         "finite_difference_scale": 1.0,
         "noise_indexing": "per absolute tick, node and field via SeedSequence",
@@ -244,6 +288,7 @@ def run(out, noise_name="none", seed=5105, segment_s=None, backend_name="gpu", o
         "steering_estimate_rmse_rad": float(np.sqrt(np.mean(errors[:, 30:] ** 2))) if len(errors) else None,
         "wall_s": time.perf_counter() - started,
         "source_sha256": sha(__file__),
+        "protocol_sha256": protocol_sha256,
     }
     _checkpoint(out, rows, columns, subrows, subcolumns, estimates, metrics)
     save(out, "metrics.json", metrics)
@@ -261,12 +306,20 @@ def main():
     parser.add_argument("--backend", choices=["gpu", "cpu", "serial"], default="gpu")
     parser.add_argument("--protocol")
     parser.add_argument("--protocol-sha")
+    parser.add_argument("--deadline-unix", type=float)
     args = parser.parse_args()
     out = Path(args.out)
+    # Initialised before the protocol block so that the protocol-derived value is not
+    # clobbered; with a protocol the settings are mandatory, without one the runner records
+    # that it fell back to the historical configuration.
+    solver_settings = None
+    acceptance = None
+    protocol_sha256 = None
     if args.protocol:
         protocol_path = Path(args.protocol)
         if sha(protocol_path) != str(args.protocol_sha).lower():
             raise ValueError("PROTOCOL_IDENTITY_MISMATCH")
+        protocol_sha256 = str(args.protocol_sha).lower()
         protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
         if protocol.get("scope") != "R5_LEGAL_INFORMATION":
             raise ValueError("SCOPE_MISMATCH")
@@ -275,10 +328,33 @@ def main():
             raise ValueError("OUTPUT_PROTOCOL_MISMATCH")
         if declared["noise"] != args.noise or int(declared["seed"]) != int(args.seed) or declared["backend"] != args.backend:
             raise ValueError("RUN_CONFIGURATION_MISMATCH")
-        if float(declared["plant_max_step_ms"]) != 2.0:
-            raise ValueError("PLANT_STEP_MISMATCH")
+        required_run = {
+            "parameter_id": "P0",
+            "plant_max_step_ms": 2.0,
+            "controller_step_ms": 20.0,
+            "horizon": 20,
+            "lambda_internal": 2.0,
+            "frozen_dynamics_jacobian": False,
+            "finite_difference_scale": 1.0,
+            "total_ticks": 2379,
+        }
+        for key, expected in required_run.items():
+            if declared.get(key) != expected:
+                raise ValueError("RUN_CONFIGURATION_MISMATCH:" + key)
+        from .diagnostics.full_route_gpu_runner import resolve_acceptance_tolerances, resolve_solver_settings
+
+        resolved = resolve_solver_settings(protocol)
+        if resolved["source"] != "protocol":
+            raise ValueError("SOLVER_SETTINGS_NOT_DECLARED_IN_PROTOCOL")
+        solver_settings = resolved["settings"]
+        acceptance = resolve_acceptance_tolerances(protocol)
+        if acceptance is None:
+            raise ValueError("ACCEPTANCE_TOLERANCES_NOT_DECLARED_IN_PROTOCOL")
+        if args.deadline_unix is None:
+            raise ValueError("DEADLINE_REQUIRED_FOR_PROTOCOL_RUN")
+        paper = Path(__file__).resolve().parents[2]
         for item in protocol["identity_files"]:
-            path = Path(item["path"])
+            path = paper / item["path"]
             if not path.is_file() or sha(path) != item["sha256"]:
                 raise ValueError("IDENTITY_FILE_MISMATCH:" + item["path"])
         if out.exists():
@@ -299,7 +375,12 @@ def main():
                 "note": "R5 runs on the GPU path per gpu_platform_decision_20260916.md; the noiseless no-op gate is compared against a same-backend baseline.",
             })
             with install_cuda_linearization(backend):
-                run(out, args.noise, args.seed, args.segment_s, args.backend, output_ready=True, model=model)
+                run(
+                    out, args.noise, args.seed, args.segment_s, args.backend,
+                    output_ready=True, model=model, solver_settings=solver_settings,
+                    acceptance_tolerances=acceptance, deadline_unix=args.deadline_unix,
+                    protocol_sha256=protocol_sha256,
+                )
     elif args.backend == "cpu":
         from .controllers.parallel_fd_backend import ParallelFiniteDifferenceBackend, install_parallel_linearization
 
@@ -308,9 +389,18 @@ def main():
             out.mkdir(parents=True, exist_ok=False)
             save(out, "pool.json", {"backend": "cpu_parallel8", "workers": 8, "warmup_s": warmup_s})
             with install_parallel_linearization(backend):
-                run(out, args.noise, args.seed, args.segment_s, args.backend, output_ready=True, model=model)
+                run(
+                    out, args.noise, args.seed, args.segment_s, args.backend,
+                    output_ready=True, model=model, solver_settings=solver_settings,
+                    acceptance_tolerances=acceptance, deadline_unix=args.deadline_unix,
+                    protocol_sha256=protocol_sha256,
+                )
     else:
-        run(out, args.noise, args.seed, args.segment_s, args.backend)
+        run(
+            out, args.noise, args.seed, args.segment_s, args.backend,
+            solver_settings=solver_settings, acceptance_tolerances=acceptance,
+            deadline_unix=args.deadline_unix, protocol_sha256=protocol_sha256,
+        )
 
 
 if __name__ == "__main__":
