@@ -30,6 +30,7 @@ SPEED = 2.0
 POSITION_INDEX = (0, 1, 6, 7, 12, 13, 18, 19)
 HEADING_INDEX = (2, 8, 14, 20)
 EXIT_STRAIGHT_START_M = 71.12831551628262
+FORCE_LIMIT_N = 15000.0
 
 
 def sha(path: Path) -> str:
@@ -170,15 +171,46 @@ def main() -> None:
 
     axes[0, 2].grid(alpha=0.25)
 
-    # 3 four-point forces and internal force
+    # 3 four-point forces and internal force, on a BROKEN axis.
+    # The measured forces live in a narrow band near zero while the 15000 N ultimate gate
+    # sits five decades higher, so a linear axis spends almost all of its height on empty
+    # space and the curves collapse into a flat line.  The panel is therefore split into a
+    # compressed upper strip that only carries the gate and an expanded lower band that
+    # carries the data, with break marks on the frame edges.
+    peak_measured = max(substep_peak_value, float(internal.max()))
+    lower_top = 1.18 * peak_measured
+    gate_lo, gate_hi = 0.90 * FORCE_LIMIT_N, 1.06 * FORCE_LIMIT_N
+    force_cell = axes[1, 0].get_subplotspec()
+    axes[1, 0].remove()
+    inner = force_cell.subgridspec(2, 1, height_ratios=[1, 3.4], hspace=0.09)
+    ax_gate = fig.add_subplot(inner[0])
+    ax_force = fig.add_subplot(inner[1], sharex=ax_gate)
     for i in range(4):
-        axes[1, 0].plot(time, forces_endpoint[:, i], linewidth=1.0, label=f"point {i + 1} (endpoint)")
-    axes[1, 0].plot(time, internal, color="black", linewidth=1.4, label="internal force norm")
-    axes[1, 0].axhline(15000.0, color="red", linestyle=":", label="15000 N ultimate gate")
-    axes[1, 0].set(xlabel="time (s)", ylabel="force (N)",
-                   title=f"Forces — substep peak point {substep_peak_value:.3f} N, peak internal {internal.max():.3f} N")
-    axes[1, 0].legend(fontsize=7.5)
-    axes[1, 0].grid(alpha=0.25)
+        ax_force.plot(time, forces_endpoint[:, i], linewidth=1.0, label=f"point {i + 1} (endpoint)")
+    ax_force.plot(time, internal, color="black", linewidth=1.4, label="internal force norm")
+    ax_force.set_ylim(0.0, lower_top)
+    ax_force.set(xlabel="time (s)", ylabel="force (N)")
+    ax_force.legend(fontsize=7.0, loc="upper left", ncols=2)
+    ax_force.grid(alpha=0.25)
+    ax_gate.axhline(FORCE_LIMIT_N, color="red", linestyle=":", linewidth=1.2)
+    ax_gate.set_ylim(gate_lo, gate_hi)
+    ax_gate.set_yticks([FORCE_LIMIT_N])
+    ax_gate.set_yticklabels(["15000"], fontsize=7.5)
+    ax_gate.tick_params(axis="x", labelbottom=False, length=0)
+    ax_gate.grid(alpha=0.0)
+    ax_gate.spines["bottom"].set_visible(False)
+    ax_force.spines["top"].set_visible(False)
+    ax_gate.set_title(
+        f"Forces, broken axis — peak point {substep_peak_value:.1f} N, peak internal {internal.max():.1f} N\n"
+        f"lower band 0-{lower_top:.0f} N expanded; gate strip {gate_lo:.0f}-{gate_hi:.0f} N; middle omitted",
+        fontsize=9.0)
+    # diagonal break marks on both frame edges
+    mark = 0.012
+    for axis, y in ((ax_gate, 0.0), (ax_force, 1.0)):
+        axis.plot((-mark, +mark), (y - mark, y + mark), transform=axis.transAxes, color="black",
+                  linewidth=0.9, clip_on=False)
+        axis.plot((1 - mark, 1 + mark), (y - mark, y + mark), transform=axis.transAxes, color="black",
+                  linewidth=0.9, clip_on=False)
 
     # 4 impulse and tyre/support (two stacked quantities on twin axes)
     # The impulse x-axis must use the substeps own absolute timestamps.  The first
@@ -212,6 +244,12 @@ def main() -> None:
     )
     fig.text(0.012, 0.012, steering_note, fontsize=9, family="monospace", va="bottom")
 
+    # Derived once and shared by the title and the manifest caption.  The first version
+    # hard-coded "R4 " in both places and mislabelled every R5 run twice over.
+    family_label = (
+        f"G3 window {window_name}" if window_mode
+        else ("R5 legal-information interface" if (metrics or {}).get("information_architecture") else "R4 full route")
+    )
     if complete:
         state = "COMPLETED"
     elif metrics:
@@ -221,7 +259,9 @@ def main() -> None:
     else:
         state = str(status.get("status"))
     fig.suptitle(
-        (f"G3 window {window_name} — " if window_mode else f"R4 {run.name} — ")
+        # The label is derived from the run's own record rather than assumed: the first
+        # version hard-coded an "R4 " prefix and mislabelled every R5 run.
+        f"{family_label} — {run.name} — "
         + f"plant step {step_label} — {state}, {ticks}/{expected} ticks, "
         + f"reference distance {distance[0]:.3f} to {distance[-1]:.3f} m"
         + ("" if complete else ("  (bounded window)" if window_mode else "  (unobserved remainder is NOT drawn)")),
@@ -292,7 +332,7 @@ def main() -> None:
         ] + ([{"path": f"results/{run.name}/metrics.json", "sha256": sha(metrics_path)}] if metrics else [])
         + ([{"path": f"results/{run.name}/interruption.json", "sha256": sha(interruption_path)}] if interruption else []),
         "caption": (
-            f"R4 {run.name}, plant step {step_label}, {state}. "
+            f"{family_label}: {run.name}, plant step {step_label}, {state}. "
             f"{ticks} of {expected} ticks accepted, reference distance {distance[-1]:.3f} m of {route['s_m'][-1]:.3f} m. "
             f"Substep peak point force {substep_peak_value:.3f} N against the 15000 N gate; peak tyre utilisation {tire.max():.6f}; "
             f"minimum support {support.min():.1f} N; final payload position error {position_error[-1]:.4f} m."

@@ -1,0 +1,127 @@
+{
+  "protocol_id": "R5-information-gate-v2",
+  "authorization": "Task-book section 5: r5_information_gate.json accepts only the two single runs and the interface audit.",
+  "scope": "R5_INFORMATION_GATE",
+  "output": "analysis/20260917_R5_INFORMATION_GATE_01",
+  "noise_seed": 5105,
+  "no_op_gate": {
+    "baseline_role": "same-backend GPU no-op partner",
+    "backend": "gpu",
+    "threshold_absolute": 1e-12,
+    "rule": "gpu_platform_decision_20260916.md rule P2: invariance gates are compared within one backend; the threshold is unchanged and only the comparison partner changes.",
+    "whitelist": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6",
+      "x7",
+      "x8",
+      "x9",
+      "x10",
+      "x11",
+      "x12",
+      "x13",
+      "x14",
+      "x15",
+      "x16",
+      "x17",
+      "x18",
+      "x19",
+      "x20",
+      "x21",
+      "x22",
+      "x23",
+      "x24",
+      "x25",
+      "x26",
+      "x27",
+      "x28",
+      "x29",
+      "request_accel0",
+      "request_accel1",
+      "request_accel2",
+      "request_accel3",
+      "request_delta0",
+      "request_delta1",
+      "request_delta2",
+      "request_delta3",
+      "actual_delta0",
+      "actual_delta1",
+      "actual_delta2",
+      "actual_delta3",
+      "point_force_norm0",
+      "point_force_norm1",
+      "point_force_norm2",
+      "point_force_norm3",
+      "tire_utilization0",
+      "tire_utilization1",
+      "tire_utilization2",
+      "tire_utilization3",
+      "support_load0",
+      "support_load1",
+      "support_load2",
+      "support_load3",
+      "internal_force_norm_n",
+      "tension_x_n",
+      "tension_y_n",
+      "max_e_g_m",
+      "reference_distance_m",
+      "actual_payload_path_m"
+    ],
+    "excluded_with_reason": {
+      "max_e_g_m": "the full-state baseline runner writes a hard-coded 0.0 into this column (gpu_closed_loop_runner.py line 286) and never computes the configuration error, so in the baseline it is a stub and comparing against it measures nothing"
+    },
+    "measured_preview": {
+      "columns_bitwise_identical": 59,
+      "columns_differing": [
+        "max_e_g_m"
+      ],
+      "difference_in_the_stub_column": 0.01375253,
+      "note": "measured after R5-N0 completed and before this protocol was frozen; the stub column is the only non-zero entry"
+    }
+  },
+  "inputs": {
+    "contract_tests": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+    "baseline": "results/20260916_R5_BASELINE_P0_2MS_GPU01",
+    "n0": "results/20260916_R5_N0_GPU01",
+    "n1": "results/20260916_R5_N1_GPU01"
+  },
+  "identity_files": [
+    {
+      "path": "tools/r5_information_gate.py",
+      "sha256": "9606418b00f69e52ebcc19eadcc568bb6c697281666dc5a93b88859a04e6f510"
+    },
+    {
+      "path": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+      "sha256": "8550f6a2b073d3eea83e9729997bd72bc6e2290247cdd635cc6556c9529f5946"
+    },
+    {
+      "path": "protocol/R5_N0_GPU_20260916_v1.json",
+      "sha256": "ad14e7603fcba19abbbc6598e429b0e0e98a0c369df889b4238955358bbbcf6f"
+    },
+    {
+      "path": "protocol/R5_N1_GPU_20260916_v1.json",
+      "sha256": "7b992345ea6091031b20aab1f7ad61653e1b68e3cb9d9790d79e5eb4e3b67d8e"
+    },
+    {
+      "path": "protocol/R4_P0_2MS_GPU_20260915_v1.json",
+      "sha256": "5fbd027d6babb3b4262b1ddcbb988bda361943693296b3f5662b788a6c7ffbe4"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    },
+    {
+      "path": "analysis/20260916_R4_GATE_01/r4_gate.json",
+      "sha256": "8e7aa6c76c55f3c63da634ecdbfad7161993cf877d24432010350742393f6905"
+    }
+  ],
+  "supersedes_protocol": {
+    "path": "protocol/R5_INFORMATION_GATE_20260916_v1.json",
+    "sha256": "244d9b5ada1b99072065cdf3da7d012e366a5fea579732b5bed677776d2063c3",
+    "reason": "v1's gate section carried no whitelist and no column-exclusion record, so the gate could not state which columns it compared or why one was excluded."
+  }
+}

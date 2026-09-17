@@ -34,7 +34,7 @@
   "identity_files": [
     {
       "path": "src/paper_v4_core/r5_runner.py",
-      "sha256": "e1064b30cbdfb2b4ebe2e92f754346e071336365207eafdce7ecde318fd5946e"
+      "sha256": "5c1a86f10ccfd99e582dafb0baddf196044d2d3309163513d4e4ae372051351f"
     },
     {
       "path": "src/paper_v4_core/information/legal_information.py",
@@ -46,7 +46,7 @@
     },
     {
       "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
-      "sha256": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531"
+      "sha256": "a75ac69b9f6068813f89850760c929b2b58bbe77927959f8a65d7817545bce43"
     },
     {
       "path": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
@@ -68,5 +68,6 @@
       "path": "results/20260916_R5_BASELINE_P0_2MS_GPU01/pool.json",
       "sha256": "fb1fba6d3b0103d4ef0a14685bc8766122dddfe57797d2efccbf8ba6386c3fd3"
     }
-  ]
+  ],
+  "refrozen_reason": "r5_runner.py changed after this protocol was frozen (double-mkdir fix and caller-model passing), so the pinned hash was stale and the first R5-N1 launch was refused with IDENTITY_FILE_MISMATCH before creating any output."
 }

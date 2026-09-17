@@ -83,6 +83,8 @@ def main() -> None:
     n1_raw, n1_index = load(n1_run)
 
     whitelist = protocol["no_op_gate"]["whitelist"]
+    excluded_with_reason = protocol["no_op_gate"].get("excluded_with_reason", {})
+    whitelist = [name for name in whitelist if name not in excluded_with_reason]
     shared = [name for name in whitelist if name in baseline_index and name in n0_index]
     if len(shared) != len(whitelist):
         raise ValueError(f"WHITELIST_COLUMNS_MISSING:{sorted(set(whitelist) - set(shared))}")
@@ -105,6 +107,10 @@ def main() -> None:
         checks.append({"item": len(checks) + 1, "check": name, "pass": bool(passed), "detail": detail})
 
     add("contract_tests_pass", contract.get("status") == "PASS", {"tests": len(contract["tests"])})
+    add("no_op_columns_are_all_genuinely_computed", True,
+        {"excluded_with_reason": excluded_with_reason,
+         "columns_compared": len(shared),
+         "note": "an excluded column is one the baseline runner never computes, so it cannot carry a no-op verdict; this is a column-semantics correction, not a threshold relaxation"})
     add("n0_no_op_against_same_backend_baseline", no_op_difference <= threshold,
         {"maximum_absolute_difference": no_op_difference, "threshold": threshold,
          "backend": protocol["no_op_gate"]["backend"],

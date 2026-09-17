@@ -3280,6 +3280,108 @@ QP决策变量是偏差`x = u - u_nom`，实际变化率`rho = r_nom + D x`（`r
 
 状态：`EXTERNAL_FIX_LIST_REVIEWED / P0_1_ALREADY_FIXED / P0_2_CONFIRMED_REAL_BUT_NEVER_FIRED / P0_3_CONFIRMED_SEMANTIC_GAP / P1_1_P1_2_CONFIRMED_CHEAP / P2_KEEP / FIXES_DEFERRED_UNTIL_R5_COMPLETES / R5_GPU_IDENTITY_GAP_CLOSED_BY_SUPPLEMENTARY_PIN`.
 
+## 53. R5-N0完成：合法信息接口被证明为位级精确无操作（2026-09-17）
+
+### 53.1 R5-N0完成
+
+`results/20260916_R5_N0_GPU01`于09:52:30启动、12:48:16结束（2.93 h），`COMPLETED`、`2379/2379`、全长`95.12831551628261 m`、墙钟`10546.303475700086 s`。
+
+| 量 | R5-N0（合法信息） | 修复版基线（集中全状态） | 是否相同 |
+|---|---:|---:|---|
+| 点力峰值 | 398.5295746870941 N | 398.5295746870941 N | **逐位相同** |
+| 内部力范数 | 342.8075377908096 N | 342.8075377908096 N | **逐位相同** |
+| 轮胎利用率 | 0.04928516371250939 | 0.04928516371250939 | **逐位相同** |
+| 最小支承 | 4686.285138588243 N | 4686.285138588243 N | **逐位相同** |
+| 状态估计RMSE | **0.0** | — | 无噪声测量包**精确复现**植物状态 |
+| 转向估计RMSE | **0.0** | — | 同上 |
+
+### 53.2 无操作门的实测结果：59/60列位级相同
+
+对60个白名单列逐列比较R5-N0与修复版基线：
+
+- **59列逐位相同（差恰为0.0）**，覆盖`x0..x29`（全部状态）、`request_accel/delta`、`actual_delta`、`point_force_norm`、`tire_utilization`、`support_load`、`internal_force_norm_n`、`tension_x/y`、`reference_distance_m`、`actual_payload_path_m`；
+- **时间序列逐位相同**；
+- **唯一不同的列是`max_e_g_m`**（2379个tick全部不同，最大差`1.375253e-02`）。
+
+### 53.3 `max_e_g_m` 差异的根因：基线那一列是**写死的桩值**
+
+`gpu_closed_loop_runner.py:286` 在`max_e_g_m`的位置**直接写入字面量`0.0`**：
+
+```python
+diag["internal_force_norm_n"], diag["tension_x_n"], diag["tension_y_n"], 0.0, result["wall_s"],
+```
+
+该runner**从不计算构形误差**（`max_eg`在第180行初始化为0.0后无任何更新），故其metrics里的`maximum_configuration_error_m`恒为`0.0`，是**无意义值**。而`r5_runner.py:181-183`**真正计算**了`e_g`（`transition_targets`→`extract`→范数最大值）。
+
+**因此`max_e_g_m`的`1.375e-02`不是物理差异，而是"已计算量 vs 桩值"的比较。** 该列已从门的白名单中排除并**附原因登记**（`protocol/R5_INFORMATION_GATE_20260917_v2.json`的`no_op_gate.excluded_with_reason`）——**这是列语义修正，不是阈值放宽**：门仍是1e-12，且排除的是一列**基线从未计算过**的量，它本来就不携带无操作判决能力。
+
+**结论：合法信息接口（四车本地包＋货物协调节点包、同tick融合）对控制输入是位级精确的无操作，比§5要求的1e-12白名单门更严。**
+
+### 53.4 门协议v2与R5-N1启动
+
+门协议`protocol/R5_INFORMATION_GATE_20260917_v2.json`（SHA-256=`284dac2e1334a0d5680483f77f376a0d95e5ab842d37a25525c5f214e0ff2343`）新增白名单与排除原因；`tools/r5_information_gate.py`相应地读`excluded_with_reason`，并新增一条检查"被比较的列都是真正计算过的"。
+
+`R5-N1`（基础噪声seed5105）首次启动因`IDENTITY_FILE_MISMATCH:src/paper_v4_core/r5_runner.py`被拒——**原因是我在冻结N1协议之后修改了`r5_runner.py`**（重复建目录与模型实例传递两处修复），钉住的SHA已过期。已在**建输出之前**被拒（这是身份门正常工作的表现），重冻身份后启动：协议SHA-256=`67a9ed72945bed816f7cf230970cb57d1cd45257d63cf6bf1ea0df97ef6f1e21`，PID 26184于14:05:11启动，50秒内9条记录（≈5.5 s/tick），**ETA约17:45**。
+
+### 53.5 顺带发现的一处登记不一致
+
+基线runner的raw比R5 runner多8列（`force_body_x0..3`、`force_body_y0..3`，连接力的车体坐标分量）。这些列**不在物理/控制白名单内**（白名单用的是世界坐标的力范数），故不影响本门；但两runner的raw schema不一致这一点应登记，供后续跨runner比较时注意。
+
+状态：`R5_N0_COMPLETED / NO_OP_BITWISE_ON_59_OF_60_COLUMNS / REMAINING_COLUMN_IS_A_BASELINE_STUB / NO_OP_STRONGER_THAN_THE_1E12_GATE / GATE_EXCLUSION_RECORDED_NOT_A_RELAXATION / R5_N1_RUNNING_PID_26184 / GATE_AWAITS_N1`.
+
+### 53.6 补图与一处标签缺陷（用户指出遗漏）
+
+**用户指出"你要把之前那个图画出来"——核实属实**：§25.3要求"单条结束先出该条图"，R4六条与G3六窗口都出了，**但R5-N0目录下没有`figures/`**，属交付门遗漏。已补：
+
+| 图 | 位置 | 内容 |
+|---|---|---|
+| R5-N0单条六面板 | `results/20260916_R5_N0_GPU01/figures/` | XY轨迹、位置/航向误差、四点力＋内力＋15000N界、冲量累积、轮胎＋支承、转角与耗时；`PASS_VISUAL_QA` |
+| **R5接口图**（§25.4对该阶段的要求） | `analysis/20260917_R5_INFORMATION_FIGURES_01/figures/` | ①真值—估计误差（**N0最大值恰为`0.0`**）；②货物真值与估计轨迹重合；③**节点可用性**（5个声明源、2379 tick各一包、最大包龄0）；④无操作覆盖与**信息边界**；`PASS_VISUAL_QA` |
+
+**过程中自查出一处标签缺陷（同一错误写了两遍）**：六面板工具把run家族**硬编码**为`"R4 "`，导致R5-N0的图标题与manifest图注**都**被误标为"R4"。已改为**从run自身记录派生家族标签**（`information_architecture`存在→R5；`window_name`存在→G3窗口；否则R4全路线），并**回归验证**G3窗口仍正确显示`G3 window late_prefix`、未被改坏。
+
+
+
+### 53.7 力图改为断裂轴（用户要求：压缩空的中段、拉高有数据的下段）
+
+**问题**：力面板的y轴为了容纳15000 N硬界线而拉到全量程，而实测力都在0—400 N，导致**中间约400—15000 N整片为空，曲线被压成贴底直线**，力的真实波动完全不可读。
+
+**修法**：改为**断裂轴（broken axis）**——把同一面板拆成上下两段：
+
+- **下段（占高度3.4份）**：`0`到`1.18×实测峰值`，**展开数据带**；四点力与内力在此正常显示；
+- **上段（占高度1份）**：`13500—15900 N`的**压缩门带**，只承载15000 N硬界线；
+- 两段边框各画**对角断裂标记**，并在标题中明写`lower band 0-X N expanded; gate strip Y-Z N; middle omitted`。
+
+**已应用到15套图**：R4六条（P1/P2 × 2/1/0.5ms）、CPU中断的`R4_P1_2MS01`、G3六窗口、R5-N0单条，以及速率惩罚A/B对比图。全部重出并置`PASS_VISUAL_QA`，各manifest写入`plotting_logic_revision`说明**数据未变、仅坐标呈现改变**。A/B图的旧版`_02`标`FAIL_VISUAL_QA_SUPERSEDED`。
+
+**过程中自查出两处我自己的错误**：①新代码用了`FORCE_LIMIT_N`常量但该文件**从未定义过它**——`py_compile`只查语法故不报，**运行时才`NameError`**；②把matplotlib对象写成`figure`而该工具里叫`fig`。两处均已修正。
+
+**身份影响**：重出图改变了6个R4 run的`figures/figure_manifest.json`哈希，使**1个协议身份过期**——`R4_C1_GATE_20260916_v1.json`。该门**判决未变**（六条图仍为`PASS_VISUAL_QA`，只是呈现更清楚），且C1总PASS已按用户决定退役、不再被重新认领，故**不影响任何在效主张**；此处如实登记。"
+
+
+
+### 53.8 R5 剩余工作与逐条审计（2026-09-17）
+
+**R5 只有两条run**（`R5-N0`无噪声、`R5-N1`基础噪声seed5105），**两条都已启动**。因此**没有更多R5动力学实验**；剩余的是审计、出图与总门：
+
+| # | 工作 | 状态 |
+|---|---|---|
+| 1 | `R5-N1`跑完 | 🔄 434/2379（18.2%），ETA约16:56 |
+| 2 | **R5逐条审计** | **N0已完成`32/32 PASS`**（新增`tools/r5_single_run_audit.py`）；N1待跑完 |
+| 3 | N1单条六面板图（§25.3） | 待N1完成 |
+| 4 | 重跑接口图纳入N1曲线 | 待N1完成 |
+| 5 | **R5总门**`r5_information_gate.json` | 待N1＋两条审计 |
+
+**新增的R5审计**在R4的21项之外增加接口专属检查：每tick**恰好5个同tick包**、**包龄恒为0**、**无truth旁路**、**转向通道噪声为零**（仿真假设）、**噪声实现可从产物恢复**（`估计−真值`）、**重建与runner自身误差块逐位一致**、**无噪声run测量逐位等于真值**、**绝对tick索引由负例证明**、估计RMSE已登记、图已交付且QA通过。
+
+**审计工具开发中自查出两处我自己的错误**：
+
+1. **`sample_packets`计算了`schema`/`noise_seed`/`noise_indexing`/`noise_entropy_sha256`，但`r5_runner`写`information.jsonl`时只落`tick/time/noise/measurements/audit`，把这四个字段丢掉了** → "噪声按绝对tick索引"这一性质**实现了、被负例验证了，却没有逐tick落盘**。处理：审计改为**从产物直接恢复噪声实现**（`估计−真值`），这比哈希更强（哈希不能证明取值）；缺口作为**落盘偏差**如实登记，并列入R5类运行的后续修复项。
+2. **区间错位**：`raw.npz`第k行是tick k**推进之后**的状态，而`estimates.npz`第k行是tick k**开始时**的估计——两者差一个20 ms区间。我的初版直接相减，把**一个区间的状态变化（4.6e-02）误当噪声**。已改为对`raw[k−1]`比较，并新增一项"重建与runner自身误差块逐位一致"来锁定对齐。
+
+N1仍在飞行中，接口图按§25.3**不绘制其曲线、只标PENDING**；N1完成后重跑该工具即可纳入。
+
+
 
 
 

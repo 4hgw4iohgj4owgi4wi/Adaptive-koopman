@@ -77,7 +77,7 @@ def main() -> None:
     fixed = track(FIXED["run"], route)
     others = [dict(zip(("run", "label", "color"), item), **track(item[0], route)) for item in OTHERS]
 
-    target = PAPER / "analysis/20260917_RATE_PENALTY_FIXED_EFFECT_02"
+    target = PAPER / "analysis/20260917_RATE_PENALTY_FIXED_EFFECT_03"
     figure_dir = target / "figures"
     figure_dir.mkdir(parents=True, exist_ok=True)
     figure, axes = plt.subplots(2, 3, figsize=(19.5, 10.0))
@@ -112,18 +112,42 @@ def main() -> None:
                         label="defective, points 1-4" if index == 0 else None)
         axes[1, 0].plot(fixed["distance"], fixed["force"][:, index], color=FIXED["color"], linewidth=0.9,
                         label="corrected, points 1-4" if index == 0 else None)
-    readable = 1.25 * max(buggy["peak_force"], fixed["peak_force"])
-    axes[1, 0].set_ylim(0.0, readable)
-    axes[1, 0].annotate(f"15000 N ultimate gate is off-scale above this panel "
-                        f"({FORCE_LIMIT_N / max(buggy['peak_force'], fixed['peak_force']):.0f}x the highest peak)",
-                        xy=(0.02, 0.94), xycoords="axes fraction", fontsize=8.5, color="#8b0000")
-    axes[1, 0].axhline(buggy["peak_force"], color=BUGGY["color"], linestyle=":", linewidth=1.0)
-    axes[1, 0].axhline(fixed["peak_force"], color=FIXED["color"], linestyle=":", linewidth=1.0)
-    axes[1, 0].set(xlabel="reference distance (m)", ylabel="point force norm (N)",
-                   title=f"Force on a readable scale — peak {buggy['peak_force']:.1f} N to {fixed['peak_force']:.1f} N "
-                         f"({(fixed['peak_force'] / buggy['peak_force'] - 1) * 100:+.1f}%)")
-    axes[1, 0].legend(fontsize=8)
-    axes[1, 0].grid(alpha=0.25)
+    # Same broken-axis treatment as the per-run figure: the data band is expanded and the
+    # empty middle up to the ultimate gate is compressed into a thin strip.
+    peak = max(buggy["peak_force"], fixed["peak_force"])
+    lower_top = 1.18 * peak
+    gate_lo, gate_hi = 0.90 * FORCE_LIMIT_N, 1.06 * FORCE_LIMIT_N
+    force_cell = axes[1, 0].get_subplotspec()
+    axes[1, 0].remove()
+    inner = force_cell.subgridspec(2, 1, height_ratios=[1, 3.4], hspace=0.09)
+    ax_gate = figure.add_subplot(inner[0])
+    ax_force = figure.add_subplot(inner[1], sharex=ax_gate)
+    for index in range(4):
+        ax_force.plot(buggy["distance"], buggy["force"][:, index], color=BUGGY["color"], linewidth=0.9,
+                      label="defective, points 1-4" if index == 0 else None)
+        ax_force.plot(fixed["distance"], fixed["force"][:, index], color=FIXED["color"], linewidth=0.9,
+                      label="corrected, points 1-4" if index == 0 else None)
+    ax_force.axhline(buggy["peak_force"], color=BUGGY["color"], linestyle=":", linewidth=1.0)
+    ax_force.axhline(fixed["peak_force"], color=FIXED["color"], linestyle=":", linewidth=1.0)
+    ax_force.set_ylim(0.0, lower_top)
+    ax_force.set(xlabel="reference distance (m)", ylabel="point force norm (N)")
+    ax_force.legend(fontsize=7.5)
+    ax_force.grid(alpha=0.25)
+    ax_gate.axhline(FORCE_LIMIT_N, color="red", linestyle=":", linewidth=1.2)
+    ax_gate.set_ylim(gate_lo, gate_hi)
+    ax_gate.set_yticks([FORCE_LIMIT_N]); ax_gate.set_yticklabels(["15000"], fontsize=7.5)
+    ax_gate.tick_params(axis="x", labelbottom=False, length=0)
+    ax_gate.spines["bottom"].set_visible(False)
+    ax_force.spines["top"].set_visible(False)
+    ax_gate.set_title(f"Force, broken axis — peak {buggy['peak_force']:.1f} N to {fixed['peak_force']:.1f} N "
+                      f"({(fixed['peak_force'] / buggy['peak_force'] - 1) * 100:+.1f}%)\n"
+                      f"lower band 0-{lower_top:.0f} N expanded; gate strip {gate_lo:.0f}-{gate_hi:.0f} N; middle omitted",
+                      fontsize=9.0)
+    mark = 0.012
+    for axis, y in ((ax_gate, 0.0), (ax_force, 1.0)):
+        for x0 in (-mark, 1 - mark):
+            axis.plot((x0, x0 + 2 * mark), (y - mark, y + mark), transform=axis.transAxes,
+                      color="black", linewidth=0.9, clip_on=False)
 
     for item in others:
         axes[1, 1].plot(item["distance"], item["lateral"], color=item["color"], linewidth=1.0, label=item["label"])
