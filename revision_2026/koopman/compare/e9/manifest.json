@@ -1,0 +1,1390 @@
+{
+  "summary": {
+    "kind": "e9",
+    "accepted": true,
+    "planned": 24,
+    "completed": 24,
+    "split_counts": {
+      "external": 4,
+      "test": 3,
+      "train": 14,
+      "validation": 3
+    },
+    "scenario_counts": {
+      "E9": 24
+    },
+    "max_connector_force_n": 286.03770924420616,
+    "max_icr_residual_mps": 1.1657341758564144e-15
+  },
+  "trajectories": [
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 0,
+      "seed": 83000,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0041910079921517,
+        "connector_stiffness_scale": 1.0212972635344284,
+        "connector_damping_scale": 1.0471871619281155,
+        "connector_free_play_scale": 1.075285913439403,
+        "vehicle_mu_scale": 0.9842910087932418
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.8858619079139176,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2008.3820159843033,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 30638.917906032853,
+          "damping_nspm": 3665.155066748404,
+          "free_play_m": 0.0021505718268788063,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 166.7185693643571,
+      "max_opening_n": 110.16924531074329,
+      "max_tire_utilization": 0.06671994381293113,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1657341758564144e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83000.npz",
+      "sha256": "ef2167a3f1d1343e27c9fa747039485b095245ad0c6bd710e2b3c601badaa173"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 1,
+      "seed": 83001,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9865382097871663,
+        "connector_stiffness_scale": 1.0490271659371981,
+        "connector_damping_scale": 0.9984675712339878,
+        "connector_free_play_scale": 1.0739611384532597,
+        "vehicle_mu_scale": 0.9912618491402386
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.8921356642262148,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1973.0764195743327,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 31470.814978115945,
+          "damping_nspm": 3494.6364993189572,
+          "free_play_m": 0.0021479222769065194,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 258.6384289274876,
+      "max_opening_n": 139.58224302213347,
+      "max_tire_utilization": 0.09548911602926378,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1518563880486e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83001.npz",
+      "sha256": "0e877913b0f094e98f571ea10920ad02b12e79d269a85237f3e0e5423e089e7d"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 2,
+      "seed": 83002,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.977300043846149,
+        "connector_stiffness_scale": 0.9482256154885562,
+        "connector_damping_scale": 0.959438475333806,
+        "connector_free_play_scale": 1.0716916894843702,
+        "vehicle_mu_scale": 1.000745603376171
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9006710430385539,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1954.600087692298,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 28446.768464656685,
+          "damping_nspm": 3358.034663668321,
+          "free_play_m": 0.0021433833789687405,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 133.4777627281066,
+      "max_opening_n": 110.92185490368875,
+      "max_tire_utilization": 0.06345924090589787,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1136924715771102e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83002.npz",
+      "sha256": "272c82abbde2d906f55527f2f6a3f252c0b5c0c0f54af4458cc5a8d5c713fe1b"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 3,
+      "seed": 83003,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.995379743659227,
+        "connector_stiffness_scale": 1.0131465209528614,
+        "connector_damping_scale": 1.0632624646230295,
+        "connector_free_play_scale": 0.9567325205163799,
+        "vehicle_mu_scale": 1.022900177988977
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9206101601900794,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1990.759487318454,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 30394.39562858584,
+          "damping_nspm": 3721.4186261806035,
+          "free_play_m": 0.00191346504103276,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 131.00685112118776,
+      "max_opening_n": 107.00297675580612,
+      "max_tire_utilization": 0.07528980951241028,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1345091532888318e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83003.npz",
+      "sha256": "97fd3b6f29cef4acc613471dd96766777a4b11021557478217d9d8c613c848e8"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 4,
+      "seed": 83004,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0230143157756886,
+        "connector_stiffness_scale": 1.0600414341579072,
+        "connector_damping_scale": 0.9444441383196239,
+        "connector_free_play_scale": 1.0694008222334606,
+        "vehicle_mu_scale": 1.0248165729711287
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9223349156740158,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2046.0286315513772,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 31801.243024737214,
+          "damping_nspm": 3305.554484118684,
+          "free_play_m": 0.0021388016444669213,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 137.87454274031816,
+      "max_opening_n": 101.2282364163658,
+      "max_tire_utilization": 0.07515904710095732,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1310397063368782e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83004.npz",
+      "sha256": "23a472cc5402a671930198da1d8cfbf7e41b15f3fd2d597c3309cacc307dd8bf"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 5,
+      "seed": 83005,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9731269181654164,
+        "connector_stiffness_scale": 0.971005883030473,
+        "connector_damping_scale": 1.0739776265213554,
+        "connector_free_play_scale": 1.0621667105447528,
+        "vehicle_mu_scale": 1.0341533133635545
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9307379820271992,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1946.2538363308329,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 29130.17649091419,
+          "damping_nspm": 3758.921692824744,
+          "free_play_m": 0.0021243334210895057,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 204.96512763618125,
+      "max_opening_n": 87.15320729677725,
+      "max_tire_utilization": 0.06502423577573498,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.141448047192739e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83005.npz",
+      "sha256": "5097211026ed45ea31c464c935c38954840105a6ba3849f05e71bd5eddb25393"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 6,
+      "seed": 83006,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9957190958208876,
+        "connector_stiffness_scale": 0.9279808544186922,
+        "connector_damping_scale": 1.0229688289439298,
+        "connector_free_play_scale": 1.0785349877398178,
+        "vehicle_mu_scale": 1.0047096866141376
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9042387179527239,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1991.4381916417751,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 27839.425632560764,
+          "damping_nspm": 3580.390901303754,
+          "free_play_m": 0.0021570699754796356,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 155.98642223420168,
+      "max_opening_n": 124.8845070201096,
+      "max_tire_utilization": 0.01935475792465726,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1275702593849246e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83006.npz",
+      "sha256": "56fd4a44cee265695004708d2ef190045bb6f5b45c4a8343df0b68221033159f"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 7,
+      "seed": 83007,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.005314894443777,
+        "connector_stiffness_scale": 1.0362805594334883,
+        "connector_damping_scale": 1.0018249446579828,
+        "connector_free_play_scale": 0.9760927937147588,
+        "vehicle_mu_scale": 0.9604667531651966
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.8644200778486769,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2010.6297888875542,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 31088.41678300465,
+          "damping_nspm": 3506.3873063029396,
+          "free_play_m": 0.0019521855874295175,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 170.69792987598794,
+      "max_opening_n": 97.9644719933837,
+      "max_tire_utilization": 0.035288047503941225,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1275702593849246e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83007.npz",
+      "sha256": "9eb2d97b4488b19ce3a95b42472b74973a74b8abf90c2b071ab84588770a23d3"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 8,
+      "seed": 83008,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9959791433866568,
+        "connector_stiffness_scale": 0.9807010753739466,
+        "connector_damping_scale": 1.0379890658737825,
+        "connector_free_play_scale": 0.9949961972945477,
+        "vehicle_mu_scale": 1.0025260006927645
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9022734006234882,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1991.9582867733136,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 29421.032261218395,
+          "damping_nspm": 3632.9617305582387,
+          "free_play_m": 0.0019899923945890952,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 185.11626794590572,
+      "max_opening_n": 99.1782441357494,
+      "max_tire_utilization": 0.07055691220959542,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1483869410966463e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83008.npz",
+      "sha256": "dbcf29e1d92914ab0e73657c217a3a9eeb3f7f28444f260e77fe17dcd0fc0ef7"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 9,
+      "seed": 83009,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.009454173306599,
+        "connector_stiffness_scale": 0.9507231856667476,
+        "connector_damping_scale": 1.0133530736682506,
+        "connector_free_play_scale": 1.0255335039554874,
+        "vehicle_mu_scale": 0.9777886178754563
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.8800097560879108,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2018.9083466131979,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 28521.69557000243,
+          "damping_nspm": 3546.735757838877,
+          "free_play_m": 0.002051067007910975,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 170.1138209539608,
+      "max_opening_n": 164.13400156542926,
+      "max_tire_utilization": 0.01815023374225921,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.124100812432971e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83009.npz",
+      "sha256": "97fbd70f5b758cdea00bca0e6fe7a68de3ab3d3d05e5d19afda5d66205453b13"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 10,
+      "seed": 83010,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0148253949036217,
+        "connector_stiffness_scale": 1.0321082648809001,
+        "connector_damping_scale": 0.9527390953263581,
+        "connector_free_play_scale": 1.031150150823204,
+        "vehicle_mu_scale": 0.9871874933949915
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.8884687440554924,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2029.6507898072434,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 30963.247946427004,
+          "damping_nspm": 3334.5868336422536,
+          "free_play_m": 0.002062300301646408,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 206.90296727922095,
+      "max_opening_n": 102.11632880761992,
+      "max_tire_utilization": 0.07815502511482447,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1553258350005535e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83010.npz",
+      "sha256": "7f689f318417bfb27898781294ca2c1d56897ad1a7db88d743fa9f66557a331a"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 11,
+      "seed": 83011,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0007158405706327,
+        "connector_stiffness_scale": 0.9415248252951753,
+        "connector_damping_scale": 1.0072398182463214,
+        "connector_free_play_scale": 0.9554720071126127,
+        "vehicle_mu_scale": 0.9738013070148398
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.8764211763133558,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2001.4316811412652,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 28245.74475885526,
+          "damping_nspm": 3525.3393638621246,
+          "free_play_m": 0.0019109440142252255,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 116.46765411818288,
+      "max_opening_n": 101.81972279703456,
+      "max_tire_utilization": 0.024694794352949412,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1622647289044608e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83011.npz",
+      "sha256": "a47d061454eb448b9ce7735108187bbe1ef92ee237044672c381b453eec48f87"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 12,
+      "seed": 83012,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0157986087973356,
+        "connector_stiffness_scale": 1.0731130234361608,
+        "connector_damping_scale": 1.059313198135779,
+        "connector_free_play_scale": 0.9256653266555802,
+        "vehicle_mu_scale": 1.009567359246198
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9086106233215783,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2031.5972175946713,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 32193.390703084824,
+          "damping_nspm": 3707.5961934752268,
+          "free_play_m": 0.0018513306533111604,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 215.34489943852194,
+      "max_opening_n": 118.27437764612827,
+      "max_tire_utilization": 0.05777882109845656,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1310397063368782e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83012.npz",
+      "sha256": "990df15763cc84c1c494c51b1b883d0518f8317bd9cd37e6b4d04310757854c0"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 13,
+      "seed": 83013,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0087844611626888,
+        "connector_stiffness_scale": 1.0599784532720953,
+        "connector_damping_scale": 0.9912529517645525,
+        "connector_free_play_scale": 1.0443746720748148,
+        "vehicle_mu_scale": 0.9755736393491361
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.8780162754142226,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2017.5689223253776,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 31799.35359816286,
+          "damping_nspm": 3469.385331175934,
+          "free_play_m": 0.00208874934414963,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 134.15332740643862,
+      "max_opening_n": 103.06624195851944,
+      "max_tire_utilization": 0.015993420900696793,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1345091532888318e-15,
+      "finite": true,
+      "file": "trajectories\\train_E9_83013.npz",
+      "sha256": "e951701bfb2b6d0e5f1e9076f33fdb3bb392364b9d9b7ce15d91dad681ea24e1"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 14,
+      "seed": 83014,
+      "split": "validation",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0078345705115859,
+        "connector_stiffness_scale": 1.0646878295827864,
+        "connector_damping_scale": 0.9542371998205392,
+        "connector_free_play_scale": 1.0239085614812984,
+        "vehicle_mu_scale": 1.0282863888383722
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.925457749954535,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2015.6691410231717,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 31940.634887483593,
+          "damping_nspm": 3339.8301993718874,
+          "free_play_m": 0.0020478171229625967,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 136.73862740034573,
+      "max_opening_n": 105.1024414495145,
+      "max_tire_utilization": 0.023252981010445317,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1345091532888318e-15,
+      "finite": true,
+      "file": "trajectories\\validation_E9_83014.npz",
+      "sha256": "97bc96428b7ea1d6d260f54a72789d9114e4aa390d3af06d28a48786d40c5935"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 15,
+      "seed": 83015,
+      "split": "validation",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9743697523761873,
+        "connector_stiffness_scale": 1.0715717932045965,
+        "connector_damping_scale": 1.0054452076805391,
+        "connector_free_play_scale": 1.0101361617858406,
+        "vehicle_mu_scale": 1.0200812037123717
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9180730833411345,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1948.7395047523746,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 32147.153796137896,
+          "damping_nspm": 3519.058226881887,
+          "free_play_m": 0.002020272323571681,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 130.781069875747,
+      "max_opening_n": 125.01791887963515,
+      "max_tire_utilization": 0.02744455835492811,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1310397063368782e-15,
+      "finite": true,
+      "file": "trajectories\\validation_E9_83015.npz",
+      "sha256": "92567b177e3d062a8b9999871731968a732d7747f7e004347b77ea22ee6b5679"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 16,
+      "seed": 83016,
+      "split": "validation",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0233383633336368,
+        "connector_stiffness_scale": 1.0480701385042104,
+        "connector_damping_scale": 1.0422601155017384,
+        "connector_free_play_scale": 0.934564613843217,
+        "vehicle_mu_scale": 0.9977319516377534
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.897958756473978,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2046.6767266672737,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 31442.10415512631,
+          "damping_nspm": 3647.9104042560843,
+          "free_play_m": 0.001869129227686434,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 176.56041661420178,
+      "max_opening_n": 140.5685728869857,
+      "max_tire_utilization": 0.09697386101266618,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.124100812432971e-15,
+      "finite": true,
+      "file": "trajectories\\validation_E9_83016.npz",
+      "sha256": "b0179408d35720ece06de78a36f0d88f4eae89e76b1e0922980275e0869977d9"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 17,
+      "seed": 83017,
+      "split": "test",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9869625132056739,
+        "connector_stiffness_scale": 0.9382343573980525,
+        "connector_damping_scale": 0.9504247139184071,
+        "connector_free_play_scale": 0.9710787921268782,
+        "vehicle_mu_scale": 1.026958492222926
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.9242626430006334,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1973.9250264113477,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 28147.030721941574,
+          "damping_nspm": 3326.4864987144247,
+          "free_play_m": 0.0019421575842537564,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 165.04080843543883,
+      "max_opening_n": 95.36834172002504,
+      "max_tire_utilization": 0.07235690656097965,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1275702593849246e-15,
+      "finite": true,
+      "file": "trajectories\\test_E9_83017.npz",
+      "sha256": "1eaa59248d0eb6d51191b1314ac3942ed033ac2d52ad154f00be00bd74ea2d7e"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 18,
+      "seed": 83018,
+      "split": "test",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0044931452487893,
+        "connector_stiffness_scale": 0.9616375556486536,
+        "connector_damping_scale": 0.9398148933582118,
+        "connector_free_play_scale": 1.0291819322841438,
+        "vehicle_mu_scale": 0.9986147652599755
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.898753288733978,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2008.9862904975787,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 28849.12666945961,
+          "damping_nspm": 3289.3521267537412,
+          "free_play_m": 0.0020583638645682877,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 124.42756772692039,
+      "max_opening_n": 117.20179074351861,
+      "max_tire_utilization": 0.06956440183211099,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1345091532888318e-15,
+      "finite": true,
+      "file": "trajectories\\test_E9_83018.npz",
+      "sha256": "5984a1aa715ef03b7c7ee08e5fdc27e327a243ae1c58003d12e4372771cab015"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 19,
+      "seed": 83019,
+      "split": "test",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0044913834985607,
+        "connector_stiffness_scale": 1.0501683001279047,
+        "connector_damping_scale": 0.9826195785100261,
+        "connector_free_play_scale": 0.9429993874200535,
+        "vehicle_mu_scale": 0.9713273064616156
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.874194575815454,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 2008.9827669971214,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 31505.049003837143,
+          "damping_nspm": 3439.1685247850914,
+          "free_play_m": 0.001885998774840107,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 286.03770924420616,
+      "max_opening_n": 101.59010872577193,
+      "max_tire_utilization": 0.0749850456998914,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1449174941446927e-15,
+      "finite": true,
+      "file": "trajectories\\test_E9_83019.npz",
+      "sha256": "90c33d1c329c767c336e276d68c23bd846a386a95609536ddbed4a895acb79e3"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 20,
+      "seed": 83020,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.82,
+        "connector_stiffness_scale": 0.68,
+        "connector_damping_scale": 1.42,
+        "connector_free_play_scale": 0.55,
+        "vehicle_mu_scale": 1.12
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 1.0080000000000002,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1640.0,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 20400.0,
+          "damping_nspm": 4970.0,
+          "free_play_m": 0.0011,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 127.41340838177844,
+      "max_opening_n": 82.59221146156759,
+      "max_tire_utilization": 0.047505801537939735,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1449174941446927e-15,
+      "finite": true,
+      "file": "trajectories\\external_E9_83020.npz",
+      "sha256": "4ee5daaa76baef678f62e42dacd18ad0fe997976460f88f673ed430752c93bb8"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 21,
+      "seed": 83021,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.82,
+        "connector_stiffness_scale": 0.68,
+        "connector_damping_scale": 0.62,
+        "connector_free_play_scale": 1.75,
+        "vehicle_mu_scale": 0.72
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.648,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1640.0,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 20400.0,
+          "damping_nspm": 2170.0,
+          "free_play_m": 0.0035,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 165.84816598448106,
+      "max_opening_n": 83.92526287022531,
+      "max_tire_utilization": 0.05311905382616904,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1622647289044608e-15,
+      "finite": true,
+      "file": "trajectories\\external_E9_83021.npz",
+      "sha256": "5417ba5af50fd048bbf475fd3e285b67033ded87a753d9260d8decf58c4eae61"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 22,
+      "seed": 83022,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.82,
+        "connector_stiffness_scale": 0.68,
+        "connector_damping_scale": 1.42,
+        "connector_free_play_scale": 1.75,
+        "vehicle_mu_scale": 1.12
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 1.0080000000000002,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1640.0,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 20400.0,
+          "damping_nspm": 4970.0,
+          "free_play_m": 0.0035,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 259.26204381636245,
+      "max_opening_n": 128.4940584688372,
+      "max_tire_utilization": 0.06643736195946362,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.1275702593849246e-15,
+      "finite": true,
+      "file": "trajectories\\external_E9_83022.npz",
+      "sha256": "62b85605bbaa536ff309872fe227a676b2ff7d8ca78d836ceeaf1d162e20eb4a"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 23,
+      "seed": 83023,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean",
+      "steps": 1200,
+      "duration_s": 24.0,
+      "control_dt_s": 0.02,
+      "plant_dt_s": 0.002,
+      "parameter_scales": {
+        "payload_mass_scale": 0.82,
+        "connector_stiffness_scale": 1.32,
+        "connector_damping_scale": 1.42,
+        "connector_free_play_scale": 0.55,
+        "vehicle_mu_scale": 0.72
+      },
+      "params": {
+        "vehicle": {
+          "mass_kg": 1200.0,
+          "yaw_inertia_kgm2": 1800.0,
+          "lf_m": 1.2,
+          "lr_m": 1.3,
+          "cf_nprad": 55000.0,
+          "cr_nprad": 60000.0,
+          "mu": 0.648,
+          "gravity_mps2": 9.81
+        },
+        "payload": {
+          "mass_kg": 1640.0,
+          "length_m": 5.0,
+          "width_m": 2.0,
+          "cog_height_m": 1.2,
+          "gravity_mps2": 9.81
+        },
+        "connector": {
+          "stiffness_npm": 39600.0,
+          "damping_nspm": 4970.0,
+          "free_play_m": 0.0011,
+          "rated_force_n": 12000.0,
+          "ultimate_force_n": 15000.0
+        }
+      },
+      "max_connector_force_n": 113.26819457064737,
+      "max_opening_n": 88.61631272591305,
+      "max_tire_utilization": 0.0789198533387444,
+      "rated_exceeded_steps": 0,
+      "ultimate_exceeded_steps": 0,
+      "icr_residual_peak_mps": 1.106753577673203e-15,
+      "finite": true,
+      "file": "trajectories\\external_E9_83023.npz",
+      "sha256": "0bbe09fc555377f6c2c035ef40b24b6bf077c8f69e8076ba6eff93c63559546e"
+    }
+  ],
+  "pre_sha256": "ed184b969cbe2f03e326660f787be9d0bf3c38c1f168b314f9c5791c386625e5"
+}

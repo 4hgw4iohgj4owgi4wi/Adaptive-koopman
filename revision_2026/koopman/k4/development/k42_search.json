@@ -1,0 +1,74 @@
+{
+  "selected": {
+    "rank": 4,
+    "projection_limit": 0.005,
+    "validation_composite": 0.1951388734232314,
+    "best_epoch": 40,
+    "checkpoint": "koopman\\k4\\models\\M3-r4-n0.005-s74201.pt"
+  },
+  "grid": [
+    {
+      "rank": 4,
+      "projection_limit": 0.005,
+      "validation_composite": 0.1951388734232314,
+      "best_epoch": 40,
+      "checkpoint": "koopman\\k4\\models\\M3-r4-n0.005-s74201.pt"
+    },
+    {
+      "rank": 4,
+      "projection_limit": 0.01,
+      "validation_composite": 0.1951388734232314,
+      "best_epoch": 40,
+      "checkpoint": "koopman\\k4\\models\\M3-r4-n0.010-s74201.pt"
+    },
+    {
+      "rank": 4,
+      "projection_limit": 0.02,
+      "validation_composite": 0.1951388734232314,
+      "best_epoch": 40,
+      "checkpoint": "koopman\\k4\\models\\M3-r4-n0.020-s74201.pt"
+    },
+    {
+      "rank": 8,
+      "projection_limit": 0.005,
+      "validation_composite": 0.1953517289166354,
+      "best_epoch": 39,
+      "checkpoint": "koopman\\k4\\models\\M3-r8-n0.005-s74201.pt"
+    },
+    {
+      "rank": 8,
+      "projection_limit": 0.01,
+      "validation_composite": 0.1953517289166354,
+      "best_epoch": 39,
+      "checkpoint": "koopman\\k4\\models\\M3-r8-n0.010-s74201.pt"
+    },
+    {
+      "rank": 8,
+      "projection_limit": 0.02,
+      "validation_composite": 0.1953517289166354,
+      "best_epoch": 39,
+      "checkpoint": "koopman\\k4\\models\\M3-r8-n0.020-s74201.pt"
+    },
+    {
+      "rank": 2,
+      "projection_limit": 0.005,
+      "validation_composite": 0.20255802194978936,
+      "best_epoch": 7,
+      "checkpoint": "koopman\\k4\\models\\M3-r2-n0.005-s74201.pt"
+    },
+    {
+      "rank": 2,
+      "projection_limit": 0.01,
+      "validation_composite": 0.20255802194978936,
+      "best_epoch": 7,
+      "checkpoint": "koopman\\k4\\models\\M3-r2-n0.010-s74201.pt"
+    },
+    {
+      "rank": 2,
+      "projection_limit": 0.02,
+      "validation_composite": 0.20255802194978936,
+      "best_epoch": 7,
+      "checkpoint": "koopman\\k4\\models\\M3-r2-n0.020-s74201.pt"
+    }
+  ]
+}

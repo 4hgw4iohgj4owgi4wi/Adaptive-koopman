@@ -1,0 +1,42 @@
+{
+  "tf14_pre.ipynb": {
+    "sha256": "363fcc1b8cc40320cf68d25c8ca529e93a1a9018fc095dba04f434545b8432cb",
+    "bytes": 173571
+  },
+  "tf14_runtime.py": {
+    "sha256": "5e627f4f5250ef69dfbd38c06259ef1cde7f3ed1e6a39f141cc89e01e7055307",
+    "bytes": 371060
+  },
+  "core\\koopman_core_linear.py": {
+    "sha256": "02af97c1944898781a5bfd488f86b014d817737337d8f1e3e9b361698d3c9b6e",
+    "bytes": 68840
+  },
+  "control_files\\tf11_a1\\mpc_helpers.py": {
+    "sha256": "bd9bf4b70f976b2efd2f4a3b58701190ff64fe4f8c978c0a5f54bdbf30281af2",
+    "bytes": 20353
+  },
+  "dynamics\\learned_models_control\\bilinear_dynamics.py": {
+    "sha256": "9d93a24c9014b5e0c130c65ff00715df46f404351359a7e8c8dd09b690947c5f",
+    "bytes": 1182
+  },
+  "tf14_stage1_suite_20260506\\run_tf14_stage1_suite.py": {
+    "sha256": "2941fbebad031bd2bcbc78f032cf22ca4c3b217608e9cea6273e691438809614",
+    "bytes": 17782
+  },
+  "tf14_stage5_phase_role_scenarios_20260507\\run_tf14_stage5_phase_role_suite.py": {
+    "sha256": "dfa9e91d6a88e383371e08e4a1c0eae68b952ca7050265de5f7c2b685ce9de36",
+    "bytes": 36028
+  },
+  "saved_data\\payload_team\\offline_dataset_a1_rigid_payload_2t.npz": {
+    "sha256": "efea0b612788940eb8893d1ef26cad677705d9718a6e56bf11f94c64f5026ee6",
+    "bytes": 89593059
+  },
+  "saved_data\\payload_team\\offline_dataset_pars_a1_rigid_payload_2t.pkl": {
+    "sha256": "00a470873cc47ffbb2a24a42536eae113157112e2562637d4d062c076d47e0d9",
+    "bytes": 1601
+  },
+  "tf14_paper_figures_20260508\\source\\fig03_prediction_model_comparison.npz": {
+    "sha256": "0e8bc1d2968473a33826d5e573d0aabbdcee51e75e7224ac51d12d493180cc51",
+    "bytes": 4849
+  }
+}

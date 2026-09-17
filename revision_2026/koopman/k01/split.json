@@ -1,0 +1,33 @@
+{
+  "frozen_before_new_training": true,
+  "old_dataset": {
+    "num_trajectories": 720,
+    "train_indices": [
+      0,
+      575
+    ],
+    "validation_indices": [
+      576,
+      719
+    ],
+    "independent_test_indices": null,
+    "independent_test_exists": false,
+    "reason": "All non-training trajectories were used as validation during lifting-network development."
+  },
+  "new_coupled_dataset_rule": {
+    "unit": "whole trajectory; windows may not cross splits",
+    "stratification": [
+      "straight",
+      "single_lane_change",
+      "hairpin"
+    ],
+    "assignment": "within each scenario, traj_id modulo 20: 0-13 train, 14-16 validation, 17-19 test",
+    "fractions": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "external_mismatch": "separate parameter/speed/friction/connector set; never used for tuning",
+    "network_variables": "excluded from physical Koopman state and stored only as exogenous metadata"
+  }
+}

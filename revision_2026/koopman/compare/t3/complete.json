@@ -1,0 +1,51 @@
+{
+  "accepted": true,
+  "selected": {
+    "K4": {
+      "seed": 82044,
+      "sha256": "1203514E3FE48F3E12EAAA876D4D5AADB5207A0196084CA0C6C1916BC24248DA"
+    },
+    "K5-linear": {
+      "source": "K1",
+      "seed": 82305,
+      "sha256": "97FBEFE96EA2708B76144140718A91154C9B1288120BD1266BA5A9174C4EAE99"
+    },
+    "K5-bilinear": {
+      "source": "K2",
+      "seed": 82301,
+      "sha256": "3AECEBCD210F4FB9D39A371E6D9D8E9223D542ED15985CBA19D45A30673E5949"
+    },
+    "K6": {
+      "status": "not_applicable",
+      "reason": "at least one frozen expert class has <10 train trajectories or <2000 non-overlapping 20-step windows",
+      "coverage": {
+        "straight": {
+          "windows": 864,
+          "trajectories": 14
+        },
+        "curve": {
+          "windows": 1540,
+          "trajectories": 14
+        },
+        "transition": {
+          "windows": 1021,
+          "trajectories": 28
+        },
+        "sample_gate_pass": false
+      }
+    }
+  },
+  "validation_scores_T2": {
+    "K0": 0.15116174476177563,
+    "K1": 0.14289781367866655,
+    "K2": 0.1601280572062217,
+    "K3": 0.3949675332450582
+  },
+  "mechanism_macro": {
+    "K4": 0.4921617278364743,
+    "K5-linear": 0.19776114682189597,
+    "K5-bilinear": 13227075043.316095,
+    "K1": 0.160108848660985,
+    "K2": 0.18489309912362056
+  }
+}

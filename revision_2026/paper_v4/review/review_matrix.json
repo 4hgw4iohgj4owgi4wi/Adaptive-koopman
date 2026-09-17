@@ -1,0 +1,31 @@
+{
+  "schema_version": "EXP-R2-review-matrix-v1",
+  "taskbook_sha256": "417CFCDBF22A026973DFF617E29E4814361F9013AED7CA06F065992C20F0D81D",
+  "source": "experiment.md section 14.1; 2 associate-editor items + reviewer 1 six + reviewer 2 seven + reviewer 3 seven = 22",
+  "status": "PARTIAL",
+  "items": [
+    {"id":"AE-1","issue":"Novelty, conditional theory, bilinear/IRSP/delay ablations unsupported","evidence":["E02","E05","E06","E07","E08","E12","E16"],"task":"Mechanism attribution plus Eq.22 and non-circular proof","status":"OPEN"},
+    {"id":"AE-2","issue":"Force results/work domain conflict with claims; strong baselines, parameters, statistics and presentation inadequate","evidence":["E01","E08","E13","E14","E15","E16","E17"],"task":"Raw peaks, independent validation, literature and applicability domain","status":"OPEN"},
+    {"id":"R1-1","issue":"Module assembly; quality scheduling alone is insufficient novelty","evidence":["E02","E05","E06","E07","E12"],"task":"Closest-method difference table and module necessity","status":"NOT_RUN"},
+    {"id":"R1-2","issue":"Proposed method has larger raw force peaks, conflicting with force-improvement claim","evidence":["E01","E05","E08","E14","E15"],"task":"Joint peak, internal force, tension proxy, impulse and time evaluation","status":"NOT_RUN"},
+    {"id":"R1-3","issue":"Stability relies on log self-certification and circular reasoning","evidence":["E16"],"task":"Derive error domain, terminal/backup and disconnection-density conditions","status":"PROOF_PENDING"},
+    {"id":"R1-4","issue":"DoS, distributed optimization and digital-twin/safety-estimation positioning are weak","evidence":["E08","E09","E17"],"task":"Primary-source positioning and independent network-baseline qualification","status":"SOURCE_PENDING"},
+    {"id":"R1-5","issue":"Original linear/non-projected bilinear models often outperform proposed model","evidence":["E02","E05","E08","E16"],"task":"Same-identity prediction baselines, projection cost and error decomposition","status":"NOT_RUN"},
+    {"id":"R1-6","issue":"Activation/exit and other parameters lack complete rationale","evidence":["E03","E13"],"task":"Per-value parameter table, healthy thresholds, sensitivity and freeze record","status":"NOT_RUN"},
+    {"id":"R2-1","issue":"Theorem assumes decrease/failure growth/contraction and lacks an actual certificate","evidence":["E16","E03","E11"],"task":"Feasibility and switching derivation plus certificate-failure decomposition","status":"PROOF_PENDING"},
+    {"id":"R2-2","issue":"Finite-input spectral radius does not guarantee continuous-domain or non-normal contraction","evidence":["E16","E02"],"task":"Norm/common-P counterexamples, input domain and closed-loop relation","status":"PROOF_PENDING"},
+    {"id":"R2-3","issue":"Removing delay has little effect and removing IRSP can improve results; gains may come from other modules","evidence":["E02","E06","E07","E09","E12"],"task":"True single switches and common bounds; demote no-gain modules","status":"NOT_RUN"},
+    {"id":"R2-4","issue":"AKE-M and hold baselines are too weak","evidence":["E08"],"task":"Tube, affine-feedback and independent network baselines with native-method reproduction","status":"SOURCE_PENDING"},
+    {"id":"R2-5","issue":"SD/CI/statistics absent; sample and seed count inadequate","evidence":["E02","E04","E05","E06","E07","E08","E09","E10","E11","E12","E13","E14","E15"],"task":"Paired trajectory-family statistics, multiple initializations and multiplicity control","status":"NOT_RUN"},
+    {"id":"R2-6","issue":"Self-built plant for train/test and force proxies do not establish real safety","evidence":["E15","E01"],"task":"Independent model, measured calibration and real network/HIL","status":"RESOURCE_PENDING"},
+    {"id":"R2-7","issue":"Poor high-speed/hairpin performance and narrow work domain","evidence":["E14","E05","E08"],"task":"Speed/curvature/load/network domain and failure attribution","status":"NOT_RUN"},
+    {"id":"R3-1","issue":"Abstract and related text are overly defensive","evidence":["E17"],"task":"Replace rhetoric with evidence and retain negative results","status":"TEXT_PENDING"},
+    {"id":"R3-2","issue":"References 10, 13, 14, 15 and 37 lack information","evidence":["E17"],"task":"Verify every reference with publisher sources","status":"SOURCE_PENDING"},
+    {"id":"R3-3","issue":"Authors for references 33, 13 and 37 are incorrect","evidence":["E17"],"task":"Record old/new/source corrections item by item","status":"SOURCE_PENDING"},
+    {"id":"R3-4","issue":"Eq.22 base block can violate the bound even when gamma is zero","evidence":["E16"],"task":"Correct branch, counterexample, source regression and new prediction proof","status":"FORMULA_ISSUE_CONFIRMED"},
+    {"id":"R3-5","issue":"Many modules but insufficient ablation","evidence":["E04","E05","E06","E07","E08","E09","E10","E11","E12"],"task":"Separate architecture, predictor, network, observer, fault and full-combination effects","status":"NOT_RUN"},
+    {"id":"R3-6","issue":"Need genuinely robust/distributed/delay-strong baselines","evidence":["E08","E09"],"task":"Native assumptions/adaptation plus compute/message-cost alignment","status":"SOURCE_PENDING"},
+    {"id":"R3-7","issue":"Title emphasizes delay compensation although observed gain is small","evidence":["E06","E07","E09","E17"],"task":"Delay levels, legal causal timing and title retention decision","status":"NOT_RUN"}
+  ],
+  "claim_boundary": "R3-4 confirms only an algebraic counterexample in the candidate source. It does not establish that the submitted manuscript has been identified or that a corrected theorem has been proved. Historical reviewer-reported numbers are not mixed with September 2026 runs."
+}

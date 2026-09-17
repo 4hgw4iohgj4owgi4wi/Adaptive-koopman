@@ -1,0 +1,54 @@
+{
+  "protocol_id": "D1B-BETA-MEMORY-REPLAY-read-only-v1",
+  "authorization": "User selection of option P0: register the beta replay read-only analysis and update the four MD records; no GPU, no dynamics.",
+  "scope": "D1B_BETA_MEMORY_REPLAY_READ_ONLY",
+  "output": "analysis/20260915_D1B_BETA_MEMORY_REPLAY_01",
+  "question": "The interrupted P1 run never persisted beta. D1 therefore declared the state/memory recovery incomplete and kept D3 blocked. Is beta an independent memory, or a deterministic function of the already-persisted reference chain?",
+  "inputs": {
+    "run": "results/20260915_R4_P1_2MS01",
+    "parameter_id": "P1",
+    "replay_rule": "distance[k] = min(distance[k-1] + SPEED*dur[k], ROUTE_LENGTH); beta[k] = beta[k-1] + (dur[k]/DT)*(preview(distance[k-1], beta[k-1])[0].beta_star - beta[k-1]); dur[k] recovered as time_s[k] - k*DT",
+    "validation_target": "raw.npz reference_distance_m (persisted, independent of the replay)"
+  },
+  "claims_allowed": [
+    "the accepted interval duration is recoverable from the persisted time_s labels",
+    "the reference-chain replay reproduces the persisted reference distance at float-noise level",
+    "beta is therefore recoverable from persisted artifacts by same-source-path replay"
+  ],
+  "claims_forbidden": [
+    "a complete, dynamically validated restart checkpoint exists",
+    "the interrupted P1 trajectory may be spliced or resumed",
+    "D3 is released",
+    "any GPU equivalence, speedup or control-fix conclusion"
+  ],
+  "stop_rules": {
+    "plant_dynamics": false,
+    "mpc_or_solver": false,
+    "gpu_execution": false,
+    "closed_loop": false,
+    "p1_resume_or_retry": false,
+    "source_tree_modification": false,
+    "d3_release_requires": ["G1 PASS", "G2 PASS", "separately authorized restart-equivalence test", "separately frozen short-window protocol", "pre-registered late-tracking failure criterion"]
+  },
+  "expected_figures": [
+    "reference-distance replay closure vs tick",
+    "reconstructed beta per vehicle vs tick",
+    "recovered accepted interval duration vs tick",
+    "restart state/memory recovery inventory"
+  ],
+  "identity_rule": "Only immutable inputs are gated. experiment.md, exp_status.md, exp_solution.md and koopman_work_log.md are deliberately excluded because this same work updates them; gating a document that the analysis itself revises is the defect that made protocol RTX5080_G0_G2_20260915_v3 unusable after experiment.md sections 32-33 were appended.",
+  "identity_files": [
+    {"path": "tools/d1b_beta_memory_replay.py", "sha256": "39852e6d56a8bf6c7fbea2f0ff94c401719a884ca178c3ca780a47817283b703"},
+    {"path": "src/paper_v4_core/pilot_runner.py", "sha256": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728"},
+    {"path": "src/paper_v4_core/e01_100m.py", "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"},
+    {"path": "src/paper_v4_core/reference_geometry.py", "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d"},
+    {"path": "src/paper_v4_core/references.py", "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"},
+    {"path": "src/paper_v4_core/diagnostics/post_r3_r4_runner.py", "sha256": "32ba7e9f3807b45b49642f4869b1b9e6cffadc6e28a1b824bfe9931358a9d379"},
+    {"path": "results/20260915_R4_P1_2MS01/raw.npz", "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"},
+    {"path": "results/20260915_R4_P1_2MS01/substeps.npz", "sha256": "ad60eb7f2e7a1fa9b556ad5ab57489745895a031c0841164b69da01b2c527043"},
+    {"path": "results/20260915_R4_P1_2MS01/solver.jsonl", "sha256": "9189e93618e38cd95672f0f175e38ad2f9a8d1ea4a84d4848d06e7b86e9c9bbb"},
+    {"path": "results/20260915_R4_P1_2MS01/status.json", "sha256": "1aa4af6d051841c525c50114076076f827261aaca8a687b181a371070ed843d2"},
+    {"path": "protocol/R4_P1_2MS_20260915.json", "sha256": "e41b6633785b5bdbd6e294301b5c1938301e49fabff5634c6ea3549243741dd5"}
+  ],
+  "deliverables": ["beta_memory_replay.json", "beta_replay.npz", "PNG and SVG figures", "figure_manifest.json", "README.md", "experiment.md section 34"]
+}

@@ -1,0 +1,40 @@
+{
+  "purpose": "post-confirm presentation-only rendering manifest",
+  "metrics_or_gates_changed": false,
+  "protocol_sha256": "285AA7DE1404BF32C0785F6D539B6C9FF10C45969EFC5711307DD6F23BCB98F3",
+  "pipeline_sha256": "9170A3085B0C717BAA0E388B2BBA329FE79F838C8ADB235C1C56292FBDD30B79",
+  "generator_sha256": "87BA89625A81B839DC4F478D4A822D99D963D34345B26C715C9FA49D86385BB2",
+  "replot_sha256": "B5ECBE82A232F5809D1BAB9C2060B7D79A4BA101C16D66EB015677C404604306",
+  "final_report_sha256": "E8F3376C3040CBEAE541F7143213CCA375924424FB7D173A464108B8DB0EFB92",
+  "rendering_notes": {
+    "scenario_method_heatmap": "display clipped to +/-100%; cells beyond the range are labelled NUM FAIL; exact values remain in CSV",
+    "horizon_state_force": "logarithmic y-axis; exact values remain in CSV",
+    "accuracy_cost_pareto": "logarithmic axes; exact values remain in CSV",
+    "ood_network_robustness": "K5-bilinear numerical failure omitted from bar scale and labelled explicitly; exact value remains in CSV",
+    "learning_curves_k0_k4": "logarithmic y-axis; exact values remain in CSV"
+  },
+  "frozen_csv_sha256": {
+    "scenario_method_heatmap.csv": "6AF6735F178F0F22FC4357D161FB06060F87CE9048666FDC75AE663558C642D9",
+    "horizon_state_force.csv": "C5A54996341A42576EB85073D4EBD368CFD70D19CFC56C13F77B507A6A8D6096",
+    "bilinear_contribution.csv": "3788BCF340D433BE3362D192A6D80543322462A6CEB2C7D775E9AED4F2043910",
+    "input_rank_condition.csv": "8F08141E05E694C687E37701C3C4CEB214BF730EA1E024FCF755FCCA817291C7",
+    "force_direction_events.csv": "8FA021E84C5300352576722525919394B9C6FA45CB87A317034C3BA22765AE59",
+    "accuracy_cost_pareto.csv": "88257D5292E81261A9EBD33D880A959A38F85FC6BDD0B559C6599ED18BB427DD",
+    "ood_network_robustness.csv": "3BC86EB2C302E02FC46186791901E4B55EEE70613F20FC6088A9B1C121DC70E2",
+    "learning_curves_k0_k4.csv": "D27A42E4C1404F2588CD90991F3D0EC544F5B75C46446EF6144BBA10EBA9E6E0"
+  },
+  "delivered_png_sha256": {
+    "scenario_method_heatmap.png": "4D564550854226B7890F33A088AC997AE7AE71A5B5EAF859647FF656CF492200",
+    "horizon_state_force.png": "B1519018927DBEF93304D1CE5C92CB64BD6344488ED5B6AD929DF9D30DD36180",
+    "bilinear_contribution.png": "42BED87465C2E287B42D4A55D2A14918F23ED40B5B84550C0E03BCE5039F1CC4",
+    "input_rank_condition.png": "0422896EAB6970A16D8381DF7903DC461E2BDC1D99F6C226A6CC9545E03BD2BC",
+    "force_direction_events.png": "D819C08D988A32CA68CA2F6CF396E3DFE4AD992C17BF098316510CD05F7DEE96",
+    "accuracy_cost_pareto.png": "BDA52820294E1C559ECFBE21905E5303B67A5CFA695AF6C3C9FA1C74878D83E4",
+    "ood_network_robustness.png": "68241DFA2E9B00F480C404ADB8C065A8992B9D43098361C6C737FBC2619CA0B1",
+    "learning_curves_k0_k4.png": "9B6BC62347213267072092F764A5615F8EA0CFD86FB98CDEBF34AA8CAF77F42A"
+  },
+  "closed_loop_tradeoff": {
+    "status": "not_applicable_no_offline_candidate",
+    "png_sha256": "45CFD24DBF18CD398819B82095B6BDEB11A65B5FEDCA6FC901E417E008E5582A"
+  }
+}

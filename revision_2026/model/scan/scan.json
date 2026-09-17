@@ -1,0 +1,1247 @@
+{
+  "passed": true,
+  "acceptance": {
+    "full_completed": true,
+    "full_force_below_reference_rated": true,
+    "full_direction_reversal": true,
+    "full_internal_force_closure": true
+  },
+  "negative_control_expected_to_fail": "direct_copy_negative_control",
+  "cases": [
+    {
+      "name": "full",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.03599999999922,
+      "distance_m": 100.00048219016946,
+      "final_speed_mps": 0.4821390818589597,
+      "peak_connector_force_n": 2220.1873203750756,
+      "peak_system_yaw_rate_radps": 0.14306256322972,
+      "peak_vehicle_yaw_rate_radps": 0.556518753225413,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 363.04984337931717,
+      "peak_q_left_right_n": 316.0567355196712,
+      "positive_step_mean_fy_n": 1495.8282299973503,
+      "negative_step_mean_fy_n": -1580.5247691706334,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99317959006376
+        ],
+        "step_positive": [
+          30.00484258298429,
+          59.31455728968205
+        ],
+        "step_negative": [
+          59.326347082498856,
+          89.0523031519546
+        ],
+        "decelerate": [
+          89.0642579678008,
+          99.99951465634696
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "feedforward_only",
+      "allocation_mode": "feedforward_only",
+      "steering_scale": 1.0,
+      "completed": false,
+      "finite": true,
+      "time_s": 60.00000000002736,
+      "distance_m": 55.73544097185742,
+      "final_speed_mps": 0.0018161846279439035,
+      "peak_connector_force_n": 15785.59928237309,
+      "peak_system_yaw_rate_radps": 0.2967974266615357,
+      "peak_vehicle_yaw_rate_radps": 1.0517292964046732,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 9150.789060442814,
+      "peak_q_left_right_n": 13609.576036261838,
+      "positive_step_mean_fy_n": -771.9033577410977,
+      "negative_step_mean_fy_n": -44.42782820440075,
+      "opposite_step_fy_sign": false,
+      "max_icr_normal_residual_mps": 1.0325074129013956e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": true,
+      "reference_ultimate_exceeded": true,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99033971919244
+        ],
+        "step_positive": [
+          30.001822323458498,
+          47.47923830563053
+        ],
+        "step_negative": [
+          47.47982638952795,
+          50.15506567742238
+        ],
+        "decelerate": [
+          50.1561641878375,
+          55.73543736297781
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "heading_only",
+      "allocation_mode": "heading_only",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.067999999999202,
+      "distance_m": 100.00052226220731,
+      "final_speed_mps": 0.40871265874735746,
+      "peak_connector_force_n": 2571.3053717703347,
+      "peak_system_yaw_rate_radps": 0.1558689259346292,
+      "peak_vehicle_yaw_rate_radps": 0.556165479930456,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 484.8375856805628,
+      "peak_q_left_right_n": 693.7881857965,
+      "positive_step_mean_fy_n": 1495.450608009361,
+      "negative_step_mean_fy_n": -1586.894271096441,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.993179590084853
+        ],
+        "step_positive": [
+          30.00484258300338,
+          59.31552757446488
+        ],
+        "step_negative": [
+          59.32731385463879,
+          89.05180410374248
+        ],
+        "decelerate": [
+          89.06376809876605,
+          99.99970159288827
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "speed_only",
+      "allocation_mode": "speed_only",
+      "steering_scale": 1.0,
+      "completed": false,
+      "finite": true,
+      "time_s": 60.00000000002736,
+      "distance_m": 49.80333188729014,
+      "final_speed_mps": 0.0055210684839009485,
+      "peak_connector_force_n": 15837.194414058078,
+      "peak_system_yaw_rate_radps": 0.2540646350484675,
+      "peak_vehicle_yaw_rate_radps": 0.9904289370555447,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 7244.226108665276,
+      "peak_q_left_right_n": 12807.08155425941,
+      "positive_step_mean_fy_n": -968.1675279150944,
+      "negative_step_mean_fy_n": 79.47928019918982,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0325074129013956e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": true,
+      "reference_ultimate_exceeded": true,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.990380922602004
+        ],
+        "step_positive": [
+          30.001863646086893,
+          46.49739698992676
+        ],
+        "step_negative": [
+          46.49845196650428,
+          48.71712276830949
+        ],
+        "decelerate": [
+          48.71735103313305,
+          49.80332084511762
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "direct_copy_negative_control",
+      "allocation_mode": "direct_copy",
+      "steering_scale": 1.0,
+      "completed": false,
+      "finite": true,
+      "time_s": 60.00000000002736,
+      "distance_m": 52.15146593793344,
+      "final_speed_mps": 0.003577098314735735,
+      "peak_connector_force_n": 20909.99251763847,
+      "peak_system_yaw_rate_radps": 0.7972731114897739,
+      "peak_vehicle_yaw_rate_radps": 0.6963001313884373,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 27598.10241805599,
+      "peak_q_left_right_n": 1299.1529525408082,
+      "positive_step_mean_fy_n": 1831.3472720386815,
+      "negative_step_mean_fy_n": -537.9905778068438,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 0.0,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": true,
+      "reference_ultimate_exceeded": true,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99033971919244
+        ],
+        "step_positive": [
+          30.001822323458498,
+          47.47089042049334
+        ],
+        "step_negative": [
+          47.47312433063684,
+          49.94952881523305
+        ],
+        "decelerate": [
+          49.95017603593697,
+          52.15145878879819
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "k_half",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.041999999999216,
+      "distance_m": 100.00023972733642,
+      "final_speed_mps": 0.45412614204041246,
+      "peak_connector_force_n": 1991.31398193495,
+      "peak_system_yaw_rate_radps": 0.14132778265702503,
+      "peak_vehicle_yaw_rate_radps": 0.5531793295967767,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 447.0084389102058,
+      "peak_q_left_right_n": 509.0810592688687,
+      "positive_step_mean_fy_n": 1495.5277561273265,
+      "negative_step_mean_fy_n": -1578.8103813696,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99896290971339
+        ],
+        "step_positive": [
+          30.010627903811656,
+          59.3318354244881
+        ],
+        "step_negative": [
+          59.34366508635228,
+          89.06753184355257
+        ],
+        "decelerate": [
+          89.0794990069232,
+          99.99932826595375
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 15000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "k_double",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.065999999999203,
+      "distance_m": 100.00070986837635,
+      "final_speed_mps": 0.4221843646318614,
+      "peak_connector_force_n": 3047.552718116944,
+      "peak_system_yaw_rate_radps": 0.14375755215866856,
+      "peak_vehicle_yaw_rate_radps": 0.5595393582887662,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 380.0975473299329,
+      "peak_q_left_right_n": 347.920669758689,
+      "positive_step_mean_fy_n": 1495.9547153365543,
+      "negative_step_mean_fy_n": -1581.7204035617976,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.996118927420454
+        ],
+        "step_positive": [
+          30.007781919655105,
+          59.31635778780775
+        ],
+        "step_negative": [
+          59.32815151444278,
+          89.0617174225421
+        ],
+        "decelerate": [
+          89.07368164686355,
+          99.99986220709349
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 60000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "c_half",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.041999999999216,
+      "distance_m": 100.00040435199514,
+      "final_speed_mps": 0.4699869919428082,
+      "peak_connector_force_n": 2314.1990661034224,
+      "peak_system_yaw_rate_radps": 0.14589908161049625,
+      "peak_vehicle_yaw_rate_radps": 0.5549590106677299,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 288.34509182383096,
+      "peak_q_left_right_n": 201.92843534786485,
+      "positive_step_mean_fy_n": 1495.7915695511278,
+      "negative_step_mean_fy_n": -1579.6472636997707,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.9931800088762
+        ],
+        "step_positive": [
+          30.004843000651128,
+          59.313116362016096
+        ],
+        "step_negative": [
+          59.32490414007114,
+          89.0487373041938
+        ],
+        "decelerate": [
+          89.06069185286283,
+          99.99946119372345
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 1750.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "c_double",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.041999999999216,
+      "distance_m": 100.00079639590717,
+      "final_speed_mps": 0.4686580583129435,
+      "peak_connector_force_n": 2823.3870392627127,
+      "peak_system_yaw_rate_radps": 0.1397800616164397,
+      "peak_vehicle_yaw_rate_radps": 0.5568836960452199,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 744.0870217638367,
+      "peak_q_left_right_n": 597.0006841421249,
+      "positive_step_mean_fy_n": 1495.9103323377328,
+      "negative_step_mean_fy_n": -1581.0512212457127,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.993179599378486
+        ],
+        "step_positive": [
+          30.004842592301355,
+          59.31614396013843
+        ],
+        "step_negative": [
+          59.327933213517774,
+          89.05730271787095
+        ],
+        "decelerate": [
+          89.06926226414564,
+          99.99985580617582
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 7000.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "gap_half",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.047999999999213,
+      "distance_m": 100.00036669464852,
+      "final_speed_mps": 0.4588856248240708,
+      "peak_connector_force_n": 2275.7238839010565,
+      "peak_system_yaw_rate_radps": 0.1430709511753646,
+      "peak_vehicle_yaw_rate_radps": 0.5580157345137924,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 368.11495272756054,
+      "peak_q_left_right_n": 471.46392267670694,
+      "positive_step_mean_fy_n": 1495.6518183813325,
+      "negative_step_mean_fy_n": -1580.6363244245313,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99388502484121
+        ],
+        "step_positive": [
+          30.0055480176015,
+          59.315539084155134
+        ],
+        "step_negative": [
+          59.32734678863864,
+          89.05288302754509
+        ],
+        "decelerate": [
+          89.06484184909408,
+          99.9994456533174
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.001,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "gap_large",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.067999999999202,
+      "distance_m": 100.00081060553238,
+      "final_speed_mps": 0.41978124396158467,
+      "peak_connector_force_n": 2319.8616673162855,
+      "peak_system_yaw_rate_radps": 0.14268123736974284,
+      "peak_vehicle_yaw_rate_radps": 0.5585820264884312,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 391.95690541386875,
+      "peak_q_left_right_n": 608.7228037284087,
+      "positive_step_mean_fy_n": 1496.1059592596148,
+      "negative_step_mean_fy_n": -1580.3741023968323,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.991063165299497
+        ],
+        "step_positive": [
+          30.002726158681625,
+          59.31745165793037
+        ],
+        "step_negative": [
+          59.32924835188094,
+          89.0503877556966
+        ],
+        "decelerate": [
+          89.06235180215744,
+          99.9999677685107
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.005,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "payload_half",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.007999999999235,
+      "distance_m": 100.00072371508175,
+      "final_speed_mps": 0.4654540025250641,
+      "peak_connector_force_n": 2059.870465607402,
+      "peak_system_yaw_rate_radps": 0.1419272603228206,
+      "peak_vehicle_yaw_rate_radps": 0.5591497119570514,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 347.71040400581654,
+      "peak_q_left_right_n": 412.2686526138277,
+      "positive_step_mean_fy_n": 750.9676581400112,
+      "negative_step_mean_fy_n": -797.8558942474874,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0658141036401503e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.995409931751166
+        ],
+        "step_positive": [
+          30.00707292977558,
+          59.33445861580927
+        ],
+        "step_negative": [
+          59.346259986612274,
+          89.14520217113309
+        ],
+        "decelerate": [
+          89.15719523624921,
+          99.99978947645977
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 1000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "payload_1p5",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.0699999999992,
+      "distance_m": 100.0005401004764,
+      "final_speed_mps": 0.48495284131155153,
+      "peak_connector_force_n": 2676.940975418975,
+      "peak_system_yaw_rate_radps": 0.14152916474865251,
+      "peak_vehicle_yaw_rate_radps": 0.5575539234830152,
+      "peak_tire_utilization": 0.9220236006238385,
+      "peak_q_front_rear_n": 489.322984430725,
+      "peak_q_left_right_n": 614.0528913821386,
+      "positive_step_mean_fy_n": 2232.8650480535753,
+      "negative_step_mean_fy_n": -2344.7400032353876,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.0602629885170245e-14,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.991515869973508
+        ],
+        "step_positive": [
+          30.003178855749667,
+          59.29716204611656
+        ],
+        "step_negative": [
+          59.30898750366465,
+          88.96556316634407
+        ],
+        "decelerate": [
+          88.9774838455332,
+          99.99956696377154
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 3000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "anchor_0",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.09199999999919,
+      "distance_m": 100.0002628538762,
+      "final_speed_mps": 0.3833961405679237,
+      "peak_connector_force_n": 2089.0379106879,
+      "peak_system_yaw_rate_radps": 0.14048765257124096,
+      "peak_vehicle_yaw_rate_radps": 0.5160812649454235,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 770.665954168206,
+      "peak_q_left_right_n": 557.845062459108,
+      "positive_step_mean_fy_n": 1500.0079463313184,
+      "negative_step_mean_fy_n": -1592.8440547766145,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 5.551115123125783e-17,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.993267049446658
+        ],
+        "step_positive": [
+          30.00493004944655,
+          59.315615747300726
+        ],
+        "step_negative": [
+          59.32741781804434,
+          89.04771864204251
+        ],
+        "decelerate": [
+          89.05968164285105,
+          99.99949275086861
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "anchor_0.5",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.057999999999208,
+      "distance_m": 100.00019043373273,
+      "final_speed_mps": 0.4454285850470981,
+      "peak_connector_force_n": 2014.9529826403657,
+      "peak_system_yaw_rate_radps": 0.1417428331113697,
+      "peak_vehicle_yaw_rate_radps": 0.5399620873730767,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 394.3341375736479,
+      "peak_q_left_right_n": 525.3852301601768,
+      "positive_step_mean_fy_n": 1497.7909097881002,
+      "negative_step_mean_fy_n": -1586.4135646856496,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 2.220446049250313e-16,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.9932451144963
+        ],
+        "step_positive": [
+          30.004908112701074,
+          59.314608854493585
+        ],
+        "step_negative": [
+          59.32640221522507,
+          89.04841788914473
+        ],
+        "decelerate": [
+          89.06037494223087,
+          99.99929630218857
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.2,
+            -0.125
+          ],
+          [
+            -0.2,
+            0.125
+          ],
+          [
+            0.2,
+            -0.125
+          ],
+          [
+            0.2,
+            0.125
+          ]
+        ]
+      }
+    },
+    {
+      "name": "anchor_1.5",
+      "allocation_mode": "full",
+      "steering_scale": 1.0,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.013999999999232,
+      "distance_m": 100.00051176144747,
+      "final_speed_mps": 0.5166939667755837,
+      "peak_connector_force_n": 2534.5172936269155,
+      "peak_system_yaw_rate_radps": 0.14393089240162021,
+      "peak_vehicle_yaw_rate_radps": 0.564888341909213,
+      "peak_tire_utilization": 1.0,
+      "peak_q_front_rear_n": 365.2549749151501,
+      "peak_q_left_right_n": 435.47837059874666,
+      "positive_step_mean_fy_n": 1494.2465426159088,
+      "negative_step_mean_fy_n": -1575.3129200741914,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.1102230246251565e-15,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.993071278690042
+        ],
+        "step_positive": [
+          30.00473426312028,
+          59.31493736861812
+        ],
+        "step_negative": [
+          59.32672714611898,
+          89.05913637656941
+        ],
+        "decelerate": [
+          89.0710903295812,
+          99.99947510774672
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.6000000000000001,
+            -0.375
+          ],
+          [
+            -0.6000000000000001,
+            0.375
+          ],
+          [
+            0.6000000000000001,
+            -0.375
+          ],
+          [
+            0.6000000000000001,
+            0.375
+          ]
+        ]
+      }
+    },
+    {
+      "name": "steer_0.5deg",
+      "allocation_mode": "full",
+      "steering_scale": 0.125,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.491999999998967,
+      "distance_m": 100.00025575731867,
+      "final_speed_mps": 0.24619277087478747,
+      "peak_connector_force_n": 1090.202544857847,
+      "peak_system_yaw_rate_radps": 0.017638203882507624,
+      "peak_vehicle_yaw_rate_radps": 0.07297764880231886,
+      "peak_tire_utilization": 0.18756939465962152,
+      "peak_q_front_rear_n": 135.9117249969686,
+      "peak_q_left_right_n": 80.85837521669325,
+      "positive_step_mean_fy_n": 185.27371010489068,
+      "negative_step_mean_fy_n": -192.06623781686994,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 2.0816681711721685e-17,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99317959006376
+        ],
+        "step_positive": [
+          30.00484258298429,
+          59.16386189557703
+        ],
+        "step_negative": [
+          59.17553073747467,
+          88.33183812956706
+        ],
+        "decelerate": [
+          88.34350604377049,
+          99.9997604513606
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "steer_1deg",
+      "allocation_mode": "full",
+      "steering_scale": 0.25,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.475999999998976,
+      "distance_m": 100.0001772206842,
+      "final_speed_mps": 0.2463197319040667,
+      "peak_connector_force_n": 1225.7610961593155,
+      "peak_system_yaw_rate_radps": 0.035363702346069295,
+      "peak_vehicle_yaw_rate_radps": 0.14664404616365698,
+      "peak_tire_utilization": 0.36268459620507265,
+      "peak_q_front_rear_n": 129.52846041190125,
+      "peak_q_left_right_n": 104.20748744566971,
+      "positive_step_mean_fy_n": 370.1589750588835,
+      "negative_step_mean_fy_n": -384.30575634649045,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 4.85722573273506e-16,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99317959006376
+        ],
+        "step_positive": [
+          30.00484258298429,
+          59.16935735234473
+        ],
+        "step_negative": [
+          59.18104167609199,
+          88.36641231581972
+        ],
+        "decelerate": [
+          88.3780952803896,
+          99.99968164650029
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "steer_2deg",
+      "allocation_mode": "full",
+      "steering_scale": 0.5,
+      "completed": true,
+      "finite": true,
+      "time_s": 21.389999999999024,
+      "distance_m": 100.00003646658799,
+      "final_speed_mps": 0.28266478955682034,
+      "peak_connector_force_n": 1524.1972515605332,
+      "peak_system_yaw_rate_radps": 0.07108967177067504,
+      "peak_vehicle_yaw_rate_radps": 0.2957296192684939,
+      "peak_tire_utilization": 0.7248274308095061,
+      "peak_q_front_rear_n": 202.93917963226914,
+      "peak_q_left_right_n": 162.23408104088907,
+      "positive_step_mean_fy_n": 741.9207968441511,
+      "negative_step_mean_fy_n": -773.8314957675116,
+      "opposite_step_fy_sign": true,
+      "max_icr_normal_residual_mps": 1.1102230246251565e-16,
+      "max_internal_force_residual_n": 0.0,
+      "reference_rated_exceeded": false,
+      "reference_ultimate_exceeded": false,
+      "stage_distance_m": {
+        "accelerate": [
+          0.0,
+          29.99317959006376
+        ],
+        "step_positive": [
+          30.00484258298429,
+          59.200075388997575
+        ],
+        "step_negative": [
+          59.21175273738186,
+          88.50478108348153
+        ],
+        "decelerate": [
+          88.51652125712945,
+          99.99946814759001
+        ]
+      },
+      "parameters": {
+        "stiffness_npm": 30000.0,
+        "damping_nspm": 3500.0,
+        "free_play_m": 0.002,
+        "payload_mass_kg": 2000.0,
+        "vehicle_anchor_body_m": [
+          [
+            -0.4,
+            -0.25
+          ],
+          [
+            -0.4,
+            0.25
+          ],
+          [
+            0.4,
+            -0.25
+          ],
+          [
+            0.4,
+            0.25
+          ]
+        ]
+      }
+    }
+  ]
+}

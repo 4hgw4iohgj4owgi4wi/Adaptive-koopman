@@ -1,0 +1,1550 @@
+1
+Deep Bilinear Koopman Model for Real-Time
+Vehicle Control in Frenet Frame
+Mohammad Abtahi, Member, IEEE,, Farhang Motallebi Araghi, Navid Mojahed, Shima Nazari, Member, IEEE,
+Abstract—Accurate modeling and control of autonomous ve-
+hicles remain a fundamental challenge due to the nonlinear and
+coupled nature of vehicle dynamics. While Koopman operator
+theory offers a framework for deploying powerful linear control
+techniques, learning a finite-dimensional invariant subspace for
+high-fidelity modeling continues to be an open problem. This
+paper presents a deep Koopman approach for modeling and
+control of vehicle dynamics within the curvilinear Frenet frame.
+The proposed framework uses a deep neural network archi-
+tecture to simultaneously learn the Koopman operator and its
+associated invariant subspace from the data. Input–state bilinear
+interactions are captured by the algorithm while preserving
+convexity, which makes it suitable for real-time model predictive
+control (MPC) application. A multi-step prediction loss is utilized
+during training to ensure long-horizon prediction capability. To
+further enhance real-time trajectory tracking performance, the
+model is integrated with a cumulative error regulator (CER)
+module, which compensates for model mismatch by mitigat-
+ing accumulated prediction errors. Closed-loop performance
+is evaluated through hardware-in-the-loop (HIL) experiments
+using a CarSim RT model as the target plant, with real-time
+validation conducted on a dSPACE SCALEXIO system. The
+proposed controller achieved significant reductions in tracking
+error relative to baseline controllers, confirming its suitability
+for real-time implementation in embedded autonomous vehicle
+systems.
+Index Terms—Autonomous Vehicles, Vehicle Dynamics, Frenet
+Frame, Deep Learning, Koopman Operator, Data-Driven Mod-
+eling, Model Predictive Control.
+I. I NTRODUCTION
+A
+UTONOMOUS vehicles have the potential to revolu-
+tionize transportation, but ensuring safety remains a
+critical challenge. Achieving safe and reliable operation under
+diverse and potentially hazardous conditions requires accurate
+modeling and robust control strategies [1]. However, real-time
+control development is hindered by the nonlinear nature of
+vehicle dynamics and the inherent uncertainties in real-world
+driving environments.
+Optimization-based control strategies such as Model Predic-
+tive Control (MPC) [2]–[4] and Linear-Quadratic Regulators
+(LQR) [5] stand out for enhancing the safety and maneu-
+vering capabilities of autonomous vehicles [6]. In particular,
+nonlinear MPC offers high-fidelity control performance by
+directly accounting for vehicle and tire nonlinearities, but
+it typically results in a non-convex optimization problem.
+This substantially increases computational demands and may
+lead to suboptimal outcomes, limiting the applicability of
+The authors are with the Department of Mechanical and Aerospace Engi-
+neering, University of California Davis, USA (e-mail: sabtahi@ucdavis.edu;
+fmotallebi@ucdavis.edu; nmojahed@ucdavis.edu; snazari@ucdavis.edu)
+Fig. 1. Illustration of Koopman operator lifting.
+nonlinear MPC in real-time scenarios [7]. On the other hand,
+linear control approaches, such as LQR and Linear MPC,
+offer computational efficiency and theoretical guarantees of
+optimality by leveraging simplified models of vehicle dynam-
+ics [8]. These models are typically obtained through Jacobian
+linearization around equilibrium points or along trajectory
+operating points, resulting in linear time-invariant (LTI) or
+linear time-varying (LTV) representations [9]. While effective
+for local approximations, such linearized models often fail
+to capture the full nonlinear behavior of vehicle dynamics,
+specifically during aggressive steering maneuvers, emergency
+braking, or operation at stability limits [10]. These limitations
+motivate the exploration of alternative modeling techniques
+that balance accuracy and computational efficiency.
+Recent advances in data collection and large-scale datasets
+have made data-driven modeling effective for learning system
+behaviors [11]. These methods rely directly on observed
+data rather than first-principles modeling [12]. In particular,
+end-to-end learning approaches, where raw sensor data are
+directly mapped to control actions or vehicle states using deep
+neural networks, have been widely explored in the context
+of autonomous driving and vehicle dynamics modeling [13].
+While such models often achieve high predictive performance,
+they tend to lack interpretability and structure, making them
+difficult to analyze or incorporate into safety-critical control
+systems. Among interpretable alternatives, the Koopman op-
+erator theory has gained significant attention for its ability
+to transform nonlinear dynamics into an infinite-dimensional
+linear representation in the space of observable functions [14].
+arXiv:2507.12578v1  [eess.SY]  16 Jul 2025
+
+2
+These scalar-valued functions lift the original state space into a
+higher-dimensional space, allowing nonlinear system behavior
+to be described using linear structures, as illustrated in Fig. 1.
+Such a linear representation allows the direct application
+of linear control strategies to inherently nonlinear systems,
+making Koopman operator methods particularly promising for
+A V modeling and control [15]. Since numerical computation
+with an infinite-dimensional Koopman operator is impractical,
+researchers have developed several techniques to approximate
+a finite-dimensional representation for Koopman dynamics.
+Dynamic Mode Decomposition (DMD) [16], [17], Extended
+Dynamic Mode Decomposition (EDMD) [18], and the eigen-
+function approach [19] have been widely used to approximate
+Koopman representations of systems with no control inputs.
+In addition, variants of DMD and EDMD, called DMDc [20]
+and EDMDc [15], have been extensively applied to systems
+with control inputs.
+Despite recent advancements, most Koopman-based control
+methods assume linear dependence on control inputs, which
+limits their ability to capture nonlinear control-state coupling
+and reduces predictive accuracy in general nonlinear systems.
+This limitation becomes particularly problematic in vehicle
+dynamics, where, for instance, the steering angle interacts
+nonlinearly with vehicle speed to generate lateral forces. On
+the other hand, embedding nonlinear control inputs within
+the lifting functions has been shown to introduce causality
+issues [21], which remains an open challenge in the field. As
+an alternative, bilinear models provide a favorable trade-off
+between capturing nonlinear system dynamics and maintaining
+computational tractability [22]. However, employing a bilinear
+predictive model can lead to non-convexities in the resulting
+optimal control problem. Prior works have addressed this
+challenge by fixing the coupling terms over the prediction
+horizon to preserve linearity [23].
+Several studies have explored Koopman-based methods for
+vehicle dynamics modeling and control. Cibulka et al. [24]
+identified velocity dynamics using EDMD with manually se-
+lected basis functions. The authors later extended this approach
+to a predictive controller [25]. Svec et al. [26] proposed
+an MPC scheme using a predictor identified via EDMD
+and fourth-order polynomial basis functions, demonstrating
+improved predictive performance over an MPC controller with
+a linearized model. Kim et al. [27] applied EDMD to obtain a
+Koopman model of vehicle dynamics for an LQR lane-keeping
+controller, achieving improved accuracy over traditional linear
+models. More recently, Yu et al. [23] proposed a Koopman
+MPC framework for motion planning and control using poly-
+nomial observables.
+Despite these advancements, a significant limitation of these
+approaches is the manual selection of observables, which often
+relies on trial-and-error procedures to identify lifting functions
+that adequately span the Koopman-invariant subspace. With
+the emergence of large-scale AI applications and the high
+representational capacity of neural networks, recent studies
+have investigated deep learning approaches to address this is-
+sue. These approaches automate the identification of Koopman
+observables through autoencoder structures [28]. Xiao et al.
+[29], [30] proposed a neural network model to learn Koop-
+Fig. 2. Vehicle states in the curvilinear Frenet frame: longitudinal velocity
+vx, lateral velocity vy, yaw rate ˙ψ, progress gain ∆s, lateral deviation ey,
+heading error eψ. Road curvature is denoted by κ.
+man representations for vehicle dynamics. While effective for
+tracking velocity profiles, the method lacked a global posi-
+tioning framework, which is essential for achieving high-level
+navigation and control objectives. To address this limitation,
+the approach proposed in our previous work [31] introduced
+a deep Koopman framework that models vehicle dynamics
+within the curvilinear Frenet frame illustrated in Fig. 2. Build-
+ing on that foundation, the present work extends the model to
+a bilinear structure. This novel scheme enables the encoding
+of bilinear interactions between inputs and state-dependent
+observables while preserving compatibility with predictive
+control strategies. To further increase control precision, the
+identified dynamics are augmented with a Cumulative Error
+Regulator (CER), which compensates for model mismatch
+during optimization by explicitly propagating and penalizing
+accumulated prediction errors over the horizon. The prediction
+capability of the proposed approach is then compared against
+an LTI model, an EDMD Koopman model, and the previously
+developed Multi-Step Deep Koopman Network (MDK-Net)
+structure [31]. Unlike prior approaches, our method directly
+incorporates driver inputs, steering wheel angle, throttle, and
+brake pedal commands as system inputs. This design choice
+enables capturing the nonlinearities within the steering actu-
+ation, powertrain dynamics, driveline, and braking behavior.
+Finally, hardware-in-the-loop (HIL) simulations are conducted
+using a dSPACE SCALEXIO platform to ensure the real-
+time applicability of the proposed controller. The controller’s
+real-time performance is then benchmarked against baseline
+controllers using a high-fidelity CarSim model.
+The key contributions of this work are outlined below:
+• A Multi-Step Deep Bilinear Koopman Network (MDBK-
+Net) is developed, which jointly learns the Koopman-
+invariant subspace via an encoder network and the bi-
+linear Koopman operator matrices.
+• To enhance model fidelity in capturing the nonlinear
+dynamics of the steering, powertrain, driveline, and brak-
+ing subsystems, the driver commands of steering wheel
+angle, throttle, and brake pedal are directly incorporated
+as system inputs. Additionally, Frenet frame modeling is
+achieved by integrating road curvature as an exogenous
+input, which facilitates the coupled vehicle lateral and
+longitudinal control.
+• The identified lifted dynamics are augmented with the
+CER module within the MPC formulation. This module
+
+3
+is designed to mitigate cumulative tracking errors arising
+from the Koopman approximation, thereby further en-
+hancing the controller’s tracking performance and safety.
+• The real-time performance of the proposed controller
+is validated through HIL testing using a dSPACE
+SCALEXIO system and a high-fidelity CarSim Real-
+Time (RT) vehicle model, demonstrating the controller’s
+computational efficiency for real-time implementation.
+This work highlights a strong use case for leveraging AI,
+particularly deep learning, in addressing longstanding chal-
+lenges in model identification and real-time control of complex
+nonlinear systems. The remainder of the paper is organized
+as follows. Section II presents the necessary preliminaries
+to Koopman operator theory. The structure of the proposed
+MDBK-Net, its augmentation with CER, and the developed
+MPC framework are all discussed in Section III. Section IV
+describes the experimental setup and presents the evaluation
+results, and conclusions are drawn in Section V
+II. P RELIMINARIES
+This section introduces the Koopman operator theory and
+its application to nonlinear system modeling, forming the
+theoretical foundation for the proposed deep bilinear Koopman
+control framework. The Koopman operator, originally intro-
+duced for dynamical systems analysis [14], [32], provides a
+globally linear representation of nonlinear dynamical systems
+by lifting the states of a system to a higher-dimensional
+space of observables. Such a linear representation enables
+the application of well-established linear control techniques
+to inherently nonlinear systems.
+A. Koopman Operator
+Consider a discrete-time nonlinear autonomous system as
+xk+1 = fa(xk), (1)
+where xk ∈ Rn is the state vector of the system at time step
+k, and fa : Rn → Rn is the nonlinear smooth mapping
+of the dynamics. Then the infinite dimensional Koopman
+operator Ka : Ha → H a provides a linear representation
+of the nonlinear dynamics in (1) by acting on scalar-valued
+observable functions ψa(·) : Rn → R as
+ψa(xk+1) = ψa(fa(xk)) = Kaψa(xk), (2)
+where each observable function ψa(·) ∈ H a is an element of
+infinite dimensional Hilbert space Ha, which is invariant under
+the Koopman operator [15]. Although the Koopman operator
+was originally formulated for autonomous systems [14], works
+by Korda et al. [15] and Proctor et al. [33] have shown that
+it can also be extended to input driven systems. Consider a
+general discrete-time nonlinear system with control input as
+xk+1 = f(xk, uk), (3)
+where uk ∈ Rm is the control input vector at time k.
+The space of admissible control sequences is defined as
+L(U) = {(uk)∞
+k=0|uk ∈ U } which was introduced in [15].
+The extended state-space can then be defined in the space of
+Rn × L(U), and it is given by
+χk =
+xk
+νk
+
+, (4)
+where νk = [ uk, uk+1, ...u∞] ⊂ L (U) is an infinite di-
+mensional sequence of input vector. Under this formulation,
+the system dynamics (3) can be described as an autonomous
+system such that
+χk+1 = F (χk) :=
+f(xk, νk(0))
+Sνk
+
+, (5)
+where S is the left shift operator, i.e.Sνk = νk+1, and νk(0) =
+uk is the first element of the control sequence of ν at time
+step k. Then the infinite dimensional Koopman operator K :
+H → H associated with (5) can be defined as
+ψ(χk+1) = ψ(F (χk)) = Kψ(χk), (6)
+where ψ(·) ∈ H : Rn × L(U) → R is a real-valued observable
+function that belongs to the extended function space of H
+invariant under Koopman operator K. Equation (6) implies
+that the Koopman operator is linear in the function space H,
+even when the dynamic system f(., .) is nonlinear [34].
+B. Linear Koopman Modeling
+Direct computation with the infinite-dimensional Koopman
+operator K is generally intractable. However, when a fi-
+nite set of q observable functions is specified, the infinite-
+dimensional Koopman can be approximated by a finite-
+dimensional linear operator K acting within the subspace
+spanned by the observable set. The original state-input pair
+(x, u) is thus lifted into a higher-dimensional embedding
+space through a vector-valued observable Ψ(xk, uk) =
+[ψ1(xk, uk), ψ2(xk, uk), . . . , ψq(xk, uk)]⊤ with ψi : Rn ×
+Rm → R, which satisfies
+Ψ(xk+1, uk+1) = KΨ(xk, uk). (7)
+To facilitate the control design, the vector-valued observable
+function Ψ(xk, uk) can be further divided into two compo-
+nents
+Ψ(xk, uk) =
+ Ψx(xk)
+Ψu(xk, uk)
+
+, (8)
+where
+Ψx(xk) = [ψ1(xk), . . . , ψp(xk)]⊤ ∈ Rp, (9)
+Ψu(xk, uk) = [ψp+1(xk, uk), . . . , ψq(xk, uk)]⊤ ∈ Rd,
+(10)
+with d = q − p, where p denotes the number of state-
+dependent observables. For a causal linear Koopman real-
+ization, it is assumed Ψu(xk, uk) = uk, i.e., the state-
+input dependent observable component is dependent only on
+inputs [35]. Then the system dynamics under the approximated
+Koopman matrix K can be described as
+Ψx(xk+1)
+uk+1
+
+=
+Axx Bxu
+Aux Buu
+ Ψx(xk)
+uk
+
+. (11)
+
+4
+Since the focus is solely on the evolution of observables
+associated with the system states, and the control inputs are
+treated as externally specified by the controller rather than
+dynamically modeled, the representation reduces to a form
+governed solely by the state-dependent observable dynamics,
+as
+Ψx(xk+1) = AxxΨx(xk) + Bxuuk, (12)
+where Axx ∈ Rp×p and Bxu ∈ Rp×m are the finite-
+dimensional Koopman approximation.
+C. Bilinear Koopman Modeling
+In linear Koopman modeling, control-related observables
+are typically chosen directly as the control inputs. However,
+a more general form can be expressed as Ψu(xk, uk) =
+[u⊤
+k , h(xk, uk)⊤]⊤, where h(·, ·) denotes a vector of nonlin-
+ear functions of states and inputs. While this generalization
+may improve model fidelity, it introduces nonlinearities with
+respect to control inputs and may result in non-causal system
+dynamics if the values of these observables cannot be directly
+measured [21]. Such nonlinear dependencies compromise one
+of the main advantages of Koopman-based approaches, which
+is preserving linearity to facilitate efficient and computation-
+ally tractable control design. To strike a balance between
+model accuracy and optimization tractability, recent studies
+have proposed bilinear Koopman realizations [22], [36], [37].
+Bilinear terms maintain compatibility with Koopman frame-
+works while offering enhanced expressiveness compared to
+purely linear models. The bilinear interaction term h(xk, uk)
+can be specified as a Kronecker product of the control input
+vector and state-dependent observable vector such that
+h(xk, uk) = uk ⊗ Ψx(xk) =
+
+
+u1
+k · Ψx(xk)
+...
+um
+k · Ψx(xk)
+
+ , (13)
+where ui
+k denotes the i-th component of the control input
+vector uk, for i = 1 , . . . , m. This structure can then be
+utilized to augment the vector-valued observable defined in
+(8), yielding an extended observable vector given by
+Ψ(xk, uk) =
+
+
+Ψx(xk)
+uk
+u1
+k · Ψx(xk)
+...
+um
+k · Ψx(xk)
+
+
+. (14)
+Finally, the bilinear Koopman representation can be ex-
+pressed as
+Ψ(xk+1, uk+1) =
+"Axx Bxu H1 · · · Hm
+... ... ... ... ...
+#
+Ψ(xk, uk),
+(15)
+where the evolution of state-dependent observables is explic-
+itly described by
+Ψx(xk+1) = AxxΨx(xk) + Bxuuk +
+mX
+i=1
+Hi
+
+ui
+k · Ψx(xk)
+
+.
+(16)
+Here, the matrices Axx and Bxu represent the linear dynamics
+in the lifted space, and remain constant over time, while
+the time invariant bilinear matrices Hi ∈ Rp×p encode the
+multiplicative interactions between each control input chan-
+nel ui
+k and the state dependent observable features Ψx(xk).
+Such a bilinear formulation preserves linearity with respect
+to decision variables within an MPC framework, as will be
+discussed in Section III-H, while enabling a more accurate
+modeling of control-dependent dynamics. Notably, when all
+Hi, i = 1, . . . , m, are zero, the model reduces to the standard
+linear Koopman realization.
+To improve clarity, a slight abuse of notation was adopted
+by denoting A := Axx and B := Bxu throughout the
+remainder of the paper. The matrices A, B, and Hi’s must
+be identified from data, alongside the state-dependent lifting
+functions. These lifting functions can either be selected from
+a predefined library of observables or learned directly using
+deep neural network (DNN) architectures. The lifted states are
+denoted by Zk = Ψx(xk), where Ψx(·) represents the vector
+of state-dependent observable functions that map the original
+state space to the lifted subspace. Building on this theoretical
+foundation, the following section presents a comprehensive
+methodology for data-driven identification of these lifting
+functions and Koopman matrices, which ultimately leads to
+their integration within a predictive control framework.
+III. M ETHODOLOGY
+In this section, the nonlinear vehicle dynamics that need
+to be identified using the bilinear Koopman framework are
+first presented. For identification and performance evaluation,
+a structured three-stage pipeline was adopted. In the first
+stage, a rich and diverse dataset is generated using the Car-
+Sim simulation platform under varying initial conditions and
+driving scenarios to accurately capture a broad range of the
+vehicle’s dynamic behavior. In the second stage, the MDBK-
+Net architecture was introduced, which jointly learns the lifting
+functions and the Koopman matrices. To mitigate long-horizon
+prediction drift caused by model approximation errors, the
+learned Koopman model is augmented with the CER block. In
+the final stage, the model’s performance is evaluated through
+open-loop simulations, while real-time closed-loop perfor-
+mance is assessed under an MPC scheme using hardware-in-
+the-loop (HIL) testing. An overview of the complete modeling
+and control pipeline, which includes data acquisition, encoder
+and Koopman matrix identification, integration with the CER
+module, and MPC deployment, is illustrated in Fig. 3.
+A. Vehicle Dynamics
+To establish a foundation for subsequent discussions and to
+gain insight into the key nonlinearities present in the vehicle
+dynamics illustrated in Fig. 2, a simplified nonlinear bicycle
+model is introduced, formulated in the Frenet frame as
+˙vx = 1
+m
+ 
+F f
+x cos(δf) − F f
+y sin(δf) + F r
+x
+
++ ˙ψvy (17a)
+˙vy = 1
+m
+ 
+F f
+x sin(δf) + F f
+y cos(δf) + F r
+y
+
+− ˙ψvx (17b)
+¨ψ = 1
+Iz
+ 
+lf F f
+x sin(δf) + lf F f
+y cos(δf) − lrF r
+y
+
+(17c)
+
+5
+Fig. 3. Architecture of the proposed MDBK-Net framework. The system consists of three main components: (i) a data acquisition block for preparing training
+and test datasets, (ii) a multistep Deep Bilinear Koopman Network block that defines the neural architecture used for learning the Koopman model, and (iii) a
+control block that employs the identified observables and Koopman dynamics as the predictive model within an optimal control framework. The control block
+is further enhanced with the CER to improve tracking performance. In this figure, Norm stands for data normalization, and De-norm stands for de-normalizing
+the data to its original values.
+˙s = vx cos(eψ) − vy sin(eψ)
+1 − κey
+(17d)
+˙ey = vx sin(eψ) + vy cos(eψ) (17e)
+˙eψ = ˙ψ − vx cos(eψ) − vy sin(eψ)
+1 − κey
+κ (17f)
+Here, vx, vy, ˙ψ, s, ey, and eψ denote the vehicle states
+as longitudinal velocity, lateral velocity, yaw rate, progress
+along the path, lateral deviation from the reference path, and
+heading error, respectively. The parameters m and Iz represent
+the vehicle’s mass and yaw moment of inertia. The terms
+F f
+x , F f
+y , F r
+x , F r
+y correspond to the longitudinal and lateral tire
+forces at the front and rear wheels, δf denotes the front wheel
+steering angle, while the variable κ represents the curvature of
+the reference path. Note that although the above equations of
+motion capture key nonlinearities, the actual vehicle dynamics
+are significantly more complex. The high-fidelity CarSim
+model used here includes steering system dynamics, power-
+train and braking systems, load transfer effects, and nonlinear
+tire behaviors. Accurate modeling of such a system within a
+control-oriented and optimization-friendly framework is often
+impractical in many real-world scenarios. This motivates the
+use of data-driven modeling techniques to identify precise
+representations of vehicle dynamics from observed behavior.
+Accordingly, a general discrete-time nonlinear mapping of
+vehicle dynamics is considered as
+xk+1 = fv(xk, uk, wk), (18)
+where k is the discrete time index and xk ∈ Rn, uk ∈ Rm,
+and wk ∈ Rl represent vehicle states, driver input commands,
+and road exogenous inputs, respectively. The function fv :
+Rn+m+l → Rn denotes the nonlinear state transition mapping
+of the vehicle dynamics. Similar to Eq. (17), the state vector
+can be explicitly denoted by
+x = [vx, vy, ˙ψ, ∆s, ey, eψ]⊤, (19)
+with a slight modification, the term ∆s represents the progress
+gain at each time step along the reference path. This modifi-
+cation is introduced to improve the consistency and numerical
+stability of the training process in the deep learning framework
+presented later.
+Note that the representation in (17) accepts the front-wheel
+steering angle and tire forces as system inputs; however, in the
+dynamical model (18), the control input vector corresponds to
+driver commands given by
+u = [δw, uζ]⊤, (20)
+where δw denotes the hand wheel steering angle, and uζ ∈
+[−1, 1] represents the longitudinal drive command, with pos-
+itive values corresponding to throttle and negative values
+
+6
+to braking. Additionally, the exogenous input vector, which
+captures the effect of road curvature on the vehicle’s pose, is
+defined as
+w = [κ]⊤. (21)
+To accurately identify and model the nonlinear dynamics
+described above within the Koopman operator framework, it
+is crucial to generate a comprehensive dataset that reflects
+the full range of vehicle behavior under realistic driving
+conditions. A high-fidelity dataset was generated using the
+CarSim simulation platform. The data collection process is
+described in the following section.
+B. Data Acquisition and Preparation
+The training dataset was generated using CarSim, a high-
+fidelity simulation platform for modeling real-world vehicle
+behavior. A C-Class hatchback vehicle configuration equipped
+with a 150 kW engine and an all-wheel-drive system was
+used. A total of 7,000 simulated episodes are generated across
+various driving scenarios, each lasting 10 seconds with a
+sampling interval of ts = 25 ms , yielding 400 discrete time
+steps per episode. To further diversify the data, introduce
+varied initial conditions, and maintain consistency with the
+prediction horizon used in MPC, each episode is divided into
+five non-overlapping 2-second segments, resulting in 35,000
+distinct trajectories.
+Each simulated driving scenario captures the evolution of
+vehicle states governed by the applied control inputs. Rather
+than using arbitrary inputs, a structured input generation
+procedure is employed to ensure realistic driving behavior.
+Exogenous road curvature values κ are sampled uniformly
+from the range [−4 × 10−3, 4 × 10−3] m−1, corresponding to
+turning radius as small as 250 meters in either direction.
+At each time step k = 1 , . . . ,400, the driver command
+uk is constructed such that the steering wheel input δw ∈
+[−40◦, 40◦] is generated by fitting a polynomial curve to
+uniformly distributed key points across the episode horizon,
+producing a smooth steering profile. The longitudinal actua-
+tion input uζ ∈ [−1, 1] is simulated, where positive values
+denote throttle and negative values represent braking effort,
+scaled proportionally to reflect pedal force. This normaliza-
+tion enforces mutual exclusivity between throttle and brake
+commands, ensuring that the brake input is zero whenever the
+throttle is active, and vice versa. Longitudinal drive command
+rates are constrained to reflect realistic driver behavior, guided
+by human reaction time estimates from [38]. This is achieved
+by segmenting each episode into one-second intervals, which
+promotes consistent pedal usage within each segment.
+The synthesized input sequence is applied to the CarSim
+vehicle model, and the resulting state trajectories are recorded.
+All inputs and states are subsequently normalized using the
+mean and standard deviation computed across the entire
+dataset, denoted by Norm blocks as shown in Fig. 3. Finally,
+the resulting dataset serves as the basis for training the MDBK
+Network.
+C. MDBK Network Architecture
+The MDBK-Net introduced in this work explicitly modeled
+both linear and bilinear interactions between lifted states and
+control inputs. In the following subsections, each component
+of the MDBK-Net architecture is detailed.
+1) Encoder Network Structure: Unlike traditional ap-
+proaches where the lifting functions are selected from pre-
+defined libraries of nonlinear basis functions, such as poly-
+nomials, or radial basis functions, a data-driven strategy is
+employed using neural networks to learn the lifting functions
+directly from data.
+As illustrated in Fig. 3, an encoder network Φθ, param-
+eterized by weights θ, maps the original state xk ∈ Rn
+to a subspace Φθ(xk) ∈ Rp−n. The lifted components are
+given by Φθ(xk) = [ ϕ1(xk), . . . , ϕp−n(xk)]⊤, where each
+ϕi : Rn → R denotes a nonlinear function learned by the
+neural network. The encoder network is implemented as a
+fully connected feedforward multi-layer perceptron (MLP) uti-
+lizing ReLU activation functions, with specific configurations
+detailed in Table I. The dimension p of the lifted subspace
+is treated as a design parameter; increasing p generally en-
+hances model fidelity but also increases computational cost
+and the risk of overfitting. Evaluation of different network
+architectures indicated that using 60 nodes in the encoder’s
+output layer offers the best trade-off between accuracy and
+model complexity. To facilitate interpretability and accurate
+reconstruction of the original states, the lifted space Zk is
+constructed by concatenating the original state xk with the
+encoder output layer. Accordingly, the full lifted state space
+is given by
+Zk =
+ xk
+Φθ(xk)
+
+∈ Rp. (22)
+This structure guarantees that the predicted original states can
+be later recovered using a simple linear projection matrix.
+Given the discrete-time vehicle dynamics in (18), The
+combined input vector is defined, which applies to the vehicle
+dynamics as
+Uk =
+uk
+wk
+
+∈ Rm+l, (23)
+where Uk is the concatenation of the driver control inputs uk
+and road exogenous inputs wk. Note that road specifications
+such as curvature κ are independent of the vehicle state and
+are typically available through onboard sensors or perception
+systems. For further details on incorporating such exogenous
+inputs, the reader is referred to [39] [40]. The lifted states Zk,
+the bilinear interaction term (Uk ⊗Zk)⊤, and the control input
+Uk are then passed to the final Koopman layer of the network.
+2) Koopman Layer Structure: The Koopman layer is im-
+plemented as the last neural network layer without any bias
+or activation functions, where the Koopman operator is ap-
+proximated using learnable matrices. The matrices A, B, and
+the set of bilinear matrices {Hi}m+l
+i=1 will be constructed
+and trained simultaneously with encoder parameters. Then
+
+7
+the corresponding single-step bilinear Koopman propagation
+based on (16) can be expressed as
+ˆZk+1 = AZk + BUk +
+m+lX
+i=1
+Hi
+
+U i
+k · Zk
+
+, (24)
+where Zk denotes the lifted state vector constructed according
+to (22) and ˆZk+1 represents the predicted lifted state at the next
+time step. The matrix A ∈ Rp×p represents the Koopman vehi-
+cle dynamics, and the input matrix B = [Bu, Bw] ∈ Rp×(m+l)
+maps the combined vehicle inputs to the next step. This matrix
+is composed of Bu ∈ Rp×m corresponds to driver commands
+channel and Bw ∈ Rp×l corresponds to exogenous road inputs
+(curvature) channel. Each matrix Hi ∈ Rp×p corresponds
+to the i-th input channel U i
+k of the combined input vector,
+making the bilinear termPm+l
+i=1 Hi
+
+U i
+k · Zk
+
+an input-specific
+correction to the lifted dynamics.
+3) Original States Reconstruction: Based on the lifting
+structure introduced in (22), the projection operation used to
+recover the original system states from the predicted lifted
+states is given by
+ˆxk = C ˆZk, (25)
+where the projection matrix C ∈ Rn×p is given by
+C = [In 0], (26)
+with In denoting the n × n identity matrix and 0 ∈ Rn×(p−n)
+denoting a zero matrix. This projection guarantees that the
+original vehicle states are exactly embedded in the lifted space
+and can be retrieved without approximation.
+D. Training Procedure and Loss Functions
+The lifting functions and Koopman matrices are jointly
+learned with the encoder parameters, Koopman transition
+matrices, and bilinear interaction terms in an end-to-end deep
+learning framework using backpropagation. Training is per-
+formed using batched gradient descent over multiple epochs.
+Each batch consists of a fixed number of trajectories randomly
+sampled from the normalized dataset. During each iteration,
+the encoder maps the states to a lifted state space Φθ(xk). The
+lifted states vector Zk is then constructed by concatenating
+Φθ(xk) with the original state vector xk, and is subsequently
+used to predict the next lifted state ˆZk+1 via the Koopman
+transition.
+An essential aspect of the training process is designing
+a well-structured loss function that effectively guides the
+learning of the model dynamics. Unlike traditional Koopman
+identification techniques that focus exclusively on single-step
+prediction, the proposed MDBK-Net adopts a comprehensive
+loss structure that balances short-term and long-term predic-
+tion accuracy, following the loss formulation proposed in [30]
+and [28]. Additionally, to ensure stability of the learned dy-
+namics and to prevent overfitting, the framework incorporates
+both a spectral stability loss and a regularization term. For
+each training trajectory of length K, the loss components are
+defined as follows.
+The single-step loss Lssl penalizes the deviation between
+the predicted ˆZk+1, computed using (24), and the ground truth
+Zk+1 constructed based on (22), at each time step
+Lssl = 1
+K − 1
+K−1X
+k=1
+Zk+1 − ˆZk+1
+
+2
+2
+. (27)
+To improve long-horizon predictive capabilities, a multi-step
+prediction loss Lmsl is introduced. This loss recursively pre-
+dicts the lifted states and penalizes accumulated error across
+the horizon using a forgetting factor β ∈ (0, 1)
+Lmsl = 1PK−1
+k=1 βk
+K−1X
+k=1
+βk
+Zk+1 − ˆZ rec
+k+1
+
+2
+2
+, (28)
+where the recursive predictions ˆZ rec
+k+1 is computed by
+ˆZ rec
+k+1 = A ˆZ rec
+k + BUk +
+m+lX
+i=1
+Hi
+h
+U i
+k · ˆZ rec
+k
+i
+,
+ˆZ rec
+1 = Z1,
+(29)
+and Zk constructed by (22).
+To enforce stability in the learned dynamics, a stability loss
+Lsl is applied to penalize eigenvalues of the Koopman matrix
+A that lie outside the unit circle.
+Lsl =
+X
+λ∈eig(A)
+max(0, |λ| − 1). (30)
+To promote generalization and prevent overfitting, a regular-
+ization loss Lreg is imposed on the encoder parameters and
+Koopman matrices.
+Lreg = λθ
+X
+θj ∈θ
+∥θj∥2
+2+λAB
+ 
+∥A∥2
+F + ∥B∥2
+F
+
++λH
+m+lX
+i=1
+∥Hi∥2
+F ,
+(31)
+where ∥θj∥2 denotes the ℓ2 regularization applied to the
+encoder parameters, and ∥ · ∥F represents the Frobenius norm
+used to regularize the Koopman matrices. The terms λθ,
+λAB, and λH are regularization weights corresponding to the
+encoder parameters, linear Koopman matrices, and bilinear
+interaction terms, respectively.
+The total training loss is defined as a weighted combination
+of the above components
+Ltotal = α1 Lssl + α2 Lmsl + α3 Lsl + α4 Lreg, (32)
+where the weights α1, α2, α3, α4 control the contribution of
+each loss component during training. To identify the optimal
+network architecture and set of optimization hyperparameters,
+multiple configurations of the model were trained and evalu-
+ated. The best-performing configuration was selected based
+on validation performance. All associated hyperparameters,
+including regularization coefficients and loss weights, are
+summarized in Table I.
+After computing the total loss at each iteration, backpropa-
+gation is performed to update both the encoder parameters θ
+and the Koopman matrices A, B, and {Hi}m+l
+i=1 . The training
+loop includes periodic evaluations of loss on a validation set
+to monitor model performance. If no improvement is observed
+
+8
+Algorithm 1 MDBK-Net Algorithm
+1: Initialize Model Parameteres θ, A, B, H,
+2: Initialize Epochmax, batch size, data split, patience, lr, β,
+{αi}4
+i=1, Validation total loss vector Lval, best model Γ,
+i ← 0.
+3: Randomly partition the data into train and test sets and
+normalize them.
+4: while Epoch < Epoch max do
+5: Randomly select a batch.
+6: Encode the state vector and concatenate it with original
+states as in (22).
+7: Compute total loss as in (32) and its gradient.
+8: Update θ, A, B, H using the computed gradient.
+9: if Epoch mod 500 == 0 then
+10: Increment i by 1.
+11: Evaluate total loss (32) on the entire validation set
+and append it to Lval.
+12: if Lval
+i > Lval
+i−1 > · · · > Lval
+i−patience then
+13: Update the learning rate: lr ← lr × µ.
+14: if lr = lrmin then
+15: Break;
+16: end if
+17: else if Lval
+i < Lval
+i−1 then
+18: Update best model: Γ ← {θ, A, B, H}.
+19: end if
+20: end if
+21: Increment Epoch by 1.
+22: end while
+23: Output: Best model parameters Γ = {θ, A, B, H}
+within a predefined patience window, the initial learning rate
+lrinit is reduced by a factor of µ to facilitate convergence,
+continuing until it reaches the minimum threshold lrmin. The
+model achieving the lowest validation loss is retained as the
+final configuration based on an early stopping criterion, and
+the maximum number of epochs Epochmax is set accordingly.
+The MDBK-Net training process, including learning schedule,
+loss evaluation, and optimization criteria, is summarized in
+Algorithm 1, with hyperparameters listed in Table I.
+TABLE I
+MDBK-N ET ARCHITECTURE AND TRAINING HYPERPARAMETERS
+Hyperparameter Value
+Max Number of Epochs ( Epochmax) 80,000
+Data Split (Train/Test) 90%/10%
+Batch Size 128
+Observables State Space Dimension ( p) 66
+Hidden Layer Sizes [32, 64, 128, 128, 64]
+Initial Learning Rate ( lrinit) 10−3
+Min Learning Rate ( lrmin) 5 × 10−7
+Learning Rate Reduction factor ( µ) 0.5
+Patience 2
+Forgetting Factor ( β) 0.9
+Loss Function Weights ( α1, . . . , α4) [0.1, 1.0, 1.6, 10−4]
+Regularization Factors ( λθ, λAB, λH) 10, 1, 100
+State Dimension ( n) 6
+Driver Input Dimension ( m) 2
+Exogenous Input Dimension ( l) 1
+Time Step ( ∆t) 0.025 s
+E. MDBK-Net Performance for State Prediction Evaluation
+The performance of the MDBK-Net was evaluated against
+two baseline models: (i) the MDK-Net algorithm as a linear
+Koopman-based counterpart, and (ii) a model identified using
+the classical Extended Dynamic Mode Decomposition with
+Koopman (EDMDK) technique, as described in [24], [39], and
+[41]. Generally, in the EDMDK framework, lifting functions
+are either manually specified based on prior knowledge of
+the system dynamics or empirically chosen by testing various
+basis functions. Following the approach in [39], a polynomial
+basis consisting of all monomials up to degree two was used to
+construct the lift functions for the EDMDK baseline. To ensure
+a fair comparison, the dimensionality of the lifted space in
+EDMDK was aligned with that of MDK-Net and MDBK-Net.
+All models were trained on the same dataset, and identical
+hyperparameter settings were used for both MDK-Net and
+MDBK-Net during training.
+Figure 4 illustrates the state prediction results for all three
+models under the same open-loop control input sequence. The
+ground-truth trajectories were obtained from CarSim simu-
+lations for a high-speed single-lane change scenario, during
+which the driver brakes mid-maneuver. Although the EDMDK
+algorithm was able to capture the dynamics of yaw rate (˙ψ) and
+lateral deviation ( ey) up to a 2-second prediction horizon, it
+exhibits rapidly growing errors thereafter, indicating instability
+in the identified model. It also performs poorly in predicting
+longitudinal and lateral velocities (vx, vy), progress gain (∆s),
+and heading error ( eψ). The modeling inaccuracy is largely
+attributed to the limited expressiveness of manually selected
+observable functions, which lack the flexibility needed to
+capture a rich Koopman-invariant subspace. As a result, the
+identified Koopman model has become unstable, even with
+the implementation of Tikhonov regularization during training.
+This regularization technique introduces an ℓ2 penalty on the
+matrix coefficients to discourage large values and improve
+numerical stability [42].
+In contrast, both MDK-Net and MDBK-Net learn lifting
+functions through deep neural encoders, which results in supe-
+rior performance over EDMDK across nearly all state predic-
+tions. Their multi-step prediction capability further enhances
+their ability to capture temporal dependencies, leading to more
+accurate long-horizon predictions. In particular, the MDBK-
+Net model achieves superior accuracy in capturing system
+dynamics compared to the baseline models. This performance
+gain is primarily attributed to the model’s ability to encode
+bilinear interactions between control inputs and lifted states,
+which will be discussed in detail through the analysis of the
+bilinear coefficient matrices. To quantify prediction accuracy,
+the root mean square error (RMSE) was evaluated across test
+trajectories, each spanning an 80-step (2-second) horizon with
+varying initial conditions. The 2-second window was selected
+to ensure fairness, as EDMDK often becomes unstable beyond
+this horizon, resulting in divergent predictions and invalid error
+metrics. It is important to note that all RMSE values are
+reported after normalizing each state using the corresponding
+mean and standard deviation computed over the entire test
+dataset.
+
+9
+Fig. 4. Long-term prediction results of vehicle dynamics for proposed
+MDBK-Net, MDK-Net, and EDMDK. The reference trajectory for all states
+are extracted from high-fidelity Carsim simulations, and the same control
+input sequence is applied to all identified models. The EDMDK predictions
+(green curves) exhibit divergence due to instability in the identified Koopman
+matrices, resulting in values that extend beyond the vertical axis limits.
+As reported in Table II, the MDBK-Net consistently
+achieves the lowest RMSE across all six state variables. The
+most significant improvements are observed in the lateral
+dynamics, where MDBK-Net reduces the prediction error
+in lateral velocity ( vy) by 43% and yaw rate ( ˙ψ) by 36%
+compared to MDK-Net, and by 66% and 50%, respectively,
+relative to EDMDK. Furthermore, the proposed model demon-
+strates notable gains in curvilinear tracking states, with RMSE
+reductions of 22% and 12% in progress gain ( ∆s) and lateral
+deviation ( ey), and 40% in heading error ( eψ) relative to
+MDK-Net. While MDK-Net performs comparably to MDBK-
+Net in predicting longitudinal velocity ( vx), it underperforms
+in capturing lateral dynamics and curvilinear positioning.
+This performance gap highlights the importance of explicitly
+modeling bilinear interactions between driver inputs and road
+geometry, as done in MDBK-Net. By capturing these inter-
+actions, MDBK-Net provides a more accurate representation
+of complex lateral behavior, particularly under high-speed or
+aggressive driving conditions, thereby validating the benefits
+of bilinear Koopman modeling.
+To further understand how these bilinearities contribute
+to performance improvements, the next section analyzes the
+identified bilinear matrices and their role in modeling input-
+TABLE II
+AVERAGE OPEN -LOOP 80- STEP (2- SECOND ) PREDICTION RMSE FOR
+1,425 TEST TRAJECTORIES
+State Variable MDBK-Net MDK-Net EDMDK
+vx (km/h) 0.138 0.155 0.214
+vy (km/h) 0.274 0.483 0.821
+˙ψ (deg/s) 0.064 0.100 0.114
+∆s (m) 0.133 0.171 0.207
+ey (m) 0.071 0.081 0.121
+eψ (deg) 0.043 0.072 0.114
+specific interactions within the Koopman framework.
+F . Sparsity Patterns of Bilinear Coefficient Matrices
+MDBK-Net’s performance advantage can be attributed to
+its ability to encode bilinear interactions between all control
+inputs and lifted features. To investigate this, the sparsity
+patterns of the bilinear term coefficient matrices {Hi}3
+i=1,
+which capture these interactions within the Koopman dynam-
+ics, were examined. As shown in Fig. 5, the matrices H1
+(associated with the driver steering input), H2 (longitudinal
+drive command), and H3 (road curvature) reveal noticeable
+bilinear dependencies influencing the evolution of states.
+The sparsity patterns observed in the bilinear matrices H1
+and H2 suggest that the MDBK-Net algorithm effectively
+captures the influence of bilinear interactions on the lateral
+velocity vy. Specifically, a prominent entry in H1 linking
+the steering input to the 48th lifted state highlights a strong
+nonlinear coupling in the steering dynamics that governs
+lateral motion. This finding aligns with (17b), which shows
+that sinusoidal functions of the steering angle regulate lat-
+eral velocity. Similarly, H2 reveals interactions between the
+longitudinal drive input and the 47th lifted state, affecting
+both vy and ˙ψ, which correspond to the second and third
+lifted states. This observation aligns with the nonlinearities
+arising from tire slip dynamics under conditions approaching
+handling limits, as described by (17b) and (17c), which affect
+both the lateral velocity and yaw rate. Finally, H3 uncovers
+bilinear contributions to the curvilinear tracking dynamics,
+where the exogenous road curvature input κ interacts with
+the 48th and 57th lifted states. These interactions confirm that
+the progress gain ∆s and heading error eψ, corresponding
+to the fourth and sixth states in the lifted subspace, exhibit
+a nonlinear dependence on curvature, further validating the
+modeling approach described by the Frenet-frame equations
+(17d) and (17f).
+These results demonstrate that the bilinear formulation ef-
+fectively captures the state-input coupling, particularly during
+complex high-speed maneuvers.
+G. Cumulative Error Regulator (CER)
+Due to the inherent approximation errors associated with
+representing controlled dynamics through a finite-dimensional
+Koopman operator, model mismatch occurs. This mismatch
+inevitably impacts the predictive accuracy of the learned mod-
+els, resulting in degraded control performance. Tracking algo-
+rithms often estimate the position or state of an object based
+
+10
+Fig. 5. Visualization of bilinear Koopman matrices H1, H2, and H3, corresponding to steering input, longitudinal drive command, and road curvature,
+respectively. Each matrix encodes input-specific multiplicative interactions with the observable vector. Sparsity patterns highlight how MDBK-Net captures
+key nonlinear dependencies across different control channels, particularly for lateral dynamics and curvilinear tracking states.
+on observations over time. As time passes, minor inaccuracies
+or errors in these observations or the algorithm’s predictions
+can accumulate. Instead of just tracking the current state,
+dynamically estimating and compensating for accumulated
+errors allows for more robust and precise tracking. In vehicle
+dynamics, such accumulation of errors becomes particularly
+noticeable in the tracking states of progress along the path
+(S), lateral deviation ( ey), and heading error ( eψ), as these
+states accumulate error over time due to their integrative
+nature. While a common practice to compensate for output
+tracking error involves penalizing predicted tracking errors
+at each individual step, introducing an additional block ex-
+plicitly designed for predicting accumulated error dynamics
+and constraining this cumulative error to remain near zero
+at every step allows the control system to detect long-term
+deviations effectively. Consequently, the system is better able
+to recognize, respond to, and compensate for model mismatch
+and prediction inaccuracies.
+An augmentation block within the control design, referred
+to as the CER, was introduced, which is governed by the
+dynamics
+ek+1 = ek +
+
+yk − yref
+k
+
+, (33)
+where yk = ˆC ˆZk denotes the predicted tracking outputs (e.g.,
+∆s, ey, eψ) , ˆC is the matrix mapping ˆZk to the tracking
+outputs , and yref
+k is the corresponding output reference
+trajectory (e.g., ∆sref , ey ref , eψ ref ). By augmenting the
+predicted lifted features with the states of error, an extended
+lifted representation was obtained
+˜Zk =
+ ˆZk
+ek
+
+∈ Rp+3, (34)
+which enables the controller to track error accumulation
+throughout the prediction horizon and penalize deviations from
+the early stages. To support this, the input is also augmented
+to incorporate the desired output reference signal
+˜Uk =
+ Uk
+yref
+k
+
+∈ Rm+l+3. (35)
+The resulting augmented Koopman system, which integrates
+the learned Koopman model with the cumulative error module,
+is formulated as
+˜Zk+1 = ˜A ˜Zk + ˜B ˜Uk +
+"Pm
+i=1 Hi
+h
+U i
+k · ˆZk
+i
+03×1
+#
+, (36)
+˜yk =
+"
+ˆxk
+ek
+#
+= ˜C ˜Zk. (37)
+where
+˜A =
+A 03×3
+ˆC I 3
+
+, ˜B =
+ B 0p×3
+03×3 −I3
+
+,
+ˆC =
+03×3 I3 03×(p−6)
+
+, ˜C =
+ C 06×3
+03×p I3×3
+
+.
+(38)
+H. CER-MDBK-MPC
+To evaluate the closed-loop performance of the augmented
+Koopman model, the CER MDBK Model Predictive Con-
+troller (CER-MDBK-MPC) framework was introduced. The
+integration of the CER with the identified Koopman model
+forms the basis of the predictive model used within the MPC
+framework. As illustrated in the control block of Fig. 3, the
+augmented Koopman system simultaneously propagates both
+the observable dynamics and the cumulative tracking error
+at each time step. This joint propagation enables the MPC
+to account for accumulated deviations from the reference
+trajectory over the prediction horizon N. For a given time t,
+the MPC problem is formulated as a finite-horizon constrained
+optimal control problem expressed as
+min
+ut,...,ut+N −1
+t+N −1X
+k=t
+h
+(˜yk − ˜rk)⊤ Q (˜yk − ˜rk) + uk
+⊤Ruk
+i
++ (˜yt+N − ˜rt+N)⊤ QN (˜yt+N − ˜rt+N)
+(39a)
+
+11
+subject to ˜Zk+1 = ˜A ˜Zk + ˜B ˜Uk +
+"Pm
+i=1 Hi
+h
+U i
+k · ˆZk
+i
+03×1
+#
+,
+˜yk = ˜C ˜Zk,
+umin ≤ uk ≤ umax,
+˜Zt =
+Zt
+et
+
+, ∀k = t, . . . , t+ N − 1. (39b)
+The decision variables are the control inputs uk, which
+include steering wheel angle (δw) and longitudinal driver com-
+mand ( uζ), to be optimized. To explicitly enforce cumulative
+tracking errors to approach zero, the reference signal is defined
+as ˜rk = [ r⊤
+k , 0⊤
+1×3]⊤ where rk denotes the desired reference
+trajectory. At each control step, the measured vehicle states are
+first mapped into the lifted subspace Zt based on (22), and the
+extended lifted representation ˜Zt is constructed as described in
+(34). The optimization problem is then formulated and solved
+within this augmented lifted space, yielding an optimal control
+sequence {uk}t+N −1
+k=t over the prediction horizon, from which
+only the first control input is applied to the system at each
+iteration.
+It is worth noting that the same optimal control formulation
+can be employed to develop a CER-MDK-MPC framework
+by utilizing the trained model based on a linear Koopman
+structure. This integration of CER with the previously devel-
+oped MDK-Net model offers a fair comparison baseline for
+evaluating the impact of bilinear terms in predictive modeling.
+Due to the bilinear structure, the dynamics in (39b) result
+in a non-convex optimization problem. This non-convexity
+arises from the multiplicative coupling between lifted states
+and control inputs in the update equation, which increases
+the computational complexity of MPC. To retain convexity, a
+common linearization strategy is employed, where the bilinear
+Koopman dynamics are linearized by fixing the lifted state in
+bilinear term to its initial value, ˆZk|t+N −1
+t = Zt, throughout
+the prediction horizon, as proposed in [37]. The resulting linear
+dynamic approximates the behaviors of bilinear realization in
+the neighborhood of the initial step evaluation. As a result, the
+equality constraint enforcing the bilinear Koopman dynamic
+sub-block can be updated as
+ˆZk+1 = A ˆZk + BUk +
+mX
+i=1
+Hi
+
+Zt ui
+k
+
+, (40)
+= A ˆZk + Buuk + Bwwk +
+mX
+i=1
+
+
+pX
+j=1
+hijZt,j ui
+k
+
+ ,
+= A ˆZk + Buuk + Bwwk +
+pX
+j=1
+" mX
+i=1
+hijZt,jui
+k
+#
+,
+= A ˆZk + Buuk + Bwwk +
+pX
+j=1
+ˆHj[Zt,j]uk,
+= A ˆZk + Bwwk +
+
+Bu +
+pX
+j=1
+ˆHj[Zt,j]
+
+ uk,
+where Hi = [ hi1, . . . , hip], ˆHj = [ h1j, . . . , hmj], and Zt,j
+is the jth component of the lifted features at initial value.
+The vectors wk denote road exogenous input (curvature here),
+which is treated as a known disturbance over the prediction
+horizon. The matrix ˆHj[Zt,j] ∈ Rp×m denotes the aggregated
+bilinear term evaluated at the initial observable vector evalua-
+tion. By incorporating this approximation, the MPC problem
+becomes convex and can be solved efficiently at each time
+step.
+IV. E XPERIMENTAL SETUP AND RESULTS
+The proposed controller is evaluated using a simulated
+double lane change (DLC) scenario generated in CarSim. A
+high-fidelity four-wheel vehicle model from CarSim serves as
+the target plant, with road curvature data obtained via the Ad-
+vanced Driver Assistance Systems (ADAS) sensor interface.
+For performance benchmarking, three baseline controllers are
+considered: (i) the EDMDK-MPC controller based on the
+approach in [39], (ii) an LTI-based MPC controller designed
+using a state-space model identified via MATLAB’s System
+Identification Toolbox, and (iii) the CER-MDK-MPC con-
+troller, which augments the linear Koopman framework from
+prior work [31] with the CER block. The latter enables a fair
+comparison between the proposed CER-MDBK-MPC and its
+linear counterpart by isolating the effect of bilinear modeling.
+All controllers are evaluated under identical conditions with
+a sampling time of 25 milliseconds, using the same reference
+trajectory with a constant road curvature profile of κ = 0.001.
+The prediction horizon N is set to 20 steps. The same optimal
+control problem formulation is employed for all controllers,
+with identical weighting matrices.
+All controllers are evaluated on the same dSPACE
+SCALEXIO DS6001 RT system, which features a 4-core CPU
+with 8 MB of L3 cache. The system operates in conjunction
+with CarSim RT software, utilizing the same 25 ms sampling
+rate, to provide a real-time vehicle model of an all-wheel-drive
+C-Class hatchback. The hardware-in-the-loop (HIL) configu-
+ration is shown in Fig. 6. A Simulink model integrating both
+the controller and the plant is deployed onto the SCALEXIO
+hardware using dSPACE ConfigurationDesk. Communication
+between the SCALEXIO system and both the CarSim RT
+software and the host PC is handled via Ethernet. The CarSim
+visualizer serves as the graphical interface to display real-
+time vehicle behavior during testing. Figure 7 presents the
+performance of all four controllers in tracking the reference
+trajectory, and the RMSE of predictive controllers across
+all state trajectories is provided in Table III. The LTI-MPC
+exhibits poor tracking accuracy due to the limited fidelity of
+the identified LTI model in the original low-dimensional state
+space, despite being trained on the same dataset as the other
+methods. However, CER-MDBK-MPC more closely follows
+the reference trajectory across nearly all tracking states of
+S, ey, and eψ, with particularly strong performance during
+the second aggressive lane change maneuver, where other
+approaches exhibit noticeable deviation. Table III shows that
+CER-MDBK-MPC significantly reduces the tracking errors
+of S, ey, and eψ by 5%, 97%, and 88% compared to
+the EDMDK-MPC. Meanwhile, these tracking errors were
+reduced by 35%, 77%, and 59% compared to the previously
+studied MDK-MPC. The observed improvements highlight the
+
+12
+Fig. 6. Hardware-in-the-loop (HIL) setup used to evaluate the real-time perfor-
+mance of each controller. The setup integrates Simulink, ConfigurationDesk,
+and CarSim with the dSPACE SCALEXIO DS6001 real-time target machine.
+The controllers are tested under realistic vehicle dynamics using high-fidelity
+simulation and physical I/O connections.
+effectiveness of the bilinear terms introduced in the proposed
+framework, which enhance performance, especially when the
+vehicle operates under highly nonlinear maneuvers.
+For longitudinal velocity vx, both the figure and RMSE
+values indicate that the proposed CER-MDBK performs com-
+parably to the baseline EDMDK and CER-MDK algorithms.
+This observation is consistent with the open-loop prediction
+results, where the absence of significant bilinear effects in
+longitudinal dynamics leads to similar performance across all
+methods. In terms of lateral velocity vy, CER-MDBK achieves
+performance similar to that of CER-MDK, while yielding
+a 5% improvement in yaw rate tracking ˙ψ. Meanwhile, the
+proposed controller improved the lateral velocity and yaw rate
+tracking by 15% and 57% respectively compared to baseline
+LTI method.
+The proposed method achieves substantial improvements in
+tracking accuracy, with up to 97% error reduction observed
+in specific state variables compared to the LTI-MPC base-
+line. To evaluate the overall performance of the proposed
+CER-MDBK-MPC controller, the average relative reduction
+in tracking error across all state variables was computed.
+Compared to the CER-MDK-MPC baseline, the CER-MDBK-
+MPC achieves a 33% improvement, while it outperforms
+the EDMDK and LTI-based controllers by 38% and 68%,
+respectively.
+The CER-MDBK-MPC effectively mitigates deviations by
+capturing nonlinear dynamics through its bilinear Koopman
+representation. Furthermore, its cumulative error regulator
+compensates for error propagation during the final stages of the
+simulation. This capability is clearly illustrated by improved
+lateral displacement and heading error tracking in the bottom
+subplots in Fig. 7.
+Figure 8 illustrates the real-time computational perfor-
+mance of the CER-MDBK-MPC controller, as measured by
+Fig. 7. Comparative performance of CER MDK MPC, EDMDK MPC, CER
+MDBK MPC, and LTI MPC controllers during a double lane change ma-
+neuver. The plots depict the evolution of vehicle states including longitudinal
+velocity vx, lateral velocity vy, yaw rate ˙ψ, path progress S, lateral error ey,
+and heading error eψ over time.
+TABLE III
+RMSE OF VEHICLE STATES WITH RESPECT TO REFERENCE TRAJECTORY
+State CER-MDBK CER-MDK LTI EDMDK
+vx (km/h) 0.332 0.425 0.821 0.333
+vy (km/h) 0.041 0.041 0.048 0.043
+˙ψ (deg/s) 0.569 0.605 1.346 0.910
+S (m) 0.206 0.318 1.186 0.211
+ey (m) 0.037 0.165 3.105 1.236
+eψ (deg) 0.112 0.277 1.779 0.986
+task turnaround time on the SCALEXIO real-time system,
+compared to baseline controllers operating under a 25 ms
+sampling interval. The CER-MDBK-MPC achieves an average
+computation time of 0.58 ms per interval, demonstrating that
+it runs over 40 times faster than a real-time application. This
+is followed by CER-MDK-MPC at 0.24 ms, EDMDK-MPC
+at 0.18 ms, and LTI-MPC at 0.15 ms. The computational
+effort for CER-MDBK-MPC stems from the bilinear Koopman
+structure, which necessitates stepwise approximations, unlike
+the linear predictive structures of CER-MDK and EDMDK.
+Although LTI-MPC exhibits the lowest computation time due
+to its simpler, low-dimensional model, CER-MDBK-MPC
+
+13
+Fig. 8. Task turnaround time comparison of all controllers during HIL
+testing over a 9.5-second simulation. Although CER-MDBK-MPC exhibits
+the highest computational load ( 0.6 ms), all controllers meet real-time
+requirements well below the 25 ms control step used in the experiment.
+offers superior tracking accuracy, making it advantageous
+for real-time, safety-critical applications that require precise
+modeling of nonlinear dynamics.
+V. C ONCLUSION
+In this paper, a Multi-Step Deep Bilinear Koopman Net-
+work was presented that jointly identifies the lifting functions
+through an encoder structure and learns the corresponding
+bilinear Koopman matrices. The proposed algorithm explicitly
+encodes bilinear term coefficients that capture interactions be-
+tween control inputs and lifted states, closely aligning with the
+nonlinear cross terms of the inputs in the vehicle’s equations
+of motion. To further enhance model fidelity, the approach
+incorporates driver steering, throttle, and brake commands,
+along with road curvature inputs, to capture nonlinearities in
+the vehicle drive system and its curvilinear representation. A
+comprehensive set of loss functions is employed to ensure both
+short-term and long-term prediction accuracy while promoting
+model stability. A Cumulative Error Regulator is integrated
+into the predictive control framework to mitigate prediction
+errors in tracking dynamics.
+The MDBK-Net demonstrated superior prediction accuracy
+in open-loop evaluations during a single lane change scenario,
+outperforming baseline approaches including the MDK-Net
+model and an EDMD-based Koopman model. The closed-loop
+performance of the CER-MDBK-MPC was evaluated through
+hardware-in-the-loop testing on a dSPACE SCALEXIO Auto-
+Box RT platform, with a CarSim RT vehicle model used as
+the target plant. Experimental results showed that the proposed
+controller improved tracking accuracy by 33%, 38%, and
+68% compared to the CER-MDK-MPC, EDMDK-MPC, and
+LTI-MPC controllers, respectively. Furthermore, the controller
+maintained real-time feasibility, computing control actions on
+average 40 times faster than the 25 ms sampling interval.
+The proposed approach highlights how deep bilinear struc-
+tures can efficiently capture the nonlinear characteristics of
+high-fidelity vehicle dynamics, improving modeling fidelity
+within predictive control frameworks. By leveraging artifi-
+cial intelligence to learn expressive yet linear representations
+of complex dynamics, this work demonstrates a data-driven
+methodology for achieving more accurate and safer vehicle
+control. Such improvements in path-following accuracy can
+directly enhance the safety of autonomous vehicles, particu-
+larly during aggressive or high-speed maneuvers.
+Future work will focus on extending the bilinear Koopman
+modeling framework to incorporate real-time sensor noise and
+disturbances, aiming to improve robustness under practical
+deployment conditions. Additionally, the application of the
+Koopman-based approach to more complex maneuvers such
+as emergency obstacle avoidance and aggressive cornering
+will be investigated. Finally, integrating domain knowledge
+through physics-informed encoder structures offers a promis-
+ing direction for improving model generalization and explicitly
+capturing critical nonlinearities in the vehicle dynamics.
+REFERENCES
+[1] K. Othman, “Exploring the implications of autonomous vehicles: A
+comprehensive review,”Innovative Infrastructure Solutions, vol. 7, no. 2,
+p. 165, 2022.
+[2] B. Paden, M. ˇC´ap, S. Z. Yong, D. Yershov, and E. Frazzoli, “A survey of
+motion planning and control techniques for self-driving urban vehicles,”
+IEEE Transactions on intelligent vehicles, vol. 1, no. 1, pp. 33–55, 2016.
+[3] J. M. Maciejowski, Predictive control: with constraints . Pearson
+education, 2002.
+[4] M. Abtahi, M. Rabbani, and S. Nazari, “An automatic tuning mpc with
+application to ecological cruise control,” IFAC-PapersOnLine, vol. 56,
+no. 3, pp. 265–270, 2023.
+[5] J. Xing, Z. Song, M. Cheng, Q. Gou, X. Bai, and S. Chen, “Control
+of vehicle trajectory tracking under extreme conditions based on ilqr,”
+in 2024 9th International Conference on Electronic Technology and
+Information Science (ICETIS) . IEEE, 2024, pp. 254–258.
+[6] A. Mart ´ı-Coll, A. Rodr ´ıguez-Ramos, and O. Llanes-Santiago, “An
+optimization approach to select koopman observables for data-based
+modeling using dynamic mode decomposition with control,” Processes,
+vol. 13, no. 1, p. 284, 2025.
+[7] R. Attia, R. Orjuela, and M. Basset, “Nonlinear cascade strategy for lon-
+gitudinal control in automated vehicle guidance,” Control Engineering
+Practice, vol. 29, pp. 225–234, 2014.
+[8] S. W. Jannah and A. Santoso, “Nonlinear model predictive control for
+longitudinal and lateral dynamic of autonomous car,” in 2022 11th Elec-
+trical Power, Electronics, Communications, Controls and Informatics
+Seminar (EECCIS). IEEE, 2022, pp. 145–148.
+[9] S. A. Nugroho, V . P. Chellapandi, and H. Borhan, “Vehicle speed profile
+optimization for fuel efficient eco-driving via koopman linear predictor
+and model predictive control,” in 2024 American Control Conference
+(ACC). IEEE, 2024, pp. 4254–4261.
+[10] J. Y . Goh, M. Thompson, J. Dallas, and A. Balachandran, “Beyond
+the stable handling limits: nonlinear model predictive control for highly
+transient autonomous drifting,”Vehicle System Dynamics, vol. 62, no. 10,
+pp. 2590–2613, 2024.
+[11] S. L. Brunton and J. N. Kutz, Data-driven science and engineering: Ma-
+chine learning, dynamical systems, and control . Cambridge University
+Press, 2022.
+[12] S. L. Brunton, M. Budi ˇsi´c, E. Kaiser, and J. N. Kutz, “Modern koopman
+theory for dynamical systems,” SIAM Review, vol. 64, no. 2, pp. 229–
+340, 2022. [Online]. Available: https://doi.org/10.1137/21M1401243
+[13] M. Bojarski, D. Del Testa, D. Dworakowski, B. Firner, B. Flepp,
+P. Goyal, L. D. Jackel, M. Monfort, U. Muller, J. Zhang et al. , “End
+to end learning for self-driving cars,” arXiv preprint arXiv:1604.07316 ,
+2016.
+[14] B. O. Koopman, “Hamiltonian systems and transformation in hilbert
+space,” Proceedings of the National Academy of Sciences, vol. 17, no. 5,
+pp. 315–318, 1931.
+[15] M. Korda and I. Mezi ´c, “Linear predictors for nonlinear dynamical sys-
+tems: Koopman operator meets model predictive control,” Automatica,
+vol. 93, pp. 149–160, 2018.
+
+14
+[16] J. N. Kutz, S. L. Brunton, B. W. Brunton, and J. L. Proctor, Dynamic
+mode decomposition: data-driven modeling of complex systems. SIAM,
+2016.
+[17] N. Takeishi, Y . Kawahara, and T. Yairi, “Learning koopman invariant
+subspaces for dynamic mode decomposition,” Advances in neural infor-
+mation processing systems , vol. 30, 2017.
+[18] M. O. Williams, M. S. Hemati, S. T. Dawson, I. G. Kevrekidis, and
+C. W. Rowley, “Extending data-driven koopman analysis to actuated
+systems,” IFAC-PapersOnLine, vol. 49, no. 18, pp. 704–709, 2016.
+[19] S. L. Brunton, J. L. Proctor, and J. N. Kutz, “Discovering governing
+equations from data by sparse identification of nonlinear dynamical
+systems,” Proceedings of the national academy of sciences , vol. 113,
+no. 15, pp. 3932–3937, 2016.
+[20] J. L. Proctor, S. L. Brunton, and J. N. Kutz, “Dynamic mode decom-
+position with control,” SIAM Journal on Applied Dynamical Systems ,
+vol. 15, no. 1, pp. 142–161, 2016.
+[21] N. S. Selby, F. E. Sotiropoulos, and H. H. Asada, “Physics-based causal
+lifting linearization of nonlinear control systems underpinned by the
+koopman operator,” arXiv preprint arXiv:2108.10980 , 2021.
+[22] D. Bruder, X. Fu, and R. Vasudevan, “Advantages of bilinear koopman
+realizations for the modeling and control of systems with unknown
+dynamics,” IEEE Robotics and Automation Letters , vol. 6, no. 3, pp.
+4369–4376, 2021.
+[23] S. Yu, C. Shen, and T. Ersal, “Autonomous driving using linear model
+predictive control with a koopman operator based bilinear vehicle
+model,” Ifac-Papersonline, vol. 55, no. 24, pp. 254–259, 2022.
+[24] V . Cibulka, T. Hani ˇs, and M. Hrom ˇc´ık, “Data-driven identification of
+vehicle dynamics using koopman operator,” in 2019 22nd International
+Conference on Process Control (PC19) . IEEE, 2019, pp. 167–172.
+[25] V . Cibulka, T. Hani ˇs, M. Korda, and M. Hrom ˇc´ık, “Model predictive
+control of a vehicle using koopman operator,” IFAC-PapersOnLine,
+vol. 53, no. 2, pp. 4228–4233, 2020.
+[26] M. ˇSvec, ˇS. Ile ˇs, and J. Matu ˇsko, “Model predictive control of vehicle
+dynamics based on the koopman operator with extended dynamic
+mode decomposition,” in 2021 22nd IEEE International Conference on
+Industrial Technology (ICIT), vol. 1. IEEE, 2021, pp. 68–73.
+[27] J. S. Kim, Y . S. Quan, and C. C. Chung, “Data-driven modeling and
+control for lane keeping system of automated driving vehicles: Koopman
+operator approach,” in 2022 22nd international conference on control,
+automation and systems (ICCAS) . IEEE, 2022, pp. 1049–1055.
+[28] B. Lusch, J. N. Kutz, and S. L. Brunton, “Deep learning for universal
+linear embeddings of nonlinear dynamics,” Nature communications ,
+vol. 9, no. 1, p. 4950, 2018.
+[29] Y . Xiao, X. Zhang, X. Xu, X. Liu, and J. Liu, “Deep neural networks
+with koopman operators for modeling and control of autonomous
+vehicles,” IEEE transactions on intelligent vehicles , vol. 8, no. 1, pp.
+135–146, 2022.
+[30] Y . Xiao, X. Zhang, X. Xu, Y . Lu, and J. Lil, “Ddk: A deep koopman
+approach for longitudinal and lateral control of autonomous ground
+vehicles,” in 2023 IEEE International Conference on Robotics and
+Automation (ICRA). IEEE, 2023, pp. 975–981.
+[31] M. Abtahi, M. Rabbani, A. Abdolmohammadi, and S. Nazari, “Multi-
+step deep koopman network (mdk-net) for vehicle control in frenet
+frame,” arXiv preprint arXiv:2503.03002 , 2025.
+[32] I. Mezi ´c, “Spectral properties of dynamical systems, model reduction
+and decompositions,” Nonlinear Dynamics, vol. 41, pp. 309–325, 2005.
+[33] J. L. Proctor, S. L. Brunton, and J. N. Kutz, “Generalizing koopman
+theory to allow for inputs and control,” SIAM Journal on Applied
+Dynamical Systems, vol. 17, no. 1, pp. 909–930, 2018.
+[34] A. Mauroy, Y . Susuki, and I. Mezic, Koopman operator in systems and
+control. Springer, 2020, vol. 484.
+[35] B. A. H. Vicente, S. S. James, and S. R. Anderson, “Linear system
+identification versus physical modeling of lateral–longitudinal vehicle
+dynamics,” IEEE Transactions on Control Systems Technology , vol. 29,
+no. 3, pp. 1380–1387, 2020.
+[36] M. Wang, X. Lou, and B. Cui, “Deep bilinear koopman realization
+for dynamics modeling and predictive control,” International Journal
+of Machine Learning and Cybernetics , vol. 15, no. 8, pp. 3327–3352,
+2024.
+[37] D. Zhao, B. Li, F. Lu, J. She, and S. Yan, “Deep bilinear koopman model
+predictive control for nonlinear dynamical systems,” IEEE Transactions
+on Industrial Electronics , 2024.
+[38] R. Matheson, “Study measures how fast humans react to road hazards,”
+2019.
+[39] J. S. Kim, Y . S. Quan, and C. C. Chung, “Koopman operator-based
+model identification and control for automated driving vehicle,” Inter-
+national Journal of Control, Automation and Systems, vol. 21, no. 8, pp.
+2431–2443, 2023.
+[40] J. S. Kim, Y . S. Quan, C. C. Chung, and W. Y . Choi, “K-smpc: Koopman
+operator-based stochastic model predictive control for enhanced lateral
+control of autonomous vehicles,” IEEE Access, 2025.
+[41] M. ˇSvec, “Koopman operator based model predictive control of vehicle
+dynamics,” Ph.D. dissertation, University of Zagreb. Faculty of Electrical
+Engineering and Computing . . . , 2024.
+[42] G. H. Golub, P. C. Hansen, and D. P. O’Leary, “Tikhonov regularization
+and total least squares,” SIAM journal on matrix analysis and applica-
+tions, vol. 21, no. 1, pp. 185–194, 1999.

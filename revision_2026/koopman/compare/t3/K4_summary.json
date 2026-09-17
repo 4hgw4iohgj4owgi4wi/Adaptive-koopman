@@ -1,0 +1,18 @@
+{
+  "validation_scores": [
+    0.6438603226640569,
+    0.4687641216111999,
+    0.506511403235851,
+    0.48046456051674447,
+    0.4530867306693668
+  ],
+  "validation_median": 0.48046456051674447,
+  "development_macro_median": 0.4921617278364743,
+  "development_macro_iqr": [
+    0.4916797369160716,
+    0.5300323731607042
+  ],
+  "development_worst_seed": 82041,
+  "representative_seed": 82044,
+  "representative_artifact_sha256": "1203514E3FE48F3E12EAAA876D4D5AADB5207A0196084CA0C6C1916BC24248DA"
+}

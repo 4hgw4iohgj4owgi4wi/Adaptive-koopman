@@ -1,0 +1,33 @@
+{
+  "schema_version": "EXP-R2-E00-gate-v1",
+  "taskbook_sha256": "417CFCDBF22A026973DFF617E29E4814361F9013AED7CA06F065992C20F0D81D",
+  "status": "PARTIAL",
+  "formal_allowed": false,
+  "checks": {
+    "host_identity": "PASS_DESKTOP-9IUUGEO",
+    "recursive_python_import_identity": "PASS_53_FILES",
+    "plant_ast_identity": "PASS_9_FILES_RELATIVE_IMPORT_NORMALIZATION",
+    "taskbook_identity": "PASS",
+    "actuator_contract": "PASS_AS_IMPLEMENTED_SIMULATION_ASSUMPTION_NOT_MEASURED",
+    "input_time_current_producer": "PASS",
+    "input_time_historical_production_freeze": "PASS_R03_RAW_TO_R04_CACHE_TO_V3W_PARENT_HASH_CHAIN",
+    "data_file_and_checkpoint_hashes": "PASS_97_SOURCES_3_CHECKPOINTS",
+    "data_role_access_ledger": "PASS_CURRENT_AUDIT_0_DENIED_0_UNMAPPED_0_WITHIN_FOLD_OVERLAP",
+    "fit_only_normalization_for_20260905_run": "PASS_CODE_AND_RUNTIME_OPEN_AUDIT",
+    "confirmation_blindness_after_20260905_run": "PARTIAL_14_LATER_LEDGERS_HAVE_0_ALLOWED_CONFIRMATION_LIKE_ACCESSES_AND_2_CONFIRMATION_NAMED_PAPER_RESULTS_ARE_NOT_RUN_PLACEHOLDERS_BUT_UNINSTRUMENTED_OR_NEUTRAL_NAMES_NOT_EXCLUDED",
+    "submitted_pdf_identity": "SOURCE_PENDING",
+    "candidate_equation_source_map": "PARTIAL_22_ROWS",
+    "imported_backbone_and_formal_selection_metadata": "PASS_PARENT_HASH_45_OF_45_SELECTIONS_REPLAYED",
+    "core_method_registry_structure": "PASS_6_UNIQUE_KEYS_ALL_NOT_RUN",
+    "review_matrix_structure": "PASS_22_UNIQUE_IDS",
+    "negative_guard_tests": "PASS_SCOPE_LIMITED",
+    "full_mandatory_suite": "NOT_IMPLEMENTED"
+  },
+  "blocking_reasons": [
+    "No submission-portal receipt/file list or submitted-PDF hash.",
+    "Historical confirmation-pool blindness after the audited 20260905 run has not been proven end to end.",
+    "Koopman checkpoint/norm/S0 metadata identity is traced, but equations 15-22 and prediction metrics have not completed E02 implementation/numeric qualification.",
+    "The complete mandatory experiment suite is not implemented; existing guard tests have limited scope."
+  ],
+  "independent_branch_note": "E00 partial status does not retroactively invalidate isolated plant diagnostics whose own code/data identities were audited, but it forbids formal method ranking and submission-version formula claims."
+}

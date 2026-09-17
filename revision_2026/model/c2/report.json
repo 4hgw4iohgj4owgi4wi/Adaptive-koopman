@@ -1,0 +1,77 @@
+{
+  "stage": "C2_nominal_clean_hairpin",
+  "seed": 3301,
+  "path": {
+    "s_start_m": 2.5,
+    "s_end_m": 83.5781020279016,
+    "curvature_peak_1pm": 0.0838895791185174,
+    "reference_speed_peak_mps": 1.0443804369328804
+  },
+  "methods": {
+    "baseline": {
+      "connector_force_peak_n": 3464.619841481773,
+      "connector_force_p99_n": 3274.5083163634367,
+      "opening_peak_n": 3124.443084951852,
+      "opening_p99_n": 3072.983827706029,
+      "tire_utilization_peak": 0.353443124727266,
+      "internal_force_residual_peak_n": 0.0,
+      "rated_force_n": 12000.0,
+      "ultimate_force_n": 15000.0,
+      "rated_exceeded": false,
+      "ultimate_exceeded": false,
+      "sim_steps": 3893,
+      "full_path_reached": true,
+      "stop_reason": "full_path_reached",
+      "final_s_m": 83.62274679006363,
+      "target_s_m": 83.5781020279016,
+      "payload_lateral_rmse_m": 0.18781237280361968,
+      "payload_lateral_peak_m": 0.3336742964269227,
+      "payload_heading_rmse_rad": 0.12398254422471335,
+      "connector_force_rms_n": 714.9659631555346,
+      "icr_normal_residual_peak_mps": 6.200595592531499e-14,
+      "state_finite": true,
+      "mean_step_time_s": 0.07641024831740457,
+      "solve_success_count": 15200,
+      "solve_skip_count": 0,
+      "accepted_physics": true
+    },
+    "tf14_phase_role": {
+      "connector_force_peak_n": 1341.2337728858952,
+      "connector_force_p99_n": 1155.6454718873688,
+      "opening_peak_n": 1211.8107763853463,
+      "opening_p99_n": 1130.4881072606183,
+      "tire_utilization_peak": 0.36461105803257243,
+      "internal_force_residual_peak_n": 0.0,
+      "rated_force_n": 12000.0,
+      "ultimate_force_n": 15000.0,
+      "rated_exceeded": false,
+      "ultimate_exceeded": false,
+      "sim_steps": 3893,
+      "full_path_reached": true,
+      "stop_reason": "full_path_reached",
+      "final_s_m": 83.48315650189083,
+      "target_s_m": 83.5781020279016,
+      "payload_lateral_rmse_m": 0.12158253556898684,
+      "payload_lateral_peak_m": 0.2051741848405192,
+      "payload_heading_rmse_rad": 0.11871436785116365,
+      "connector_force_rms_n": 253.27625406580174,
+      "icr_normal_residual_peak_mps": 2.120525977034049e-14,
+      "state_finite": true,
+      "mean_step_time_s": 0.09571378579404016,
+      "solve_success_count": 15569,
+      "solve_skip_count": 0,
+      "accepted_physics": true
+    }
+  },
+  "comparison": {
+    "lateral_rmse_change_fraction": -0.3526383072955692,
+    "connector_peak_change_fraction": -0.6128770733148411,
+    "opening_p99_change_fraction": -0.6321203850576319
+  },
+  "predeclared_gate": {
+    "both_physical_runs_accepted": true,
+    "nr_tracking_noninferior": true,
+    "nr_improves_tracking_or_internal_force": true
+  },
+  "passed": true
+}

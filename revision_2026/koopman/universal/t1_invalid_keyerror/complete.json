@@ -1,0 +1,16 @@
+{
+  "stage": "T1",
+  "accepted": false,
+  "status": "failed_no_L3_in_coarse_scan",
+  "summary_sha256": "3CF300EA2101C2715929481676D00D8C0C8FD0CB99C1D7B5A890837D2B5DD741",
+  "downstream": {
+    "T2": "not_applicable_upstream_G1_failed",
+    "T3": "not_applicable_upstream_G1_failed",
+    "T4": "not_applicable_upstream_G1_failed",
+    "T5": "not_applicable_upstream_G1_failed",
+    "T6": "not_applicable_upstream_G1_failed",
+    "T7": "not_applicable_upstream_G1_failed",
+    "T8": "not_applicable_upstream_G1_failed",
+    "T9": "not_applicable_upstream_G1_failed"
+  }
+}

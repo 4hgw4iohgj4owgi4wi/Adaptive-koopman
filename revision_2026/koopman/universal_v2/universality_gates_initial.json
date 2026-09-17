@@ -1,0 +1,16 @@
+{
+  "internal_relative_candidates": [],
+  "external_adaptation_candidates": [
+    "K5-linear"
+  ],
+  "cross_family_F": false,
+  "cross_family_H": false,
+  "absolute_deployment_candidates": [],
+  "closed_loop_official": [],
+  "closed_loop_diagnostic": [
+    "K0",
+    "K1",
+    "K5-linear-A"
+  ],
+  "claim": "no universal combination; external adaptation only if independently reproduced"
+}

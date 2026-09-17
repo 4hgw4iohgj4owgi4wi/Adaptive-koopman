@@ -1,0 +1,143 @@
+{
+  "stage": "C3_partial_stopped_after_deterministic_dos_gate",
+  "seed": 3401,
+  "executed_scenarios": {
+    "delay_loss": "1-3 control-period delay plus 10% independent dropout",
+    "dos_2s": "100% dropout at steps 350-449",
+    "dos_5s": "100% dropout at steps 350-599"
+  },
+  "not_executed_after_stop": [
+    "seeds 3402-3403",
+    "Gilbert-Elliott AKE-M/NR-KDCC comparison",
+    "hairpin plus DoS",
+    "actuator degradation plus communication disturbance"
+  ],
+  "trace_checks": {
+    "delay_loss": {
+      "common_steps": 1004,
+      "length_ake": 1004,
+      "length_nr": 1005,
+      "prefix_equal": true,
+      "sha256": "d0f9ed39e9db2ea8477b3ab4e7a3891e5c1088131af35662ab139e10b650bf6b"
+    },
+    "dos_2s": {
+      "common_steps": 1002,
+      "length_ake": 1003,
+      "length_nr": 1002,
+      "prefix_equal": true,
+      "sha256": "312e7998af1249c29218f4fe7e5cd756cbf613b5df8dfcc410f21c93a0609b51"
+    },
+    "dos_5s": {
+      "common_steps": 1004,
+      "length_ake": 1004,
+      "length_nr": 1036,
+      "prefix_equal": true,
+      "sha256": "262f9d28e93faaa13b68dfad60fd04680764e7b179e6e6093af8a0906a541a99"
+    }
+  },
+  "metrics": {
+    "delay_loss": {
+      "AKE-M": {
+        "payload_lateral_rmse_m": 0.10016094365871493,
+        "payload_lateral_peak_m": 0.18940829804366124,
+        "connector_force_peak_n": 353.84852597584893,
+        "connector_force_p99_n": 320.3421183538755,
+        "opening_p99_n": 37.35753789525386,
+        "full_path_reached": true,
+        "state_finite": true,
+        "internal_force_residual_peak_n": 0.0
+      },
+      "NR-KDCC": {
+        "payload_lateral_rmse_m": 0.01832688079351043,
+        "payload_lateral_peak_m": 0.04461997106420522,
+        "connector_force_peak_n": 361.2178390990411,
+        "connector_force_p99_n": 343.472575291681,
+        "opening_p99_n": 54.416292162096326,
+        "full_path_reached": true,
+        "state_finite": true,
+        "internal_force_residual_peak_n": 0.0
+      }
+    },
+    "dos_2s": {
+      "AKE-M": {
+        "payload_lateral_rmse_m": 0.09629604908806731,
+        "payload_lateral_peak_m": 0.189819091687398,
+        "connector_force_peak_n": 383.71650378328707,
+        "connector_force_p99_n": 336.2952599044863,
+        "opening_p99_n": 51.37465668687938,
+        "full_path_reached": true,
+        "state_finite": true,
+        "internal_force_residual_peak_n": 0.0
+      },
+      "NR-KDCC": {
+        "payload_lateral_rmse_m": 0.03649854555599989,
+        "payload_lateral_peak_m": 0.10535789237150492,
+        "connector_force_peak_n": 570.3352099430102,
+        "connector_force_p99_n": 439.40118407782256,
+        "opening_p99_n": 87.87681057491474,
+        "full_path_reached": true,
+        "state_finite": true,
+        "internal_force_residual_peak_n": 0.0
+      }
+    },
+    "dos_5s": {
+      "AKE-M": {
+        "payload_lateral_rmse_m": 0.12416053467626974,
+        "payload_lateral_peak_m": 0.2825965825811558,
+        "connector_force_peak_n": 923.8725405960255,
+        "connector_force_p99_n": 726.4254375352452,
+        "opening_p99_n": 127.29141203969982,
+        "full_path_reached": true,
+        "state_finite": true,
+        "internal_force_residual_peak_n": 0.0
+      },
+      "NR-KDCC": {
+        "payload_lateral_rmse_m": 0.06027559525353153,
+        "payload_lateral_peak_m": 0.1914465142464815,
+        "connector_force_peak_n": 1558.2585819028825,
+        "connector_force_p99_n": 852.961868746943,
+        "opening_p99_n": 129.7711523337972,
+        "full_path_reached": true,
+        "state_finite": true,
+        "internal_force_residual_peak_n": 0.0
+      }
+    }
+  },
+  "comparison": {
+    "delay_loss": {
+      "lateral_rmse_change_fraction": -0.8170256776338207,
+      "connector_peak_change_fraction": 0.020826180080499038,
+      "opening_p99_change_fraction": 0.45663486482094195
+    },
+    "dos_2s": {
+      "lateral_rmse_change_fraction": -0.620975669286076,
+      "connector_peak_change_fraction": 0.48634526875893896,
+      "opening_p99_change_fraction": 0.7105089599043038
+    },
+    "dos_5s": {
+      "lateral_rmse_change_fraction": -0.5145349896350621,
+      "connector_peak_change_fraction": 0.6866596997217715,
+      "opening_p99_change_fraction": 0.01948081378281826
+    }
+  },
+  "gate": {
+    "delay_loss": {
+      "both_complete_and_finite": true,
+      "nr_tracking_noninferior": true,
+      "nr_opening_not_worse_5pct": false
+    },
+    "dos_2s": {
+      "both_complete_and_finite": true,
+      "nr_tracking_noninferior": true,
+      "nr_opening_not_worse_5pct": false
+    },
+    "dos_5s": {
+      "both_complete_and_finite": true,
+      "nr_tracking_noninferior": true,
+      "nr_opening_not_worse_5pct": true
+    }
+  },
+  "passed": false,
+  "stop_reason": "dos_2s opening P99 and connector peak exceed the predeclared relative-force gate",
+  "interpretation_limit": "All forces remain below the provisional 12/15 kN references; the failure is relative protection performance, not an actual material-tearing verdict."
+}

@@ -1,0 +1,947 @@
+% !TEX root = manuscript_zh_comm_update_final.tex
+\documentclass[twocolumn,3p,times,procedia]{elsarticle}
+
+\usepackage{ecrc}
+\usepackage{graphicx}
+\usepackage{balance}
+\usepackage{array,threeparttable,tabularx,booktabs,multirow,makecell}
+\usepackage{url}
+\usepackage{amssymb,amsmath,amsthm,bm}
+\usepackage[figuresright]{rotating}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\usepackage{soul}
+
+\IfFontExistsTF{SimSun}{\setCJKmainfont{SimSun}}{\setCJKmainfont{FandolSong-Regular}}
+\IfFontExistsTF{SimHei}{\setCJKsansfont{SimHei}}{\setCJKsansfont{FandolHei-Regular}}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{}
+
+\volume{00}
+\firstpage{1}
+\runauth{作者姓名}
+\jid{procs}
+\CopyrightLine{2026}{Published by Elsevier Ltd.}
+
+\captionsetup[figure]{labelfont={scriptsize,bf},name={图},labelsep=period,font={scriptsize},skip=2pt}
+\captionsetup[table]{labelfont={scriptsize,bf},name={表},labelsep=newline,singlelinecheck=false,font={scriptsize},skip=2pt}
+\setlength{\textfloatsep}{6pt plus 1pt minus 2pt}
+\setlength{\floatsep}{5pt plus 1pt minus 2pt}
+\setlength{\intextsep}{5pt plus 1pt minus 2pt}
+\setlength{\dbltextfloatsep}{6pt plus 1pt minus 2pt}
+\setlength{\dblfloatsep}{5pt plus 1pt minus 2pt}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{6}
+\setcounter{dbltopnumber}{4}
+\renewcommand{\topfraction}{0.96}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.04}
+\renewcommand{\floatpagefraction}{0.72}
+\renewcommand{\dbltopfraction}{0.96}
+\renewcommand{\dblfloatpagefraction}{0.72}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{5pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\setlength{\@dblfptop}{0pt}
+\setlength{\@dblfpsep}{5pt}
+\setlength{\@dblfpbot}{0pt plus 1fil}
+\makeatother
+\titleformat*{\section}{\small \bfseries}
+\titleformat*{\subsection}{\small \em}
+\titleformat*{\subsubsection}{\small \em}
+\geometry{left=1.25cm,right=1.15cm,top=1.9cm,bottom=1.9cm,foot=1.05cm}
+\setlength\columnsep{0.6cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyheadoffset[RO,EL]{0pt}
+\fancyhead[RO,LE]{\footnotesize \thepage}
+\fancyhead[ER]{\em \footnotesize 作者姓名}
+\fancyhead[LO]{\em \footnotesize Network-Resilient Cooperative Transport Control}
+
+\newcommand{\todozh}[1]{\textcolor{red}{[待补：#1]}}
+\newif\ifNRReview
+\ifdefined\ReviewVersion
+  \NRReviewtrue
+\else
+  \NRReviewfalse
+\fi
+\newcommand{\reviewblock}[1]{}
+\newcommand{\reviewinline}[1]{#1}
+\newcommand{\finalonly}[1]{\ifNRReview\else#1\fi}
+\renewcommand{\todozh}[1]{\ifNRReview\textcolor{red}{[待补：#1]}\fi}
+\newcommand{\introproblem}[2]{}
+\newcommand{\coverpoint}[2]{}
+\newcommand{\AKE}{AKE-M}
+\newcommand{\Method}{NR-KDCC}
+\newcommand{\AKEdeg}{AKE-M-degraded}
+\newcommand{\MethodBase}{NR-KDCC-base}
+\newcommand{\MethodHC}{NR-KDCC-HC}
+\newcommand{\ZOHcons}{ZOH-cons}
+\newcommand{\MethodCN}{网络韧性 Koopman-时延一致性协同运输控制}
+\newcommand{\TF}{\Method{}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\renewcommand{\refname}{参考文献}
+\makeatletter
+\renewenvironment{abstract}{\global\setbox\absbox=\vbox\bgroup
+  \hsize=\textwidth\def\baselinestretch{1}%
+  \noindent\unskip\textbf{摘要}
+ \par\medskip\noindent\unskip\ignorespaces}
+ {\egroup}
+\def\keyword{%
+  \def\sep{\unskip, }%
+  \def\MSC{\@ifnextchar[{\@MSC}{\@MSC[2000]}}%
+  \def\@MSC[##1]{\par\leavevmode\hbox {\it ##1~MSC:\space}}%
+  \def\PACS{\par\leavevmode\hbox {\it PACS:\space}}%
+  \def\JEL{\par\leavevmode\hbox {\it JEL:\space}}%
+  \global\setbox\keybox=\vbox\bgroup\hsize=\textwidth
+  \normalsize\normalfont\def\baselinestretch{1}
+  \parskip\z@
+  \noindent\textit{关键词：}
+  \raggedright
+  \ignorespaces}
+\makeatother
+\newtheorem{assumption}{假设}
+\newtheorem{theorem}{定理}
+\newtheorem{remark}{注}
+\definecolor{nrInk}{HTML}{243B53}
+\definecolor{nrBlue}{HTML}{2F5D8C}
+\definecolor{nrTeal}{HTML}{008C8C}
+\definecolor{nrOrange}{HTML}{D97732}
+\definecolor{nrRose}{HTML}{B6465F}
+\definecolor{nrSlate}{HTML}{5E7184}
+\definecolor{nrPaleBlue}{HTML}{EAF2FA}
+\definecolor{nrPaleGreen}{HTML}{E8F6F3}
+\definecolor{nrPaleOrange}{HTML}{FFF1E3}
+\tikzset{
+  nrbox/.style={rounded corners=2pt, draw=nrBlue, very thick, fill=nrPaleBlue, align=center, inner sep=4pt, font=\footnotesize},
+  nrmodule/.style={rounded corners=2pt, draw=nrTeal, thick, fill=nrPaleGreen, align=center, inner sep=4pt, font=\footnotesize},
+  nrsafe/.style={rounded corners=2pt, draw=nrRose, thick, fill=nrPaleOrange, align=center, inner sep=4pt, font=\footnotesize},
+  nrarr/.style={-{Latex[length=2.2mm]}, thick, draw=nrSlate},
+  nrdash/.style={-{Latex[length=2.2mm]}, thick, dashed, draw=nrRose}
+}
+
+\begin{document}\small
+\begin{frontmatter}
+
+\dochead{}
+\title{
+\begin{flushleft}
+{\LARGE 基于双线性 Koopman 学习与时延补偿一致性模型预测控制的网络韧性协同运输控制}
+\end{flushleft}
+}
+
+\author[]{\leftline{作者姓名$^{a,*}$}}
+\address{\leftline{$^a$单位名称，城市，邮编，国家}}
+
+\begin{abstract}
+多车协同运输在仓储物流、园区配送和柔性制造中具有明确应用价值，但其闭环控制同时受到车辆非线性动力学、共享载荷几何约束、通信时延/丢包和执行器退化的耦合影响。已有自适应 Koopman 控制方法可为复杂系统提供数据驱动预测模型，但四车刚性载荷运输还需要显式处理邻接相对距离、团队横向误差、上层路径指令与下层车辆控制之间的网络退化传播。本文构建面向四车刚性载荷运输的 \Method{} 控制框架：首先在大地坐标系与路径坐标系下建立车辆--载荷耦合模型，并把四车邻接相对距离、团队中心横向误差和上层到下层临时期望路径共同纳入通信变量；随后采用输入感知稳定投影双线性 Koopman 提升模型描述控制输入与非线性动力学的耦合；最后在模型预测控制（model predictive control, MPC）中加入通信质量感知一致性、时延状态外推、上层等效四轮转向局部路径发布、约束收缩、执行器效率估计、故障容错控制（fault-tolerant control, FTC）重分配和证书触发退化回退（degraded fallback）。paired $n=20$ 实验表明，在 mixed fault/noise 场景下，相对来源于 Singh 等正式期刊版自适应 Koopman 嵌入方法\cite{singh2025adaptiveKoopman}的任务对齐机制基线（Adaptive Koopman Embedding mechanism, \AKE{}），\TF{} 将横向均方根误差（root mean square error, RMSE）从 0.0453 降至 0.0408，将连接最大利用率从 0.2999 降至 0.0513；在 high-communication-noise 场景下，横向 RMSE 从 0.0519 降至 0.0424，连接最大利用率从 0.3757 降至 0.0452。进一步的同初始条件核验显示，在 5 m/s 高延迟回头弯中，高曲率抗扰分支将团队中心横向 RMSE 从 0.2989 降至 0.0851、最大横向误差从 0.5874 降至 0.1804；在开启货物保护后，连接最大利用率由 0.7781 降至 0.4031，合力峰值由 15487.33 N 降至 8874.04 N，但横向误差相对抗扰优先分支有所回升。15 m/s 正弦故障核验中，速度裁剪修正、平衡进度监督和局部横向 trim 使系统完成整条路段，并将团队中心横向 RMSE 从 0.1586 降至 0.1574、纵向 RMSE 从 0.8857 降至 0.8815。本文给出输入到状态实践有界意义下的 Lyapunov 证明，并通过维度消融说明 24 维观测/31 维升维状态相对 6 维原始线性 Koopman 在闭环横向误差上具有明显优势。
+\end{abstract}
+\begin{keyword}
+协同运输 \sep Koopman 算子 \sep 双线性系统 \sep 模型预测控制 \sep 网络时延 \sep 丢包 \sep 容错控制 \sep Lyapunov 稳定性
+\end{keyword}
+
+\end{frontmatter}
+
+
+
+\section{Introduction}
+
+Path tracking is a fundamental task in autonomous vehicles and mobile robots. Classical controllers, such as pure pursuit, Stanley control, linear quadratic regulation (LQR), and preview-based control, are attractive because of their simple structure and low computational cost. However, their performance usually relies on kinematic approximations, local linearization, or fixed-gain tuning. In four-vehicle rigid-payload transport, high-curvature paths amplify lateral-longitudinal coupling, actuator constraints, and connection errors. High-speed operation further increases control sensitivity, but it is treated in this paper as a stress-test condition rather than the main claimed advantage.
+
+Model predictive control (MPC) provides a systematic way to handle tracking errors, input constraints, and safety bounds over a finite prediction horizon. Distributed MPC, consensus control, and leader-follower strategies have been widely used to maintain relative formations and inter-vehicle distances. Nevertheless, many cooperative tracking methods assume reliable communication or treat delay, packet loss, and biased information as external bounded disturbances. This assumption is restrictive for cooperative payload transport, because communication degradation directly affects relative-distance estimation, team-center error feedback, upper-layer reference delivery, lower-layer command reception, and payload-force distribution. Therefore, communication quality should enter the consensus weights, neighbor-state extrapolation, constraint tightening, and safety fallback logic, instead of being used only as an external simulation disturbance.
+
+When accurate first-principle models are difficult to obtain, data-driven modeling provides an alternative route for vehicle control. Neural networks and reinforcement-learning-based black-box models can approximate complex nonlinear dynamics, but they are often difficult to embed into constrained optimization, stability analysis, and safety certification. Koopman learning lifts nonlinear dynamics into a high-dimensional observable space, where the lifted dynamics can be approximated by a linear predictor, thus providing a control-friendly bridge between data-driven modeling and MPC\cite{brunton2016koopmanControl,korda2018koopmanMpc,xiao2022deepKoopmanVehicle,joglekar2023koopmanExperimental}. Recent Koopman vehicle-control studies have developed EDMD, deep Koopman models, stochastic MPC, safety command governors, physics-informed adaptive updates, robust path tracking, and approximation-error bounds\cite{kim2025ksmpc,chen2024koopmanSafetyGovernor,wang2026deepKoopmanRobustTracking,zhang2025physicsInformedAdaptiveKoopman,chen2024esoDeepKoopman,philipp2023koopmanErrorBounds,cibulka2021koopmanVehicleMpc}. The adaptive Koopman embedding (AKE) method of Singh et al. further improves robustness by correcting lifted-state prediction errors online\cite{singh2025adaptiveKoopman}. However, a purely linear lifted model has limited ability to represent input-state coupling caused by steering, longitudinal acceleration, communication quality, and connection states. For this reason, this paper adopts a bilinear Koopman structure, which preserves the MPC-compatible prediction form while explicitly retaining the multiplicative coupling between control inputs and lifted states.
+
+Finite-dimensional Koopman models inevitably contain approximation errors. Under high-curvature maneuvers or degraded communication, such errors may be amplified by predictive feedback, constraint tightening, and reference replanning. Therefore, the proposed method does not rely on the learned predictor as an unconditional black-box model. A stability projection module is introduced to audit and rescale the effective Koopman operator $A_{\mathrm{eff}}(u)$ that is actually used by the controller. Its purpose is not to claim perfect long-horizon rollout accuracy, but to keep the closed-loop prediction model within a numerically stable and certifiable region, so that the subsequent MPC, safety filter, and fallback logic have a bounded model basis.
+
+Cooperative transport studies have covered formation control, distributed optimization, nonholonomic constraints, connector mechanisms, and learning-based task decisions. Recent works have addressed multi-robot communication for cooperative transport, differential-drive cooperative transport, six-degree-of-freedom connector systems, heterogeneous multi-formation planning, embedded formation transport, and multi-objective reinforcement-learning-based transport\cite{an2023multiRobotCommTransport,cooperativeTransport2024ras,gong2023sixDofTransport,zhang2024heterogeneousTransport,embeddedFormationTransport2024cep,multiObjectiveTransport2024mechatronics,intelligentCollaborativeTransport2024}. In parallel, networked control and vehicular-network studies have investigated vehicular ad hoc networks, vehicular edge computing, quality-of-service constraints, Markov packet loss, denial-of-service attacks, communication interruption, stochastic delay, and latency mitigation\cite{tan2022mlVehicularDcn,zhao2025blockchainVanetDcn,wu2025drlVecDcn,bian2025markovPacketLossDMPC,dosDMPC2024isa,robustCommunicationLoss2025trb,bai2023robustLongitudinalDMPC,bao2024robustUkfMpc,networkLatencyCav2024sensors,dai2024networkedPredictiveControl}. Most existing work, however, focuses on spacing regulation, string stability, or single-vehicle trajectory tracking. It does not jointly incorporate team-center error, vehicle-level short-horizon paths, connection utilization, payload force, communication quality, and actuator faults into an auditable predictive-control loop for a four-vehicle rigid-payload system.
+
+Robust MPC, tube/convex robust DMPC, learning-supported MPC, and actuator FDI/FTC provide useful foundations for uncertainty handling, constraint tightening, and fault redistribution\cite{mayne2000constrainedMpc,mayne2005robustMpc,convexRobustDMPC2025ejc,gasparino2023nnMpcUncertainty,liu2024adaptiveFtcSbw,xu2024fdFtcSteering}. This paper uses these ideas for feasibility preservation, degraded protection, and fault-tolerant correction, but the target is not single-vehicle stabilization or platoon string stability. Instead, it focuses on cooperative payload safety under the coupled effects of high curvature and communication disturbance. This paper proposes a network-resilient Koopman delay-compensated consensus control framework, termed \Method{}; high-speed simulations are included only as sensitivity and stress tests, not as the main performance claim.
+
+The main contributions are summarized as follows.
+\begin{enumerate}
+\item \textbf{An input-aware stability-projected bilinear Koopman learner is used to improve prediction for network-degraded cooperative transport.} Vehicle states, team-center errors, connection geometry, and communication/fault indicators are included in the lifted observation, while the bilinear terms explicitly represent the multiplicative coupling between steering, longitudinal acceleration, and lifted states. The stability projection further constrains the controller-used $A_{\mathrm{eff}}(u)$, thereby reducing prediction-drift risk under high curvature and degraded communication.
+\item \textbf{A risk-aware mode-reconfigurable Koopman-MPC scheme is used to resolve the priority conflict among communication disturbance rejection, high-curvature tracking, and payload protection.} Under one bilinear prediction model, the controller reconfigures weights, constraints, consensus compensation, and fallback candidates according to communication quality, path curvature, connection utilization, payload-force risk, and certificate margins. Upper-layer equivalent four-wheel-steering local-path generation, adjacent-distance regulation, and FDI/FTC are integrated so that nominal tracking, network resilience, high-curvature payload protection, and safety fallback are handled within a unified loop.
+\item \textbf{A Lyapunov/ISS certificate and task-aligned experiments are used to verify closed-loop safety bounds and identify the performance source.} The analysis incorporates Koopman residuals, communication disturbances, actuator degradation, stability projection, constraint tightening, and safety fallback into a unified boundedness argument, leading to practical input-to-state boundedness/uniform ultimate boundedness (UUB). The experiments, including training loss, short-window prediction, dimension ablation, communication/delay diagnostics, FDI/FTC timelines, baseline comparison, speed sensitivity, and 5 m/s high-curvature hairpin tests, support the operating boundaries of the learning, network-resilience, and payload-protection modules.
+\end{enumerate}
+
+\section{系统建模与问题定义}
+
+\subsection{大地坐标系车辆动力学}
+
+考虑 $N=4$ 辆车辆协同搬运刚性载荷。第 $i$ 辆车在大地坐标系下的位置和航向为
+$p_i=[X_i,Y_i]^\top$、$\psi_i$，车体系纵向/横向速度和横摆角速度为 $u_i$、$v_i$、$r_i$。控制输入为纵向加速度 $a_{x,i}$ 和前轮转角 $\delta_i$。车体系到大地坐标系的运动学为
+\begin{equation}
+\begin{aligned}
+\dot X_i &= u_i\cos\psi_i-v_i\sin\psi_i,\\
+\dot Y_i &= u_i\sin\psi_i+v_i\cos\psi_i,\\
+\dot \psi_i &= r_i .
+\end{aligned}
+\label{eq:world_kinematics}
+\end{equation}
+采用线性轮胎侧偏模型时，车辆侧向和横摆动力学可写为
+\begin{equation}
+\begin{aligned}
+\dot v_i=&-\frac{2C_f+2C_r}{m u_i}v_i+
+\left(-u_i-\frac{2C_f l_f-2C_r l_r}{m u_i}\right)r_i
++\frac{2C_f}{m}\delta_i+d_{v,i},\\
+\dot r_i=&-\frac{2C_f l_f-2C_r l_r}{I_z u_i}v_i
+-\frac{2C_f l_f^2+2C_r l_r^2}{I_z u_i}r_i
++\frac{2C_f l_f}{I_z}\delta_i+d_{r,i},\\
+\dot u_i=&a_{x,i}+r_i v_i+d_{u,i}.
+\end{aligned}
+\label{eq:bicycle_dynamics}
+\end{equation}
+其中 $m,I_z,l_f,l_r,C_f,C_r$ 分别为车辆质量、横摆转动惯量、前/后轴距和前/后轮侧偏刚度；$d_{u,i},d_{v,i},d_{r,i}$ 表示模型误差、载荷耦合扰动或外部扰动。为避免低速奇异，仿真中使用 $u_i\leftarrow\max(u_i,u_{\min})$，当前代码取 $u_{\min}=0.5$。
+
+\begin{table}[!tbp]
+\centering
+\caption{车辆标称动力学参数与变化动力学参数。含义：该表给出式 \eqref{eq:bicycle_dynamics} 中使用的车辆标称参数，以及离线数据生成和鲁棒性测试中用于覆盖质量、转动惯量和轮胎侧偏刚度变化的扰动参数。}
+\label{tab:vehicle_dynamic_params}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+参数 & 符号 & 标称值 & 变化值 \\
+\midrule
+车辆质量 & $m$ [kg] & 1500 & 1650\\
+横摆转动惯量 & $I_z$ [kg$\cdot$m$^2$] & 2250 & 2400\\
+质心至前轴距离 & $l_f$ [m] & 1.2 & 1.2\\
+质心至后轴距离 & $l_r$ [m] & 1.6 & 1.6\\
+前轮侧偏刚度 & $C_f$ [N/rad] & 80000 & 70000\\
+后轮侧偏刚度 & $C_r$ [N/rad] & 80000 & 70000\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+表 \ref{tab:vehicle_dynamic_params} 中的变化参数只用于离线数据生成、模型不确定性覆盖和鲁棒性测试，不改变本文的符号定义。在线控制仍以标称参数、式 \eqref{eq:bicycle_dynamics} 的车辆结构和 Koopman 残差补偿共同构成预测模型。
+
+\subsection{路径坐标误差}
+
+设参考路径弧长为 $s$，曲率为 $\kappa(s)$，路径切向航向为 $\psi_r(s)$。车辆投影到路径坐标系后，横向误差为 $e_{y,i}$，航向误差为 $e_{\psi,i}=\psi_i-\psi_r(s_i)$。标准 Frenet 误差动力学为
+\begin{equation}
+\dot s_i=\frac{u_i\cos e_{\psi,i}-v_i\sin e_{\psi,i}}
+{1-\kappa(s_i)e_{y,i}},
+\label{eq:s_dot}
+\end{equation}
+\begin{equation}
+\dot e_{y,i}=u_i\sin e_{\psi,i}+v_i\cos e_{\psi,i},\qquad
+\dot e_{\psi,i}=r_i-\kappa(s_i)\dot s_i .
+\label{eq:frenet_error}
+\end{equation}
+式 \eqref{eq:world_kinematics} 用于大地坐标系仿真和载荷几何约束，式 \eqref{eq:s_dot}--\eqref{eq:frenet_error} 用于构造轨迹跟踪误差和 MPC 代价。
+
+\subsection{刚性载荷与连接误差}
+
+载荷中心位姿为 $q_L=[X_L,Y_L,\psi_L]^\top$。第 $i$ 个连接点在载荷坐标系中的固定向量为 $b_i$，对应大地坐标位置为
+\begin{equation}
+p_{L,i}=p_L+R(\psi_L)b_i,\qquad
+R(\psi)=\begin{bmatrix}\cos\psi&-\sin\psi\\ \sin\psi&\cos\psi\end{bmatrix}.
+\label{eq:payload_anchor}
+\end{equation}
+车辆与载荷连接误差定义为
+\begin{equation}
+e_{c,i}=p_i-p_{L,i},\qquad
+e_c=\mathrm{col}(e_{c,1},\ldots,e_{c,N}).
+\label{eq:connection_error}
+\end{equation}
+若采用等效弹簧阻尼连接，则连接力可表示为
+\begin{equation}
+F_{c,i}=K_c e_{c,i}+D_c\dot e_{c,i},
+\label{eq:connection_force}
+\end{equation}
+并通过 $\sum_i F_{c,i}$ 与 $\sum_i (R(\psi_L)b_i)\times F_{c,i}$ 作用到载荷平动和转动。本文在控制层不声称连接力峰值单调降低，而是将 $\max_i\norm{F_{c,i}}$、均方根（root mean square, RMS）和方向分量作为安全代价监测指标。
+
+\subsection{通信图与退化模型}
+
+车辆通信拓扑扩展为五节点图 $\mathcal G_k=(\mathcal V\cup\{0\},\mathcal E_k)$，其中 $0$ 表示上层协同路径规划器，$\mathcal V=\{1,2,3,4\}$ 表示四辆执行车辆。车辆层采用环形邻接通信，每辆车 $i$ 接收前后相邻车辆 $\mathcal N_i=\{i-1,i+1\}$ 的相对位姿和相对距离；上层节点根据载荷中心状态、参考路径曲率和团队横向误差计算短期临时期望路径，并把该路径下发到四辆车。通信退化同时作用于三类量：
+\begin{equation}
+\begin{aligned}
+\hat d_{ij,k}&=d_{ij,k-\tau^d_{ij,k}}+b^d_{ij,k}+\epsilon^d_{ij,k},\\
+\hat e_{y,L,k}&=e_{y,L,k-\tau^y_k}+b^y_k+\epsilon^y_k,\\
+\hat r_{i,k}^{\mathrm{tmp}}&=r_{i,k-\tau^r_{i,k}}^{\mathrm{tmp}}+b^r_{i,k}+\epsilon^r_{i,k},
+\end{aligned}
+\label{eq:comm_corrupted_measurements}
+\end{equation}
+其中 $d_{ij,k}=\norm{p_{i,k}-p_{j,k}}$ 为相邻车辆距离，$e_{y,L,k}$ 为载荷/团队中心横向误差，$r_{i,k}^{\mathrm{tmp}}$ 为上层下发给车辆 $i$ 的临时期望路径参数；$\tau,b,\epsilon$ 分别表示时延、偏置和噪声。边 $(j,i)$ 的链路质量为 $q_{ij,k}\in[0,1]$，丢包指示为 $\ell_{ij,k}\in\{0,1\}$。当邻居状态可用时，控制器接收 $\hat x_{j,k-\tau}$；当时延或丢包发生时，使用 Koopman/运动学预测器进行外推：
+\begin{equation}
+\hat x_{j,k|k}^{\mathrm{net}}=
+\begin{cases}
+\Pi_x \hat z_{j,k-\tau+\tau|k-\tau}, & \ell_{ij,k}=0,\\
+\hat x_{j,k-1|k-1}^{\mathrm{net}}, & \ell_{ij,k}=1 .
+\end{cases}
+\label{eq:delay_prediction}
+\end{equation}
+这里 $\Pi_x$ 为 lifted state 到物理状态的投影。相邻距离保持项定义为
+\begin{equation}
+e^{d}_{ij,k}=\hat d_{ij,k}-d^{\mathrm{ref}}_{ij}(s_k),\qquad (j,i)\in\mathcal E_k ,
+\label{eq:adjacent_distance_error}
+\end{equation}
+并与团队横向误差 $\hat e_{y,L,k}$ 一起进入一致性 MPC。通信质量进一步决定一致性权重和约束收缩比例，使网络退化不再只是外部扰动，而是 MPC 中的调度变量。
+
+\section{\Method{} 方法}
+
+\subsection{方法总览与命名}
+
+本文方法命名为 \MethodCN{}（Network-Resilient Koopman Delay-Compensated Consensus Control, \Method{}）。其逻辑链条为：首先在大地坐标系和路径坐标系下建立车辆--载荷--通信联合模型，并把四车邻接距离、团队中心横向误差和上层临时期望路径统一为通信变量；然后用该模型离线生成覆盖曲率、通信退化和执行器效率下降的数据；接着训练带输入感知稳定投影的双线性 Koopman 预测器；最后将预测器嵌入通信质量感知的一致性 MPC，并由上层等效四轮转向（four-wheel steering, 4WS）局部路径发布、FDI/FTC、约束收缩和 Lyapunov/ISS 证书提供约束保护。这样组织后，方法模块、贡献陈述和后续实验指标一一对应：预测模型对应动力学学习和误差时间序列，通信补偿对应 high-communication-noise 对比与消融，上/下层局部路径对应高延迟回头弯横向误差与边界验证，连接约束与受力审计对应主对比和回头弯核验，维度设计对应 6D/raw Koopman 消融，FDI/FTC 与证书对应故障场景和稳定性统计。
+
+为避免控制器名称在表格和实验中混用，本文统一采用如下命名。\Method{} 表示完整方法，即通信质量感知 Koopman-MPC、上层 4WS 局部路径、FDI/FTC、角色调度、证书保护和风险触发式货物保护均开启的闭环框架；\MethodBase{} 表示移除角色调度的消融版本；\MethodHC{} 中 HC 表示高曲率（high curvature），即高曲率抗扰分支开启但未启用货物保护的版本；\AKE{} 或 \AKEdeg{} 表示来源于 Singh 等 AKE 思想的任务对齐机制基线；\ZOHcons{} 中 ZOH 表示零阶保持（zero-order hold），该项是零阶保持一致性地板基线，只用于消融。在线运行时并不存在多个完全独立的主控制器并列竞争，只有一个 Koopman-MPC 主优化器；可切换的是并列保护/调度分支，其输出经执行层仲裁后施加到车辆。
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_nrkdcc_framework_visio_crop.pdf}
+\caption{\Method{} 四层协同控制框架图。含义：该图把本文方法拆成离线建模/数据基础、上层 4WS 协同运输规划、下层车辆级时延补偿 Koopman-MPC 以及 FDI/FTC/Lyapunov 证书安全层。离线层提供 Koopman 网络、模型子程序集和约束/证书模板；上层依据载荷中心、参考曲率和通信质量生成四轮转向协同参考，并通过跨层通信把临时期望路径下发到车辆；下层在车辆动力学和邻接通信基础上完成质量一致性、远端状态预测、连接误差约束和执行控制；安全层对通信、故障和控制命令进行诊断、投影、约束收缩和回退。右侧闭环总线说明模型、参考/命令、反馈、安全 veto 和日志证据如何在四层之间流动。}
+\label{fig:nrkdcc_framework}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_nrkdcc_control_flow_visio_crop.pdf}
+\caption{\Method{} 在线控制流程信号框图。含义：该图给出单个采样周期内的数据流和判断流。车辆状态、链路质量、参考量和故障残差先经过观测融合与通信质量一致性处理，再由 Koopman 预测和 4WS 参考模型生成网络感知预测参考；MPC 代价/约束输出候选控制后，命令还要经过 FDI 残差判断、FTC 切换、角色修正、命令发布、通信通道、执行端接收、安全滤波和 Lyapunov/ISS 证书检查。虚线表示通信退化或安全回退通道，证书未通过时触发投影/收缩或降级回退，通过后才施加到 plant，并把轨迹误差、连接误差、受力/约束和日志指标反馈到下一采样周期。}
+\label{fig:nrkdcc_flowchart}
+\end{figure*}
+
+\subsection{上层等效四轮转向与局部路径发布}
+
+由于四车通过刚性载荷协同运输，车辆相对载荷连接点允许转动，载荷中心层可近似看作等效四轮转向平台。本文不把该等效模型替代下层单车动力学，而是将其作为上层路径发布器：上层根据参考曲率求解等效前轮转角 $\delta_f^{\mathrm{up}}$ 和后轮转角 $\delta_r^{\mathrm{up}}$，再把由载荷几何诱导的短期望航向和局部路径发给四辆车；下层车辆仍使用单车 Koopman-MPC 跟踪对应局部路径。
+
+设等效前后轴距为 $l_f,l_r$，$L=l_f+l_r$。四轮转向等效侧偏角与曲率写为
+\begin{equation}
+\begin{aligned}
+\beta^{\mathrm{4ws}} &=
+\arctan\frac{l_r\tan\delta_f^{\mathrm{up}}+l_f\tan\delta_r^{\mathrm{up}}}{L},\\
+\kappa^{\mathrm{4ws}} &=
+\frac{\cos\beta^{\mathrm{4ws}}}{L}
+\left(\tan\delta_f^{\mathrm{up}}-\tan\delta_r^{\mathrm{up}}\right).
+\end{aligned}
+\label{eq:fourws_beta_curvature}
+\end{equation}
+上层求解器以参考曲率 $\kappa_r(s)$ 为目标，并对侧偏、前后转角关系和转角幅值加权：
+\begin{equation}
+\begin{aligned}
+\min_{\delta_f^{\mathrm{up}},\delta_r^{\mathrm{up}}}\quad
+&w_\kappa\left(\kappa^{\mathrm{4ws}}-\kappa_r(s)\right)^2
++w_\beta\left(\beta^{\mathrm{4ws}}\right)^2\\
+&+w_\rho\left(\tan\delta_r^{\mathrm{up}}+\rho_r\tan\delta_f^{\mathrm{up}}\right)^2
++w_\delta\left[\left(\delta_f^{\mathrm{up}}\right)^2+\left(\delta_r^{\mathrm{up}}\right)^2\right]\\
+\mathrm{s.t.}\quad
+&|\delta_f^{\mathrm{up}}|\le \bar\delta_f,\qquad
+|\delta_r^{\mathrm{up}}|\le \bar\delta_r .
+\end{aligned}
+\label{eq:fourws_upper_opt}
+\end{equation}
+其中 $\rho_r>0$ 对应反相转向比例；当采用解析初值时，$\delta_r^{\mathrm{up}}\approx-\rho_r\delta_f^{\mathrm{up}}$，随后可由小网格搜索在约束内微调。该上层优化的作用不是提高模型复杂度本身，而是把高曲率路径中“团队整体应如何转向”的几何先验提前注入到四车参考中，减少下层车辆仅凭局部横向误差各自纠偏造成的相位不一致。
+
+对第 $i$ 辆车，设其在载荷坐标系中的连接点为 $b_i=[b_{x,i},b_{y,i}]^\top$。由式 \eqref{eq:fourws_beta_curvature} 得到的等效刚体瞬时速度方向可写为
+\begin{equation}
+\psi_{i,k}^{\mathrm{up}}=
+\psi_{L,k}^{\mathrm{ref}}+
+\operatorname{atan2}\!\left(
+\sin\beta^{\mathrm{4ws}}+\kappa^{\mathrm{4ws}} b_{x,i},
+\cos\beta^{\mathrm{4ws}}-\kappa^{\mathrm{4ws}} b_{y,i}
+\right).
+\label{eq:fourws_vehicle_heading}
+\end{equation}
+上层再沿参考路径向前预瞄 $\ell_p$，构造车辆 $i$ 的临时期望路径
+\begin{equation}
+r_{i,k}^{\mathrm{tmp}}(\sigma)=
+p_{L}^{\mathrm{ref}}(s_k+\sigma)+
+R\!\left(\psi_L^{\mathrm{ref}}(s_k+\sigma)\right)b_i+
+\alpha_p \sigma
+\begin{bmatrix}
+\cos \psi_{i,k}^{\mathrm{up}}\\
+\sin \psi_{i,k}^{\mathrm{up}}
+\end{bmatrix},
+\quad 0\le\sigma\le\ell_p ,
+\label{eq:fourws_local_path}
+\end{equation}
+其中 $\alpha_p$ 为局部路径混合系数。通信扰动既可作用于邻接距离和团队横向误差，也可作用于 $r_{i,k}^{\mathrm{tmp}}$ 的下发链路；因此本文把上层--下层路径传输作为五节点通信图中的独立边处理。实验中 5 m/s 回头弯采用 $\ell_p=0.45$ m、$\rho_r=0.2$、局部路径横向幅值上限 $0.04$ m 和 $s=53.5$--$61.5$ m 的启用窗口，用于只在最需要的高曲率出口段注入等效四轮转向先验。
+
+\subsection{离线数据生成}
+
+离线数据由式 \eqref{eq:world_kinematics}--\eqref{eq:connection_force} 的仿真模型生成，覆盖 nominal clean、high communication noise、single fault 和 mixed fault/noise 四类工况。训练数据采用 $\Delta t=0.02$ s，单车状态维数 $n_x=6$，输入维数 $n_u=2$；参考速度从 $2.2$--$4.0$ m/s 分层采样，初始路径进度随机平移 $0$--$80$ m，横向误差初值在 $[-2,2]$ m 内扰动。每个 batch 生成 36 条轨迹和约 1400 个 snapshot，并按 80/20 划分训练集与验证集。每个 run 同步记录车辆状态、载荷中心、连接误差、控制输入、通信质量、时延/丢包、故障效率和证书项。为避免训练数据只覆盖平稳轨迹，输入激励包含小幅随机转角、纵向加速度扰动、曲率变化和通信质量扰动。
+
+\subsection{双线性 Koopman 提升}
+
+令原始状态为 $x_k\in\R^{n_x}$，输入为 $u_k\in\R^{n_u}$。Koopman lifting 定义为
+\begin{equation}
+z_k=\Phi_\theta(x_k)=\begin{bmatrix}x_k\\ \phi_\theta(x_k)\end{bmatrix}\in\R^{n_z},
+\label{eq:koopman_lift}
+\end{equation}
+其中 $\phi_\theta$ 为神经网络特征。本文采用双线性 lifted dynamics 表示车辆输入与载荷误差之间的乘性耦合：
+\begin{equation}
+z_{k+1}=A z_k+B u_k+\sum_{\ell=1}^{n_u} u_{k,\ell} N_\ell z_k+w_k,
+\label{eq:bilinear_koopman}
+\end{equation}
+其中 $A,B,N_\ell$ 由离线数据拟合，$w_k$ 为残差。该结构比纯线性 Koopman 模型更适合描述转角、纵向加速度与车辆侧向/载荷误差之间的乘性耦合。
+
+给定数据集 $\mathcal D=\{z_k,u_k,z_{k+1}\}$，定义回归矩阵
+\begin{equation}
+\Xi_k=\begin{bmatrix}z_k^\top&u_k^\top&(u_{k,1}z_k)^\top&\cdots&(u_{k,n_u}z_k)^\top\end{bmatrix}^\top .
+\label{eq:bilinear_regressor}
+\end{equation}
+参数矩阵 $\Theta=[A\;B\;N_1\;\cdots N_{n_u}]$ 由岭回归求解：
+\begin{equation}
+\Theta^\star=Z_+\Xi^\top(\Xi\Xi^\top+\lambda I)^{-1}.
+\label{eq:ridge_fit}
+\end{equation}
+其中 $\lambda$ 为岭回归正则系数，用于抑制小样本、多重共线和噪声导致的参数放大。在线阶段采用滑动窗口残差更新，只允许在输入感知稳定投影和约束边界内微调 $\Theta$，避免自适应过程破坏闭环可行性。
+
+\subsection{输入感知稳定投影与残差边界}
+
+仅对 Koopman 主矩阵 $A$ 做谱投影不能覆盖双线性输入项。由式 \eqref{eq:bilinear_koopman} 可知，在给定输入 $u_k$ 下真正进入预测窗口的等效 lifted 矩阵为
+\begin{equation}
+A_{\mathrm{eff}}(u_k)=A+\sum_{\ell=1}^{n_u}u_{k,\ell}N_\ell .
+\label{eq:effective_bilinear_matrix}
+\end{equation}
+因此本文将稳定化步骤改为输入感知鲁棒谱投影（input-aware robust spectral projection, IRSP）。实现上先把主矩阵投影到较小漂移半径 $r_A<r_u$，再对双线性输入矩阵统一缩放：
+\begin{equation}
+A^+=\Pi_{r_A}(A),\qquad N_\ell^+=\gamma N_\ell,\quad 0\le\gamma\le 1 .
+\label{eq:irsp_projection}
+\end{equation}
+其中 $\gamma$ 由两类边界共同确定。代码默认采用采样鲁棒边界
+\begin{equation}
+\gamma_s=\max_{\gamma\in[0,1]}\;\gamma
+\quad \mathrm{s.t.}\quad
+\max_{u\in\mathcal U_s}
+\rho\!\left(A^++\gamma\sum_{\ell=1}^{n_u}u_\ell N_\ell\right)
+\le r_u ,
+\label{eq:sampled_irsp}
+\end{equation}
+其中 $\mathcal U_s$ 由训练输入分位点、边界点和角点组成。同时计算连续输入包络上的保守范数证书
+\begin{equation}
+\gamma_c=\min\left(1,\,
+\frac{r_u-\norm{A^+}_2}{\sum_{\ell=1}^{n_u}\bar u_\ell\norm{N_\ell}_2+\varepsilon}
+\right),\qquad
+\bar u_\ell=\max(|\underline u_\ell|,|\bar u_\ell|).
+\label{eq:norm_irsp_certificate}
+\end{equation}
+若启用严格证书模式，则取 $\gamma=\min(\gamma_s,\gamma_c)$，从而满足 $\norm{A_{\mathrm{eff}}^+(u)}_2\le r_u$ 的充分条件；默认实验为避免过度削弱双线性项，采用 $\gamma_s$ 并记录 $\gamma_c$ 作为审计量。在线自适应更新后同样对 $A^+$ 与 $N_\ell^+$ 重新执行 IRSP，防止残差回归把等效输入族推回不稳定区域。该投影并不证明真实非线性系统全局渐近稳定，而是在 MPC 工作区域内限制 lifted predictor 的输入相关误差放大。令一步残差满足
+\begin{equation}
+\norm{w_k}\le \bar w_0+\bar w_x\norm{x_k-x_k^\mathrm{ref}}+\bar w_q(1-q_k),
+\label{eq:residual_bound}
+\end{equation}
+则通信质量下降会通过 $\bar w_q(1-q_k)$ 进入后续 Lyapunov 证明中的扰动项。
+
+\subsection{基础 Koopman-MPC 与并列保护分支}
+
+本小节定义唯一的车辆级优化控制器：通信质量感知 Koopman-MPC。其在线模式记为 $\mu_k\in\{\mathrm{C0},\mathrm{C1},\mathrm{C2},\mathrm{C3}\}$，其中 C0 为常规跟踪与连接保持，C1 为高曲率横向优先分支，C2 为货物保护分支，C3 为通信/执行器退化下的保守安全分支。四个模式不是四个相互独立的控制器，而是同一个 MPC 目标和约束集合上的并列权重/约束调度；当多个触发条件同时满足时，按 C3 安全可行、C2 受力保护、C1 横向抗扰、C0 常规跟踪的优先级合成一个候选输入序列。
+
+MPC 在每个采样时刻求解 horizon $H$ 内的输入序列。基础代价函数为
+\begin{equation}
+\begin{aligned}
+J=&\sum_{h=0}^{H-1}
+\Big[
+\norm{e_{L,k+h}}_{Q_L}^2+
+\sum_i\norm{e_{y,i,k+h},e_{\psi,i,k+h}}_{Q_v}^2\\
+&+\sum_{(j,i)\in\mathcal E_k}\omega_{ij,k}\norm{x_{i,k+h}-\hat x_{j,k+h|k}^{\mathrm{net}}}_{Q_c}^2\\
+&+\sum_{(j,i)\in\mathcal E_k}\omega^d_{ij,k}\norm{e^d_{ij,k+h}}_{q_d}^2\\
+&+\norm{e_{c,k+h}}_{Q_e}^2+
+\norm{u_{k+h}}_{R_u}^2+
+\norm{\Delta u_{k+h}}_{R_\Delta}^2
+\Big]\\
+&+\norm{e_{L,k+H}}_{P_L}^2 ,
+\end{aligned}
+\label{eq:mpc_cost}
+\end{equation}
+其中 $e_L=[X_L-X_L^{\mathrm{ref}},Y_L-Y_L^{\mathrm{ref}},\psi_L-\psi_L^{\mathrm{ref}}]^\top$，$e^d_{ij}$ 表示由式 \eqref{eq:adjacent_distance_error} 定义的相邻距离误差。通信权重定义为
+\begin{equation}
+\omega_{ij,k}=\omega_{\min}+(\omega_{\max}-\omega_{\min})\bar q_{ij,k},
+\label{eq:comm_weight}
+\end{equation}
+$\bar q_{ij,k}$ 为平滑后的链路质量。控制和安全约束包括
+\begin{equation}
+\begin{gathered}
+u_{\min}\le u_i\le u_{\max},\quad
+\delta_{\min}\le\delta_i\le\delta_{\max},\quad
+a_{\min}\le a_{x,i}\le a_{\max},\\
+\norm{e_{c,i}}\le e_{c,\max}(q_k),\qquad
+\norm{F_{c,i}}\le F_{c,\max},\\
+\norm{\Delta \delta_i}\le \Delta\delta_{\max},\quad
+\norm{\Delta a_{x,i}}\le \Delta a_{\max}.
+\end{gathered}
+\label{eq:constraints}
+\end{equation}
+当 $q_k$ 下降时，$e_{c,\max}(q_k)$ 与输入边界按比例收缩；当链路质量低于阈值时，degraded fallback 降低不可靠邻居权重并优先满足连接误差与输入约束。
+
+对于高曲率路径段，本文采用分层切换逻辑，而不是改变车辆动力学模型。第一层为高曲率抗扰模式，用于验证上层四轮转向局部路径和下层 Koopman-MPC 在强曲率、通信延迟和故障输入下是否仍能保持可接受横向跟踪。其核心是在保持连接和输入约束不变的情况下，提高横向误差与航向误差在预测窗口中的权重，并适度降低转角输入惩罚：
+\begin{equation}
+Q_v^{\mathrm{hc}}=\mathrm{diag}(1,\eta_y,\eta_\psi,1,1,1)Q_v,\qquad
+R_u^{\mathrm{hc}}=\mathrm{diag}(\eta_\delta,1)R_u ,
+\label{eq:high_curvature_lateral_priority}
+\end{equation}
+其中 $\eta_y>1$、$\eta_\psi>1$、$0<\eta_\delta<1$。同时收紧横向预设性能控制（prescribed performance control, PPC）包络 $\rho_y$ 并减小转角平滑系数，使控制器在入弯和弯中优先消除 $e_y$ 与 $e_\psi$，再由一致性项和连接约束抑制单车过度纠偏。5 m/s 回头弯中的 \MethodHC{} 采用 $\eta_y=1.35$、$\eta_\psi=1.20$、$\eta_\delta=0.82$ 的保守设置，并在 $s=30$--$50$ m 内按空间位置切换预减速、横向优先和进度恢复权重。该模式优先证明大曲率抗干扰能力，但不把载荷合力作为主优化目标，因此需要额外审计受力代价。
+
+第二层为货物保护切换器。若高曲率抗扰模式已经满足横向误差要求，但载荷平面合力 $\norm{F_L^{xy}}=\sqrt{F_x^2+F_y^2}$ 或连接利用率偏高，则控制器在曲率激活区内把目标从“轨迹误差优先”平滑切换为“误差--连接--受力三目标折中”。切换强度定义为
+\begin{equation}
+\sigma_k=\operatorname{sat}_{[0,1]}\!\left(
+\frac{|\kappa(s_k)|-\kappa_{\mathrm{off}}}
+{\kappa_{\mathrm{on}}-\kappa_{\mathrm{off}}+\varepsilon}
+\right),
+\label{eq:payload_protection_switch}
+\end{equation}
+其中 $\kappa_{\mathrm{off}}$ 和 $\kappa_{\mathrm{on}}$ 分别为退出和完整启用阈值。开启货物保护后，MPC 代价中的连接、输入分散度和受力代理项按 $\sigma_k$ 增强：
+\begin{equation}
+J_k^{\mathrm{prot}}=J_k+
+\sigma_k\!\left(
+\lambda_c\norm{e_{c,k}}^2+
+\lambda_u\sum_i\norm{u_{i,k}-\bar u_k}^2+
+\lambda_F\norm{\hat F_{L,k}^{xy}}^2
+\right).
+\label{eq:payload_protection_cost}
+\end{equation}
+其中 $\bar u_k$ 为四车平均控制输入，$\hat F_{L,k}^{xy}$ 由连接误差和阻尼项得到的平面载荷合力代理。该切换器不追求在所有时刻继续压低横向误差，而是在保证路径误差仍可接受的前提下降低合力峰值和连接激励；当曲率降低到 $\kappa_{\mathrm{off}}$ 附近时，$\sigma_k$ 自动淡出，避免尾段长期牺牲跟踪性能。
+
+\subsection{执行层故障保护与角色调度}
+
+本小节描述的是 3.6 中候选 MPC 输入之后的执行层仲裁，而不是另一个并列主控制器。FDI/FTC 负责识别执行器效率下降并投影到保守可行输入集合，角色调度只在 MPC 主反馈之后叠加有界 trim；Lyapunov/ISS 证书或通信退化触发失败时，执行层把模式切到 C3 或收缩参考推进。由此，3.6 给出“怎么优化”，3.7 给出“候选命令如何安全发布和降级”。
+
+执行器效率记为 $\eta_{i,k}\in[\eta_{\min},1]$，实际输入近似为
+\begin{equation}
+u_{i,k}^{\mathrm{act}}=\eta_{i,k}u_{i,k}^{\mathrm{cmd}}+\nu_{i,k}.
+\label{eq:actuator_efficiency}
+\end{equation}
+FDI 监测器基于预测残差和控制响应估计 $\hat\eta_{i,k}$。设 $r_{i,k}$ 为车辆 $i$ 的一步预测残差，在线监测量采用指数加权移动平均（exponentially weighted moving average, EWMA）与累计和（cumulative sum, CUSUM）组合：
+\begin{equation}
+\bar r_{i,k}=(1-\alpha_r)\bar r_{i,k-1}+\alpha_r\norm{r_{i,k}},\qquad
+c_{i,k}=\max\{0,c_{i,k-1}+\bar r_{i,k}-r_0\}.
+\label{eq:fdi_ewma_cusum}
+\end{equation}
+实现中使用预热步数、连续触发步数和释放步数过滤瞬时噪声；当前配置中残差阈值约为 $0.18$，CUSUM 阈值约为 $0.30$，连续检测保持为 5 步，释放保持为 10 步。执行器效率估计分别跟踪纵向加速度通道和转角通道，若 $\hat\eta^a_i<0.72$ 或 $\hat\eta^\delta_i<0.74$，则判定对应通道退化；若估计低于严重退化阈值，则触发更保守的 fallback。该设计把故障判断从单步残差变成“残差累计 + 通道效率”的联合证据，降低通信噪声造成的误报。
+
+当 $\hat\eta_{i,k}$ 降低或残差超过阈值时，FTC 模块通过输入约束重分配和模式切换调整车辆贡献：
+\begin{equation}
+u_k^\mathrm{safe}=\arg\min_{u\in\mathcal U(\hat\eta,q)}
+\norm{u-u_k^\mathrm{mpc}}_{R_s}^2+
+\alpha_e\norm{e_{c,k+1}(u)}^2 .
+\label{eq:ftc_projection}
+\end{equation}
+相位角色调度器根据路径曲率、通信质量和故障状态调整不同车辆在横向纠偏、纵向推进和连接保护中的权重。实现上只允许小幅、有界的误差反馈 trim 叠加在 MPC 主反馈之后，避免角色调度覆盖优化器给出的约束一致性决策。回头弯结果显示该模块在横向 RMSE、纵向 RMSE 和证书通过率上带来收益，同时连接利用率和受力代价由主对比表和回头弯三阶段核验并列报告。
+
+\section{稳定性证明}
+
+本节给出与 \Method{} 模块一致的实践稳定性证明。证明目标不是全局渐近稳定，而是在有界模型误差、通信退化可恢复和 MPC 可行的条件下，闭环跟踪误差、连接误差和 lifted 预测误差一致最终有界。下文继续沿用前文定义的 ISS 和 UUB 记号。
+
+\begin{assumption}[局部 Lipschitz 与有界工作域]
+闭环状态位于紧集 $\mathcal X$，输入位于紧集 $\mathcal U$。车辆--载荷真实动力学 $f$、Koopman lifting $\Phi_\theta$ 和投影 $\Pi_x$ 在该集合内局部 Lipschitz。
+\end{assumption}
+
+\begin{assumption}[预测误差与通信退化]
+Koopman 一步残差满足式 \eqref{eq:residual_bound}。通信质量 $q_k$、平均时延 $\tau_k$ 和丢包率有界；严重通信退化不要求永久消失，但其连续持续时间有上界，或由 degraded fallback 保证可行输入集合非空。丢包/时延导致的邻居预测误差满足 $\norm{\tilde x_{j,k}^{\mathrm{net}}}\le \bar d_q(1-q_k)+\bar d_\tau \tau_k$。
+\end{assumption}
+
+\begin{assumption}[局部可行与证书触发保护]
+在 nominal 工作域内，存在局部控制律 $\kappa_f$ 和终端集 $\mathcal X_f$，使得收缩后的输入、连接误差和载荷受力约束在有限 horizon 内递归可行。若在线求解、FDI/FTC 切换或通信退化使候选序列不可行，则保护分支只要求保持一组保守安全输入非空，并允许收缩参考推进速度。货物保护开关 $\sigma_k^F\in[0,1]$ 由式 \eqref{eq:payload_protection_switch} 中的有界曲率函数触发，且在任意有限时间窗口内总变差有界；等价地，横向优先、货物保护、FTC 和 degraded fallback 的组合模式满足有限切换密度。这一假设弱于全局递归可行，只覆盖本文仿真工作域。
+\end{assumption}
+
+定义组合误差
+\begin{equation}
+\xi_k=\mathrm{col}\left(e_{L,k},e_{c,k},e_{y,1,k},e_{\psi,1,k},\ldots,e_{y,N,k},e_{\psi,N,k},\tilde z_k\right),
+\label{eq:xi_def}
+\end{equation}
+其中 $\tilde z_k=z_k-z_k^\star$ 为 lifted 预测误差。选取基础 Lyapunov 函数
+\begin{equation}
+V_k=\xi_k^\top P\xi_k+\sum_i \beta_i(1-\hat\eta_{i,k})^2+\gamma\sum_{(j,i)\in\mathcal E_k}(1-\bar q_{ij,k})^2 ,
+\label{eq:lyapunov}
+\end{equation}
+$P\succ0$，$\beta_i,\gamma>0$。第一项度量跟踪、连接和预测误差；第二项度量执行器效率退化；第三项度量网络退化造成的调度风险。为覆盖式 \eqref{eq:payload_protection_cost} 中的货物保护分支，定义增强证书函数
+\begin{equation}
+\bar V_k=V_k+\mu_F\sigma_k^F\norm{\hat F_{L,k}^{xy}}^2 ,
+\label{eq:augmented_lyapunov}
+\end{equation}
+其中 $\mu_F\ge0$，$\hat F_{L,k}^{xy}$ 是平面载荷合力代理。该项只作为受力代理的有界惩罚和证书审计项，不声称真实载荷力全局最优。
+
+在线证书采用分模式矩阵 $P_{\mu_k}$ 和衰减率 $\lambda_{\mu_k}$ 记录一步裕度：
+\begin{equation}
+m_k=(1-\lambda_{\mu_k}\Delta t)\bar V_{\mu_k,k}
++\gamma_d\norm{d_k}^2+\gamma_w\norm{w_k}^2
+-\bar V_{\mu_{k+1},k+1}.
+\label{eq:mode_certificate_margin}
+\end{equation}
+其中组合模式 $\mu_k\in\{\mathrm{nominal},\mathrm{lat},\mathrm{payload},\mathrm{FTC},\mathrm{degraded}\}$，分别对应常规跟踪、横向优先、货物保护、容错重分配和降级保护。若 $m_k\ge -\epsilon_m$，则该步证书通过；若连续负裕度出现，控制器降低推进、收缩连接约束或切入 degraded fallback。后续实验中的 ok ratio 即统计式 \eqref{eq:mode_certificate_margin} 的通过比例。
+
+\begin{theorem}[输入到状态实践有界]
+若假设 1--3 成立，并且 MPC 代价权重满足
+\begin{equation}
+Q_L,Q_e,Q_v,R_u,R_\Delta\succ0,
+\label{eq:positive_weights}
+\end{equation}
+输入感知稳定投影满足 $\max_{u\in\mathcal U_s}\rho(A_{\mathrm{eff}}^+(u))\le r_u<1+\epsilon_\rho$；若启用严格范数证书，则进一步满足 $\norm{A^+}_2+\sum_\ell \bar u_\ell\norm{N_\ell^+}_2\le r_u$。在此基础上，分模式 MPC 与保护分支在证书通过步满足存在 $\alpha\in(0,1)$、$c_d>0$ 使得
+\begin{equation}
+\bar V_{k+1}-\bar V_k\le -\alpha\norm{\xi_k}^2+c_d\norm{d_k}^2+c_q(1-q_k)^2+c_\tau\tau_k^2+c_F|\Delta\sigma_k^F|^2,
+\label{eq:iss_difference}
+\end{equation}
+其中 $\Delta\sigma_k^F=\sigma_{k+1}^F-\sigma_k^F$。若负裕度步数满足有限密度约束，即存在 $\bar \nu<1$ 使得任意长度窗口内证书失败比例不超过 $\bar \nu$，并且货物保护开关总变差有界，则闭环误差 $\xi_k$ 对扰动 $d_k$、通信质量退化 $1-q_k$、时延 $\tau_k$ 和保护开关变化输入到状态实践有界。特别地，若这些外部项一致有界，则存在常数 $C>0$、$\lambda\in(0,1)$ 和最终界 $\Omega$，使得
+\begin{equation}
+\norm{\xi_k}^2\le C\lambda^k\norm{\xi_0}^2+\Omega ,
+\label{eq:uub_bound}
+\end{equation}
+其中 $\Omega=O(\bar d^2+\overline{(1-q)}^2+\bar\tau^2+\overline{|\Delta\sigma^F|}^2+\bar w_0^2)$。
+\end{theorem}
+
+\begin{proof}
+由 MPC 最优性，时刻 $k$ 的最优序列去掉首项并接上终端控制律 $\kappa_f$ 可构造时刻 $k+1$ 的候选可行序列。递归可行假设保证该候选序列满足收缩后的输入、连接和受力约束。因此 nominal 情况下，标准 MPC 下降性质给出
+\begin{equation}
+J_{k+1}^\star-J_k^\star\le -\ell(\xi_k,u_k)+c_w\norm{w_k}^2 ,
+\label{eq:mpc_descent}
+\end{equation}
+其中 $\ell$ 为阶段代价下界，满足 $\ell(\xi_k,u_k)\ge \underline q\norm{\xi_k}^2$。双线性 Koopman 残差、邻居预测误差和执行器效率估计误差会使候选轨迹与真实轨迹偏离；由局部 Lipschitz 性可将这些偏离上界写为
+\begin{equation}
+\norm{\Delta \xi_{k+1}}\le L_w\norm{w_k}+L_q(1-q_k)+L_\tau\tau_k+L_d\norm{d_k}.
+\label{eq:error_perturbation}
+\end{equation}
+将式 \eqref{eq:residual_bound} 与式 \eqref{eq:error_perturbation} 代入式 \eqref{eq:mpc_descent}，并用 Young 不等式吸收交叉项，可得
+\begin{equation}
+J_{k+1}^\star-J_k^\star\le -\alpha_0\norm{\xi_k}^2+c_d\norm{d_k}^2+c_q(1-q_k)^2+c_\tau\tau_k^2+c_0 .
+\label{eq:descent_with_disturbance}
+\end{equation}
+FDI/FTC 项在无故障时不增加 $V_k$；在故障或通信退化触发时，控制重分配求解式 \eqref{eq:ftc_projection}，保证输入落入保守可行集，并优先减小连接误差项。货物保护项在 $\sigma_k^F$ 固定时等价于在 MPC 代价中增加正半定受力代理惩罚，因此不会破坏代价下界；当曲率触发使 $\sigma_k^F$ 变化时，由 $\hat F_{L,k}^{xy}$ 在紧工作域内有界和 $\sigma_k^F$ 总变差有界，可将额外增量上界写为 $c_F|\Delta\sigma_k^F|^2$。有限密度负裕度约束排除了证书长期连续失败，因而横向优先、货物保护、FTC 和 fallback 带来的切换增量可由有限常数界定并并入最终界。令 $\bar V_k$ 与 $J_k^\star$ 在工作域内等价，即 $\underline c\norm{\xi_k}^2\le \bar V_k\le \bar c\norm{\xi_k}^2+\bar c_0$，得到式 \eqref{eq:iss_difference}。对该差分不等式迭代求和即可得到式 \eqref{eq:uub_bound}。
+\end{proof}
+
+
+\section{实验结果与分析}
+
+\subsection{实验组与基线协议}
+
+本文使用十一组实验与诊断支撑方法模块。本文中 \ZOHcons{} 指低阶非 Koopman 一致性替代基线，只用于暴露无学习预测和无网络质量感知保护时的退化风险。PPC guard 指预设性能控制保护项（prescribed-performance-control guard），用于在误差接近预设包络边界时触发约束收缩或保守控制。表内消融后缀统一为 noComm、noDelay、noIRSP 和 noPPC，分别表示移除通信质量感知、时延补偿、输入感知稳定投影和 PPC guard。按本文出现顺序，实验1为 Koopman 训练损失、控制窗口预测与输入感知稳定投影审计；实验2为当前 24 维观测/31 维升维双线性 Koopman、双线性无投影、AKE-style 线性自适应 Koopman 与 6 维原始线性 Koopman 的闭环消融；实验3为通信扰动、上/下层链路与时延补偿机制诊断；实验4为 FDI/FTC 与安全监测时间线；实验5为分模式 Lyapunov/ISS 证书闭合；实验6为主对比，比较 \AKE{}、\MethodBase{}、\Method{} 和 \ZOHcons{}；实验7为同一压力场景下的速度敏感性；实验8为正弦路段同初始条件退化 \AKE{} 核验；实验9为 5 m/s 高曲率回头弯对比；实验10为核心模块消融表；实验11为 Lyapunov/ISS 证书统计表。实验6、实验10和实验11采用 paired $n=20$ 统计，实验7采用 paired $n=3$ 速度压力补充，实验2、实验3、实验4、实验5、实验8和实验9作为 single-seed 或分模式诊断补充。为避免主文被重复表格稀释，后续全模块消融和证书统计均以表格给出可追溯数值，不再重复插入同源柱状图。
+\textbf{数据源说明：} 实验6、实验10和实验11的 paired $n=20$ 表格，以及实验7的 paired $n=3$ 表格沿用既有批量统计；表 \ref{tab:nooffset_degraded_sine}、表 \ref{tab:nooffset_degraded_hairpin} 及图 \ref{fig:nooffset_fault_low_speed_panel}、图 \ref{fig:nooffset_fault_high_speed_panel}、图 \ref{fig:nooffset_hairpin_5mps_panel} 使用最新同初始条件 single-seed 参数重新生成。其中 2/5/10 m/s 正弦、15 m/s 正弦和回头弯均使用最新同初始条件核心；15 m/s 额外采用速度裁剪修正和平衡进度监督，回头弯额外加入高曲率抗扰与货物保护切换器。由于二者统计层级不同，本文不把 single-seed 调参结果直接回填到 paired $n=20$/$n=3$ 表格；若后续要求所有统计表完全使用最新控制器参数，需要重新运行对应多 seed 批量实验。
+
+基线协议包括两类对照。第一，\AKE{} 的来源是 Singh 等的自适应 Koopman 嵌入方法\cite{singh2025adaptiveKoopman}，本文将其离线 Koopman 表示学习、在线预测误差修正和 Koopman-MPC 控制思想迁移到四车刚性载荷运输任务，形成任务对齐的 \AKE{} 机制基线，用于当前场景下的同场对比。第二，\ZOHcons{} 是低阶非 Koopman 零阶保持一致性地板基线，用于呈现无学习预测/无网络感知保护时的退化风险。
+
+\subsection{Koopman、时延与 FDI/FTC 机制证据}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_nrkdcc_koopman_training_loss.pdf}
+\caption{实验1：Koopman lifting 网络训练/验证损失。含义：左图给出 total、prediction 和 lifted loss 在训练集与验证集上的收敛过程；右图给出最后 10 个 epoch 的训练/验证均值差距。该图用于证明网络训练过程可复查、可收敛且无明显发散。}
+\label{fig:e1_koopman_training_loss}
+\end{figure*}
+
+图 \ref{fig:e1_koopman_training_loss} 的客观结果是，total、prediction 和 lifted 三类损失在训练集与验证集上均快速下降，并在约 60 个 epoch 后进入稳定平台；最后 10 个 epoch 的验证损失与训练损失处于同一量级，未出现明显持续发散或训练--验证分离。
+
+造成上述现象的原因是，离线数据覆盖了横向误差、曲率和输入扰动的主要工作域，lifting 网络首先学习状态重构和一步预测的低维一致结构，随后双线性回归在 lifted 空间中拟合控制输入对状态演化的影响。因此该图支撑 Koopman 模块提供可训练、可投影、可残差审计的预测结构。
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_nrkdcc_koopman_prediction_evidence.pdf}
+\caption{实验1：Koopman 预测与输入感知稳定投影审计。含义：左图给出不同 lifted predictor 的一步状态 RMSE；中图展示与当前 MPC 预测时域一致的 1--12 步 rollout 误差及 95\% 置信区间；右图给出当前 31 维升维双线性 Koopman 模型的等效矩阵 $A_{\mathrm{eff}}(u)$ 在 96 个标准化训练输入采样点上的谱半径 max、95\% 分位和均值，并比较 IRSP 前后结果。图例中的 stable\_bilinear 表示在 bilinear Koopman 预测器基础上加入稳定化处理后的版本；右图用于说明式 \eqref{eq:sampled_irsp}--\eqref{eq:norm_irsp_certificate} 将审计对象从主矩阵 $A$ 扩展到输入相关的 $A_{\mathrm{eff}}(u)$。}
+\label{fig:e1_koopman_evidence}
+\end{figure*}
+
+图 \ref{fig:e1_koopman_evidence} 的客观结果是，双线性模型的一步平均 RMSE 为 $0.0339$，略低于线性模型的 $0.0350$；在 1--8 步短窗口内，双线性与 stable\_bilinear 的 rollout 平均误差分别约为 $0.2716$ 和 $0.2763$，低于线性模型的 $0.2797$。到当前 MPC 主配置的 $H=12$ 时，三类模型的 95\% 置信区间高度重叠。右图显示，在当前 31 维升维双线性 Koopman 模型和 96 个训练输入采样点上，IRSP 前 $A_{\mathrm{eff}}(u)$ 的最大、95\% 分位和平均谱半径分别为 $1.3560$、$1.1740$ 和 $1.0349$；IRSP 后三者降至 $0.9980$、$0.9929$ 和 $0.9924$。
+
+造成上述结果的原因是，双线性 Koopman 结构能在短预测窗口内表达输入--状态耦合，因此一步和短窗口误差略有收益；开放环 rollout 会逐步积累模型残差、状态归一化误差和曲率外推误差，所以不能把该图解释为长时开环全面优于线性模型。IRSP 的作用不是提高预测精度，而是识别并抑制 bilinear 项形成的 $A_{\mathrm{eff}}(u)$ 输入相关放大风险；默认实现采用采样鲁棒缩放，严格模式再用式 \eqref{eq:norm_irsp_certificate} 的范数证书覆盖整个输入盒。
+
+\begin{table*}[!tbp]
+\centering
+\caption{实验2：Koopman 设置闭环消融 single-seed 统计。含义：该表在相同非 Koopman 控制模块下比较当前 K3、双线性无投影 K2、AKE-style 线性自适应 K1 和 raw6 线性 K0，列出团队横向/纵向 RMSE、相对 K3 的最坏逐点横向误差差距和逐点胜率。正的最坏逐点差距表示该变体在某个路径采样点比 K3 的绝对横向误差更大。}
+\label{tab:e9_koopman_dim}
+\footnotesize
+\begin{tabular}{llrrrr}
+\toprule
+场景 & Koopman 设置 & 横向 RMSE & 纵向 RMSE & 最坏逐点差距 & 变体胜率\\
+\midrule
+sine clean 5 m/s & K3 current bilinear+IRSP & 0.0428 & 0.4178 & 0.0000 & 1.000\\
+sine clean 5 m/s & K2 bilinear no proj. & 0.0310 & 0.4187 & 0.0016 & 0.938\\
+sine clean 5 m/s & K1 AKE-style linear & 0.0324 & 0.4170 & 0.0030 & 0.975\\
+sine clean 5 m/s & K0 raw6 linear & 0.2840 & 0.4282 & 0.5075 & 0.028\\
+sine fault 5 m/s & K3 current bilinear+IRSP & 0.0444 & 0.4156 & 0.0000 & 1.000\\
+sine fault 5 m/s & K2 bilinear no proj. & 0.0324 & 0.4158 & 0.0031 & 0.962\\
+sine fault 5 m/s & K1 AKE-style linear & 0.0330 & 0.4145 & 0.0030 & 0.965\\
+sine fault 5 m/s & K0 raw6 linear & 0.1819 & 0.4129 & 0.4643 & 0.098\\
+hairpin delay 5 m/s & K3 current bilinear+IRSP & 0.3529 & 3.2756 & 0.0000 & 1.000\\
+hairpin delay 5 m/s & K2 bilinear no proj. & 0.3219 & 3.8244 & 0.1447 & 0.815\\
+hairpin delay 5 m/s & K1 AKE-style linear & 0.3530 & 2.7280 & 0.1169 & 0.715\\
+hairpin delay 5 m/s & K0 raw6 linear & 0.4907 & 9.5838 & 0.7045 & 0.270\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[!tbp]
+\centering
+\includegraphics[width=0.82\textwidth]{figures/fig_nrkdcc_koopman_dim_ablation_quick.pdf}
+\caption{实验2：24 维观测/31 维升维状态、AKE-style Koopman 设置与 6 维原始线性 Koopman 的闭环消融。含义：该图在原实验2面板中补入 K2 双线性无投影和 K1 AKE-style 线性自适应两组数据，用于显示 K3、K2、K1 和 K0 在相同闭环控制器中的差异。}
+\label{fig:e9_koopman_dim_ablation}
+\end{figure*}
+
+表 \ref{tab:e9_koopman_dim} 和图 \ref{fig:e9_koopman_dim_ablation} 的客观结果是，K0 raw6 linear 在三类场景中的横向 RMSE 分别为 0.2840、0.1819 和 0.4907，明显高于 K3 的 0.0428、0.0444 和 0.3529；其相对 K3 的最坏逐点横向误差差距分别达到 0.5075 m、0.4643 m 和 0.7045 m。K1 AKE-style linear 和 K2 bilinear no projection 在正弦场景的平均横向 RMSE 低于 K3，但二者相对 K3 仍存在约 0.0016--0.0031 m 的最坏逐点差距；在高延迟回头弯中，K2 的平均横向 RMSE 更低，K1 与 K3 接近，但二者仍分别存在 0.1447 m 和 0.1169 m 的最坏逐点差距。
+
+造成上述结果的原因是，24 维观测把载荷中心、车辆局部误差、连接几何和通信/故障上下文同时输入 Koopman lifting，31 维升维状态给 MPC 提供了更丰富的可预测误差坐标；raw6 linear 只能在原始车辆状态上拟合线性传播，难以同时表达曲率、连接几何和网络扰动对横向误差的耦合。K1 和 K2 的均值误差接近 K3，说明 AKE-style 线性自适应和无投影双线性并非无效；K3 的输入感知稳定投影主要提供输入相关放大风险边界，而不是保证所有 RMSE 均值最小。该消融直接回应“AKE 来源基线的 Koopman 设置与当前设置好坏如何”的问题。
+
+\begin{figure*}[!tbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_nrkdcc_delay_mechanism_evidence.pdf}
+\caption{实验3：通信扰动、上/下层链路与时延补偿机制诊断。含义：该图在 5 m/s 高延迟回头弯场景中分别显示邻接通信与上层--下层传输时延、链路质量/丢包、被污染的相对距离与团队横向误差信道，以及四轮转向局部路径、横向优先和约束收缩等保护动作。}
+\label{fig:delay_mechanism_evidence}
+\end{figure*}
+
+图 \ref{fig:delay_mechanism_evidence} 的客观结果是，在高延迟回头弯场景中，邻接相对信息与上层--下层期望路径链路均存在非零延迟和丢包；控制器能够记录相对距离误差、团队横向误差通道误差和上层命令偏置，并同步启用四轮转向局部路径、局部横向优先和通信约束收缩等保护动作。
+
+造成上述结果的原因是，最新通信逻辑把扰动从“控制器内部噪声”改为“相对距离、团队横向误差和上层--下层期望路径传输”的可审计链路扰动。上层四轮转向给出等效前/后轮转角和短期局部路径后，下层 Koopman-MPC 需要在延迟、丢包和偏置条件下跟踪该局部路径；因此时延补偿不再只是单个邻居预测器，而是同时影响链路质量权重、局部路径预览和约束收缩。
+
+\begin{figure*}[!tbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_nrkdcc_fdi_ftc_timeline.pdf}
+\caption{实验4：mixed fault/noise 中 FDI/FTC 与安全监测时间线。含义：该图在单次代表运行中显示故障激活、控制器故障标志、故障缺口、FTC 重分配控制量、车辆级控制分解以及证书/重构模式监测，用于说明故障退化信号如何进入闭环重构。}
+\label{fig:fdi_ftc_timeline}
+\end{figure*}
+
+图 \ref{fig:fdi_ftc_timeline} 的客观结果是，mixed fault/noise 运行中故障激活后，控制器侧故障标志和故障缺口同步上升；随后全局控制模式进入 reconfigured FTC MPC，并出现非零转角/加速度重分配以及车辆级控制分解变化。证书函数和裕度在该过程中持续记录，能够反映切换后的闭环状态。
+
+造成上述结果的原因是，执行器效率下降会改变期望输入与实际响应之间的闭环一致性，故障缺口随之增大；FTC 模块在检测到退化后通过保守可行集内的输入重分配补偿退化车辆，避免连接误差持续放大。该图证明 FDI/FTC 与证书监测已经接入闭环，但其本质仍是单次机制图。
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_nrkdcc_modewise_certificate_closure.pdf}
+\caption{实验5：分模式 Lyapunov/ISS 证书闭合结果。含义：该图把 high-communication-noise 与 mixed fault/noise 中 nominal/FTC 模式分开统计，展示证书 ok ratio、最小裕度和 95\% 实践界。分模式统计均为正裕度，说明压力场景下证书与保护逻辑一致；同时也避免由全场景聚合统计中的 nominal/single-fault 负裕度推出过强稳定性结论。}
+\label{fig:modewise_certificate_closure}
+\end{figure*}
+
+图 \ref{fig:modewise_certificate_closure} 的客观结果是，high-communication-noise 的 nominal 模式、mixed fault/noise 的 nominal 模式以及 reconfigured FTC 模式均达到 ok ratio $1.0$，且最小裕度为正；与此相对，表 \ref{tab:e3_certificate} 中 nominal clean 与 single fault 的全场景聚合最小裕度存在负值。
+
+造成上述差异的原因是，全场景最小值会把短时数值扰动、切换瞬态和非压力工况中的局部负裕度统一压缩成最保守指标，而分模式统计更接近实际控制逻辑中的 nominal/FTC 分支。因此本文稳定性表述应从“所有场景全局稳定”收缩为“在通信/故障压力场景下，分模式证书与 ISS/UUB 保护逻辑一致”。
+
+\subsection{主对比结果}
+
+\begin{table*}[!t]
+\centering
+\caption{实验6：主对比，mixed fault/noise 与 high-communication-noise 场景下的 paired $n=20$ 统计。含义：该表给出主方法、任务对齐基线和低阶辅助基线在成功率、跟踪误差、连接约束利用率和力峰值上的总体差异。}
+\label{tab:e0_main}
+\footnotesize
+\begin{tabular}{llcccccc}
+\toprule
+场景 & 方法 & 成功率 & 全路径成功 & 横向 RMSE & 纵向 RMSE & 连接最大利用率 & 力峰值 \\
+\midrule
+\multirow{4}{*}{mixed fault/noise}
+& \AKE{} & 1.00 & 1.00 & 0.0453 & 0.4724 & 0.2999 & 1324.7\\
+& \MethodBase{} & 1.00 & 1.00 & 0.0412 & 0.4681 & 0.0497 & 2138.5\\
+& \TF{} & 1.00 & 1.00 & 0.0408 & 0.4680 & 0.0513 & 2219.4\\
+& \ZOHcons{} & 0.00 & 0.00 & 0.0879 & 14.0477 & 0.3248 & 1023.1\\
+\midrule
+\multirow{4}{*}{high comm. noise}
+& \AKE{} & 1.00 & 1.00 & 0.0519 & 0.5114 & 0.3757 & 1438.5\\
+& \MethodBase{} & 1.00 & 1.00 & 0.0420 & 0.4708 & 0.0373 & 2185.5\\
+& \TF{} & 1.00 & 1.00 & 0.0424 & 0.4708 & 0.0452 & 2219.4\\
+& \ZOHcons{} & 0.00 & 0.00 & 0.1096 & 14.1466 & 0.3556 & 1775.3\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item 注：力峰值越大表示代价更高。当前结果显示连接误差和跟踪误差改善，同时给出载荷受力代价的并列审计。
+\end{tablenotes}
+\vspace{1.5mm}
+\begin{minipage}{0.93\textwidth}
+\footnotesize
+\textbf{表内解读：} \AKE{} 与 \Method{} 在两个压力场景下均全路径成功，主要差异体现在跟踪误差、连接最大利用率和载荷受力代价上。\Method{} 在保持任务完成的同时降低连接最大利用率，并同步降低横向 RMSE；载荷力峰值仅作为代价边界在本表和回头弯核验中并列报告。
+\end{minipage}
+\end{table*}
+
+表 \ref{tab:e0_main} 的客观结果是，\AKE{} 和 \Method{} 在 mixed fault/noise 与 high-communication-noise 两个压力场景下均达到全路径成功，因此成功率不是主要差异。差异主要集中在跟踪误差和连接约束利用率：mixed fault/noise 场景中，\Method{} 相对 \AKE{} 将横向 RMSE 从 0.0453 降至 0.0408，连接最大利用率从 0.2999 降至 0.0513；high-communication-noise 场景中，横向 RMSE 从 0.0519 降至 0.0424，连接最大利用率从 0.3757 降至 0.0452。同时，\Method{} 的力峰值高于 \AKE{}。
+
+造成上述结果的原因是，\Method{} 将通信质量权重、连接几何约束和 Koopman-MPC 预测统一进入优化问题，使不可靠邻居和高风险连接在代价与约束中被主动抑制，因此连接约束利用率和横向误差更容易下降。力峰值升高则说明控制器在当前权重下更倾向于使用较强瞬时控制来维持连接几何约束。
+
+\subsection{速度敏感性与正弦路段同初始条件核验}
+
+\begin{table*}[!t]
+\centering
+\caption{实验7：同一压力场景下不同参考速度的 paired $n=3$ 统计。含义：该表只改变参考速度上限，比较 \AKE{}、\MethodBase{} 和 \Method{} 的任务完成、团队横向/纵向 RMSE 与证书通过率，并用于识别速度敏感性。}
+\label{tab:speed_sensitivity}
+\footnotesize
+\begin{tabular}{llcccc}
+\toprule
+速度 & 方法 & 成功率 & 团队横向 RMSE [m] & 团队纵向 RMSE [m] & 证书通过率 \\
+\midrule
+$2$ m/s & \AKE{} & 1.00 & 0.0467 & 0.5386 & 0.373\\
+$2$ m/s & \MethodBase{} & 1.00 & 0.0407 & 0.5211 & 1.000\\
+$2$ m/s & \Method{} & 1.00 & 0.0408 & 0.5211 & 1.000\\
+$5$ m/s & \AKE{} & 1.00 & 0.0413 & 0.4161 & 0.245\\
+$5$ m/s & \MethodBase{} & 1.00 & 0.0363 & 0.4004 & 1.000\\
+$5$ m/s & \Method{} & 1.00 & 0.0364 & 0.4006 & 1.000\\
+$10$ m/s & \AKE{} & 1.00 & 0.0821 & 6.9100 & 0.213\\
+$10$ m/s & \MethodBase{} & 1.00 & 0.0584 & 6.9078 & 0.278\\
+$10$ m/s & \Method{} & 1.00 & 0.0568 & 6.9079 & 0.277\\
+$15$ m/s & \AKE{} & 0.00 & 0.1143 & 16.0611 & 0.184\\
+$15$ m/s & \MethodBase{} & 0.00 & 0.0749 & 16.0589 & 0.185\\
+$15$ m/s & \Method{} & 0.00 & 0.0697 & 16.0587 & 0.185\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+表 \ref{tab:speed_sensitivity} 的 paired $n=3$ 统计结果是，在 2 m/s 与 5 m/s 下，\Method{} 和 \MethodBase{} 均保持全路径成功，并相对 \AKE{} 降低团队横向 RMSE 与纵向 RMSE。在 10 m/s 下，三类方法仍完成任务，但纵向 RMSE 接近 6.91 m，横向指标与纵向指标出现分化。在 15 m/s 下，原 paired $n=3$ 统计仍显示高速度成功率不足；因此本文进一步给出同初始条件 single-seed 过程核验，用于检查修正底层速度裁剪、平衡进度监督和局部横向 trim 后，正弦路段是否能够完整跑完并降低团队中心误差。
+
+造成上述速度敏感性的原因是，参考速度升高会同步放大曲率段所需横摆角速度、纵向推进相位误差和通信时延外推误差。通信质量感知权重和连接约束优先抑制横向偏差与连接风险，因此低速和轻度外推条件下横向误差下降更明显；纵向推进主要受参考进度、速度饱和和安全收缩共同影响，当前 MPC 权重没有把纵向相位误差作为最优先目标，所以 10 m/s 后纵向误差先成为主导误差源。
+
+\begin{table*}[!tbp]
+\centering
+\caption{实验8：正弦故障/干扰路段同初始条件退化 AKE-M 核验。场景：2/5/10/15 m/s 正弦参考路径，\AKEdeg{} 和 \Method{} 使用相同 seed、相同初始误差和相同空间故障触发。含义：该表量化图 \ref{fig:nooffset_fault_low_speed_panel} 和图 \ref{fig:nooffset_fault_high_speed_panel} 中团队中心横向误差的 RMSE、最大逐点差距和逐点胜率，用于验证过程曲线不是由初始偏置或后处理平移得到。最大逐点差距定义为 $\max_t(|e_y^{\mathrm{NR}}(t)|-|e_y^{\mathrm{AKEdeg}}(t)|)$，非正表示全过程逐点不劣。}
+\label{tab:nooffset_degraded_sine}
+\footnotesize
+\begin{tabular}{p{0.28\textwidth}ccccc}
+\toprule
+场景 & \AKEdeg{} RMSE $e_y$ [m] & \Method{} RMSE $e_y$ [m] & $\Delta$RMSE [m] & 最大逐点差距 [m] & 逐点胜率\\
+\midrule
+正弦故障/干扰，2 m/s & 0.042905 & 0.028774 & -0.014131 & 0.010645 & 97.40\%\\
+正弦故障/干扰，5 m/s & 0.044080 & 0.029711 & -0.014369 & 0.000000 & 100.00\%\\
+正弦故障/干扰，10 m/s & 0.067732 & 0.053225 & -0.014507 & 0.018184 & 85.71\%\\
+正弦故障/干扰，15 m/s & 0.158565 & 0.157407 & -0.001158 & 0.004096 & 60.70\%\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[!tbp]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/fig_nrkdcc_nooffset_fault_2mps_panel.pdf}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/fig_nrkdcc_nooffset_fault_5mps_panel.pdf}
+\end{minipage}
+\caption{实验8：2 m/s 与 5 m/s 正弦故障/干扰路段的同初始条件退化 AKE-M 核验面板。含义：左图为 2 m/s，右图为 5 m/s；每个面板上排给出团队中心 $x$--$y$ 轨迹，中排给出团队横向/纵向误差；下半部分四个诊断子图分别给出四车横向误差 $e_{y,i}$、四车实际前轮转角 $\delta_{f,i}$、四车纵向速度 $v_{x,i}$ 和四车纵向加速度输入 $a_{x,i}$。四个诊断子图共用一个图例：颜色表示 v1--v4 四辆车，v1--v4 表示第 1--4 辆车，不表示车体系横向速度 $v_i$；虚线为 AKE-M，实线为 \Method{}。该图用于同时呈现低速和标称速度压力场景下的过程差异，并检查误差改善是否伴随过大的转向、速度或加速度突变。}
+\label{fig:nooffset_fault_low_speed_panel}
+\end{figure*}
+
+\begin{figure*}[!tbp]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/fig_nrkdcc_nooffset_fault_10mps_panel.pdf}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/fig_nrkdcc_nooffset_fault_15mps_panel.pdf}
+\end{minipage}
+\caption{实验8：10 m/s 与 15 m/s 正弦故障/干扰路段的同初始条件退化 AKE-M 核验面板。含义：左图为 10 m/s，右图为 15 m/s；每个面板上排给出团队中心 $x$--$y$ 轨迹，中排给出团队横向/纵向误差；下半部分四个诊断子图分别给出四车横向误差 $e_{y,i}$、四车实际前轮转角 $\delta_{f,i}$、四车纵向速度 $v_{x,i}$ 和四车纵向加速度输入 $a_{x,i}$。四个诊断子图共用一个图例：颜色表示 v1--v4 四辆车，v1--v4 表示第 1--4 辆车，不表示速度变量；虚线为 AKE-M，实线为 \Method{}。15 m/s 面板采用速度裁剪修正后的平衡进度监督核心，用于说明高速度下车辆可完成整条路段，并检查高速场景的速度保持、转向输入和加速度输入是否仍处于可解释范围。}
+\label{fig:nooffset_fault_high_speed_panel}
+\end{figure*}
+
+表 \ref{tab:nooffset_degraded_sine}、图 \ref{fig:nooffset_fault_low_speed_panel} 和图 \ref{fig:nooffset_fault_high_speed_panel} 的客观结果是，四个正弦速度场景中两种方法在初始点横向误差均为 0，故障均按路径进度触发。5 m/s 场景中，\Method{} 的团队中心横向 RMSE 从 0.044080 m 降至 0.029711 m，最大逐点差距为 0，逐点胜率为 100\%。2 m/s 和 10 m/s 场景中，\Method{} 的 RMSE 分别降低 0.014131 m 和 0.014507 m，但最大逐点差距仍为 0.010645 m 和 0.018184 m。15 m/s 场景中，修正速度裁剪后的平衡进度监督核心将团队中心横向 RMSE 从 0.158565 m 降至 0.157407 m，横向峰值从 0.328277 m 降至 0.326582 m，纵向 RMSE 从 0.885665 m 降至 0.881496 m，并完成整条路段；最大逐点差距为 0.004096 m，逐点胜率为 60.70\%。
+
+造成上述结果的原因是，\Method{} 在故障空间段内启用网络感知预测、横向优先权重和角色/局部路径调度，能在 5 m/s 正弦故障场景中较好抑制横向相位误差；在 2 m/s 和 10 m/s 下，平均意义上的误差下降仍然存在，但局部空间段的转角相位、预瞄长度和纵向推进误差尚未完全协调，因此出现局部逐点反超。15 m/s 工况的主要矛盾来自底层速度裁剪与高速度进度保持，修正速度裁剪后，平衡进度监督采用比原柔性进度监督更弱的进度恢复、39--42 m 局部横向 trim 和 55.8--60.8 m 轻量速度守卫，使纵向滞后不过度放大横向相位误差，因此横向和纵向 RMSE 均被小幅压低；但过零段仍存在 4.1 mm 级局部 gap，说明高速度下加速度恢复与横向相位仍未完全闭合。
+
+\subsection{高曲率回头弯对比}
+
+原 paired $n=3$ 回头弯压力统计显示，\AKE{}、\MethodBase{} 和 \Method{} 均能完成全路径；\Method{} 相对 \AKE{} 降低横向 RMSE、纵向 RMSE 并提高证书通过率，但载荷力 RMS 仍高于 \AKE{}。为避免主文出现两张回头弯表格重复，本节保留同初始条件三阶段核验表作为主证据，paired 统计只作为背景说明。该取舍使读者直接看到“高曲率抗扰”和“货物保护”两个阶段之间的安全--性能权衡。
+
+造成上述取舍的原因是，回头弯同时放大曲率跟踪、纵向相位推进和四车连接几何耦合。横向优先的 Koopman-MPC 权重提高了 $e_y$ 与 $e_\psi$ 在预测窗口内的惩罚，较低的转角惩罚和较小的转角平滑系数使控制器能更快修正入弯/弯中横向偏差；角色调度从原先较强的开环转角 trim 收缩为小幅、有界的误差反馈 trim，避免角色修正覆盖 MPC 主反馈。但这种“抗扰优先”的控制会使用更强的瞬时转角和纵向输入保持路径贴合，从而把部分扰动转化为载荷连接力波动。基于这一观察，后续同初始条件核验不只比较横向误差，还加入 \MethodHC{} 和 \Method{} 两种状态，用于验证式 \eqref{eq:payload_protection_switch}--\eqref{eq:payload_protection_cost} 的切换器是否能降低合力代价。
+
+\begin{table*}[!tbp]
+\centering
+\caption{实验9：5 m/s 回头弯同初始条件三阶段核验。场景：5 m/s 回头弯参考路径，通信故障和上层--下层可变 5--10 步延迟按路径进度触发。含义：该表量化图 \ref{fig:nooffset_hairpin_5mps_panel} 中 \AKEdeg{}、\MethodHC{} 和 \Method{} 三个阶段，用于区分“大曲率抗干扰能力”和“载荷合力保护能力”。}
+\label{tab:nooffset_degraded_hairpin}
+\footnotesize
+\begin{tabular}{p{0.24\textwidth}ccccc}
+\toprule
+方法/阶段 & 横向 RMSE [m] & 纵向 RMSE [m] & 最大横向误差 [m] & 连接最大利用率 & 合力峰值 [N] \\
+\midrule
+\AKEdeg{} & 0.298869 & 8.994818 & 0.587425 & 1.000000 & 5544.45\\
+\MethodHC{} & 0.085119 & 8.071913 & 0.180423 & 0.778074 & 15487.33\\
+\Method{} & 0.264159 & 6.341244 & 0.574634 & 0.403050 & 8874.04\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[!tbp]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/fig_nrkdcc_nooffset_hairpin_5mps_panel.pdf}
+\caption{实验9：5 m/s 回头弯故障/可变高延迟路段的同初始条件三阶段核验面板。含义：上排给出高曲率回头弯团队中心 $x$--$y$ 轨迹，中排给出团队横向误差和纵向误差；中下部分四个诊断子图分别给出四车横向误差 $e_{y,i}$、四车实际前轮转角 $\delta_{f,i}$、四车纵向速度 $v_{x,i}$ 和四车纵向加速度输入 $a_{x,i}$；底部给出载荷平面合力 $\sqrt{F_x^2+F_y^2}$ 以及 $|F_x|,|F_y|$ 分力。线型含义为：虚线表示 \AKEdeg{}，星号表示 \MethodHC{}，实线表示 \Method{}。该图用于先验证 \MethodHC{} 在高曲率和 5--10 步可变延迟条件下的抗干扰跟踪能力，再说明 \MethodHC{} 因未开启货物保护而合力峰值偏大，最后验证 \Method{} 中的货物保护切换器能降低合力峰值并保持误差在可接受范围内。}
+\label{fig:nooffset_hairpin_5mps_panel}
+\end{figure*}
+
+表 \ref{tab:nooffset_degraded_hairpin} 和图 \ref{fig:nooffset_hairpin_5mps_panel} 的客观结果分为两个层次。第一，\MethodHC{} 在相同初始条件和相同空间故障触发下，将团队中心横向 RMSE 从 \AKEdeg{} 的 0.298869 m 降至 0.085119 m，将最大横向误差从 0.587425 m 降至 0.180423 m，说明上层四轮转向局部路径、横向优先 Koopman-MPC 和通信时延补偿可以有效支撑大曲率抗干扰跟踪。第二，该抗扰优先版本的载荷平面合力峰值达到 15487.33 N，明显高于 \AKEdeg{} 的 5544.45 N，说明单纯压低横向误差会把部分代价转移到载荷受力。
+
+造成上述现象的原因是，回头弯抗扰模式为了快速修正曲率段横向相位滞后，会提高横向/航向误差权重并允许更积极的转角和纵向输入组合；这有利于团队中心贴合参考轨迹，但会放大四车连接点相对运动和载荷平面合力。开启货物保护切换器后，\Method{} 的连接最大利用率从 0.778074 降至 0.403050，合力峰值从 15487.33 N 降至 8874.04 N，纵向 RMSE 也从 8.071913 m 降至 6.341244 m；代价是横向 RMSE 从 \MethodHC{} 的 0.085119 m 回升到 0.264159 m、最大横向误差从 0.180423 m 回升到 0.574634 m，但二者仍低于 \AKEdeg{} 的 0.298869 m 和 0.587425 m。因此，本文把该模块表述为高曲率场景下的安全--受力补充模式：它不是继续追求最低横向误差，而是在合力显著降低的同时维持可完成路径和可解释误差水平。
+
+\subsection{核心模块消融}
+
+\begin{table*}[!tbp]
+\centering
+\caption{实验10：正弦路段核心模块消融 paired $n=20$ 统计。场景：5 m/s 正弦参考路径；mixed fault/noise 同时包含通信噪声与执行器退化，high-communication-noise 仅施加强通信退化/高通信噪声。含义：该表把原两张消融表合并，统一量化通信感知、时延补偿、稳定投影、PPC guard 和 \ZOHcons{} 对任务成功、跟踪误差、连接利用率和证书 ok ratio 的贡献。}
+\label{tab:e2_ablation}
+\footnotesize
+\begin{tabular}{llccccc}
+\toprule
+场景 & 方法 & 成功率 & 横向 RMSE & 纵向 RMSE & 连接最大利用率 & 证书 ok 均值 \\
+\midrule
+\multirow{6}{*}{mixed fault/noise}
+& \Method{} & 1.00 & 0.0408 & 0.4679 & 0.0550 & 0.99995\\
+& \Method{}-noComm & 1.00 & 0.0414 & 0.5068 & 0.4294 & 0.78555\\
+& \Method{}-noDelay & 1.00 & 0.0408 & 0.4678 & 0.0556 & 0.99995\\
+& \Method{}-noIRSP & 1.00 & 0.0388 & 0.4677 & 0.0560 & 0.99995\\
+& \Method{}-noPPC & 0.00 & 0.0660 & 12.9301 & 0.1259 & 0.28722\\
+& \ZOHcons{} & 0.00 & 0.0970 & 14.0191 & 0.3324 & 0.17739\\
+\midrule
+\multirow{4}{*}{high-communication-noise}
+& \Method{} & 1.00 & 0.0425 & 0.4709 & 0.0446 & --\\
+& \Method{}-noComm & 1.00 & 0.0459 & 0.5399 & 0.4384 & --\\
+& \Method{}-noDelay & 1.00 & 0.0426 & 0.4709 & 0.0460 & --\\
+& \ZOHcons{} & 0.00 & 0.1037 & 14.1242 & 0.3649 & --\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+表 \ref{tab:e2_ablation} 的客观结果是，通信感知模块移除后退化最明显：mixed fault/noise 场景中连接最大利用率由 0.0550 升至 0.4294，证书 ok 均值由 0.99995 降至 0.78555；high-communication-noise 场景中连接利用率由 0.0446 升至 0.4384，纵向 RMSE 由 0.4709 升至 0.5399。移除 PPC guard 后，mixed fault/noise 场景全路径成功率降为 0，纵向 RMSE 上升到 12.9301；\ZOHcons{} 在两个压力场景中均不能完成全路径。no-delay-compensation 与 \Method{} 的差距较小。
+
+造成上述结果的原因是，链路质量并非附加诊断量，而是直接改变一致性权重、邻居预测可信度和约束收缩幅度；去掉 comm-aware 后，不可靠邻居仍被等权纳入协同优化，连接误差更容易积累。PPC guard 是末端可行域保护，移除后网络退化和故障扰动会被积累成不可恢复的纵向偏移。相比之下，当前时延强度不足以单独主导退化，因此 no-delay-compensation 与 \Method{} 表现接近。
+上述消融保留为主文核心表格而非重复柱状图，原因是两张表已经包含成功率、横向/纵向误差、连接利用率和证书 ok 等关键数值；继续放入同源柱状图只会增加版面占用，并不会提供额外的实验变量。完整可视化面板可作为内部审稿材料保留，但投稿主文以表格证据支撑模块有效性。
+
+\subsection{稳定证书统计}
+
+\begin{table}[!t]
+\centering
+\caption{实验11：正弦路段证书统计 paired $n=20$。场景：5 m/s 正弦参考路径，比较 nominal clean、high-communication-noise、single fault 和 mixed fault/noise 四类工况。含义：该表报告 Lyapunov/ISS 证书的通过率和最小裕度，用于区分“闭环可监测实践有界”和“严格全局稳定”这两个不同层级的结论。}
+\label{tab:e3_certificate}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+场景 & 全路径成功 & 证书 ok & 最小裕度\\
+\midrule
+nominal clean & 1.00 & 0.360 & -0.0224\\
+high comm. noise & 1.00 & 1.000 & 0.0049\\
+single fault & 1.00 & 0.799 & -0.0111\\
+mixed fault/noise & 1.00 & 1.000 & 0.0033\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+表 \ref{tab:e3_certificate} 的客观结果是，high-communication-noise 与 mixed fault/noise 场景的证书 ok 和最小裕度表现较好，但 nominal clean 和 single fault 的全场景最小裕度为负。图 \ref{fig:modewise_certificate_closure} 进一步按压力场景和控制模式拆分后，high-communication-noise 与 mixed fault/noise 的 nominal/FTC 模式均为正裕度。
+
+造成上述证书差异的原因是，全场景最小裕度对短时数值误差、切换瞬态和非压力工况中的局部违背非常敏感，而分模式证书更符合实际控制器的 nominal/FTC/fallback 逻辑。因此本文采用有界工作域、有限密度负裕度和 fallback 可行条件下的 ISS/UUB 证书表述。
+
+\FloatBarrier
+
+\section{讨论}
+
+在四车载荷协同运输的 mixed fault/noise 和 high-communication-noise 场景下，\Method{} 相对 \AKE{} 降低连接最大利用率，并降低横向/纵向跟踪误差；通信感知一致性 MPC 是主要贡献模块。消融中移除通信感知后，high-communication-noise 场景连接最大利用率由 0.0446 升至 0.4384，纵向 RMSE 由 0.4709 升至 0.5399；mixed fault/noise 场景连接最大利用率由 0.0550 升至 0.4294，证书 ok 均值由 0.99995 降至 0.78555。上述可追溯数值说明链路质量进入一致性和约束逻辑具有明确内在机理。需要同时注意，当前主对比中的载荷力峰值并未相对 \AKE{} 同步降低，因此受力结果在本文中被作为安全代价审计，而不是作为主要正向贡献。Koopman 训练损失、控制窗口预测、维度消融、时延诊断、FDI/FTC 时间线、分模式证书、速度敏感性和回头弯图共同构成了从模型学习到闭环控制的证据链。
+
+速度和回头弯实验进一步说明，本文控制器在低速和中等速度下能在 RMSE 层面压低横向误差；随着参考速度升高，纵向推进相位误差会成为主导误差源。实验3的通信重构诊断把故障触发从时间改为空间位置，并把邻接距离、团队横向误差和上层--下层路径链路纳入同一通信扰动模型；在高延迟回头弯中，上层等效四轮转向局部路径进一步为四车提供一致的短期期望航向，因而更符合四车刚性载荷运输的实际信息流和高曲率几何约束。
+
+
+\section{结论}
+
+本文提出了面向网络退化四车协同运输的 \Method{} 控制框架。方法上，本文将输入感知稳定投影双线性 Koopman 预测器、通信质量感知一致性 MPC、邻接距离保持、上层等效四轮转向局部路径发布、上层--下层路径通信、FDI/FTC 降级和 Lyapunov/ISS 证书统一到载荷协同运输闭环中。实验上，paired $n=20$ 结果表明 \Method{} 在连接误差和轨迹跟踪方面相对 \AKE{} 取得改善，并通过消融证明通信感知模块是主要性能来源。新增证据进一步覆盖 Koopman 训练损失、控制窗口预测、输入感知稳定投影审计、6D/raw Koopman 维度消融、时延机制、FDI/FTC 触发时间线、分模式正裕度证书、2--15 m/s 速度敏感性和 5 m/s 回头弯高曲率对比；其中高曲率抗扰分支在 5 m/s 高延迟回头弯中明显降低横向 RMSE 和峰值误差，完整 \Method{} 则在开启货物保护后以部分横向误差回升换取连接利用率和合力峰值降低。这些结果说明，将学习预测、网络质量、连接几何、上层几何路径先验和故障保护共同纳入 MPC，可有效提升网络退化协同运输中的横向跟踪和连接约束控制能力。
+
+\section*{致谢}
+
+\todozh{补充基金项目、课题编号和作者贡献声明。}
+
+\FloatBarrier
+\balance
+\bibliographystyle{elsarticle-num}
+\bibliography{core_references_round10}
+
+\end{document}

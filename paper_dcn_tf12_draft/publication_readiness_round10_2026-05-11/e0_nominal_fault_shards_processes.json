@@ -1,0 +1,102 @@
+[
+  {
+    "shard": "e0_nominal_fault_shard_2026_2030",
+    "process_id": 19416,
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ],
+    "scenarios": [
+      "sine_nominal_clean",
+      "sine_single_fault_v2"
+    ],
+    "methods": [
+      "baseline",
+      "tf14_main",
+      "tf14_phase_role",
+      "zoh_consensus_surrogate"
+    ],
+    "output_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2026_2030",
+    "stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2026_2030\\stdout.log",
+    "stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2026_2030\\stderr.log",
+    "started_at": "2026-05-11T18:25:04"
+  },
+  {
+    "shard": "e0_nominal_fault_shard_2031_2035",
+    "process_id": 42884,
+    "seeds": [
+      2031,
+      2032,
+      2033,
+      2034,
+      2035
+    ],
+    "scenarios": [
+      "sine_nominal_clean",
+      "sine_single_fault_v2"
+    ],
+    "methods": [
+      "baseline",
+      "tf14_main",
+      "tf14_phase_role",
+      "zoh_consensus_surrogate"
+    ],
+    "output_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2031_2035",
+    "stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2031_2035\\stdout.log",
+    "stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2031_2035\\stderr.log",
+    "started_at": "2026-05-11T18:25:04"
+  },
+  {
+    "shard": "e0_nominal_fault_shard_2036_2040",
+    "process_id": 36508,
+    "seeds": [
+      2036,
+      2037,
+      2038,
+      2039,
+      2040
+    ],
+    "scenarios": [
+      "sine_nominal_clean",
+      "sine_single_fault_v2"
+    ],
+    "methods": [
+      "baseline",
+      "tf14_main",
+      "tf14_phase_role",
+      "zoh_consensus_surrogate"
+    ],
+    "output_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2036_2040",
+    "stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2036_2040\\stdout.log",
+    "stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2036_2040\\stderr.log",
+    "started_at": "2026-05-11T18:25:04"
+  },
+  {
+    "shard": "e0_nominal_fault_shard_2041_2045",
+    "process_id": 39272,
+    "seeds": [
+      2041,
+      2042,
+      2043,
+      2044,
+      2045
+    ],
+    "scenarios": [
+      "sine_nominal_clean",
+      "sine_single_fault_v2"
+    ],
+    "methods": [
+      "baseline",
+      "tf14_main",
+      "tf14_phase_role",
+      "zoh_consensus_surrogate"
+    ],
+    "output_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2041_2045",
+    "stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2041_2045\\stdout.log",
+    "stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_nominal_fault_shard_2041_2045\\stderr.log",
+    "started_at": "2026-05-11T18:25:04"
+  }
+]

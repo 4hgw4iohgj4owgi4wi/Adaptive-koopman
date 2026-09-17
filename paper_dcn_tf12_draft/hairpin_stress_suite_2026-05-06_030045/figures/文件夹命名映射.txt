@@ -1,0 +1,6 @@
+nominal -> 无噪声无故障
+fault_degraded -> 随机单车输出降额故障
+fault_zero -> 随机单车无输出故障
+comm_noise -> 通信噪声
+targeted_ablations -> 针对性消融实验
+summary -> 全局汇总

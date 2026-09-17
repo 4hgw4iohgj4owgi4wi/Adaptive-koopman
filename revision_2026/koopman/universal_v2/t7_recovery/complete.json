@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "evaluated_once": true,
+  "internal_passing": [],
+  "external_passing": [
+    "K5-linear"
+  ],
+  "results_sha256": "51C1A8745B63A629C39A38E17F461951DF1EBCDDC66FBC3A3166A21B5435F2BC",
+  "gates_sha256": "351B99AC57D68FCE215CA4D62295643831EB6E4058BBAE4A37BDD21C13A19102"
+}

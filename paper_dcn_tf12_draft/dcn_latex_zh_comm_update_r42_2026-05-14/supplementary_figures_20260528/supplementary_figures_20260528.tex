@@ -1,0 +1,70 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=18mm]{geometry}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{booktabs}
+\captionsetup{font=small,labelfont=bf}
+\begin{document}
+
+\section*{Supplementary Material}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{S1_koopman_training_loss.pdf}
+\caption*{\textbf{Supplementary Fig. S1.} Training and validation loss trace for the offline Koopman lifting network.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\textwidth]{S2_nooffset_fault_10mps_panel.pdf}
+\caption*{\textbf{Supplementary Fig. S2.} Same-initial-condition 10 m/s sine-path diagnostic retained as evidence of the onset of high-speed degradation.}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption*{\textbf{Supplementary Table S1.} Paired $n=20$ certificate statistics on the 5 m/s sine path.}
+\begin{tabular}{lccc}
+\toprule
+Scenario & Full path & Cert. ok & Min. margin\\
+\midrule
+nominal clean & 1.00 & 0.360 & -0.0224\\
+high comm. noise & 1.00 & 1.000 & 0.0049\\
+single fault & 1.00 & 0.799 & -0.0111\\
+mixed fault/noise & 1.00 & 1.000 & 0.0033\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption*{\textbf{Supplementary Table S2.} Same-initial-condition degraded AKE-M diagnostics on sine fault/disturbance paths.}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Scenario & AKE-M-deg. RMSE & NR-KDCC RMSE & $\Delta$RMSE & Max gap & Win rate\\
+\midrule
+2 m/s & 0.042905 & 0.028774 & -0.014131 & 0.010645 & 97.40\%\\
+5 m/s & 0.044080 & 0.029711 & -0.014369 & 0.000000 & 100.00\%\\
+10 m/s & 0.067732 & 0.053225 & -0.014507 & 0.018184 & 85.71\%\\
+15 m/s & 0.158565 & 0.157407 & -0.001158 & 0.004096 & 60.70\%\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption*{\textbf{Supplementary Table S3.} Same-initial-condition three-stage diagnostic on the 5 m/s hairpin.}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method/stage & Lat. RMSE & Long. RMSE & Max lat. err. & Max conn. util. & Force peak\\
+\midrule
+AKE-M-degraded & 0.298869 & 8.994818 & 0.587425 & 1.000000 & 5327.89\\
+NR-KDCC-HC & 0.085119 & 8.071913 & 0.180423 & 0.778074 & 6240.14\\
+NR-KDCC & 0.287473 & 12.121556 & 1.002130 & 0.307304 & 4373.90\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

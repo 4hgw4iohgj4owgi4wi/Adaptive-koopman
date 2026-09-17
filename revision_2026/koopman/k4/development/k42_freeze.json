@@ -1,0 +1,57 @@
+{
+  "stage": "K4.2_before_training",
+  "timestamp_local": "2026-08-19 12:10:59",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]",
+  "torch": "2.12.0.dev20260304+cu128",
+  "cuda_available": true,
+  "device": "NVIDIA GeForce RTX 5080",
+  "contract": "S5-operational",
+  "config": {
+    "factor_seeds": {
+      "A": 74411,
+      "B": 74412,
+      "force_decoder": 74413
+    },
+    "ranks": [
+      2,
+      4,
+      8
+    ],
+    "relative_projection_limits": [
+      0.005,
+      0.01,
+      0.02
+    ],
+    "model_seeds": [
+      74201,
+      74202,
+      74203,
+      74204,
+      74205
+    ],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0005,
+    "weight_decay": 0.0,
+    "batch": 256,
+    "epochs": 80,
+    "gradient_clip": 1.0,
+    "patience": 10,
+    "min_delta": 1e-05,
+    "lambda_anchor": 0.001,
+    "lambda_force_rate": 0.01,
+    "window_stride": 20
+  },
+  "hashes": {
+    "koopman\\train_k4.py": "C5CA8D9EDB1B97E1259EA2EC24E4C62BF71E26E64FC132B1355F32BAF7284032",
+    "koopman\\run_k4.py": "5CABC5916092FAD22EB1F897AE28276BDE2A6DEBDF989D4E0C0511A387DB91D0",
+    "koopman\\k4.md": "68DEF3F915D60001EE8FA475EA4DA4AF6376BDF812C226234C46B1B518AE6A39",
+    "koopman\\k4\\config.json": "AD49C3379E7436B25E485A0215A613691179840D47DEE5F8DA500A513D7F54A2",
+    "koopman\\k4\\freeze.json": "792D5A974AE75E88453FE8388CA4E935C4A770186434B04EBA184D9DC73BE570",
+    "koopman\\k4\\development\\sensor_stress.json": "406C78CE569E81C15A4EC760E6AF35B289CF2948DF2CE5BA1D469263C2DB38FA",
+    "koopman\\k2\\data_full\\manifest.json": "B3DED2AC3D2F5B0FEE8314DA425632A2E24906243FCB84F3B2379806AF3455CE",
+    "koopman\\k2\\linear\\models\\S3-U1-lifted.npz": "A3EA666624E3A01BCE2B173881990906BE1B1A2EEF10465FC82AC92C813757E3"
+  },
+  "confirm_files": 0,
+  "confirm_viewed": false
+}

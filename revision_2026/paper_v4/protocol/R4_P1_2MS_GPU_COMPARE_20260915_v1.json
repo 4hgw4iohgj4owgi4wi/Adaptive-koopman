@@ -1,0 +1,81 @@
+{
+  "protocol_id": "R4-P1-2MS-GPU-compare-v1",
+  "authorization": "User instruction 2026-09-15: complete everything until the full experiment can start.",
+  "scope": "R4_FULL_ROUTE",
+  "schema_version": "R4-FULL-ROUTE-v1",
+  "run": {
+    "output": "results/20260915_R4_P1_2MS_GPU01",
+    "parameter_id": "P1",
+    "total_ticks": 2379
+  },
+  "gates": {
+    "ultimate_force_n": 15000.0,
+    "tire_limit": 1.0,
+    "minimum_support_n": 0.0
+  },
+  "supersedes_comparator": {
+    "sha256_frozen_in_the_run_protocol": "bca50ae9d8d85edf0b27de26dee19e61888f8c80d02ea01e4a639eb2ea1cb1b3",
+    "sha256_used_here": "00b9af9feb5f7a69f6e80e2f8a20000303540f7d748ae06b5162e81dbf4c1402",
+    "defects_corrected": [
+      "the configuration error was computed against a straight-line reference (yaw_rate = 0) instead of the route curvature SPEED * _path_sample(distance)[3] used by post_r3_r4_runner.py",
+      "SPEED was imported from e01_100m instead of pilot_runner, which stopped the first comparator launch with ImportError before any output",
+      "the per-solve cost panel printed '100.0% within budget' from one-decimal rounding while one tick of 2379 was actually above 5 s; it now prints the exact count, percentage and maximum"
+    ],
+    "why_the_run_is_unaffected": "the comparator is read-only post-processing; the run never imports or calls it, and the run protocol validated the then-current hash at launch",
+    "action": "the corrected comparator is frozen together with the completed run artifacts; the comparison is written to analysis/20260915_R4_P1_2MS_GPU_COMPARE_03"
+  },
+  "identity_files": [
+    {
+      "path": "tools/full_route_compare.py",
+      "sha256": "62c29768bdb991c24b67b194e6715b211c24f6f9d41ad3c076f79a6b30098003"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS_GPU01/raw.npz",
+      "sha256": "375a6a3a699d298312455618521e92e9ef246b9835bf8a89a1740cfe22d913e2"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS_GPU01/substeps.npz",
+      "sha256": "aa9f0083f564eb4942ba73b9be0431837ed494fad7bb86e580d00c68fff94e2a"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS_GPU01/solver.jsonl",
+      "sha256": "1f54107cbe9396ad4a57e01c1319abc4dee9771bcf65139cb86a943038955b08"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS_GPU01/metrics.json",
+      "sha256": "f25577d148c6cf2cbcd88f8330f0e286ae22d2d304552119d03887aa01f4f2ed"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS_GPU01/status.json",
+      "sha256": "f25577d148c6cf2cbcd88f8330f0e286ae22d2d304552119d03887aa01f4f2ed"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/raw.npz",
+      "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/solver.jsonl",
+      "sha256": "9189e93618e38cd95672f0f175e38ad2f9a8d1ea4a84d4848d06e7b86e9c9bbb"
+    },
+    {
+      "path": "protocol/R4_P1_2MS_GPU_20260915_v1.json",
+      "sha256": "1db9ab1811e4d916a6234424dd561b9996ecf51df3752bfc67c7cbefcd466e70"
+    },
+    {
+      "path": "analysis/20260915_G3_RESTART_EQUIVALENCE_02/g3_restart_equivalence.json",
+      "sha256": "913b5cb1146f76436a68c0c70a1d069a187e8537d192dc0f838a8530c8af50c7"
+    },
+    {
+      "path": "analysis/20260915_G3B_DIVERGENCE_MECHANISM_01/g3_divergence_mechanism.json",
+      "sha256": "2330300d6f0d03e9a9e3603ae1252edf8f80e43819cfe50755ea85da760556fd"
+    },
+    {
+      "path": "results/20260915_RTX5080_G0_G2_05/qualification.json",
+      "sha256": "51f1d8572d66ce520d9afa4caba2d87e6f5de4772e40e1864005b6609510dc9d"
+    },
+    {
+      "path": "protocol/G3_RESTART_EQUIVALENCE_20260915_v4.json",
+      "sha256": "02e1ed84a82d90f6af28f30f5b4e3f6f68af213fa021d7fed7e260c157db5ee5"
+    }
+  ]
+}

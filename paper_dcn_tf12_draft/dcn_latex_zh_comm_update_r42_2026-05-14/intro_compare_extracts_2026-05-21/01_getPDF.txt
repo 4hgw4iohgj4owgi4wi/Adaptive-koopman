@@ -1,0 +1,111 @@
+FILE: D:\LEARNING\ZNN\ZNN\save\getPDF.jsp
+PAGES: 6
+TITLE_GUESS: Data-Driven Modeling and Experimental Validation of Autonomous | Vehicles using Koopman Operator | Distribution A: Approved for public release; distribution unlimited. OPSEC # 7248
+
+INTRO_EXTRACT:
+I. INTRODUCTION
+Path tracking is a crucial modality of any autonomous ve-
+hicle and its performance can be severely affected by choices
+and assumptions made in modeling and system identification.
+Kinematic and geometric path-tracking controllers like Pure-
+Pursuit [2] are popular choices for low-speed applications
+owing to their low computational costs and ease of im-
+plementation [3]. However, such geometric/kinematic con-
+trollers cannot provide adequate path-tracking performance
+as operational regimes have evolved to include high-speed,
+non-planar, and rough terrain application spaces.
+We will focus on an exemplary case of Ackermann steered
+Wheeled Mobile Robot (WMR). The critical considerations
+for modeling and controller design come from the standpoint
+of chassis, dynamic load transfer, and, most importantly,
+*This work was supported by Clemson University’s Virtual Prototyping
+of Autonomy Enabled Ground Systems (VIPR-GS), a US Army Center
+of Excellence for modeling and simulation of ground vehicles, under
+Cooperative Agreement W56HZV-21-2-0001 with the US Army DEVCOM
+Ground Vehicle Systems Center (GVSC)
+1Department
+of Automotive
+Engineering, Clemson
+University In-
+ternational Center for Automotive Research (CU-ICAR), Greenville,
+SC 29607, USA. {ajoglek, csamak, tsamak, kkosara,
+vkrovi}@clemson.edu
+2Department of Mechanical Engineering, Clemson University, Clemson,
+SC 29634, USA. {ssutava, uvaidya}@clemson.edu
+Fig. 1: Proposed approach involving timeseries data col-
+lection of benchmark maneuvers, discovery of dynamics
+using EDMD, identification of linear predictor model using
+Koopman operator, formulation of linear MPC [1], and
+experimental validation.
+wheel-terrain interaction. In this milieu, there is rich lit-
+erature highlighting vehicle models and controller design
+techniques at various levels of fidelity. While approximate
+linear models allow us to construct optimal and robust
+control solutions [4] suitable for real-time deployment, the
+unmodeled dynamics still play a significant factor in perfor-
+mance and safety. These unmodeled fluctuations may arise
+from multiple sources ranging from inadequate modeling
+of physics phenomena (e.g. wheel terrain interaction) to
+variable kinematic and dynamics parameters. High-fidelity
+non-linear models have sought to capture the dynamics and
+wheel-terrain interactions effectively but pose a challenge for
+controller design and added computational complexity for
+the predictive controllers considering real-time deployment
+[5]. Additionally, physics-based models do not scale down
+to small-mid scale WMRs well enough due to factors like
+tires, suspension and chassis not exhibiting similar mechan-
+ical and material properties. This makes developing high-
+fidelity models across varied robotic platforms even more
+challenging.
+Traditional system identification and adaptive control ap-
+proaches have been built upon a range of white- gray- or
+2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+October 1-5, 2023. Detroit, USA
+978-1-6654-9190-7/23/$31.00 ©2023 IEEE
+9442
+2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) | 978-1-6654-9190-7/23/$31.00 ©2023 IEEE | DOI: 10.1109/IROS55552.2023.10341797
+Authorized licensed use limited to: University of Manchester. Downloaded on May 21,2026 at 12:48:36 UTC from IEEE Xplore.  Restrictions apply. 
+
+black-box modeling techniques. However, newer approaches
+like neural network-based implicit modeling of the dynam-
+ics and end-to-end black box methods like deep imitation
+learning and reinforcement learning [6] can implicitly cap-
+ture the dynamics and control the system behavior. While
+these methods provide for increased adaptability and have
+been demonstrated in path tracking applications, they face
+challenges like explainability, generalizability, and Sim2Real
+gap.
+Hence, data-driven modeling and system identification has
+gained a lot of importance for merging benefits of leveraging
+optimization techniques for model discovery while enabling
+model analysis through their mathematical properties. In
+this milieu, a prominent paradigm is the Koopman Operator
+approach, where a finite-dimensional non-linear model can
+be converted to an infinite-dimensional linear model through
+the process of lifting. In the application domain, however,
+we obtain a finite-dimensional linear predictor through the
+provided data using the Extended Dynamic Mode Decom-
+position (EDMD) [7] method as highlighted in Section II.
+While these methodologies were traditionally applied for
+discovery of dynamics in the fields of chaotic systems and
+fluid flow analysis [8], studies like [9, 10, 11, 12, 13]
+highlight the application of the Koopman operator theory
+for optimal control and stabilization of robotic and dynamic
+systems. The conventional method is to gather data based on
+a kinematic/dynamic model-based simulation of the system,
+obtain a linear model based on the training data, and deploy
+it using a predictive/robust controller. In such scenarios, there
+often exists a Sim2Real gap and dependency on the controller
+and additional constraints to ensure stability. Additionally,
+the specific trajectories the model has been trained on may
+not effectively capture the excitation in dynamics.
+In this study, we introduce a data-driven approach using
+the Koopman EDMD algorithm to capture the underlying
+dynamics of the F1TENTH scaled model vehicle [14]. We
+conduct a series of maneuvers known for exciting vehicle
+dynamics, providing insights into the platform’s character-
+istics. To assess the performance of the derived model, we
+employ a linear Model Predictive Control (MPC) feedback
+law and compare it against the kinematic bicycle model
+with Nonlinear Model Predictive Control (NMPC) in a path-
+tracking problem.

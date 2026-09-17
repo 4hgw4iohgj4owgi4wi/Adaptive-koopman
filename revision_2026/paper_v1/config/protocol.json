@@ -1,0 +1,13 @@
+{
+  "version": "PR-R1-Q1",
+  "batch": "Q1",
+  "taskbook_sha256": "B0A7996388965A7A549C1DA0CBD82F1CC7018AF6BEEBB30465628106AEA7464B",
+  "old_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02",
+  "predictor_source": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3x",
+  "candidate_states": 90,
+  "frozen_models": 45,
+  "training_allowed": false,
+  "minimum_free_gib": 60,
+  "wall_budget_hours": 12,
+  "next_stage": "STOP_AFTER_K1_VERDICT"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "EXP-R4C-time-identity-contract-v1",
+  "status": "FROZEN_BEFORE_REVIEW",
+  "authorization": "User instruction to execute revision_2026/paper_v4/experiment.md on 2026-09-14",
+  "taskbook": {
+    "path": "experiment.md",
+    "sha256": "ab76e57e4830a8deb926ed6e65a602b799db1b4d9e0d830106587564c89a6b03",
+    "entry": "section 25"
+  },
+  "parent_formal_report": {
+    "path": "results/20260913_R4B_B2B_COMPARE01/window_equivalence.json",
+    "sha256": "8beb7fc7607a4f024db45c42b0ac93e58b2eec2e731758b9df641283ef54c316",
+    "status_must_remain": "FAIL"
+  },
+  "audit_tool": {
+    "path": "tools/r4c_time_identity_audit.py",
+    "sha256": "6b174cee5a56aa564f59a4b7dc47c664555fbe504363782c3748aa536ec94042"
+  },
+  "time_contract": {
+    "raw_dt_s": 0.02,
+    "raw_start_state_tick": 2100,
+    "raw_output_ticks_inclusive": [2101, 2225],
+    "substep_dt_s": 0.002,
+    "substep_output_ticks_inclusive": [21001, 22250],
+    "solver_ticks_inclusive": [2100, 2224],
+    "mapping": "nearest integer tick only after bound validation",
+    "absolute_error_bound": "32*eps_float64*max(1,abs(stored_time_s),abs(integer_tick*dt_s))",
+    "interpolation_or_resampling": "FORBIDDEN"
+  },
+  "exact_gates": [
+    "All state, reference, request, actual steering, force, tire, support, configuration and substep-dt fields remain bitwise exact after integer-tick alignment.",
+    "Serial/parallel and serial/source QP problem hashes and first controls remain exact.",
+    "Only the representation of time_s may use the frozen bound; no physical tolerance is introduced."
+  ],
+  "negative_tests": [
+    "missing raw tick",
+    "duplicate raw tick",
+    "one-control-tick shift",
+    "missing substep",
+    "timestamp perturbation over the frozen bound",
+    "actual dt change",
+    "physical value change",
+    "equivalent legal timestamp construction positive control"
+  ],
+  "inputs": [
+    {"path": "results/20260913_R4B_B2B_SERIAL02/raw.npz", "sha256": "47da4c9b824646d1ab79d555e4feed75ce008fe48135007d22d0ed63ea9b8a1b"},
+    {"path": "results/20260913_R4B_B2B_SERIAL02/substeps.npz", "sha256": "fc569896155d12e78d9fd235b54f5700a2427b5e9a675775bb432d2ad9c42cc2"},
+    {"path": "results/20260913_R4B_B2B_SERIAL02/solver.jsonl", "sha256": "a8928cc03d6dd64a1cfd563e85f4bbb7ec8d1ad4e181ce597ead997933babb56"},
+    {"path": "results/20260913_R4B_B2B_PARALLEL01/raw.npz", "sha256": "7597fb62120e32d784157cf149e55b96465b55c7d2fa8ac0340963e93a486161"},
+    {"path": "results/20260913_R4B_B2B_PARALLEL01/substeps.npz", "sha256": "fc569896155d12e78d9fd235b54f5700a2427b5e9a675775bb432d2ad9c42cc2"},
+    {"path": "results/20260913_R4B_B2B_PARALLEL01/solver.jsonl", "sha256": "a79d912b20be8bf65462a2b34d4aedc7b5bdbc142f82a7f33a57bca3b97510ad"},
+    {"path": "results/20260911_R3_UNFROZEN_FULL01/2ms/raw.npz", "sha256": "1fe2b89860f1a791d788fd6e17a74421676522d8806c1226d36511aca525f57d"},
+    {"path": "results/20260911_R3_UNFROZEN_FULL01/2ms/substeps.npz", "sha256": "d68977b7539d32614d80d2474ee43608687c2574cd55c266c7283032b923f9b0"},
+    {"path": "results/20260911_R3_UNFROZEN_FULL01/2ms/solver.jsonl", "sha256": "c5601cbafff95d576d231c7fc5c936b615cd81a75f9c7b613340340781f9a603"}
+  ],
+  "outputs": {
+    "directory": "results/20260914_R4C_TIME_IDENTITY01",
+    "required": ["time_identity_report.json", "time_identity_audit.png", "time_identity_audit.svg", "figure_manifest.json", "README.md"]
+  },
+  "release_rule": "Only PASS_NEW_TIME_IDENTITY_CONTRACT releases registration of the force-bearing window; it does not itself release full 1 ms."
+}

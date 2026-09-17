@@ -1,0 +1,8 @@
+{
+  "stage": "T5-A",
+  "status": "complete",
+  "passing_backbones": [
+    "K5-linear"
+  ],
+  "results_sha256": "6D98DB83633AFDC5A5C23E14971CD3A00CC83B2FC1BB804FCA8F549FBBDA588E"
+}

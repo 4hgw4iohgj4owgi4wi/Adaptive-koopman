@@ -1,0 +1,111 @@
+{
+  "stage": "K4.0-K4.1",
+  "created_before_results": true,
+  "confirmation_policy": "do not generate or read confirm trajectories before G42",
+  "data_roles": {
+    "train": 70,
+    "validation": 15,
+    "dev_test_old": 15,
+    "dev_external_old": 20,
+    "confirm_internal_preregistered_not_generated": 100,
+    "confirm_external_preregistered_not_generated": 40
+  },
+  "horizon": 20,
+  "origin_stride": 20,
+  "pressure_scope": "only four point-force messages; S3 physical observations remain current",
+  "pressure_seeds": {
+    "validation": 74601,
+    "test": 74602,
+    "external": 74603
+  },
+  "noise_scale_of_train_std": 0.02,
+  "bias_scale_of_train_std": 0.02,
+  "ge": {
+    "p_good_to_bad": 0.02,
+    "p_bad_to_good": 0.25,
+    "delivery_good": 0.99,
+    "delivery_bad": 0.1
+  },
+  "outage_start_fraction": 0.4,
+  "single_point_rule": "(trajectory id + trace seed) modulo 4",
+  "supervisor_grid": {
+    "tau_steps": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "cutout": [
+      0.35,
+      0.6
+    ],
+    "recover": [
+      0.7,
+      0.9
+    ],
+    "recover_consecutive_steps": [
+      1,
+      5
+    ],
+    "imputer": [
+      "zoh",
+      "impute"
+    ]
+  },
+  "supervisor_selection": {
+    "dataset": "validation only",
+    "pressures": [
+      "P0-clean",
+      "P3-aoi1",
+      "P4-drop10",
+      "P6-single0.5s"
+    ],
+    "objective": "lowest mean state/connector/opening composite; ties by fewer switches then canonical JSON"
+  },
+  "g41": {
+    "clean_s4_composite_improvement_min": 0.1,
+    "light_pressure_each_metric_degradation_max": 0.05,
+    "paired_ci_upper_max": 0.0,
+    "minimum_switch_interval_steps": 5,
+    "maximum_switch_rate_hz": 0.5,
+    "bootstrap": 2000,
+    "bootstrap_seeds": {
+      "connector": 74501,
+      "opening": 74502
+    }
+  },
+  "k42_preregistered_training": {
+    "factor_seeds": {
+      "A": 74411,
+      "B": 74412,
+      "force_decoder": 74413
+    },
+    "ranks": [
+      2,
+      4,
+      8
+    ],
+    "relative_projection_limits": [
+      0.005,
+      0.01,
+      0.02
+    ],
+    "model_seeds": [
+      74201,
+      74202,
+      74203,
+      74204,
+      74205
+    ],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0005,
+    "weight_decay": 0.0,
+    "batch": 256,
+    "epochs": 80,
+    "gradient_clip": 1.0,
+    "patience": 10,
+    "min_delta": 1e-05,
+    "lambda_anchor": 0.001,
+    "lambda_force_rate": 0.01,
+    "window_stride": 20
+  }
+}

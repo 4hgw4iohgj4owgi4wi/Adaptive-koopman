@@ -1,0 +1,34 @@
+{
+  "K0": {
+    "lift_kind": "raw",
+    "drift_h1": 1.329513958861233e-16,
+    "drift_h20": 1.594556084871446e-16,
+    "growth_ratio": 0.0001594556084871446,
+    "trajectory_correlation_with_h10_20_error": 0.0,
+    "C_mechanism_signal": false
+  },
+  "K1": {
+    "lift_kind": "fixed",
+    "drift_h1": 0.8135995996739869,
+    "drift_h20": 3.419464332770616,
+    "growth_ratio": 4.2028834996241535,
+    "trajectory_correlation_with_h10_20_error": 0.6730737090098211,
+    "C_mechanism_signal": true
+  },
+  "K4": {
+    "lift_kind": "neural",
+    "drift_h1": 0.03095051399239618,
+    "drift_h20": 0.07921670118163071,
+    "growth_ratio": 2.5594631869794604,
+    "trajectory_correlation_with_h10_20_error": 0.93112983010507,
+    "C_mechanism_signal": true
+  },
+  "K5-linear": {
+    "lift_kind": "fixed",
+    "drift_h1": 0.8085673848078129,
+    "drift_h20": 1.4495009836588557,
+    "growth_ratio": 1.7926780264620559,
+    "trajectory_correlation_with_h10_20_error": 0.8478348954553102,
+    "C_mechanism_signal": true
+  }
+}

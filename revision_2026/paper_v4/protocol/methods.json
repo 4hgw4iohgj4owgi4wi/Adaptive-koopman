@@ -1,0 +1,327 @@
+{
+  "schema_version": "EXP-R2-method-registry-v1",
+  "taskbook_sha256": "5361a04c6c8336f5727c6b7c76e6bfabaf11f830440db5491e55ffbc7e103b4a",
+  "taskbook_sha256_previous": "417CFCDBF22A026973DFF617E29E4814361F9013AED7CA06F065992C20F0D81D",
+  "registry_status": "PARTIAL",
+  "status_contract": "NOT_RUN means registered but not executed; SOURCE_PENDING means an external method cannot be implemented or qualified until its primary source and assumptions are verified.",
+  "registry_revision": {
+    "date": "2026-09-16",
+    "taskbook_sha256_update": "the task book was revised the same day (results root REV\\paper_v4\\results and the local work log REV\\paper_v4\\koopman_work_log.md made authoritative); the previous hash is kept above so the earlier registration remains traceable",
+    "added": "implementation_variants: the CUDA batched finite-difference backend is registered as an implementation variant of the existing centralized diagnostic, not as a new method",
+    "updated": "excluded_diagnostics[0].status: the diagnostic is no longer merely running on R3; P1 is complete at three plant steps",
+    "not_changed": "core_methods, external_baselines and the H1-H6 exclusion of the centralized diagnostic are untouched; no method was promoted and no gate was moved",
+    "audit_reference": "compliance_audit_20260916.md"
+  },
+  "common_protocol": {
+    "architecture": "planned hierarchical distributed architecture; not yet implemented or qualified",
+    "sampling_period_s": 0.02,
+    "plant": "paper_v4_core frozen coupled four-vehicle/payload plant",
+    "state_schema": "PENDING_E02",
+    "input_schema": "PENDING_E02",
+    "hardware": "DESKTOP-9IUUGEO / NVIDIA RTX 5080 workstation; runtime accounting pending",
+    "fairness_rule": "The six core cells must share plant, routes, data roles, information availability, solver budget, random families and safety gates; only the registered predictor/network-protection factor may change."
+  },
+  "core_methods": [
+    {
+      "key": "P0",
+      "full_name": "Physical Model Predictive Control",
+      "status": "NOT_RUN",
+      "architecture": "PLANNED_DISTRIBUTED_HIERARCHICAL_UNVERIFIED",
+      "predictor": "coupled physical model",
+      "checkpoint": null,
+      "normalization": null,
+      "s0": null,
+      "online_update": false,
+      "observer": "OFF",
+      "delay_alignment": "OFF",
+      "error_bound": "PENDING",
+      "optimizer": "PENDING_E03",
+      "ppc": "OFF",
+      "fdi_ftc": "OFF",
+      "role_allocation": "OFF",
+      "backup": "PENDING_E03",
+      "message_bytes": "PENDING_E03",
+      "source": "internal coupled-plant baseline",
+      "adaptation_difference": "none registered",
+      "unit_tests": "PENDING"
+    },
+    {
+      "key": "P0N",
+      "full_name": "Network-Protected Physical Model Predictive Control",
+      "status": "NOT_RUN",
+      "architecture": "PLANNED_DISTRIBUTED_HIERARCHICAL_UNVERIFIED",
+      "predictor": "coupled physical model",
+      "checkpoint": null,
+      "normalization": null,
+      "s0": null,
+      "online_update": false,
+      "observer": "PENDING_E03",
+      "delay_alignment": "ON_PLANNED",
+      "error_bound": "PENDING_E03",
+      "optimizer": "PENDING_E03",
+      "ppc": "PENDING_E03",
+      "fdi_ftc": "PENDING_E03",
+      "role_allocation": "PENDING_E03",
+      "backup": "PENDING_E03",
+      "message_bytes": "PENDING_E03",
+      "source": "internal network-protected physical baseline",
+      "adaptation_difference": "network protection only relative to P0; exact active modules must be frozen before execution",
+      "unit_tests": "PENDING"
+    },
+    {
+      "key": "K0",
+      "full_name": "Fixed Linear Koopman Model Predictive Control",
+      "status": "NOT_RUN",
+      "architecture": "PLANNED_DISTRIBUTED_HIERARCHICAL_UNVERIFIED",
+      "predictor": "fixed linear Koopman",
+      "checkpoint": "PENDING_E02",
+      "normalization": "PENDING_E02",
+      "s0": "PENDING_E02",
+      "online_update": false,
+      "observer": "OFF",
+      "delay_alignment": "OFF",
+      "error_bound": "OFF",
+      "optimizer": "PENDING_E03",
+      "ppc": "OFF",
+      "fdi_ftc": "OFF",
+      "role_allocation": "OFF",
+      "backup": "PENDING_E03",
+      "message_bytes": "PENDING_E03",
+      "source": "project fixed-linear Koopman baseline; provenance audit pending",
+      "adaptation_difference": "predictor-only replacement relative to P0",
+      "unit_tests": "PENDING_E02"
+    },
+    {
+      "key": "K0N",
+      "full_name": "Network-Protected Fixed Linear Koopman Model Predictive Control",
+      "status": "NOT_RUN",
+      "architecture": "PLANNED_DISTRIBUTED_HIERARCHICAL_UNVERIFIED",
+      "predictor": "fixed linear Koopman",
+      "checkpoint": "PENDING_E02",
+      "normalization": "PENDING_E02",
+      "s0": "PENDING_E02",
+      "online_update": false,
+      "observer": "PENDING_E03",
+      "delay_alignment": "ON_PLANNED",
+      "error_bound": "PENDING_E03",
+      "optimizer": "PENDING_E03",
+      "ppc": "PENDING_E03",
+      "fdi_ftc": "PENDING_E03",
+      "role_allocation": "PENDING_E03",
+      "backup": "PENDING_E03",
+      "message_bytes": "PENDING_E03",
+      "source": "project fixed-linear Koopman baseline; provenance audit pending",
+      "adaptation_difference": "network protection only relative to K0",
+      "unit_tests": "PENDING_E02_E03"
+    },
+    {
+      "key": "K1",
+      "full_name": "Guarded Residual Koopman Model Predictive Control",
+      "status": "NOT_RUN",
+      "architecture": "PLANNED_DISTRIBUTED_HIERARCHICAL_UNVERIFIED",
+      "predictor": "fixed guarded residual Koopman; no online update unless separately registered",
+      "checkpoint": "PENDING_E02",
+      "normalization": "PENDING_E02",
+      "s0": "PENDING_E02",
+      "online_update": false,
+      "observer": "OFF",
+      "delay_alignment": "OFF",
+      "error_bound": "PENDING_E02",
+      "optimizer": "PENDING_E03",
+      "ppc": "OFF",
+      "fdi_ftc": "OFF",
+      "role_allocation": "OFF",
+      "backup": "PENDING_E03",
+      "message_bytes": "PENDING_E03",
+      "source": "project guarded-residual Koopman candidate; provenance audit pending",
+      "adaptation_difference": "predictor-only replacement relative to P0 and K0",
+      "unit_tests": "PENDING_E02"
+    },
+    {
+      "key": "K1N",
+      "full_name": "Network-Protected Guarded Residual Koopman Model Predictive Control",
+      "status": "NOT_RUN",
+      "architecture": "PLANNED_DISTRIBUTED_HIERARCHICAL_UNVERIFIED",
+      "predictor": "fixed guarded residual Koopman; no online update unless separately registered",
+      "checkpoint": "PENDING_E02",
+      "normalization": "PENDING_E02",
+      "s0": "PENDING_E02",
+      "online_update": false,
+      "observer": "PENDING_E03",
+      "delay_alignment": "ON_PLANNED",
+      "error_bound": "PENDING_E02_E03",
+      "optimizer": "PENDING_E03",
+      "ppc": "PENDING_E03",
+      "fdi_ftc": "PENDING_E03",
+      "role_allocation": "PENDING_E03",
+      "backup": "PENDING_E03",
+      "message_bytes": "PENDING_E03",
+      "source": "project guarded-residual Koopman candidate; provenance audit pending",
+      "adaptation_difference": "network protection only relative to K1; predictor only relative to P0N/K0N",
+      "unit_tests": "PENDING_E02_E03"
+    }
+  ],
+  "implementation_variants": [
+    {
+      "key": "EXP-R3-unfrozen-v1__CUDA-BATCH-FD",
+      "full_name": "Centralized Full-State Physical Model Predictive Control, CUDA batched finite-difference implementation",
+      "role": "IMPLEMENTATION_VARIANT_NOT_A_METHOD",
+      "parent_method_key": "CENTRALIZED_FULL_STATE_PHYSICAL_MPC_DIAGNOSTIC",
+      "why_not_a_new_method": "Only the predictor-linearisation backend changes. The control law, plant, horizon N=20, controller step 20 ms, predictor step 2 ms, lambda_internal, differential step, route and the 15000 N / tyre 1.0 / non-negative support gates are unchanged, so this is the same method computed differently, not a new algorithm. Per section 7.1 it must never be reported under a separate method name.",
+      "architecture": "centralized full-state diagnostic upper bound, unchanged",
+      "predictor": "coupled physical model, unchanged; the finite-difference Jacobian is evaluated on the GPU in float64 instead of across 8 CPU processes",
+      "checkpoint": null,
+      "normalization": null,
+      "s0": null,
+      "online_update": false,
+      "observer": "OFF",
+      "delay_alignment": "OFF",
+      "error_bound": "not applicable to the diagnostic",
+      "optimizer": "CPU OSQP assembly and solve, unchanged; GPU is used only for the batched rollout and its Jacobian",
+      "ppc": "OFF",
+      "fdi_ftc": "OFF",
+      "role_allocation": "OFF",
+      "backup": "none",
+      "message_bytes": "not applicable; no network in the diagnostic",
+      "state_input_schema": "state 30 + actual steering 4 = 34 augmented state, control 8, unchanged",
+      "hardware": "DESKTOP-9IUUGEO / NVIDIA RTX 5080 (compute capability 12.0, CUDA 12.8); one persistent CUDA worker process, CPU parent retains SciPy, OSQP, the event-substep true plant and the nonlinear validation",
+      "source": "internal; no external paper",
+      "adaptation_difference": "predictor linearisation moved from 8 CPU processes to one CUDA worker; every outbound IPC array is converted to nested lists and every reply is coerced to exact built-in primitives before pickling",
+      "qualification_evidence": {
+        "g0_g2": {
+          "protocol": "protocol/RTX5080_G0_G2_20260915_v5.json",
+          "protocol_sha256": "6e6142620b90245bbe46d5102c0a5c642acce39b1eb38b8836cbe3d139cf173f",
+          "result": "results/20260915_RTX5080_G0_G2_05",
+          "status": "PASS_G0_G2_GPU_QUALIFIED",
+          "g1_worst_normalized_error": 8.046313422869875e-07,
+          "g2_first_control_agreement_mps2": 6.735535716555165e-11,
+          "fixed_sample_speedup": 3.255976396070921
+        },
+        "closed_loop_windows": {
+          "protocol": "protocol/G3_RESTART_EQUIVALENCE_20260915_v4.json",
+          "protocol_sha256": "02e1ed84a82d90f6af28f30f5b4e3f6f68af213fa021d7fed7e260c157db5ee5",
+          "result": "analysis/20260915_G3_RESTART_EQUIVALENCE_02",
+          "gpu_equivalence_and_hard_gates": "PASS on all three windows",
+          "restart_equivalence": "FAIL on the late free-play window; see analysis/20260915_G3B_DIVERGENCE_MECHANISM_01"
+        },
+        "full_routes_P1": [
+          {
+            "step_ms": 2.0,
+            "protocol_sha256": "1db9ab1811e4d916a6234424dd561b9996ecf51df3752bfc67c7cbefcd466e70",
+            "run": "results/20260915_R4_P1_2MS_GPU01",
+            "status": "COMPLETED",
+            "ticks": 2379
+          },
+          {
+            "step_ms": 1.0,
+            "protocol_sha256": "f082c5bec9da76fbc4453651d69d44d210058084dbbbccdf0900b599e075b59c",
+            "run": "results/20260915_R4_P1_1MS_GPU01",
+            "status": "COMPLETED",
+            "ticks": 2379
+          },
+          {
+            "step_ms": 0.5,
+            "protocol_sha256": "59b2f1abb3a6bb7ce18b34ecd0cd35be62a5ff156ed04dd005af18b795e1026b",
+            "run": "results/20260915_R4_P1_0P5MS_GPU01",
+            "status": "COMPLETED",
+            "ticks": 2379
+          }
+        ],
+        "pairwise_convergence": [
+          {
+            "pair": "2ms_to_1ms",
+            "protocol_sha256": "49148e40e60f8ef205e5eb0ab8dd873d345c35702347dc41f5a7cc27b62507f6",
+            "status": "PASS_R4_CELL_CONVERGENCE"
+          },
+          {
+            "pair": "1ms_to_0p5ms",
+            "protocol_sha256": "b6b238854d62b6df612c0b0a9f2b74938a149c32d45173c4f4d6474311879641",
+            "status": "PASS_R4_CELL_CONVERGENCE"
+          }
+        ],
+        "cpu_vs_gpu_closed_loop_divergence_over_2200_ticks_m": 2.398450764928839e-05
+      },
+      "not_allowed": [
+        "reporting this variant under a separate method name in any table, caption or ranking",
+        "entering H1-H6 or any P0/P0N/K0/K0N/K1/K1N comparison",
+        "claiming real-time behaviour from offline wall clock: the 2 ms route mean is 4.226 s per solve with a maximum of 5.281 s, so 1 of 2379 solves exceeded the frozen 5 s budget",
+        "splicing a GPU continuation onto the interrupted CPU prefix; checkpoint restart equivalence failed in the late free-play window"
+      ],
+      "unit_tests": [
+        "G1 fixed-sample CPU/GPU physics equivalence, six samples, three quantities",
+        "G2 fixed-QP CPU/GPU identity over 18 QP objects plus first control and CPU nonlinear revalidation",
+        "G3 30-tick closed-loop windows on the force-bearing, steering-limit and late-prefix regimes, both backends",
+        "worker reply primitiveness assertion and parent torch-contamination assertion in the IPC boundary"
+      ],
+      "execution_platform_decision": {
+        "date": "2026-09-16",
+        "decision": "user decided that subsequent dynamics experiments run on the RTX 5080 path",
+        "record": "gpu_platform_decision_20260916.md",
+        "taskbook_section": "experiment.md section 48",
+        "measured_basis": {
+          "cross_backend_physical_agreement_over_2200_ticks_m": 2.398450764928839e-05,
+          "cross_backend_force_peak_relative": 1.008e-08,
+          "cross_backend_configuration_error_gpu_mm": 12.562508468767618,
+          "cross_backend_configuration_error_cpu_recorded_mm": 12.562509,
+          "cross_backend_bitwise_identical": false,
+          "same_backend_bitwise_repeatable": true,
+          "same_backend_evidence": "analysis/20260916_GPU_DETERMINISM_PROBE_01: 84 of 85 raw columns bitwise identical across two identical runs; the only differing column is solver_wall_s; physical/control whitelist difference is exactly 0.0; state and solver first control bitwise identical"
+        },
+        "rules": [
+          "same-backend (GPU vs GPU) comparisons only for invariance gates; the 1e-12 class gates are unchanged and not relaxed",
+          "cross-backend comparisons are reported at their measured level and must never be written as bitwise identity",
+          "wall clock and time columns are always excluded from physical/control comparisons",
+          "figures and manifests must state the execution backend"
+        ],
+        "not_authorized": [
+          "splicing GPU results onto CPU-era data as one trajectory or one sample batch",
+          "using bitwise-level gates across backends",
+          "claiming real-time behaviour from GPU speed-up",
+          "claiming method-level advantage from GPU qualification"
+        ]
+      }
+    }
+  ],
+  "external_baselines": [
+    {
+      "key": "TUBE_RMPC",
+      "full_name": "Tube-Based Robust Model Predictive Control",
+      "status": "SOURCE_PENDING"
+    },
+    {
+      "key": "AOF_RMPC",
+      "full_name": "Affine Output-Feedback Robust Model Predictive Control",
+      "status": "SOURCE_PENDING"
+    },
+    {
+      "key": "PACKET_BUFFERED",
+      "full_name": "Packet-Buffered Predictive Control",
+      "status": "SOURCE_PENDING"
+    },
+    {
+      "key": "ORACLE_FAULT",
+      "full_name": "Oracle Fault-Aware Model Predictive Control",
+      "status": "NOT_RUN"
+    },
+    {
+      "key": "FDI_FTC",
+      "full_name": "Fault-Diagnosis-Based Fault-Tolerant Model Predictive Control",
+      "status": "SOURCE_PENDING"
+    }
+  ],
+  "excluded_diagnostics": [
+    {
+      "key": "CENTRALIZED_FULL_STATE_PHYSICAL_MPC_DIAGNOSTIC",
+      "full_name": "Centralized Full-State Physical MPC Diagnostic Upper Bound",
+      "status": "DEVELOPMENT_DIAGNOSTIC_P1_COMPLETE_THREE_PLANT_STEPS",
+      "reason": "R2-R5 feasibility/numerical/information-interface development only; it has centralized same-tick information and must not be labeled P0/P0N or enter H1-H6.",
+      "current_state": {
+        "date": "2026-09-16",
+        "cpu_runs": "P0 nominal R3 numerical recovery PASS; the interrupted P1 2 ms CPU run stays FAIL_LATE_TRACKING_DIVERGENCE by user designation and its persisted prefix is not resumable",
+        "gpu_runs": "P1 complete at 2 ms, 1 ms and 0.5 ms plant steps on the CUDA implementation variant, all 2379/2379 ticks, all original hard gates holding, both pairwise step-convergence comparisons PASS",
+        "tracking_quality": "NOT_QUALIFIED: completing the route does not make the late lateral deviation (about 0.53 m at 44 s) acceptable, and it does not show that the late divergence is resolved",
+        "next": "P2 parameter point running; its 1 ms and 0.5 ms cells pending"
+      }
+    }
+  ]
+}

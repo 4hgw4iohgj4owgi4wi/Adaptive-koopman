@@ -1,0 +1,18 @@
+﻿{
+    "created":  "2026-08-25T03:39:47.7875048+08:00",
+    "source_host":  "DESKTOP-9IUUGEO",
+    "source_archive":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\connector_r3_1_delivery_20260825.tar",
+    "archive_size_bytes":  7700992,
+    "archive_sha256":  "60b14f54e0f55cfb185711a5e4c12bae984eb911c94bf0373928dff2c30b7edf",
+    "included":  [
+                     "connector_r3_1",
+                     "connector_r3_1_results"
+                 ],
+    "stage_status":  "BLOCKED_R3_1_PLANT_STEP_RESOLUTION",
+    "intended_target_host":  "DESKTOP-F5C8A16",
+    "intended_target_ip":  "100.117.75.96",
+    "intended_target_root":  "D:\\PDxc\\Review",
+    "transfer_status":  "BLOCKED_TARGET_SSH_PORT_22_UNREACHABLE",
+    "development_read":  false,
+    "confirm_read":  false
+}

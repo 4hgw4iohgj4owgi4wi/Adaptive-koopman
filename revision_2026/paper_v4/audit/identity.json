@@ -1,0 +1,45 @@
+{
+  "schema_version": "EXP-R2-E00-identity-v1",
+  "status": "PARTIAL",
+  "host": "DESKTOP-9IUUGEO",
+  "python": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]",
+  "taskbook": {
+    "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\inputs\\experiment.md",
+    "sha256": "417CFCDBF22A026973DFF617E29E4814361F9013AED7CA06F065992C20F0D81D"
+  },
+  "frozen_originals": [
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\four_vehicle_common.py",
+      "expected_sha256": "6D7A2092FC6B9772347FC6D9812BA920BB139C8271F5CBBA1AC96CC4F12BCA80",
+      "actual_sha256": "6D7A2092FC6B9772347FC6D9812BA920BB139C8271F5CBBA1AC96CC4F12BCA80",
+      "match": true
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\event_substep.py",
+      "expected_sha256": "9AA0E8BD62DD8B83B8BD0C15414CBD21F915F0203B7CA978D5F46BC45746D77C",
+      "actual_sha256": "9AA0E8BD62DD8B83B8BD0C15414CBD21F915F0203B7CA978D5F46BC45746D77C",
+      "match": true
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v3\\src\\controllers.py",
+      "expected_sha256": "C504BB0941990443FC0BECDEFAF6AB6D97FF9B14AE4180B546D714EEA044C797",
+      "actual_sha256": "C504BB0941990443FC0BECDEFAF6AB6D97FF9B14AE4180B546D714EEA044C797",
+      "match": true
+    }
+  ],
+  "package_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core",
+  "package_location_unique": true,
+  "plant_import_identity": "PASS",
+  "actuator_contract": {
+    "status": "PASS_IMPLEMENTED_CONTRACT",
+    "update_interval_s": 0.002,
+    "semantics": "discrete jump at each 2 ms interval start, then held during that plant interval",
+    "time_constant_s": 0.12,
+    "rate_limit_radps": 1.2,
+    "angle_limit_deg": 15.0,
+    "scope": "simulation contract, not hardware calibration and not a continuous actuator-plant convergence claim"
+  },
+  "data_roles": "PARTIAL",
+  "submission_pdf": "SOURCE_PENDING",
+  "all_E00_complete": false
+}

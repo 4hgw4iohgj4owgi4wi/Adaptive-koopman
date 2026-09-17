@@ -1,0 +1,139 @@
+# ===========================================================================
+# Adaptive-koopman：只收录代码与文本规范，不收录大体积实验产物。
+#
+# 原因：整树 26.19 GB / 91,839 文件，其中 .npz 13.45 GB、.csv 4.03 GB、
+# .pkl 2.30 GB、.png 1.87 GB、.pdf 1.62 GB，且有 5 个文件 >100 MB
+# （GitHub 单文件硬限 100 MB）。实验原始数据、模型权重与结果目录一律留在
+# 本地/实验机，不进版本库。
+#
+# 注意：本文件只影响"是否入库"，不改变任何工作树文件字节，因此不影响
+# protocol/*.json 的 SHA-256 身份校验。
+# ===========================================================================
+
+# ---------- 缓存与编辑器 ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.idea/
+.vscode/
+.venv/
+venv/
+node_modules/
+
+# ---------- 实验产物目录（任何层级） ----------
+results/
+analysis/
+logs/
+tmp/
+archives/
+saved_data/
+saved_models/
+datasets/
+tests_tmp*/
+*_results/
+*_data/
+offline_*/
+runs/
+
+# ---------- 历史批次与打包目录（大体积，非本项目当前代码） ----------
+ALL_codehub/
+A1_snapshot_*/
+pinn/
+专利/
+专利撰写参考/
+paper_ieee_sensors_*/
+paper_figs_tf10/
+tf1[0-9]_*/
+*_package/
+*_unpack/
+*_template_unpack/
+
+# ---------- 二进制/大文件扩展名（任何层级） ----------
+*.npz
+*.npy
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.hdf5
+*.mat
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tif
+*.tiff
+*.gif
+*.svg
+*.pdf
+*.docx
+*.doc
+*.pptx
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.log
+*.wk1
+*.bin
+*.dat
+*.db
+*.sqlite
+
+# ---------- 编译/排版中间产物 ----------
+*.aux
+*.bbl
+*.blg
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.vrb
+
+# ---------- 生成物：已执行 notebook（内嵌输出，非源码） ----------
+*executed*.ipynb
+*-checkpoint.ipynb
+
+# ---------- 纯数据目录（JSON 记录，非代码） ----------
+# 同时消除超长路径：最长被跟踪路径 199 字符，深目录 clone 时会撞 Windows
+# MAX_PATH(260) 报 "Filename too long"。排除 data/ 后长路径基本清零。
+data/
+
+# ---------- 嵌套 git 仓库（自带 .git，无远程） ----------
+# revision_2026/nkca_v1/worktree 是一个独立的本地仓库
+# （分支 exp/no-koopman-control-v1-20260824、snapshot/no-koopman-base，无 remote）。
+# 外层仓库若收录它只会得到一个空的 gitlink，clone 后无法还原内容，因此排除；
+# 需要版本化时它应当作为独立仓库单独推送。
+revision_2026/nkca_v1/worktree/
+
+# ---------- 安全：绝不入库的敏感文件 ----------
+*.pem
+*.key
+id_rsa*
+*_token*
+.env
+.env.*
+secrets.*

@@ -1,0 +1,140 @@
+{
+  "protocol_id": "koopman_predict_v2_p0_p3_v1",
+  "taskbook_sha256": "08EFC410984FE426FA8B9C9124F5AAD1A48AF4764184765BAC56CE7FF127CE5A",
+  "taskbook_note": "koopman_path.md itself; SHA256 registered at first authorization (2026-09-02).  This field is re-verified by run_v2 against the taskbook argument.",
+  "authorized_stages": ["P0", "P1", "P2", "P3"],
+  "human_stop_after": "P3",
+  "parent_n6": {
+    "source_root": "revision_2026/koopman_predict_auto",
+    "results_root": "revision_2026/koopman_predict_auto_results",
+    "data_root": "revision_2026/koopman_predict_auto_data",
+    "models_root": "revision_2026/koopman_predict_auto_models",
+    "run_id": "20260901_214725_AUTO_PREDICT_AUTO_R04_R01",
+    "source_manifest_sha256": "B421EE89D2E6C86B33C1D536AB18192630308C5A17306268DAB1A0E512B3D55F",
+    "protocol_sha256": "D90AB923C7FCC1CD3D72A8BC5F4AA8D62E7A400331F63437FD9292D275EB3BFC",
+    "taskbook_sha256": "4446B7B4F6DC5FEE648C4F4A0E75971050450AF81B5EA7AE4E788C2E5BFF0182",
+    "complete_sha256": "4F62F1454B6C7A3121AA9B5C53009329B139990497034047F206B5FCE2D91CC4",
+    "status": "PASS_STOPPED_AFTER_N6"
+  },
+  "source_root": "revision_2026/koopman_predict_v2",
+  "results_root": "revision_2026/koopman_predict_v2_results",
+  "models_root": "revision_2026/koopman_predict_v2_models",
+  "actuator": {
+    "mode": "A3",
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "substeps_per_model_step": 10,
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "endpoint_atol_rad": 1e-12,
+    "horizon_steps": 20
+  },
+  "k2": {
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.9, 1.1],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.8, 0.95]
+  },
+  "interfaces": {
+    "variants": ["S0", "S1", "S2"],
+    "common_state_dimension": 47,
+    "actuator_state_dimension": 4,
+    "control_dimension": 7,
+    "s2_future_actual_source": "analytic_only_from_current_actual_and_known_requests"
+  },
+  "window": {
+    "steps": 20,
+    "classes": ["steady", "maneuver", "switch", "connector_event"],
+    "control_change_atol": 1e-12,
+    "steering_active_rad": 0.008726646259971648,
+    "acceleration_active_mps2": 0.05
+  },
+  "scenarios": {
+    "order": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11"],
+    "directional": ["D2", "D3", "D4", "D5", "D6", "D8", "D10", "D11"],
+    "d9_members": ["A", "B"],
+    "durations_s": {"D0": 6.0, "D1": 8.0, "D3": 8.0, "D4": 8.0, "D5": 9.0, "D6": 7.0, "D7": 6.0, "D8": 6.0, "D9": 6.0, "D10": 8.0, "D11": 10.0},
+    "d2_distance_m": 100.0
+  },
+  "metric_weights": {
+    "core": 0.25,
+    "relative": 0.2,
+    "force4": 0.2,
+    "internal": 0.15,
+    "yaw": 0.1,
+    "actuator": 0.1,
+    "common_weight_sum": 0.9
+  },
+  "training": {
+    "models": ["M0_FIXED_LINEAR", "M1_LOWRANK_BILINEAR"],
+    "ranks": [1, 2, 4],
+    "ridge_grid": [1e-8, 1e-6, 1e-4, 1e-2],
+    "horizons": [1, 5, 10, 20],
+    "primary_family_bootstrap_seeds": [990101, 990102, 990103, 990104, 990105],
+    "backup_family_bootstrap_seeds": [990106, 990107],
+    "paired_ci_replicates": 2000,
+    "paired_ci_seed": 990500,
+    "seed_semantics": "closed_form_ridge_has_no_initialization_dependence; seeds index train-family bootstrap stability models",
+    "divergence_abs_normalized": 20.0,
+    "important_scenarios": ["D2", "D4", "D6", "D10"],
+    "strong_coupling_scenarios": ["D1", "D2", "D7", "D8", "D9"]
+  },
+  "split_contract": {
+    "train": {"base_family_count": 96, "seed_start": 986000},
+    "validation": {"base_family_count": 48, "seed_start": 987000},
+    "development": {"base_family_count": 48, "seed_start": 988000},
+    "confirm": {"base_family_count": 96, "seed_start": 989000, "visible": false}
+  },
+  "data_contract": {
+    "expected_trajectory_count": 672,
+    "ledger_window_counts": {"steady": 1868, "maneuver": 8484, "switch": 728, "connector_event": 4764},
+    "ledger_window_note": "N5 window_ledger counts (one extra non-evaluated window per trajectory); reference only",
+    "cache_window_counts": {"steady": 1682, "maneuver": 8352, "switch": 728, "connector_event": 4590},
+    "cache_window_note": "frozen cache window_class totals across train+validation+development (the windows used by every evaluation)",
+    "development_window_count": 3820,
+    "confirm_read_count": 0
+  },
+  "p0_gates": {
+    "s0_j20_common_reference": 0.13023504180689485,
+    "s0_j20_common_abs_tolerance": 1e-10,
+    "main_metric_relative_tolerance": 1e-9,
+    "development_window_count": 3820
+  },
+  "p1_signals": {
+    "principal_angle_median_min_deg": 15.0,
+    "partitioned_linear_one_step_improvement_min_percent": 5.0,
+    "connector_group_explained_requires_paired_ci_above_zero": true
+  },
+  "p2_gates": {
+    "macro_improvement_min_percent": 5.0,
+    "switch_or_connector_window_improvement_min_percent": 8.0,
+    "hard_scenario_improvement_min_percent": 10.0,
+    "scenario_degradation_max_percent": 5.0,
+    "bootstrap_same_direction_min": 4,
+    "expert_ridge": 0.01,
+    "regimes": {
+      "E0": ["steady"],
+      "E1": ["maneuver", "switch"],
+      "E2": ["connector_event"]
+    }
+  },
+  "p3_gates": {
+    "one_step_degradation_max_percent": 3.0,
+    "strong_scenario_improvement_min_percent": 8.0,
+    "macro_degradation_max_percent": 3.0,
+    "bootstrap_same_direction_min": 4,
+    "divergence_rate_increase_max": 0.01,
+    "joint_low_rank_iterations": 50,
+    "input_box_vertices": 128
+  },
+  "resource_limits": {
+    "minimum_free_gib": 40.0,
+    "maximum_workers": 4,
+    "stall_minutes": 30,
+    "expected_cpu_hours_p0_p3": 6.0
+  },
+  "forbidden_without_later_authorization": ["P4", "P5", "P6", "P7", "P8", "P9", "P10", "MPC", "NETWORK", "DOS", "CONFIRM"]
+}

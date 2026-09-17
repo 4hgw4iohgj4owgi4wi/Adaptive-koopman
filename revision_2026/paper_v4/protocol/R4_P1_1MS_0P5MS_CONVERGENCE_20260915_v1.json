@@ -1,0 +1,73 @@
+{
+  "protocol_id": "R4-P1-cell-convergence-1ms-to-0p5ms-v1",
+  "authorization": "User instruction 2026-09-15: complete everything until the full experiment can start.",
+  "scope": "R4_CELL_CONVERGENCE",
+  "schema_version": "R4-CELL-COMPARE-v1",
+  "parameter_id": "P1",
+  "cells": [
+    {
+      "step_ms": 1.0,
+      "output": "results/20260915_R4_P1_1MS_GPU01"
+    },
+    {
+      "step_ms": 0.5,
+      "output": "results/20260915_R4_P1_0P5MS_GPU01"
+    }
+  ],
+  "gates": {
+    "peak_force_relative": 0.02,
+    "impulse_vector_relative": 0.02,
+    "terminal_position_m": 0.001,
+    "terminal_heading_deg": 0.01,
+    "original_ultimate_force_n": 15000.0,
+    "original_tire_limit": 1.0,
+    "source": "the same four thresholds the frozen R3 recovery comparison used for 1 ms versus 0.5 ms; not relaxed here"
+  },
+  "output": "analysis/20260915_R4_P1_1MS_0P5MS_CONVERGENCE_01",
+  "identity_files": [
+    {
+      "path": "tools/r4_cell_compare.py",
+      "sha256": "825cc298e28d27e8a0a2c3ec86073251464587304a7e0f078da9c49990757d20"
+    },
+    {
+      "path": "protocol/R4_P1_1MS_GPU_20260915_v1.json",
+      "sha256": "f082c5bec9da76fbc4453651d69d44d210058084dbbbccdf0900b599e075b59c"
+    },
+    {
+      "path": "protocol/R4_P1_0P5MS_GPU_20260915_v1.json",
+      "sha256": "59b2f1abb3a6bb7ce18b34ecd0cd35be62a5ff156ed04dd005af18b795e1026b"
+    },
+    {
+      "path": "results/20260915_R4_P1_1MS_GPU01/raw.npz",
+      "sha256": "69810e87391cab54fed194fe868a26d5945fa8f83475c526c2835542bae3c9fc"
+    },
+    {
+      "path": "results/20260915_R4_P1_1MS_GPU01/substeps.npz",
+      "sha256": "978fbd3d5237fe58077ebbe8e4dd7c1766b624f2601784309f56fade2fb1e21f"
+    },
+    {
+      "path": "results/20260915_R4_P1_1MS_GPU01/metrics.json",
+      "sha256": "c542817fc2c9631804a6fea22581470ed0716e5c2903eab81601bff852fbacdd"
+    },
+    {
+      "path": "results/20260915_R4_P1_1MS_GPU01/status.json",
+      "sha256": "c542817fc2c9631804a6fea22581470ed0716e5c2903eab81601bff852fbacdd"
+    },
+    {
+      "path": "results/20260915_R4_P1_0P5MS_GPU01/raw.npz",
+      "sha256": "8f875ad6a3536ca452d01a7b4c86e4c3320cb07fc99fe5643215b9867c932901"
+    },
+    {
+      "path": "results/20260915_R4_P1_0P5MS_GPU01/substeps.npz",
+      "sha256": "dd84b9efd099c69ee93962d6e8f895ef44a944436d2759ffaf8ce25002b1a245"
+    },
+    {
+      "path": "results/20260915_R4_P1_0P5MS_GPU01/metrics.json",
+      "sha256": "205b55572029257d32b3c2793e04a95f6f394043ae461857c7676427e2ef9a75"
+    },
+    {
+      "path": "results/20260915_R4_P1_0P5MS_GPU01/status.json",
+      "sha256": "205b55572029257d32b3c2793e04a95f6f394043ae461857c7676427e2ef9a75"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+Dear Dr. Zeng:
+
+The review of paper
+
+VT-2026-05393: Network-Resilient Cooperative Transport Control via Bilinear Koopman Learning and Delay-Compensated Consensus MPC
+
+has been completed.  Attached below please find the reviewers' comments.
+
+AE Comments: 
+
+The manuscript addresses a relevant problem in network-resilient cooperative vehicle/payload transport and presents a substantial implementation effort through Koopman learning, consensus MPC, delay handling, fault tolerance, and certificate-based fallback. However, the reviews raise serious concerns about the clarity and strength of the contribution. In particular,
+
+1. the novelty over existing Koopman/MPC/consensus frameworks is not yet convincing, the stability analysis appears highly conditional, and several claimed components，especially bilinear Koopman modeling, IRSP, and delay compensation, are not sufficiently supported by the ablation results.
+2. The reviewers also noted that the force-related results and operating-envelope limitations are not adequately reconciled with the paper’s claims, and that stronger baselines, clearer parameter settings, more rigorous statistical evidence, and improved presentation are needed.
+
+A significant revision is therefore required before the manuscript can be reconsidered. After careful consideration of the reviewers' comments, the decision has been made not to publish this paper in the IEEE Transactions on Vehicular Technology.
+
+However, you may take into consideration the comments from the reviewers and re-submit it as a new submission within 120 days.  If you choose to resubmit your paper, please refer to this original paper number (VT-2026-05393) when submitting and include a summary of the changes you have made in response to the AE and reviewers. The manuscript will undergo a new review process.
+
+Please note that your manuscript (including main body, figures, tables, references, and biosketch) should be in double-columned with fonts no smaller than 10pt in the final IEEE typesetting with maximum page length 16 pages for regular papers.
+
+PLEASE READ:
+If you originally submitted via the IEEE Author Portal, please upload your files here: https://ieee.submission.researchexchange.com/journal/tvt-ieee
+
+If you originally submitted via ScholarOne Manuscripts, please upload your files here: https://mc.manuscriptcentral.com/tvt-ieee
+
+Thank you for submitting your manuscript to the TRANSACTIONS. We look forward to the possibility of receiving more submissions on your future technical work.
+
+Sincerely yours,
+
+Zhenyu Zhao
+Editor, IEEE Transactions on Vehicular Technology
+
+
+==============================================
+Reviews for VT-2026-05393
+
+*Please note that there may be attached files that contain additional comments from the reviewers. To see these files, please log on to your "Author Center" at the Manuscript Central web site (https://mc.manuscriptcentral.com/tvt-ieee) and select this paper to see and download the files.
+==============================================
+
+Reviewer: 1
+
+ADDITIONAL COMMENTS TO THE AUTHOR:
+After reading this paper, I concluded that this work presents a potentially interesting framework for a complex problem but it suffers from fundamental flaws in scientific presentation and validation. The most critical issues are the lack of a clear theoretical contribution, the misrepresentation of its own results (claiming improvements in some metrics while ignoring degradations in others), and a stability proof that is conditional and circularly dependent on simulation logs. The method is a complex assembly of existing techniques (Koopman, MPC, consensus) and, in its current state, does not demonstrate a clear, generalizable novelty that would warrant publication. Thus, it required a major revision before proceeding.
+1) Novelty Claim is misleading. The "main contributions" are largely an assemblage of established techniques (Koopman, MPC, consensus, FDI/FTC) applied to a specific problem. The claimed "communication-quality-aware" scheduling is incremental. The paper fails to articulate a fundamentally new theory or algorithm that distinguishes it from a well-engineered application of prior art.
+2) At Page 11, Table III: The paper claims improved tracking and connection utilization but admits in Table III and the text that the force peak is higher for NR-KDCC than for AKE-M. The paper downplays this as a "trade-off audit," yet the core problem of payload transport is likely force-sensitive, making this a key failure metric. This is a significant oversight.
+3) At page 9-10, the "proof" of stability in Theorem 1 is a practical ISS/UUB result that is entirely contingent on conditions that are only verified empirically in simulation (Assumptions 1-3). The proof's "certificate-verified" nature is circular: it relies on the controller passing its own certificate check, which is not guaranteed. Consequently, the true proof of stability is questionable.
+4) Claimed contributions rely on network resilience against adversarial communication threats. Network resilience of transport and its comparison is week. This may be compare with resilient distributed cooperative optimization for cyber-physical vehicle systems under DoS attacks, digital twin-based resilient consensus control of unmanned aerial vehicles under attack, and secure distributed estimation for vehicular platooning to strengthen the motivation for their communication-quality-aware framework and to position their contribution more clearly for transport network security.
+5) At page #11, the paper positions the bilinear model as a key contribution because it captures input-state coupling. However, in Table II, the bilinear models without projection (K2) and the linear AKE-style model (K1) often outperform the proposed K3 model in lateral RMSE. This directly contradicts the paper's central modeling claim.
+6) The experimental setup is unclear and unmotivated. The tuning parameters for the critical modes  (for example activation threshold, k_on, k_off etc) are not provided, making the results irreproducible and the mechanism poorly motivated.
+
+Reviewer: 2
+
+ADDITIONAL COMMENTS TO THE AUTHOR:
+This paper proposes a network-resilient cooperative transport control framework that combines bilinear Koopman learning, communication-quality-aware consensus MPC, delay compensation, PPC, FDI/FTC, role scheduling, and certificate-based fallback for four-vehicle rigid-payload transport. Although the topic is relevant and the manuscript contains considerable implementation work, the current version still has several fundamental theoretical and experimental weaknesses. In particular, the stability guarantee is highly conditional, the evidence for several claimed core components is insufficient, and the experimental validation is not strong enough to support the claimed contribution. Therefore, I recommend rejection in its present form. The authors may consider the following comments for future revision or resubmission:
+1. The stability analysis is highly conditional and does not provide a sufficiently rigorous closed-loop guarantee for the proposed controller. Theorem 1 assumes that certificate-passing steps already satisfy a prescribed decrease inequality, certificate-failing steps satisfy a bounded-growth condition, and the density of failing steps satisfies an average-contraction condition. These assumptions are close to the properties that should be derived from the proposed MPC, switching, and fallback mechanisms rather than introduced as prerequisites. Moreover, the experiments report certificate passing ratios as low as 0.360 in the nominal-clean case and 0.799 in the single-fault case, with negative minimum margins. The current analysis therefore does not convincingly establish the claimed practical ISS/UUB property.
+2. The proposed input-aware robust spectral projection (IRSP) does not convincingly certify the actual continuous control-input domain. The main implementation relies on a sampled spectral-radius bound over a finite input set, while the manuscript itself states that, without the norm certificate, the boundedness claim is restricted to the sampled control envelope. A finite spectral-radius audit is not sufficient to establish contraction for all admissible inputs, especially for potentially non-normal lifted operators. Since the continuous-envelope norm certificate is only reported as an audit metric rather than enforced in the main experiments, the paper needs a stronger theoretical connection among IRSP, induced-norm bounds, recursive feasibility, and closed-loop stability.
+3. The ablation results do not substantiate several components emphasized as core contributions. In Table V, removing delay compensation produces almost no performance degradation, whereas removing IRSP even gives a lower lateral RMSE than the complete NR-KDCC in the mixed fault/noise case. Similarly, Table II shows that the unprojected bilinear model and the AKE-style linear model can outperform the proposed bilinear+IRSP model in lateral RMSE. By contrast, communication awareness and PPC appear to be the dominant factors in the ablation study. These results raise a fundamental concern regarding whether bilinear Koopman learning, IRSP, and delay compensation provide meaningful closed-loop benefits commensurate with the complexity added to the framework.
+4. The baseline comparison is not sufficiently strong to establish superiority over existing methods. The main comparison is against a task-adapted AKE-M baseline and a very weak ZOH-cons baseline, while representative robust MPC, distributed MPC under packet loss, delay-resilient networked MPC, or communication-loss-tolerant platooning methods cited in the literature are not included. Since both AKE-M and NR-KDCC already achieve full path completion in the two main communication-stress scenarios, the claimed advantage mainly relies on tracking error and connection-utilization differences. A broader and more independent set of competitive baselines is necessary to demonstrate that the proposed framework offers a genuine methodological advantage rather than an advantage over a baseline not originally designed for this specific problem.
+5. The statistical evidence is insufficient considering the number of learned, switched, and fault/network-dependent components in the proposed framework. Although the main comparison uses paired n = 20 trials, the manuscript does not report standard deviations, confidence intervals, paired significance tests, or effect sizes for the principal performance metrics. The speed-sensitivity experiment uses only n = 3, and several important studies, including the Koopman ablation, delay/communication diagnostics, FDI/FTC evaluation, and hairpin analysis, are explicitly single-seed diagnostics. Consequently, the robustness and repeatability of the reported improvements cannot be adequately assessed. Multi-seed testing with uncertainty quantification is required for the major claims.
+6. The validation remains entirely simulation/model based, and the physical payload interaction is represented only through a force proxy. The training data are generated from the authors' own vehicle-payload equations and the learned Koopman model is then evaluated within essentially the same simulation environment. In addition, the manuscript explicitly states that the connection-force quantity is a spring-damper-based proxy rather than a direct force measurement or a globally accurate payload-force estimate. This is important because the main comparison actually shows substantially higher raw force peaks for NR-KDCC than for AKE-M. High-fidelity multibody simulation, hardware-in-the-loop tests, or experimental validation with measured connector forces and realistic network delays would be needed to support the practical safety claims.
+7. The demonstrated operating envelope is too limited for the broad vehicular-control claims. The method performs reasonably only at low speeds of approximately 2-5 m/s. At 10 m/s, the longitudinal RMSE increases to about 6.91 m, and at 15 m/s all methods, including NR-KDCC, fail to complete the task. The high-curvature hairpin experiment also exposes a pronounced tracking-force-longitudinal-error trade-off rather than uniformly improved cooperative transport performance. These limitations are acknowledged by the authors as future-work issues, but they substantially restrict the practical significance of the current results. A much broader operating-range validation is required before the proposed framework can be considered sufficiently mature for publication in IEEE Transactions on Vehicular Technology.
+
+
+Reviewer: 3
+
+ADDITIONAL COMMENTS TO THE AUTHOR:
+After careful review, I found the following weaknesses in this paper:
+
+1. There are a lot of defensive writing styles like "Force-related quantities are reported as trade-off diagnostics rather than superiority claim" in the abstract or "..., and directional components as safety-cost indicators rather than claiming monotonic reduction of the true connection-force peak.". and more ... This is not suitable to be presented in a formal academic paper. Please find all the defensive  wording and correct them. 
+
+2. Some of the  info in the citations is missing. E.g. [10], [13], [14], [15], [37]. Please cite them properly. 
+
+3. For the Ref [33]: "L. Dai, S. Liu, J. Hu, and F. Deng, “Distributed predictive control for networked dc microgrids with communication delays and packet dropouts,” IEEE Transactions on Industrial Informatics, 2025.", the info of the authors is wrong, From what I looked up, I found the actual authors are "Dai, Xiaoran and Liu, Guo-Ping and Hu, Wenshan and Deng, Qijun and Lei, Zhongcheng". Please correct this error. This issue also appears in Ref[13], [37]. 
+
+4. There seems to be a mathematical inconsistency in Eq (22): When ru<||A+||, the paper sets gamma_c=0, but then A_eff becomes A+, which still gives ||A_eff||>ru. So, the stated bound cannot be guaranteed. Pls carefully check the Eq(22). 
+
+
+5. The authors stated "Its logic is organized around three paper-level claims rather than a collection of independent engineering modules". However, this paper includes so many modules including "bilinear Koopman, MPC, consensus, communication-quality scheduling, delay compensation, PPC, FDI/FTC, role scheduling, 4WS local path, fallback, certificate." However, there are insufficient ablation studies to support the effectiveness and contribution of all these modules.
+
+6. The number of baselines is limited. Pls consider comparing with stronger baselines like robust or distributed MPC, delay-aware MPC, and network-aware consensus control. 
+
+7. "Delay-Compensated" is highlighted in the title. However, there is not sufficient evidence that can support the effectiveness of delay compensation. In Table V, NR-KDCC and NR-KDCC-noDelay achieve almost identical results in both use cases. Pls consider showing stronger evidence to support its actual contribution. 

@@ -1,0 +1,109 @@
+FILE: D:\LEARNING\ZNN\ZNN\save\2007.02219v2.pdf
+PAGES: 12
+TITLE_GUESS: 1 | Deep Neural Networks with Koopman Operators for | Modeling and Control of Autonomous Vehicles
+
+INTRO_EXTRACT:
+I. INTRODUCTION
+A
+UTONOMOUS vehicles and driving technologies have
+received notable attention in the past several decades.
+Autonomous vehicles are promising to free the hands of
+humans from tedious long-distance drivings and have huge
+potential to reduce trafﬁc congestion and accidents. A classic
+autonomous driving system usually consists of key modules of
+perception, localization, decision-making, trajectory planning
+and control. In trajectory planning and control, the information
+of vehicle dynamics is usually required for realizing agile and
+safe maneuver, especially in complex and unstructured road
+scenarios.
+In order to realize high-performance trajectory tracking of
+autonomous vehicles, many control methods, such as Linear
+Quadratic Regulator (LQR) [1] and Model Predictive Control
+(MPC) [2], rely on vehicle model information with different
+This work has been submitted to the IEEE for possible publication.
+Copyright may be transferred without notice, after which this version may
+no longer be accessible.
+Yongqian
+Xiao,
+Xinglong
+Zhang,
+Xin
+Xu,
+Xueqing
+Liu,
+and
+Jiahang
+Liu
+are
+with
+the
+College
+of
+Intelligence
+Science
+and
+Technology,
+National
+University
+of
+Defense
+Technology,
+Changsha
+410073,
+China.
+email:
+(xiaoyongqian18@nudt.edu.cn;
+zhangxing-
+long18@nudt.edu.cn;
+xuxin mail@263.net;
+13795351841@163.com;
+liujiahang1992@foxmail.com)
+levels and structures. However, to obtain a precise model of
+vehicle dynamics is difﬁcult for the following reasons: i) the
+vehicle dynamics in the longitudinal and lateral directions are
+highly coupled; ii) strong non-linearity and model uncertainty
+become dominant factors especially when the vehicle reaches
+the limit of tire-road friction [3], [4], [5]. Among the existing
+approaches, classic physics-based modeling methods rely on
+Newton’s second law of motion, where multiple physical
+parameters are required to be determined, see [6], [7]. Indeed,
+some model parameters, such as cornering stiffness coefﬁcient,
+are not measurable and difﬁcult to be estimated [8], [9], [10].
+As an alternative to analytic modeling of vehicle dynamics,
+machine learning techniques have been used in recent years
+for building data-driven models of vehicles, see [11], [12].
+However, deep neural networks commonly lack interpretabil-
+ity, which has recently been noted as a challenge for applica-
+tions with safety requirements and remains as a cutting-edge
+research topic. As a result, the models established by deep
+neural networks might have unknown sensitive modes and
+be fragile to model uncertainties. Also, due to the nonlinear
+activation functions, the obtained dynamics model is not easy
+to be used for designing a well-posed controller such as MPC,
+LQR, and so forth. Recently, the Koopman operator, being an
+invariant linear operator (probably of inﬁnite dimension), has
+been regarded as a powerful tool for capturing the intrinsic
+characteristics of a nonlinear system via linear evolution in the
+lifted observable space. To obtain a realistic model description,
+usually, dimensionality reduction methods such as Dynamic
+Mode Decomposition (DMD) in [13], [14] and Extended
+Dynamic Mode Decomposition (EDMD) in [15] can be used
+to approximate the Koopman operator with a ﬁnite dimension
+matrix. In [16], a data-driven identiﬁcation method using
+Koopman operator was proposed for vehicle dynamics but the
+basis functions were either manually designed or determined
+by the knowledge of the nonlinear dynamics, which is a
+nontrivial task due to the dynamics in the longitudinal and
+lateral directions are strongly coupled and highly nonlinear.
+It is necessary to study learning-based construction methods
+for basis functions of the Koopman operator. Furthermore, the
+data-driven vehicle models studied in previous works have not
+been veriﬁed in practical controller design process.
+To solve the above problems, this paper proposes a novel
+data-driven vehicle modeling approach based on deep neural
+networks with an interpretable Koopman operator. In the
+proposed approach, a deep learning-based extended dynamic
+mode decomposition (Deep EDMD) algorithm is presented to
+learn a ﬁnite basis function set of the Koopman operator. Fur-
+thermore, a data-driven model predictive controller is designed
+arXiv:2007.02219v2  [eess.SY]  17 Aug 2021

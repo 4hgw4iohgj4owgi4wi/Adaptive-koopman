@@ -1,0 +1,32 @@
+FILE: D:\LEARNING\ZNN\ZNN\save\2405.10145v1.pdf
+PAGES: 11
+TITLE_GUESS: JOURNAL OF LATEX CLASS FILES, VOL. , NO. , MAY 2023 | 1 | N
+
+INTRO_EXTRACT:
+ 
+I. INTRODUCTION 
+ONLINEAR behaviors are difficult to characterize with 
+physical-based models, and even if it is possible, the 
+expressions are quite complicated [1]–[3]. Besides, many well- 
+established control techniques are based on linear systems 
+or input affine systems, whereas mechatronic systems, par- 
+ticularly those classes with high nonlinear dynamics, such 
+as vehicles, cannot satisfy such prerequisites or assumptions. 
+Thereby, this limits the application and extension of methods. 
+Data-driven modelling methodology provides a tutorial on 
+these issues. The data-driven method does not rely on the 
+internal structure and parameters of the control plant but rather 
+on the input and output data, which can effectively characterize 
+the nonlinear components and improve the model fidelity of 
+the system [4]–[7]. 
+Hao Chen, Xiangkun He, and Chen Lv are with the School of Me- 
+chanical and Aerospace Engineering, Nanyang Technological University, 
+639798, Singapore, e-mails: chen.h@ntu.edu.sg, xiangkun.he@ntu.edu.sg, 
+lyuchen@ntu.edu.sg. Shuo Cheng is with the Institute of Industrial Science, 
+the University of Tokyo, Tokyo, 153-0041, Japan. e-mail: cshuo@iis.u- 
+tokyo.ac.jp 
+Corresponding author: C. Lv 
+Koopman operator maps the original nonlinear system 
+into an infinite-dimensional linear space to achieve global 
+linearization of the nonlinear system through experimental 
+or simulation data [8]–[11]. Unlike the local linearization 

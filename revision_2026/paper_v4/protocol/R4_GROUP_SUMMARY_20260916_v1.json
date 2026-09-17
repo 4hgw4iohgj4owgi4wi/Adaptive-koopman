@@ -1,0 +1,48 @@
+{
+  "protocol_id": "R4-parameter-group-summary-v1",
+  "authorization": "Task-book section 25.4 requires a parameter-group completion/failure summary figure for R4-type step and parameter comparisons.",
+  "scope": "R4_PARAMETER_GROUP_SUMMARY",
+  "output": "analysis/20260916_R4_GROUP_SUMMARY_01",
+  "identity_files": [
+    {
+      "path": "tools/r4_group_summary.py",
+      "sha256": "b166bc69e63d1d64ff9797c51ea1d502a241273d2a578cb26b70594e9061d1fb"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS_GPU01/metrics.json",
+      "sha256": "f25577d148c6cf2cbcd88f8330f0e286ae22d2d304552119d03887aa01f4f2ed"
+    },
+    {
+      "path": "results/20260915_R4_P1_1MS_GPU01/metrics.json",
+      "sha256": "c542817fc2c9631804a6fea22581470ed0716e5c2903eab81601bff852fbacdd"
+    },
+    {
+      "path": "results/20260915_R4_P1_0P5MS_GPU01/metrics.json",
+      "sha256": "205b55572029257d32b3c2793e04a95f6f394043ae461857c7676427e2ef9a75"
+    },
+    {
+      "path": "results/20260915_R4_P2_2MS_GPU01/metrics.json",
+      "sha256": "082f30ed4b2a146f3d47adc8f05a452931fddeb5f3e7f1068b0f7e08cf1c6625"
+    },
+    {
+      "path": "results/20260915_R4_P2_1MS_GPU02/metrics.json",
+      "sha256": "41eafb1769ad3154cdd14d20347317c78861c55d4cdfcda489baf588d08b7a78"
+    },
+    {
+      "path": "results/20260915_R4_P2_0P5MS_GPU01/status.json",
+      "sha256": "af3f9a5cc94a3b10e510828d81a480d7d2e21e7593ff925bfd433ee5b3760d48"
+    },
+    {
+      "path": "analysis/20260915_R4_P1_2MS_1MS_CONVERGENCE_02/r4_convergence_2ms_to_1ms.json",
+      "sha256": "43af529372ab5bca1f370a75bb21ceb33f5554d1080426bc28147339394d44d4"
+    },
+    {
+      "path": "analysis/20260915_R4_P1_1MS_0P5MS_CONVERGENCE_01/r4_convergence_1ms_to_0.5ms.json",
+      "sha256": "9d52e5aabc7a534b1c49892e66087362e469d6cd630549387fb7bee401acb196"
+    },
+    {
+      "path": "analysis/20260916_R4_P2_2MS_1MS_CONVERGENCE_01/r4_convergence_2ms_to_1ms.json",
+      "sha256": "a3793787ee6de3e23fa3fcb21faaff6b08c73bce93575f82d34609cad6eeded5"
+    }
+  ]
+}

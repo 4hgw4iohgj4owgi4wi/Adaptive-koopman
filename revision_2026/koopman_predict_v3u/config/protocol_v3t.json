@@ -1,0 +1,15 @@
+{
+  "protocol_id": "KOOPMAN_GUARD_G0_G5_20260904_R01",
+  "taskbook_sha256": "8F9367990910DA45B6EABB726C1FF717EFB8C745338DAFCCE382DCDF3D8A058D",
+  "authoritative_specification": "taskbook_snapshot.md, all sections, no inherited v3s experiment authorization",
+  "authorized_stages": ["G0", "G1", "G2", "G3", "G4", "G5"],
+  "stop_after": "G5",
+  "forbidden": ["V0", "C0", "new_validation_numeric_read", "confirm", "MPC", "network", "DoS"],
+  "data_manifest_sha256": "B04F2C0CC2638EF7AECC8ED70CE54F9E16BEA645A79FC810C6DB8118DB3A8CA9",
+  "outer_seed": 994700,
+  "inner_seed": 995700,
+  "inner_candidate_order": "lexicographic family id",
+  "max_gpu_hours": 12,
+  "minimum_free_gib": 60,
+  "implementation_status": "G0 registration and G1 diagnosis entry; G2-G5 not yet implemented or admitted"
+}

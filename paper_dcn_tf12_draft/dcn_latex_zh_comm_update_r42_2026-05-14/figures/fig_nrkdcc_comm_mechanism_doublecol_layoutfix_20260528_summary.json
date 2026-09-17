@@ -1,0 +1,10 @@
+{
+  "source": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_5mps_global_tune_base_20260513\\data\\diagnostics\\E8_HAIRPIN_5MPS\\seed_2026\\hairpin_pressure_v5p0_tf14_full\\control_spread.csv",
+  "rows": 834,
+  "comm_quality_min": 0.4739732027386936,
+  "comm_delay_max": 2.833333333333333,
+  "packet_loss_max": 0.8333333333333334,
+  "tightening_max": 0.1262464313427135,
+  "output_pdf": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\dcn_latex_zh_comm_update_r42_2026-05-14\\figures\\fig_nrkdcc_comm_mechanism_doublecol_layoutfix_20260528.pdf",
+  "output_png": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\dcn_latex_zh_comm_update_r42_2026-05-14\\figures\\fig_nrkdcc_comm_mechanism_doublecol_layoutfix_20260528.png"
+}

@@ -1,0 +1,30 @@
+﻿{
+    "relocated_at":  "2026-08-24T16:55:26.8322995Z",
+    "reason":  "User required all NKCA experiment state to live inside the project directory.",
+    "source_project":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main",
+    "target_root":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\nkca_v1",
+    "koopman_workspace":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman",
+    "koopman_workspace_touched":  false,
+    "branch":  "exp/no-koopman-control-v1-20260824",
+    "head":  "31284773cf8ede317fc588d8d008302de36d35da",
+    "trees":  {
+                  "worktree":  {
+                                   "old_path":  "D:\\LEARNING\\ZNN\\ZNN\\NKCA-v1-worktree",
+                                   "new_path":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\nkca_v1\\worktree",
+                                   "file_count":  153,
+                                   "sha256":  "7B82CE80570DCB0C6EE22975315FE32975ABD116587CFC7E306A193B6E23DF2D"
+                               },
+                  "results":  {
+                                  "old_path":  "D:\\EXPERIMENTS\\NKCA-v1-results",
+                                  "new_path":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\nkca_v1\\results",
+                                  "file_count":  26,
+                                  "sha256":  "A0DB43DCE9F5C4AB304A77BEE83AC503B114027A04FEB0FDC5430550BE6CF52E"
+                              },
+                  "scratch":  {
+                                  "old_path":  "D:\\EXPERIMENTS\\NKCA-v1-scratch",
+                                  "new_path":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\nkca_v1\\scratch",
+                                  "file_count":  6,
+                                  "sha256":  "2B2BF1ABA8A5810BF0D4B95BE87F6EC73B7C8372B32368864313FEEB0896F24A"
+                              }
+              }
+}

@@ -1,0 +1,18 @@
+{
+  "config_key": "M0_FIXED_LINEAR|S2|none",
+  "seed_label": "FULL_TRAIN",
+  "variant": "S2",
+  "model_kind": "M0_FIXED_LINEAR",
+  "ridge": 0.01,
+  "rank": null,
+  "layout": {
+    "state_dimension": 51,
+    "control_dimension": 7,
+    "side_dimension": 12,
+    "output_dimension": 47,
+    "bilinear_start": 70
+  },
+  "condition_number": 461836530.82379055,
+  "parameter_count": 3337,
+  "fit_row_count": 158800
+}

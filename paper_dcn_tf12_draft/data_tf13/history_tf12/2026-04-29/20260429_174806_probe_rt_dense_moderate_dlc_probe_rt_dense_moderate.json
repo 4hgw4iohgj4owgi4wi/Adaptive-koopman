@@ -1,0 +1,29 @@
+{
+  "timestamp_local": "2026-04-29T17:48:06",
+  "history_version": "tf12_v1",
+  "case_name": "probe_rt_dense_moderate",
+  "scenario_mode": "dlc",
+  "method_name": "probe_rt_dense_moderate",
+  "full_path_reached": true,
+  "sim_steps": 1000,
+  "step_time_mean": 0.05350070449977647,
+  "step_time_max": 0.0730481999926269,
+  "rmse_lat_mean": 0.06028786676387776,
+  "rmse_long_mean": 1.573777963219273,
+  "max_lat_global": 0.117827606470424,
+  "max_long_global": 2.5000995336668925,
+  "fleet_vehicle_max_abs_ey": [
+    0.08568833167548551,
+    0.11143824143737213,
+    0.06953175831658376,
+    0.117827606470424
+  ],
+  "fleet_vehicle_max_abs_es": [
+    2.500099413193982,
+    2.5,
+    2.5000995336668925,
+    2.5
+  ],
+  "npz_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_174806_probe_rt_dense_moderate_dlc_probe_rt_dense_moderate.npz",
+  "json_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_174806_probe_rt_dense_moderate_dlc_probe_rt_dense_moderate.json"
+}

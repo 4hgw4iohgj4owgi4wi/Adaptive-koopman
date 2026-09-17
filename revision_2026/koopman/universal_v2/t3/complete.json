@@ -1,0 +1,13 @@
+{
+  "stage": "T3-F",
+  "status": "complete",
+  "eligible": [
+    "K0",
+    "K1",
+    "K4",
+    "K5-linear"
+  ],
+  "families_passing_relative_gate": 0,
+  "cross_three_families": false,
+  "results_sha256": "6CF10DC383253F0954708481E314C3B969DEF7D2FC403DBB3276713A10D4900A"
+}

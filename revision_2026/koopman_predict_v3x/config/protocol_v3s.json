@@ -1,0 +1,449 @@
+{
+  "protocol_id": "PROTOCOL_V3S_SB16_20260903",
+  "taskbook_sha256": "C835AE567FCC24805C2C9BBBDEFA300361B6F3AA39D80963BD1FCA2C481ECFC6",
+  "taskbook_note": "koopman_ab.md SB route protocol (SB16 scenario balance)",
+  "authorized_stages": [
+    "SB2",
+    "SB3",
+    "SB4"
+  ],
+  "human_stop_after": "SB4",
+  "forbidden_without_later_authorization": [
+    "V0",
+    "C0",
+    "M0",
+    "M1",
+    "CONFIRM_READ"
+  ],
+  "new_validation": {
+    "seed_start": 991000,
+    "base_family_count_per_scenario": 4,
+    "expected_trajectory_count": 168,
+    "expected_base_family_count": 48,
+    "note": "identity ledger sealed at F1; trajectory simulation deferred to V0 authorization"
+  },
+  "history": {
+    "run_id": "20260902_115833_KOOPMAN_V2_GDM_RK_R01",
+    "old_validation_status": "CONTAMINATED_D5_BY_AF",
+    "old_development_status": "DEVELOPMENT_EVIDENCE_ONLY"
+  },
+  "source_root": "revision_2026/koopman_predict_v3s",
+  "results_root": "revision_2026/koopman_predict_v3s_results",
+  "models_root": "revision_2026/koopman_predict_v3s_models",
+  "data_root": "revision_2026/koopman_predict_v3s_data",
+  "parent_n6": {
+    "source_root": "revision_2026/koopman_predict_auto",
+    "results_root": "revision_2026/koopman_predict_auto_results",
+    "data_root": "revision_2026/koopman_predict_auto_data",
+    "models_root": "revision_2026/koopman_predict_auto_models",
+    "run_id": "20260901_214725_AUTO_PREDICT_AUTO_R04_R01",
+    "source_manifest_sha256": "B421EE89D2E6C86B33C1D536AB18192630308C5A17306268DAB1A0E512B3D55F",
+    "protocol_sha256": "D90AB923C7FCC1CD3D72A8BC5F4AA8D62E7A400331F63437FD9292D275EB3BFC",
+    "taskbook_sha256": "4446B7B4F6DC5FEE648C4F4A0E75971050450AF81B5EA7AE4E788C2E5BFF0182",
+    "complete_sha256": "4F62F1454B6C7A3121AA9B5C53009329B139990497034047F206B5FCE2D91CC4",
+    "status": "PASS_STOPPED_AFTER_N6"
+  },
+  "actuator": {
+    "mode": "A3",
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "substeps_per_model_step": 10,
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "endpoint_atol_rad": 1e-12,
+    "horizon_steps": 20
+  },
+  "k2": {
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [
+      1.8,
+      2.8
+    ],
+    "payload_mass_scale": [
+      0.9,
+      1.1
+    ],
+    "connector_scale": [
+      0.95,
+      1.05
+    ],
+    "mu": [
+      0.8,
+      0.95
+    ]
+  },
+  "interfaces": {
+    "variants": [
+      "S0",
+      "S1",
+      "S2"
+    ],
+    "common_state_dimension": 47,
+    "actuator_state_dimension": 4,
+    "control_dimension": 7
+  },
+  "state_groups": {
+    "g0": [
+      0,
+      3
+    ],
+    "g1": [
+      3,
+      19
+    ],
+    "g2": [
+      19,
+      31
+    ],
+    "g3": [
+      31,
+      47
+    ],
+    "group_loss_weights": {
+      "g0": 0.3,
+      "g1": 0.2,
+      "g2": 0.2,
+      "g3": 0.3
+    }
+  },
+  "window": {
+    "steps": 20,
+    "classes": [
+      "steady",
+      "maneuver",
+      "switch",
+      "connector_event"
+    ],
+    "control_change_atol": 1e-12,
+    "steering_active_rad": 0.008726646259971648,
+    "acceleration_active_mps2": 0.05
+  },
+  "scenarios": {
+    "order": [
+      "D0",
+      "D1",
+      "D2",
+      "D3",
+      "D4",
+      "D5",
+      "D6",
+      "D7",
+      "D8",
+      "D9",
+      "D10",
+      "D11"
+    ],
+    "directional": [
+      "D2",
+      "D3",
+      "D4",
+      "D5",
+      "D6",
+      "D8",
+      "D10",
+      "D11"
+    ],
+    "d9_members": [
+      "A",
+      "B"
+    ],
+    "d5_hard_windows": [
+      100,
+      120
+    ]
+  },
+  "metric_weights": {
+    "core": 0.25,
+    "relative": 0.2,
+    "force4": 0.2,
+    "internal": 0.15,
+    "yaw": 0.1,
+    "actuator": 0.1,
+    "common_weight_sum": 0.9
+  },
+  "training": {
+    "models": [
+      "M0_FIXED_LINEAR",
+      "M1_LOWRANK_BILINEAR"
+    ],
+    "ranks": [
+      1,
+      2,
+      4
+    ],
+    "ridge_grid": [
+      1e-08,
+      1e-06,
+      0.0001,
+      0.01
+    ],
+    "horizons": [
+      1,
+      5,
+      10,
+      20
+    ],
+    "primary_family_bootstrap_seeds": [
+      990101,
+      990102,
+      990103,
+      990104,
+      990105
+    ],
+    "backup_family_bootstrap_seeds": [
+      990106,
+      990107
+    ],
+    "central_seed": 990100,
+    "cv_seed": 990700,
+    "cv_folds": 5,
+    "paired_ci_replicates": 2000,
+    "paired_ci_seed": 990500,
+    "seed_semantics": "seeds index joint family-bootstrap and network initialization",
+    "divergence_abs_normalized": 20.0,
+    "important_scenarios": [
+      "D2",
+      "D4",
+      "D6",
+      "D10"
+    ],
+    "strong_coupling_scenarios": [
+      "D1",
+      "D2",
+      "D7",
+      "D8",
+      "D9"
+    ]
+  },
+  "split_contract": {
+    "train": {
+      "base_family_count": 96,
+      "seed_start": 986000
+    },
+    "validation": {
+      "base_family_count": 48,
+      "seed_start": 987000
+    },
+    "development": {
+      "base_family_count": 48,
+      "seed_start": 988000
+    },
+    "confirm": {
+      "base_family_count": 96,
+      "seed_start": 989000,
+      "visible": false
+    }
+  },
+  "data_contract": {
+    "expected_trajectory_count": 672,
+    "ledger_window_counts": {
+      "steady": 1868,
+      "maneuver": 8484,
+      "switch": 728,
+      "connector_event": 4764
+    },
+    "cache_window_counts": {
+      "steady": 1682,
+      "maneuver": 8352,
+      "switch": 728,
+      "connector_event": 4590
+    },
+    "development_window_count": 3820,
+    "confirm_read_count": 0
+  },
+  "p0_gates": {
+    "s0_j20_common_reference": 0.13023504180689485,
+    "s0_j20_common_abs_tolerance": 1e-10,
+    "main_metric_relative_tolerance": 1e-09,
+    "development_window_count": 3820
+  },
+  "p2_gates": {
+    "macro_improvement_min_percent": 5.0,
+    "switch_or_connector_window_improvement_min_percent": 8.0,
+    "hard_scenario_improvement_min_percent": 10.0,
+    "scenario_degradation_max_percent": 5.0,
+    "bootstrap_same_direction_min": 4,
+    "expert_ridge": 0.01,
+    "regimes": {
+      "E0": [
+        "steady"
+      ],
+      "E1": [
+        "maneuver",
+        "switch"
+      ],
+      "E2": [
+        "connector_event"
+      ]
+    }
+  },
+  "p5c_gates": {
+    "macro_improvement_min_percent": 5.0,
+    "seed_same_direction_min": 4,
+    "one_step_degradation_max_percent": 3.0,
+    "d7_or_d10_improvement_min_percent": 8.0,
+    "d5_hard_p95_max": 0.23965404,
+    "d5_hard_max_max": 0.24011208,
+    "force_internal_degradation_max_percent": 5.0,
+    "gpu_infer_median_ms": 1.0,
+    "gpu_infer_p99_ms": 2.0,
+    "cpu_infer_median_ms": 5.0
+  },
+  "n6_engineering_acceptance": {
+    "condition_number_max": 100000000000000.0,
+    "inference_time_ratio_max": 5.0,
+    "divergence_rate_increase_max": 0.01
+  },
+  "f4": {
+    "variants": [
+      "ONE16",
+      "MH16",
+      "MHC16",
+      "BCV16"
+    ],
+    "residual_dim": 16,
+    "warm_steps": 2000,
+    "phase_steps": 15000,
+    "max_total_steps": 17000,
+    "warm_lr": 0.001,
+    "phase_lr": 0.0003,
+    "phase_lr_candidates": [
+      0.0003,
+      0.0001
+    ],
+    "batch_windows": 256,
+    "grad_clip": 1.0,
+    "monitor_every": 500,
+    "early_stop_patience": 2000,
+    "phase_sampler_seed_offset": 50000,
+    "qcv_weights": {
+      "1": 0.1,
+      "5": 0.2,
+      "10": 0.25,
+      "20": 0.45
+    },
+    "loss_specs": {
+      "ONE16": "one_step",
+      "MH16": "MH",
+      "MHC16": "MHC",
+      "BCV16": "BCV"
+    }
+  },
+  "loss": {
+    "multi_weights": {
+      "1": 0.1,
+      "5": 0.2,
+      "10": 0.25,
+      "20": 0.45
+    },
+    "closure_lambda": 0.1,
+    "tail_lambda": 0.25,
+    "tail_quantile": 0.9,
+    "tail_min_samples": 4,
+    "scv_gamma": 0.25,
+    "scv_epsilon": 1e-12,
+    "e_weight_decay": 0.0001,
+    "theta_weight_decay": 1e-05,
+    "loss_scale_window_count": 256,
+    "scenario_balance": {
+      "enabled": true,
+      "denominator_scenarios": 12,
+      "modes": {
+        "equal_scenario": {
+          "note": "w_s = N_train / (12 * n_s^train), window-share mean == 1"
+        },
+        "up_weight": {
+          "note": "factor * w_s on up.scenarios then renormalised to window-share mean 1",
+          "factor": 3.0,
+          "scenarios": [
+            "D1"
+          ]
+        }
+      },
+      "freeze": {
+        "note": "weights derive from per-fold train window counts at phase start; written to weights_per_scenario.json",
+        "audit_file": "weights_per_scenario.json"
+      }
+    }
+  },
+  "model_matrix": {
+    "L16": {
+      "residual_dim": 16,
+      "branch_output": 8,
+      "hidden_width": 16
+    },
+    "L32": {
+      "residual_dim": 32,
+      "branch_output": 16,
+      "hidden_width": 32
+    },
+    "residual_radius_max": 0.995
+  },
+  "f4_candidate_gates": {
+    "d5_hard_degradation_max_percent": 3.0,
+    "macro_positive_fold_min": 4,
+    "macro_improvement_min_percent": 5.0,
+    "scenario_degradation_max_percent": 3.0,
+    "scenario_denominator_floor": 0.02,
+    "force_internal_degradation_max_percent": 5.0,
+    "rows_recompute_abs_tolerance": 1e-12
+  },
+  "resource_limits": {
+    "minimum_free_gib": 60.0,
+    "stall_minutes": 30,
+    "maximum_workers": 4
+  },
+  "split_guards": {
+    "F1": {
+      "train": "allow",
+      "development": "deny",
+      "validation": "deny",
+      "new_validation": "generate_only",
+      "confirm": "deny"
+    },
+    "F2": {
+      "train": "allow",
+      "development": "deny",
+      "validation": "deny",
+      "new_validation": "deny",
+      "confirm": "deny"
+    },
+    "F3": {
+      "train": "allow",
+      "development": "deny",
+      "validation": "deny",
+      "new_validation": "deny",
+      "confirm": "deny"
+    },
+    "F4": {
+      "train": "allow",
+      "development": "deny",
+      "validation": "deny",
+      "new_validation": "deny",
+      "confirm": "deny"
+    }
+  },
+  "sb": {
+    "variants": {
+      "SB16EQ": {
+        "loss_spec": "MH",
+        "balance_mode": "equal_scenario"
+      },
+      "SB16UP": {
+        "loss_spec": "MH",
+        "balance_mode": "up_weight"
+      }
+    },
+    "warm_steps": 2000,
+    "phase_steps": 15000,
+    "phase_sampler_seed_offset": 50000,
+    "batch_windows": 256,
+    "warm_lr": 0.001,
+    "phase_lr": 0.0003,
+    "grad_clip": 1.0,
+    "monitor_every": 500,
+    "early_stop_patience": 2000
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "stage": "K3.0",
+  "created_utc": "2026-08-18T17:26:53.829016+00:00",
+  "files": [
+    {
+      "path": "revision_2026/koopman.md",
+      "bytes": 31128,
+      "sha256": "1435dc68cb75c068292ce57d405fd74a10faaf0bcbf62f9dc867d77a0fc00e0d"
+    },
+    {
+      "path": "revision_2026/koopman/k3.md",
+      "bytes": 18483,
+      "sha256": "6190555009044f3180f690daca61314c7f0da20f12ead5cd9fa35421af123479"
+    },
+    {
+      "path": "revision_2026/koopman/generate_k2.py",
+      "bytes": 22665,
+      "sha256": "ace7016564818781c7206403a95b2aabbceab9e8cb815e5f09256408ffba0390"
+    },
+    {
+      "path": "revision_2026/koopman/linear.py",
+      "bytes": 22770,
+      "sha256": "8b0dd1fd2754c3fb34e1b825fc8a5394dad03cf3449ceb977a65d3f62670e540"
+    },
+    {
+      "path": "revision_2026/koopman/experts.py",
+      "bytes": 22595,
+      "sha256": "7d1d58c85ab34a4e84e8ce4e411bfc3bb84e69528a3c165aa3de721f429f86f9"
+    },
+    {
+      "path": "revision_2026/koopman/freeze_k3.py",
+      "bytes": 13744,
+      "sha256": "ce91207f79a8929a8fd3416b89c44821b4d1635ba5ab9faf3b4acffc629d25e5"
+    },
+    {
+      "path": "revision_2026/koopman/k2/solutions.md",
+      "bytes": 6463,
+      "sha256": "7feded3fe0c9f4c50bc0563b9d56fb71497b9e888c9c23a42a53d21e26a37a3d"
+    },
+    {
+      "path": "revision_2026/koopman/k2/data_full/manifest.json",
+      "bytes": 236265,
+      "sha256": "b3ded2ac3d2f5b0fee8314da425632a2e24906243fcb84f3b2379806af3455ce"
+    },
+    {
+      "path": "revision_2026/koopman/k2/data_full/split.json",
+      "bytes": 324,
+      "sha256": "ece654b8623799bf1450205cd4f6b15174db44dbe4161c1a89b7c68140b78eba"
+    },
+    {
+      "path": "revision_2026/koopman/k2/linear/results.json",
+      "bytes": 231121,
+      "sha256": "4001e76f7b5f6e88c7e8c8152eb0d81b4362f27d17e695b0cb52241ef4a380f2"
+    },
+    {
+      "path": "revision_2026/koopman/k2/experts/results.json",
+      "bytes": 170066,
+      "sha256": "f1a2286551c3703dca81470918e96c516461eae49d0638fb74db34353d8df141"
+    },
+    {
+      "path": "revision_2026/koopman/k2/experts/stop.md",
+      "bytes": 1404,
+      "sha256": "ac7c2430769e91e0ea953636288ea2986e644c1b8ae1fd39f486d3a0f17c64be"
+    }
+  ],
+  "k2_trajectory_hashes_verified": 120,
+  "k2_trajectory_hash_mismatches": [],
+  "old_split_status": "test and external are development-only after their K2 results were viewed",
+  "config_canonical_sha256": "2309cf7c96b662ec3e31841df034f996626ffdc0f9d4da89efc7e32bf698644c",
+  "development_canonical_sha256": "154b4ac701776d7481b9614d807114fad462e3e0032356285d361b3c4abf5efc",
+  "confirm_canonical_sha256": "c328959fd2a8d5c921e607b685f32f06899532b072275e0d876255a44074351a"
+}

@@ -1,0 +1,75 @@
+{
+  "protocol_id": "R4-route-tracking-report-v1",
+  "authorization": "Task-book section 9.3 requires position, heading and progress error reporting; the completed R4 routes had no whole-route tracking report yet.",
+  "scope": "R4_ROUTE_TRACKING_REPORT",
+  "output": "analysis/20260916_R4_ROUTE_TRACKING_03",
+  "cells": [
+    {
+      "name": "P1_2ms_CPU_prefix",
+      "run": "results/20260915_R4_P1_2MS01"
+    },
+    {
+      "name": "P1_2ms_GPU",
+      "run": "results/20260915_R4_P1_2MS_GPU01"
+    },
+    {
+      "name": "P1_1ms_GPU",
+      "run": "results/20260915_R4_P1_1MS_GPU01"
+    },
+    {
+      "name": "P1_0p5ms_GPU",
+      "run": "results/20260915_R4_P1_0P5MS_GPU01"
+    },
+    {
+      "name": "P2_2ms_GPU",
+      "run": "results/20260915_R4_P2_2MS_GPU01"
+    }
+  ],
+  "validation_reference": {
+    "cell": "P1_2ms_CPU_prefix",
+    "source": "numbers published by the registered D1 analysis of the interrupted CPU run",
+    "tolerance": 5e-07,
+    "expected": {
+      "final_position_m": 0.542481,
+      "final_lateral_m": 0.53451,
+      "final_longitudinal_m": -0.092653,
+      "exit_straight_position_rmse_m": 0.390565,
+      "exit_straight_first_position_m": 0.188306,
+      "exit_straight_fitted_growth_mps": 0.04108
+    }
+  },
+  "identity_files": [
+    {
+      "path": "tools/route_tracking_analysis.py",
+      "sha256": "7389459b1f9729a208ebe6804e875d8b1c6cb26be6ee86adc6ba97eee468e72e"
+    },
+    {
+      "path": "src/paper_v4_core/references.py",
+      "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/raw.npz",
+      "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS_GPU01/raw.npz",
+      "sha256": "375a6a3a699d298312455618521e92e9ef246b9835bf8a89a1740cfe22d913e2"
+    },
+    {
+      "path": "results/20260915_R4_P1_1MS_GPU01/raw.npz",
+      "sha256": "69810e87391cab54fed194fe868a26d5945fa8f83475c526c2835542bae3c9fc"
+    },
+    {
+      "path": "results/20260915_R4_P1_0P5MS_GPU01/raw.npz",
+      "sha256": "8f875ad6a3536ca452d01a7b4c86e4c3320cb07fc99fe5643215b9867c932901"
+    },
+    {
+      "path": "results/20260915_R4_P2_2MS_GPU01/raw.npz",
+      "sha256": "f76ce47abd3ae23ec01f35b71ba81485819e61e54ad596ebc5c0fa7c5a701f3a"
+    },
+    {
+      "path": "tools/d0_d1_p1_gpu_gate_analysis.py",
+      "sha256": "40062ece88c5b900a19b1c37465e45348ad2df9faddd3c53c526e611fdcffe39"
+    }
+  ]
+}

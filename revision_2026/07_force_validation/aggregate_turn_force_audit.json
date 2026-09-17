@@ -1,0 +1,28 @@
+{
+  "warning": "Aggregate inertial force/moment only; not per-connector forces.",
+  "source": "revision_2026\\06_experiments\\smoke_original\\data\\diagnostics\\E2\\seed_3091\\mixed_fault_noise_full_tf14\\payload_force.csv",
+  "abs_curvature_q25": 0.0025702849719118764,
+  "abs_curvature_q75": 0.008500250390724945,
+  "low_curvature": {
+    "n": 250,
+    "mean_abs_fx": 431.32714004043135,
+    "mean_abs_fy": 131.76896001958255,
+    "mean_abs_mz": 113.37919356274803,
+    "rms_planar_resultant": 490.4499001621401,
+    "peak_planar_resultant": 1260.2388184580022,
+    "circular_resultant_direction_deg": -15.434474389443935,
+    "corner_load_spread_mean": 182.5798896214531,
+    "corner_load_spread_peak": 759.3365427595327
+  },
+  "high_curvature": {
+    "n": 251,
+    "mean_abs_fx": 515.8705665835143,
+    "mean_abs_fy": 204.35822542423688,
+    "mean_abs_mz": 127.2475058426941,
+    "rms_planar_resultant": 626.0679444005419,
+    "peak_planar_resultant": 1071.7896451717108,
+    "circular_resultant_direction_deg": 7.835258406048721,
+    "corner_load_spread_mean": 246.4238712345856,
+    "corner_load_spread_peak": 557.1895543745377
+  }
+}

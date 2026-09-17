@@ -1,0 +1,3200 @@
+{
+  "schema_version": "EXP-R2-E00-imports-v1",
+  "status": "PASS",
+  "package_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core",
+  "package_locations_on_sys_path": [
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core"
+  ],
+  "critical_runtime_modules": [
+    {
+      "module": "paper_v4_core.plant.four_vehicle_common",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\four_vehicle_common.py",
+      "sha256": "AE47550E7A612002753BF5D3FE0EA8C2EE22B309E2B570253F8B572E0461E42C"
+    },
+    {
+      "module": "paper_v4_core.plant.event_substep",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\event_substep.py",
+      "sha256": "AAD77AA5B9D45CEFC72769062550A07C6F2593E5038F2E9E35FCD8242AB41726"
+    },
+    {
+      "module": "paper_v4_core.plant.steering_allocator",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\steering_allocator.py",
+      "sha256": "EBFB6EF0EEB8CD6E8E3ECA5383A49EB28A00222C4AC9346FC074E8168CB7CA8E"
+    },
+    {
+      "module": "paper_v4_core.controllers.physical_tracking_pilot",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\controllers\\physical_tracking_pilot.py",
+      "sha256": "27B43EF96AF5D1342470EA720590282A23C4199F5B220F7DAF11C7A8B0F2AFB8"
+    },
+    {
+      "module": "paper_v4_core.pilot_runner",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\pilot_runner.py",
+      "sha256": "DA2A33B6FCEE6A975AE0561683720CC20D800A61C52CBD738FB165DFCCAFFF82"
+    }
+  ],
+  "recursive_python_file_inventory": [
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\__init__.py",
+      "relative_path": "__init__.py",
+      "sha256": "AA372CC0651DC66022B80A755B03BB442EE68DF228CDF282E7EAD96272E9EF0A",
+      "imports": []
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\actuator_discretization.py",
+      "relative_path": "actuator_discretization.py",
+      "sha256": "DBC18F99BB62D53218A6B8B0C55163E6C8B3574BCE547C8555ADF457241BC3B5",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "hashlib",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "DT",
+            "LIMIT",
+            "RATE",
+            "TAU",
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "failure_boundary",
+          "names": [
+            "consume_audit"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.event_substep",
+          "names": [
+            "EventSubstepConfig",
+            "advance_outer_step"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "connector_diagnostics",
+            "initialize_state",
+            "system_derivative"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\actuator_discretization_analyze.py",
+      "relative_path": "actuator_discretization_analyze.py",
+      "sha256": "37AE7DAE51703EFB7212A7CDF9CF797362E437ABDCD432EA82A46F1E363F5435",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "actuator_discretization",
+          "names": [
+            "SOURCE_RAW_SHA256",
+            "UPDATE_INTERVALS",
+            "WINDOWS"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\actuator_discretization_batch.py",
+      "relative_path": "actuator_discretization_batch.py",
+      "sha256": "85710D3514A694529EFEC363B17585809A34928AD8D8FA318BB7B0553A11BC51",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "actuator_discretization",
+          "names": [
+            "SOURCE_RAW_SHA256",
+            "UPDATE_INTERVALS",
+            "WINDOWS",
+            "run"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "actuator_discretization_analyze",
+          "names": [
+            "LABELS",
+            "_audit"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\cli.py",
+      "relative_path": "cli.py",
+      "sha256": "55D53215DB901796E3D9F8D5C91F0EE77F2305F02BC1F6681259CEA43738E6D6",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "ast",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "hashlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "importlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "platform",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "sys",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "asdict"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant",
+          "names": [
+            "four_vehicle_common"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant",
+          "names": [
+            "event_substep"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant",
+          "names": [
+            "steering_allocator"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\controllers\\__init__.py",
+      "relative_path": "controllers/__init__.py",
+      "sha256": "1BA2C1573981E36481B7CAF723BE1AF830B491437C23DBCBFAF7F265F296B6D9",
+      "imports": []
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\controllers\\physical_tracking_pilot.py",
+      "relative_path": "controllers/physical_tracking_pilot.py",
+      "sha256": "27B43EF96AF5D1342470EA720590282A23C4199F5B220F7DAF11C7A8B0F2AFB8",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "dataclass"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "scipy",
+          "names": [
+            "sparse"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "osqp",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 2,
+          "module": "diagnostics.relative_motion",
+          "names": [
+            "extract",
+            "wrap"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 2,
+          "module": "e01_100m",
+          "names": [
+            "LIMIT",
+            "RATE",
+            "TAU"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 2,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "connector_diagnostics",
+            "rk4_step",
+            "rotation",
+            "system_derivative"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\data_audit.py",
+      "relative_path": "data_audit.py",
+      "sha256": "34C81C5AB606D3A65C0707222103F506D9BE7C965BD30339283DC1605AD6A272",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "collections",
+          "names": [
+            "Counter",
+            "defaultdict"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "csv",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "hashlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\diagnostics\\__init__.py",
+      "relative_path": "diagnostics/__init__.py",
+      "sha256": "384D9C9F49DBD9C7CE50A15091C392CADEB488D86E515931939FD1AB7A421E52",
+      "imports": []
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\diagnostics\\internal_loading.py",
+      "relative_path": "diagnostics/internal_loading.py",
+      "sha256": "84BDB227AD7E1451636C9B3841203B5C7F9305190A0D16A3F40C07E57359FB6A",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 2,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "rotation"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 2,
+          "module": "plant.internal_force",
+          "names": [
+            "decompose_planar_point_forces",
+            "tension_load_proxies"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\diagnostics\\relative_motion.py",
+      "relative_path": "diagnostics/relative_motion.py",
+      "sha256": "4E2807596BD94F6189AEDB813DBD24D6CDD00D9C408FCFE460F069CEC55DAEA6",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 2,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "connector_kinematics",
+            "rotation",
+            "split_state"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\dynamic_smoke.py",
+      "relative_path": "dynamic_smoke.py",
+      "sha256": "112C4B3DC9F12C21083843D86A905FE114C90376128080EE80E492AB14FA824A",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "ModelParams",
+            "connector_diagnostics",
+            "initialize_state",
+            "split_state"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.event_substep",
+          "names": [
+            "EventSubstepConfig",
+            "advance_outer_step"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "transition_targets"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\e01_100m.py",
+      "relative_path": "e01_100m.py",
+      "sha256": "2F3C93E7A24959AB2C0DC2785F043818F28F8A0F8CEB3C91CE13D88BA4841025",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "traceback",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "replace"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "ModelParams",
+            "connector_diagnostics",
+            "initialize_state",
+            "split_state",
+            "system_derivative"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.event_substep",
+          "names": [
+            "EventSubstepConfig",
+            "advance_outer_step"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.load_transfer",
+          "names": [
+            "config_from_model",
+            "solve_payload_support_loads"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "transition_targets"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\e01_analyze.py",
+      "relative_path": "e01_analyze.py",
+      "sha256": "82F1827E0109DD790C8BE43CBE5016E9EA8DCDFA3DAC40AFC29525EA8049DBF4",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "hashlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\e01_batch.py",
+      "relative_path": "e01_batch.py",
+      "sha256": "B8BAAF4C79C28166E155EF9C8C7F464C3C8B132D11657DB440BDA2D5F48B432D",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "traceback",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "PARAMS",
+            "run"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\e01_hairpin.py",
+      "relative_path": "e01_hairpin.py",
+      "sha256": "6FEAD661AB3A19A0B7E5D33D4E1B7B6D8510B12BC15EDE416A305E03AC7EE890",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "DT",
+            "LIMIT",
+            "PARAMS",
+            "RATE",
+            "TAU",
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "connector_diagnostics",
+            "initialize_state",
+            "split_state",
+            "system_derivative"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.event_substep",
+          "names": [
+            "EventSubstepConfig",
+            "advance_outer_step"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "failure_boundary",
+          "names": [
+            "consume_audit"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "transition_targets"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "references",
+          "names": [
+            "build_hairpin"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\e01_hairpin_batch.py",
+      "relative_path": "e01_hairpin_batch.py",
+      "sha256": "1A0A60AD494EF34FFA6C5FBA90E4807CF516AFF5C6BF2EDF98B27DCFC51676F1",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_hairpin",
+          "names": [
+            "run"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\failure_boundary.py",
+      "relative_path": "failure_boundary.py",
+      "sha256": "1BB27D9310005A1CD7DB235E1505E530C160A4B89DA140EB6F2C399669A604BD",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\failure_boundary_tests.py",
+      "relative_path": "failure_boundary_tests.py",
+      "sha256": "E7ED9DF436DC893451168A1114F6FCBD60C3FA39A8BD19BD2125F3F7BDD20F0E",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "failure_boundary",
+          "names": [
+            "consume_audit"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_analyze",
+          "names": [
+            "audit_failure_boundary"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\geometry_probe.py",
+      "relative_path": "geometry_probe.py",
+      "sha256": "440C3616D3D28A01C1484C1CD516963C18B81A3E31AF73778102D3580CD06C8A",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "ModelParams",
+            "rotation"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.steering_allocator",
+          "names": [
+            "kinematic_targets"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "steady_targets"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\hairpin_failure_analyze.py",
+      "relative_path": "hairpin_failure_analyze.py",
+      "sha256": "FF38EB585C67E17F30041F838856D26EBEECFCC443A5DA86CAA65B678C1CD317",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\hairpin_probe.py",
+      "relative_path": "hairpin_probe.py",
+      "sha256": "2492FBCBC55CA50091DB9081108A614218C53DDE2F92DF2E60FF914691076CE0",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "references",
+          "names": [
+            "build_hairpin"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\identity_audit.py",
+      "relative_path": "identity_audit.py",
+      "sha256": "0AFD58B63928FD1770D0615D02770442ABDCAA0CE747273EEA68C3FE71B7EE53",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "ast",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "hashlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "importlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "platform",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "sys",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\information\\__init__.py",
+      "relative_path": "information/__init__.py",
+      "sha256": "A3F8B60AAA10E075DB2FA1E9CC2EDD69900B334633293B3525DC3C3C557AB859",
+      "imports": []
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\information\\legal_information.py",
+      "relative_path": "information/legal_information.py",
+      "sha256": "3C95192C5C5FBB0F344912963C14AFCA5954FDDDBB6CF251A8AA54D623773E5E",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "asdict",
+            "dataclass"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "typing",
+          "names": [
+            "Mapping"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 2,
+          "module": "controllers.physical_tracking_pilot",
+          "names": [
+            "PilotConfig",
+            "solve"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\physics_tests.py",
+      "relative_path": "physics_tests.py",
+      "sha256": "55D33360B207F26E731E3D4CD4F490015F84D270F41AF27533ECB4036C895C1E",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "ModelParams",
+            "assemble_derivative",
+            "connector_diagnostics",
+            "initialize_state",
+            "rotation"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\pilot_runner.py",
+      "relative_path": "pilot_runner.py",
+      "sha256": "DA2A33B6FCEE6A975AE0561683720CC20D800A61C52CBD738FB165DFCCAFFF82",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "controllers.physical_tracking_pilot",
+          "names": [
+            "PilotConfig",
+            "solve"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "diagnostics.relative_motion",
+          "names": [
+            "extract"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "DT",
+            "LIMIT",
+            "RATE",
+            "TAU",
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "failure_boundary",
+          "names": [
+            "consume_audit"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.event_substep",
+          "names": [
+            "EventSubstepConfig",
+            "advance_outer_step"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "connector_diagnostics",
+            "initialize_state",
+            "rotation",
+            "split_state",
+            "system_derivative"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "transition_targets"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "references",
+          "names": [
+            "build_hairpin"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\__init__.py",
+      "relative_path": "plant/__init__.py",
+      "sha256": "E6A37B265C78E6BE5E25FDB076AB4C9E424D43DAA5F9988BF0F3E918F23E1E93",
+      "imports": []
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\connector_adapter.py",
+      "relative_path": "plant/connector_adapter.py",
+      "sha256": "DD56CCB6E7117A6A101DBA57884DDA81CC04E2FECC520CC7D44568419E177DD7",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "asdict"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "connector_r3",
+          "names": [
+            "ConnectorR3Params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "connector_v1",
+          "names": [
+            "ConnectorV1Params",
+            "scalar_force_v1"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\connector_r3.py",
+      "relative_path": "plant/connector_r3.py",
+      "sha256": "2C6EF95AC9E9C4AFE88E005BC99D4644373F44DFD0448B07A6AC78E5E03DE1DE",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "dataclass"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "typing",
+          "names": [
+            "Any"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\connector_v1.py",
+      "relative_path": "plant/connector_v1.py",
+      "sha256": "2B5FFE40958778627498FB6BD62C2B6CBE19DEBFF0260A39AC4D67FCE61CCCA5",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "dataclass"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\event_substep.py",
+      "relative_path": "plant/event_substep.py",
+      "sha256": "AAD77AA5B9D45CEFC72769062550A07C6F2593E5038F2E9E35FCD8242AB41726",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "asdict",
+            "dataclass"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "typing",
+          "names": [
+            "Callable"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "connector_adapter",
+          "names": [
+            "DELTA_S_M",
+            "ScalarConnector"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "four_vehicle_common",
+          "names": [
+            "ModelParams",
+            "connector_diagnostics",
+            "connector_event_surfaces",
+            "connector_kinematics",
+            "rk4_step",
+            "system_derivative"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\four_vehicle_common.py",
+      "relative_path": "plant/four_vehicle_common.py",
+      "sha256": "AE47550E7A612002753BF5D3FE0EA8C2EE22B309E2B570253F8B572E0461E42C",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "dataclass"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "connector_adapter",
+          "names": [
+            "DELTA_S_M",
+            "VectorConnector"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "connector_r3",
+          "names": [
+            "ConnectorR3Params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "internal_force",
+          "names": [
+            "decompose_planar_point_forces",
+            "diagonal_tension_modes",
+            "legacy_q_fr_q_lr",
+            "tension_load_proxies"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "load_transfer",
+          "names": [
+            "config_from_model",
+            "solve_payload_support_loads"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\internal_force.py",
+      "relative_path": "plant/internal_force.py",
+      "sha256": "5A9F24F6FBC7540847574A3D5CE435D40CAA29CB99BE1DD9DBB1282C804BDF2E",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\load_transfer.py",
+      "relative_path": "plant/load_transfer.py",
+      "sha256": "0DA410A3DA05E538464C83ED1A02E081C1196631C121C6AB750EBC1068C8E74B",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "dataclass"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\steering_allocator.py",
+      "relative_path": "plant/steering_allocator.py",
+      "sha256": "EBFB6EF0EEB8CD6E8E3ECA5383A49EB28A00222C4AC9346FC074E8168CB7CA8E",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "dataclass"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "four_vehicle_common",
+          "names": [
+            "ModelParams",
+            "rotation",
+            "split_state"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r1_diagnose.py",
+      "relative_path": "r1_diagnose.py",
+      "sha256": "7B719E3230EF6454B04EF3AE5FD0D212C88FA2FA07677A8AA192421F1A9F3E78",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "csv",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "diagnostics.internal_loading",
+          "names": [
+            "decompose"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "diagnostics.relative_motion",
+          "names": [
+            "extract"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "rotation"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "transition_targets"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "references",
+          "names": [
+            "build_hairpin"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r1_diagnostic_tests.py",
+      "relative_path": "r1_diagnostic_tests.py",
+      "sha256": "C525BFEBA51ADC6FF30E791C534DB5DD2C2C4AF334F9CDB8409214B3A2A77E0F",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "diagnostics.internal_loading",
+          "names": [
+            "decompose"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "diagnostics.relative_motion",
+          "names": [
+            "extract"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "initialize_state",
+            "rotation"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r2a_tests.py",
+      "relative_path": "r2a_tests.py",
+      "sha256": "A28A35330C2509C35D898A313093478302446C72741E16F4AB5B3C224A1B0088",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataclasses",
+          "names": [
+            "replace"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "controllers.physical_tracking_pilot",
+          "names": [
+            "PilotConfig",
+            "build_problem",
+            "linearize_step",
+            "solve"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "initialize_state"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r2b_analyze.py",
+      "relative_path": "r2b_analyze.py",
+      "sha256": "A53934C3270398F633ABB5B1981BBE6E34433367D41B75A74545537FF9FF8718",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "csv",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "references",
+          "names": [
+            "build_hairpin"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r2c_analyze.py",
+      "relative_path": "r2c_analyze.py",
+      "sha256": "94C1F9AAB6FF1589C0CD9A80D6155DE4F2F3BC55297039AD7FF86E2E4C38E426",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "csv",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "LIMIT",
+            "RATE"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "pilot_runner",
+          "names": [
+            "DT",
+            "ROUTE_LENGTH",
+            "SPEED"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "references",
+          "names": [
+            "build_hairpin"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r3_analyze.py",
+      "relative_path": "r3_analyze.py",
+      "sha256": "B5A71D34208B094ECFC7505A8C372770B707AB3E603F1127FE0CB2027F7AD215",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r2c_analyze",
+          "names": [
+            "audit",
+            "load"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r3_batch.py",
+      "relative_path": "r3_batch.py",
+      "sha256": "CD70B70D43DF7282A03F80B27D0FE4480D80E2D628610EEDAB83BF47B60D999F",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "pilot_runner",
+          "names": [
+            "ROUTE_LENGTH",
+            "SPEED",
+            "run"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r2c_analyze",
+          "names": [
+            "audit"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r4_analyze.py",
+      "relative_path": "r4_analyze.py",
+      "sha256": "FB429E787B86FE3A7C6EE777FD5AB114EAAEB004D6963C7C8FDFC33C411F0D21",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r2c_analyze",
+          "names": [
+            "audit",
+            "load"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r3_analyze",
+          "names": [
+            "convergence_quantities"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r4_batch.py",
+      "relative_path": "r4_batch.py",
+      "sha256": "309D409FCF81181173E336D001119543096190EDB0EC13698070E991F690B60E",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "pilot_runner",
+          "names": [
+            "ROUTE_LENGTH",
+            "SPEED",
+            "run"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r2c_analyze",
+          "names": [
+            "audit"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r5_analyze.py",
+      "relative_path": "r5_analyze.py",
+      "sha256": "D72B376F3606047F19B4D59F1FA359AB764FAE8A24C65A1CFF3DAA776B59ED07",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r2c_analyze",
+          "names": [
+            "audit",
+            "load"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "matplotlib.pyplot",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r5_batch.py",
+      "relative_path": "r5_batch.py",
+      "sha256": "8B14DDB234BD1FB6BBD0850A7DDFA841F848D42610B064E0FDBEA1C03303A6AA",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r2c_analyze",
+          "names": [
+            "load"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r5_analyze",
+          "names": [
+            "_r5_audit"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r5_information_tests",
+          "names": [
+            "run"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "r5_runner",
+          "names": [
+            "run"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r5_information_tests.py",
+      "relative_path": "r5_information_tests.py",
+      "sha256": "D5E5A789FD95B82C641BE97642AF7B8C244E2A445267C71886FA679986F14499",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "information.legal_information",
+          "names": [
+            "SensorNoise",
+            "assemble_joint_estimate",
+            "sample_packets"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "initialize_state"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\r5_runner.py",
+      "relative_path": "r5_runner.py",
+      "sha256": "AFD72A3954FDA00291B9C75CE05AE469DBE2474B7D5C000AF08E6ED7CC84FFEA",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "time",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "controllers.physical_tracking_pilot",
+          "names": [
+            "PilotConfig"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "diagnostics.relative_motion",
+          "names": [
+            "extract"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "e01_100m",
+          "names": [
+            "DT",
+            "LIMIT",
+            "RATE",
+            "TAU",
+            "params"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "failure_boundary",
+          "names": [
+            "consume_audit"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "information.legal_information",
+          "names": [
+            "SensorNoise",
+            "sample_packets",
+            "solve_from_information"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "pilot_runner",
+          "names": [
+            "ROUTE_LENGTH",
+            "SPEED",
+            "_path_sample",
+            "make_preview"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.event_substep",
+          "names": [
+            "EventSubstepConfig",
+            "advance_outer_step"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "connector_diagnostics",
+            "initialize_state",
+            "system_derivative"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "transition_targets"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\recorder_probe.py",
+      "relative_path": "recorder_probe.py",
+      "sha256": "4656E4D68B8FFACE4848C303714012C6747DA4D8C43F35F40774B3F1D3D1B3D9",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "hashlib",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "json",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "sys",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "generate_data",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "scenarios",
+          "names": [
+            "ScenarioCommand",
+            "ScenarioSpec"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "four_vehicle_common",
+          "names": [
+            "ModelParams"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "dataset",
+          "names": [
+            "prediction_cache_from_raw"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "steering_actuator",
+          "names": [
+            "SteeringActuatorConfig",
+            "step_actuator_mode"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "event_substep",
+          "names": [
+            "EventSubstepConfig",
+            "advance_outer_step"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\reference_geometry.py",
+      "relative_path": "reference_geometry.py",
+      "sha256": "6AEAC2CBAB4F96726915C9124C83B012C368AB5F06DF8F2281A4B89FCB97228D",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "rotation"
+          ]
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\references.py",
+      "relative_path": "references.py",
+      "sha256": "25E6DCCC7CE4CB5C4CFED90740CDD33FF9582D17B86D689F0D0F2893015D5732",
+      "imports": [
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "__future__",
+          "names": [
+            "annotations"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        }
+      ]
+    },
+    {
+      "module_file": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\transition_probe.py",
+      "relative_path": "transition_probe.py",
+      "sha256": "CB3347C82F839EF1F0EA0F11FC84435CE504A6E79B0F863A0841569165D8D8EF",
+      "imports": [
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "argparse",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 0,
+          "module": "pathlib",
+          "names": [
+            "Path"
+          ]
+        },
+        {
+          "kind": "import",
+          "level": 0,
+          "module": "numpy",
+          "names": []
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "cli",
+          "names": [
+            "save",
+            "sha"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "plant.four_vehicle_common",
+          "names": [
+            "ModelParams",
+            "rotation"
+          ]
+        },
+        {
+          "kind": "from",
+          "level": 1,
+          "module": "reference_geometry",
+          "names": [
+            "transition_targets"
+          ]
+        }
+      ]
+    }
+  ],
+  "recursive_python_file_count": 53,
+  "recursive_plant_conversion": [
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\__init__.py",
+      "original_sha256": "5CE323B5ABFA8421400910BD727288CA91BDD1453AA13388BD42C26012F41B11",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\__init__.py",
+      "isolated_sha256": "E6A37B265C78E6BE5E25FDB076AB4C9E424D43DAA5F9988BF0F3E918F23E1E93",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\connector_adapter.py",
+      "original_sha256": "DEAEC14BCF5176E894D7BF5956455BB48ADF96B7FBE722B3870134FBCB7A0E60",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\connector_adapter.py",
+      "isolated_sha256": "DD56CCB6E7117A6A101DBA57884DDA81CC04E2FECC520CC7D44568419E177DD7",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\connector_r3.py",
+      "original_sha256": "0BD16C4D4D2FB141BFC2689E4472E475EA23CF319E0B31A3C6448DDCEF310459",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\connector_r3.py",
+      "isolated_sha256": "2C6EF95AC9E9C4AFE88E005BC99D4644373F44DFD0448B07A6AC78E5E03DE1DE",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\connector_v1.py",
+      "original_sha256": "907D47B59CD6C1C32E6419F6981A66BCCADCD93632177A7269D1F2811A02616B",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\connector_v1.py",
+      "isolated_sha256": "2B5FFE40958778627498FB6BD62C2B6CBE19DEBFF0260A39AC4D67FCE61CCCA5",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\event_substep.py",
+      "original_sha256": "9AA0E8BD62DD8B83B8BD0C15414CBD21F915F0203B7CA978D5F46BC45746D77C",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\event_substep.py",
+      "isolated_sha256": "AAD77AA5B9D45CEFC72769062550A07C6F2593E5038F2E9E35FCD8242AB41726",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\four_vehicle_common.py",
+      "original_sha256": "6D7A2092FC6B9772347FC6D9812BA920BB139C8271F5CBBA1AC96CC4F12BCA80",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\four_vehicle_common.py",
+      "isolated_sha256": "AE47550E7A612002753BF5D3FE0EA8C2EE22B309E2B570253F8B572E0461E42C",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\internal_force.py",
+      "original_sha256": "315226C90BCAB30D92500929713591EE38DFCC685BB02FD746B9B817565DA86C",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\internal_force.py",
+      "isolated_sha256": "5A9F24F6FBC7540847574A3D5CE435D40CAA29CB99BE1DD9DBB1282C804BDF2E",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\load_transfer.py",
+      "original_sha256": "A03388319667389942ED1EC60F2208E2D252B48242FA7104CE1B34FF0FA77790",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\load_transfer.py",
+      "isolated_sha256": "0DA410A3DA05E538464C83ED1A02E081C1196631C121C6AB750EBC1068C8E74B",
+      "ast_equivalent_after_relative_import_normalization": true
+    },
+    {
+      "original": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto\\plant\\steering_allocator.py",
+      "original_sha256": "1AFFD4E0B0A6EF30E3C618828EE9EC98E227B9B3B71F9DDCBE2FB611CD45C865",
+      "isolated": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\src\\paper_v4_core\\plant\\steering_allocator.py",
+      "isolated_sha256": "EBFB6EF0EEB8CD6E8E3ECA5383A49EB28A00222C4AC9346FC074E8168CB7CA8E",
+      "ast_equivalent_after_relative_import_normalization": true
+    }
+  ]
+}

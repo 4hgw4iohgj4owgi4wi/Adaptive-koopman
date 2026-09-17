@@ -1,0 +1,25 @@
+{
+  "stage": "T0",
+  "accepted": false,
+  "protocol_sha256": "DF6EE9810137687B9C3814040FFF827DB1DC2DFAE1ED2F2045E6F2618F69BCF7",
+  "missing": [],
+  "artifact_match": {
+    "K2": true,
+    "K3": true,
+    "K3-r2": true,
+    "K4": true,
+    "K5-linear": true,
+    "K5-bilinear": true
+  },
+  "confirm_files_ok": true,
+  "macro_match": {
+    "K0": true,
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K3-r2": true,
+    "K4": true,
+    "K5-linear": true,
+    "K5-bilinear": false
+  }
+}

@@ -1,0 +1,885 @@
+{
+  "status": "frozen_before_recovery_generation",
+  "reason": "strict G6 recovery",
+  "protocol_sha256": "DA9C8F185AF5D96D4051679BA4AD585C1CCC65167357FA680E91FEDCAFD3B9EE",
+  "recovered_D2_protocol_sha256": "BB745366E5D27BB3CF6B3E0084ABD8DE484F1971FD35617342C9739BEA3C7025",
+  "script_sha256": "13C6BB2CD7CE2BAA7A076A44CF9A4201749FB0EA9034D5684AD9FBAC4F689EFF",
+  "candidate_files": {
+    "protocol": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\protocol_v2.md",
+      "sha256": "DA9C8F185AF5D96D4051679BA4AD585C1CCC65167357FA680E91FEDCAFD3B9EE"
+    },
+    "pipeline": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2_modules.py",
+      "sha256": "066F33834759DA492E8BC9EBB8A86A17BCE437BF54F8F8B2E19AD56E03B6A3B8"
+    },
+    "D1_manifest": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\combined_manifest.json",
+      "sha256": "83FC7A6E2AEA7EA4FDD35EE24E1922402D6C7D0B97D6843329B3624112D00797"
+    },
+    "G2_amendment": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\gate_amendment.json",
+      "sha256": "A448DF35D6B0F6EC3ED54356120D0F0596A321FDC3F13CD69709ED557BCBE865"
+    },
+    "F_selection": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t3\\selection.json",
+      "sha256": "0CF3DCC20EDE98C69EBA23EA78DD29A1450413E51D37EBA714F1DE803539DE8A"
+    },
+    "H_results": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\results.json",
+      "sha256": "6EDAC02A31C7DBC14E10F11B4202E43A3F73682AB51366ED2338CFEBF08D29B7"
+    },
+    "TC_results": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t5\\c_results.json",
+      "sha256": "E87CA0FD49067EE5D8A4EAEDCD6ED0C1D00099FA838D95329524684E3B267A6F"
+    },
+    "A_results": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t5\\adaptation_results.json",
+      "sha256": "6D98DB83633AFDC5A5C23E14971CD3A00CC83B2FC1BB804FCA8F549FBBDA588E"
+    },
+    "F2_K0": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t3\\models\\K0.npz",
+      "sha256": "FC74DC0F6281D5847EA9147846DC5A7F1CEF11223593B1A3AF0E6B648E9608AF"
+    },
+    "HLS_K0": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K0-HLS.npz",
+      "sha256": "12C06650D4A2242D32BBB87D58341B745CC5B24AF3AE68A4C87F9DC9D1712EA8"
+    },
+    "HRLS_K0": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K0-HRLS.npz",
+      "sha256": "3FA9F8C32A15263DF311217EF006CA6B7CF359111E45DFAE89CFF59E77C69F56"
+    },
+    "A_K0": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t5\\A-K0.npz",
+      "sha256": "9784C33F2357F32D308BCEF7EB4B07280DCD9D808CE2DC1A3833D1EB7BD38640"
+    },
+    "F2_K1": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t3\\models\\K1.npz",
+      "sha256": "4D86B7159781B146BBC21132981EE4D324F56793A0749B73B3BAC22EFB7E0BC3"
+    },
+    "HLS_K1": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K1-HLS.npz",
+      "sha256": "5349B543A515DA90CCBE35C8ECBBC55F50E595B704B01E84C1E8E7F3A8D6D08B"
+    },
+    "HRLS_K1": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K1-HRLS.npz",
+      "sha256": "026F50CE7233ECA54024BCF348F4F8DD2BEE9F497C2C03D07530272A16E82F25"
+    },
+    "A_K1": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t5\\A-K1.npz",
+      "sha256": "E2D0B9AA7512685577CD75D0D4D877DFCC802C8F4BD168F8526157C092FF53AD"
+    },
+    "F2_K4": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t3\\models\\K4.npz",
+      "sha256": "56B55638884BF4BC54B639C9E371C292BD1C2891A630A9C42600636AE0E918BD"
+    },
+    "HLS_K4": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K4-HLS.npz",
+      "sha256": "F697623EA01F637268B238812E1CB0A81660B2F8D9F1CE22C084309378ACAAA9"
+    },
+    "HRLS_K4": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K4-HRLS.npz",
+      "sha256": "0870F350BD5809B0B0D85982577C2D338207096903148B456CB67C1F945A6852"
+    },
+    "A_K4": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t5\\A-K4.npz",
+      "sha256": "8090D594D5496CC2703FB7C374E9FA0A085B717561219AEF63AE3C9E6064F630"
+    },
+    "F2_K5-linear": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t3\\models\\K5-linear.npz",
+      "sha256": "D96E442DCA84929E8EEE6CF9683F4BF92F3F347906A0818B4983262EC8102127"
+    },
+    "HLS_K5-linear": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K5-linear-HLS.npz",
+      "sha256": "3685F9FCB09E61DC4DB997D5C6CCF8D28B4093D2EB4172797D7EC37CA7A1C7D5"
+    },
+    "HRLS_K5-linear": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t4\\models\\K5-linear-HRLS.npz",
+      "sha256": "2762F7FD6523F3598428EDDBE389F63BE34C4405D97C9944389EB416746B346E"
+    },
+    "A_K5-linear": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t5\\A-K5-linear.npz",
+      "sha256": "72A7D3A348689EDFD326DBCE4930C344E87BFAF0BB8BB002EE2B741D3CA9CE77"
+    }
+  },
+  "jobs": [
+    {
+      "file": "internal_E0_1060000.npz",
+      "seed": 1060000
+    },
+    {
+      "file": "internal_E0_1060001.npz",
+      "seed": 1060001
+    },
+    {
+      "file": "internal_E0_1060002.npz",
+      "seed": 1060002
+    },
+    {
+      "file": "internal_E0_1060003.npz",
+      "seed": 1060003
+    },
+    {
+      "file": "internal_E0_1060004.npz",
+      "seed": 1060004
+    },
+    {
+      "file": "internal_E0_1060005.npz",
+      "seed": 1060005
+    },
+    {
+      "file": "internal_E0_1060006.npz",
+      "seed": 1060006
+    },
+    {
+      "file": "internal_E0_1060007.npz",
+      "seed": 1060007
+    },
+    {
+      "file": "internal_E0_1060008.npz",
+      "seed": 1060008
+    },
+    {
+      "file": "internal_E0_1060009.npz",
+      "seed": 1060009
+    },
+    {
+      "file": "internal_E0_1060010.npz",
+      "seed": 1060010
+    },
+    {
+      "file": "internal_E0_1060011.npz",
+      "seed": 1060011
+    },
+    {
+      "file": "internal_E0_1060012.npz",
+      "seed": 1060012
+    },
+    {
+      "file": "internal_E0_1060013.npz",
+      "seed": 1060013
+    },
+    {
+      "file": "internal_E0_1060014.npz",
+      "seed": 1060014
+    },
+    {
+      "file": "internal_E0_1060015.npz",
+      "seed": 1060015
+    },
+    {
+      "file": "internal_E0_1060016.npz",
+      "seed": 1060016
+    },
+    {
+      "file": "internal_E0_1060017.npz",
+      "seed": 1060017
+    },
+    {
+      "file": "internal_E0_1060018.npz",
+      "seed": 1060018
+    },
+    {
+      "file": "internal_E0_1060019.npz",
+      "seed": 1060019
+    },
+    {
+      "file": "internal_E1_1061000.npz",
+      "seed": 1061000
+    },
+    {
+      "file": "internal_E1_1061001.npz",
+      "seed": 1061001
+    },
+    {
+      "file": "internal_E1_1061002.npz",
+      "seed": 1061002
+    },
+    {
+      "file": "internal_E1_1061003.npz",
+      "seed": 1061003
+    },
+    {
+      "file": "internal_E1_1061004.npz",
+      "seed": 1061004
+    },
+    {
+      "file": "internal_E1_1061005.npz",
+      "seed": 1061005
+    },
+    {
+      "file": "internal_E1_1061006.npz",
+      "seed": 1061006
+    },
+    {
+      "file": "internal_E1_1061007.npz",
+      "seed": 1061007
+    },
+    {
+      "file": "internal_E1_1061008.npz",
+      "seed": 1061008
+    },
+    {
+      "file": "internal_E1_1061009.npz",
+      "seed": 1061009
+    },
+    {
+      "file": "internal_E1_1061010.npz",
+      "seed": 1061010
+    },
+    {
+      "file": "internal_E1_1061011.npz",
+      "seed": 1061011
+    },
+    {
+      "file": "internal_E1_1061012.npz",
+      "seed": 1061012
+    },
+    {
+      "file": "internal_E1_1061013.npz",
+      "seed": 1061013
+    },
+    {
+      "file": "internal_E1_1061014.npz",
+      "seed": 1061014
+    },
+    {
+      "file": "internal_E1_1061015.npz",
+      "seed": 1061015
+    },
+    {
+      "file": "internal_E1_1061016.npz",
+      "seed": 1061016
+    },
+    {
+      "file": "internal_E1_1061017.npz",
+      "seed": 1061017
+    },
+    {
+      "file": "internal_E1_1061018.npz",
+      "seed": 1061018
+    },
+    {
+      "file": "internal_E1_1061019.npz",
+      "seed": 1061019
+    },
+    {
+      "file": "internal_E2_1062000.npz",
+      "seed": 1062000
+    },
+    {
+      "file": "internal_E2_1062001.npz",
+      "seed": 1062001
+    },
+    {
+      "file": "internal_E2_1062002.npz",
+      "seed": 1062002
+    },
+    {
+      "file": "internal_E2_1062003.npz",
+      "seed": 1062003
+    },
+    {
+      "file": "internal_E2_1062004.npz",
+      "seed": 1062004
+    },
+    {
+      "file": "internal_E2_1062005.npz",
+      "seed": 1062005
+    },
+    {
+      "file": "internal_E2_1062006.npz",
+      "seed": 1062006
+    },
+    {
+      "file": "internal_E2_1062007.npz",
+      "seed": 1062007
+    },
+    {
+      "file": "internal_E2_1062008.npz",
+      "seed": 1062008
+    },
+    {
+      "file": "internal_E2_1062009.npz",
+      "seed": 1062009
+    },
+    {
+      "file": "internal_E2_1062010.npz",
+      "seed": 1062010
+    },
+    {
+      "file": "internal_E2_1062011.npz",
+      "seed": 1062011
+    },
+    {
+      "file": "internal_E2_1062012.npz",
+      "seed": 1062012
+    },
+    {
+      "file": "internal_E2_1062013.npz",
+      "seed": 1062013
+    },
+    {
+      "file": "internal_E2_1062014.npz",
+      "seed": 1062014
+    },
+    {
+      "file": "internal_E2_1062015.npz",
+      "seed": 1062015
+    },
+    {
+      "file": "internal_E2_1062016.npz",
+      "seed": 1062016
+    },
+    {
+      "file": "internal_E2_1062017.npz",
+      "seed": 1062017
+    },
+    {
+      "file": "internal_E2_1062018.npz",
+      "seed": 1062018
+    },
+    {
+      "file": "internal_E2_1062019.npz",
+      "seed": 1062019
+    },
+    {
+      "file": "internal_E3_1063000.npz",
+      "seed": 1063000
+    },
+    {
+      "file": "internal_E3_1063001.npz",
+      "seed": 1063001
+    },
+    {
+      "file": "internal_E3_1063002.npz",
+      "seed": 1063002
+    },
+    {
+      "file": "internal_E3_1063003.npz",
+      "seed": 1063003
+    },
+    {
+      "file": "internal_E3_1063004.npz",
+      "seed": 1063004
+    },
+    {
+      "file": "internal_E3_1063005.npz",
+      "seed": 1063005
+    },
+    {
+      "file": "internal_E3_1063006.npz",
+      "seed": 1063006
+    },
+    {
+      "file": "internal_E3_1063007.npz",
+      "seed": 1063007
+    },
+    {
+      "file": "internal_E3_1063008.npz",
+      "seed": 1063008
+    },
+    {
+      "file": "internal_E3_1063009.npz",
+      "seed": 1063009
+    },
+    {
+      "file": "internal_E3_1063010.npz",
+      "seed": 1063010
+    },
+    {
+      "file": "internal_E3_1063011.npz",
+      "seed": 1063011
+    },
+    {
+      "file": "internal_E3_1063012.npz",
+      "seed": 1063012
+    },
+    {
+      "file": "internal_E3_1063013.npz",
+      "seed": 1063013
+    },
+    {
+      "file": "internal_E3_1063014.npz",
+      "seed": 1063014
+    },
+    {
+      "file": "internal_E3_1063015.npz",
+      "seed": 1063015
+    },
+    {
+      "file": "internal_E3_1063016.npz",
+      "seed": 1063016
+    },
+    {
+      "file": "internal_E3_1063017.npz",
+      "seed": 1063017
+    },
+    {
+      "file": "internal_E3_1063018.npz",
+      "seed": 1063018
+    },
+    {
+      "file": "internal_E3_1063019.npz",
+      "seed": 1063019
+    },
+    {
+      "file": "internal_E4_1064000.npz",
+      "seed": 1064000
+    },
+    {
+      "file": "internal_E4_1064001.npz",
+      "seed": 1064001
+    },
+    {
+      "file": "internal_E4_1064002.npz",
+      "seed": 1064002
+    },
+    {
+      "file": "internal_E4_1064003.npz",
+      "seed": 1064003
+    },
+    {
+      "file": "internal_E4_1064004.npz",
+      "seed": 1064004
+    },
+    {
+      "file": "internal_E4_1064005.npz",
+      "seed": 1064005
+    },
+    {
+      "file": "internal_E4_1064006.npz",
+      "seed": 1064006
+    },
+    {
+      "file": "internal_E4_1064007.npz",
+      "seed": 1064007
+    },
+    {
+      "file": "internal_E4_1064008.npz",
+      "seed": 1064008
+    },
+    {
+      "file": "internal_E4_1064009.npz",
+      "seed": 1064009
+    },
+    {
+      "file": "internal_E4_1064010.npz",
+      "seed": 1064010
+    },
+    {
+      "file": "internal_E4_1064011.npz",
+      "seed": 1064011
+    },
+    {
+      "file": "internal_E4_1064012.npz",
+      "seed": 1064012
+    },
+    {
+      "file": "internal_E4_1064013.npz",
+      "seed": 1064013
+    },
+    {
+      "file": "internal_E4_1064014.npz",
+      "seed": 1064014
+    },
+    {
+      "file": "internal_E4_1064015.npz",
+      "seed": 1064015
+    },
+    {
+      "file": "internal_E4_1064016.npz",
+      "seed": 1064016
+    },
+    {
+      "file": "internal_E4_1064017.npz",
+      "seed": 1064017
+    },
+    {
+      "file": "internal_E4_1064018.npz",
+      "seed": 1064018
+    },
+    {
+      "file": "internal_E4_1064019.npz",
+      "seed": 1064019
+    },
+    {
+      "file": "internal_E5_1065000.npz",
+      "seed": 1065000
+    },
+    {
+      "file": "internal_E5_1065001.npz",
+      "seed": 1065001
+    },
+    {
+      "file": "internal_E5_1065002.npz",
+      "seed": 1065002
+    },
+    {
+      "file": "internal_E5_1065003.npz",
+      "seed": 1065003
+    },
+    {
+      "file": "internal_E5_1065004.npz",
+      "seed": 1065004
+    },
+    {
+      "file": "internal_E5_1065005.npz",
+      "seed": 1065005
+    },
+    {
+      "file": "internal_E5_1065006.npz",
+      "seed": 1065006
+    },
+    {
+      "file": "internal_E5_1065007.npz",
+      "seed": 1065007
+    },
+    {
+      "file": "internal_E5_1065008.npz",
+      "seed": 1065008
+    },
+    {
+      "file": "internal_E5_1065009.npz",
+      "seed": 1065009
+    },
+    {
+      "file": "internal_E5_1065010.npz",
+      "seed": 1065010
+    },
+    {
+      "file": "internal_E5_1065011.npz",
+      "seed": 1065011
+    },
+    {
+      "file": "internal_E5_1065012.npz",
+      "seed": 1065012
+    },
+    {
+      "file": "internal_E5_1065013.npz",
+      "seed": 1065013
+    },
+    {
+      "file": "internal_E5_1065014.npz",
+      "seed": 1065014
+    },
+    {
+      "file": "internal_E5_1065015.npz",
+      "seed": 1065015
+    },
+    {
+      "file": "internal_E5_1065016.npz",
+      "seed": 1065016
+    },
+    {
+      "file": "internal_E5_1065017.npz",
+      "seed": 1065017
+    },
+    {
+      "file": "internal_E5_1065018.npz",
+      "seed": 1065018
+    },
+    {
+      "file": "internal_E5_1065019.npz",
+      "seed": 1065019
+    },
+    {
+      "file": "internal_E6_1066000.npz",
+      "seed": 1066000
+    },
+    {
+      "file": "internal_E6_1066001.npz",
+      "seed": 1066001
+    },
+    {
+      "file": "internal_E6_1066002.npz",
+      "seed": 1066002
+    },
+    {
+      "file": "internal_E6_1066003.npz",
+      "seed": 1066003
+    },
+    {
+      "file": "internal_E6_1066004.npz",
+      "seed": 1066004
+    },
+    {
+      "file": "internal_E6_1066005.npz",
+      "seed": 1066005
+    },
+    {
+      "file": "internal_E6_1066006.npz",
+      "seed": 1066006
+    },
+    {
+      "file": "internal_E6_1066007.npz",
+      "seed": 1066007
+    },
+    {
+      "file": "internal_E6_1066008.npz",
+      "seed": 1066008
+    },
+    {
+      "file": "internal_E6_1066009.npz",
+      "seed": 1066009
+    },
+    {
+      "file": "internal_E6_1066010.npz",
+      "seed": 1066010
+    },
+    {
+      "file": "internal_E6_1066011.npz",
+      "seed": 1066011
+    },
+    {
+      "file": "internal_E6_1066012.npz",
+      "seed": 1066012
+    },
+    {
+      "file": "internal_E6_1066013.npz",
+      "seed": 1066013
+    },
+    {
+      "file": "internal_E6_1066014.npz",
+      "seed": 1066014
+    },
+    {
+      "file": "internal_E6_1066015.npz",
+      "seed": 1066015
+    },
+    {
+      "file": "internal_E6_1066016.npz",
+      "seed": 1066016
+    },
+    {
+      "file": "internal_E6_1066017.npz",
+      "seed": 1066017
+    },
+    {
+      "file": "internal_E6_1066018.npz",
+      "seed": 1066018
+    },
+    {
+      "file": "internal_E6_1066019.npz",
+      "seed": 1066019
+    },
+    {
+      "file": "internal_E9_1067000.npz",
+      "seed": 1067000
+    },
+    {
+      "file": "internal_E9_1067001.npz",
+      "seed": 1067001
+    },
+    {
+      "file": "internal_E9_1067002.npz",
+      "seed": 1067002
+    },
+    {
+      "file": "internal_E9_1067003.npz",
+      "seed": 1067003
+    },
+    {
+      "file": "internal_E9_1067004.npz",
+      "seed": 1067004
+    },
+    {
+      "file": "internal_E9_1067005.npz",
+      "seed": 1067005
+    },
+    {
+      "file": "internal_E9_1067006.npz",
+      "seed": 1067006
+    },
+    {
+      "file": "internal_E9_1067007.npz",
+      "seed": 1067007
+    },
+    {
+      "file": "internal_E9_1067008.npz",
+      "seed": 1067008
+    },
+    {
+      "file": "internal_E9_1067009.npz",
+      "seed": 1067009
+    },
+    {
+      "file": "internal_E9_1067010.npz",
+      "seed": 1067010
+    },
+    {
+      "file": "internal_E9_1067011.npz",
+      "seed": 1067011
+    },
+    {
+      "file": "internal_E9_1067012.npz",
+      "seed": 1067012
+    },
+    {
+      "file": "internal_E9_1067013.npz",
+      "seed": 1067013
+    },
+    {
+      "file": "internal_E9_1067014.npz",
+      "seed": 1067014
+    },
+    {
+      "file": "internal_E9_1067015.npz",
+      "seed": 1067015
+    },
+    {
+      "file": "internal_E9_1067016.npz",
+      "seed": 1067016
+    },
+    {
+      "file": "internal_E9_1067017.npz",
+      "seed": 1067017
+    },
+    {
+      "file": "internal_E9_1067018.npz",
+      "seed": 1067018
+    },
+    {
+      "file": "internal_E9_1067019.npz",
+      "seed": 1067019
+    },
+    {
+      "file": "external_task30_E1_1070000.npz",
+      "seed": 1070000
+    },
+    {
+      "file": "external_task30_E2_1070001.npz",
+      "seed": 1070001
+    },
+    {
+      "file": "external_task30_E3_1070002.npz",
+      "seed": 1070002
+    },
+    {
+      "file": "external_task31_E1_1070010.npz",
+      "seed": 1070010
+    },
+    {
+      "file": "external_task31_E2_1070011.npz",
+      "seed": 1070011
+    },
+    {
+      "file": "external_task31_E3_1070012.npz",
+      "seed": 1070012
+    },
+    {
+      "file": "external_task32_E1_1070020.npz",
+      "seed": 1070020
+    },
+    {
+      "file": "external_task32_E2_1070021.npz",
+      "seed": 1070021
+    },
+    {
+      "file": "external_task32_E3_1070022.npz",
+      "seed": 1070022
+    },
+    {
+      "file": "external_task33_E1_1070030.npz",
+      "seed": 1070030
+    },
+    {
+      "file": "external_task33_E2_1070031.npz",
+      "seed": 1070031
+    },
+    {
+      "file": "external_task33_E3_1070032.npz",
+      "seed": 1070032
+    },
+    {
+      "file": "external_task34_E1_1070040.npz",
+      "seed": 1070040
+    },
+    {
+      "file": "external_task34_E2_1070041.npz",
+      "seed": 1070041
+    },
+    {
+      "file": "external_task34_E3_1070042.npz",
+      "seed": 1070042
+    },
+    {
+      "file": "external_task35_E1_1070050.npz",
+      "seed": 1070050
+    },
+    {
+      "file": "external_task35_E2_1070051.npz",
+      "seed": 1070051
+    },
+    {
+      "file": "external_task35_E3_1070052.npz",
+      "seed": 1070052
+    },
+    {
+      "file": "external_task36_E1_1070060.npz",
+      "seed": 1070060
+    },
+    {
+      "file": "external_task36_E2_1070061.npz",
+      "seed": 1070061
+    },
+    {
+      "file": "external_task36_E3_1070062.npz",
+      "seed": 1070062
+    },
+    {
+      "file": "external_task37_E1_1070070.npz",
+      "seed": 1070070
+    },
+    {
+      "file": "external_task37_E2_1070071.npz",
+      "seed": 1070071
+    },
+    {
+      "file": "external_task37_E3_1070072.npz",
+      "seed": 1070072
+    }
+  ],
+  "network_seeds": [
+    1080000,
+    1080001,
+    1080002,
+    1080003,
+    1080004,
+    1080005,
+    1080006,
+    1080007,
+    1080008,
+    1080009,
+    1080100,
+    1080101,
+    1080102,
+    1080103,
+    1080104,
+    1080105,
+    1080106,
+    1080107,
+    1080108,
+    1080109,
+    1080200,
+    1080201,
+    1080202,
+    1080203,
+    1080204,
+    1080205,
+    1080206,
+    1080207,
+    1080208,
+    1080209,
+    1080300,
+    1080301,
+    1080302,
+    1080303,
+    1080304,
+    1080305,
+    1080306,
+    1080307,
+    1080308,
+    1080309
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "expected_counterexample_reproduced": true,
+  "radius": 0.998,
+  "norm_A_projected_2": 10.071985396943187,
+  "norm_A_eff_at_zero_input_2": 10.071985396943187,
+  "spectral_radius_A_eff_at_zero_input": 0.9,
+  "projection_gamma_norm_bound": 0.0,
+  "projection_gamma_applied": 0.0,
+  "source_logic": "Exact Eq. (22) gamma_norm and spectral_project_matrix logic isolated from core_utils.py",
+  "conclusion": "gamma=0 does not certify the claimed induced-norm bound"
+}

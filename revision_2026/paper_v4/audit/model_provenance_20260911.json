@@ -1,0 +1,821 @@
+{
+  "status": "PASS_METADATA_CHAIN",
+  "scope": "backbone/checkpoint/normalization/S0 hashes and formal gamma-selection metadata; no prediction metric recomputation and no confirmation arrays opened",
+  "run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02",
+  "backbone": {
+    "parent_checkpoint": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3v_results\\runs\\20260904_224212_KC_R01\\kc4\\seed0_aligned\\last.pt",
+    "parent_sha": "00B50A221525B3FF1BE9E23CB8722052B09729F2AA4CCD93FA845EE674153881",
+    "frozen_backward_error": 3.7082707464875465e-17,
+    "refit_backward_error": 3.465467754841637e-17,
+    "coefficient_max_abs_difference": 4.504799561155792e-09,
+    "regularized_condition": 135751249.56998,
+    "decision": "use the existing exact frozen backbone after verifying the same fit-only ridge equations"
+  },
+  "backbone_checks": {
+    "record_exists": true,
+    "parent_exists": true,
+    "parent_hash_matches": true,
+    "frozen_backward_error_le_1e_12": true,
+    "refit_backward_error_le_1e_12": true,
+    "finite_coefficient_difference": true,
+    "condition_below_1e14": true
+  },
+  "formal_selection_count": 45,
+  "expected_formal_selection_count": 45,
+  "coordinates_complete": true,
+  "selected_gamma_counts": {
+    "0.25": 2,
+    "0.5": 37,
+    "0.75": 6
+  },
+  "fold_identity": [
+    {
+      "fold": 0,
+      "selection_identity_pairs": [
+        [
+          "DD408EB0EE914FA894C2C5E00D4DDAB205314D5E0CD8CF0DF5296EAAD9487CC7",
+          "4F0B403E0115A0E196D9F4BCBC2979155B67CAF67F79A12F5DD214F5596CCF07"
+        ]
+      ],
+      "one_identity_pair_across_9_selections": true,
+      "normalization_digest": "DD408EB0EE914FA894C2C5E00D4DDAB205314D5E0CD8CF0DF5296EAAD9487CC7",
+      "s0_digest": "4F0B403E0115A0E196D9F4BCBC2979155B67CAF67F79A12F5DD214F5596CCF07",
+      "saved_files_match_selection_identity": true
+    },
+    {
+      "fold": 1,
+      "selection_identity_pairs": [
+        [
+          "518F8FA8105FE5F914DC8DFBA74F1503B5E5B8A7A7C8BCEEF2320B28360866A0",
+          "D5DAD65A00B130C7FF9B5B949ECC3966AC79F4D6CBF9F7F7EBE620F6B67F93B0"
+        ]
+      ],
+      "one_identity_pair_across_9_selections": true,
+      "normalization_digest": "518F8FA8105FE5F914DC8DFBA74F1503B5E5B8A7A7C8BCEEF2320B28360866A0",
+      "s0_digest": "D5DAD65A00B130C7FF9B5B949ECC3966AC79F4D6CBF9F7F7EBE620F6B67F93B0",
+      "saved_files_match_selection_identity": true
+    },
+    {
+      "fold": 2,
+      "selection_identity_pairs": [
+        [
+          "E1BF2C80A79CA9CD5CA6CA1463A07D3DE1514ED73B8AD6F124CBAA94D5CB7FDE",
+          "691B6CDD4ECB174F7C43C333299C1DC036012D634E4FD66A29D6B1221B00EFA8"
+        ]
+      ],
+      "one_identity_pair_across_9_selections": true,
+      "normalization_digest": "E1BF2C80A79CA9CD5CA6CA1463A07D3DE1514ED73B8AD6F124CBAA94D5CB7FDE",
+      "s0_digest": "691B6CDD4ECB174F7C43C333299C1DC036012D634E4FD66A29D6B1221B00EFA8",
+      "saved_files_match_selection_identity": true
+    },
+    {
+      "fold": 3,
+      "selection_identity_pairs": [
+        [
+          "73F13765011BDADE4A5143C7245ABB0005866A92C56220A41B26FE46F5305C0C",
+          "A023461102BFA84C47E2B0C60981EFA2E1E82AADBF04FF708D787447433B4702"
+        ]
+      ],
+      "one_identity_pair_across_9_selections": true,
+      "normalization_digest": "73F13765011BDADE4A5143C7245ABB0005866A92C56220A41B26FE46F5305C0C",
+      "s0_digest": "A023461102BFA84C47E2B0C60981EFA2E1E82AADBF04FF708D787447433B4702",
+      "saved_files_match_selection_identity": true
+    },
+    {
+      "fold": 4,
+      "selection_identity_pairs": [
+        [
+          "7CEC929E13E33CECEA1B2B58EFEC0E9B7C666DE74A6DE90279CF27FFE3D06384",
+          "C3F0C2FB08E0CC57D3200597C5C72EB9B17D48C275A8AF1F4ABDA40E5C4A2826"
+        ]
+      ],
+      "one_identity_pair_across_9_selections": true,
+      "normalization_digest": "7CEC929E13E33CECEA1B2B58EFEC0E9B7C666DE74A6DE90279CF27FFE3D06384",
+      "s0_digest": "C3F0C2FB08E0CC57D3200597C5C72EB9B17D48C275A8AF1F4ABDA40E5C4A2826",
+      "saved_files_match_selection_identity": true
+    }
+  ],
+  "selections": [
+    {
+      "repeat": 0,
+      "fold": 0,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold0\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.75,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 0,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold0\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.75,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 0,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold0\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.75,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold1\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold1\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold1\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold2\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold2\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.25,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold2\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold3\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.25,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold3\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold3\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold4\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold4\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.75,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat0\\fold4\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.75,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold0\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.75,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold0\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold0\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold1\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold1\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold1\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold2\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold2\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold2\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold3\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold3\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold3\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold4\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold4\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat1\\fold4\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold0\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold0\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold0\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold1\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold1\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold1\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold2\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold2\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold2\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold3\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold3\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold3\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "method": "adaptive_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold4\\adaptive_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "method": "aligned",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold4\\aligned\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "method": "fixed_guard",
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\formal\\repeat2\\fold4\\fixed_guard\\calibration\\selection.json",
+      "selected_gamma": 0.5,
+      "checks": {
+        "coordinate_expected": true,
+        "record_coordinate_matches_path": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "gamma_selection_recomputes": true,
+        "selected_is_protected": true,
+        "selected_status_candidate": true
+      }
+    }
+  ],
+  "claim_boundary": "This proves recorded file identity and deterministic selection-rule replay. It does not independently recompute m20/i20 from numeric data or qualify the model for EXP-R2 E02."
+}

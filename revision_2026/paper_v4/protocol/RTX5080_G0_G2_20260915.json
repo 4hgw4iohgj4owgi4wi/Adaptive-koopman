@@ -1,0 +1,85 @@
+{
+  "protocol_id": "RTX5080-G0-G2-v1",
+  "created_local": "2026-09-15T19:10:00+08:00",
+  "authorization": "User instruction to implement protocol/P1中断数据分析与RTX5080迁移任务说明_20260915.md on GPU",
+  "scope": "RTX5080_G0_G2_ONLY_NO_CLOSED_LOOP",
+  "output": "results/20260915_RTX5080_G0_G2_01",
+  "candidate": {
+    "name": "POST-R3-R4-CUDA-batched-FD-v1",
+    "dtype": "float64",
+    "prediction_horizon": 20,
+    "controller_step_s": 0.02,
+    "predictor_substep_s": 0.002,
+    "predictor_substeps_per_control_tick": 10,
+    "dynamics_jacobian": "central finite difference, recomputed at every horizon step",
+    "state_dimension": 34,
+    "control_dimension": 8,
+    "batch_order": "nominal,z0+/-,...,z33+/-,u0+/-,...,u7+/-",
+    "cuda_batch_size": 85,
+    "cpu_retained": ["true event-substep plant", "QP assembly", "OSQP", "nonlinear hard-gate validation"],
+    "forbidden_changes": ["float32", "AMP", "autodiff", "changed finite-difference steps", "frozen Jacobian", "closed-loop continuation"]
+  },
+  "inputs": {
+    "parameter_id": "P1",
+    "partial_run": "results/20260915_R4_P1_2MS01",
+    "g1_samples": ["straight", "curve_entry", "force_peak", "steering_limit", "near_gap_boundary", "late_prefix"],
+    "g2_fixed_qp": ["same-parameter initial state", "same-parameter initial state with vehicle-1 world-x offset +0.03 m"]
+  },
+  "g0": {
+    "required_device_name": "NVIDIA GeForce RTX 5080",
+    "required_cuda_available": true,
+    "required_dtype": "torch.float64",
+    "required_single_process_single_device": true
+  },
+  "gates": {
+    "error_definition": "abs_error/(atol+rtol*abs(CPU_reference)); report max absolute, RMS, normalized maximum and worst flat index",
+    "g1_rhs": {"atol": 2e-9, "rtol": 2e-10, "maximum_normalized_error": 1.0},
+    "g1_rk4": {"atol": 2e-11, "rtol": 2e-10, "maximum_normalized_error": 1.0},
+    "g1_rollout": {"atol": 2e-10, "rtol": 2e-9, "maximum_normalized_error": 1.0},
+    "g2_f0": {"atol": 2e-10, "rtol": 2e-9, "maximum_normalized_error": 1.0},
+    "g2_jacobian": {"atol": 2e-7, "rtol": 2e-6, "maximum_normalized_error": 1.0},
+    "g2_qp_matrix": {"atol": 1e-5, "rtol": 2e-5, "maximum_normalized_error": 1.0},
+    "g2_qp_bounds": {"atol": 1e-7, "rtol": 1e-6, "maximum_normalized_error": 1.0},
+    "first_control": {"acceleration_atol_mps2": 0.0001, "steering_atol_rad": 0.00001},
+    "required_cpu_nonlinear_validation": "PASS",
+    "performance": {"baseline": "CPU parallel8 end-to-end fixed-QP solve", "must_be_faster_for_long-run_promotion": true, "original_budget_s": 5.0, "no_benefit_action": "STOP_BEFORE_G3_G4"}
+  },
+  "timing_contract": {
+    "synchronize_cuda_before_and_after": true,
+    "report": ["warmup", "linearization kernel total", "device-to-host and reconstruction", "CPU parallel8 end-to-end", "GPU end-to-end", "speedup"],
+    "warmup_excluded_from_end_to_end_comparison": true
+  },
+  "stop_rules": {
+    "g0_failure": "stop before fixed inputs",
+    "g1_failure": "stop and retain diagnostics; do not claim equivalent physics",
+    "g2_numerical_failure": "stop; classify as new numerical implementation",
+    "g2_no_performance_benefit": "stop before G3/G4",
+    "closed_loop_authorized": false,
+    "resume_or_splice_interrupted_p1": false
+  },
+  "identity_files": [
+    {"path": "protocol/P1中断数据分析与RTX5080迁移任务说明_20260915.md", "sha256": "627ee29cc8245b3ef4d9d8a8805d3a75f8ee605de5141a8baac996ab3bcd9635"},
+    {"path": "experiment.md", "sha256": "77399dd0db6cfe0b9e6d3e743329c0bd50b54024b0268e7411099ff12bd056cb"},
+    {"path": "src/paper_v4_core/gpu_port/__init__.py", "sha256": "06225c104411fa2027ca34ae3eb25aafd461bacd82d61b4bffdc471733bdb80d"},
+    {"path": "src/paper_v4_core/gpu_port/physics_torch.py", "sha256": "9a0e36545c8396d77f1c3404082e917bfbb7b6f998a7ed83454fa4f5e4c3d0a4"},
+    {"path": "src/paper_v4_core/gpu_port/rollout_batch.py", "sha256": "80bad4fdd7833e3a775f8dd3fe211f4034e038242bfcc91bdc8a5fa433ee603e"},
+    {"path": "src/paper_v4_core/gpu_port/fd_backend.py", "sha256": "7dfd9bf71169507cdfea4b09b085165c06b020e4c86c14e0cfe2f7be9cb0dcbb"},
+    {"path": "tools/gpu_g0_g2_qualify.py", "sha256": "4b25a7e11a6d39905320b7d86a9321504c05e2eb2b828d38911d5474ba95aff2"},
+    {"path": "src/paper_v4_core/controllers/physical_tracking_pilot.py", "sha256": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531"},
+    {"path": "src/paper_v4_core/controllers/parallel_fd_backend.py", "sha256": "d6ded1a9cbea08034bbb025276aee8569eb7fcac34cd95c54c4c590d9aad6495"},
+    {"path": "src/paper_v4_core/plant/four_vehicle_common.py", "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"},
+    {"path": "src/paper_v4_core/plant/connector_adapter.py", "sha256": "dd56ccb6e7117a6a101dba57884dda81cc04e2fecc520cc7d44568419e177dd7"},
+    {"path": "src/paper_v4_core/plant/connector_r3.py", "sha256": "2c6ef95ac9e9c4afe88e005bc99d4644373f44dfd0448b07a6ac78e5e03de1de"},
+    {"path": "src/paper_v4_core/plant/internal_force.py", "sha256": "5a9f24f6fbc7540847574a3d5ce435d40caa29cb99be1dd9dbb1282c804bdf2e"},
+    {"path": "src/paper_v4_core/plant/load_transfer.py", "sha256": "0da410a3da05e538464c83ed1a02e081c1196631c121c6ab750ebc1068c8e74b"},
+    {"path": "src/paper_v4_core/e01_100m.py", "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"},
+    {"path": "src/paper_v4_core/diagnostics/post_r3_r4_runner.py", "sha256": "32ba7e9f3807b45b49642f4869b1b9e6cffadc6e28a1b824bfe9931358a9d379"},
+    {"path": "src/paper_v4_core/reference_geometry.py", "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d"},
+    {"path": "src/paper_v4_core/references.py", "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"},
+    {"path": "results/20260915_R4_P1_2MS01/raw.npz", "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"},
+    {"path": "results/20260915_R4_P1_2MS01/substeps.npz", "sha256": "ad60eb7f2e7a1fa9b556ad5ab57489745895a031c0841164b69da01b2c527043"},
+    {"path": "results/20260915_R4_P1_2MS01/solver.jsonl", "sha256": "9189e93618e38cd95672f0f175e38ad2f9a8d1ea4a84d4848d06e7b86e9c9bbb"},
+    {"path": "results/20260915_R4_P1_2MS01/status.json", "sha256": "1aa4af6d051841c525c50114076076f827261aaca8a687b181a371070ed843d2"}
+  ],
+  "deliverables": ["g0_environment.json", "g1_physics.json", "g2_fd_qp.json", "qualification.json", "G0/G1/G2 PNG and SVG", "figure_manifest.json", "README.md", "Chinese execution record"]
+}

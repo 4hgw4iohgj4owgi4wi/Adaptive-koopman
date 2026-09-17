@@ -1,0 +1,90 @@
+{
+  "schema_version": "POST-R3-C0-v1",
+  "status": "FROZEN_FOR_C0_PREFLIGHT",
+  "authorization": "User instruction on 2026-09-15 to execute updated experiment.md",
+  "taskbook": {
+    "path": "experiment.md",
+    "sha256": "e68d9ec9ad45d6bfc3d174741af9dcce5785cb752eeb2d28e0b39acd29caa9bd",
+    "detail_path": "protocol/后续实验详细任务书_20260915.md",
+    "detail_sha256": "627069300470879c953ed116c4aa0910a1791575543d244ca86d6d16a21b0e66"
+  },
+  "parent_r3": {
+    "path": "results/20260915_R4C_FULL_COMPARE01/r3_convergence.json",
+    "sha256": "8b9f45b18c80aca7561162def8e9cc0b16a622b42b8b8a507e3eefef2e6b06a8",
+    "required_status": "PASS",
+    "figure_manifest": "results/20260915_R4C_FULL_COMPARE01/figures/figure_manifest.json",
+    "figure_manifest_sha256": "d6716e38ede4dec61ab3115851d655c05b5ebbae4c871b9e4cc43c762aab2450",
+    "required_figure_status": "PASS"
+  },
+  "candidate_id": "EXP-R3-unfrozen-v1",
+  "candidate_identity": {
+    "method_full_name": "Centralized Full-State Physical Model Predictive Control",
+    "information_boundary": "Centralized full simulation state; offline diagnostic upper bound.",
+    "horizon": 20,
+    "lambda_internal": 2.0,
+    "frozen_dynamics_jacobian": false,
+    "finite_difference_scale": 1.0,
+    "workers": 8,
+    "controller_step_s": 0.02,
+    "actuator_update_s": 0.002
+  },
+  "route": {
+    "source": "e01_routes.json",
+    "reference_speed_mps": 2.0,
+    "route_length_m": 95.12831551628262,
+    "expected_control_cycles": 2379,
+    "duration_s": 47.58,
+    "nominal_radius_m": 11.5,
+    "transition_m_each_end": 11.0
+  },
+  "absolute_parameters": {
+    "P1": {
+      "vehicle": {"mass_kg": 1200.0, "yaw_inertia_kgm2": 1800.0, "lf_m": 1.2, "lr_m": 1.3, "cf_nprad": 55000.0, "cr_nprad": 60000.0, "mu": 0.95, "gravity_mps2": 9.81},
+      "payload": {"mass_kg": 1800.0, "length_m": 5.0, "width_m": 2.0, "cog_height_m": 1.2, "gravity_mps2": 9.81, "yaw_inertia_kgm2": 4350.0},
+      "connector": {"law_version": "plant_r3_boundary_regularized", "stiffness_npm": 28500.0, "damping_nspm": 3325.0, "free_play_m": 0.0019, "smoothing_width_m": 0.0001776170305060031, "rated_force_n": 12000.0, "ultimate_force_n": 15000.0, "strength_source": "numerical_legacy_unverified"},
+      "vehicle_anchor_body_m": [[-0.4, -0.25], [-0.4, 0.25], [0.4, -0.25], [0.4, 0.25]],
+      "payload_anchor_body_m": [[2.5, 1.0], [2.5, -1.0], [-2.5, 1.0], [-2.5, -1.0]]
+    },
+    "P2": {
+      "vehicle": {"mass_kg": 1200.0, "yaw_inertia_kgm2": 1800.0, "lf_m": 1.2, "lr_m": 1.3, "cf_nprad": 55000.0, "cr_nprad": 60000.0, "mu": 0.8, "gravity_mps2": 9.81},
+      "payload": {"mass_kg": 2200.0, "length_m": 5.0, "width_m": 2.0, "cog_height_m": 1.2, "gravity_mps2": 9.81, "yaw_inertia_kgm2": 5316.666666666667},
+      "connector": {"law_version": "plant_r3_boundary_regularized", "stiffness_npm": 31500.0, "damping_nspm": 3675.0, "free_play_m": 0.0021000000000000003, "smoothing_width_m": 0.0001776170305060031, "rated_force_n": 12000.0, "ultimate_force_n": 15000.0, "strength_source": "numerical_legacy_unverified"},
+      "vehicle_anchor_body_m": [[-0.4, -0.25], [-0.4, 0.25], [0.4, -0.25], [0.4, 0.25]],
+      "payload_anchor_body_m": [[2.5, 1.0], [2.5, -1.0], [-2.5, 1.0], [-2.5, -1.0]]
+    }
+  },
+  "expected_figures": ["route", "tracking_and_configuration_errors", "force_components_norm_internal_impulse", "requested_actual_steering_and_tv", "tire_and_support", "solver_wall_time"],
+  "run_manifest": [
+    {"stage": "C1/R4", "run_id": "R4-P1-2", "parameter_id": "P1", "plant_max_step_ms": 2.0, "candidate_id": "EXP-R3-unfrozen-v1", "output": "results/20260915_R4_P1_2MS01", "deadline_h": 12.0, "parent": "C0_PASS", "expected_figures": ["route", "tracking_and_configuration_errors", "force_components_norm_internal_impulse", "requested_actual_steering_and_tv", "tire_and_support", "solver_wall_time"], "status": "READY_AFTER_C0"},
+    {"stage": "C1/R4", "run_id": "R4-P1-1", "parameter_id": "P1", "plant_max_step_ms": 1.0, "candidate_id": "EXP-R3-unfrozen-v1", "output": "results/20260915_R4_P1_1MS01", "deadline_h": 12.0, "parent": "R4-P1-2_PASS", "expected_figures": ["route", "tracking_and_configuration_errors", "force_components_norm_internal_impulse", "requested_actual_steering_and_tv", "tire_and_support", "solver_wall_time"], "status": "BLOCKED"},
+    {"stage": "C1/R4", "run_id": "R4-P1-05", "parameter_id": "P1", "plant_max_step_ms": 0.5, "candidate_id": "EXP-R3-unfrozen-v1", "output": "results/20260915_R4_P1_0P5MS01", "deadline_h": 12.0, "parent": "R4-P1-1_PASS", "expected_figures": ["route", "tracking_and_configuration_errors", "force_components_norm_internal_impulse", "requested_actual_steering_and_tv", "tire_and_support", "solver_wall_time"], "status": "BLOCKED"},
+    {"stage": "C1/R4", "run_id": "R4-P2-2", "parameter_id": "P2", "plant_max_step_ms": 2.0, "candidate_id": "EXP-R3-unfrozen-v1", "output": "results/20260915_R4_P2_2MS01", "deadline_h": 12.0, "parent": "R4-P1_PARAMETER_PAIR_PASS", "expected_figures": ["route", "tracking_and_configuration_errors", "force_components_norm_internal_impulse", "requested_actual_steering_and_tv", "tire_and_support", "solver_wall_time"], "status": "BLOCKED"},
+    {"stage": "C1/R4", "run_id": "R4-P2-1", "parameter_id": "P2", "plant_max_step_ms": 1.0, "candidate_id": "EXP-R3-unfrozen-v1", "output": "results/20260915_R4_P2_1MS01", "deadline_h": 12.0, "parent": "R4-P2-2_PASS", "expected_figures": ["route", "tracking_and_configuration_errors", "force_components_norm_internal_impulse", "requested_actual_steering_and_tv", "tire_and_support", "solver_wall_time"], "status": "BLOCKED"},
+    {"stage": "C1/R4", "run_id": "R4-P2-05", "parameter_id": "P2", "plant_max_step_ms": 0.5, "candidate_id": "EXP-R3-unfrozen-v1", "output": "results/20260915_R4_P2_0P5MS01", "deadline_h": 12.0, "parent": "R4-P2-1_PASS", "expected_figures": ["route", "tracking_and_configuration_errors", "force_components_norm_internal_impulse", "requested_actual_steering_and_tv", "tire_and_support", "solver_wall_time"], "status": "BLOCKED"}
+  ],
+  "budget": {"single_run_h": 12.0, "c1_total_dynamic_h": 72.0, "same_host_serial_long_runs": true, "original_5s_per_tick_status": "FAIL_RETAINED"},
+  "stop_rules": ["P1 any single run or parameter pair failure stops all remaining C1", "P2 any single run or parameter pair failure stops remaining C1", "No automatic full-route retry", "R5 remains blocked until R4 gate PASS"],
+  "identity_files": [
+    {"path": "experiment.md", "sha256": "e68d9ec9ad45d6bfc3d174741af9dcce5785cb752eeb2d28e0b39acd29caa9bd"},
+    {"path": "protocol/后续实验详细任务书_20260915.md", "sha256": "627069300470879c953ed116c4aa0910a1791575543d244ca86d6d16a21b0e66"},
+    {"path": "src/paper_v4_core/diagnostics/post_r3_r4_runner.py", "sha256": "32ba7e9f3807b45b49642f4869b1b9e6cffadc6e28a1b824bfe9931358a9d379"},
+    {"path": "src/paper_v4_core/diagnostics/post_r3_r4_audit.py", "sha256": "8fe2952aa294551a3199d83d7e520c227ae3b5a4e8d96021c172d0c4c62594fa"},
+    {"path": "tools/post_r3_r4_plot.py", "sha256": "110da23e8dbe9f3e42bf97838edfc7381b3b9a6a38c48c03db86850adea5a7a7"},
+    {"path": "tools/post_r3_c0_preflight.py", "sha256": "f406ab6db3a5bd1accbd2d43e58bf62f998143cc8e05bd53bd790c503b3bb18e"},
+    {"path": "src/paper_v4_core/controllers/physical_tracking_pilot.py", "sha256": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531"},
+    {"path": "src/paper_v4_core/controllers/parallel_fd_backend.py", "sha256": "d6ded1a9cbea08034bbb025276aee8569eb7fcac34cd95c54c4c590d9aad6495"},
+    {"path": "src/paper_v4_core/pilot_runner.py", "sha256": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728"},
+    {"path": "src/paper_v4_core/e01_100m.py", "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"},
+    {"path": "src/paper_v4_core/reference_geometry.py", "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d"},
+    {"path": "src/paper_v4_core/references.py", "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"},
+    {"path": "src/paper_v4_core/failure_boundary.py", "sha256": "1bb27d9310005a1cd7db235e1505e530c160a4b89da140eb6f2c399669a604bd"},
+    {"path": "src/paper_v4_core/diagnostics/relative_motion.py", "sha256": "4e2807596bd94f6189aedb813dbd24d6cdd00d9c408fcfe460f069cec55daea6"},
+    {"path": "src/paper_v4_core/plant/four_vehicle_common.py", "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"},
+    {"path": "src/paper_v4_core/plant/event_substep.py", "sha256": "aad77aa5b9d45cefc72769062550a07c6f2593e5038f2e9e35fcd8242ab41726"},
+    {"path": "src/paper_v4_core/plant/connector_r3.py", "sha256": "2c6ef95ac9e9c4afe88e005bc99d4644373f44dfd0448b07a6ac78e5e03de1de"},
+    {"path": "src/paper_v4_core/plant/connector_adapter.py", "sha256": "dd56ccb6e7117a6a101dba57884dda81cc04e2fecc520cc7d44568419e177dd7"},
+    {"path": "src/paper_v4_core/plant/internal_force.py", "sha256": "5a9f24f6fbc7540847574a3d5ce435d40caa29cb99be1dd9dbb1282c804bdf2e"},
+    {"path": "src/paper_v4_core/plant/load_transfer.py", "sha256": "0da410a3da05e538464c83ed1a02e081c1196631c121c6ab750ebc1068c8e74b"},
+    {"path": "src/paper_v4_core/plant/steering_allocator.py", "sha256": "ebfb6ef0eeb8cd6e8e3eca5383a49eb28a00222c4ac9346fc074e8168cb7ca8e"}
+  ]
+}

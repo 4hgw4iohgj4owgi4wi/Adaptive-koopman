@@ -1,0 +1,960 @@
+%!TEX TS-program = pdflatex
+\documentclass[letterpaper,journal]{IEEEtran}
+% Converted to the IEEE Transactions LaTeX2e template package on 2026-07-02.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\let\proof\relax
+\let\endproof\relax
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{array,threeparttable,tabularx,booktabs,multirow,makecell}
+\usepackage{url}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{balance}
+\usepackage{xparse}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\markboth{IEEE Transactions on Vehicular Technology,~Vol.~XX, No.~XX, XXXX~2026}%
+{Zeng \MakeLowercase{\textit{et al.}}: Network-Resilient Cooperative Transport Control}
+
+\let\NRKDCCOldSection\section
+\RenewDocumentCommand{\section}{s o m}{%
+  \IfBooleanTF{#1}{%
+    \IfNoValueTF{#2}{\NRKDCCOldSection*{#3}}{\NRKDCCOldSection*[#2]{#3}}%
+  }{%
+    \IfNoValueTF{#2}{\NRKDCCOldSection{#3}}{\NRKDCCOldSection[#2]{#3}}%
+  }%
+  \color{black}%
+}
+\let\NRKDCCOldSubsection\subsection
+\RenewDocumentCommand{\subsection}{s o m}{%
+  \IfBooleanTF{#1}{%
+    \IfNoValueTF{#2}{\NRKDCCOldSubsection*{#3}}{\NRKDCCOldSubsection*[#2]{#3}}%
+  }{%
+    \IfNoValueTF{#2}{\NRKDCCOldSubsection{#3}}{\NRKDCCOldSubsection[#2]{#3}}%
+  }%
+  \color{black}%
+}
+
+\newcommand{\todozh}[1]{\textcolor{red}{[To add: #1]}}
+\newif\ifNRReview
+\NRReviewfalse
+\newcommand{\reviewblock}[1]{}
+\newcommand{\reviewinline}[1]{#1}
+\newcommand{\finalonly}[1]{\ifNRReview\else#1\fi}
+\renewcommand{\todozh}[1]{\ifNRReview\textcolor{red}{[To add: #1]}\fi}
+\newcommand{\introproblem}[2]{}
+\newcommand{\coverpoint}[2]{}
+\newcommand{\AKE}{AKE-M}
+\newcommand{\Method}{NR-KDCC}
+\newcommand{\AKEdeg}{AKE-M-degraded}
+\newcommand{\MethodBase}{NR-KDCC-base}
+\newcommand{\MethodHC}{NR-KDCC-HC}
+\newcommand{\ZOHcons}{ZOH-cons}
+\newcommand{\MethodCN}{Network-resilient Koopman delay-compensated consensus cooperative transport control}
+\newcommand{\TF}{\Method{}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\renewcommand{\qedsymbol}{}
+
+\newcommand{\NRKDCCBioPhoto}[1]{\includegraphics[width=0.54in,height=0.66in,clip,keepaspectratio]{#1}}
+\newenvironment{NRKDCCphotobio}[2]{%
+  \par\addvspace{0.04\baselineskip}%
+  \begingroup\scriptsize\linespread{0.82}\selectfont%
+  \noindent\begin{minipage}[t]{0.56in}\vspace{0pt}\NRKDCCBioPhoto{#1}\end{minipage}\hspace{0.03in}%
+  \begin{minipage}[t]{\dimexpr\linewidth-0.60in\relax}\vspace{0pt}\textbf{#2}\ }{%
+  \end{minipage}\par\endgroup%
+}
+
+\begin{document}
+\title{Network-Resilient Cooperative Transport Control via Bilinear Koopman Learning and Delay-Compensated Consensus MPC}
+\author{\parbox{\textwidth}{\centering Dequan~Zeng, Jun~Lu, Zhishao~Ni, Letian~Gao,\\
+Yiming~Hu, Junyu~Zhou, Jinwen~Yang}%
+\thanks{This work was supported in part by the National Natural Science Foundation of China (Grant No. 52462053), the Ganpo Talent Support Program for Leading Academic and Technical Personnel in Major Disciplines of Jiangxi Province (Grant No. 20232BCJ23091), and the Natural Science Foundation of Jiangxi Province (Grant No. 20232BAB214092).}%
+\thanks{D. Zeng, J. Lu, Z. Ni, Y. Hu, J. Zhou, and J. Yang are with the Key Laboratory of Transportation Intelligent Operation and Maintenance Technology and Equipment, Ministry of Education, East China Jiaotong University, Nanchang 330013, China, and also with the School of Mechatronics Vehicle Engineering, East China Jiaotong University, Nanchang 330013, China.}%
+\thanks{L. Gao is with the College of Automotive and Energy Engineering, Tongji University, Shanghai, China (e-mail: gao\_letian@tongji.edu.cn).}%
+\thanks{Corresponding author: Dequan Zeng (e-mail: zdq1610849@126.com).}}
+
+
+
+\maketitle
+
+\begin{abstract}
+Four-vehicle rigid-payload transport must maintain centroid tracking and connection constraints despite high curvature, communication delay/dropout, and actuator degradation. This paper proposes NR-KDCC, a network-resilient Koopman delay-compensated consensus controller that embeds a stability-audited bilinear Koopman predictor in a link-quality-aware model predictive control loop with certificate-based fallback. In paired $n=20$ tests against a task-aligned adaptive Koopman embedding baseline, lateral root-mean-square error and maximum connection utilization decrease from 0.0453/0.2999 to 0.0408/0.0513 under mixed fault/noise, and from 0.0519/0.3757 to 0.0424/0.0452 under high communication noise. These results support tracking and connection-utilization gains driven by communication-aware consensus weighting and constraint tightening. Force-related quantities are reported as trade-off diagnostics rather than superiority claims: the main statistics contain higher raw force peaks for NR-KDCC than for the baseline, while the hairpin diagnostic shows that payload protection can reduce a short-window force peak at the cost of local tracking and longitudinal-lag effects.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cooperative transport, Koopman operator, bilinear prediction, model predictive control, networked control, delay/dropout, fault-tolerant control, Lyapunov certificate
+\end{IEEEkeywords}
+
+\section{Introduction}
+Path tracking for autonomous vehicles and mobile robots has been studied through classical, learning-based, and MPC-based controllers. Parking plan-control, highway autonomous-vehicle learning control, and platoon-control surveys show strong progress in single-vehicle tracking, clustering, and formation policy \cite{irshayyid2024rlHighwayControl,nandhini2024platoonControlClustering,zeng2026unifiedParkingPlanControl}. Four-vehicle rigid-payload transport is different: centroid tracking, input limits, connection errors, and payload-force constraints are coupled, so the task cannot be reduced to standard single-vehicle tracking or platoon spacing.
+
+MPC handles constraints over a finite horizon, whereas DMPC, consensus, leader-follower, and recent V2V platooning studies clarify the role of networked coordination \cite{zhang2025opticalV2VPlatooning}. Many designs, however, still assume reliable links or treat delay, packet loss, and biased information as external bounded disturbances. In payload transport, link degradation changes neighbor extrapolation, centroid feedback, reference delivery, command reception, and force distribution; link quality should therefore schedule consensus weights, constraint tightening, and fallback decisions.
+
+Koopman learning lifts nonlinear dynamics into an observable space and enables linear-predictor MPC \cite{brunton2016koopmanControl,korda2018koopmanMpc}. Vehicle-oriented Koopman studies support modeling, tracking, safety governors, robust adaptation, observer-enhanced prediction, and approximation-error analysis \cite{xiao2022deepKoopmanVehicle,joglekar2023koopmanExperimental,kim2025ksmpc,chen2024koopmanSafetyGovernor,wang2026deepKoopmanRobustTracking,zhang2025physicsInformedAdaptiveKoopman,chen2024esoDeepKoopman,philipp2023koopmanErrorBounds,cibulka2021koopmanVehicleMpc}. Singh et al.'s adaptive Koopman embedding (AKE) corrects lifted-state prediction errors online and motivates the task-aligned AKE-M baseline used here \cite{singh2025adaptiveKoopman}. AKE, however, does not directly solve four-vehicle network-degraded payload transport. The remaining gap is input-state coupling from steering, longitudinal acceleration, link quality, and connection geometry, which motivates the bilinear Koopman predictor and input-aware stability projection used here.
+
+Cooperative transport studies address object sharing, connectors, heterogeneous formation planning, embedded implementation, and multi-objective robot transport \cite{an2023multiRobotCommTransport,cooperativeTransport2024ras,gong2023sixDofTransport,zhang2024heterogeneousTransport,embeddedFormationTransport2024cep,multiObjectiveTransport2024mechatronics,intelligentCollaborativeTransport2024}. Networked-control work covers VANETs, edge control, packet-loss DMPC, DoS resilience, communication-loss robust platooning, robust UKF-MPC, latency mitigation, and networked predictive control \cite{tan2022mlVehicularDcn,zhao2025blockchainVanetDcn,wu2025drlVecDcn,bian2025markovPacketLossDMPC,dosDMPC2024isa,robustCommunicationLoss2025trb,bai2023robustLongitudinalDMPC,bao2024robustUkfMpc,networkLatencyCav2024sensors,dai2024networkedPredictiveControl}. Robust MPC and FDI/FTC provide feasibility preservation and actuator-fault correction tools \cite{mayne2000constrainedMpc,mayne2005robustMpc,convexRobustDMPC2025ejc,gasparino2023nnMpcUncertainty,liu2024adaptiveFtcSbw,xu2024fdFtcSteering}. The missing link is a single MPC loop that combines adaptive Koopman prediction, link-quality-aware consensus, degraded communication protection, actuator-fault correction, and payload-force proxy auditing for four-vehicle rigid-payload transport.
+
+The main contributions of this paper are as follows.
+\begin{enumerate}
+\item \textbf{Communication-quality-aware Koopman-MPC.} Link quality schedules neighbor extrapolation, consensus weighting, path-packet trust, constraint tightening, and fallback. Tables~\ref{tab:e0_main} and \ref{tab:e2_ablation} show lower connection utilization relative to the task-aligned AKE baseline and the largest degradation when communication awareness is removed.
+\item \textbf{Input-aware robust spectral projection.} The bilinear lifted model captures input--state coupling, while IRSP projects sampled $A_{\mathrm{eff}}(u)$ from amplification-prone radii to a certifiable range before MPC. Fig.~\ref{fig:e1_koopman_evidence} and Table~\ref{tab:e9_koopman_dim} position the predictor as certifiable rather than uniformly lowest-RMSE.
+\item \textbf{High-curvature payload-protection diagnostic.} The high-curvature branch improves lateral tracking, whereas payload protection reduces connection utilization and short-window resultant-force peaks at the cost of longitudinal lag and a local lateral-error excursion. This remains diagnostic evidence, not a full statistical payload-force claim.
+\end{enumerate}
+
+Supporting components, including 4WS local-path publication, FDI/FTC projection, PPC tightening, role scheduling, and certificate fallback, are used to implement these three claims and are not presented as separate major contributions.
+
+\section{System Modeling and Problem Definition}
+
+\subsection{Vehicle Dynamics in the Global Frame}
+
+Consider $N=4$ vehicles cooperatively transporting a rigid payload, with vehicle index $i\in\{1,\ldots,N\}$. The global-frame position and heading of vehicle $i$ are denoted by
+$p_i=[X_i,Y_i]^\top$ and $\psi_i$, respectively. The body-frame longitudinal velocity, lateral velocity, and yaw rate are denoted by $v_{x,i}$, $v_{y,i}$, and $r_i$. The control input is consistently written as $u_{i,k}^{\mathrm{ctrl}}=[a_{x,i,k},\delta_{i,k}]^\top$, where $a_{x,i}$ is the longitudinal acceleration command and $\delta_i$ is the front-wheel steering angle. The body-to-global kinematics are
+\begin{equation}
+\begin{aligned}
+\dot X_i &= v_{x,i}\cos\psi_i-v_{y,i}\sin\psi_i,\\
+\dot Y_i &= v_{x,i}\sin\psi_i+v_{y,i}\cos\psi_i,\\
+\dot \psi_i &= r_i .
+\end{aligned}
+\label{eq:world_kinematics}
+\end{equation}
+With a linear tire cornering model, the lateral and yaw dynamics are written in compact coefficient form as
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+\dot v_{y,i} &=a_{11,i}v_{y,i}+a_{12,i}r_i+b_1\delta_i+d_{y,i},\\
+\dot r_i &=a_{21,i}v_{y,i}+a_{22,i}r_i+b_2\delta_i+d_{r,i},\\
+\dot v_{x,i} &=a_{x,i}+r_i v_{y,i}+d_{x,i},\\
+a_{11,i} &=-\frac{2C_f+2C_r}{m v_{x,i}},\\
+a_{12,i} &=-v_{x,i}
+-\frac{2C_f l_f^{\mathrm{veh}}-2C_r l_r^{\mathrm{veh}}}{m v_{x,i}},\\
+a_{21,i} &=-\frac{2C_f l_f^{\mathrm{veh}}-2C_r l_r^{\mathrm{veh}}}{I_z v_{x,i}},\\
+a_{22,i} &=-\frac{2C_f (l_f^{\mathrm{veh}})^2+2C_r (l_r^{\mathrm{veh}})^2}{I_z v_{x,i}},\\
+b_1&=\frac{2C_f}{m},\qquad
+b_2=\frac{2C_f l_f^{\mathrm{veh}}}{I_z}.
+\end{aligned}
+\label{eq:bicycle_dynamics}
+\end{equation}
+\endgroup
+Here $m$, $I_z$, $l_f^{\mathrm{veh}}$, $l_r^{\mathrm{veh}}$, $C_f$, and $C_r$ denote the vehicle mass, yaw moment of inertia, distances from the vehicle center of mass to the front and rear axles, and front and rear cornering stiffnesses. The terms $d_{x,i}$, $d_{y,i}$, and $d_{r,i}$ collect modeling errors, payload-induced coupling disturbances, and external disturbances. To avoid low-speed singularity in simulation, $v_{x,i}\leftarrow\max(v_{x,i},v_{x,\min})$ is used with $v_{x,\min}=0.5$.
+
+\begin{table}[!t]
+\centering
+\caption{Nominal and perturbed vehicle parameters used for modeling, data generation, and robustness tests.}
+\label{tab:vehicle_dynamic_params}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+Parameter & Symbol & Nominal & Perturbed \\
+\midrule
+Vehicle mass & $m$ [kg] & 1500 & 1650\\
+Yaw moment of inertia & $I_z$ [kg$\cdot$m$^2$] & 2250 & 2400\\
+Front axle distance & $l_f^{\mathrm{veh}}$ [m] & 1.2 & 1.2\\
+Rear axle distance & $l_r^{\mathrm{veh}}$ [m] & 1.6 & 1.6\\
+Front cornering stiffness & $C_f$ [N/rad] & 80000 & 70000\\
+Rear cornering stiffness & $C_r$ [N/rad] & 80000 & 70000\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The perturbed values in Table \ref{tab:vehicle_dynamic_params} cover uncertainty in data generation and robustness tests; online control uses the nominal structure in \eqref{eq:bicycle_dynamics}. The Koopman predictor later compensates for payload coupling and network-degradation effects not captured by this nominal model.
+
+\subsection{Path-Coordinate Errors}
+
+Let the reference-path arc length, curvature, and tangent heading be $s$, $\kappa_r(s)$, and $\psi_r(s)$. After vehicle $i$ is projected onto the path coordinate, its lateral error is $e_{y,i}$ and its heading error is $e_{\psi,i}=\psi_i-\psi_r(s_i)$. In the operating region $| \kappa_r(s_i)e_{y,i}|<1$, the standard Frenet error dynamics are
+\begin{equation}
+\dot s_i=\frac{v_{x,i}\cos e_{\psi,i}-v_{y,i}\sin e_{\psi,i}}
+{1-\kappa_r(s_i)e_{y,i}},
+\label{eq:s_dot}
+\end{equation}
+\begin{equation}
+\dot e_{y,i}=v_{x,i}\sin e_{\psi,i}+v_{y,i}\cos e_{\psi,i},\qquad
+\dot e_{\psi,i}=r_i-\kappa_r(s_i)\dot s_i .
+\label{eq:frenet_error}
+\end{equation}
+Equation \eqref{eq:world_kinematics} is used for global-frame simulation and payload geometry constraints, whereas \eqref{eq:s_dot}--\eqref{eq:frenet_error} are used to construct tracking errors and the MPC cost.
+
+\subsection{Rigid Payload and Connection Errors}
+
+The payload-center pose is $\xi_L=[X_L,Y_L,\psi_L]^\top$, and its planar position is $p_L=[X_L,Y_L]^\top$. In this manuscript, the rigid payload center is used as the representative team center; subsequent references to team-level tracking therefore refer to this payload-center quantity unless otherwise stated. Let $b_i$ be the fixed vector of the $i$th connection point in the payload frame. Its global position is
+\begin{equation}
+p_{L,i}=p_L+R(\psi_L)b_i,\qquad
+R(\psi)=\begin{bmatrix}\cos\psi&-\sin\psi\\ \sin\psi&\cos\psi\end{bmatrix}.
+\label{eq:payload_anchor}
+\end{equation}
+The vehicle--payload connection error is defined as
+\begin{equation}
+e_{c,i}=p_i-p_{L,i},\qquad
+e_c=\mathrm{col}(e_{c,1},\ldots,e_{c,N})\in\R^{2N}.
+\label{eq:connection_error}
+\end{equation}
+If an equivalent spring-damper connection is used and $K_c,D_c\in\R^{2\times2}$ are positive semidefinite stiffness and damping matrices, a payload-side connection-force proxy can be written as
+\begin{equation}
+F_{c,i}=K_c e_{c,i}+D_c\dot e_{c,i},
+\label{eq:connection_force}
+\end{equation}
+This proxy acts on payload translation and rotation through $\sum_i F_{c,i}$ and $\sum_i (R(\psi_L)b_i)\times F_{c,i}$, where the two-dimensional cross product is defined as $a\times b=a_xb_y-a_yb_x$. The proxy is a cost and audit variable constructed from connection errors and damping terms; it is not claimed to be a direct force-sensor measurement or a globally accurate payload-force estimate. At the control layer, the manuscript therefore monitors $\max_i\norm{F_{c,i}}$, the root mean square (RMS), and directional components as safety-cost indicators rather than claiming monotonic reduction of the true connection-force peak.
+
+\subsection{Communication Graph and Degradation Model}
+
+The vehicle communication topology is extended to a five-node graph $\mathcal G_k=(\mathcal V\cup\{0\},\mathcal E_k)$, where node $0$ denotes the upper cooperative path planner and $\mathcal V=\{1,2,3,4\}$ denotes the four executing vehicles. At the vehicle layer, ring-neighbor communication is used: vehicle $i$ receives relative pose and distance information from $\mathcal N_i=\{i-1,i+1\}$, with neighbor indices wrapped modulo $N$. The upper node computes short-horizon temporary desired paths from the payload-center state, reference curvature, and payload-center lateral error, then broadcasts those paths to the four vehicles. Let $s_k$ be the payload-center reference progress and $e_{y,L,k}$ be the payload-center lateral error after projection onto the reference path. Communication degradation acts on three classes of variables:
+\begin{equation}
+\begin{aligned}
+\hat d_{ij,k}&=d_{ij,k-\tau^d_{ij,k}}+\beta^d_{ij,k}+\epsilon^d_{ij,k},\\
+\hat e_{y,L,k}&=e_{y,L,k-\tau^y_k}+\beta^y_k+\epsilon^y_k,\\
+\hat{\mathcal P}_{i,k}^{\mathrm{tmp}}&=\mathcal P_{i,k-\tau^p_{i,k}}^{\mathrm{tmp}}+\beta^p_{i,k}+\epsilon^p_{i,k},
+\end{aligned}
+\label{eq:comm_corrupted_measurements}
+\end{equation}
+Here $d_{ij,k}=\norm{p_{i,k}-p_{j,k}}$ is the adjacent-vehicle distance, and $\mathcal P_{i,k}^{\mathrm{tmp}}$ is the temporary desired path packet sent by the upper layer to vehicle $i$. The symbols $\tau$, $\beta$, and $\epsilon$ denote delay, bias, and noise. The link quality of edge $(j,i)$ is $q_{ij,k}\in[0,1]$, and the aggregate network quality is $q_k^{\mathrm{net}}$. The packet-loss indicator is $\ell_{ij,k}\in\{0,1\}$, where $\ell_{ij,k}=1$ denotes loss and $\ell_{ij,k}=0$ denotes successful reception. Equation \eqref{eq:delay_prediction} reserves the lifted-predictor interface defined in Section 3; when the Koopman predictor is not used, the same interface can degenerate to kinematic extrapolation or zero-order holding. When the neighbor state is available, the controller receives the delayed state; when delay or packet loss occurs, it extrapolates through the lifted predictor or its kinematic fallback:
+\begin{equation}
+\hat x_{j,k}^{\mathrm{net}}=
+\begin{cases}
+\Pi_x \hat z_{j,k|k-\tau^x_{ij,k}}, & \ell_{ij,k}=0,\\
+\hat x_{j,k-1}^{\mathrm{net}}, & \ell_{ij,k}=1 .
+\end{cases}
+\label{eq:delay_prediction}
+\end{equation}
+Here $\Pi_x$ maps the lifted state to the physical state, and $\hat z_{j,k|k-\tau^x_{ij,k}}$ is the lifted state predicted from the delayed reception time to the current time. The adjacent-distance regulation error is
+\begin{equation}
+e^{d}_{ij,k}=\hat d_{ij,k}-d^{\mathrm{ref}}_{ij}(s_k),\qquad (j,i)\in\mathcal E_k ,
+\label{eq:adjacent_distance_error}
+\end{equation}
+This term enters the consensus MPC together with the payload-center lateral error $\hat e_{y,L,k}$. Communication quality also schedules consensus weights and constraint-tightening ratios, so network degradation is treated as an MPC scheduling variable rather than only as an external disturbance.
+
+\section{\Method{} Method}
+
+\subsection{Method Overview and Naming}
+
+The proposed method is named Network-Resilient Koopman Delay-Compensated Consensus Control (\Method{}). Its logic is organized around three paper-level claims rather than a collection of independent engineering modules. First, a coupled vehicle--payload--communication model is constructed in both global and path coordinates, so adjacent distances, payload-center lateral error, and the upper-layer temporary path packet $\mathcal P_{i,k}^{\mathrm{tmp}}$ become communication-dependent MPC variables. Second, a bilinear Koopman predictor is trained for short-horizon MPC prediction and then passed through IRSP, so the controller uses a projectable predictor without claiming uniformly best open-loop RMSE. Third, link quality, curvature, connection utilization, and certificate margins schedule the same consensus MPC and its constraints; 4WS local-path publication, FDI/FTC projection, PPC tightening, role scheduling, and degraded fallback are implementation mechanisms attached to this optimizer.
+
+The experiments are therefore read as an evidence map for the three claims: main comparison and noComm ablation evaluate communication-quality-aware MPC and connection scheduling; Koopman prediction and spectral-radius audits evaluate IRSP as a stability-projection mechanism; and the hairpin diagnostic separates high-curvature tracking benefit from payload-force protection. Single-run FDI/FTC and mode traces are included only to show closed-loop execution consistency, not as separate principal contributions.
+
+The notation distinguishes controller variants used in tables. \Method{} is the full framework with communication-quality-aware Koopman-MPC, upper-layer 4WS local paths, FDI/FTC, role scheduling, certificate protection, and curvature-window payload protection. \MethodBase{} removes role scheduling, and \MethodHC{} enables high-curvature lateral priority without payload protection. \AKE{} and \AKEdeg{} are task-adapted AKE-style baselines derived from Singh et al.; \ZOHcons{} is a low-order zero-order-hold (ZOH) consistency baseline. All variants retain a single main Koopman-MPC optimizer, with protection and scheduling arbitrated before commands are applied.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth,trim=30pt 505pt 305pt 170pt,clip]{fig_user_framework_vsdx_2026_05_26.png}
+\caption{Overall architecture of \Method{} with offline Koopman learning, online 4WS planning, delay-compensated Koopman-MPC, and four-vehicle payload execution.}
+\label{fig:nrkdcc_framework}
+\end{figure}
+
+\begin{algorithm}[t]
+\scriptsize
+\caption{Online safe-command generation in \Method{}.}
+\label{alg:nrkdcc_safe_command}
+\begin{algorithmic}[1]
+\Require $x_k$, reference path $r_k$, temporary packet $\mathcal P_{i,k}^{\mathrm{tmp}}$, neighbor packets $(q_{ij,k},\tau_{ij,k},\ell_{ij,k})$, and $\hat\eta_k$
+\Ensure safe command $u_k^{\mathrm{safe}}$
+\State Fuse received, delayed, and missing neighbor packets; update link quality and the temporary path.
+\State Build $\chi_k$ and $z_k=\Phi_\theta(\chi_k)$.
+\State Apply IRSP and predict $z_{k+1|k}$.
+\State Select $C_\mu$ by priority $C_3>C_2>C_1>C_0$.
+\Statex \hspace{\algorithmicindent}$C_0$: nominal tracking; $C_1$: high-curvature priority; $C_2$: payload/connection protection; $C_3$: degraded fallback.
+\State Tighten constraints using link quality, prescribed-performance-control (PPC), and $\hat\eta_k$.
+\State Solve communication-quality-aware consensus MPC for $u_k^{\mathrm{mpc}}$.
+\State Apply FDI/FTC reallocation and role scheduling to obtain $u_k^{\mathrm{cand}}$.
+\State Evaluate certificate margin $m_k$ for $u_k^{\mathrm{cand}}$.
+\If{$m_k\ge -\epsilon_m$}
+\State $u_k^{\mathrm{safe}}\gets u_k^{\mathrm{cand}}$
+\Else
+\State Project or tighten the command, or switch to $C_3$; recompute $u_k^{\mathrm{safe}}$.
+\EndIf
+\State Publish $u_k^{\mathrm{safe}}$ to the four-vehicle rigid-payload system.
+\State Log states, errors, forces, constraints, C-modes, and certificate terms.
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Upper-Layer Equivalent 4WS and Local Path Publication}
+
+Because the four vehicles transport a rigid payload with rotating connection points, the payload-center planner is approximated as an equivalent 4WS platform for short-horizon path publication only. The upper layer computes equivalent steering angles from the reference curvature and sends geometry-induced headings and local paths to the vehicles; each lower layer still uses its own Koopman-MPC model.
+
+Let the front and rear axle distances of the equivalent 4WS platform be $l_f^{\mathrm{4ws}}$ and $l_r^{\mathrm{4ws}}$, with $L^{\mathrm{4ws}}=l_f^{\mathrm{4ws}}+l_r^{\mathrm{4ws}}$. The equivalent sideslip angle and curvature are
+\begin{equation}
+\begin{aligned}
+\beta^{\mathrm{4ws}} &=
+\arctan\frac{l_r^{\mathrm{4ws}}\tan\delta_f^{\mathrm{up}}+l_f^{\mathrm{4ws}}\tan\delta_r^{\mathrm{up}}}{L^{\mathrm{4ws}}},\\
+\kappa^{\mathrm{4ws}} &=
+\frac{\cos\beta^{\mathrm{4ws}}}{L^{\mathrm{4ws}}}
+\left(\tan\delta_f^{\mathrm{up}}-\tan\delta_r^{\mathrm{up}}\right).
+\end{aligned}
+\label{eq:fourws_beta_curvature}
+\end{equation}
+The upper solver tracks the reference curvature $\kappa_r(s)$ and penalizes sideslip, the front/rear steering relation, and steering magnitude, where $w_\kappa,w_\beta,w_\rho,w_\delta\ge0$:
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+\min_{\delta_f^{\mathrm{up}},\delta_r^{\mathrm{up}}}\quad
+&w_\kappa\left(\kappa^{\mathrm{4ws}}-\kappa_r(s)\right)^2
++w_\beta\left(\beta^{\mathrm{4ws}}\right)^2\\
+&+w_\rho\left(\tan\delta_r^{\mathrm{up}}
++\rho_r\tan\delta_f^{\mathrm{up}}\right)^2\\
+&+w_\delta\left[
+\left(\delta_f^{\mathrm{up}}\right)^2
++\left(\delta_r^{\mathrm{up}}\right)^2\right]\\
+\mathrm{s.t.}\quad
+&|\delta_f^{\mathrm{up}}|\le \bar\delta_f,\qquad
+|\delta_r^{\mathrm{up}}|\le \bar\delta_r .
+\end{aligned}
+\label{eq:fourws_upper_opt}
+\end{equation}
+\endgroup
+Here $\rho_r>0$ is the counter-phase steering ratio. An analytic initialization uses $\delta_r^{\mathrm{up}}\approx-\rho_r\delta_f^{\mathrm{up}}$, followed by a small constrained grid search. The upper optimization injects a payload-centered geometric prior into the four local references, reducing phase inconsistency in high-curvature segments.
+
+For vehicle $i$, let its connection point in the payload frame be $b_i=[b_{x,i},b_{y,i}]^\top$ and set $\psi_{L,k}^{\mathrm{ref}}=\psi_r(s_k)$. The equivalent rigid-body instantaneous velocity direction induced by \eqref{eq:fourws_beta_curvature} is
+\begin{equation}
+\begin{aligned}
+\psi_{i,k}^{\mathrm{up}}
+&=\psi_{L,k}^{\mathrm{ref}}+
+\operatorname{atan2}\!\Bigl(
+\sin\beta^{\mathrm{4ws}}+\kappa^{\mathrm{4ws}} b_{x,i},\\
+&\hspace{6.5em}
+\cos\beta^{\mathrm{4ws}}-\kappa^{\mathrm{4ws}} b_{y,i}
+\Bigr).
+\end{aligned}
+\label{eq:fourws_vehicle_heading}
+\end{equation}
+The upper layer then looks ahead by $\ell_p$ along the payload reference path $p_L^{\mathrm{ref}}(s)$ and constructs the temporary desired path packet for vehicle $i$ as
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+\mathcal P_{i,k}^{\mathrm{tmp}}(\varsigma)
+&=p_{L}^{\mathrm{ref}}(s_k+\varsigma)
++R\!\left(\psi_L^{\mathrm{ref}}(s_k+\varsigma)\right)b_i\\
+&\quad+\alpha_p \varsigma
+\begin{bmatrix}
+\cos \psi_{i,k}^{\mathrm{up}}\\
+\sin \psi_{i,k}^{\mathrm{up}}
+\end{bmatrix},
+\qquad 0\le\varsigma\le\ell_p .
+\end{aligned}
+\label{eq:fourws_local_path}
+\end{equation}
+\endgroup
+where $\alpha_p$ is the local-path blending coefficient. Because $\mathcal P_{i,k}^{\mathrm{tmp}}$ can also be delayed or dropped, the upper-to-lower path transmission is an independent edge in the five-node communication graph. In the hairpin experiment, this module is active only over the high-curvature exit window; tuning values are reported with the experiment settings.
+
+\subsection{Offline Data Generation}
+
+Offline data are generated from \eqref{eq:world_kinematics}--\eqref{eq:connection_force} under nominal clean, high-communication-noise, single-fault, and mixed fault/noise tags. The data use $\Delta t=0.02$ s, vehicle state dimension $6$, input $u_{i,k}^{\mathrm{ctrl}}=[a_{x,i,k},\delta_{i,k}]^\top$, and $n_u=2$. Reference speeds cover $2.2$--$4.0$ m/s, path progress is shifted over $0$--$80$ m, and initial lateral error lies in $[-2,2]$ m. Each batch generates 36 trajectories and about 1400 snapshots, split 80/20 for training and validation, with states, payload center, connection errors, inputs, communication variables, actuator efficiency, and certificate terms recorded. Small steering, acceleration, curvature, and link-quality perturbations prevent steady-trajectory-only data.
+
+\subsection{Bilinear Koopman Lifting}
+
+Let $x_{i,k}\in\R^6$ be the raw vehicle state. Learning and control use $\chi_k\in\R^{n_\chi}$ containing vehicle states, payload-center errors, connection geometry, $q_k^{\mathrm{net}}$, actuator-efficiency estimates, and path context. The reported setting uses $n_\chi=24$ and $n_z=31$, with dimension sensitivity checked in the Koopman ablation. Let $u_k^{\mathrm{ctrl}}\in\R^{n_u}$ be the input vector. The lifting is
+\begin{equation}
+z_k=\Phi_\theta(\chi_k)=\begin{bmatrix}\chi_k\\ \phi_\theta(\chi_k)\end{bmatrix}\in\R^{n_z},
+\label{eq:koopman_lift}
+\end{equation}
+where $\phi_\theta$ is a neural feature map. A bilinear lifted dynamics model is used to represent multiplicative coupling between vehicle inputs and payload/connection errors:
+\begin{equation}
+z_{k+1}=A z_k+B u_k^{\mathrm{ctrl}}+\sum_{\ell=1}^{n_u} u_{k,\ell}^{\mathrm{ctrl}} N_\ell z_k+w_k,
+\label{eq:bilinear_koopman}
+\end{equation}
+where $A,N_\ell\in\R^{n_z\times n_z}$ and $B\in\R^{n_z\times n_u}$ are fitted from offline data, and $w_k$ is the residual. Compared with a purely linear Koopman model, this structure more directly captures multiplicative interactions among steering, longitudinal acceleration, vehicle lateral motion, and payload errors.
+
+Given the dataset $\mathcal D=\{z_k,u_k^{\mathrm{ctrl}},z_{k+1}\}_{k=1}^{M-1}$, define the regressor
+\begin{equation}
+\Xi_k=\begin{bmatrix}z_k^\top&(u_k^{\mathrm{ctrl}})^\top&(u_{k,1}^{\mathrm{ctrl}}z_k)^\top&\cdots&(u_{k,n_u}^{\mathrm{ctrl}}z_k)^\top\end{bmatrix}^\top .
+\label{eq:bilinear_regressor}
+\end{equation}
+Let $Z_+=[z_2,\ldots,z_M]$ and $\Xi=[\Xi_1,\ldots,\Xi_{M-1}]$. The parameter matrix $\Theta=[A\;B\;N_1\;\cdots N_{n_u}]$ is obtained by ridge regression:
+\begin{equation}
+\Theta^\star=Z_+\Xi^\top(\Xi\Xi^\top+\lambda I)^{-1}.
+\label{eq:ridge_fit}
+\end{equation}
+Here $\lambda>0$ is the ridge regularization coefficient and $I$ is an identity matrix with dimensions matching $\Xi\Xi^\top$. The regularization suppresses parameter amplification caused by small samples, multicollinearity, and noise. Online operation uses sliding-window residual updates, but $\Theta$ is adjusted only within the input-aware stability projection and constraint boundaries so that adaptation does not destroy closed-loop feasibility.
+
+\subsection{Input-Aware Stability Projection and Residual Bound}
+
+Projecting only the main Koopman matrix $A$ does not cover the bilinear input terms. From \eqref{eq:bilinear_koopman}, the effective lifted matrix entering the prediction window under a given input $u_k^{\mathrm{ctrl}}$ is
+\begin{equation}
+A_{\mathrm{eff}}(u_k^{\mathrm{ctrl}})=A+\sum_{\ell=1}^{n_u}u_{k,\ell}^{\mathrm{ctrl}}N_\ell .
+\label{eq:effective_bilinear_matrix}
+\end{equation}
+The stabilization step is therefore formulated as input-aware robust spectral projection (IRSP). In implementation, a spectral projection operator $\Pi_{r_A}(\cdot)$ first projects the main matrix to a smaller drift radius $0<r_A<r_u$, and the bilinear input matrices are then uniformly scaled:
+\begin{equation}
+A^+=\Pi_{r_A}(A),\qquad N_\ell^+=\gamma N_\ell,\quad 0\le\gamma\le 1 .
+\label{eq:irsp_projection}
+\end{equation}
+The scalar $\gamma$ is determined from two bounds. The default implementation uses a sampled robust bound
+\begin{equation}
+\gamma_s=\max_{\gamma\in[0,1]}\;\gamma
+\quad \mathrm{s.t.}\quad
+\max_{u\in\mathcal U_s}
+\rho\!\left(A^++\gamma\sum_{\ell=1}^{n_u}u_\ell N_\ell\right)
+\le r_u ,
+\label{eq:sampled_irsp}
+\end{equation}
+where $\mathcal U_s$ consists of training-input quantiles, boundary points, and corner points. A conservative norm certificate over the continuous input envelope is also computed:
+\begin{equation}
+\begin{aligned}
+\gamma_c&=\max\left\{0,\min\left(1,\,
+\frac{r_u-\norm{A^+}_2}{\sum_{\ell=1}^{n_u}u_{\ell,\max}^{\mathrm{abs}}\norm{N_\ell}_2+\varepsilon}
+\right)\right\},\\
+u_{\ell,\max}^{\mathrm{abs}}&=\max(|u_\ell^{\min}|,|u_\ell^{\max}|).
+\end{aligned}
+\label{eq:norm_irsp_certificate}
+\end{equation}
+If $r_u<\norm{A^+}_2$, then \eqref{eq:norm_irsp_certificate} gives $\gamma_c=0$. A conservative audit may use $\gamma=\min(\gamma_s,\gamma_c)$, sufficient for $\norm{A_{\mathrm{eff}}^+(u)}_2\le r_u$. The reported experiments use $\gamma_s$ to retain bilinear terms and record $\gamma_c$ as an audit metric. After online updates, IRSP is re-applied so residual regression does not move the effective input family back into an amplification-prone region. Let the one-step residual satisfy
+\begin{equation}
+\norm{w_k}\le \bar w_0+\bar w_\chi\norm{\chi_k-\chi_k^\mathrm{ref}}+\bar w_q(1-q_k^{\mathrm{net}}),
+\label{eq:residual_bound}
+\end{equation}
+where $\bar w_0,\bar w_\chi,\bar w_q\ge0$. Communication-quality degradation enters the later Lyapunov proof through the disturbance term $\bar w_q(1-q_k^{\mathrm{net}})$.
+
+\subsection{Base Koopman-MPC and Parallel Protection Branches}
+
+The only vehicle-level optimizer is communication-quality-aware Koopman-MPC. Its mode $\mu_k\in\{\mathrm{C0},\mathrm{C1},\mathrm{C2},\mathrm{C3}\}$ denotes nominal tracking, high-curvature lateral priority, payload protection, and conservative degraded fallback. These modes are weight and constraint schedules for the same MPC problem, prioritized as C3, C2, C1, and C0 when triggers overlap.
+
+At each sampling time, the MPC solves for the input sequence over prediction horizon $H\in\mathbb Z_{>0}$. Let $\xi_{v,i,k}=[e_{y,i,k},e_{\psi,i,k}]^\top$, and choose positive-semidefinite weights $Q_L,P_L,Q_v,Q_c,Q_e,R_u,R_\Delta$ and a scalar $w_d\ge0$. The base cost is
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+J=&\sum_{h=0}^{H-1}
+\Big[
+\norm{e_{L,k+h}}_{Q_L}^2+
+\sum_i\norm{\xi_{v,i,k+h}}_{Q_v}^2\\
+&+\sum_{(j,i)\in\mathcal E_k}\omega_{ij,k}\norm{x_{i,k+h}-\hat x_{j,k+h|k}^{\mathrm{net}}}_{Q_c}^2\\
+&+\sum_{(j,i)\in\mathcal E_k}\omega^d_{ij,k}w_d\norm{e^d_{ij,k+h}}^2\\
+&+\norm{e_{c,k+h}}_{Q_e}^2+
+\norm{u_{k+h}^{\mathrm{ctrl}}}_{R_u}^2+
+\norm{\Delta u_{k+h}^{\mathrm{ctrl}}}_{R_\Delta}^2
+\Big]\\
+&+\norm{e_{L,k+H}}_{P_L}^2 ,
+\end{aligned}
+\label{eq:mpc_cost}
+\end{equation}
+\endgroup
+where $e_L=[X_L-X_L^{\mathrm{ref}},Y_L-Y_L^{\mathrm{ref}},\psi_L-\psi_L^{\mathrm{ref}}]^\top$, $e^d_{ij}$ is the adjacent-distance error defined in \eqref{eq:adjacent_distance_error}, and $\Delta u_{k+h}^{\mathrm{ctrl}}=u_{k+h}^{\mathrm{ctrl}}-u_{k+h-1}^{\mathrm{ctrl}}$. The communication weight is
+\begin{equation}
+\omega_{ij,k}=\omega_{\min}+(\omega_{\max}-\omega_{\min})\bar q_{ij,k},
+\label{eq:comm_weight}
+\end{equation}
+where $\bar q_{ij,k}$ is the smoothed link quality. The control and safety constraints include
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+&v_{x,\min}\le v_{x,i,k+h}\le v_{x,\max},\\
+&|\delta_{i,k+h}|\le\delta_{\max},\qquad
+|a_{x,i,k+h}|\le a_{\max},\\
+&\norm{e_{c,i,k+h}}\le e_{c,\max}(q_k^{\mathrm{net}}),\qquad
+\norm{F_{c,i,k+h}}\le F_{c,\max},\\
+&|\Delta \delta_{i,k+h}|\le \Delta\delta_{\max},\qquad
+|\Delta a_{x,i,k+h}|\le \Delta a_{\max}.
+\end{aligned}
+\label{eq:constraints}
+\end{equation}
+\endgroup
+When $q_k^{\mathrm{net}}$ decreases, $e_{c,\max}(q_k^{\mathrm{net}})$ and input bounds are tightened. C3 is triggered when $q_k^{\mathrm{net}}<q_{\mathrm{df}}$ or actuator efficiency falls below $\eta_{\mathrm{df}}$; it reduces unreliable-neighbor weights, prioritizes connection/input constraints, and may contract reference progress to keep feasibility.
+
+For high-curvature path segments, a layered switch changes weights rather than vehicle dynamics. The first layer increases predicted-window lateral/heading weights while keeping connection/input constraints unchanged and moderately reducing the steering penalty:
+\begin{equation}
+\begin{gathered}
+D_v=\mathrm{diag}(\sqrt{\eta_y},\sqrt{\eta_\psi}),\qquad
+D_\delta=\mathrm{diag}(1,\sqrt{\eta_\delta}),\\
+Q_v^{\mathrm{hc}}=D_v Q_v D_v,\qquad
+R_u^{\mathrm{hc}}=D_\delta R_u D_\delta ,
+\end{gathered}
+\label{eq:high_curvature_lateral_priority}
+\end{equation}
+Here $\eta_y>1$, $\eta_\psi>1$, $0<\eta_\delta<1$, and $R_u$ follows $u_i^{\mathrm{ctrl}}=[a_{x,i},\delta_i]^\top$. PPC monitors $\zeta_{y,i,k}=|e_{y,i,k}|/(\rho_y(k)+\varepsilon)$ and tightens constraints near the envelope boundary. In high curvature, $\rho_y$ is tightened and steering smoothing reduced, prioritizing $e_y$ and $e_\psi$ while consensus and connection constraints limit excessive single-vehicle correction. Force cost is audited separately.
+
+The second layer is a curvature-window payload-protection switch that increases penalties on connection error, input dispersion, and force proxy, shifting the cost toward tracking, connection preservation, and force mitigation. The switching intensity is
+\begin{equation}
+\sigma_k=\operatorname{sat}_{[0,1]}\!\left(
+\frac{|\kappa_r(s_k)|-\kappa_{\mathrm{off}}}
+{\kappa_{\mathrm{on}}-\kappa_{\mathrm{off}}+\varepsilon}
+\right),
+\label{eq:payload_protection_switch}
+\end{equation}
+where $\kappa_{\mathrm{off}}$ and $\kappa_{\mathrm{on}}$ are deactivation and full-activation thresholds. The strengthened cost is
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+J_k^{\mathrm{prot}}
+={}&J_k+\sigma_k\Bigl(
+\lambda_c\norm{e_{c,k}}^2\\
+&+\lambda_u\sum_i
+\norm{u_{i,k}^{\mathrm{ctrl}}-\bar u_k^{\mathrm{ctrl}}}^2
++\lambda_F\norm{\hat F_{L,k}^{xy}}^2
+\Bigr).
+\end{aligned}
+\label{eq:payload_protection_cost}
+\end{equation}
+\endgroup
+where $\lambda_c,\lambda_u,\lambda_F\ge0$, $\bar u_k^{\mathrm{ctrl}}=\frac{1}{N}\sum_i u_{i,k}^{\mathrm{ctrl}}$, and $\hat F_{L,k}^{xy}$ is the planar payload-force proxy used only for cost shaping and auditing. As curvature decreases toward $\kappa_{\mathrm{off}}$, $\sigma_k$ fades out to avoid a long-term tracking sacrifice.
+
+\subsection{Execution-Layer Fault Protection and Role Scheduling}
+
+The execution layer safely issues or replaces the candidate MPC command. FDI/FTC identifies actuator degradation and projects commands into a conservative feasible set; role scheduling adds only a bounded trim after MPC. If the certificate fails or communication degradation exceeds the threshold, the layer switches to C3 or contracts reference progress.
+
+The actuator efficiency is denoted by $\eta_{i,k}\in[\eta_{\min},1]$, and the actual input is approximated by
+\begin{equation}
+u_{i,k}^{\mathrm{act}}=\eta_{i,k}\odot u_{i,k}^{\mathrm{cmd}}+\nu_{i,k},\qquad \norm{\nu_{i,k}}\le \bar\nu_i .
+\label{eq:actuator_efficiency}
+\end{equation}
+The FDI monitor estimates $\hat\eta_{i,k}$ from prediction residuals and control responses. Let $\varepsilon_{i,k}^{\mathrm{pred}}$ be the one-step prediction residual of vehicle $i$. The online monitoring statistic combines an exponentially weighted moving average (EWMA) with a cumulative sum (CUSUM):
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+\bar\varepsilon_{i,k}
+&=(1-\alpha_\varepsilon)\bar\varepsilon_{i,k-1}
++\alpha_\varepsilon\norm{\varepsilon_{i,k}^{\mathrm{pred}}},\\
+c_{i,k}
+&=\max\{0,c_{i,k-1}+\bar\varepsilon_{i,k}-\varepsilon_0\}.
+\end{aligned}
+\label{eq:fdi_ewma_cusum}
+\end{equation}
+\endgroup
+Warm-up, consecutive-trigger, and release-hold counters filter transient noise. The residual/CUSUM thresholds are $\varepsilon_{\mathrm{th}}$ and $c_{\mathrm{th}}$, and the acceleration/steering degradation thresholds are $\eta_a^{\mathrm{th}}$ and $\eta_\delta^{\mathrm{th}}$. If $\hat\eta^a_i<\eta_a^{\mathrm{th}}$ or $\hat\eta^\delta_i<\eta_\delta^{\mathrm{th}}$, that channel is degraded; if $\hat\eta_i<\eta_{\mathrm{df}}$, conservative fallback is triggered. This uses accumulated residual and efficiency evidence to reduce communication-noise false alarms.
+
+When $\hat\eta_{i,k}$ decreases or the residual exceeds its threshold, the FTC module adjusts vehicle contribution through input-constraint redistribution and mode switching:
+\begin{equation}
+u_k^{\mathrm{safe}}=\arg\min_{u\in\mathcal U(\hat\eta_k,q_k^{\mathrm{net}})}
+\norm{u-u_k^{\mathrm{mpc}}}_{R_s}^2+
+\alpha_e\norm{e_{c,k+1}(u)}^2 .
+\label{eq:ftc_projection}
+\end{equation}
+The role scheduler assigns bounded trims for lateral correction, longitudinal propulsion, and connection protection according to curvature, communication quality, and fault state. Its effect is evaluated by tracking error, certificate ratio, connection utilization, and force metrics.
+
+\section{Stability Certificate and Practical Boundedness}
+
+This section states a certificate-driven practical ISS/UUB result for \Method{}. Under a compact operating region, bounded model/communication errors, and nonempty conservative fallback inputs, the closed-loop physical and lifted prediction errors remain ultimately bounded. The proof follows the implemented online certificate rather than a terminal-set MPC argument.
+
+\begin{assumption}[Compact operating set and local regularity]
+The closed-loop state and input remain in compact sets $\mathcal X$ and $\mathcal U$. The vehicle--payload dynamics $f$, the Koopman lifting $\Phi_\theta$, and the projection $\Pi_x$ are locally Lipschitz on these sets. The MPC and execution layer keep the applied command in a conservative feasible input set whenever C3 fallback is triggered.
+\end{assumption}
+
+\begin{assumption}[Residual, disturbance, and network bounds]
+The Koopman one-step residual satisfies \eqref{eq:residual_bound}. The aggregate link quality $q_k^{\mathrm{net}}$, delay $\tau_k$, packet loss, communication bias/noise, and actuator implementation errors are bounded in the considered operating region. Let $d_k$ collect model disturbances, communication bias/noise not already represented by $q_k^{\mathrm{net}}$ and $\tau_k$, and actuator implementation errors. Neighbor-prediction errors caused by packet loss and delay satisfy
+\begin{equation}
+\norm{\tilde x_{j,k}^{\mathrm{net}}}\le
+\bar d_q(1-q_k^{\mathrm{net}})+\bar d_\tau \tau_k .
+\label{eq:network_prediction_error_bound}
+\end{equation}
+Moreover, the state-dependent residual component is compatible with the physical error measure, namely
+$\norm{\chi_k-\chi_k^{\mathrm{ref}}}\le L_\chi\norm{\xi_k}+c_\chi$ on $\mathcal X$.
+\end{assumption}
+
+\begin{assumption}[Certificate-verified fallback and switching]
+The C-modes follow Section 3: C0 is nominal tracking, C1 high-curvature lateral priority, C2 payload protection, and C3 conservative degraded fallback. FTC is an execution-layer flag, and $\sigma_k\in[0,1]$ in \eqref{eq:payload_protection_switch} has bounded total variation on finite windows. For \eqref{eq:ftc_projection}, the post-projection connection-error prediction may degrade only by a bounded amount,
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+\norm{e_{c,k+1}(u^{\mathrm{safe}})}^2
+&\le \norm{e_{c,k+1}(u^{\mathrm{mpc}})}^2\\
+&\quad +c_\eta\norm{\mathbf 1-\hat{\boldsymbol\eta}_k}^2
++c_q(1-q_k^{\mathrm{net}})^2 .
+\end{aligned}
+\label{eq:ftc_bounded_degradation}
+\end{equation}
+\endgroup
+If a certificate step fails, the execution layer either contracts reference progress, tightens connection/input constraints, or switches to C3, and the certificate function satisfies a bounded-growth condition stated in Theorem~\ref{thm:practical_iss_uub}.
+\end{assumption}
+
+Define the physical error and the combined lifted error as
+\begin{equation}
+\begin{aligned}
+e_k&=\mathrm{col}\left(e_{L,k},e_{c,k},e_{y,1,k},e_{\psi,1,k},\ldots,e_{y,N,k},e_{\psi,N,k}\right),\\
+\xi_k&=\mathrm{col}\left(e_k,\tilde z_k\right),
+\qquad
+\tilde z_k=z_k-z_k^\star,\quad
+z_k^\star=\Phi_\theta(\chi_k^{\mathrm{ref}}).
+\end{aligned}
+\label{eq:xi_def}
+\end{equation}
+Here $z_k^\star$ is the lifted reference point associated with the MPC reference rollout. For each C-mode $\mu\in\{\mathrm{C0},\mathrm{C1},\mathrm{C2},\mathrm{C3}\}$, define the mode-wise certificate
+\begin{equation}
+V_{\mu,k}=\xi_k^\top P_\mu\xi_k+
+\sum_i\norm{\mathbf 1_2-\hat{\boldsymbol\eta}_{i,k}}_{B_i}^2+
+\gamma_q\sum_{(j,i)\in\mathcal E_k}(1-\bar q_{ij,k})^2 ,
+\label{eq:lyapunov}
+\end{equation}
+where $P_\mu$ is positive definite, $B_i$ is positive semidefinite, $\gamma_q>0$, and
+$\hat{\boldsymbol\eta}_{i,k}=[\hat\eta^a_{i,k},\hat\eta^\delta_{i,k}]^\top$ is the two-channel actuator-efficiency estimate. The payload-protection certificate is
+\begin{equation}
+\bar V_{\mu,k}=V_{\mu,k}+\mu_F\sigma_k\norm{\hat F_{L,k}^{xy}}^2 ,
+\label{eq:augmented_lyapunov}
+\end{equation}
+where $\mu_F\ge0$ and $\hat F_{L,k}^{xy}$ is the planar payload resultant-force proxy, used as a bounded audit/shaping term rather than a global force-optimality claim. The mode certificates are mutually comparable on the compact operating set: there exist $\rho_P\ge1$ and $c_P\ge0$ such that
+$\bar V_{\nu,k}\le \rho_P\bar V_{\mu,k}+c_P$ for any modes $\mu,\nu$.
+The failure-growth constants used below include the worst-case jump induced by the mode-comparison factors $\rho_P$ and $c_P$.
+
+The online certificate records the one-step margin
+\begin{equation}
+m_k=(1-\lambda_{\mu_k}\Delta t)\bar V_{\mu_k,k}
++\gamma_d\norm{d_k}^2+\gamma_w\norm{w_k}^2
+-\bar V_{\mu_{k+1},k+1}.
+\label{eq:mode_certificate_margin}
+\end{equation}
+The step is certificate-passing when $m_k\ge-\epsilon_m$. The ok ratio reported later is the empirical passing ratio of \eqref{eq:mode_certificate_margin}.
+
+The assumptions are operational rather than global: logs audit compactness, fallback feasibility, bounded failure growth, and failing-step density through state/input envelopes, feasible degraded commands, $\bar V_{\mu,k}$ traces, and ok ratios. Thus Theorem~\ref{thm:practical_iss_uub} is conditional on the tested envelope; Section 5.7 reports assumption checks, not every-step contraction.
+
+\begin{theorem}[Certificate-verified practical ISS/UUB]
+\label{thm:practical_iss_uub}
+Suppose Assumptions 1--3 hold and the MPC weights satisfy
+\begin{equation}
+Q_L,Q_e,Q_v,R_u,R_\Delta\succ0 .
+\label{eq:positive_weights}
+\end{equation}
+Assume that the input-aware robust spectral projection (IRSP) satisfies the strict sampled contraction bound
+\begin{equation}
+\max_{u\in\mathcal U_s}\rho(A_{\mathrm{eff}}^+(u))\le r_u\le 1-\epsilon_\rho,\qquad \epsilon_\rho>0,
+\label{eq:irsp_strict_contraction}
+\end{equation}
+and, when the norm certificate is enabled,
+$\norm{A^+}_2+\sum_\ell \bar u_\ell\norm{N_\ell^+}_2\le r_u$. Without the norm certificate, the boundedness claim is restricted to the sampled control envelope $\mathcal U_s$ used in the controller audit. Let $\alpha_{\mathrm{cert}}>0$ denote the nominal certificate decrease rate before absorbing the state-dependent residual term. Assume that the state-dependent residual gain is small enough to satisfy
+\begin{equation}
+\alpha_c:=\alpha_{\mathrm{cert}}-c_w\bar w_\chi^2L_\chi^2>0 .
+\label{eq:residual_small_gain}
+\end{equation}
+On certificate-passing steps, suppose the implemented certificate verifies
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+\bar V_{\mu_{k+1},k+1}-\bar V_{\mu_k,k}
+&\le -\alpha_c\norm{\xi_k}^2+c_d\norm{d_k}^2\\
+&\quad +c_q(1-q_k^{\mathrm{net}})^2
++c_\tau\tau_k^2\\
+&\quad +c_F|\Delta\sigma_k|+c_0 ,
+\end{aligned}
+\label{eq:iss_difference}
+\end{equation}
+\endgroup
+where $\Delta\sigma_k=\sigma_{k+1}-\sigma_k$ and $c_0=O(\bar w_0^2+c_\chi^2)$. On certificate-failing steps, suppose bounded growth holds:
+\begin{equation}
+\bar V_{\mu_{k+1},k+1}\le (1+\rho_f)\bar V_{\mu_k,k}+c_f .
+\label{eq:failure_growth_bound}
+\end{equation}
+If the failing-step density in any sufficiently long window is no larger than $\bar\nu<1$ and satisfies the average contraction condition
+\begin{equation}
+(1-\bar\nu)\alpha_V>\bar\nu\rho_f,
+\qquad
+\alpha_V=\alpha_c/\bar c ,
+\label{eq:average_contraction_condition}
+\end{equation}
+where $\bar c$ is the local upper quadratic bound of $\bar V_{\mu,k}$, then $\xi_k$ is input-to-state practically stable with respect to $d_k$, $1-q_k^{\mathrm{net}}$, $\tau_k$, and $\Delta\sigma_k$. If these inputs are uniformly bounded, then there exist $C>0$, $\lambda\in(0,1)$, and an ultimate bound $\Omega$ such that
+\begin{equation}
+\norm{\xi_k}^2\le C\lambda^k\norm{\xi_0}^2+\Omega ,
+\label{eq:uub_bound}
+\end{equation}
+with
+\begin{equation}
+\begin{aligned}
+\Omega=O\!\Bigl(&
+c_0+\norm{d}_{\infty}^2
++\norm{1-q^{\mathrm{net}}}_{\infty}^2\\
+&+\norm{\tau}_{\infty}^2
++\norm{\Delta\sigma}_{\infty}+c_f
+\Bigr).
+\end{aligned}
+\label{eq:uub_bound_terms}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The proof starts from the logged margin \eqref{eq:mode_certificate_margin}. On passing steps, $m_k$ bounds $\bar V_{\mu_{k+1},k+1}-\bar V_{\mu_k,k}$ after adding residual, disturbance, delay, and link-quality terms. The stage cost lower-bounds $e_k$, while $\tilde z_k$ is bounded through IRSP and the residual bound. Assumption 2 gives
+\begin{equation}
+\norm{w_k}^2
+\le c_{w0}\bar w_0^2+c_{w\chi}\bar w_\chi^2L_\chi^2\norm{\xi_k}^2
++c_{wq}\bar w_q^2(1-q_k^{\mathrm{net}})^2+c_{wc}c_\chi^2 .
+\label{eq:residual_absorption}
+\end{equation}
+The strict IRSP condition prevents lifted prediction amplification inside the sampled envelope, and \eqref{eq:residual_small_gain} absorbs the state-dependent residual term. This yields \eqref{eq:iss_difference}, with constant residual and reference-lifting mismatch collected in $c_0$.
+
+The FTC projection is not used to prove monotone connection-error decrease; \eqref{eq:ftc_bounded_degradation} only keeps commands feasible and bounds additional connection-error prediction by actuator-efficiency and link-quality terms. The payload-force term is positive semidefinite for fixed $\sigma_k$, and compactness bounds the increment caused by $\Delta\sigma_k$ as $c_F|\Delta\sigma_k|$. Mode-comparison effects enter $\rho_f$ and $c_f$.
+
+On failing steps, bounded growth \eqref{eq:failure_growth_bound} is needed because finite failure density alone does not preclude unbounded growth. Combining \eqref{eq:iss_difference}, \eqref{eq:failure_growth_bound}, certificate comparability, and \eqref{eq:average_contraction_condition} gives
+\begingroup\small
+\begin{equation}
+\begin{aligned}
+\bar V_{\mu_{k+T},k+T}
+&\le \lambda_T\bar V_{\mu_k,k}\\
+&\quad +C_T\Bigl(c_0+\norm{d}_{\infty,k:T}^2\\
+&\qquad +\norm{1-q^{\mathrm{net}}}_{\infty,k:T}^2
++\norm{\tau}_{\infty,k:T}^2\\
+&\qquad +\norm{\Delta\sigma}_{\infty,k:T}+c_f\Bigr),
+\end{aligned}
+\label{eq:window_comparison}
+\end{equation}
+\endgroup
+with $\lambda_T<1$ for sufficiently long windows. Iterating and using the local quadratic bounds
+$\underline c\norm{\xi_k}^2\le\bar V_{\mu,k}\le\bar c\norm{\xi_k}^2+\bar c_0$ yields \eqref{eq:uub_bound}. This proves practical input-to-state boundedness and UUB under the stated certificate and fallback assumptions.
+\end{proof}
+
+
+\section{Experimental Results and Analysis}
+
+\subsection{Experiment Groups and Baseline Protocol}
+
+This section groups evidence by contribution. \ZOHcons{} is a low-order ZOH consistency baseline, PPC tightens constraints near the prescribed envelope, and noComm, noDelay, noIRSP, and noPPC remove communication awareness, delay compensation, IRSP, and PPC, respectively.
+
+Experiments 1--2 evaluate Koopman/IRSP, with K3 not claimed as the lowest-RMSE predictor in every case. Experiments 3--5 diagnose communication, FDI/FTC, and certificates. Experiments 6, 10, and 11 provide paired $n=20$ evidence; Experiment 7 is paired $n=3$ speed stress; Experiments 2--5 and 8--9 are single-seed or mode-wise diagnostics and are not substitutes for paired statistics.
+
+Single-seed diagnostics inspect trajectory-level behavior and are not merged into paired statistics; multi-seed diagnostic evaluation is left for future work.
+
+Two baselines are used: \AKE{}, a task-aligned transfer of Singh et al.'s adaptive Koopman embedding idea to four-vehicle payload transport \cite{singh2025adaptiveKoopman}, and \ZOHcons{}, which exposes degradation without learned prediction or network-aware protection.
+
+\subsection{Koopman, Delay, and FDI/FTC Mechanism Evidence}
+
+Training and validation losses plateau after about 60 epochs, with no sustained train--validation separation; the full trace is in Supplementary Fig. S1.
+
+This supports a trainable, projectable, and residual-auditable Koopman predictor over the main lateral-error, curvature, and input-excitation region.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig_nrkdcc_koopman_prediction_evidence_pub_20260528.png}
+\caption{Experiment 1: Koopman prediction and IRSP audit. Panels show one-step RMSE, 1--12 step rollout error with 95\% confidence intervals, and sampled spectral radii of $A_{\mathrm{eff}}(u)$ before/after IRSP.}
+\label{fig:e1_koopman_evidence}
+\end{figure*}
+
+Figure~\ref{fig:e1_koopman_evidence} shows one-step RMSE decreasing from $0.0350$ to $0.0339$ with the bilinear model. Over 1--8 steps, bilinear and IRSP-bilinear rollout errors are about $0.2716$ and $0.2763$, compared with $0.2797$ for the linear model; at $H=12$ the confidence intervals overlap. IRSP reduces the maximum, 95th percentile, and mean sampled radii from $1.3560$, $1.1740$, and $1.0349$ to $0.9980$, $0.9929$, and $0.9924$.
+
+Thus, K3 is not claimed to uniformly minimize open-loop rollout error; it provides comparable short-horizon prediction while IRSP audits and reduces amplification risk before MPC.
+
+\begin{table*}[!tbp]
+\centering
+\caption{Experiment 2: single-seed closed-loop Koopman ablation comparing K3, K2, K1, and K0 by team RMSE, worst pointwise lateral-error gap relative to K3, and pointwise win rate.}
+\label{tab:e9_koopman_dim}
+\footnotesize
+\begin{tabular}{llrrrr}
+\toprule
+Scenario & Koopman setting & Lateral RMSE & Longitudinal RMSE & Worst pointwise gap & Win rate\\
+\midrule
+sine clean 5 m/s & K3 current bilinear+IRSP & 0.0428 & 0.4178 & 0.0000 & 1.000\\
+sine clean 5 m/s & K2 bilinear no proj. & 0.0310 & 0.4187 & 0.0016 & 0.938\\
+sine clean 5 m/s & K1 AKE-style linear & 0.0324 & 0.4170 & 0.0030 & 0.975\\
+sine clean 5 m/s & K0 raw-6D linear & 0.2840 & 0.4282 & 0.5075 & 0.028\\
+sine fault 5 m/s & K3 current bilinear+IRSP & 0.0444 & 0.4156 & 0.0000 & 1.000\\
+sine fault 5 m/s & K2 bilinear no proj. & 0.0324 & 0.4158 & 0.0031 & 0.962\\
+sine fault 5 m/s & K1 AKE-style linear & 0.0330 & 0.4145 & 0.0030 & 0.965\\
+sine fault 5 m/s & K0 raw-6D linear & 0.1819 & 0.4129 & 0.4643 & 0.098\\
+hairpin delay 5 m/s & K3 current bilinear+IRSP & 0.3529 & 3.2756 & 0.0000 & 1.000\\
+hairpin delay 5 m/s & K2 bilinear no proj. & 0.3219 & 3.8244 & 0.1447 & 0.815\\
+hairpin delay 5 m/s & K1 AKE-style linear & 0.3530 & 2.7280 & 0.1169 & 0.715\\
+hairpin delay 5 m/s & K0 raw-6D linear & 0.4907 & 9.5838 & 0.7045 & 0.270\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:e9_koopman_dim} shows that K0 is consistently worse, whereas K1 and K2 can have lower mean lateral RMSE than K3 in some cases. K3 is therefore positioned as the conservative, certifiable predictor, not the lowest-RMSE predictor in every scenario.
+
+The 24-dimensional observation and 31-dimensional lifted state encode payload, connection, communication, and fault context, unlike the raw-6D linear model. K3 keeps comparable prediction while bounding input-dependent amplification through IRSP.
+
+\begin{figure*}[!t]
+\centering
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig_nrkdcc_comm_mechanism_singlecol_labeled_20260604.png}
+\caption{Experiment 3: communication-mechanism diagnostics in the 5 m/s hairpin communication-stress run. Panels show delay/loss, MPC scheduling signals, command dispersion, and protective-mode activation.}
+\label{fig:delay_mechanism_evidence}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig_nrkdcc_fdi_ftc_timeline_singlecol_labeled_20260604.png}
+\caption{Experiment 4: FDI/FTC and safety-monitoring timeline in the mixed fault/noise scenario. Panels show fault activation, fault gaps, FTC reallocation commands, vehicle-level control decomposition, and certificate/reconfiguration-mode monitoring.}
+\label{fig:fdi_ftc_timeline}
+\end{minipage}
+\end{figure*}
+
+Figure~\ref{fig:delay_mechanism_evidence} reports peak edge-averaged delay of $2.83$ steps, packet-loss ratio $0.83$, and minimum global link quality $0.474$, with responses in consensus blending, constraint tightening, command-dispersion suppression, and lateral-priority activation.
+
+Thus, delay compensation affects neighbor prediction, link weights, local-path preview, command blending, and constraint tightening.
+
+Figure~\ref{fig:fdi_ftc_timeline} shows fault flags and gaps increasing after activation, followed by FTC reallocation, steering/acceleration redistribution, and continuous certificate logging.
+
+This indicates closed-loop FDI/FTC and certificate integration, but remains a single-run mechanism diagnostic.
+
+Mode-wise certificate logs give ok ratio $1.0$ and positive margins for high-noise nominal, mixed fault/noise nominal, and FTC-flagged steps, while aggregate nominal-clean and single-fault summaries have negative worst-case margins.
+
+This supports the practical ISS/UUB interpretation in Section 4 rather than a global-stability claim; aggregate margins are sensitive to short transients and switching instants.
+
+\subsection{Main Comparison Results}
+
+\begin{table*}[!t]
+\centering
+\caption{Experiment 6: paired $n=20$ main comparison under mixed fault/noise and high-communication-noise scenarios. Metrics include success, tracking error, connection utilization, and raw force-cost peak.}
+\label{tab:e0_main}
+\scriptsize
+\begin{tabular}{llcccccc}
+\toprule
+Scenario & Method & Success & Full path & Lat. RMSE & Long. RMSE & Max conn. util. & Force peak \\
+\midrule
+\multirow{4}{*}{mixed fault/noise}
+& \AKE{} & 1.00 & 1.00 & 0.0453 & 0.4724 & 0.2999 & 1324.7\\
+& \MethodBase{} & 1.00 & 1.00 & 0.0412 & 0.4681 & 0.0497 & 2138.5\\
+& \TF{} & 1.00 & 1.00 & 0.0408 & 0.4680 & 0.0513 & 2219.4\\
+& \ZOHcons{} & 0.00 & 0.00 & 0.0879 & 14.0477 & 0.3248 & 1023.1\\
+\midrule
+\multirow{4}{*}{high comm. noise}
+& \AKE{} & 1.00 & 1.00 & 0.0519 & 0.5114 & 0.3757 & 1438.5\\
+& \MethodBase{} & 1.00 & 1.00 & 0.0420 & 0.4708 & 0.0373 & 2185.5\\
+& \TF{} & 1.00 & 1.00 & 0.0424 & 0.4708 & 0.0452 & 2219.4\\
+& \ZOHcons{} & 0.00 & 0.00 & 0.1096 & 14.1466 & 0.3556 & 1775.3\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item Note: a larger force peak indicates a higher force cost. Force-related quantities are reported as audit and trade-off metrics, not as the primary improvement claim against \AKE{}.
+\end{tablenotes}
+\vspace{1.5mm}
+\begin{minipage}{0.93\textwidth}
+\footnotesize
+\textbf{Interpretation:} Both \AKE{} and \Method{} complete the communication-stress cases; tracking and connection utilization are the main discriminating metrics, while force peaks are audit metrics.
+\end{minipage}
+\end{table*}
+
+Table~\ref{tab:e0_main} shows full-path success for \AKE{} and \Method{} in both communication-stress scenarios. \Method{} reduces lateral RMSE/maximum connection utilization from $0.0453/0.2999$ to $0.0408/0.0513$ under mixed fault/noise, and from $0.0519/0.3757$ to $0.0424/0.0452$ under high communication noise. Its force peak is higher than \AKE{} in both scenarios.
+
+Thus, link-quality weighting, connection constraints, and Koopman-MPC mainly improve tracking and connection utilization; force quantities are trade-off audits, not primary superiority claims.
+
+\subsection{Speed Sensitivity and Same-Initial-Condition Sine Diagnostics}
+
+\begin{table*}[!t]
+\centering
+\caption{Experiment 7: paired $n=3$ speed sensitivity under the same communication-stress scenario.}
+\label{tab:speed_sensitivity}
+\footnotesize
+\begin{tabular}{llcccc}
+\toprule
+Speed & Method & Success rate & Team lateral RMSE [m] & Team longitudinal RMSE [m] & Certificate pass ratio \\
+\midrule
+$2$ m/s & \AKE{} & 1.00 & 0.0467 & 0.5386 & 0.373\\
+$2$ m/s & \MethodBase{} & 1.00 & 0.0407 & 0.5211 & 1.000\\
+$2$ m/s & \Method{} & 1.00 & 0.0408 & 0.5211 & 1.000\\
+$5$ m/s & \AKE{} & 1.00 & 0.0413 & 0.4161 & 0.245\\
+$5$ m/s & \MethodBase{} & 1.00 & 0.0363 & 0.4004 & 1.000\\
+$5$ m/s & \Method{} & 1.00 & 0.0364 & 0.4006 & 1.000\\
+$10$ m/s & \AKE{} & 1.00 & 0.0821 & 6.9100 & 0.213\\
+$10$ m/s & \MethodBase{} & 1.00 & 0.0584 & 6.9078 & 0.278\\
+$10$ m/s & \Method{} & 1.00 & 0.0568 & 6.9079 & 0.277\\
+$15$ m/s & \AKE{} & 0.00 & 0.1143 & 16.0611 & 0.184\\
+$15$ m/s & \MethodBase{} & 0.00 & 0.0749 & 16.0589 & 0.185\\
+$15$ m/s & \Method{} & 0.00 & 0.0697 & 16.0587 & 0.185\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:speed_sensitivity} shows that at 2 and 5 m/s, \Method{} and \MethodBase{} complete the task and reduce RMSE relative to \AKE{}. At 10 m/s longitudinal RMSE reaches about $6.91$ m, and at 15 m/s all runs fail; these high-speed entries are diagnostic boundary cases.
+
+In the same-initial sine diagnostic, the representative 5 m/s trace lowers team-center lateral RMSE from $0.044080$ m to $0.029711$ m with zero maximum pointwise gap and 100\% pointwise win rate; 10 and 15 m/s retain longitudinal-phase limitations.
+
+\begin{figure*}[!tbp]
+\centering
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig_nrkdcc_nooffset_fault_2mps_panel_pub_20260528.png}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig_nrkdcc_nooffset_fault_5mps_panel_pub_20260528.png}
+\end{minipage}
+\caption{Experiment 8: same-initial degraded AKE-M diagnostics at 2 m/s and 5 m/s. Panels show team path/errors and vehicle-wise lateral error, steering, speed, and acceleration; dashed and solid lines denote AKE-M and \Method{}.}
+\label{fig:nooffset_fault_low_speed_panel}
+\end{figure*}
+
+Figure~\ref{fig:nooffset_fault_low_speed_panel} shows the 2 and 5 m/s diagnostics; \Method{} suppresses lateral phase error most clearly at 5 m/s. The 10 m/s panel is Supplementary Fig. S2, and 15 m/s is a failure-mode audit.
+
+\subsection{High-Curvature Hairpin Comparison}
+
+The high-curvature hairpin evidence is a stress diagnostic, not part of the paired $n=20$ main statistics. \MethodHC{} reduces lateral RMSE from $0.298869$ m to $0.085119$ m and maximum lateral error from $0.587425$ m to $0.180423$ m relative to \AKEdeg{}, while raising the 0.10 s force peak from $5327.89$ N to $6240.14$ N. Payload protection lowers maximum connection utilization from $0.778074$ to $0.307304$ and force peak to $4373.90$ N, exposing the tracking--force trade-off.
+
+\subsection{Core Mechanism Ablation}
+
+\begin{table}[!tbp]
+\centering
+\caption{Experiment 10: compact core-mechanism ablation on the sine path.}
+\label{tab:e2_ablation}
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{lccccc}
+\toprule
+\multicolumn{6}{l}{mixed fault/noise}\\
+Method & Succ. & Lat. & Long. & Conn. & Cert.\\
+\midrule
+\Method{} & 1.00 & 0.0408 & 0.4679 & 0.0550 & 0.99995\\
+\Method{}-noComm & 1.00 & 0.0414 & 0.5068 & 0.4294 & 0.78555\\
+\Method{}-noDelay & 1.00 & 0.0408 & 0.4678 & 0.0556 & 0.99995\\
+\Method{}-noIRSP & 1.00 & 0.0388 & 0.4677 & 0.0560 & 0.99995\\
+\Method{}-noPPC & 0.00 & 0.0660 & 12.9301 & 0.1259 & 0.28722\\
+\ZOHcons{} & 0.00 & 0.0970 & 14.0191 & 0.3324 & 0.17739\\
+\midrule
+\multicolumn{6}{l}{high-communication-noise}\\
+\Method{} & 1.00 & 0.0425 & 0.4709 & 0.0446 & --\\
+\Method{}-noComm & 1.00 & 0.0459 & 0.5399 & 0.4384 & --\\
+\Method{}-noDelay & 1.00 & 0.0426 & 0.4709 & 0.0460 & --\\
+\ZOHcons{} & 0.00 & 0.1037 & 14.1242 & 0.3649 & --\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:e2_ablation} shows the largest degradation without communication awareness: maximum connection utilization rises from $0.0550$ to $0.4294$ in mixed fault/noise and from $0.0446$ to $0.4384$ in high communication noise. Removing PPC makes mixed fault/noise fail, and \ZOHcons{} fails in both stress scenarios.
+
+\begin{figure}[!tbp]
+\centering
+\includegraphics[width=\columnwidth]{fig_nrkdcc_nooffset_hairpin_5mps_panel_force_20260528.png}
+\caption{Experiment 9: same-initial 5 m/s hairpin diagnostic. Rows show centroid path, errors, controls, speed, acceleration, resultant force, and planar force components; dashed, starred, and solid curves denote \AKEdeg{}, \MethodHC{}, and \Method{}.}
+\label{fig:nooffset_hairpin_5mps_panel}
+\end{figure}
+
+\subsection{Stability-Certificate Statistics}
+
+Experiment 11 reports paired $n=20$ certificate statistics on the 5 m/s sine path. Nominal clean, high-noise, single-fault, and mixed fault/noise all have full-path rate $1.00$; their ok ratios are $0.360$, $1.000$, $0.799$, and $1.000$, with minimum margins $-0.0224$, $0.0049$, $-0.0111$, and $0.0033$. The lower clean ok ratio reflects smaller Lyapunov decrements and sensitivity to curvature, normalization, and replanning transients, while stressed modes trigger conservative weighting, tightening, PPC, or fallback. Ok ratio is an empirical failing-step-density indicator for Theorem~\ref{thm:practical_iss_uub}; negative margins alone do not verify average contraction, so stability is stated as practical ISS/UUB in the logged compact region.
+
+\section{Discussion and Conclusion}
+
+In mixed fault/noise and high-communication-noise scenarios, \Method{} lowers lateral RMSE and reduces maximum connection utilization from $0.2999$ to $0.0513$ and from $0.3757$ to $0.0452$ relative to task-aligned \AKE{}. Ablations identify communication-aware consensus MPC as the dominant component.
+
+K1 and K2 can yield lower mean lateral RMSE than K3 in some single-seed ablations, so bilinear+IRSP is positioned as a certifiable short-horizon MPC predictor rather than a uniformly lowest-RMSE model. IRSP moves sampled $A_{\mathrm{eff}}(u)$ radii below one before MPC and supports the practical ISS/UUB certificate.
+
+Force quantities are trade-off audits: high-curvature priority improves lateral tracking but raises short-window force peak, whereas payload protection lowers connection utilization and force level at the cost of longitudinal lag and local lateral-error excursion. High-speed runs are diagnostics, and certificate evidence remains conditional on compact operation, feasible fallback, bounded failure growth, finite failing-step density, and average contraction. Future work will add multi-seed diagnostics, improve high-speed phase control, report windowed certificate-density/growth checks, and validate the force proxy experimentally.
+
+\section*{Conflict of Interest}
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this manuscript.
+
+\bibliographystyle{IEEEtran}
+\bibliography{core_references_round10_compact_figrev20}
+
+\begin{NRKDCCphotobio}{author_dequan_zeng.png}{Dequan Zeng}
+He received the Ph.D. degree from Tongji University in 2021 and the master's degree from Shanghai University in 2016. He is currently a Lecturer with East China Jiaotong University. His interests include reinforcement learning, decision making, motion planning, and autonomous parking. E-mail: zdq1610849@126.com.
+\end{NRKDCCphotobio}
+
+\begin{NRKDCCphotobio}{author_jun_lu.png}{Jun Lu}
+He received the B.E. degree from East China Jiaotong University in 2024, where he is pursuing the master's degree in mechanical engineering. His interests include vehicle-platoon control, vehicle-cluster intelligence, motion planning, and autonomous parking. E-mail: 18370892068@163.com.
+\end{NRKDCCphotobio}
+
+\begin{NRKDCCphotobio}{author_zhishao_ni.jpeg}{Zhishao Ni}
+He received the B.S. degree from Anhui Science and Technology University in 2023 and is pursuing the master's degree at East China Jiaotong University. His research interests include reinforcement learning. E-mail: nzs0609@163.com.
+\end{NRKDCCphotobio}
+
+\begin{NRKDCCphotobio}{author_letian_gao.jpg}{Letian Gao}
+He received the B.E. and Ph.D. degrees in vehicle engineering from Tongji University in 2016 and 2021. He is currently an assistant professor with Tongji University. He was a Visiting Student at the University of Waterloo, an Algorithm Engineer with SAIC Volkswagen, and a Postdoctoral Researcher at UCLA. His interests include perception, state estimation, and dynamics control of intelligent vehicles. E-mail: gao\_letian@tongji.edu.cn.
+\end{NRKDCCphotobio}
+
+\begin{NRKDCCphotobio}{author_yiming_hu.png}{Yiming Hu}
+He received the M.S. degree from Chongqing University of Technology in 2013 and the Ph.D. degree from Chongqing University in 2021. He is currently a Lecturer with East China Jiaotong University. His interests include electric vehicles, autonomous driving, vehicle dynamics, and stability control.
+\end{NRKDCCphotobio}
+
+\begin{NRKDCCphotobio}{author_junyu_zhou.jpeg}{Junyu Zhou}
+He received the B.E. degree from Hubei University of Arts and Science in 2025. His interests include vehicle-platoon coordination, multi-vehicle decision making, and autonomous-parking motion planning. E-mail: 13320182870@163.com.
+\end{NRKDCCphotobio}
+
+\begin{NRKDCCphotobio}{author_jinwen_yang.png}{Jinwen Yang}
+She received the master's degree from East China Jiaotong University in 2020 and is pursuing the Ph.D. degree there. Her interests include steer-by-wire control and actuation coordination for intelligent vehicles.
+\end{NRKDCCphotobio}
+
+\end{document}

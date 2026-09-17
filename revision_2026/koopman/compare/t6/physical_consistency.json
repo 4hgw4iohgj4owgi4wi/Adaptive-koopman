@@ -1,0 +1,42 @@
+{
+  "K0": {
+    "Q_algebra_rmse_n": 2.116980225262898e-07,
+    "Q_direction_accuracy": 0.627569886111522,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  },
+  "K1": {
+    "Q_algebra_rmse_n": 1.7862122426450027e-07,
+    "Q_direction_accuracy": 0.6693430811164874,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  },
+  "K2": {
+    "Q_algebra_rmse_n": 262921.321611225,
+    "Q_direction_accuracy": 0.5343461449067128,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  },
+  "K3": {
+    "Q_algebra_rmse_n": 4192.335975235177,
+    "Q_direction_accuracy": 0.5636951423077736,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  },
+  "K3-r2": {
+    "Q_algebra_rmse_n": 4192.335975235177,
+    "Q_direction_accuracy": 0.5636951423077736,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  },
+  "K4": {
+    "Q_algebra_rmse_n": 11.485054818729328,
+    "Q_direction_accuracy": 0.4334312337566294,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  },
+  "K5-linear": {
+    "Q_algebra_rmse_n": 1.0513585930533271,
+    "Q_direction_accuracy": 0.5088427324782894,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  },
+  "K5-bilinear": {
+    "Q_algebra_rmse_n": 1.0179594826685072e+83,
+    "Q_direction_accuracy": 0.5890717772096267,
+    "independent_action_reaction_residual": "not_identifiable_from_payload-side-only_18D_output"
+  }
+}

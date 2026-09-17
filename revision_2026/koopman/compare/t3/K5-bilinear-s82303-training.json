@@ -1,0 +1,98 @@
+{
+  "seed": 82303,
+  "best_epoch": 8,
+  "validation_macro_J_pred": 2490869869686.923,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.153669139291844e+27,
+      "validation_macro_J_pred": 8375848726494.189
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.6752733041573174e+29,
+      "validation_macro_J_pred": 32721034827250.465
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.4223979936924693e+29,
+      "validation_macro_J_pred": 48272577849987.78
+    },
+    {
+      "epoch": 4,
+      "train_loss": 2.581714978377634e+29,
+      "validation_macro_J_pred": 52866492290349.52
+    },
+    {
+      "epoch": 5,
+      "train_loss": 2.7422025612117167e+29,
+      "validation_macro_J_pred": 47462461396271.35
+    },
+    {
+      "epoch": 6,
+      "train_loss": 3.0142929689887993e+31,
+      "validation_macro_J_pred": 978774040708199.6
+    },
+    {
+      "epoch": 7,
+      "train_loss": 3.871737551314473e+32,
+      "validation_macro_J_pred": 230833078345467.66
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1.9362828815761424e+28,
+      "validation_macro_J_pred": 2490869869686.923
+    },
+    {
+      "epoch": 9,
+      "train_loss": 2.235010098993239e+27,
+      "validation_macro_J_pred": 4385435853805.6987
+    },
+    {
+      "epoch": 10,
+      "train_loss": 3.599540378107001e+27,
+      "validation_macro_J_pred": 4600857084755.043
+    },
+    {
+      "epoch": 11,
+      "train_loss": 3.7570081504924154e+27,
+      "validation_macro_J_pred": 4619512757018.384
+    },
+    {
+      "epoch": 12,
+      "train_loss": 3.7694970958987536e+27,
+      "validation_macro_J_pred": 4621047703260.715
+    },
+    {
+      "epoch": 13,
+      "train_loss": 3.770468428230584e+27,
+      "validation_macro_J_pred": 4621158098545.647
+    },
+    {
+      "epoch": 14,
+      "train_loss": 3.7705302962189344e+27,
+      "validation_macro_J_pred": 4621159881417.462
+    },
+    {
+      "epoch": 15,
+      "train_loss": 3.7705341274956633e+27,
+      "validation_macro_J_pred": 4621159885197.778
+    },
+    {
+      "epoch": 16,
+      "train_loss": 4.6587231689735285e+27,
+      "validation_macro_J_pred": 4621159885241.286
+    },
+    {
+      "epoch": 17,
+      "train_loss": 5.400579027609189e+27,
+      "validation_macro_J_pred": 4621159885239.728
+    },
+    {
+      "epoch": 18,
+      "train_loss": 4.161700110741339e+27,
+      "validation_macro_J_pred": 4621159885239.733
+    }
+  ],
+  "fit_seconds": 40.497026600001846
+}

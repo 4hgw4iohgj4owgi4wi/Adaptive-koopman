@@ -1,0 +1,71 @@
+{
+  "protocol_id": "koopman_next_rge_pk_v1",
+  "taskbook_sha256": "5D4C2F8CCE16280F9BEAD5730435E42CA305D153E09806058117A0C8063465C5",
+  "project_host": "DESKTOP-9IUUGEO",
+  "python_exe": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "connector_source": "revision_2026/connector_r3_4",
+  "connector_data": "revision_2026/connector_r3_4_data/full/20260828_154602_DATA_FULL_F23",
+  "connector_final": "revision_2026/connector_r3_4_results/flow_runs/20260828_214001_FINAL_F36/final",
+  "expected_upstream_sha256": {
+    "revision_2026/connector_r3_4/src/connector_r3.py": "0BD16C4D4D2FB141BFC2689E4472E475EA23CF319E0B31A3C6448DDCEF310459",
+    "revision_2026/connector_r3_4/src/four_vehicle_common.py": "8DFEF4F4052ED24B0E6A22C679838A10AA271EBCD5A7FCEC8AA9E755A500A7C3",
+    "revision_2026/connector_r3_4/src/event_substep.py": "CB7A5BC83E1397B6440DAAC12DFAFC551D8A257C35E6F482A2FCE8D415E139F3",
+    "revision_2026/connector_r3_4/src/schema_r3.py": "18E1F343C7D5FFCC084C0A64BF17F112C61F33C8144BA3FED9D208B8E9307DDA",
+    "revision_2026/connector_r3_4/scripts/generate_data_flow.py": "602E22495BA96BEF2D34AE5933D604CABC5D59ED12F05ED392244F29876412D9",
+    "revision_2026/connector_r3_4/scripts/train_smoke_flow.py": "934598554701971B5941D925A552450B09B3EDA37157DE5273B98FA01581F2DE",
+    "revision_2026/connector_r3_4_data/full/20260828_154602_DATA_FULL_F23/trajectory_manifest.csv": "6D9E0BCDC59D9C6293065840BE0ABBE441DF37D5205CE8BA621C12FDA5BC4B39",
+    "revision_2026/connector_r3_4_data/full/20260828_154602_DATA_FULL_F23/dataset_v1_es.npz": "35A7554ED0E6565932D7C40FFF04112D2016E457555C9430F5D8A92C2CB63A8E",
+    "revision_2026/connector_r3_4_data/full/20260828_154602_DATA_FULL_F23/dataset_r3_es.npz": "9F978763DED23B4EE5A77A8FCDF8F921527824CE3C95F1E76A8A44BA2FAD160B",
+    "revision_2026/connector_r3_4_results/flow_runs/20260828_214001_FINAL_F36/final/manifest.json": "77A923D5F8278673BD1B33FD05AAAC407550C4AAF14B3F6716FBF4166FECD4ED",
+    "revision_2026/connector_r3_4_results/flow_runs/20260828_214001_FINAL_F36/final/READY_FOR_KOOPMAN_TRAINING.json": "432885D449323ED0F9FCA11153161B4650107830C8C6F1C183A1971940E7294E"
+  },
+  "seed_blocks": {
+    "K2_PILOT_TRAIN": [910000, 910099],
+    "K2_PILOT_VALIDATION": [911000, 911099],
+    "K3_TRAIN": [920000, 920999],
+    "K3_VALIDATION": [921000, 921499],
+    "K3_DEVELOPMENT": [922000, 922499],
+    "K12_CONFIRM_LOCKED": [930000, 930999]
+  },
+  "resource_limits": {
+    "minimum_free_gib": 80.0,
+    "maximum_full_data_gib": 50.0,
+    "maximum_single_stage_hours": 24.0
+  },
+  "k1": {
+    "roundtrip_float64_atol": 1e-10,
+    "roundtrip_float32_atol": 1e-5,
+    "coordinate_contract_atol": 1e-10,
+    "future_leakage_byte_mismatch_max": 0,
+    "force_contract_atol": 1e-9,
+    "expected_model_step_s": 0.020,
+    "model_step_atol_s": 1e-9,
+    "frozen_interface_trajectory_count": 26
+  },
+  "k2": {
+    "model_step_s": 0.020,
+    "plant_step_s": 0.002,
+    "parallel_workers": 4,
+    "time_step_atol_s": 1e-9,
+    "window_steps": 20,
+    "scenarios": ["D0", "D1", "D2", "D5", "D6", "D10"],
+    "train_base_seeds_per_scenario": 2,
+    "validation_base_seeds_per_scenario": 1,
+    "directional_scenarios": ["D2", "D5", "D6", "D10"],
+    "natural_event_scenarios": ["D2", "D5", "D6"],
+    "left_right_imbalance_max": 0.20,
+    "mirror_atol": 1e-8,
+    "icr_residual_atol_mps": 1e-8,
+    "action_reaction_atol_n": 1e-9,
+    "internal_null_relative_atol": 1e-8,
+    "tire_raw_utilization_max": 0.90,
+    "projected_full_trajectory_count": 600,
+    "schema_constant_atol": 1e-12,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.90, 1.10],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.80, 0.95]
+  },
+  "authorized_stages": ["K0", "K1", "K2"],
+  "forbidden_before_next_authorization": ["K3", "K4", "K5", "K6", "K7", "K8", "K9", "K10", "K11", "K12", "K13", "K14"]
+}

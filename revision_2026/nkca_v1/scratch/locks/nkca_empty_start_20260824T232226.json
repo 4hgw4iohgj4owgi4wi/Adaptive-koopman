@@ -1,0 +1,12 @@
+﻿{
+    "pid":  19300,
+    "phase":  "calibration",
+    "started_at":  "2026-08-24T23:22:26.5031781+08:00",
+    "branch":  "exp/no-koopman-control-v1-20260824",
+    "commit":  "922317ec8c6e5f0492bcebf766f32d77124511b8",
+    "command":  "python -m nkca.runner --phase calibration --result-root D:\\EXPERIMENTS\\NKCA-v1-results --duration 6.0",
+    "stdout":  "D:\\EXPERIMENTS\\NKCA-v1-scratch\\calibration.stdout.log",
+    "stderr":  "D:\\EXPERIMENTS\\NKCA-v1-scratch\\calibration.stderr.log",
+    "cuda_visible_devices":  "-1",
+    "cpu_threads":  4
+}

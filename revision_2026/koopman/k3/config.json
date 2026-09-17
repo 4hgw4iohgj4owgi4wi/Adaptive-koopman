@@ -1,0 +1,114 @@
+{
+  "protocol_version": "K3-frozen-2026-08-19",
+  "model": {
+    "contracts": [
+      "S4-force-in",
+      "S5-force-out"
+    ],
+    "dynamics": [
+      "A-global",
+      "B-global-plus-transition-residual"
+    ],
+    "physical_input": "U1-four",
+    "total_lift_dim": 96,
+    "encoder_hidden_dim": 64,
+    "encoder_depth": 2,
+    "activation": "SiLU",
+    "physical_state_passthrough": true,
+    "common_output_heads": [
+      "s2_four",
+      "force_output",
+      "payload_force_moment"
+    ],
+    "parameter_count_relative_tolerance": 0.02
+  },
+  "training": {
+    "model_seeds": [
+      73101,
+      73102,
+      73103,
+      73104,
+      73105
+    ],
+    "horizon": 20,
+    "teacher_free": true,
+    "epochs": 60,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate_grid": [
+      0.001,
+      0.0003
+    ],
+    "weight_decay": 1e-06,
+    "gradient_clip_norm": 5.0,
+    "early_stopping": "validation only; patience 10; restore best checkpoint",
+    "search_budget_per_contract": 4,
+    "loss_grid": [
+      {
+        "lambda_rec": 0.2,
+        "lambda_1": 1.0,
+        "lambda_H": 0.5,
+        "lambda_F": 0.5,
+        "lambda_Q": 0.5,
+        "lambda_P": 0.1,
+        "lambda_R": 1e-05
+      },
+      {
+        "lambda_rec": 0.2,
+        "lambda_1": 1.0,
+        "lambda_H": 1.0,
+        "lambda_F": 0.5,
+        "lambda_Q": 0.5,
+        "lambda_P": 0.1,
+        "lambda_R": 1e-05
+      }
+    ],
+    "selection_metric": "validation mean of h10-20 state, connector and opening NRMSE",
+    "normalization": "K2 train trajectories only"
+  },
+  "transition_residual": {
+    "spectral_norm_fraction_grid": [
+      0.01,
+      0.02,
+      0.05,
+      0.1
+    ],
+    "q_lowpass_cutoff_hz_grid": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "sigmoid_temperature_grid": [
+      0.15,
+      0.25,
+      0.5
+    ],
+    "gate_smoothing_grid": [
+      0.0,
+      0.5,
+      0.8
+    ],
+    "selection": "validation only",
+    "hard_upper_bound": 0.1
+  },
+  "development_roles": {
+    "train": "train",
+    "validation": "validation",
+    "test": "dev_test_old",
+    "external": "dev_external_old"
+  },
+  "confirm": {
+    "internal_count": 100,
+    "internal_per_scenario": 20,
+    "external_count": 40,
+    "generation_timing": "only after G34 candidate/config freeze",
+    "single_use": true
+  },
+  "gates": {
+    "G31": "finite rollout; conservation construction audit; parameter count within 2%; no S5 force-input path",
+    "G32_S5": "not worse than S4 by >5% on primary metrics and more compact or better external",
+    "G32_S4": "at least one primary metric >=10% better with trajectory CI excluding zero; other metrics <=5% worse; sensor stress pass",
+    "G33": "transition primary >=10% with CI; E-L/E-C <=5% worse; no triple external degradation; residual norm <=10%",
+    "G35": "two strata improve; third <=5% worse; force/opening CI excludes zero; no triple external degradation; seed-consistent"
+  }
+}

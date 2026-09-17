@@ -1,0 +1,28 @@
+{
+  "schema_version": "EXP-R4-candidate-identity-v1",
+  "parent_protocol": {
+    "version": "EXP-R3",
+    "sha256": "eb5d176e444dd5008c9d527fa0c44cef134c9a2d285833ce5c4e5ba7cb8e0b87"
+  },
+  "taskbook": {
+    "version": "EXP-R4",
+    "path": "inputs/experiment_EXP-R4_97D79F76.md",
+    "sha256": "97d79f764f0ed308539e9a911d0498ecc571a82dda2942761a092ddb3fce1144"
+  },
+  "candidates": {
+    "EXP-R2-frozen-v1": {
+      "runner_sha256": "da2a33b6fcee6a975ae0561683720cc20d800a61c52cbd738fb165dfccafff82",
+      "frozen_dynamics_jacobian": true
+    },
+    "EXP-R3-unfrozen-v1": {
+      "runner_sha256": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728",
+      "controller_sha256": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531",
+      "batch_sha256": "ecf108c438dfabede0199f2c42e22d822e69e602560b56c8bb87a887b0be8a9e",
+      "protocol_sha256": "eb5d176e444dd5008c9d527fa0c44cef134c9a2d285833ce5c4e5ba7cb8e0b87",
+      "frozen_dynamics_jacobian": false,
+      "finite_difference_scale": 1.0,
+      "preflight_imports": "results/20260911_E00_PREFLIGHT_R3_01/audit/imports.json",
+      "source_snapshot": "protocol/source_snapshots/EXP-R3-unfrozen-v1_postrun_verified"
+    }
+  }
+}

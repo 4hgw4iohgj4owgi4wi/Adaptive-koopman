@@ -1,0 +1,19 @@
+{
+  "K2": {
+    "ridge": 0.001,
+    "artifact": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K2.npz",
+    "sha256": "5219A0BF4A0BB134A0400FF82F64197CCD249913AD47D101575A51B43A9525F9"
+  },
+  "K3": {
+    "ridge": 1e-06,
+    "rank": 2,
+    "artifact": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K3.npz",
+    "sha256": "D340AC4B944EC5E525C18AA4E31816C6AC4C690B16EF244F9DEDE51ABDB05EBC"
+  },
+  "K3-r2": {
+    "ridge": 1e-06,
+    "rank": 2,
+    "artifact": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K3-r2.npz",
+    "sha256": "473D1A36F08A119E0A0C4CE52C61B1D47CFBC15AA010207BD569716420CB28F0"
+  }
+}

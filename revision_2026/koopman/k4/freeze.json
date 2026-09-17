@@ -1,0 +1,170 @@
+{
+  "stage": "K4.0",
+  "timestamp_local": "2026-08-19 12:10:34",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]",
+  "config": {
+    "stage": "K4.0-K4.1",
+    "created_before_results": true,
+    "confirmation_policy": "do not generate or read confirm trajectories before G42",
+    "data_roles": {
+      "train": 70,
+      "validation": 15,
+      "dev_test_old": 15,
+      "dev_external_old": 20,
+      "confirm_internal_preregistered_not_generated": 100,
+      "confirm_external_preregistered_not_generated": 40
+    },
+    "horizon": 20,
+    "origin_stride": 20,
+    "pressure_scope": "only four point-force messages; S3 physical observations remain current",
+    "pressure_seeds": {
+      "validation": 74601,
+      "test": 74602,
+      "external": 74603
+    },
+    "noise_scale_of_train_std": 0.02,
+    "bias_scale_of_train_std": 0.02,
+    "ge": {
+      "p_good_to_bad": 0.02,
+      "p_bad_to_good": 0.25,
+      "delivery_good": 0.99,
+      "delivery_bad": 0.1
+    },
+    "outage_start_fraction": 0.4,
+    "single_point_rule": "(trajectory id + trace seed) modulo 4",
+    "supervisor_grid": {
+      "tau_steps": [
+        1.0,
+        2.0,
+        4.0
+      ],
+      "cutout": [
+        0.35,
+        0.6
+      ],
+      "recover": [
+        0.7,
+        0.9
+      ],
+      "recover_consecutive_steps": [
+        1,
+        5
+      ],
+      "imputer": [
+        "zoh",
+        "impute"
+      ]
+    },
+    "supervisor_selection": {
+      "dataset": "validation only",
+      "pressures": [
+        "P0-clean",
+        "P3-aoi1",
+        "P4-drop10",
+        "P6-single0.5s"
+      ],
+      "objective": "lowest mean state/connector/opening composite; ties by fewer switches then canonical JSON"
+    },
+    "g41": {
+      "clean_s4_composite_improvement_min": 0.1,
+      "light_pressure_each_metric_degradation_max": 0.05,
+      "paired_ci_upper_max": 0.0,
+      "minimum_switch_interval_steps": 5,
+      "maximum_switch_rate_hz": 0.5,
+      "bootstrap": 2000,
+      "bootstrap_seeds": {
+        "connector": 74501,
+        "opening": 74502
+      }
+    },
+    "k42_preregistered_training": {
+      "factor_seeds": {
+        "A": 74411,
+        "B": 74412,
+        "force_decoder": 74413
+      },
+      "ranks": [
+        2,
+        4,
+        8
+      ],
+      "relative_projection_limits": [
+        0.005,
+        0.01,
+        0.02
+      ],
+      "model_seeds": [
+        74201,
+        74202,
+        74203,
+        74204,
+        74205
+      ],
+      "optimizer": "AdamW",
+      "learning_rate": 0.0005,
+      "weight_decay": 0.0,
+      "batch": 256,
+      "epochs": 80,
+      "gradient_clip": 1.0,
+      "patience": 10,
+      "min_delta": 1e-05,
+      "lambda_anchor": 0.001,
+      "lambda_force_rate": 0.01,
+      "window_stride": 20
+    }
+  },
+  "config_sha256": "31E725CAF5ABC9D8E5BB32466E77D0B73C5B045D6A6ECB4D542CD6EEF798AE18",
+  "evidence_hashes": {
+    "koopman.md": "995D1D25BA567AECAB04B7625C027D18F0E016C4C1065F73970AC24821126F7F",
+    "koopman\\k4.md": "68DEF3F915D60001EE8FA475EA4DA4AF6376BDF812C226234C46B1B518AE6A39",
+    "koopman\\run_k4.py": "5CABC5916092FAD22EB1F897AE28276BDE2A6DEBDF989D4E0C0511A387DB91D0",
+    "koopman\\train_k4.py": "C5CA8D9EDB1B97E1259EA2EC24E4C62BF71E26E64FC132B1355F32BAF7284032",
+    "koopman\\generate_k2.py": "ACE7016564818781C7206403A95B2AABBCEAB9E8CB815E5F09256408FFBA0390",
+    "koopman\\linear.py": "8B0DD1FD2754C3FB34E1B825FC8A5394DAD03CF3449CEB977A65D3F62670E540",
+    "koopman\\experts.py": "7D1D58C85AB34A4E84E8CE4E411BFC3BB84E69528A3C165AA3DE721F429F86F9",
+    "koopman\\k2\\data_full\\manifest.json": "B3DED2AC3D2F5B0FEE8314DA425632A2E24906243FCB84F3B2379806AF3455CE",
+    "koopman\\k2\\data_full\\split.json": "ECE654B8623799BF1450205CD4F6B15174DB44DBE4161C1A89B7C68140B78EBA",
+    "koopman\\k2\\linear\\results.json": "4001E76F7B5F6E88C7E8C8152EB0D81B4362F27D17E695B0CB52241EF4A380F2",
+    "koopman\\k2\\linear\\models\\S3-U1-raw.npz": "B2202FB3579BCE8C00EBAC2A57EE358DF00A04CE06E78CC77B47B9D7E2C11693",
+    "koopman\\k2\\linear\\models\\S3-U1-lifted.npz": "A3EA666624E3A01BCE2B173881990906BE1B1A2EEF10465FC82AC92C813757E3",
+    "koopman\\k2\\linear\\models\\S4-force-in-U1-lifted.npz": "54A44DE8B846F99D792BB2348EE8A97B662E6AC1E35B4524C9A1788B124B21A6",
+    "koopman\\k2\\experts\\results.json": "F1A2286551C3703DCA81470918E96C516461EAE49D0638FB74DB34353D8DF141",
+    "koopman\\k2\\experts\\stop.md": "AC7C2430769E91E0EA953636288EA2986E644C1B8AE1FD39F486D3A0F17C64BE",
+    "koopman\\k3\\config.json": "8B7E3AA8068C75894D4B8EF1D0A77F60103F0C33672F8BEA49427A2C2585C4E7",
+    "koopman\\k3\\freeze.json": "F2CF1DD9063B7404D51302C547A36336DFE7FC69AA613780CD4961E9B9BADEEA",
+    "koopman\\k3\\g30.json": "B697FD9BDAFBF7ABC8E0F7ACEC33AC40D165D2BEAD0A3BBCAB09E7CA3D614B4B",
+    "koopman\\k3\\g31.json": "CBD4B98A9B98F92A3D9C6A444D3044C6D03FC056E52DD5C885450CFF3EB54FA5",
+    "koopman\\k3\\development\\A_results.json": "06DD7B1B608EEB81839ABEA9941AB12B832E51BF9A352A9E1A7C00696CAB0D19",
+    "koopman\\k3\\stop.md": "7C0CCA34629927296C161EE93E451E939474A583F12CEB4992AB17D5BE57E76C",
+    "koopman\\k3\\solutions.md": "4711AEBA69C0E0088A92EF691795457AE84FDEB81F85D8CC10A83F92305F4FFB",
+    "koopman\\k3\\confirm_preregistered.json": "16E0D956109340487F29FE2E3A559C8D4966BBDF573798D36ADCA3B773B645F6"
+  },
+  "trajectory_hashes_verified_by_linear_loader": 120,
+  "data_roles": {
+    "train": 70,
+    "validation": 15,
+    "test_mapped_to": "dev_test_old",
+    "external_mapped_to": "dev_external_old"
+  },
+  "confirm": {
+    "generated": false,
+    "internal_preregistered": 100,
+    "external_preregistered": 40,
+    "trajectory_files_found": 0,
+    "viewed": false
+  },
+  "missing": [],
+  "checks": {
+    "required_files_present": true,
+    "manifest_accepted": true,
+    "split_counts_exact": true,
+    "unique_trajectory_identity": true,
+    "unique_trajectory_files": true,
+    "confirm_flag_false": true,
+    "confirm_preregistered_counts": true,
+    "confirm_trajectory_files_absent": true,
+    "second_read_hashes_equal": true
+  },
+  "G40_pass": true
+}

@@ -1,0 +1,103 @@
+FILE: D:\LEARNING\ZNN\ZNN\save\A_Scientifically_Experimental_Approach_to_the_Simulation_of_Designer_Activity_in_the_Conceptual_Designing_of_Software_Intensive_Systems.pdf
+PAGES: 17
+TITLE_GUESS: Received May 13, 2013, accepted June 26, 2013, date of publication July 25, 2013, date of current version August 6, 2013. | Digital Object Identifier 10.1109/ACCESS.2013.2274896 | A Scientifically Experimental Approach to the
+
+INTRO_EXTRACT:
+I. INTRODUCTION
+In reality, designing SISs has been associated with a very low
+degree of a success (approximately 35%) for years [1]. Such
+a state of affairs is caused basically by the insufﬁciency of
+reliable ways-of-working used by a team of designers under
+the conditions of a complicated computerized environment.
+Insufﬁcient reliability is a consequence of many problems, the
+main source of which is the existing experience of software
+engineering in the context of its application to the design
+of SISs.
+A promising attempt at positive re-founding of software
+engineering is bound with an SEMAT initiative (Software
+Engineering Methods And Theory initiative) in documents
+for which a way-of-working used by designers is marked as
+a very important essence [2]. There, ‘‘way-of-working’’ is
+deﬁned as ‘‘the tailored set of practices and tools used by a
+team to guide and support their work.’’
+The description above indicates that ways-of-working are
+very important objects of scientiﬁc investigations aimed at
+predicting results. It is our deep belief that investigations of
+this type should be fulﬁlled not only for the subject area
+of designing the SISs as a whole but in every project that
+involves SISs as well. In the design of a speciﬁc SIS, the
+research of the used way-of-working should be necessarily
+fulﬁlled by the team of designers.
+It is necessary to clarify the proposed position. Way-of-
+working, when used in the design of a deﬁnitive SIS, should
+be created step-by-step, and the steps should include research
+conducted by a designer or by a designers’ group in the form
+of a scientiﬁc experiment. If such experiments are aimed
+at simplifying the complexity of the collaborative work of
+the designers, then their inclusion to way-of-working will
+facilitate achieving success in the design of SIS.
+In general, the complexity (or simplicity) of SIS reﬂects
+the degree of difﬁculty for designers in their interactions with
+speciﬁc models of SIS (or its components) in solving spe-
+ciﬁc tasks. The system or its components are complex if the
+designer (interacting with the system) does not have sufﬁcient
+resources to achieve the necessary level of understanding or
+to achieve the other planned aims.
+Often, various interpretations of the Kolmogorov mea-
+sure [3] are applied for estimations of the degree of the
+system’s complexity. This measure is connected with the
+minimal length of program P that provides the construction
+of system S from its initial description D. Distinctions in
+interpretations are usually caused by features of the system
+S and formal descriptions to be used for objects P and D.
+In accordance with their destinations, for the programs of
+P-type, it is more preferable to build them as programmable
+systems of designers’ actions while using the speciﬁc
+methods of meta-programming M. Explicit and/or implicit
+methods for managing the designers’ activity are used in the
+technology behind SIS design. The reality of such manage-
+ment demonstrates that the complexity of a P-program is no
+488
+2169-3536 
+ 2013 IEEE
+VOLUME 1, 2013
+
+P. Sosnin: Scientifically Experimental Approach to the Simulation of Designer Activity
+less than the complexity of SIS in any of its used states.
+Moreover, any M-program that provides the construction of
+a P-program should be built on the basis of the same initial
+description D of the system S. It can be presented by the
+following chain: D(t0) →M(ti) →P(tj) →S(tn).
+Named relations between constructions D, M, and P can
+be used by designers to divide the process of designing into
+stages [D(t0) →M0 →P0 →S(t1)], [D(t1) →M1 →P1 →
+S(t2)], . . . , [D(ti) →Mi →Pi →S(ti+1)], . . . , [D(tn−1) →
+Mn−1 →Pn−1 →S(tn)], where a set {S(ti)} reﬂects the states
+of the SIS that are being created.
+Dividing the designing process into stages is a typical step
+in any modern technology that involves the creation of SISs.
+In different technologies, such an approach is used in different
+forms for different aims. This approach helps to decrease the
+complexity of the interactions with SIS in any of its states
+S(ti). However, until now, the viewpoint of programming on
+the designer activity has not been supported instrumentally in
+the early design stages.
+It is necessary to note that the creation of instrumental
+means for an explicit work with M- and P-type artifacts
+essentially depends on their understanding. In an approach
+described in this paper, these artifacts are understood as
+models of designers’ behavior that are created for scien-
+tiﬁc experimentation on the corresponding behavior units
+included in the way-of-working. Therefore, the indicated
+instruments should have the potential for the creation and
+use of the artifacts of M- and P-types in experiments with
+behavioral units of designers’ activity. Moreover, the means
+of supporting the experimental work should help the design-
+ers create solutions for investigating tasks and opening the
+possibility for their conﬁrmatory reuse in the designers’
+team.
+The speciﬁcity of the approach is deﬁned by the following
+features.
+1. The investigated units of behavior are interpreted as
+precedents, with which the designers interact, using
+accessible experience and its models.

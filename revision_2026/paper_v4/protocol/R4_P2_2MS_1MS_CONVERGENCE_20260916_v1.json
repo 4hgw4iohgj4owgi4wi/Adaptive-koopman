@@ -1,0 +1,77 @@
+{
+  "protocol_id": "R4-P2-cell-convergence-2ms-to-1ms-v1",
+  "authorization": "Task-book section 4: each parameter point reports a 2-to-1 ms diagnostic and a 1-to-0.5 ms decisive gate.",
+  "scope": "R4_CELL_CONVERGENCE",
+  "schema_version": "R4-CELL-COMPARE-v1",
+  "parameter_id": "P2",
+  "cells": [
+    {
+      "step_ms": 2.0,
+      "output": "results/20260915_R4_P2_2MS_GPU01"
+    },
+    {
+      "step_ms": 1.0,
+      "output": "results/20260915_R4_P2_1MS_GPU02"
+    }
+  ],
+  "gates": {
+    "peak_force_relative": 0.02,
+    "impulse_vector_relative": 0.02,
+    "terminal_position_m": 0.001,
+    "terminal_heading_deg": 0.01,
+    "original_ultimate_force_n": 15000.0,
+    "original_tire_limit": 1.0,
+    "source": "the same four thresholds the frozen R3 recovery comparison used; not relaxed here"
+  },
+  "output": "analysis/20260916_R4_P2_2MS_1MS_CONVERGENCE_01",
+  "identity_files": [
+    {
+      "path": "tools/r4_cell_compare.py",
+      "sha256": "825cc298e28d27e8a0a2c3ec86073251464587304a7e0f078da9c49990757d20"
+    },
+    {
+      "path": "protocol/R4_P2_2MS_GPU_20260915_v1.json",
+      "sha256": "8dfbc4115ed9bbfa11aceae13430db53b2ca563ef77f8c7621165cd129b69861"
+    },
+    {
+      "path": "protocol/R4_P2_1MS_GPU_20260915_v1.json",
+      "sha256": "dd48bc9d6db2eb5e7683fc31f47672c74a68d5da799e29f270830c288c3ad1d3"
+    },
+    {
+      "path": "protocol/R4_P2_1MS_GPU_20260915_v2.json",
+      "sha256": "c4ac823d28b08ed7bdd8cc297fb545167f8c279e20c3929359ca7113c9d87e66"
+    },
+    {
+      "path": "results/20260915_R4_P2_2MS_GPU01/raw.npz",
+      "sha256": "f76ce47abd3ae23ec01f35b71ba81485819e61e54ad596ebc5c0fa7c5a701f3a"
+    },
+    {
+      "path": "results/20260915_R4_P2_2MS_GPU01/substeps.npz",
+      "sha256": "c864b11f00f73d2d6691c96d9d64d6889362854b4da3d4f753691fdcb79c6bd7"
+    },
+    {
+      "path": "results/20260915_R4_P2_2MS_GPU01/metrics.json",
+      "sha256": "082f30ed4b2a146f3d47adc8f05a452931fddeb5f3e7f1068b0f7e08cf1c6625"
+    },
+    {
+      "path": "results/20260915_R4_P2_2MS_GPU01/status.json",
+      "sha256": "082f30ed4b2a146f3d47adc8f05a452931fddeb5f3e7f1068b0f7e08cf1c6625"
+    },
+    {
+      "path": "results/20260915_R4_P2_1MS_GPU02/raw.npz",
+      "sha256": "089e0b754dd13972a493faa297b65d7d4d3aa9139410a51f98d3ef6f3a2b4ebc"
+    },
+    {
+      "path": "results/20260915_R4_P2_1MS_GPU02/substeps.npz",
+      "sha256": "cc9d9b87232495cd160f0369fddd5e718c4f994a510175c139252b163e663688"
+    },
+    {
+      "path": "results/20260915_R4_P2_1MS_GPU02/metrics.json",
+      "sha256": "41eafb1769ad3154cdd14d20347317c78861c55d4cdfcda489baf588d08b7a78"
+    },
+    {
+      "path": "results/20260915_R4_P2_1MS_GPU02/status.json",
+      "sha256": "41eafb1769ad3154cdd14d20347317c78861c55d4cdfcda489baf588d08b7a78"
+    }
+  ]
+}

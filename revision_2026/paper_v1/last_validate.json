@@ -1,0 +1,15 @@
+{
+  "host": "DESKTOP-9IUUGEO",
+  "python": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "project": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main",
+  "protocol": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v1\\config\\protocol.json",
+  "protocol_sha": "F26EE9E40944373ABB09334EB44F9C842A81472CA34F86D6956B4EA7A1673860",
+  "taskbook": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v1\\protocol\\paper_run.md",
+  "taskbook_sha": "B0A7996388965A7A549C1DA0CBD82F1CC7018AF6BEEBB30465628106AEA7464B",
+  "old_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02",
+  "predictor_source": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3x",
+  "free_bytes": 279032582144,
+  "authorization": "R0/P0/K0/Q1 only; no training; stop after K1 verdict",
+  "passed": true
+}

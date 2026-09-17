@@ -1,0 +1,2252 @@
+{
+  "stage": "K3.0.3_preregistered_before_training",
+  "generated": false,
+  "read_only_after_creation": true,
+  "notes": [
+    "confirm is generated only after G34; these exact rows may not be changed after development results",
+    "payload inertia remains mass/geometry derived in the current plant; independent inertia mismatch is vehicle yaw inertia",
+    "curvature_scale changes the frozen scenario steering profile and is external only"
+  ],
+  "rows": [
+    {
+      "confirm_id": "internal_staged_100m_000",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 1.021019984844202,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9943059596479471,
+        "connector_damping_scale": 0.9976152817424483,
+        "connector_free_play_scale": 0.9366808638017378,
+        "vehicle_mu_scale": 0.965556566088477,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_001",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9782567161848403,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.950891414722518,
+        "connector_damping_scale": 0.9428478320869208,
+        "connector_free_play_scale": 0.9680715741256272,
+        "vehicle_mu_scale": 0.9992900582585851,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_002",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9707472300147634,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0248785521029407,
+        "connector_damping_scale": 1.049326397552632,
+        "connector_free_play_scale": 0.934488255076893,
+        "vehicle_mu_scale": 0.9850586548167282,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_003",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0261431005615487,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9432202116264822,
+        "connector_damping_scale": 0.9698480210902504,
+        "connector_free_play_scale": 1.0255521784426724,
+        "vehicle_mu_scale": 1.0235156239162597,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_004",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9901388974318619,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9774911624035738,
+        "connector_damping_scale": 0.9929166248530874,
+        "connector_free_play_scale": 1.0111732065610637,
+        "vehicle_mu_scale": 1.00955603874273,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_005",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0179467541791625,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0329194300339213,
+        "connector_damping_scale": 1.0356481937296458,
+        "connector_free_play_scale": 1.0097053705792294,
+        "vehicle_mu_scale": 0.9811485983336948,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_006",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0088355451009912,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9970473170535468,
+        "connector_damping_scale": 1.0021695470902106,
+        "connector_free_play_scale": 0.9749060003580688,
+        "vehicle_mu_scale": 1.0147517071469823,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_007",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0200569643245043,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0364484753438927,
+        "connector_damping_scale": 1.0139113825271642,
+        "connector_free_play_scale": 0.9495192102290306,
+        "vehicle_mu_scale": 1.0118901032120242,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_008",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82008,
+      "trajectory_index": 8,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0209544509182291,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.946546629982131,
+        "connector_damping_scale": 0.9427888313339502,
+        "connector_free_play_scale": 1.0794570870606044,
+        "vehicle_mu_scale": 1.0157183359796929,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_009",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82009,
+      "trajectory_index": 9,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9873778427931816,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0596337856680011,
+        "connector_damping_scale": 1.037608827419988,
+        "connector_free_play_scale": 1.0156086178903467,
+        "vehicle_mu_scale": 0.9857579757828513,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_010",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82010,
+      "trajectory_index": 10,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0201262932773454,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0778424493675312,
+        "connector_damping_scale": 0.9235492119166911,
+        "connector_free_play_scale": 1.0309582359918787,
+        "vehicle_mu_scale": 0.9845692819299855,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_011",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82011,
+      "trajectory_index": 11,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0120834582619687,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0343387698576405,
+        "connector_damping_scale": 1.0169254703840498,
+        "connector_free_play_scale": 0.954593966636474,
+        "vehicle_mu_scale": 0.9674019170987886,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_012",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82012,
+      "trajectory_index": 12,
+      "parameter_scales": {
+        "payload_mass_scale": 1.000095881865924,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9569418262178568,
+        "connector_damping_scale": 1.035485054287126,
+        "connector_free_play_scale": 0.9984027558753154,
+        "vehicle_mu_scale": 1.0144719295948113,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_013",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82013,
+      "trajectory_index": 13,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9703843023885903,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9593136645946143,
+        "connector_damping_scale": 1.054952351197509,
+        "connector_free_play_scale": 0.9992416392080254,
+        "vehicle_mu_scale": 0.9966287190343136,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_014",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82014,
+      "trajectory_index": 14,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9816983570743122,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9770240927555685,
+        "connector_damping_scale": 1.0174986462597306,
+        "connector_free_play_scale": 0.9517712589173278,
+        "vehicle_mu_scale": 0.9991143444429776,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_015",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82015,
+      "trajectory_index": 15,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0025920050754782,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.989822225655602,
+        "connector_damping_scale": 0.9916084821633845,
+        "connector_free_play_scale": 0.9775632801047914,
+        "vehicle_mu_scale": 1.0322141528431064,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_016",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82016,
+      "trajectory_index": 16,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9861257984041276,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9726612680351827,
+        "connector_damping_scale": 0.9913472277976068,
+        "connector_free_play_scale": 1.0760371805567983,
+        "vehicle_mu_scale": 1.0380367455119899,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_017",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82017,
+      "trajectory_index": 17,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9918496826125165,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0470469005128442,
+        "connector_damping_scale": 0.9964429036284319,
+        "connector_free_play_scale": 1.0610950338003518,
+        "vehicle_mu_scale": 0.9878746347438533,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_018",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82018,
+      "trajectory_index": 18,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9916613367139154,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9520649569024432,
+        "connector_damping_scale": 1.0243433367258792,
+        "connector_free_play_scale": 1.0067704278765353,
+        "vehicle_mu_scale": 1.0364417392316176,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_staged_100m_019",
+      "set": "confirm_internal",
+      "scenario": "staged_100m",
+      "seed": 82019,
+      "trajectory_index": 19,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0129255548954126,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9472487800812183,
+        "connector_damping_scale": 0.9705175987948771,
+        "connector_free_play_scale": 0.9257804759081735,
+        "vehicle_mu_scale": 0.9802927150818764,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_000",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0041910079921517,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0212972635344284,
+        "connector_damping_scale": 1.0471871619281155,
+        "connector_free_play_scale": 1.075285913439403,
+        "vehicle_mu_scale": 0.9842910087932418,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_001",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9865382097871663,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0490271659371981,
+        "connector_damping_scale": 0.9984675712339878,
+        "connector_free_play_scale": 1.0739611384532597,
+        "vehicle_mu_scale": 0.9912618491402386,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_002",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.977300043846149,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9482256154885562,
+        "connector_damping_scale": 0.959438475333806,
+        "connector_free_play_scale": 1.0716916894843702,
+        "vehicle_mu_scale": 1.000745603376171,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_003",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 0.995379743659227,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0131465209528614,
+        "connector_damping_scale": 1.0632624646230295,
+        "connector_free_play_scale": 0.9567325205163799,
+        "vehicle_mu_scale": 1.022900177988977,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_004",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0230143157756886,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0600414341579072,
+        "connector_damping_scale": 0.9444441383196239,
+        "connector_free_play_scale": 1.0694008222334606,
+        "vehicle_mu_scale": 1.0248165729711287,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_005",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9731269181654164,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.971005883030473,
+        "connector_damping_scale": 1.0739776265213554,
+        "connector_free_play_scale": 1.0621667105447528,
+        "vehicle_mu_scale": 1.0341533133635545,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_006",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9957190958208876,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9279808544186922,
+        "connector_damping_scale": 1.0229688289439298,
+        "connector_free_play_scale": 1.0785349877398178,
+        "vehicle_mu_scale": 1.0047096866141376,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_007",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.005314894443777,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0362805594334883,
+        "connector_damping_scale": 1.0018249446579828,
+        "connector_free_play_scale": 0.9760927937147588,
+        "vehicle_mu_scale": 0.9604667531651966,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_008",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83008,
+      "trajectory_index": 8,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9959791433866568,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9807010753739466,
+        "connector_damping_scale": 1.0379890658737825,
+        "connector_free_play_scale": 0.9949961972945477,
+        "vehicle_mu_scale": 1.0025260006927645,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_009",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83009,
+      "trajectory_index": 9,
+      "parameter_scales": {
+        "payload_mass_scale": 1.009454173306599,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9507231856667476,
+        "connector_damping_scale": 1.0133530736682506,
+        "connector_free_play_scale": 1.0255335039554874,
+        "vehicle_mu_scale": 0.9777886178754563,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_010",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83010,
+      "trajectory_index": 10,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0148253949036217,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0321082648809001,
+        "connector_damping_scale": 0.9527390953263581,
+        "connector_free_play_scale": 1.031150150823204,
+        "vehicle_mu_scale": 0.9871874933949915,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_011",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83011,
+      "trajectory_index": 11,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0007158405706327,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9415248252951753,
+        "connector_damping_scale": 1.0072398182463214,
+        "connector_free_play_scale": 0.9554720071126127,
+        "vehicle_mu_scale": 0.9738013070148398,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_012",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83012,
+      "trajectory_index": 12,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0157986087973356,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0731130234361608,
+        "connector_damping_scale": 1.059313198135779,
+        "connector_free_play_scale": 0.9256653266555802,
+        "vehicle_mu_scale": 1.009567359246198,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_013",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83013,
+      "trajectory_index": 13,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0087844611626888,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0599784532720953,
+        "connector_damping_scale": 0.9912529517645525,
+        "connector_free_play_scale": 1.0443746720748148,
+        "vehicle_mu_scale": 0.9755736393491361,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_014",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83014,
+      "trajectory_index": 14,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0078345705115859,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0646878295827864,
+        "connector_damping_scale": 0.9542371998205392,
+        "connector_free_play_scale": 1.0239085614812984,
+        "vehicle_mu_scale": 1.0282863888383722,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_015",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83015,
+      "trajectory_index": 15,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9743697523761873,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0715717932045965,
+        "connector_damping_scale": 1.0054452076805391,
+        "connector_free_play_scale": 1.0101361617858406,
+        "vehicle_mu_scale": 1.0200812037123717,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_016",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83016,
+      "trajectory_index": 16,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0233383633336368,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0480701385042104,
+        "connector_damping_scale": 1.0422601155017384,
+        "connector_free_play_scale": 0.934564613843217,
+        "vehicle_mu_scale": 0.9977319516377534,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_017",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83017,
+      "trajectory_index": 17,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9869625132056739,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9382343573980525,
+        "connector_damping_scale": 0.9504247139184071,
+        "connector_free_play_scale": 0.9710787921268782,
+        "vehicle_mu_scale": 1.026958492222926,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_018",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83018,
+      "trajectory_index": 18,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0044931452487893,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9616375556486536,
+        "connector_damping_scale": 0.9398148933582118,
+        "connector_free_play_scale": 1.0291819322841438,
+        "vehicle_mu_scale": 0.9986147652599755,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_single_lane_change_019",
+      "set": "confirm_internal",
+      "scenario": "single_lane_change",
+      "seed": 83019,
+      "trajectory_index": 19,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0044913834985607,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0501683001279047,
+        "connector_damping_scale": 0.9826195785100261,
+        "connector_free_play_scale": 0.9429993874200535,
+        "vehicle_mu_scale": 0.9713273064616156,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_000",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0271809888791663,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0422036557197167,
+        "connector_damping_scale": 0.9506908128971138,
+        "connector_free_play_scale": 0.9565226578453188,
+        "vehicle_mu_scale": 0.9929242943238897,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_001",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9971548852931629,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0070673221887494,
+        "connector_damping_scale": 1.0791523790744182,
+        "connector_free_play_scale": 0.9676040654403772,
+        "vehicle_mu_scale": 0.9928307390342379,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_002",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9932393398970949,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.009339034660168,
+        "connector_damping_scale": 0.9949095739340051,
+        "connector_free_play_scale": 1.0126631133612058,
+        "vehicle_mu_scale": 0.9741956048276764,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_003",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 1.007294260644592,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9237184590246121,
+        "connector_damping_scale": 0.9670090362812641,
+        "connector_free_play_scale": 1.053263927173769,
+        "vehicle_mu_scale": 0.9826098023145438,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_004",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9931825801906378,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9325537438447428,
+        "connector_damping_scale": 0.9928253135641648,
+        "connector_free_play_scale": 1.028652906783326,
+        "vehicle_mu_scale": 0.9856309534365337,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_005",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9881366766359713,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0473569811306893,
+        "connector_damping_scale": 0.9767295540309266,
+        "connector_free_play_scale": 0.9581066572023594,
+        "vehicle_mu_scale": 0.9735118572978751,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_006",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9726006822212973,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0334786424006344,
+        "connector_damping_scale": 0.9338190183130295,
+        "connector_free_play_scale": 1.0321822703355852,
+        "vehicle_mu_scale": 0.9670128616270747,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_007",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.001545499722828,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9694712370024984,
+        "connector_damping_scale": 1.0130614797675852,
+        "connector_free_play_scale": 1.044849452836663,
+        "vehicle_mu_scale": 0.9783809090865278,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_008",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84008,
+      "trajectory_index": 8,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0275911299036529,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9549098150265839,
+        "connector_damping_scale": 0.9997841915576269,
+        "connector_free_play_scale": 0.9410925302564476,
+        "vehicle_mu_scale": 1.0385261045020207,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_009",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84009,
+      "trajectory_index": 9,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9909804236434918,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0569089031898493,
+        "connector_damping_scale": 1.0672044348295784,
+        "connector_free_play_scale": 1.0333598977884837,
+        "vehicle_mu_scale": 1.0018772812365642,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_010",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84010,
+      "trajectory_index": 10,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0020970901719137,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0418953579482344,
+        "connector_damping_scale": 0.9294792139773994,
+        "connector_free_play_scale": 0.9357418731137042,
+        "vehicle_mu_scale": 0.9881508730495859,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_011",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84011,
+      "trajectory_index": 11,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9792899360911834,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9753151597550609,
+        "connector_damping_scale": 0.9695729407940692,
+        "connector_free_play_scale": 1.0644096058575472,
+        "vehicle_mu_scale": 1.017003539031779,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_012",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84012,
+      "trajectory_index": 12,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9823347905975451,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0727708781931282,
+        "connector_damping_scale": 0.9256040708251116,
+        "connector_free_play_scale": 1.0088521940304014,
+        "vehicle_mu_scale": 1.023813627509474,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_013",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84013,
+      "trajectory_index": 13,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9887356453792684,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.009356854091177,
+        "connector_damping_scale": 0.9701327955185832,
+        "connector_free_play_scale": 1.045989084360829,
+        "vehicle_mu_scale": 0.9721008437410839,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_014",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84014,
+      "trajectory_index": 14,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9902745594498574,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0027904844867042,
+        "connector_damping_scale": 1.0240584295694288,
+        "connector_free_play_scale": 1.0395201331905408,
+        "vehicle_mu_scale": 0.9928588425788264,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_015",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84015,
+      "trajectory_index": 15,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0265973535152861,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.986645601523513,
+        "connector_damping_scale": 1.009550701352034,
+        "connector_free_play_scale": 1.0773052726628394,
+        "vehicle_mu_scale": 0.9650614828569382,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_016",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84016,
+      "trajectory_index": 16,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9971937974062958,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0289856257077439,
+        "connector_damping_scale": 1.0104563969047313,
+        "connector_free_play_scale": 0.9827120289439715,
+        "vehicle_mu_scale": 0.9881598358161836,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_017",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84017,
+      "trajectory_index": 17,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0248959696616728,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0668622305099658,
+        "connector_damping_scale": 1.0309116391391513,
+        "connector_free_play_scale": 0.9325152323786716,
+        "vehicle_mu_scale": 0.975243358003301,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_018",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84018,
+      "trajectory_index": 18,
+      "parameter_scales": {
+        "payload_mass_scale": 0.994267905600122,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9948039751566755,
+        "connector_damping_scale": 1.0127733069277944,
+        "connector_free_play_scale": 1.0553906892637979,
+        "vehicle_mu_scale": 1.010385411903572,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_hairpin_019",
+      "set": "confirm_internal",
+      "scenario": "hairpin",
+      "seed": 84019,
+      "trajectory_index": 19,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0237309139355035,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0191984562636607,
+        "connector_damping_scale": 0.9571217605966068,
+        "connector_free_play_scale": 1.0676596576538384,
+        "vehicle_mu_scale": 0.9619368139297778,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_000",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 1.015509681069708,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9604838396424642,
+        "connector_damping_scale": 0.9792243637097855,
+        "connector_free_play_scale": 0.9482485031795966,
+        "vehicle_mu_scale": 1.0342410417327195,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_001",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9894703801926841,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9378700555923158,
+        "connector_damping_scale": 1.0465554555586885,
+        "connector_free_play_scale": 1.0740986406143551,
+        "vehicle_mu_scale": 1.019145762178985,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_002",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0238377554191362,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9563090263604332,
+        "connector_damping_scale": 1.0097293589975938,
+        "connector_free_play_scale": 0.9495633150088908,
+        "vehicle_mu_scale": 0.9758237699589745,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_003",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9903537865096477,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0503254399991686,
+        "connector_damping_scale": 1.021530174116896,
+        "connector_free_play_scale": 0.99415883362175,
+        "vehicle_mu_scale": 0.9770896230598796,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_004",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0250988780607966,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.001275824810352,
+        "connector_damping_scale": 1.0085181044310174,
+        "connector_free_play_scale": 1.054545111757362,
+        "vehicle_mu_scale": 1.0256333874097203,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_005",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9764725657700909,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9219499152757601,
+        "connector_damping_scale": 1.0282499159746705,
+        "connector_free_play_scale": 0.9508415953797904,
+        "vehicle_mu_scale": 1.011881492698798,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_006",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 1.025724685573112,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0424205584930804,
+        "connector_damping_scale": 0.9838466727708195,
+        "connector_free_play_scale": 1.0318541482025418,
+        "vehicle_mu_scale": 0.973531281434321,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_007",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0150511606637984,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0743068708897126,
+        "connector_damping_scale": 1.0148059513656087,
+        "connector_free_play_scale": 1.0087740713960558,
+        "vehicle_mu_scale": 0.9636381327463016,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_008",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85008,
+      "trajectory_index": 8,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9952030208260135,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.956918340991594,
+        "connector_damping_scale": 1.0088580263427098,
+        "connector_free_play_scale": 1.0233270465617208,
+        "vehicle_mu_scale": 1.0281996938596754,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_009",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85009,
+      "trajectory_index": 9,
+      "parameter_scales": {
+        "payload_mass_scale": 0.970948827227075,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.021177242688505,
+        "connector_damping_scale": 0.9630605199845665,
+        "connector_free_play_scale": 1.0568371825206793,
+        "vehicle_mu_scale": 1.0337635787389345,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_010",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85010,
+      "trajectory_index": 10,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0069666529469816,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0794112379405636,
+        "connector_damping_scale": 0.9906595038974042,
+        "connector_free_play_scale": 0.9753416010718653,
+        "vehicle_mu_scale": 1.0264513639449309,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_011",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85011,
+      "trajectory_index": 11,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0041965807942594,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9783752978304711,
+        "connector_damping_scale": 1.035282678663625,
+        "connector_free_play_scale": 0.9866917649138349,
+        "vehicle_mu_scale": 0.9779823056610399,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_012",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85012,
+      "trajectory_index": 12,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9988709224204383,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9397680584008185,
+        "connector_damping_scale": 0.996381121841126,
+        "connector_free_play_scale": 1.0103715349116082,
+        "vehicle_mu_scale": 0.9800789859495199,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_013",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85013,
+      "trajectory_index": 13,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0132817711827369,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0231236016785794,
+        "connector_damping_scale": 1.0009282003566236,
+        "connector_free_play_scale": 1.0193345762854586,
+        "vehicle_mu_scale": 0.9976232539754739,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_014",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85014,
+      "trajectory_index": 14,
+      "parameter_scales": {
+        "payload_mass_scale": 0.980191438628297,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9332303162840357,
+        "connector_damping_scale": 0.924875382223513,
+        "connector_free_play_scale": 1.0243269469075411,
+        "vehicle_mu_scale": 1.025083706985886,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_015",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85015,
+      "trajectory_index": 15,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0134103120510622,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0092502863159079,
+        "connector_damping_scale": 1.0208290792916181,
+        "connector_free_play_scale": 1.0607823740349422,
+        "vehicle_mu_scale": 0.969306646029387,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_016",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85016,
+      "trajectory_index": 16,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9787940983692154,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0005661368507834,
+        "connector_damping_scale": 0.9477772291011247,
+        "connector_free_play_scale": 1.0630675612290599,
+        "vehicle_mu_scale": 0.9777992054178437,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_017",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85017,
+      "trajectory_index": 17,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0057869692232553,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0497297488093644,
+        "connector_damping_scale": 0.9537715610007765,
+        "connector_free_play_scale": 1.001717467504036,
+        "vehicle_mu_scale": 1.0129305413257075,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_018",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85018,
+      "trajectory_index": 18,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9783781533542922,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.070196171366233,
+        "connector_damping_scale": 0.981339201697619,
+        "connector_free_play_scale": 1.0368443471652982,
+        "vehicle_mu_scale": 1.0177775073810145,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_connector_directional_019",
+      "set": "confirm_internal",
+      "scenario": "connector_directional",
+      "seed": 85019,
+      "trajectory_index": 19,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9990861586499677,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9407208373034706,
+        "connector_damping_scale": 0.9533174103304172,
+        "connector_free_play_scale": 0.9236369138811015,
+        "vehicle_mu_scale": 0.9624996633934472,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_000",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9748946853920629,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9961694287125809,
+        "connector_damping_scale": 0.9306328719759156,
+        "connector_free_play_scale": 0.9731591723160068,
+        "vehicle_mu_scale": 1.0218306703083302,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_001",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9917775620467469,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9484678166443418,
+        "connector_damping_scale": 0.9808662582104348,
+        "connector_free_play_scale": 1.0344938371269874,
+        "vehicle_mu_scale": 1.0035113734068943,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_002",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0181882371856803,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9891532570164207,
+        "connector_damping_scale": 1.0112064919399393,
+        "connector_free_play_scale": 1.0080858468423168,
+        "vehicle_mu_scale": 1.0026324521102934,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_003",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9711864739368828,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9869379255982825,
+        "connector_damping_scale": 0.946977623379901,
+        "connector_free_play_scale": 0.9514715163451888,
+        "vehicle_mu_scale": 1.025010419556968,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_004",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0088319362500953,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9912782515346353,
+        "connector_damping_scale": 0.9312004616029963,
+        "connector_free_play_scale": 1.0758419576956693,
+        "vehicle_mu_scale": 0.9821366942836492,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_005",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0240200653267162,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9701834129782483,
+        "connector_damping_scale": 1.0451235112966677,
+        "connector_free_play_scale": 1.0776375990555198,
+        "vehicle_mu_scale": 1.0048443196410555,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_006",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0114810402051775,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9966288634892279,
+        "connector_damping_scale": 1.0056877663138135,
+        "connector_free_play_scale": 1.0038342141604022,
+        "vehicle_mu_scale": 1.037083257147627,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_007",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0090689241279542,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9512531432295392,
+        "connector_damping_scale": 1.052819514527282,
+        "connector_free_play_scale": 0.9915992773493082,
+        "vehicle_mu_scale": 0.9852431217999807,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_008",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86008,
+      "trajectory_index": 8,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9895353259672575,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0689885782786468,
+        "connector_damping_scale": 1.0038912423956423,
+        "connector_free_play_scale": 0.9656464657125218,
+        "vehicle_mu_scale": 0.9663371980861759,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_009",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86009,
+      "trajectory_index": 9,
+      "parameter_scales": {
+        "payload_mass_scale": 0.974538674186173,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9602483829474573,
+        "connector_damping_scale": 1.0595858493466501,
+        "connector_free_play_scale": 0.9622725702025974,
+        "vehicle_mu_scale": 1.0297699642135645,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_010",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86010,
+      "trajectory_index": 10,
+      "parameter_scales": {
+        "payload_mass_scale": 0.98513829043323,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9885987076420648,
+        "connector_damping_scale": 0.9470629822840947,
+        "connector_free_play_scale": 0.9760390614363322,
+        "vehicle_mu_scale": 0.9992873187140457,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_011",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86011,
+      "trajectory_index": 11,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0004823274542354,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.067291399937203,
+        "connector_damping_scale": 0.9514481943706996,
+        "connector_free_play_scale": 0.9457806092438019,
+        "vehicle_mu_scale": 1.0057505887858973,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_012",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86012,
+      "trajectory_index": 12,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9891948775522659,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0336010442831787,
+        "connector_damping_scale": 1.06088367870728,
+        "connector_free_play_scale": 0.9862063166565369,
+        "vehicle_mu_scale": 0.9721035875269814,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_013",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86013,
+      "trajectory_index": 13,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0035879434025878,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.039653375246141,
+        "connector_damping_scale": 1.0309466732724943,
+        "connector_free_play_scale": 0.9265575742124476,
+        "vehicle_mu_scale": 0.9722944998783966,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_014",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86014,
+      "trajectory_index": 14,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9763990032407915,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9664900354629542,
+        "connector_damping_scale": 1.053991613697125,
+        "connector_free_play_scale": 0.9953633949461858,
+        "vehicle_mu_scale": 0.9837032041416252,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_015",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86015,
+      "trajectory_index": 15,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9705664620342398,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9685959115407485,
+        "connector_damping_scale": 1.0473893420478695,
+        "connector_free_play_scale": 1.0206469051296614,
+        "vehicle_mu_scale": 1.0247956175307535,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_016",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86016,
+      "trajectory_index": 16,
+      "parameter_scales": {
+        "payload_mass_scale": 1.0180490083440634,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0032288786336319,
+        "connector_damping_scale": 1.0467257418282114,
+        "connector_free_play_scale": 0.9337246475717449,
+        "vehicle_mu_scale": 0.9776644476054148,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_017",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86017,
+      "trajectory_index": 17,
+      "parameter_scales": {
+        "payload_mass_scale": 1.028430534325463,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.0532067580881648,
+        "connector_damping_scale": 1.0497349790571202,
+        "connector_free_play_scale": 0.9849311698451656,
+        "vehicle_mu_scale": 0.9633794587942457,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_018",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86018,
+      "trajectory_index": 18,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9905924195671847,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 0.9954167501268034,
+        "connector_damping_scale": 0.9746315274299517,
+        "connector_free_play_scale": 0.9778022072508717,
+        "vehicle_mu_scale": 0.9723545310971019,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "internal_network_excitation_019",
+      "set": "confirm_internal",
+      "scenario": "network_excitation",
+      "seed": 86019,
+      "trajectory_index": 19,
+      "parameter_scales": {
+        "payload_mass_scale": 0.9932119005437816,
+        "vehicle_yaw_inertia_scale": 1.0,
+        "connector_stiffness_scale": 1.042612458721292,
+        "connector_damping_scale": 0.9406067011495992,
+        "connector_free_play_scale": 0.9251121387754229,
+        "vehicle_mu_scale": 1.009208735137109,
+        "curvature_scale": 1.0
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_000",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_001",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_002",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_003",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_004",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_005",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_006",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_staged_100m_007",
+      "set": "confirm_external",
+      "scenario": "staged_100m",
+      "seed": 92007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_000",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_001",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_002",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_003",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_004",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_005",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_006",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_single_lane_change_007",
+      "set": "confirm_external",
+      "scenario": "single_lane_change",
+      "seed": 93007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_000",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_001",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_002",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_003",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_004",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_005",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_006",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_hairpin_007",
+      "set": "confirm_external",
+      "scenario": "hairpin",
+      "seed": 94007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_000",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_001",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_002",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_003",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_004",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_005",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_006",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_connector_directional_007",
+      "set": "confirm_external",
+      "scenario": "connector_directional",
+      "seed": 95007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_000",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96000,
+      "trajectory_index": 0,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_001",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96001,
+      "trajectory_index": 1,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_002",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96002,
+      "trajectory_index": 2,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_003",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96003,
+      "trajectory_index": 3,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_004",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96004,
+      "trajectory_index": 4,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 1.2
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_005",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96005,
+      "trajectory_index": 5,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_006",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96006,
+      "trajectory_index": 6,
+      "parameter_scales": {
+        "payload_mass_scale": 0.8,
+        "vehicle_yaw_inertia_scale": 1.25,
+        "connector_stiffness_scale": 1.35,
+        "connector_damping_scale": 0.6,
+        "connector_free_play_scale": 1.8,
+        "vehicle_mu_scale": 0.7,
+        "curvature_scale": 0.85
+      }
+    },
+    {
+      "confirm_id": "external_network_excitation_007",
+      "set": "confirm_external",
+      "scenario": "network_excitation",
+      "seed": 96007,
+      "trajectory_index": 7,
+      "parameter_scales": {
+        "payload_mass_scale": 1.22,
+        "vehicle_yaw_inertia_scale": 0.78,
+        "connector_stiffness_scale": 0.65,
+        "connector_damping_scale": 1.45,
+        "connector_free_play_scale": 0.5,
+        "vehicle_mu_scale": 1.15,
+        "curvature_scale": 1.2
+      }
+    }
+  ]
+}

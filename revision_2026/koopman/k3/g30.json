@@ -1,0 +1,16 @@
+{
+  "gate": "G30",
+  "passed": true,
+  "checks": {
+    "k2_hashes_verified": 120,
+    "development_counts": {
+      "train": 70,
+      "validation": 15,
+      "dev_test_old": 15,
+      "dev_external_old": 20
+    },
+    "confirm_internal": 100,
+    "confirm_external": 40,
+    "confirm_manifest_frozen_before_training": true
+  }
+}

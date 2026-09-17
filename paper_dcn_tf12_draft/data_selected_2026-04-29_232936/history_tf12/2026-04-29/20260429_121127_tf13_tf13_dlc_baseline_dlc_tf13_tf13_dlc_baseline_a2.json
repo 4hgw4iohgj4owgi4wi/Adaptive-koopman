@@ -1,0 +1,29 @@
+{
+  "timestamp_local": "2026-04-29T12:11:27",
+  "history_version": "tf12_v1",
+  "case_name": "tf13_tf13_dlc_baseline",
+  "scenario_mode": "dlc",
+  "method_name": "tf13_tf13_dlc_baseline_a2",
+  "full_path_reached": true,
+  "sim_steps": 3189,
+  "step_time_mean": 0.011135955753523883,
+  "step_time_max": 0.024070999934338033,
+  "rmse_lat_mean": 0.23910380466684775,
+  "rmse_long_mean": 20.394467487831058,
+  "max_lat_global": 0.48974401186041805,
+  "max_long_global": 39.662745014125775,
+  "fleet_vehicle_max_abs_ey": [
+    0.48974401186041805,
+    0.45995921722219646,
+    0.3193123460250352,
+    0.265898766119824
+  ],
+  "fleet_vehicle_max_abs_es": [
+    39.662745014125775,
+    39.445707152615554,
+    39.629741184277705,
+    39.41989323225437
+  ],
+  "npz_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_121127_tf13_tf13_dlc_baseline_dlc_tf13_tf13_dlc_baseline_a2.npz",
+  "json_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_121127_tf13_tf13_dlc_baseline_dlc_tf13_tf13_dlc_baseline_a2.json"
+}

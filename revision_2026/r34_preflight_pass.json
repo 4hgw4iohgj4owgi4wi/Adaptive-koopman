@@ -1,0 +1,35 @@
+{
+  "hostname": "DESKTOP-9IUUGEO",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python_executable": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "python_version": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]",
+  "packages": {
+    "numpy": "2.0.1",
+    "scipy": "1.17.1",
+    "torch": "2.12.0.dev20260304+cu128"
+  },
+  "package_errors": {},
+  "project_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main",
+  "r33_source": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\connector_r3_3",
+  "r33_manifest": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\connector_r3_3_results\\n0\\source_manifest.json",
+  "r33_manifest_sha256": "cc1d11667ccb81d1cb93f6824ee69eeacc161e44534cf6ce62af13ffc99cabf0",
+  "r33_manifest_entries": 26,
+  "r33_drift": {},
+  "r34_exists": false,
+  "disk_d_total_bytes": 644248854528,
+  "disk_d_free_bytes": 326799515648,
+  "disk_d_free_gib": 304.3557662963867,
+  "active_python_matlab_processes": [],
+  "checks": {
+    "host_expected": true,
+    "project_exists": true,
+    "r33_hashes_match": true,
+    "r34_absent": true,
+    "disk_free_ge_50gib": true,
+    "numpy_available": true,
+    "scipy_available": true,
+    "dop853_available": true,
+    "no_conflicting_processes": true
+  },
+  "passed": true
+}

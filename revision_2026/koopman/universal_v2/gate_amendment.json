@@ -1,0 +1,89 @@
+{
+  "status": "frozen_before_F_H_training",
+  "initial_gate_preserved": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t2\\complete.json",
+  "reason": "baseline long-horizon performance cannot be a prerequisite for the H correction intended to improve it",
+  "eligible": [
+    "K0",
+    "K1",
+    "K4",
+    "K5-linear"
+  ],
+  "excluded": [
+    "K2",
+    "K3",
+    "K3-r2",
+    "K5-bilinear"
+  ],
+  "criteria": {
+    "nonfinite_rate": 0,
+    "condition_max": 100000000.0,
+    "rank_ratio_min": 0.95,
+    "macro_explosion_guard": 1000000.0
+  },
+  "audit": {
+    "K0": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": true,
+      "macro_not_exploded": true,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.18275945099927762,
+      "eligible": true
+    },
+    "K1": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": true,
+      "macro_not_exploded": true,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.18757524680953527,
+      "eligible": true
+    },
+    "K2": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": false,
+      "macro_not_exploded": false,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.4762822056344811,
+      "eligible": false
+    },
+    "K3": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": false,
+      "macro_not_exploded": false,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.42956898627498197,
+      "eligible": false
+    },
+    "K3-r2": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": false,
+      "macro_not_exploded": false,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.42956898627498197,
+      "eligible": false
+    },
+    "K4": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": true,
+      "macro_not_exploded": true,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.05008427642667951,
+      "eligible": true
+    },
+    "K5-linear": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": true,
+      "macro_not_exploded": true,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.1964844690585119,
+      "eligible": true
+    },
+    "K5-bilinear": {
+      "finite": true,
+      "condition_le_1e8": true,
+      "rank_ratio_ge_0p95": false,
+      "macro_not_exploded": false,
+      "rollout_divergence_rate_reported_not_entry_gate": 0.7411509751986516,
+      "eligible": false
+    }
+  }
+}

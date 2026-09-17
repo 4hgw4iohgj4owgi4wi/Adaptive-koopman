@@ -1,0 +1,61 @@
+{
+  "protocol_id": "RTX5080-G0-G2-V5-read-only-analysis-v2",
+  "authorization": "User request on 2026-09-15 for a detailed analysis of the completed G0-G2 v5 qualification.",
+  "scope": "RTX5080_G0_G2_V5_READ_ONLY_ANALYSIS",
+  "output": "analysis/20260915_RTX5080_G0_G2_V5_ANALYSIS_02",
+  "supersedes_protocol": {
+    "path": "protocol/RTX5080_G0_G2_V5_ANALYSIS_20260915_v1.json",
+    "sha256": "4dc86804a4c495c413defc869186be2d1fe99a0b8cbf1af5bf2fbddf259d5189",
+    "superseded_output": "analysis/20260915_RTX5080_G0_G2_V5_ANALYSIS_01",
+    "reason": "Numerically valid and kept; three figure defects failed visual QA: crowded G1 tick labels, the Amdahl floor annotation overprinting the bars, and the extrapolation caveat text overlapping the bar. Plot-only change; no analysis rule, threshold or number changed."
+  },
+  "questions": [
+    "how much gate margin does G1 have, sample by sample",
+    "which G2 object carries the largest CPU/GPU deviation and how large is it",
+    "where does the remaining end-to-end solve time sit, i.e. the Amdahl decomposition and the floor that survives an infinitely fast GPU",
+    "what do the measured per-solve times imply for the full 2379-cycle route, labelled as extrapolation"
+  ],
+  "inputs": {
+    "result_directory": "results/20260915_RTX5080_G0_G2_05",
+    "p1_solver_jsonl": "results/20260915_R4_P1_2MS01/solver.jsonl",
+    "full_route_cycles": 2379,
+    "p1_measured_cycles": 2200
+  },
+  "claims_allowed": [
+    "G1 reproduces the CPU predictor at six fixed samples with the frozen gate six orders of magnitude from binding",
+    "the GPU-built fixed QP is numerically identical to the CPU-built one and the first control agrees to 1e-10 or better",
+    "on the two registered fixed samples the GPU path is 3.256x faster end to end and inside the original 5 s per-solve budget",
+    "about 48 percent of the GPU solve is now CPU-side work that the GPU does not touch"
+  ],
+  "claims_forbidden": [
+    "any closed-loop, full-route or real-time claim",
+    "any claim that the GPU changes the P1 late tracking divergence",
+    "any distributed, communication or Koopman-superiority claim",
+    "presenting the full-route hours projection as a measurement"
+  ],
+  "stop_rules": {
+    "recomputation_of_qualification_numbers": false,
+    "plant_dynamics": false,
+    "mpc_or_solver": false,
+    "gpu_execution": false,
+    "closed_loop": false,
+    "source_tree_modification": false
+  },
+  "expected_figures": [
+    "G1 gate utilisation per sample and quantity",
+    "G2 non-zero deviations per object",
+    "Amdahl decomposition of the fixed-sample solve",
+    "full-route projection labelled as extrapolation"
+  ],
+  "identity_rule": "Only immutable inputs are gated: the frozen v5 protocol, its four result JSONs, the P1 solver log used for the measured per-cycle baseline, and this tool.",
+  "identity_files": [
+    {"path": "tools/rtx5080_g0_g2_v5_analysis.py", "sha256": "220b69a886c8e8e9c695f19def7f4d9b4b84d3d86071692eb7f85c11b8dc882c"},
+    {"path": "protocol/RTX5080_G0_G2_20260915_v5.json", "sha256": "6e6142620b90245bbe46d5102c0a5c642acce39b1eb38b8836cbe3d139cf173f"},
+    {"path": "results/20260915_RTX5080_G0_G2_05/g0_environment.json", "sha256": "58da08645226e3da6df0712b5a201379874bf7743696c9bc20976a9a76df9553"},
+    {"path": "results/20260915_RTX5080_G0_G2_05/g1_physics.json", "sha256": "75f86dff5b2ed7a0e59d1f0d238af60d880b87b074d74eab21baa9c698e152e0"},
+    {"path": "results/20260915_RTX5080_G0_G2_05/g2_fd_qp.json", "sha256": "f3dff6aa7147aae6e6bc95bb5971e44f89ce5f3d9daa234afd5b255cd2200f8d"},
+    {"path": "results/20260915_RTX5080_G0_G2_05/qualification.json", "sha256": "51f1d8572d66ce520d9afa4caba2d87e6f5de4772e40e1864005b6609510dc9d"},
+    {"path": "results/20260915_R4_P1_2MS01/solver.jsonl", "sha256": "9189e93618e38cd95672f0f175e38ad2f9a8d1ea4a84d4848d06e7b86e9c9bbb"}
+  ],
+  "deliverables": ["v5_analysis.json", "PNG and SVG figures", "figure_manifest.json", "README.md", "rtx5080_g0_g2_v5_detailed_analysis_20260915.md"]
+}

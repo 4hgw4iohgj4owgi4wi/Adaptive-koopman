@@ -1,0 +1,4 @@
+SCHEMA_VERSION='connector_v2.0'
+CONNECTOR_PARAMETER_UNITS={'contact_exponent_n':'dimensionless','contact_stiffness_K':'N/m^n','hysteresis_damping_CH':'N*s/m^(n+1)','free_play_m':'m','maximum_working_displacement_m':'m','failure_displacement_m':'m','rated_force_n':'N','ultimate_force_n':'N','force_cap_enabled':'boolean'}
+DATA_FIELDS={'penetration':'m [time,4]','normal_speed':'m/s [time,4]','raw_force_norm':'N [time,4]','applied_force_norm':'N [time,4]','contact_active':'bool [time,4]','elastic_energy':'J [time,4]','damping_power':'W [time,4]','force_rate_payload':'N/s [time,4,2]','generalized_payload_wrench':'N,N,Nm [time,3]','internal_force_vector':'N [time,8]','internal_force_norm':'N [time]','motion_force_vector':'N [time,8]','grasp_rank':'integer [time]','grasp_condition':'dimensionless [time]','limit_flags':'bitmask/bool [time,4]'}
+

@@ -1,0 +1,222 @@
+{
+  "protocol_id": "koopman_predict_v3_p5_v1",
+  "taskbook_sha256": "CA4800E870260E942521162072CEA4F42E00BAF7C3797A96AACAD0B62714BC92",
+  "taskbook_note": "koopman_p5.md itself; re-verified by run_v3 against the --taskbook argument.",
+  "parent_taskbook_sha256": "08EFC410984FE426FA8B9C9124F5AAD1A48AF4764184765BAC56CE7FF127CE5A",
+  "parent_taskbook_note": "koopman_path.md (P0-P3 round, completed 2026-09-02).",
+  "authorized_stages": ["S0", "S1", "R0", "P5A", "P5B", "P5C"],
+  "human_stop_after": "P5C",
+  "forbidden_without_later_authorization": ["P6", "P7", "P8", "P9", "P10", "MPC", "NETWORK", "DOS", "CONFIRM"],
+  "parent_v2": {
+    "source_root": "revision_2026/koopman_predict_v2",
+    "source_manifest_sha256": "67E9212A257E61C14B1F6A7AAD9A6A838B225E502A1643FEAC38FCC304F2526B",
+    "run_id": "20260902_094727_KOOPMAN_V2_KOOPMAN_V2_P0_R02_R01",
+    "stage_complete_shas": {
+      "p0": "4E4FE70024E124F3C39841F12223DF6AB17185B9DFAD22909C65D0A71636FA0A",
+      "p1": "24BE1C5FEE008D4C2652D400F9B45DED94E8EAC1BD39E8BF7CA8E6C36B21016F",
+      "p2": "5C51FC6C31EE9AE0919BA7C3D653A71281B57F740FD46CB899DC19BB73A93C66",
+      "p3": "59D4C1FE9C8EE084F3F692FD45F169ECD1E3A39549D18C651BB2C26C07CB6DCB"
+    },
+    "n6_regression_report_sha256": "C6FE7CF6736AA7803B5B586112EF6812EFAED103B21C0D34984C92467BED5116",
+    "n5_manifest_sha256": "B04F2C0CC2638EF7AECC8ED70CE54F9E16BEA645A79FC810C6DB8118DB3A8CA9",
+    "n5_normalization_sha256": "C9CCDE853501D6DE711BECA1E7267E69CAE5CFB936C57B930CFC71E9E6F95E36"
+  },
+  "parent_n6": {
+    "source_root": "revision_2026/koopman_predict_auto",
+    "results_root": "revision_2026/koopman_predict_auto_results",
+    "data_root": "revision_2026/koopman_predict_auto_data",
+    "models_root": "revision_2026/koopman_predict_auto_models",
+    "run_id": "20260901_214725_AUTO_PREDICT_AUTO_R04_R01",
+    "source_manifest_sha256": "B421EE89D2E6C86B33C1D536AB18192630308C5A17306268DAB1A0E512B3D55F",
+    "protocol_sha256": "D90AB923C7FCC1CD3D72A8BC5F4AA8D62E7A400331F63437FD9292D275EB3BFC",
+    "taskbook_sha256": "4446B7B4F6DC5FEE648C4F4A0E75971050450AF81B5EA7AE4E788C2E5BFF0182",
+    "complete_sha256": "4F62F1454B6C7A3121AA9B5C53009329B139990497034047F206B5FCE2D91CC4",
+    "status": "PASS_STOPPED_AFTER_N6"
+  },
+  "source_root": "revision_2026/koopman_predict_v3",
+  "results_root": "revision_2026/koopman_predict_v3_results",
+  "models_root": "revision_2026/koopman_predict_v3_models",
+  "actuator": {
+    "mode": "A3",
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "substeps_per_model_step": 10,
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "endpoint_atol_rad": 1e-12,
+    "horizon_steps": 20
+  },
+  "k2": {
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.9, 1.1],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.8, 0.95]
+  },
+  "interfaces": {
+    "variants": ["S0", "S1", "S2"],
+    "common_state_dimension": 47,
+    "actuator_state_dimension": 4,
+    "control_dimension": 7
+  },
+  "state_groups": {
+    "g0": [0, 3],
+    "g1": [3, 19],
+    "g2": [19, 31],
+    "g3": [31, 47],
+    "group_loss_weights": {"g0": 0.3, "g1": 0.2, "g2": 0.2, "g3": 0.3}
+  },
+  "window": {
+    "steps": 20,
+    "classes": ["steady", "maneuver", "switch", "connector_event"],
+    "control_change_atol": 1e-12,
+    "steering_active_rad": 0.008726646259971648,
+    "acceleration_active_mps2": 0.05
+  },
+  "scenarios": {
+    "order": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11"],
+    "directional": ["D2", "D3", "D4", "D5", "D6", "D8", "D10", "D11"],
+    "d9_members": ["A", "B"]
+  },
+  "metric_weights": {
+    "core": 0.25,
+    "relative": 0.2,
+    "force4": 0.2,
+    "internal": 0.15,
+    "yaw": 0.1,
+    "actuator": 0.1,
+    "common_weight_sum": 0.9
+  },
+  "training": {
+    "models": ["M0_FIXED_LINEAR", "M1_LOWRANK_BILINEAR"],
+    "ranks": [1, 2, 4],
+    "ridge_grid": [1e-8, 1e-6, 1e-4, 1e-2],
+    "horizons": [1, 5, 10, 20],
+    "primary_family_bootstrap_seeds": [990101, 990102, 990103, 990104, 990105],
+    "backup_family_bootstrap_seeds": [990106, 990107],
+    "central_seed": 990100,
+    "cv_seed": 990700,
+    "cv_folds": 5,
+    "paired_ci_replicates": 2000,
+    "paired_ci_seed": 990500,
+    "seed_semantics": "seeds index joint family-bootstrap and network initialization",
+    "divergence_abs_normalized": 20.0,
+    "important_scenarios": ["D2", "D4", "D6", "D10"],
+    "strong_coupling_scenarios": ["D1", "D2", "D7", "D8", "D9"],
+    "stress_scenarios": ["D5"],
+    "d5_hard_windows": [100, 120],
+    "d5_stress_horizons": [40, 80]
+  },
+  "split_contract": {
+    "train": {"base_family_count": 96, "seed_start": 986000},
+    "validation": {"base_family_count": 48, "seed_start": 987000},
+    "development": {"base_family_count": 48, "seed_start": 988000},
+    "confirm": {"base_family_count": 96, "seed_start": 989000, "visible": false}
+  },
+  "data_contract": {
+    "expected_trajectory_count": 672,
+    "ledger_window_counts": {"steady": 1868, "maneuver": 8484, "switch": 728, "connector_event": 4764},
+    "cache_window_counts": {"steady": 1682, "maneuver": 8352, "switch": 728, "connector_event": 4590},
+    "development_window_count": 3820,
+    "confirm_read_count": 0
+  },
+  "p2_gates": {
+    "macro_improvement_min_percent": 5.0,
+    "switch_or_connector_window_improvement_min_percent": 8.0,
+    "hard_scenario_improvement_min_percent": 10.0,
+    "scenario_degradation_max_percent": 5.0,
+    "bootstrap_same_direction_min": 4,
+    "expert_ridge": 0.01,
+    "regimes": {
+      "E0": ["steady"],
+      "E1": ["maneuver", "switch"],
+      "E2": ["connector_event"]
+    }
+  },
+  "n6_engineering_acceptance": {
+    "condition_number_max": 1e14,
+    "inference_time_ratio_max": 5.0,
+    "divergence_rate_increase_max": 0.01
+  },
+  "loss": {
+    "multi_weights": {"1": 0.10, "5": 0.20, "10": 0.25, "20": 0.45},
+    "tail_lambda": 0.25,
+    "tail_quantile": 0.90,
+    "tail_min_samples": 4,
+    "inv_lambda": 0.10,
+    "inv_horizons": [1, 5, 10, 20],
+    "e_weight_decay": 1e-4,
+    "theta_weight_decay": 1e-5,
+    "loss_scale_window_count": 256
+  },
+  "model_matrix": {
+    "L16": {"residual_dim": 16, "branch_output": 8, "hidden_width": 16},
+    "L32": {"residual_dim": 32, "branch_output": 16, "hidden_width": 32},
+    "residual_radius_max": 0.995,
+    "activation": "SiLU",
+    "output_activation": "tanh"
+  },
+  "train_config": {
+    "warm_steps": 2000,
+    "warm_lr": 1e-3,
+    "multi_steps": 15000,
+    "multi_lr_candidates": [3e-4, 1e-4],
+    "multi_lr": 3e-4,
+    "grad_clip": 1.0,
+    "curve_every": 250,
+    "checkpoint_every": 1000,
+    "early_stop_patience": 2000,
+    "effective_batch_windows": 256,
+    "micro_batch_windows": 64,
+    "accumulation": 4,
+    "float32_train": true,
+    "float64_eval": true
+  },
+  "p5b_cv": {
+    "selection_order": ["A1", "A2", "C16", "C32"],
+    "af_central_seed_only": true,
+    "d5_degradation_max_percent": 3.0,
+    "macro_positive_fold_min": 4,
+    "selection_bonus_percent": 1.0
+  },
+  "p5c_gates": {
+    "validation_j20_reference": 0.12783742731971484,
+    "validation_j1_reference": 0.009915459725118926,
+    "validation_j5_reference": 0.04032479477345827,
+    "validation_j10_reference": 0.06750430020515748,
+    "macro_improvement_min_percent": 5.0,
+    "j20_max": 0.1214455559537291,
+    "seed_same_direction_min": 4,
+    "one_step_degradation_max_percent": 3.0,
+    "d7_j20_reference": 0.3067896,
+    "d10_j20_reference": 0.2891974,
+    "d7_or_d10_improvement_min_percent": 8.0,
+    "d5_j20_reference": 0.11801456363530423,
+    "d5_j20_max": 0.12155500054436336,
+    "d5_hard_mean_reference": 0.16485749568851826,
+    "d5_hard_p95_reference": 0.23267382347348983,
+    "d5_hard_max_reference": 0.2331185286479644,
+    "d5_hard_degradation_max_percent": 3.0,
+    "d5_hard_mean_max": 0.16980322,
+    "d5_hard_p95_max": 0.23965404,
+    "d5_hard_max_max": 0.24011208,
+    "force_internal_degradation_max_percent": 5.0,
+    "gpu_infer_median_ms": 1.0,
+    "gpu_infer_p99_ms": 2.0,
+    "cpu_infer_median_ms": 5.0,
+    "warmup_inference_count": 1000
+  },
+  "p0_gates": {
+    "s0_j20_common_reference": 0.13023504180689485,
+    "s0_j20_common_abs_tolerance": 1e-10,
+    "main_metric_relative_tolerance": 1e-9,
+    "development_window_count": 3820
+  },
+  "resource_limits": {
+    "minimum_free_gib": 40.0,
+    "stall_minutes": 30,
+    "maximum_workers": 4
+  }
+}

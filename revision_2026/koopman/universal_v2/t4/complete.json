@@ -1,0 +1,13 @@
+{
+  "stage": "T4-H",
+  "status": "complete",
+  "backbones": [
+    "K0",
+    "K1",
+    "K4",
+    "K5-linear"
+  ],
+  "families_passing": 0,
+  "limited_universality": false,
+  "results_sha256": "6EDAC02A31C7DBC14E10F11B4202E43A3F73682AB51366ED2338CFEBF08D29B7"
+}

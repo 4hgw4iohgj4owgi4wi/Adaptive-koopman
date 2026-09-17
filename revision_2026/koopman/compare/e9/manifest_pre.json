@@ -1,0 +1,313 @@
+{
+  "kind": "e9",
+  "status": "frozen_before_generation",
+  "generator_sha256": "87ba89625a81b839dc4f478d4a822d99d963d34345b26c715c9fa49d86385bb2",
+  "base_generator_sha256": "ace7016564818781c7206403a95b2aabbceab9e8cb815e5f09256408ffba0390",
+  "seed_list": [
+    83000,
+    83001,
+    83002,
+    83003,
+    83004,
+    83005,
+    83006,
+    83007,
+    83008,
+    83009,
+    83010,
+    83011,
+    83012,
+    83013,
+    83014,
+    83015,
+    83016,
+    83017,
+    83018,
+    83019,
+    83020,
+    83021,
+    83022,
+    83023
+  ],
+  "jobs": [
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 0,
+      "seed": 83000,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 1,
+      "seed": 83001,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 2,
+      "seed": 83002,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 3,
+      "seed": 83003,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 4,
+      "seed": 83004,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 5,
+      "seed": 83005,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 6,
+      "seed": 83006,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 7,
+      "seed": 83007,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 8,
+      "seed": 83008,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 9,
+      "seed": 83009,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 10,
+      "seed": 83010,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 11,
+      "seed": 83011,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 12,
+      "seed": 83012,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 13,
+      "seed": 83013,
+      "split": "train",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 14,
+      "seed": 83014,
+      "split": "validation",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 15,
+      "seed": 83015,
+      "split": "validation",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 16,
+      "seed": 83016,
+      "split": "validation",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 17,
+      "seed": 83017,
+      "split": "test",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 18,
+      "seed": 83018,
+      "split": "test",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 19,
+      "seed": 83019,
+      "split": "test",
+      "external": false,
+      "parameter_external": false,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 20,
+      "seed": 83020,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 21,
+      "seed": 83021,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 22,
+      "seed": 83022,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    },
+    {
+      "scenario": "E9",
+      "physical_scene": "E9",
+      "traj_id": 23,
+      "seed": 83023,
+      "split": "external",
+      "external": true,
+      "parameter_external": true,
+      "network_profile": "clean",
+      "network_trace_id": "clean"
+    }
+  ],
+  "e9_train_derived_scales": {
+    "longitudinal_amplitude": [
+      0.07260106224566702,
+      0.012650000356370582,
+      0.0004316951526561752,
+      0.006248280405998238
+    ],
+    "steering_amplitude_rad": 0.008790347329340878,
+    "source_quantiles": [
+      0.5,
+      0.8,
+      0.95
+    ],
+    "source": "original 70 train trajectories only"
+  }
+}

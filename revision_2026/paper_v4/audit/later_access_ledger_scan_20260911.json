@@ -1,0 +1,401 @@
+{
+  "status": "EXPOSURE_REQUIRES_REVIEW",
+  "scope": "ledger metadata only; protected numeric assets were not opened",
+  "root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026",
+  "since": "2026-09-05T00:00:00",
+  "ledger_count": 14,
+  "ledgers": [
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+      "sha256": "20938D78D91D16F5F7290DF9AE170CC2A3B5A9B7616C20C088ADDA69CA708B15",
+      "bytes": 6273632,
+      "allowed": 21126,
+      "denied": 782,
+      "malformed": 0,
+      "roles": {
+        "None": 777,
+        "fit": 19376,
+        "inner": 1417,
+        "outer": 338
+      },
+      "purposes": {
+        "S0": 8273,
+        "UNKNOWN": 773,
+        "fit_monitor": 565,
+        "monitor": 1414,
+        "normalization": 8260,
+        "optimize": 2287,
+        "outer_evaluate": 336
+      },
+      "confirmation_like_count": 4,
+      "confirmation_like_examples": [
+        {
+          "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+          "line": 1972,
+          "role": "None",
+          "purpose": "UNKNOWN",
+          "allowed": false,
+          "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\new_validation\\denied.npz",
+          "decision_capable_purpose": false
+        },
+        {
+          "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+          "line": 1973,
+          "role": "None",
+          "purpose": "UNKNOWN",
+          "allowed": false,
+          "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\confirm\\denied.npz",
+          "decision_capable_purpose": false
+        },
+        {
+          "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+          "line": 2819,
+          "role": "None",
+          "purpose": "UNKNOWN",
+          "allowed": false,
+          "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\new_validation\\denied.npz",
+          "decision_capable_purpose": false
+        },
+        {
+          "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+          "line": 2820,
+          "role": "None",
+          "purpose": "UNKNOWN",
+          "allowed": false,
+          "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\confirm\\denied.npz",
+          "decision_capable_purpose": false
+        }
+      ]
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_220724_KC_BG01\\split_access.jsonl",
+      "sha256": "5BD1028C11B9060FBC48EBF5AB04667FC0B341F7DF2CF1FEF7717C4336D03746",
+      "bytes": 312797,
+      "allowed": 1122,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 1017,
+        "inner": 105
+      },
+      "purposes": {
+        "S0": 339,
+        "fit_monitor": 339,
+        "monitor": 105,
+        "normalization": 226,
+        "optimize": 113
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\split_access.jsonl",
+      "sha256": "F82C3BE379893DE0031548A9846D820A6060A981E991FAC64548710F78D65C71",
+      "bytes": 4146355,
+      "allowed": 14842,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 13218,
+        "inner": 1556,
+        "outer": 68
+      },
+      "purposes": {
+        "S0": 2718,
+        "fit_monitor": 6120,
+        "monitor": 1556,
+        "normalization": 2298,
+        "optimize": 2082,
+        "outer_evaluate": 68
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_225822_Q1_SMOKE\\split_access.jsonl",
+      "sha256": "F241DCF1FCA86D3CD6D572B4211FDFBE576CA14E56BA39256032EF5EA32CF69D",
+      "bytes": 301443,
+      "allowed": 1077,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 904,
+        "inner": 105,
+        "outer": 68
+      },
+      "purposes": {
+        "S0": 226,
+        "fit_monitor": 339,
+        "monitor": 105,
+        "normalization": 226,
+        "optimize": 113,
+        "outer_evaluate": 68
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_225947_Q1_SMOKE\\split_access.jsonl",
+      "sha256": "F241DCF1FCA86D3CD6D572B4211FDFBE576CA14E56BA39256032EF5EA32CF69D",
+      "bytes": 301443,
+      "allowed": 1077,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 904,
+        "inner": 105,
+        "outer": 68
+      },
+      "purposes": {
+        "S0": 226,
+        "fit_monitor": 339,
+        "monitor": 105,
+        "normalization": 226,
+        "optimize": 113,
+        "outer_evaluate": 68
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_230111_Q1_R01\\split_access.jsonl",
+      "sha256": "BC8D5DA5B81B1F73BBED302C1BF8A3EB9152AAFE0B1075843911C1A5DFFE7E76",
+      "bytes": 542644,
+      "allowed": 1937,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 1576,
+        "inner": 189,
+        "outer": 172
+      },
+      "purposes": {
+        "S0": 338,
+        "fit_monitor": 675,
+        "monitor": 189,
+        "normalization": 338,
+        "optimize": 225,
+        "outer_evaluate": 172
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_230328_Q1_SMOKE\\split_access.jsonl",
+      "sha256": "045D6738199AA94BF69689A18F5ED6B2F74106D0A571AF9B27FCEBC81D8573EF",
+      "bytes": 63124,
+      "allowed": 226,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 226
+      },
+      "purposes": {
+        "optimize": 226
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_230416_Q1_SMOKE\\split_access.jsonl",
+      "sha256": "ADCF301E52D8FE108AD60622D16EFE85D3283D0B4AD2B7DBE3C30E197BB8C213",
+      "bytes": 206983,
+      "allowed": 738,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 565,
+        "inner": 105,
+        "outer": 68
+      },
+      "purposes": {
+        "fit_monitor": 339,
+        "monitor": 105,
+        "optimize": 226,
+        "outer_evaluate": 68
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_230433_Q1_R01\\split_access.jsonl",
+      "sha256": "B87E28E915C90E64E0776720D2ECB3DC1491C469F2597641D4B7D14FC90B8105",
+      "bytes": 1791904,
+      "allowed": 6384,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 4762,
+        "inner": 882,
+        "outer": 740
+      },
+      "purposes": {
+        "fit_monitor": 3402,
+        "monitor": 882,
+        "optimize": 1360,
+        "outer_evaluate": 740
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_105948_KR_A_SMOKE\\split_access.jsonl",
+      "sha256": "7F19ED61CE95BCE0B9639A617530C46F5067F50DC7206548E3E65BC91A898539",
+      "bytes": 187453,
+      "allowed": 670,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 565,
+        "inner": 105
+      },
+      "purposes": {
+        "fit_monitor": 339,
+        "monitor": 105,
+        "optimize": 226
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110031_KR_A_SMOKE\\split_access.jsonl",
+      "sha256": "7F19ED61CE95BCE0B9639A617530C46F5067F50DC7206548E3E65BC91A898539",
+      "bytes": 187453,
+      "allowed": 670,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 565,
+        "inner": 105
+      },
+      "purposes": {
+        "fit_monitor": 339,
+        "monitor": 105,
+        "optimize": 226
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110108_KR_A_SMOKE\\split_access.jsonl",
+      "sha256": "323A3F4A2BF0E7F5898B1A6F6F726F4B7E38E8342614C8C68683E720209C96BF",
+      "bytes": 187692,
+      "allowed": 670,
+      "denied": 1,
+      "malformed": 0,
+      "roles": {
+        "None": 1,
+        "fit": 565,
+        "inner": 105
+      },
+      "purposes": {
+        "UNKNOWN": 1,
+        "fit_monitor": 339,
+        "monitor": 105,
+        "optimize": 226
+      },
+      "confirmation_like_count": 1,
+      "confirmation_like_examples": [
+        {
+          "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110108_KR_A_SMOKE\\split_access.jsonl",
+          "line": 671,
+          "role": "None",
+          "purpose": "UNKNOWN",
+          "allowed": false,
+          "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110108_kr_a_smoke\\confirmation_metrics.csv.partial",
+          "decision_capable_purpose": false
+        }
+      ]
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110146_KR_A_SMOKE\\split_access.jsonl",
+      "sha256": "7F19ED61CE95BCE0B9639A617530C46F5067F50DC7206548E3E65BC91A898539",
+      "bytes": 187453,
+      "allowed": 670,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 565,
+        "inner": 105
+      },
+      "purposes": {
+        "fit_monitor": 339,
+        "monitor": 105,
+        "optimize": 226
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    },
+    {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110213_KR_A\\split_access.jsonl",
+      "sha256": "657C6253E6D914F88134B7C9307F2DA0BD9F3F5796ABBB98471F7040A08BC8F6",
+      "bytes": 848271,
+      "allowed": 3027,
+      "denied": 0,
+      "malformed": 0,
+      "roles": {
+        "fit": 2413,
+        "inner": 443,
+        "outer": 171
+      },
+      "purposes": {
+        "fit_monitor": 1701,
+        "monitor": 443,
+        "optimize": 712,
+        "outer_evaluate": 171
+      },
+      "confirmation_like_count": 0,
+      "confirmation_like_examples": []
+    }
+  ],
+  "confirmation_like_records": 5,
+  "confirmation_like_decision_records": 0,
+  "confirmation_like_examples": [
+    {
+      "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+      "line": 1972,
+      "role": "None",
+      "purpose": "UNKNOWN",
+      "allowed": false,
+      "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\new_validation\\denied.npz",
+      "decision_capable_purpose": false
+    },
+    {
+      "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+      "line": 1973,
+      "role": "None",
+      "purpose": "UNKNOWN",
+      "allowed": false,
+      "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\confirm\\denied.npz",
+      "decision_capable_purpose": false
+    },
+    {
+      "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+      "line": 2819,
+      "role": "None",
+      "purpose": "UNKNOWN",
+      "allowed": false,
+      "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\new_validation\\denied.npz",
+      "decision_capable_purpose": false
+    },
+    {
+      "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_results\\runs\\20260904_142331_KG_R02\\split_access.jsonl",
+      "line": 2820,
+      "role": "None",
+      "purpose": "UNKNOWN",
+      "allowed": false,
+      "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\koopman_predict_v3t_data\\confirm\\denied.npz",
+      "decision_capable_purpose": false
+    },
+    {
+      "ledger": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110108_KR_A_SMOKE\\split_access.jsonl",
+      "line": 671,
+      "role": "None",
+      "purpose": "UNKNOWN",
+      "allowed": false,
+      "path": "d:\\learning\\znn\\znn\\adaptive-koopman\\adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260907_110108_kr_a_smoke\\confirmation_metrics.csv.partial",
+      "decision_capable_purpose": false
+    }
+  ],
+  "claim_boundary": "No matching path token does not prove 42/84 blindness because assets may use neutral names or uninstrumented loaders. A positive decision-purpose match is evidence of exposure, not automatically data leakage without role/protocol review."
+}

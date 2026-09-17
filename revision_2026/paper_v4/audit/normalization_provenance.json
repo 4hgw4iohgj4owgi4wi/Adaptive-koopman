@@ -1,0 +1,34 @@
+{
+  "schema_version": "EXP-R2-normalization-provenance-v1",
+  "status": "PASS_FOR_20260905_221832_KC_BG02",
+  "scope": "Proves the saved run's normalization loader was restricted to fold-role=fit. It does not prove later confirmation pools remained blind.",
+  "implementation": {
+    "run_background_path": "revision_2026/koopman_predict_v3w/scripts/run_background.py",
+    "run_background_sha256": "1B2EA7B4B2AB040A702879FBA9245B3E7A9E18B83D5838FE8B04478BBF0A6561",
+    "selection_lines": "184-193: es(role) builds fit_e/inner_e from fold roles; fit_normalization receives fit_e only",
+    "guard_core_path": "revision_2026/koopman_predict_v3w/src/guard_core.py",
+    "guard_core_sha256": "DD9B14C7030A9889640AEEE4A4FDA4402F70BD0774DB97E0A072D601E15072F3",
+    "guard_lines": "AccessGuard._audit permits purpose=normalization only when role=fit; fit_normalization lines 77-94 opens only its supplied entries and computes mean/std"
+  },
+  "runtime_ledger": {
+    "path": "revision_2026/koopman_predict_v3w_results/runs/20260905_221832_KC_BG02/split_access.jsonl",
+    "sha256": "F82C3BE379893DE0031548A9846D820A6060A981E991FAC64548710F78D65C71",
+    "normalization_contexts": [
+      {"fold":0,"role":"fit","reads":904},
+      {"fold":1,"role":"fit","reads":368},
+      {"fold":2,"role":"fit","reads":339},
+      {"fold":3,"role":"fit","reads":342},
+      {"fold":4,"role":"fit","reads":345}
+    ],
+    "total_normalization_reads": 2298,
+    "non_fit_normalization_reads": 0,
+    "denied_all_purposes": 0,
+    "unmapped_all_purposes": 0
+  },
+  "fold0_saved_normalization": {
+    "path": "revision_2026/koopman_predict_v3w_results/runs/20260905_221832_KC_BG02/folds/fold0/normalization.npz",
+    "sha256": "117E562D37F5845EB9441F958949B34A0E30F0E85527590A1BA3ED9482B5B085",
+    "identity_note": "File identity is frozen and matches the previously audited data_roles report; this audit traces its generating loader and runtime opens rather than regenerating a new normalization file."
+  },
+  "claim_boundary": "fit-only normalization is proven for this historical run by code plus CPython open-audit evidence. Confirmation blindness after this run remains NOT_PROVEN."
+}

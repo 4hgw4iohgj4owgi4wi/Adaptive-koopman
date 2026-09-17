@@ -1,0 +1,170 @@
+FILE: D:\LEARNING\ZNN\ZNN\save\K-SMPC_Koopman_Operator-Based_Stochastic_Model_Predictive_Control_for_Enhanced_Lateral_Control_of_Autonomous_Vehicles.pdf
+PAGES: 15
+TITLE_GUESS: Received 27 November 2024, accepted 9 January 2025, date of publication 17 January 2025, date of current version 23 January 2025. | Digital Object Identifier 10.1109/ACCESS.2025.3530984 | K-SMPC: Koopman Operator-Based Stochastic
+
+INTRO_EXTRACT:
+I. INTRODUCTION
+Autonomous driving vehicles provide advanced driver assis-
+tance functions to relieve humans from monotonous long
+drives and can significantly decrease traffic congestion and
+accidents. A typical autonomous driving setup comprises
+essential components such as perception, communication [1],
+[2], localization, decision-making, trajectory planning [3],
+and control. During trajectory planning and control, knowl-
+edge of vehicle dynamics is necessary to execute accurate and
+safe maneuvers, particularly in complex and unpredictable
+road environments. Thus, it is essential to have a lateral
+vehicle dynamic model to design a lateral controller. Lateral
+control of autonomous driving has gained much attention in
+many areas, such as automated parking control [4], lateral
+control on curved roads [5], [6], and automated lane change
+systems [7]. The bicycle lateral dynamic motion model
+has been widely used to develop lateral control [8]. In the
+dynamic model, lateral tire force and acceleration are used
+to capture the dynamic motion of a vehicle for high-speed
+driving to represent accurate vehicle behavior. Although
+many studies have used the bicycle lateral dynamic model,
+i.e., linear dynamic model, for practical applications under
+certain conditions, such as a small tire slip angle with a
+given vehicle speed, the nonlinearity of the vehicle dynamics
+cannot be ignored because the tire model is highly nonlinear
+due to the vertical load transfer [9]. Moreover, the vehicle
+speed is no longer constant in dynamic driving. Therefore,
+obtaining a model that captures the full vehicle dynamics for
+various driving conditions is necessary even though a linear
+vehicle model may be useful for designing a linear controller
+under specific assumptions.
+Numerous studies have attempted to identify the unknown
+nonlinear dynamics in different research fields [10]. Recently,
+a modeling approach has received significant attention
+for complex systems whose dynamics are challenging to
+capture [11]. Based on the data-driven model identification,
+several methods exist to design a data-driven Model Pre-
+dictive Control (MPC). Sparse Identification of Nonlinear
+Dynamics (SINDy)-based MPC is proposed [12] for a
+nonlinear system. The result of SINDy is generally a
+nonlinear model. Thus, the authors designed a nonlinear
+MPC to control the plant. Another method is Data-enabled
+Predictive Control (DeePC) [13]. The method uses the input
+and output data to conduct model identification at every
+sample time recursively. In order to obtain an accurate
+system model, we need an extensive dataset containing much
+information about the system [14]. However, there is no big
+change in input and output signals in the steady state. Thus,
+with the recursive model identification, the method might
+bring the computation burden and difficulty of extracting
+the system dynamics in a steady state. In this context, the
+Koopman operator has been used in model identification of
+complex dynamics in recent years. The Koopman operator is
+a linear map representing nonlinear systems on the manifold
+in an infinite-dimensional space [15], [16]. One of the
+primary benefits of using the Koopman operator is that the
+linear model can express the underlying nonlinear behavior.
+As a result, a linear control design method can be applied to
+a general nonlinear dynamic system.
+In recent years, the Koopman operator-based modeling
+and control approach has been widely adopted in automated
+driving because vehicles have highly nonlinear behaviors.
+In [17], [18], [19], and [20], the authors proposed model
+identification of nonlinear vehicle dynamics to control vehi-
+cle lateral and/or longitudinal velocity. In [21] and [22], the
+authors considered the global position control of the vehicle.
+Position control is essential for controlling vehicles properly
+on roads. In [23], the authors considered the local position
+with respect to the given trajectory. Then, a mini-sized car
+was used to show the effectiveness of the proposed system.
+For practical implementation of the Koopman operator, the
+papers mentioned above used Extended Dynamic Mode
+Decomposition (EDMD) or neural networks to approxi-
+mate the Koopman operator in a finite-dimensional space.
+Unfortunately, the approximated Koopman operator causes
+approximation uncertainty, which results in the presence
+of modeling errors because there is a residual term in the
+optimization problem of approximation of the Koopman
+operator [24], [25], [26]. Therefore, the model mismatch
+can not be negligible in using the Koopman operator, even
+though the Koopman operator has a powerful linear property
+representing the nonlinear dynamics. To tackle this problem,
+[27] proposes a method of handling the approximation error
+with an estimator. In [25], [28], and [29], the authors design
+Robust Model Predictive Control (RMPC) for the nonlinear
+system with constraints satisfaction under uncertainties.
+However, it is challenging to obtain a robust positively
+invariant set against the uncertainties of the approximated
+Koopman operator because it is difficult to find the upper
+bound of the approximation error outside of the given training
+dataset. Moreover, even if we can obtain the Robust Positively
+Invariant (RPI) set, the size of the RPI set can be large
+because of the abnormal signal coming from the noise, which
+makes an RMPC conservative [30], [31]. To resolve the
+problem, stochastic MPC (SMPC) is proposed to consider
+the probability of uncertainties and allow constraint violation
+where the uncertainties rarely occur. Then, constraint tight-
+ening can be relaxed, and the conservativeness of the RMPC
+is reduced, while most cases of constraints are satisfied
+with certain probability [30]. Therefore, with the SMPC
+approach, we can effectively handle the uncertainties of the
+approximated Koopman operator by considering the chance
+constraints of the SMPC.
+In
+this
+context,
+this
+paper
+proposes
+a
+Koopman
+operator-based SMPC (K-SMPC) for enhanced lateral
+control of autonomous vehicles. The EDMD method is
+adopted to obtain the approximated Koopman operator in a
+finite-dimensional space for practical use of the Koopman
+operator. Our work considers the approximation error coming
+from the EDMD-based approximation of the Koopman
+operator. Since the Koopman operator is defined in an
+infinite-dimensional space, the approximation error of the
+VOLUME 13, 2025
+13945
+
+J. S. Kim et al.: K-SMPC for Enhanced Lateral Control of Autonomous Vehicles
+EDMD approach is inevitable. In addition, it is not easy
+to compute the RPI set against the error, and the RPI
+set might be much larger because of the abnormal error.
+Therefore, we consider the approximation error to be a
+probabilistic signal and design the chance constraints in
+SMPC to handle the error. As a result, the proposed method
+is less conservative than the RMPC with respect to the
+error. To our knowledge, this paper is the first research in
+which the SMPC is used to resolve the modeling error of
+the approximated Koopman operator in the LKS application.
+All constraints are satisfied under the Koopman modeling
+error with recursive feasibility in the proposed method.
+A high-fidelity vehicle simulator, CarSim, is used to validate
+the proposed method. The simulation results confirmed
+that the proposed method always satisfies the constraints
+and is recursively feasible. Moreover, a comparative study
+shows that the proposed method outperforms other methods:
+the linear vehicle model-based SMPC (L-SMPC) and the
+Koopman-based Linear Quadratic Regulator (K-LQ) [32].
+The contributions of the paper are three-fold:
+• We compute the Koopman-based vehicle model for the
+Lane Keeping System (LKS). The vehicle model has
+highly nonlinear dynamic motion in dynamic driving,
+such as varying vehicle speed or cornering stiffness.
+Thus, we reformulate the Koopman-based vehicle model
+from [32] to effectively capture the vehicle nonlinear
+dynamics for the LKS in various driving situations.
+• The approximation error of the Koopman operator in a
+finite-dimensional space is considered and handled as
+a probabilistic error. Since the approximated Koopman
+model may fail to represent the system accurately,
+we designed K-SMPC to predict the expected state of
+the system and satisfy constraints under uncertainties of
+the approximated Koopman model. With the proposed
+algorithm, we generated K-SMPC resistant to an error
+in the model identification and uncertainties in the
+dynamics.
+• We prove the recursive feasibility of the proposed
+K-SMPC with an explicit first-step state constraint by
+computing a robust control invariant set by providing
+a theorem. Compared to a mixed worst-case/stochastic
+prediction for constraint tightening, the proposed

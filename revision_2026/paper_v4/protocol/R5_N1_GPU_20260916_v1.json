@@ -1,0 +1,72 @@
+{
+  "protocol_id": "R5-N1-basic-noise-seed5105-gpu-v1",
+  "scope": "R5_LEGAL_INFORMATION",
+  "authorization": "Task-book section 5 C2/R5, released by C1 total PASS (analysis/20260916_R4_GATE_01/r4_gate.json) under gpu_platform_decision_20260916.md.",
+  "run": {
+    "output": "results/20260916_R5_N1_GPU01",
+    "noise": "basic",
+    "seed": 5105,
+    "backend": "gpu",
+    "parameter_id": "P0",
+    "plant_max_step_ms": 2.0,
+    "controller_step_ms": 20.0,
+    "horizon": 20,
+    "lambda_internal": 2.0,
+    "frozen_dynamics_jacobian": false,
+    "finite_difference_scale": 1.0,
+    "total_ticks": 2379
+  },
+  "information_interface": {
+    "schema": "EXP-R2-R5-legal-information-v2-absolute-tick-noise",
+    "architecture": "centralized same-tick fusion of four vehicle-local packets and one payload-coordinator packet",
+    "noise_indexing": "per absolute tick, node and field; entropy hashed per tick",
+    "not_claimed": "R5 proves interface transfer only. It does not establish distributed or communication-robust control; impairment injection belongs to E03/E05."
+  },
+  "noiseless_no_op_gate": {
+    "not_applicable": "N1 changes the measurement noise by design and is not required to reproduce the noiseless run; it must pass the hard gates and report the performance change."
+  },
+  "hard_gates": {
+    "ultimate_force_n": 15000.0,
+    "tire_utilization": 1.0,
+    "minimum_support_load_n": 0.0
+  },
+  "stop_rule": "N0 failure stops N1. N1 violating a hard gate fails R5; no filter is added and the noise is not reduced to hide it.",
+  "identity_files": [
+    {
+      "path": "src/paper_v4_core/r5_runner.py",
+      "sha256": "e1064b30cbdfb2b4ebe2e92f754346e071336365207eafdce7ecde318fd5946e"
+    },
+    {
+      "path": "src/paper_v4_core/information/legal_information.py",
+      "sha256": "02bb2e0e73fccff719930bbbcc449ab020531c4253c42653debea440b68d6365"
+    },
+    {
+      "path": "src/paper_v4_core/r5_information_tests.py",
+      "sha256": "1761ad98aa9f69a8283b38bc784380e028bb8c8aaea4affca2d52cbf81f2eba7"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531"
+    },
+    {
+      "path": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+      "sha256": "8550f6a2b073d3eea83e9729997bd72bc6e2290247cdd635cc6556c9529f5946"
+    },
+    {
+      "path": "analysis/20260916_R4_GATE_01/r4_gate.json",
+      "sha256": "8e7aa6c76c55f3c63da634ecdbfad7161993cf877d24432010350742393f6905"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    },
+    {
+      "path": "protocol/R4_P0_2MS_GPU_20260915_v1.json",
+      "sha256": "5fbd027d6babb3b4262b1ddcbb988bda361943693296b3f5662b788a6c7ffbe4"
+    },
+    {
+      "path": "results/20260916_R5_BASELINE_P0_2MS_GPU01/pool.json",
+      "sha256": "fb1fba6d3b0103d4ef0a14685bc8766122dddfe57797d2efccbf8ba6386c3fd3"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# ---------------------------------------------------------------------------
+# 身份链保护：禁止任何换行符/编码转换。
+#
+# 本项目的工作树字节即证据：revision_2026/paper_v4/protocol/*.json 里的每个
+# identity_files 条目都钉死了对应文件的 SHA-256（见 experiment.md 第 1 节、
+# 第 12.1 节）。本机 system 级 git 配置为 core.autocrlf=true，若按默认行为
+# 检出时把 LF 转成 CRLF（或提交时反向转换），被钉住文件的 SHA 会改变，
+# 历史协议与结果的身份校验会全部失败。
+#
+# `* -text` 表示所有文件一律不做 EOL 归一化；它同时覆盖 core.autocrlf 设置，
+# 因此别人以默认配置 clone 本仓库也不会破坏身份链。
+# ---------------------------------------------------------------------------
+* -text
+
+# 已确认的混合换行现状（禁止"顺手统一"）：
+#   revision_2026/paper_v4/experiment.md                                      CRLF
+#   revision_2026/paper_v4/protocol/R5_N0_GPU_20260916_v1.json                CRLF
+#   revision_2026/paper_v4/src/paper_v4_core/controllers/physical_tracking_pilot.py  CRLF
+#   revision_2026/paper_v4/src/paper_v4_core/plant/four_vehicle_common.py     LF
+# 两者都必须保持原样。

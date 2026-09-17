@@ -1,0 +1,49 @@
+{
+  "protocol_id": "R5-information-gate-v1",
+  "authorization": "Task-book section 5: r5_information_gate.json accepts only the two single runs and the interface audit.",
+  "scope": "R5_INFORMATION_GATE",
+  "output": "analysis/20260916_R5_INFORMATION_GATE_01",
+  "noise_seed": 5105,
+  "no_op_gate": {
+    "baseline_role": "same-backend GPU no-op partner",
+    "backend": "gpu",
+    "threshold_absolute": 1e-12,
+    "rule": "gpu_platform_decision_20260916.md rule P2: invariance gates are compared within one backend; the threshold is unchanged and only the comparison partner changes."
+  },
+  "inputs": {
+    "contract_tests": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+    "baseline": "results/20260916_R5_BASELINE_P0_2MS_GPU01",
+    "n0": "results/20260916_R5_N0_GPU01",
+    "n1": "results/20260916_R5_N1_GPU01"
+  },
+  "identity_files": [
+    {
+      "path": "tools/r5_information_gate.py",
+      "sha256": "74895550e53a0b579eba6d66dca2e12b269130008b2c48c4e017ed8605ec97e3"
+    },
+    {
+      "path": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+      "sha256": "8550f6a2b073d3eea83e9729997bd72bc6e2290247cdd635cc6556c9529f5946"
+    },
+    {
+      "path": "protocol/R5_N0_GPU_20260916_v1.json",
+      "sha256": "7f7d0f4203838660b734e09ea22a7d9f208ece85bc5473a4857a4147d7119cd1"
+    },
+    {
+      "path": "protocol/R5_N1_GPU_20260916_v1.json",
+      "sha256": "7b992345ea6091031b20aab1f7ad61653e1b68e3cb9d9790d79e5eb4e3b67d8e"
+    },
+    {
+      "path": "protocol/R4_P0_2MS_GPU_20260915_v1.json",
+      "sha256": "5fbd027d6babb3b4262b1ddcbb988bda361943693296b3f5662b788a6c7ffbe4"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    },
+    {
+      "path": "analysis/20260916_R4_GATE_01/r4_gate.json",
+      "sha256": "8e7aa6c76c55f3c63da634ecdbfad7161993cf877d24432010350742393f6905"
+    }
+  ]
+}

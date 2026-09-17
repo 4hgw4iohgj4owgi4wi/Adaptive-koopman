@@ -1,0 +1,59 @@
+{
+  "schema_version": "EXP-R4B-offline-budget-v1",
+  "status": "FROZEN",
+  "purpose": "Offline numerical convergence validation only; no real-time deployment claim.",
+  "taskbook": {
+    "version": "EXP-R4B",
+    "path": "inputs/experiment_EXP-R4B_5586D94A.md",
+    "sha256": "5586d94a6484f564b735003e27384d57cf39cc831a166dff81382b66b74bb2ac"
+  },
+  "parent_protocol": {
+    "version": "EXP-R4",
+    "sha256": "97d79f764f0ed308539e9a911d0498ecc571a82dda2942761a092ddb3fce1144"
+  },
+  "scientific_candidate_id": "EXP-R3-unfrozen-v1",
+  "implementations": {
+    "serial": "EXP-R4B-serial-v1",
+    "parallel8": "EXP-R4B-parallel8-v1"
+  },
+  "fixed_contract": {
+    "controller_period_s": 0.02,
+    "actuator_update_s": 0.002,
+    "horizon": 20,
+    "lambda_internal": 2.0,
+    "finite_difference_scale": 1.0,
+    "frozen_dynamics_jacobian": false,
+    "parallel_workers": 8,
+    "short_window_s": [42.0, 44.5],
+    "route_length_m": 95.12831551628261
+  },
+  "budgets": {
+    "B2_combined_short_windows_wall_s": 7200,
+    "R3_1ms_wall_s": 43200,
+    "R3_0_5ms_wall_s": 43200,
+    "R3_combined_wall_s": 86400
+  },
+  "stop_rules": [
+    "Stop B3 if any B2 exact-equivalence, source-reproduction, evidence, or deadline check fails.",
+    "Stop before 0.5 ms if the 1 ms route is incomplete, times out, or fails any independent gate.",
+    "Never relax physics, request, route, controller-period, or convergence thresholds.",
+    "Preserve all failed and timeout evidence."
+  ],
+  "claim_limits": [
+    "FAIL_ORIGINAL_5S_BUDGET",
+    "OFFLINE_ONLY",
+    "NO_REALTIME_CLAIM",
+    "NO_KOOPMAN_OR_NETWORK_CONTRIBUTION_CLAIM"
+  ],
+  "source_snapshot": "protocol/source_snapshots/EXP-R4B_parallel8_v1",
+  "source_sha256": {
+    "pilot_runner.py": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728",
+    "r2c_analyze.py": "e88b22f40a0edd841eba36329edd356876935b74d65c6942195f8f65926970a7",
+    "controllers/physical_tracking_pilot.py": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531",
+    "controllers/parallel_fd_backend.py": "d6ded1a9cbea08034bbb025276aee8569eb7fcac34cd95c54c4c590d9aad6495",
+    "diagnostics/r4b_qp_equivalence.py": "8c0c826b69340af89d7e8c34f6991160a468a101f983e098652d1658636300a9",
+    "diagnostics/r4b_window_runner.py": "45cf21d158767b099ee858b5c3f3119e67ae3932e00116e9ca3aeb81793b7f19",
+    "diagnostics/r4b_window_analyze.py": "963ad527eff107bfc74ecaedacb66ad4762419c5a2b054d35a90e94088b95eb8"
+  },
+  "historical_2ms_status_sha256": "c1db7cde0e17f4dabb755c51403086db79dd2900b201dcdfa6904c00e4cac8f8"
+}

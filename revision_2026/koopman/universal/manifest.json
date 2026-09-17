@@ -1,0 +1,116 @@
+{
+  "stage": "T0",
+  "protocol_sha256": "DF6EE9810137687B9C3814040FFF827DB1DC2DFAE1ED2F2045E6F2618F69BCF7",
+  "files": {
+    "protocol": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal\\protocol.md",
+      "sha256": "DF6EE9810137687B9C3814040FFF827DB1DC2DFAE1ED2F2045E6F2618F69BCF7"
+    },
+    "compare_t0_freeze": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\t0\\freeze.json",
+      "sha256": "C93EBD444DFDD1878E62C4FD04037A40B97E971B48F74006B0EC905DF975AECF"
+    },
+    "compare_t2_complete": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\t2\\complete.json",
+      "sha256": "30F1B4E35EFD25912B9DC900D6DBA752643716E0B6691B90DE2F67C9C4B2C563"
+    },
+    "compare_t3_complete": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\t3\\complete.json",
+      "sha256": "FC1BFED1AD8D37436654FF10438CADF9AE2D9FB1572C7BA73DB1B34B11FD13E0"
+    },
+    "compare_t4_results": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\t4\\confirm_results.json",
+      "sha256": "F55AE9BD858F8709D0B8C99644B3A8BF427AF7BA3B35D96D3D4BE5CC26C6767E"
+    },
+    "compare_t4_gates": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\t4\\final_gates.json",
+      "sha256": "CA13FB07AE81617FF4E6F7C1F05C8BCB19A76BBBC6EC43CAB9737BF8931B862E"
+    },
+    "compare_confirm_manifest": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\confirm\\manifest.json",
+      "sha256": "6ACA00340C4D5A113141D1413820F033228CD625F3D8BE41BA732E3351B299A2"
+    },
+    "K2": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K2.npz",
+      "sha256": "5219A0BF4A0BB134A0400FF82F64197CCD249913AD47D101575A51B43A9525F9"
+    },
+    "K3": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K3.npz",
+      "sha256": "D340AC4B944EC5E525C18AA4E31816C6AC4C690B16EF244F9DEDE51ABDB05EBC"
+    },
+    "K3-r2": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K3-r2.npz",
+      "sha256": "473D1A36F08A119E0A0C4CE52C61B1D47CFBC15AA010207BD569716420CB28F0"
+    },
+    "K4": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K4.npz",
+      "sha256": "1203514E3FE48F3E12EAAA876D4D5AADB5207A0196084CA0C6C1916BC24248DA"
+    },
+    "K5-linear": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K5-linear.npz",
+      "sha256": "97FBEFE96EA2708B76144140718A91154C9B1288120BD1266BA5A9174C4EAE99"
+    },
+    "K5-bilinear": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare\\models\\K5-bilinear.npz",
+      "sha256": "3AECEBCD210F4FB9D39A371E6D9D8E9223D542ED15985CBA19D45A30673E5949"
+    },
+    "normalizers": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\k01\\matrices.npz",
+      "sha256": "17723A803768015A83CD5A99D67873648E40A057192640EE3F421C666DA8A04B"
+    },
+    "generator": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\generate_compare.py",
+      "sha256": "87BA89625A81B839DC4F478D4A822D99D963D34345B26C715C9FA49D86385BB2"
+    },
+    "compare_pipeline": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\compare_pipeline.py",
+      "sha256": "9170A3085B0C717BAA0E388B2BBA329FE79F838C8ADB235C1C56292FBDD30B79"
+    },
+    "universal_pipeline": {
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_pipeline.py",
+      "sha256": "06DF6742D6973853882D45CEC4A1127DC87937640B53FD8688538249D5E76441"
+    }
+  },
+  "historical_K0_sha256": "B2202FB3579BCE8C00EBAC2A57EE358DF00A04CE06E78CC77B47B9D7E2C11693",
+  "historical_K1_sha256": "A3EA666624E3A01BCE2B173881990906BE1B1A2EEF10465FC82AC92C813757E3",
+  "expected_artifact_hashes": {
+    "K2": "5219A0BF4A0BB134A0400FF82F64197CCD249913AD47D101575A51B43A9525F9",
+    "K3": "D340AC4B944EC5E525C18AA4E31816C6AC4C690B16EF244F9DEDE51ABDB05EBC",
+    "K3-r2": "473D1A36F08A119E0A0C4CE52C61B1D47CFBC15AA010207BD569716420CB28F0",
+    "K4": "1203514E3FE48F3E12EAAA876D4D5AADB5207A0196084CA0C6C1916BC24248DA",
+    "K5-linear": "97FBEFE96EA2708B76144140718A91154C9B1288120BD1266BA5A9174C4EAE99",
+    "K5-bilinear": "3AECEBCD210F4FB9D39A371E6D9D8E9223D542ED15985CBA19D45A30673E5949"
+  },
+  "artifact_hash_match": {
+    "K2": true,
+    "K3": true,
+    "K3-r2": true,
+    "K4": true,
+    "K5-linear": true,
+    "K5-bilinear": true
+  },
+  "confirm_trajectory_count": 140,
+  "confirm_files_ok": true,
+  "macro_reaudit": {
+    "K0": 0.12513541290453,
+    "K1": 0.13283731952714745,
+    "K2": 0.4023273784857165,
+    "K3": 0.44346566324356557,
+    "K3-r2": 0.44346566324356557,
+    "K4": 0.40143743177289654,
+    "K5-linear": 0.16730901051004596,
+    "K5-bilinear": 3928981162.612287
+  },
+  "macro_match_to_frozen_exact_values": {
+    "K0": true,
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K3-r2": true,
+    "K4": true,
+    "K5-linear": true,
+    "K5-bilinear": true
+  },
+  "python": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0"
+}

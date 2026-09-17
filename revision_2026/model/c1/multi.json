@@ -1,0 +1,141 @@
+{
+  "stage": "C1_clean_single_lane_five_seed",
+  "seeds": [
+    3201,
+    3202,
+    3203,
+    3204,
+    3205
+  ],
+  "lane": {
+    "requested_shift_m": 3.5,
+    "actual_shift_m": 3.499999986763364,
+    "start_s_m": 15.718954589263738,
+    "length_m": 30.043078611963043,
+    "curvature_peak_1pm": 0.019307299400211177,
+    "final_heading_rad": -8.939969333460098e-05
+  },
+  "predeclared_gate": {
+    "all_physical_runs_accepted": true,
+    "nr_tracking_noninferior_to_ake": true,
+    "nr_improves_at_least_one_core_metric": true
+  },
+  "aggregate": {
+    "methods": {
+      "baseline": {
+        "n": 5,
+        "accepted_count": 5,
+        "completion_count": 5,
+        "payload_lateral_rmse_m_mean": 0.06935973116955847,
+        "payload_lateral_rmse_m_std": 0.0,
+        "payload_lateral_peak_m_mean": 0.13994980889472122,
+        "payload_lateral_peak_m_std": 0.0,
+        "payload_heading_rmse_rad_mean": 0.025957849542132268,
+        "payload_heading_rmse_rad_std": 3.878959614448864e-18,
+        "connector_force_peak_n_mean": 383.71650378328707,
+        "connector_force_peak_n_std": 0.0,
+        "connector_force_p99_n_mean": 336.2805071921353,
+        "connector_force_p99_n_std": 0.0,
+        "connector_force_rms_n_mean": 161.94106807343886,
+        "connector_force_rms_n_std": 0.0,
+        "opening_peak_n_mean": 95.40646321248005,
+        "opening_peak_n_std": 0.0,
+        "opening_p99_n_mean": 53.107176125550176,
+        "opening_p99_n_std": 0.0,
+        "tire_utilization_peak_mean": 0.0771603087377996,
+        "tire_utilization_peak_std": 0.0,
+        "mean_step_time_s_mean": 0.07325228701110936,
+        "mean_step_time_s_std": 0.0006062045874942444
+      },
+      "tf14_phase_role": {
+        "n": 5,
+        "accepted_count": 5,
+        "completion_count": 5,
+        "payload_lateral_rmse_m_mean": 0.024837098625048987,
+        "payload_lateral_rmse_m_std": 0.0,
+        "payload_lateral_peak_m_mean": 0.05006165033096168,
+        "payload_lateral_peak_m_std": 0.0,
+        "payload_heading_rmse_rad_mean": 0.01940759838007684,
+        "payload_heading_rmse_rad_std": 0.0,
+        "connector_force_peak_n_mean": 362.32865270617214,
+        "connector_force_peak_n_std": 0.0,
+        "connector_force_p99_n_mean": 309.41392792519656,
+        "connector_force_p99_n_std": 0.0,
+        "connector_force_rms_n_mean": 86.46471951934271,
+        "connector_force_rms_n_std": 0.0,
+        "opening_peak_n_mean": 52.96362861778398,
+        "opening_peak_n_std": 7.944109290391274e-15,
+        "opening_p99_n_mean": 24.811872531088174,
+        "opening_p99_n_std": 0.0,
+        "tire_utilization_peak_mean": 0.05936848305024014,
+        "tire_utilization_peak_std": 0.0,
+        "mean_step_time_s_mean": 0.07395680011838526,
+        "mean_step_time_s_std": 0.0002635805242144315
+      }
+    },
+    "paired": {
+      "payload_lateral_rmse_m": {
+        "nr_minus_ake_mean": -0.044522632544509486,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.6419089548612635,
+        "nr_better_seed_count": 5
+      },
+      "payload_lateral_peak_m": {
+        "nr_minus_ake_mean": -0.08988815856375953,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.642288540968133,
+        "nr_better_seed_count": 5
+      },
+      "payload_heading_rmse_rad": {
+        "nr_minus_ake_mean": -0.006550251162055425,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.2523418263683088,
+        "nr_better_seed_count": 5
+      },
+      "connector_force_peak_n": {
+        "nr_minus_ake_mean": -21.38785107711493,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.05573867911919218,
+        "nr_better_seed_count": 5
+      },
+      "connector_force_p99_n": {
+        "nr_minus_ake_mean": -26.866579266938743,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.07989335894390218,
+        "nr_better_seed_count": 5
+      },
+      "connector_force_rms_n": {
+        "nr_minus_ake_mean": -75.47634855409615,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.466072932900926,
+        "nr_better_seed_count": 5
+      },
+      "opening_peak_n": {
+        "nr_minus_ake_mean": -42.44283459469607,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.4448633055411718,
+        "nr_better_seed_count": 5
+      },
+      "opening_p99_n": {
+        "nr_minus_ake_mean": -28.295303594462002,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.5327962369448781,
+        "nr_better_seed_count": 5
+      },
+      "tire_utilization_peak": {
+        "nr_minus_ake_mean": -0.017791825687559458,
+        "nr_minus_ake_std": 0.0,
+        "nr_relative_change_mean": -0.23058261402268765,
+        "nr_better_seed_count": 5
+      },
+      "mean_step_time_s": {
+        "nr_minus_ake_mean": 0.0007045131072758975,
+        "nr_minus_ake_std": 0.0008526273667150722,
+        "nr_relative_change_mean": 0.009694293378745887,
+        "nr_better_seed_count": 1
+      }
+    }
+  },
+  "claim_supported": true,
+  "passed": true
+}

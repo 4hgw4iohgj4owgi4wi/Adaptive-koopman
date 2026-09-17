@@ -1,0 +1,30 @@
+[
+  {
+    "Name": "e0_comm_key_shard_2026_2030",
+    "Id": 2804,
+    "Out": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2026_2030",
+    "Stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2026_2030\\stdout.log",
+    "Stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2026_2030\\stderr.log"
+  },
+  {
+    "Name": "e0_comm_key_shard_2031_2035",
+    "Id": 37024,
+    "Out": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2031_2035",
+    "Stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2031_2035\\stdout.log",
+    "Stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2031_2035\\stderr.log"
+  },
+  {
+    "Name": "e0_comm_key_shard_2036_2040",
+    "Id": 15312,
+    "Out": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2036_2040",
+    "Stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2036_2040\\stdout.log",
+    "Stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2036_2040\\stderr.log"
+  },
+  {
+    "Name": "e0_comm_key_shard_2041_2045",
+    "Id": 39816,
+    "Out": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2041_2045",
+    "Stdout": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2041_2045\\stdout.log",
+    "Stderr": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_comm_key_shard_2041_2045\\stderr.log"
+  }
+]

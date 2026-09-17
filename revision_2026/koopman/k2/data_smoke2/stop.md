@@ -1,0 +1,7 @@
+# K2数据生成停止
+
+生成过程中出现数值非有限、100 m工况未跑满或基础分布连接力超过15 kN，已停止后续训练。
+
+失败记录：`[{"scenario": "staged_100m", "traj_id": 0, "seed": 52000, "split": "train", "external": false, "network_trace_id": "clean", "steps": 3000, "duration_s": 60.0, "distance_m": 98.85645382213043, "distance_gate_passed": false, "control_dt_s": 0.02, "plant_dt_s": 0.002, "substeps": 10, "initial_speed_mps": 1.9713357384194274, "turn_sign": 1.0, "parameter_scales": {"payload_mass_scale": 1.0193820228392314, "connector_stiffness_scale": 0.9252562603648006, "connector_damping_scale": 0.9730348163288288, "connector_free_play_scale": 1.0466617159917442, "vehicle_mu_scale": 1.0096843512819909}, "params": {"vehicle": {"mass_kg": 1200.0, "yaw_inertia_kgm2": 1800.0, "lf_m": 1.2, "lr_m": 1.3, "cf_nprad": 55000.0, "cr_nprad": 60000.0, "mu": 0.9087159161537918, "gravity_mps2": 9.81}, "payload": {"mass_kg": 2038.7640456784627, "length_m": 5.0, "width_m": 2.0, "cog_height_m": 1.2, "gravity_mps2": 9.81}, "connector": {"stiffness_npm": 27757.68781094402, "damping_nspm": 3405.6218571509007, "free_play_m": 0.0020933234319834883, "rated_force_n": 12000.0, "ultimate_force_n": 15000.0}}, "max_connector_force_n": 2110.5248154259684, "max_opening_n": 488.58614482910303, "max_tire_utilization": 1.0, "rated_exceeded_steps": 0, "ultimate_exceeded_steps": 0, "icr_residual_peak_mps": 1.0325074129013956e-14, "finite": true, "file": "trajectories\\train_staged_100m_000.npz", "sha256": "e058db0b8b72499adf56fe8133394977bfbe5a25e24f2ae6a96aba1c9019c08b"}]`
+
+解决顺序：先复核对应场景命令、初始扰动和参数范围；不得通过删除异常轨迹或放宽15 kN门掩盖问题。

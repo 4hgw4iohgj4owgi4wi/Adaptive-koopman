@@ -1,0 +1,1610 @@
+Received: 5 March 2025
+Revised: 3 April 2025
+Accepted: 23 April 2025
+Published: 27 April 2025
+Citation: Shahab, M.; Nasir, A.;
+Alyazidi, N.M. Formation Control of
+Wheeled Mobile Robots with
+Fault-Tolerance Capabilities. Robotics
+2025, 14, 59. https://doi.org/
+10.3390/robotics14050059
+Copyright: © 2025 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license
+(https://creativecommons.org/
+licenses/by/4.0/).
+Article
+Formation Control of Wheeled Mobile Robots with
+Fault-Tolerance Capabilities
+Muhammad Shahab 1
+ , Ali Nasir 1,2,3,*
+ and Nezar M. Alyazidi 1,4
+1 Control and Instrumentation Engineering Department, King Fahd University of Petroleum & Minerals,
+Dhahran 31261, Saudi Arabia; g202215480@kfupm.edu.sa (M.S.); nalyazidi@kfupm.edu.sa (N.M.A.)
+2 Interdisciplinary Research Center for Intelligent Manufacturing and Robotics, King Fahd University of
+Petroleum & Minerals, Dhahran 31261, Saudi Arabia
+3 Interdisciplinary Research Center for Aviation and Space Exploration (Guest Scholar), King Fahd University
+of Petroleum & Minerals, Dhahran 31261, Saudi Arabia
+4 Interdisciplinary Research Center for Smart Mobility and Logistics, King Fahd University of Petroleum &
+Minerals, Dhahran 31261, Saudi Arabia
+* Correspondence: ali.nasir@kfupm.edu.sa
+Abstract: This research investigates the impact of actuator faults on the formation control of
+multiple-wheeled mobile robots—a critical aspect in coordinating multi-robot systems for
+applications such as surveillance, exploration, and transportation. When a fault occurs in
+any of the robots, it can disrupt the formation and adversely affect the system’s performance,
+thereby compromising system efficiency and reliability. While numerous studies have
+focused on fault-tolerant control strategies to maintain formation integrity, there is a notable
+gap in the literature regarding the relationship between controller gains and settling time
+under varying degrees of actuator loss. In this paper, we develop a kinematic model of
+wheeled mobile robots and implement a leader–follower-based formation control strategy.
+Actuator faults are systematically introduced with varying levels of effectiveness (e.g.,
+80%, 60%, and 40% of full capacity) to observe their effects on formation maintenance. We
+generate data correlating controller gains with settling time under different actuator loss
+conditions and fit a polynomial curve to derive an equation describing this relationship.
+Comprehensive MATLAB simulations are conducted to evaluate the proposed methodology.
+The results demonstrate the influence of actuator faults on the formation control system
+and provide valuable insights into optimizing controller gains for improved fault tolerance.
+These findings contribute to the development of more robust multi-robot systems capable
+of maintaining formation and performance despite the presence of actuator failures.
+Keywords: formation control; actuator effectiveness; polynomial curve fitting; multi-
+agent systems
+1. Introduction
+Formation control of multi-robot systems has emerged as a vital area of research,
+driven by the rapid proliferation of robotics in surveillance, exploration, transportation,
+and various industrial applications. Coordinating multi-wheeled mobile robots (WMRs) to
+achieve a desired formation pattern not only improves task efficiency but also enhances
+robustness and adaptability in complex and dynamic environments [1–4]. By maintaining a
+formation, a group of mobile robots can execute distributed tasks more effectively, minimize
+detection risk in surveillance missions, and provide extensive coverage in large-scale explo-
+ration. Formation control strategies commonly rely on decentralized or leader–follower
+Robotics 2025, 14, 59 https://doi.org/10.3390/robotics14050059
+
+Robotics 2025, 14, 59 2 of 32
+approaches, where a designated leader sets the trajectory while the followers maintain
+specific relative positions [5–7].
+Despite considerable progress in formation control techniques, one critical challenge
+remains, that is, the system’s ability to maintain formation in the presence of faults. Actuator
+faults—arising from component degradation, sensor inaccuracies, mechanical wear, or
+unexpected collisions—can significantly compromise a robot’s mobility, speed, or steering
+capabilities [8–11]. When manifested in one or more robots within a formation, such faults
+often lead to deviations from the desired configuration and ultimately impact settling
+time, position accuracy, and overall formation integrity. Prolonged recovery periods
+can be particularly detrimental in time-sensitive applications, such as search-and-rescue
+operations, where delayed responses may compromise mission success [12,13].
+The field of fault-tolerant control (FTC) has addressed many of these issues, focusing
+on robust and adaptive controllers designed to accommodate faults while maintaining
+system stability and performance [ 14–17]. Numerous strategies have been proposed,
+including control reconfiguration, gain-scheduling, and adaptive estimation of faulty
+actuators to ensure that robots remain operational despite degraded capabilities [18–21].
+Research efforts have explored both model-based and model-free approaches, leveraging
+techniques from control theory, artificial intelligence, and hybrid systems analysis [22–24].
+However, despite these advances, a notable gap persists in the current literature—the
+quantification and explicit characterization of the relationship between controller gains
+and settling time under varying degrees of actuator loss. While it is generally understood
+that adjusting controller parameters can mitigate the effects of faults, the exact nature of
+this relationship and its implications for optimizing control strategies remain insufficiently
+explored. Understanding how the controller gains influence the transient response of
+the system—specifically the time required for the formation to re-establish itself after a
+fault—could enable more informed design choices and improve the overall resilience of
+multi-robot systems.
+Existing studies often focus on high-level strategies and qualitative metrics, neglecting
+the finer quantitative details necessary for the systematic tuning of controller parameters.
+For instance, while extensive research has addressed formation control under nominal
+conditions [25,26], and leader–follower schemes have been studied rigorously [2,27,28], less
+attention has been paid to how these schemes respond when a robot’s actuator efficiency
+is reduced to fractions of its nominal capacity (e.g., 80%, 60%, or 40%). This gap in
+the literature hinders the development of analytical tools and practical guidelines for
+optimizing controller gains to minimize performance degradation.
+This paper aims to fill this gap by presenting a comprehensive analysis of how actuator
+faults affect formation maintenance and settling time in the leader–follower formation
+control of WMRs. We build on foundational kinematic models of WMRs [29–31] and inte-
+grate actuator fault scenarios directly into the formation control framework. We generate
+empirical data that correlate controller gains with the resulting settling times by simulating
+varying degrees of actuator effectiveness. A polynomial curve fitting approach is then used
+to derive a functional equation describing this relationship.
+The findings are expected to inform the design of more robust, fault-tolerant formation
+controllers and facilitate the development of guidelines for selecting controller parameters
+that minimize the performance degradation associated with actuator faults. This work
+contributes to the broader pursuit of autonomous, resilient multi-robot systems capable of
+operating in uncertain, real-world conditions. Through extensive MATLAB simulations
+and analysis, we provide valuable insights that can guide future research and development
+efforts in achieving more robust formation control strategies.
+
+Robotics 2025, 14, 59 3 of 32
+2. Literature Review and Problem Formulation
+Formation control and fault-tolerant strategies in multi-robot systems have been
+extensively studied, forming a robust body of knowledge. Researchers have addressed
+various aspects, ranging from basic formation maintenance to sophisticated distributed
+algorithms that handle uncertainties, disturbances, and faults. This section reviews relevant
+literature on (1) formation control strategies for WMRs, (2) fault detection and isolation (FDI)
+methods, FTC approaches, and (3) the interplay between controller parameter selection and
+performance under fault conditions. Furthermore, the research gap has been highlighted
+at the end of the section, and the consequent formulation of the research problem has
+been established.
+2.1. Formation Control Strategies for Wheeled Mobile Robots
+Multi-robot formation control has garnered significant attention due to extensive
+applications in cooperative tasks such as surveillance, mapping, and transportation [1–3,32].
+Classic approaches rely on leader–follower schemes, virtual structures, and behavior-based
+methods. In leader–follower paradigms, one or more robots (leaders) define the trajectory,
+and followers maintain predefined relative positions [ 5–7,33]. Early works focused on
+kinematic models of WMRs and control laws for trajectory tracking [ 29], while more
+recent studies addressed time-varying communication topologies and nonlinearities in
+nonholonomic WMRs [27,34].
+Olfati-Saber and Murray [4] introduced consensus-based approaches that influenced
+subsequent studies integrating graph-theoretic methods [26,28]. Cao, Ren, and Egerstedt
+explored distributed containment control and cooperative tracking for formation mainte-
+nance [2,35]. Lyapunov-based methods [13], decentralized algorithms [36], and predictive
+control techniques [37] have been proposed to improve convergence rates and robustness.
+In the context of multi-robot systems, approaches such as those by Pham et al. [ 38] em-
+phasize passive adaptive FTC that does not require prior knowledge of actuator faults or
+dead zones. Similarly, Phuong et al. [39] employed Lyapunov stability theory to develop
+controllers that ensure stability in the presence of actuator faults.
+Experimental studies have validated these strategies through real-time implementa-
+tions on small-wheeled robots in uncertain environments [40,41]. However, these works do
+not address actuator faults, which are critical considerations in real-world applications. Our
+research builds upon these by integrating actuator fault scenarios into the leader–follower
+framework, assessing their impact on formation maintenance.
+2.2. Fault Detection, Isolation, and Fault-Tolerant Control
+As robotic teams operate in complex environments, reliability and fault resilience
+have become critical. Actuator faults may arise from degradation, drift, or environmental
+interactions [8–10]. FDI methods use analytical redundancy, parity equations, or estimators
+(e.g., Kalman filters, unknown input observers) to detect faults early [18,42].
+FTC strategies are either passive or active. Passive FTC designs robust controllers for a
+known class of faults, while active FTC reconfigures control laws after fault detection[14,16].
+Gain-scheduling techniques [15,17,19] adjust controller parameters dynamically. Adaptive
+and sliding-mode controls have also been developed for nonlinear WMR models to ensure
+stability under faults [20,43]. Recent advancements in fault-tolerant control (FTC) have
+enhanced robotic system reliability. Ref. [44] used the extended Kalman filter (EKF) and
+graph theory to detect and isolate faults in a master-slave network of wheeled mobile
+robots, ensuring functionality by isolating faulty units. Ngo et al. [ 45] addressed fault-
+tolerant control allocation for cooperative transportation with multiple omnidirectional
+robots, integrating fault detection, isolation, and reconfiguration (FDIR) with a distributed
+
+Robotics 2025, 14, 59 4 of 32
+controller to redistribute efforts among healthy actuators. Together, these studies improve
+fault detection, isolation, and control reconfiguration, bolstering robotic reliability across
+diverse setups.
+2.3. Controller Parameter Selection and Performance Under Fault Conditions
+While formation control and FTC have advanced, few works examine the direct
+relationship between controller gains and system performance under partial actuator faults.
+Typically, gains are chosen for stability and nominal robustness [34–36], with little focus
+on fault severity and its influence on transient responses. The work by Ying and Zhu
+(2023) on integrating model predictive control (MPC) with an intermediate estimator for
+fault-tolerant tracking control provides valuable insights into how controller gains can be
+adjusted to compensate for actuator faults [46]. Their approach highlights the importance of
+estimation techniques for dealing with unknown faults and dynamically adapting controller
+parameters to maintain system performance.
+Some optimization-based approaches use genetic algorithms or heuristic methods to
+tune gains [47,48], but these seldom consider varying actuator efficiencies. Data-driven
+models and polynomial fitting techniques to relate gains and performance are underex-
+plored in fault scenarios, leaving a gap in establishing explicit quantitative relationships.
+The existing literature offers a robust foundation in formation control, FTC methods,
+and distributed strategies for WMRs. However, it falls short in providing a clear, quan-
+titative framework that connects controller gains, actuator fault severity, and transient
+system performance, such as settling time. This gap in the literature is addressed in the
+present study, which systematically examines the impact of controller gains on the transient
+behavior of formation control systems under different fault conditions. By doing so, this
+research aims to inform and guide more effective design decisions for robust multi-robot
+formations, ultimately improving their performance in real-world scenarios.
+2.4. Research Gap and Original Contributions
+While the literature provides robust strategies for formation control [2,4] and fault-
+tolerant control (FTC) [ 14,20,22], it lacks a quantitative analysis of how actuator faults
+affect transient performance, such as settling time, and how controller gains can be tuned
+to mitigate these effects. Our study addresses this gap by systematically analyzing the
+impact of actuator faults (e.g., 80%-40% efficiency) on formation maintenance and deriv-
+ing a polynomial relationship between controller gains and settling time, as detailed in
+Sections 11 and 13.
+The relationship between controller gains and the system performance under varying
+levels of actuator effectiveness remains underexplored in the context of formation control
+for WMRs. This study is motivated by the need to address key questions related to system
+performance and stability when actuator faults occur, such as the following:
+• To what extent can compensation for or mitigation of the loss in actuator effectiveness
+be achieved by enhancing controller gains?
+• What is the relationship between performance degradation and the degree of actuator
+effectiveness loss in fault-prone environments?
+• How do actuator faults impact the overall stability and responsiveness of the system?
+Understanding these dynamics is crucial for improving the reliability and fault tol-
+erance of multi-robot formations operating in uncertain environments, thereby enabling
+more robust and adaptable systems. This research addresses key gaps by systematically
+analyzing actuator faults and their effects on formation control. The main contributions are
+as follows:
+
+Robotics 2025, 14, 59 5 of 32
+• Fault-tolerant formation control design: A robust control strategy that maintains
+formation stability under varying actuator fault conditions.
+• Actuator fault analysis: A systematic study on the effects of partial actuator failures
+(80–40% efficiency) on multi-robot formations.
+• Gain–settling time relationship: A quantitative model linking controller gains with
+settling time, providing guidelines for optimal tuning.
+• Leader–follower control with actuator faults: Extension of traditional formation
+control by integrating actuator loss into the system model.
+• Residual-based fault detection: A real-time fault detection mechanism using residual
+computation for early identification and mitigation.
+• Comprehensive MATLAB simulations: Extensive testing of different fault levels to
+validate performance, stability, and recovery behavior.
+These contributions enhance the fault resilience of formation control strategies and
+provide practical insights for real-world multi-robot applications.
+3. Kinematic Model of the Multi-Robot System
+This section provides a detailed description of the mathematical models involved
+in our study. The proposed system consists of N + 1 differential-drive (unicycle-type)
+wheeled mobile robots (WMRs). One of these robots is designated as the leader (indexed
+by i = 1), while the remaining N robots (indexed by i = 2, 3,. . ., N + 1) act as followers.
+Despite each robot being controlled independently (with its own velocity inputs), their
+motions are coordinated to maintain a prescribed formation.
+3.1. Individual Robot Kinematics
+Each robot i has a local body-fixed frame attached at its center (or another convenient
+reference point). Let us have the following:
+qi(t) =
+
+
+xi(t)
+yi(t)
+θi(t)
+
+
+Denote the configuration of robot i, where xi(t) and yi(t) are the coordinates of the
+robot i in the global (inertial) X Yframe, θi(t) is the robot’s orientation (heading angle)
+measured with respect to the global X-axis. For a differential-drive WMR (also known as a
+unicycle model), the linear velocity vi(t) acts along the robot’s forward direction, while the
+angular velocity ωi(t) governs rotation about its vertical axis. Under the assumption of
+ideal rolling without slipping, the single-robot kinematics are as follows:
+˙xi(t) = vi(t) cos
+ 
+θi(t)
+
+, (1)
+˙yi(t) = vi(t) sin
+ 
+θi(t)
+
+, (2)
+˙θi(t) = ωi(t). (3)
+Here, ˙xi and ˙yi represent the translational velocities of robot i in the global X and Y
+directions, respectively, and ˙θi is the time derivative of its orientation.
+3.1.1. Non-Holonomic Constraint
+Due to the wheel arrangement and the no-slip assumption, each robot is subject to a
+non-holonomic constraint:
+− sin
+ 
+θi(t)
+ ˙xi(t) + cos
+ 
+θi(t)
+ ˙yi(t) = 0,
+
+Robotics 2025, 14, 59 6 of 32
+Which implies that the robot cannot move laterally (sideways). Motion is, therefore,
+constrained to the direction of the robot’s headingθi.
+3.1.2. Wheel Velocities and Robot Velocities (Optional Detail)
+If one desires to model the left and right wheel speeds explicitly, denote them by
+vLi and vRi. With wheel radius r and wheelbase L, the relationship between
+ 
+vi, ωi
+
+and 
+vLi, vRi
+
+is as follows:
+vi = r
+2
+ 
+vRi + vLi
+
+, ωi = r
+L
+ 
+vRi − vLi
+
+.
+These equations allow direct control of the robot’s linear and angular motions via the
+two independent wheel speeds.
+3.2. Basic Control Law for the i-th Robot
+Let each robot i track a desired reference trajectory qdi (t). Define the tracking error
+as follows:
+ei(t) = qdi (t) − qi(t),
+where qi(t) is the actual configuration of the i-th robot. A common approach to ensure
+ei(t) converges to zero is to impose exponential decay.
+˙ei(t) = − Λ ei(t),
+where Λ is a positive diagonal matrix, e.g., Λ = diag(λ1, λ2, λ3).
+Given the single-robot kinematics ˙qi = J(θi) ζi, where we have the following:
+ζi =
+"
+vi
+ωi
+#
+, J(θi) =
+
+
+cos(θi) 0
+sin(θi) 0
+0 1
+
+,
+We can impose the desired dynamics by setting the following:
+J(θi) ζi = ˙qdi (t) + Λ
+ 
+qdi (t) − qi(t)
+
+.
+Solving for ζi gives the computed velocity (or inverse differential kinematics) control
+law for the i-th robot:
+ζi = J−1(θi)
+h
+˙qdi (t) + Λ
+ 
+qdi (t) − qi(t)
+i
+. (4)
+Under appropriate gain selection in Λ, this ensures that ei(t) converges expo-
+nentially to zero. In the multi-robot case, each follower robot applies a similar local
+feedback strategy, with qdi defined to maintain formation requirements relative to the
+leader or neighboring robots.
+Each ζi influences the position and orientation of robot i according to (1)–(3), but
+the overall formation control will typically require coupling or coordination among all
+robot velocities.
+3.3. Global System Configuration
+The collective state of the multi-robot system at time t can be written by stacking the
+individual robot states:
+
+Robotics 2025, 14, 59 7 of 32
+Q(t) =
+
+
+q1(t)
+q2(t)
+...
+qN+1(t)
+
+
+, where qi(t) =
+
+
+xi(t)
+yi(t)
+θi(t)
+
+.
+Similarly, the complete set of control inputs is gathered as follows:
+ζ(t) =
+
+
+ζ1(t)
+ζ2(t)
+...
+ζN+1(t)
+
+
+, ζi(t) =
+"
+vi(t)
+ωi(t)
+#
+.
+Even though each robot’s motion is governed by ζi independently, maintaining a
+desired formation requires that these control inputs be carefully orchestrated. In subsequent
+sections, we describe how the leader and follower robots coordinate their velocities so
+that the team achieves and preserves the specified formation shape while navigating in
+the environment.
+4. Loss of Effectiveness in Actuators
+In this work, we investigate the loss of effectiveness in actuators, which is one of the
+most common types of actuator faults. This fault refers to a situation where an actuator
+does not perform at its full capacity but still provides some level of control. The extent of
+the loss is quantified by a factor γji
+k as shown in Table 1, which represents the reduction in
+effectiveness of the i-th actuator of the j-th follower robot at time step k. The control input
+vector for the i-th actuator of the j-th robot, considering this loss of effectiveness, can be
+expressed as follows:
+vji
+F = vji
+i (1 − γji
+k ), 0 ≤ γji
+k ≤ 1
+Here, vji
+F is the control input after the fault occurs; uji
+i is the normal control input when
+there is no fault; γji
+k is the fault factor that indicates the loss of effectiveness.
+Table 1. Effect of fault factor γji
+k on the actuator functionality.
+Fault Factor Condition Effect on Control Input
+γji
+k = 0 Actuator functioning normally Control input remains unaffected
+0 < γji
+k < 1 Partial loss of effectiveness Reduces control ability but not completely disabled
+γji
+k = 1 Actuator completely failed Control input is fully disabled
+γji
+k represents the fault factor affecting actuator functionality.
+In cases where there is only a partial loss of effectiveness (0 < γji
+k < 1), the post-fault
+model of the system can be described by modifying the control inputs accordingly to
+account for the fault. This approach allows the system to continue operating with reduced
+control capabilities while compensating for the actuator fault. The model and its behavior
+in these conditions are discussed in detail in works such as [49,50].
+5. Leader–Follower Formation Control Under Loss of Actuation Fault
+Formation control involves designing control laws that enable a group of robots to
+move cohesively while maintaining a specified geometric arrangement. The leader–follower
+approach designates one robot as the leader, which dictates the movement of the formation,
+
+Robotics 2025, 14, 59 8 of 32
+while the followers adjust their positions relative to the leader or other followers.
+The hierarchical leader–follower structure was adopted for this research due to its
+significant advantages in addressing actuator faults within multi-agent formation control
+systems, outperforming alternative architectures such as fully decentralized systems [51],
+star topologies [52], or ring/mesh configurations [53]. Specifically, in managing actuator
+faults—modeled here as a loss of effectiveness (e.g., 80%, 60%, 40% capacity)—the hierarchi-
+cal structure excels in fault isolation and containment. Unlike fully decentralized systems,
+where fault detection depends on global consensus and can be slow or resource-intensive,
+the tiered hierarchy facilitates rapid, localized fault identification through explicit error
+terms at each level (e.g., eF1, eF3), as implemented in our residual-based approach. This
+capability directly supports our objective of minimizing performance degradation under
+varying fault severities. In contrast, a star topology risks complete destabilization if the
+single leader fails, whereas the hierarchical structure distributes dependencies across mul-
+tiple tiers, enhancing resilience. Additionally, while ring or mesh topologies offer robust
+communication, they lack the directed control flow required for efficient fault isolation and
+compensation, making them less compatible with the leader–follower framework central to
+our study. Therefore, the hierarchical structure provides an optimal balance of scalability,
+fault tolerance, and control efficiency, making it the ideal choice for developing robust,
+fault-tolerant multi-robot systems capable of maintaining formation integrity despite actua-
+tor failures.
+Figure 1 illustrates the hierarchical leader–follower formation control structure
+adopted in this study, comprising one leader robot (L) and four follower robots (F1, F2, F3,
+F4), arranged in a two-tier configuration. The leader, situated at the top of the hierarchy,
+is tasked with tracking a predefined desired state, qdL = [ xd,L, yd,L, θd,L]T, representing its
+target position and orientation in the global frame. The leader’s state evolves according
+to eL = qd,L − qL, where eL denotes the tracking error as defined in Equation (5). The
+first-tier followers, F1 and F2, are directly coupled to the leader via directed communication
+links, denoted as dL1 and dL2, which represent desired offsets or control dependencies
+(e.g., ∆2 and ∆3 in Equation (8). Their states are expressed as eF1 = qL + ∆2 − qF1 and
+eF2 = qL + ∆3 − qF2, where eF1 and eF2 are local error terms. The second-tier followers, F3
+and F4, depend on the first-tier followers through links dF13 and dF24, with states defined as
+eF3 = qF1 + ∆4 − qF3 and eF4 = qF2 + ∆5 − qF4, respectively. Visually, the leader is depicted
+in peach, first-tier followers in pink, and second-tier followers in green, emphasizing the
+tiered organization and control flow. This structure facilitates a directed propagation of
+control signals from the leader through the tiers, enabling scalable coordination and local-
+ized error management. In the context of actuator faults, such as the loss of effectiveness
+modeled in Section 4, this hierarchy enhances fault tolerance by isolating fault impacts to
+specific branches, thereby supporting the residual-based fault detection and compensation
+strategies detailed in Sections 8 and 9.
+
+Robotics 2025, 14, 59 9 of 32
+Figure 1. Hierarchical leader-follower formation control structure with one leader ( L) and four
+followers (F1, F2, F3, F4), organized in a two-tier hierarchy. The leader tracks a desired state, while
+followers maintain relative positions through directed communication links.
+5.1. Control Objectives
+• Leader: Navigate from an initial pose qL(0) to a desired final pose qd,L.
+• Followers: Maintain predefined relative positions and orientations with respect to
+their designated reference robots (either the leader or another follower) to sustain the
+desired geometric formation while following the leader’s trajectory.
+5.2. Leader Control Law
+The leader’s control strategy ensures that it moves toward its desired pose, acting as
+the reference for the followers.
+5.2.1. Error Definition
+The positional and orientational discrepancies between the leader’s current pose and
+its desired pose are defined as follows:
+eL = qd,L − qL (5)
+where:
+qL =
+
+
+xL
+yL
+θL
+
+, qd,L =
+
+
+xd,L
+yd,L
+θd,L
+
+
+5.2.2. Control Input Calculation
+To drive the leader toward its desired pose, we employ a feedback control law based
+on the inverse Jacobian:
+ζL = J−1
+L KLeL (6)
+where:
+JL =
+
+
+cos(θL) − sin(θL) 0
+sin(θL) cos(θL) 0
+0 0 1
+
+
+is the Jacobian matrix of the leader, and KL = diag(kl1, kl2, kl3) is the gain matrix, with
+positive entries kl1, kl2, kl3.
+5.2.3. Actuation Loss Modeling
+To simulate real-world scenarios where actuation capabilities may degrade over time,
+we introduce an actuation loss factor kl_loss:
+
+Robotics 2025, 14, 59 10 of 32
+vL =
+
+
+
+ζL,1, t < tloss
+kl_lossζL,1, t ≥ tloss
+(7)
+The angular velocity remains unaffected:
+ωL = ζL,3
+5.3. Follower Control Law
+Each follower aims to maintain a specific offset relative to its reference robot to preserve
+the desired formation. The control law for the followers ensures that positional and
+orientational errors are minimized.
+5.3.1. Desired Pose of Followers
+For follower i (i = 2, 3,. . ., N + 1), the desired pose is defined relative to its reference
+robot (which could be the leader or another follower):
+qd,i = qref,i + ∆i (8)
+where:
+• qref,i is the pose of the reference robot for follower i.
+• ∆i =
+
+
+∆xi
+∆yi
+∆θi
+
+ is the desired offset, designed to achieve the desired geometric formation
+(e.g., V-shape).
+The offsets for the formation can be defined based on the desired geometric arrange-
+ment. For a V-shaped formation, the offsets might be as follows:
+∆i =
+
+
+dx,i
+−dy,i
+−ϕi
+
+ for i = 2, 3, . . . ,N + 1
+where dx,i and dy,i are the horizontal and vertical offsets, and ϕi is the formation angle for
+follower i.
+5.3.2. Error Calculation
+The error for follower i is the difference between its desired pose and current pose:
+ei = qd,i − qi =
+
+
+ei,x
+ei,y
+ei,θ
+
+ =
+
+
+xd,i − xi
+yd,i − yi
+θd,i − θi
+
+ (9)
+5.3.3. Orientation Error Adjustment
+To ensure smooth convergence, the orientation error ψi is adjusted based on the
+magnitude of the positional error:
+ψi =
+
+
+
+atan2(ei,y, ei,x) − θi, if ∥ei,1:2∥ ≥ ϵ
+−ϕi − θi, if ∥ei,1:2∥ < ϵ
+(10)
+where ϵ is a small threshold value to determine when the follower is sufficiently close to its
+desired position.
+
+Robotics 2025, 14, 59 11 of 32
+5.3.4. Control Input Calculation
+The control inputs for follower i are computed using a feedback control law:
+ζi = J−1
+i Ki
+
+
+ei,x
+ei,y
+ψi
+
+ (11)
+where:
+Ji =
+
+
+cos(θi) − sin(θi) 0
+sin(θi) cos(θi) 0
+0 0 1
+
+
+is the Jacobian matrix for follower i, and Ki = diag(ki1, ki2, ki3) is the gain matrix with
+positive entries ki1, ki2, ki3.
+5.3.5. Actuation Loss Modeling
+Similar to the leader, each follower i experiences an actuation loss factor kf_loss,i after a
+certain time tloss:
+vi =
+
+
+
+ζi,1, t < tloss
+kf_loss,iζi,1, t ≥ tloss
+(12)
+The angular velocity remains unaffected:
+ωi = ζi,3
+5.4. Gain Scheduling and Actuation Loss Parameters
+5.4.1. Gain Scheduling
+To enhance the adaptability of the control system, gains are scheduled based on a gain
+vector G:
+Krobot = G(n) · diag(k1, k2, k3)
+where n corresponds to a specific index in G, and Krobot can be either KL or Ki for
+the followers.
+5.4.2. Actuation Loss Factors
+Actuation loss factors are defined for both the leader and each follower:
+kl_loss = L(1), kf_loss,i = L(i + 1) for i = 1, 2, . . . ,N
+where L is a vector containing the loss factors for the leader and each of the followers.
+6. Control Law Derivation
+To derive the control laws for both the leader and followers, we start from the kinematic
+equations and incorporate feedback terms to ensure convergence to the desired states.
+6.1. Leader Control Law Derivation
+Starting from the leader’s kinematic equation:
+˙qL = JLζL (13)
+To achieve asymptotic stability, we define the error dynamics such that the error eL
+converges to zero exponentially. Specifically, we desire the following:
+
+Robotics 2025, 14, 59 12 of 32
+eL(t) = e−ΛteL(0) (14)
+where Λ = diag(λ1, λ2, λ3) is a positive definite diagonal matrix.
+Differentiating the error:
+˙eL(t) = −ΛeL(t) (15)
+Substituting the kinematic equation:
+˙eL(t) = ˙qd,L(t) − JLζL = −ΛeL(t) (16)
+Assuming that ˙qd,L(t) = 0 for set-point control, the control input is designed to satisfy:
+JLζL = ΛeL(t) (17)
+Solving for ζL:
+ζL = J−1
+L ΛeL(t) (18)
+This feedback control law ensures that the leader’s pose converges to the desired
+pose exponentially.
+6.2. Follower Control Law Derivation
+For each follower i (i = 2, 3,. . ., N + 1), the control law is derived similarly to the
+leader’s control law, ensuring that the positional and orientational errors relative to the
+desired formation are minimized.
+Starting from the follower’s kinematic equation:
+˙qi = Jiζi (19)
+Defining the error dynamics for follower i:
+ei(t) = qd,i(t) − qi(t) (20)
+Desired exponential decay of the error:
+ei(t) = e−Λitei(0) (21)
+Differentiating the error:
+˙ei(t) = −Λiei(t) (22)
+Substituting the follower’s kinematic equation:
+˙ei(t) = ˙qd,i(t) − Jiζi = −Λiei(t) (23)
+Assuming ˙qd,i(t) = 0 for set-point control, the control input is designed to satisfy
+the following:
+Jiζi = Λiei(t) (24)
+Solving for ζi:
+ζi = J−1
+i Λiei(t) (25)
+This control law ensures that each follower converges to its desired pose relative to its
+reference robot, maintaining the formation.
+
+Robotics 2025, 14, 59 13 of 32
+7. Stability Analysis
+Ensuring the stability of the multi-robot formation control system is paramount. We
+perform a Lyapunov stability analysis for both the leader and the followers to confirm that
+the designed control laws lead to the asymptotic convergence of the errors.
+7.1. Lyapunov Function for the Leader
+Consider the Lyapunov function candidate for the leader:
+VL = 1
+2 e⊤
+L eL (26)
+Taking the time derivative along the trajectories of the system:
+˙VL = e⊤
+L ˙eL (27)
+= e⊤
+L (−ΛeL) (28)
+= −e⊤
+L ΛeL ≤ 0 (29)
+Since Λ is positive definite, ˙VL ≤ 0, and ˙VL = 0 only when eL = 0. By LaSalle’s
+invariance principle, the system is asymptotically stable, ensuring that the leader’s pose
+converges to the desired pose.
+7.2. Lyapunov Function for Each Follower
+Similarly, for each follower i (i = 2, 3, . . . ,N + 1), we define the Lyapunov function:
+Vi = 1
+2 e⊤
+i ei (30)
+Taking the time derivative, we have the following:
+˙Vi = e⊤
+i ˙ei (31)
+= e⊤
+i (−Λiei) (32)
+= −e⊤
+i Λiei ≤ 0 (33)
+Given that Λi is positive definite, ˙Vi ≤ 0, and ˙Vi = 0 only when ei = 0. Ap-
+plying LaSalle’s invariance principle, each follower’s error ei asymptotically converges
+to zero, ensuring that the followers maintain their desired formation relative to their
+reference robots.
+7.3. Overall System Stability
+Considering all robots collectively, the overall Lyapunov function for the multi-robot
+system is the sum of the individual Lyapunov functions:
+Vtotal = VL +
+N+1
+∑
+i=2
+Vi (34)
+The time derivative of the total Lyapunov function is as follows:
+˙Vtotal = ˙VL + ∑N+1
+i=2 ˙Vi
+= −e⊤
+L ΛeL − ∑N+1
+i=2 e⊤
+i Λiei
+≤ 0
+(35)
+
+Robotics 2025, 14, 59 14 of 32
+Since each term is non-positive and only zero when all errors are zero, the multi-robot
+formation control system is asymptotically stable. This ensures that both the leader and all
+followers converge to their desired poses, maintaining the specified formation.
+8. Fault Detection via Residual Generation
+As described in Section 3 (see Equations (1)–(6)), the kinematic model of the mobile
+robot is given by the following:
+q(t + dt) = q(t) + J(θ(t))
+"
+v(t)
+r(t)
+#
+dt, (36)
+with
+q(t) =
+
+
+x(t)
+y(t)
+θ(t)
+
+, J(θ(t)) =
+
+
+cos θ(t) 0
+sin θ(t) 0
+0 1
+
+, (37)
+and where v(t) and r(t) denote the translational and rotational control inputs, respectively.
+In the nominal (fault-free) case, the controller computes a nominal control input vnom(t)
+(with the corresponding rotational command r(t)), and the predicted state is given by
+the following:
+ˆq(t + dt) = q(t) + J(θ(t))
+"
+vnom(t)
+r(t)
+#
+dt. (38)
+This is the expected state if everything works perfectly.
+8.1. Fault Injection and Residual Computation
+When a fault (e.g., an actuator loss) occurs, it is modeled by a multiplicative fault
+factor γ from Section 4. Thus, the actual translational control input is as follows:
+vact(t) = ( 1 − γ)vnom(t) (39)
+The rotational input r(t) remains unaffected by this fault. Thus, the actual state
+evolution under fault is as follows:
+q(t + dt) = q(t) + J(θ(t))
+"
+vact(t)
+r(t)
+#
+dt (40)
+Substituting vact(t):
+q(t + dt) = q(t) + J(θ(t))
+"
+(1 − γ)vnom(t)
+r(t)
+#
+dt (41)
+This shows how the fault reduces the robot’s translational movement, causing the
+actual state to deviate from the predicted state. Similarly, the residual is the key to de-
+tecting this deviation. It is defined as the difference between the actual state and the
+nominal prediction:
+rres(t + dt) = q(t + dt) − ˆq(t + dt) (42)
+
+Robotics 2025, 14, 59 15 of 32
+Substitute the expressions for q(t + dt) and ˆq(t + dt):
+rres(t + dt) =
+"
+q(t) + J(θ(t))
+"
+vact(t)
+r(t)
+#
+dt
+#
+−
+"
+q(t) + J(θ(t))
+"
+vnom(t)
+r(t)
+#
+dt
+#
+rres(t + dt) = J(θ(t))
+ "
+vact(t)
+r(t)
+#
+−
+"
+vnom(t)
+r(t)
+#!
+dt
+= J(θ(t))
+"
+vact(t) − vnom(t)
+r(t) − r(t)
+#
+dt = J(θ(t))
+"
+vact(t) − vnom(t)
+0
+#
+dt
+(43)
+Now, substitute vact(t) = ( 1 − γ)vnom(t):
+vact(t) − vnom(t) = ( 1 − γ)vnom(t) − vnom(t) = −γvnom(t)
+So:
+rres(t + dt) = J(θ(t))
+"
+−γvnom(t)
+0
+#
+dt (44)
+Multiply the matrix:
+rres(t + dt) =
+
+
+cos θ(t) 0
+sin θ(t) 0
+0 1
+
+
+"
+−γvnom(t)
+0
+#
+dt =
+
+
+−γvnom(t) cos θ(t)
+−γvnom(t) sin θ(t)
+0
+
+dt (45)
+In Equation (45) x and y components reflect the positional error caused by the fault,
+scaled according to the robot’s orientation through (cos θ(t) and sin θ(t)). The component
+θ remains zero because the fault influences only translational velocity and does not af-
+fect rotation.
+8.2. Fault Detection Criterion and Fault Factor Estimation
+To detect a fault, compute the norm of the residual (typically the Euclidean norm) and
+compare it to a threshold:
+∥rres(t + dt)∥ =
+p
+(−γvnom(t) cos θ(t)dt)2 + (−γvnom(t) sin θ(t)dt)2 + 02
+=
+q
+γ2v2nom(t)dt2(cos2 θ(t) + sin2 θ(t)) =
+p
+γ2v2nom(t)dt2 = |γ||vnom(t)|dt
+(46)
+A fault is declared if the norm of the residual exceeds a predefined threshold, i.e.,
+∥rres(t + dt)∥ > Threshold (47)
+Furthermore, an estimate of the fault factor is obtained by
+γest(t) = 1 −
+ vact(t)
+vnom(t)
+
+Since vact(t) = ( 1 − γ)vnom(t):
+γest(t) = 1 −
+ (1 − γ)vnom(t)
+vnom(t)
+
+= 1 − (1 − γ) = γ
+So, γest(t) ≈ γ. However, vact(t) isn’t directly measurable. Instead, use the residual:
+rres(t + dt) =
+
+
+−γvnom(t) cos θ(t)dt
+−γvnom(t) sin θ(t)dt
+0
+
+
+
+Robotics 2025, 14, 59 16 of 32
+Project the residual onto the direction of motion (
+
+
+cos θ(t)
+sin θ(t)
+0
+
+):
+rres ·
+
+
+cos θ(t)
+sin θ(t)
+0
+
+ = ( −γvnom(t) cos θ(t)dt) cos θ(t) + (−γvnom(t) sin θ(t)dt) sin θ(t)
+= −γvnom(t)dt(cos2 θ(t) + sin2 θ(t)) = −γvnom(t)dt
+Solve for γ:
+γest = − rres,x cos θ(t) + rres,y sin θ(t)
+vnom(t)dt (48)
+• Nominal Case: γ = 0, so rres = 0, and γest ≈ 0.
+• Fault Case: γ > 0, so γest > 0.
+Here, rres,x(t + dt) and rres,y(t + dt) represent the residual components measured at
+time t + dt, while cos θ(t) and sin θ(t) define the robot’s direction at timet. Additionally,
+vnom(t) denotes the nominal velocity input, and dt is the time step over which the residual
+is computed. The negative sign explicitly accounts for the residual being opposite to the
+intended motion due to the fault. This formulation enables direct computation of γest from
+the residual, clearly illustrating how the fault factor relates to the observed deviation in
+the robot’s state. Given measurements ofrres, vnom, and θ, this expression can be used to
+analyze or plot γest over time.
+Figures 2 and 3 validate the fault detection and estimation mechanism employed in
+fault-tolerant formation control. Figure 2 presents the estimated fault factors (γest) for the
+leader and four followers over a 10-second interval. The leader experiences a significant
+fault factor increase to 0.5 at t = 1 s, while the followers encounter less severe faults at
+subsequent times: Follower 1 reaches 0.1 at t = 2 s, Follower 2 reaches 0.2 at t = 3 s,
+Follower 3 reaches 0.1 at t = 4 s, and Follower 4 reaches 0.5 at t = 5 s. Complementarily,
+Figure 3 illustrates the normalized residual norms ( ∥rres∥), highlighting clear threshold
+violations (threshold = 0.01) at each fault onset. These residual spikes precisely correspond
+to the fault occurrences, confirming the reliability of the detection strategy and its capability
+to quantify fault severity for adaptive formation control.
+Figure 2. Estimated fault factor for the leader and followers. The plot shows the variation in fault
+factor γest over time for each robot, indicating when faults occur and their severity.
+
+Robotics 2025, 14, 59 17 of 32
+Figure 3. Residual for the leader and followers. The plot shows the variation in residual rres over
+time for each robot, indicating when faults occur and their severity.
+8.3. Determining Fault Levels and Model Selection
+In fault-tolerant formation control for mobile robots, maintaining a desired formation
+despite actuator faults—like a reduction in translational velocity—is critical. This process
+hinges on detecting and adapting to faults using two key steps: (1) determining the fault
+level from the residual, and (2) selecting an appropriate model to adjust the control strategy
+based on that fault level.
+8.3.1. Selecting a Model for the Fault Level
+Once we know the fault level γ, we need a model that describes how the robot behaves
+under that specific fault condition. In this context, we’ve developed polynomial curve
+models for specific fault levels—like 20%, 40%, 60%, as shown in Table 2—that relate control
+parameters (gain) to performance metrics (settling time). If γ matches a predefined fault
+level (e.g., γ = 0.2 matches the 20% fault model), we use that model directly. The selected
+model then guides adjustments to the control strategy—such as increasing the control
+gain—to compensate for the fault and keep the formation intact. This adaptability ensures
+the system performs as close as possible to its fault-free behavior.
+Table 2. Summary of curve-fitting results for different fault levels.
+Fault Level Equation Coefficients (a, b, c) Fit Metrics
+20% y = a e−bx + c
+a = 16.0635,
+b = 1.1144,
+c = 1.5081
+SSE = 2.3525
+RMSE = 0.3720
+40% y = a e−bx + c
+a = 21.2821,
+b = 1.1316,
+c = 1.6965
+SSE = 4.0741
+RMSE = 0.4895
+60% y = a e−bx + c
+a = 31.7079,
+b = 1.1496,
+c = 2.0391
+SSE = 8.3241
+RMSE = 0.6992
+80% y = a e−bx + c
+a = 31.9441,
+b = 0.6521,
+c = 2.1744
+SSE = 5.1503
+RMSE = 0.5504
+
+Robotics 2025, 14, 59 18 of 32
+8.3.2. Residual Values Under Different Faults
+The residual magnitude ∥rres,xy∥ from 46 scales linearly with the fault level γ, as
+shown by the following:
+∥rres,xy∥ = γvnom(t)dt
+The correspondence levels between fault level γ and residual magnitude are shown in
+Table 3.
+Table 3. Residual magnitudes for different fault levels.
+Fault Level (γ) Residual Magnitude ( ∥rres,xy∥)
+0% (no fault) 0 m
+10% (0.1) 0.1 m
+20% (0.2) 0.2 m
+30% (0.3) 0.3 m
+40% (0.4) 0.4 m
+This table shows that the residual grows with fault severity, providing a clear signal
+for detection and estimation. For instance, a 30% fault yields a residual of 0.3 m, three times
+larger than a 10% fault’s 0.1 m.
+In fault-tolerant formation control, the residual acts as a fault detector and quantifier.
+By comparing the robot’s actual and predicted states, we compute γ to determine the
+fault’s severity (e.g., a 15% velocity loss). Then, we select or interpolate a model tailored
+to that fault level, adjusting the control approach to mitigate the fault’s impact. The
+residual’s sensitivity to fault size—demonstrated in Table 4—ensures faults are detectable
+and measurable. This approach ensures robots maintain their formation despite faults,
+blending detection, estimation, and adaptation into a robust control framework.
+Table 4. Curve-fitting coefficients for various fault levels.
+Fault Level (γ) a b c
+20% 16.0635 1.1144 1.5081
+40% 21.2821 1.1316 1.6965
+60% 31.7079 1.1496 2.0391
+80% 31.9441 0.6521 2.1744
+9. Methodology for Fault Compensation
+9.1. Quantifying Fault Severity from the Residual
+The first step in compensating for the robot’s loss of effectiveness involves quantifying
+fault severity based on a measured residual, rres. A larger residual value signifies a more
+pronounced deviation between the robot’s actual and nominal behaviors, thereby indicating
+higher fault severity. Following established approaches in fault-tolerant control, the fault
+severity parameter γ can be estimated by normalizing the residual with respect to a
+nominal value:
+γest = ∥rres∥
+vnom dt , (49)
+where ∥rres∥ denotes the norm of the residual, vnom is a characteristic nominal value
+(e.g., nominal velocity), and dt is a time-scaling factor. The resulting γest typically lies in
+the interval [0, 1], encompassing fault levels of increasing severity (e.g., 20%, 40%, 60%,
+and 80%).
+
+Robotics 2025, 14, 59 19 of 32
+9.2. Relating Gain to Settling Time
+To account for faults on the robot’s settling time, an exponential decay model of
+the form
+y = a e−bx + c (50)
+is used, where y is the settling time, x is the control gain, and a, b, and c are coefficients
+empirically determined for each fault level. Table 4 summarizes these coefficients.
+These results indicate that the minimum achievable settling time under a given fault
+level is bounded below by c, with higher fault severity leading to increased settling times.
+9.3. Compensation Strategy
+The term “loss of effectiveness” refers to the reduction in control performance due
+to the fault. The objective of fault-tolerant control designs is often to restore settling
+time to nominal (no-fault) conditions. Let ytarget represent this desired settling time. The
+compensation strategy involves adjusting the control gain x such that the actual settling
+time y under fault approaches ytarget.
+9.4. Gain Selection Procedure
+1. Estimate fault severity: Measure residual ∥rres∥ and compute γest.
+2. Obtain or interpolate model coefficients: If γest matches a discrete fault level, use corre-
+sponding coefficients (Table 4). For intermediate values, interpolate coefficients linearly .
+3. Set a target settling time: Select ytarget based on the nominal or required performance.
+4. Solve for the gain: Insert ytarget into the exponential model:
+y = ae−bx + c =⇒ x = − 1
+b ln
+ ytarget − c
+a
+
+. (51)
+Verify that ytarget ≥ c; otherwise, no finite x will achieve the desired settling time.
+By mapping residuals to a fault severity parameter and interpolating coefficients for
+the exponential settling-time model, one systematically selects a control gain to compensate
+for fault-induced performance degradation. This framework maintains robot performance
+close to nominal conditions, effectively handling varying fault intensities.
+10. Simulation and Implementation
+To validate the theoretical control laws and stability analysis, MATLAB simulations
+were implemented. The simulation environment models the kinematics of the leader and
+followers, applying the derived control laws, and observing the convergence behavior of
+the formation.
+10.1. Simulation Setup
+The simulation involves one leader and N followers, each initialized from random
+poses to emulate diverse starting conditions. The leader is assigned a predefined final
+pose, serving as the primary reference for the formation. The followers are designed to
+maintain specific offsets relative to their designated reference robots, thereby achieving
+the desired geometric formation, such as a V-shape. Control gains kl1, kl2, kl3 for the
+leader and ki1, ki2, ki3 for each follower are carefully selected to ensure rapid convergence
+to the desired states without overshooting. To simulate real-world scenarios where the
+actuation capabilities can degrade over time, a residual effectiveness kloss,i is introduced.
+At a specified time t = tloss, both the leader and the followers experience a reduction in
+their linear velocities in accordance with their respective loss factors, while their angular
+velocities remain unaffected.
+
+Robotics 2025, 14, 59 20 of 32
+10.2. Simulation Results and Performance Evaluation
+The MATLAB simulations demonstrate the effectiveness of the proposed control strate-
+gies in maintaining the desired formation. Specifically, the leader successfully navigates
+to its predefined pose following the control law. Concurrently, the followers adjust their
+positions and orientations to uphold the desired geometric formation relative to the leader
+and among themselves. Remarkably, even after the introduction of actuation losses at
+t = tloss, the formation remains stable, albeit with reduced linear velocities, highlighting
+the robustness of the control framework.
+The simulation results also corroborate the Lyapunov-based stability analysis, as
+evidenced by the exponential decay of the positional and orientational errors over time.
+The performance evaluation encompasses several key metrics:
+• Tracking error: Measures the average distance between the followers and their desired
+positions, indicating the precision of formation maintenance.
+• Stability: Assesses the time required for the followers to achieve and maintain the
+desired formation after initialization or disturbances.
+• Robustness: Evaluates the formation’s ability to preserve its shape under various
+disturbances or alterations in the leader’s trajectory.
+Control strategies effectively maintain the desired formation with minimal track-
+ing error and exhibit strong stability characteristics. The system demonstrates resilience
+against actuation losses, ensuring sustained formation integrity even under degraded
+actuation conditions.
+11. Formation Control Fault Analysis
+Actuation Loss Simulation and Settling Time Analysis
+This simulation assesses the impact of varying actuation loss on the settling time within
+a leader–follower system. Actuation loss factors are introduced to emulate reductions in
+control capabilities for both the leader and the followers. During the simulation, the settling
+time for each agent is defined as the moment when the error diminishes below 2% of its
+initial value and remains stable thereafter. This methodology facilitates a comprehensive
+analysis of how actuation loss influences the system’s stabilization capabilities.
+The recorded data indicate that increasing actuation loss (i.e., decreasing control
+capability) results in longer settling times for all agents, with followers exhibiting greater
+sensitivity compared to the leader. At higher levels of actuation loss, some followers fail to
+stabilize, leading to undefined settling times. Additionally, control gains significantly affect
+system performance; higher gains can reduce settling times but may also induce overshoot
+or instability if not properly tuned.
+Figure 4 illustrates the relationship between actuation loss and settling time for both
+the leader and the followers. The leader, depicted by the red solid line, consistently
+demonstrates shorter settling times compared to the followers, even as actuation loss
+increases. In contrast, the followers, represented by distinct markers and line styles, show
+varying degrees of performance degradation. For example, Follower 4 stabilizes only up
+to an actuation loss factor of 0.60, beyond which its settling time becomes undefined, as
+evidenced by missing data points.
+
+Robotics 2025, 14, 59 21 of 32
+Figure 4. Settling time versus actuation loss factor for the leader and followers. This graph visually
+depicts the relationship between actuation loss and system stability, illustrating that settling time
+increases as the actuation loss factor decreases. Notably, some followers fail to stabilize at higher
+levels of actuation loss.
+Table 5 provides a detailed numerical analysis, presenting settling times for actuation
+loss factors ranging from 0 (no loss) to 0.80 (significant loss). At an actuation loss factor of
+0, all agents stabilize within 6 s, with the leader achieving the fastest settling time of 2.00 s.
+However, as the actuation loss factor decreases to 0.80, the leader’s settling time increases
+to 6.50 s, while the followers fail to stabilize, indicated by undefined settling times (‘NaN’).
+Table 5. Settling times for leaders and followers at different actuation loss factors.
+Actuation Loss Factor Leader (s) Follower 1 (s) Follower 2 (s) Follower 3 (s) Follower 4 (s)
+0 2.00 3.40 3.60 4.50 5.50
+0.20 2.30 4.10 4.30 5.30 6.80
+0.40 2.70 5.20 5.50 6.90 NaN
+0.60 3.70 7.40 7.80 9.90 NaN
+0.80 6.50 NaN NaN NaN NaN
+NaN indicates that the settling time is not applicable, and 0 means fully actuated.
+This analysis underscores the critical influence of actuation loss on system stability
+and emphasizes the importance of optimizing control parameters to maintain robust
+performance in leader–follower systems. The findings highlight the necessity for adaptive
+control strategies that can mitigate the adverse effects of actuation losses, thereby ensuring
+sustained system reliability and effectiveness.
+12. Formation Control Results Under Fully and Partially Actuated
+This section presents the simulation results for the multi-robot formation when all
+robots are fully actuated (100% actuator capacity) and partially actuated. Figure 5 shows
+the trajectories, orientations, distances, and error plots of the formation of the mobile robot
+when fully actuated. Similarly, Figure 6 shows the response of the formation when a fault
+occurs or when it is partially actuated (50% actuated). Notice how the formation converges
+smoothly and maintains the desired offsets.
+
+Robotics 2025, 14, 59 22 of 32
+(a) Final trajectories of leader and followers.
+ (b) Orientation ϕ of robots vs. time.
+(c) X position vs. time.
+ (d) Y position vs. time.
+(e) Distance between followers.
+ (f) Distance: leader and followers.
+(g) Pos./orient. error: followers 3 & 4.
+ (h) Pos./orient. error: followers 1 & 2.
+Figure 5. Formation control results with 100% actuation (fully actuated wheels).
+
+Robotics 2025, 14, 59 23 of 32
+(a) Final trajectories of leader and followers.
+ (b) Orientation ϕ of robots vs. time.
+(c) X position vs. time.
+ (d) Y position vs. time.
+(e) Distance between followers.
+ (f) Distance: leader and followers.
+(g) Pos./orient. error: followers 3 & 4.
+ (h) Pos./orient. error: followers 1 & 2.
+Figure 6. Formation control results with 50% actuation (partially actuated wheels.
+
+Robotics 2025, 14, 59 24 of 32
+Discussion:
+• Figure 5a shows each robot’s path, highlighting that the formation converges to a
+stable configuration.
+• Figure 5b indicates that orientation ϕ for all robots synchronizes around 0–1 rad at
+steady state.
+• Figure 5c,d confirm that each follower tracks the leader’s motion with minimal offset
+after the initial transient.
+• Figure 5e,f quantify inter-robot distances, settling near 2–3 m after an overshoot
+around t = 2 s.
+• Figure 5g,h display error convergence. Both position and orientation errors decay to
+near zero byt = 5 s, reflecting successful formation control under full actuator capacity .
+With this 100% actuation baseline established, the next sections analyze the system
+performance under reduced actuator capacity (80%, 60%, 40%, and 20%). Each scenario fol-
+lows the same format of plots, allowing direct comparison of settling time, error magnitude,
+and steady-state offsets.
+Discussion:
+• Figure 6a shows each robot’s path, highlighting that the formation converges to a
+stable configuration.
+• Figure 6b indicates that orientation ϕ for all robots synchronizes around 0–1 rad at
+steady state.
+• Figure 6c,d confirm that each follower tracks the leader’s motion with minimal offset
+after the initial transient.
+• Figure 6e,f quantify inter-robot distances, settling near 2–3 m after an overshoot
+around t = 2 s.
+• Figure 6g,h display error convergence. Both position and orientation errors decay to near
+zero byt = 5 s, reflecting successful formation control under 50% actuation capacity .
+Comparative Analysis of 100% vs. 50% Actuation
+The comparative analysis between the 100% actuation and 50% actuation sce-
+narios provides insight into the system’s robustness and performance under varying
+actuation capacities.
+• Trajectories and Orientation: Both actuation levels demonstrate the ability to achieve
+stable formations, as evidenced by the convergence of trajectories in Figure 5 (100%)
+and Figure 6 (50%). The fully actuated system exhibits faster convergence with
+smoother trajectories, while the partially actuated system shows slightly delayed
+stabilization and minor deviations during the transient phase.
+• Position Tracking: The tracking performance, illustrated in Figure 5c,d (100%) and
+Figure 6c,d (50%), indicates that both systems effectively follow the leader’s motion.
+However, the 50% actuation system may experience increased tracking errors or longer
+stabilization times due to reduced control authority.
+• Inter-Robot Distances: Inter-robot distances remain within the desired range of2–3 m
+in both scenarios, as shown in Figure 5 (100%) and Figure 6 (50%). The partially
+actuated system demonstrates a slightly higher overshoot and longer settling time,
+reflecting the impact of limited actuation on distance regulation.
+• Error Convergence: Error convergence to near-zero values is achieved in both ac-
+tuation levels, as depicted in Figures 5 and 6. The fully actuated system converges
+more rapidly, whereas the partially actuated system, while still effective, requires a
+marginally extended period to reach comparable error levels.
+
+Robotics 2025, 14, 59 25 of 32
+• Implications for Formation Control: The results indicate that while full actuation
+offers superior performance in terms of faster stabilization and minimal transient
+deviations, partial actuation still maintains effective formation control, albeit with
+slightly reduced performance metrics. This suggests that the system is robust to
+variations in actuation capacity, making it adaptable to scenarios where full actuation
+may not be feasible.
+13. Effect of Fault on Settling Time, Exponential Curve Fitting, and
+System Efficiency
+In order to analyze how varying fault severities influence the settling time of a multi-
+wheeled mobile robot formation, four distinct fault levels of 20%, 40%, 60%, and 80% were
+systematically introduced. After injecting each fault level, the control gain k was increased
+stepwise from low to high, and the resulting settling times were recorded.
+Exponential Curve Fitting of Settling Time
+Figures 7–10 present the measured settling times for each fault scenario, plotted as
+a function of the control gain k. The comparison of all fault severity levels is shown in
+Figure 11. Overlaid on each dataset are best-fit exponential curves of the form
+y = a e−bx + c,
+where y is the measured settling time, x is the control gain, and a, b, and c are parameters
+identified via least-squares fitting.
+• Coefficient a (initial offset): Represents how large the settling time is when x (i.e., the
+gain) is relatively small.
+• Coefficientb (decay rate): Governs how rapidly the settling time decreases as x grows.
+A larger b generally indicates a faster drop in settling time.
+• Constant c (residual value): Sets a lower bound on the settling time; even at large
+gains, y cannot fall below c.
+0 1 2 3 4 5 6 7 8 9 10 110
+2
+4
+6
+8
+10
+12
+Knee at k = 3
+Start of Diminishing Returns
+k = 8
+Nearly Flat Region
+Gain ( k)
+Settling Time ( s)
+Data Points
+Fitted Curve
+Figure 7. Fault severity: 20%. Exponential fit of settling time vs. gain.
+
+Robotics 2025, 14, 59 26 of 32
+0 2 4 6 8 10
+0
+2
+4
+6
+8
+10
+12
+14
+Gain (k)
+Settling Time (s)
+Fault Severity: 40%
+Data Points
+Exponential Fit
+Figure 8. Fault severity: 40%. Exponential fit of settling time vs. gain.
+0 2 4 6 8 10
+0
+5
+10
+15
+20
+Gain (k)
+Settling Time (s)
+Fault Severity: 60%
+Data Points
+Exponential Fit
+Figure 9. Fault severity: 60%. Exponential fit of settling time vs. gain.
+
+Robotics 2025, 14, 59 27 of 32
+0 2 4 6 8 10
+0
+5
+10
+15
+20
+25
+Gain (k)
+Settling Time (s)
+Fault Severity: 80%
+Data Points
+Exponential Fit
+Figure 10. Fault severity: 80%. Exponential fit of settling time vs. gain.
+1 2 3 4 5 6 7 8 9 100
+5
+10
+15
+20
+25
+Diminishing Returns
+Gain k
+Settling Time s
+20% Fault (Data)
+20% Fault (Fit)
+40% Fault (Data)
+40% Fault (Fit)
+60% Fault (Data)
+60% Fault (Fit)
+80% Fault (Data)
+80% Fault (Fit)
+Figure 11. Combine exponential fit of settling time vs. gain.
+As summarized in Table 2, higher fault levels tend to exhibit largera (indicating greater
+initial settling times) and higherc (indicating a larger residual settling time). Nonetheless, in
+every scenario, increasing the gain k still substantially reduces the settling time, confirming
+that the proposed control approach can compensate effectively for actuator faults.
+13.1. System Efficiency and Performance
+In addition to capturing the reduction in settling time, it is useful to define a metric
+that reflects the “efficiency” of using higher gains. One such measure is as follows:
+E(x) = Gain
+Settling Time = x
+y(x) .
+
+Robotics 2025, 14, 59 28 of 32
+Under the exponential model y(x) = a e−bx + c, this becomes
+E(x) = x
+a e−bx + c .
+A larger E(x) suggests that increasing the control gain yields greater (and faster)
+improvement in settling time, indicating a more “efficient” use of control effort. Conversely,
+a small E(x) implies that the gain is insufficient or the fault level is so severe that the payoff
+in settling-time reduction is limited.
+13.2. Identifying a “Plateau” Region and Efficiency Trade-Off
+Although mathematically y(x) keeps decreasing as x increases, in practice, there is
+often a point after which further increases in x yield only marginal improvements in settling
+time. Two common methods can help locate this “plateau” or “diminishing returns” region.
+Numerical threshold on y(x) − c: Let ε be a small tolerance, and x⋆ such that we have
+the following:
+a e−bx⋆
+< ε.
+Solving yields
+x⋆ > 1
+b ln
+ a
+ε
+
+.
+Beyond x⋆, the settling time y(x) is already within ε of its lower asymptote c.
+Small Derivative Threshold: Alternatively, consider the slope:
+dy
+dx = −a b e−bx.
+Choose a small δ and find x⋆ where
+a b e−bx⋆
+< δ,
+implying
+x⋆ > 1
+b ln
+ a b
+δ
+
+.
+For x > x⋆, the curve is “flat” enough that further gains yield negligible reductions
+in y.
+Efficiency at the Plateau Point: Once x⋆ is identified (via either approach), you can
+compute the following:
+E
+ 
+x⋆
+= x⋆
+a e−bx⋆
++ c .
+This value of E(x⋆) demonstrates how efficiently the control effort is applied at the
+onset of diminishing returns. To illustrate a good versus bad point:
+• Moderate gain, near the plateau: Shows most of the benefit in settling-time reduction
+without requiring excessive control effort.
+• High gain, far beyond the plateau: May further reduce y by only a fraction of a
+second, yet requires a disproportionately larger gain (and possibly higher actuator
+stress or noise).
+13.3. Discussion and Practical Implications
+Analyzing these results reveals that more severe faults (60% and 80%) begin with
+higher initial settling times but still respond favorably as the control gain is increased. The
+coefficient a tends to grow with fault severity, reflecting a larger initial “offset” in settling
+time. Likewise, the constant term c also rises under higher fault conditions, indicating a
+
+Robotics 2025, 14, 59 29 of 32
+larger residual settling time even at elevated gains. Despite these increases in a and c, the
+exponential curves confirm that the proposed control strategy significantly mitigates the
+impact of faults, reducing the settling time to a manageable range.
+Moreover, as the control gain x becomes sufficiently large, the settling time y(x)
+approaches the residual value c, beyond which further increases in x yield only marginal
+improvements. This highlights the importance of carefully tuning the gain—while higher
+gains can indeed counteract fault-induced performance degradation, excessively large
+gains may lead to diminishing returns in settling-time reduction and could exacerbate
+noise, actuator wear, or stability concerns.
+A synthesis of key insights is outlined below:
+1. Fault tolerance at higher gains: Even severe faults (60% and 80%) can be effectively
+counteracted by sufficiently high controller gains, resulting in settling times only
+moderately above those observed in lower-fault scenarios.
+2. Parameter trends: Larger faults elevate both a and c, implying higher initial and
+final settling times. Nonetheless, the reduction in y remains significant once the gain
+surpasses a moderate threshold.
+3. Efficiency metric: Defining an efficiency measure, such as E(x) = x/y(x), helps
+quantify the trade-off between higher gain and shorter settling time. This metric
+illustrates where gains are most productively employed and where they become
+less beneficial.
+4. Plateau or threshold gain: Establishing a plateau point x⋆ (e.g., via a small threshold
+on y(x) − c or on the derivative dy
+dx ) clarifies when additional gain produces minimal
+improvements in settling time. Beyond x⋆, the marginal benefit of further increasing
+x diminishes rapidly.
+By identifying a gain value near or slightly exceeding x⋆ and comparing it against a
+substantially larger gain that provides only negligible further benefits, it becomes possible
+to discern an optimal compromise between performance, actuator demand, and fault
+tolerance. These results underscore the importance of employing adaptive or fault-tolerant
+control strategies in multi-robot systems, where partial actuator or sensor failures can
+be anticipated. When combined with robust control methodologies, a suitably chosen
+gain ensures that stable formation control can be maintained across a broad spectrum of
+fault conditions.
+14. Conclusions
+In this paper, we presented a comprehensive investigation into the formation control
+of multi-wheeled mobile robots under varying levels of actuator faults. By integrating a
+leader–follower control strategy with kinematic modeling, Lyapunov-based stability anal-
+ysis, and systematic fault modeling, we demonstrated the effectiveness of our approach
+in maintaining formation integrity despite reduced actuator capabilities. The simulation
+results highlighted how increasing control gains can offset the degradation caused by
+partial actuator failures, thereby improving settling times and preserving the desired geo-
+metric configuration of the robot group. We further employed exponential (or polynomial)
+curve fitting to quantify the relationship between control gains and settling times under
+different fault severities, providing actionable insights into optimal gain selection and
+revealing the region of diminishing returns, where further gain increases offer minimal
+performance benefits.
+These findings underscore the robustness and adaptability of the proposed control
+framework. Even when faults significantly limit actuator performance, well-tuned gains
+ensure stable and efficient formation convergence. Nonetheless, extremely severe fault
+
+Robotics 2025, 14, 59 30 of 32
+levels pose challenges to complete stabilization, emphasizing the necessity of adaptive or
+reconfigurable control architectures.
+For future work, several directions present themselves. First, real-world experiments in
+unstructured, dynamic environments would validate the proposed controllers’ performance
+outside of the simulation. Second, incorporating actuator dynamics and sensor noise into
+the modeling process can capture additional real-world complexities. Third, adaptive
+control methods, such as gain scheduling or online parameter tuning, could further enhance
+resiliency to abrupt or evolving fault conditions. Finally, extending this framework to larger
+teams of heterogeneous robots and integrating advanced cooperative decision-making
+strategies would open pathways to more robust, large-scale multi-robot deployments in
+diverse applications.
+Author Contributions: Conceptualization, M.S., A.N. and N.M.A.; methodology, M.S., A.N. and
+N.M.A.; software, M.S.; validation, M.S., A.N. and N.M.A.; formal analysis, M.S.; investigation,
+M.S.; resources, A.N. and N.M.A.; data curation, M.S.; writing—original draft preparation, M.S.;
+writing—review and editing, A.N. and N.M.A.; visualization, M.S.; supervision, A.N. and N.M.A.;
+project administration, A.N. and N.M.A. All authors have read and agreed to the published version
+of the manuscript.
+Funding: This research received no external funding.
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Not applicable.
+Data Availability Statement: The text includes all the necessary references to the data that were used.
+Conflicts of Interest: The authors declare no conflicts of interest.
+Abbreviations
+The following abbreviations are used in this manuscript:
+WMRs wheeled mobile robots
+FTC fault-tolerant control
+FDI fault detection and isolation
+References
+1. Ren, W.; Beard, R.W.Distributed Consensus in Multi-Vehicle Cooperative Control: Theory and Applications; Springer: Berlin/Heidelberg,
+Germany, 2008.
+2. Cao, Y.; Ren, W.; Egerstedt, M. Distributed containment control with multiple stationary or dynamic leaders in fixed and
+switching directed networks. Automatica 2012, 48, 1586–1597. [CrossRef]
+3. Li, Z.; Duan, Z. Cooperative Control of Multi-Agent Systems: A Consensus Region Approach; CRC Press: Boca Raton, FL, USA, 2017.
+4. Murray, R.M.; Olfati-Saber, R. Consensus problems in networks of agents with switching topology and time-delays. IEEE Trans.
+Autom. Control 2004, 49, 1520–1533.
+5. Chen, Z.M.; Jiang, Z.P . Formation control of multiple nonholonomic mobile robots: A graph theoretic approach. In Proceedings
+of the IEEE Conference on Decision and Control, New Orleans, Louisiana, 12–14 December 2007; pp. 2010–2015.
+6. Egerstedt, M.; Hu, X. Formation constrained multi-agent control. IEEE Trans. Robot. Autom. 2001, 17, 947–951. [CrossRef]
+7. Freeman, R.A.; Yang, P .; Lynch, K.M. Stability and convergence properties of dynamic formation control. In Proceedings of the
+IEEE Conference on Decision and Control, Maui, HI, USA, 9–12 December 2003; pp. 4019–4024.
+8. Zhang, Y.; Jiang, J. Bibliographical review on reconfigurable fault-tolerant control systems. Annu. Rev. Control 2008, 32, 229–252.
+[CrossRef]
+9. Moudoud, B.; El Adraoui, I.; Aassaoui, H.; Bahani, A. Fault-Tolerant Control for Wheeled Mobile Robot via Finite-Time Adaptive
+Sliding Mode. In Proceedings of the 2024 4th International Conference on Innovative Research in Applied Science, Engineering
+and Technology (IRASET), Fez, Morocco, 16–17 May 2024; pp. 1–5.
+10. Edwards, C.; Lombaerts, T.; Smaili, H. Fault tolerant flight control. Lect. Notes Control Inf. Sci. 2010, 399, 1–560.
+11. De Persis, C.; Postoyan, R. A tutorial on the stability analysis of networked control systems. Eur. J. Control 2014, 20, 72–83.
+
+Robotics 2025, 14, 59 31 of 32
+12. Filevich, A.M.F.; Branicky, M.S.; Passino, K.S. Stable task assignments for decentralized multi-vehicle management. IEEE Trans.
+Autom. Control 2007, 52, 1092–1097.
+13. Tanner, H.G.; Jadbabaie, A.; Pappas, G.J. Stable flocking of mobile agents part i: Dynamic topology. In Proceedings of the
+42nd IEEE International Conference on Decision and Control (IEEE Cat. No. 03CH37475), Maui, HI, USA, 9–12 December 2003;
+Volume 2, pp. 2016–2021.
+14. Blanke, M.; Kinnaert, M.; Lunze, J.; Staroswiecki, M. Diagnosis and Fault-Tolerant Control ; Springer: Berlin/Heidelberg,
+Germany, 2016.
+15. Luo, J.; Gao, F.; Chen, B. Adaptive fault-tolerant control for uncertain nonlinear systems with actuator faults. IET Control Theory
+Appl. 2017, 11, 511–519.
+16. Feng, Y.; Theilliol, D.; Merheb, R.; Barbot, J.P . A fault tolerant control allocation strategy against actuator faults.Int. J. Appl. Math.
+Comput. Sci. 2011, 21, 445–454.
+17. Demetriou, M.A. Fault tolerant control of distributed parameter systems. Annu. Rev. Control 2011, 35, 79–89.
+18. Frank, P .M. Fault diagnosis in dynamic systems using analytical and knowledge-based redundancy: A survey and some new
+results. Automatica 1990, 26, 459–474. [CrossRef]
+19. Zhang, P .; Zhang, H. Adaptive fuzzy fault-tolerant dynamic surface control for uncertain nonlinear systems with asymmetric
+input saturation. Int. J. Robust Nonlinear Control 2014, 24, 2202–2216.
+20. Luo, F.; Lin, Z.; Sun, Z.; Zhang, W. Coordination control of multiple mobile robots with actuator faults. Int. J. Control. Autom.
+Syst. 2018, 16, 124–134.
+21. Chen, J.; Saif, M.; Wang, D. Observer-based fault detection and isolation for nonlinear systems: A fuzzy approximation approach.
+Automatica 2004, 40, 1673–1684.
+22. Ding, L.; Wang, D.; Rehg, J.M. Cooperative fault-tolerant control in cooperative robotic systems. IEEE/ASME Trans. Mechatronics
+2010, 15, 435–447.
+23. Xu, Y.; Li, Y.; Han, C. Neural-network-based robust fault-tolerant tracking control for T-S fuzzy nonlinear systems with time
+delays and actuator faults. Neurocomputing 2011, 74, 1093–1102.
+24. Ding, M.; Wang, F.Y.; Zhao, J. Consensus of multi-agent systems under state constraints and actuator faults. IEEE Trans. Ind.
+Electron. 2018, 65, 1699–1708.
+25. Olfati-Saber, R. Flocking for multi-agent dynamic systems: Algorithms and theory. IEEE Trans. Autom. Control 2006, 51, 401–420.
+[CrossRef]
+26. Fax, J.; Murray, R.M. Information flow and cooperative control of vehicle formations. IEEE Trans. Autom. Control 2004, 49,
+1465–1476. [CrossRef]
+27. Mesbahi, M.; Egerstedt, M. Graph Theoretic Methods in Multiagent Networks; Princeton University Press: Princeton, NJ, USA, 2010.
+28. Bullo, F.; Cortes, J.; Martinez, S. Distributed Control of Robotic Networks: A Mathematical Approach to Motion Coordination Algorithms;
+Princeton University Press: Princeton, NJ, USA, 2009.
+29. Siegwart, R.; Nourbakhsh, I.R.; Scaramuzza, D. Introduction to Autonomous Mobile Robots; MIT Press: Cambridge, MA, USA, 2011.
+30. Canudas-de Wit, C.; Siciliano, B.; Bastin, G. (Eds.) Theory of Robot Control; Springer: Berlin/Heidelberg, Germany, 1996.
+31. De Schutter, J.; Bruyninckx, H. A Concise Introduction to Robotics; KU Leuven course notes; Taylor & Francis Ltd.: London, UK,
+2015.
+32. Zhang, Q.; Li, W.; Guo, L.; Qi, X. Collaborative Transport Strategy for Dual AGVs in Smart Ports: Enhancing Docking Accuracy
+in No-Load Formations. J. Mar. Sci. Eng. 2025, 13, 81. [CrossRef]
+33. Hirata-Acosta, J.; Pliego-Jiménez, J.; Cruz-Hernádez, C.; Martínez-Clark, R. Leader-Follower Formation Control of Wheeled
+Mobile Robots without Attitude Measurements. Appl. Sci. 2021, 11, 5639. [CrossRef]
+34. Hong, Y.; Hu, J.; Gao, L. Tracking control for multi-agent consensus with an active leader and variable topology. Automatica 2006,
+42, 1177–1182. [CrossRef]
+35. Egerstedt, M. Control of robotic networks. In Proceedings of the 2010 American Control Conference, Baltimore, MD, USA, 30
+June–2 July 2010; pp. 1–11.
+36. Cortes, J. Distributed control of robotic networks: A mathematical approach. In Mathematical Control Theory I ; Springer:
+Berlin/Heidelberg, Germany, 2013; pp. 1–30.
+37. Shi, P .; Boukas, E.K.; Agarwal, R.K. Kalman filtering for continuous-time uncertain systems with Markovian jumping parameters.
+J. Optim. Theory Appl. 2002, 114, 589–602.
+38. Pham, H.Y.; Nguyen, V .T.; Bui, T.T. An Adaptive Fault Tolerant Control for a Wheeled Mobile Robot under Actuator Fault and
+Dead Zone. In Proceedings of the 2023 International Conference on System Science and Engineering (ICSSE), Ho Chi Minh,
+Vietnam, 27–28 July 2023; pp. 157–161. . [CrossRef]
+39. Phuong, H.S.; Anh, M.T.; Tien, N.M.; Tu, D.D.; Tan, N.D. Proposal of a Fault-tolerant Controller for Wheeled Mobile Robots with
+Faulty Actuators. In Proceedings of the 2023 12th International Conference on Control, Automation and Information Sciences
+(ICCAIS), Hanoi, Vietnam, 27–29 November 2023; pp. 507–510. . [CrossRef]
+
+Robotics 2025, 14, 59 32 of 32
+40. Pierson, A.; Schwager, M. Bio-inspired non-cooperative multi-robot herding. IEEE Trans. Robot. 2018, 34, 1–14.
+41. Knorn, S.; Chen, Z.; Middleton, R.H. Overview: Collective control of multiagent systems. IEEE Trans. Control Netw. Syst. 2016, 3,
+334–347. [CrossRef]
+42. Chen, J.; Patton, R.J. Robust Model-Based Fault Diagnosis for Dynamic Systems; Springer: Berlin/Heidelberg, Germany, 1999.
+43. Beard, R.; McLain, T. Small Unmanned Aircraft: Theory and Practice; Princeton University Press: Princeton, NJ, USA, 2012.
+44. Jouili, A.; Boussaid, B.; Zouinkhi, A.; Abdelkrim, M. Fault Detection of Multi-Wheeled Robot Consensus Based on EKF. Actuators
+2024, 13, 253. [CrossRef]
+45. Ngo, V .T.; Tsai, C.T.; Liu, Y.C. Actuator fault-tolerant control allocation for cooperative transportation of multiple omnidirectional
+mobile robots. Adv. Robot. 2024, 38, 112–127. [CrossRef]
+46. Ying, L.H.; Zhu, J.W. Fault-tolerant Tracking Control for Mobile Robots Based on the Framework of Intermediate Estimator and
+MPC. In Proceedings of the 2023 IEEE 12th Data Driven Control and Learning Systems Conference, Xiangtan, China, 12–14 May
+2023; pp. 324–329. . [CrossRef]
+47. Gunther, W.D.; Whidborne, J.F. Genetic algorithm tuning of linear quadratic regulators. IEEE Trans. Ind. Electron. 2001, 48,
+491–494.
+48. Chiu, G.T.C.; Tomizuka, M. Mixed H2/H∞ robust tracking control with application to HDD systems. IEEE/ASME Trans.
+Mechatronics 1999, 4, 258–266.
+49. Kamel, M.A.; Yu, X.; Zhang, Y. Real-time fault-tolerant formation control of multiple WMRs based on hybrid GA–PSO algorithm.
+IEEE Trans. Autom. Sci. Eng. 2020, 18, 1263–1276. [CrossRef]
+50. Shi, J.; Xing, S.; Zhang, W.; Liu, A.; Chen, C. Fault-tolerant formation control of multi-agent systems with multiple leaders based
+on intermediate variable estimator. IET Control Theory Appl. 2024, 18, 2368–2378. [CrossRef]
+51. Pinciroli, R.; Trubiani, C. Performance Analysis of Fault-Tolerant Multiagent Coordination Mechanisms. IEEE Trans. Ind.
+Informatics 2023, 19, 9821–9832. . [CrossRef]
+52. Tong, C.; Harwood, A.; Rodriguez, M.A.; Sinnott, R.O. An energy-aware and fault-tolerant deep reinforcement learning based
+approach for multi-agent patrolling problems. arXiv 2022, arXiv:2212.08230.
+53. Liu, C.; Gao, Z.; Liu, S.; Ning, X.; Li, H.; Li, X. Fault-tolerant Deep Learning: A Hierarchical Perspective. arXiv 2022,
+arXiv:2204.01942.
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.

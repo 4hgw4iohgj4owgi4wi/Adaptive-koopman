@@ -1,0 +1,18 @@
+{
+  "config_key": "M1_LOWRANK_BILINEAR|S2|4",
+  "seed_label": "FULL_TRAIN",
+  "variant": "S2",
+  "model_kind": "M1_LOWRANK_BILINEAR",
+  "ridge": 0.01,
+  "rank": 4,
+  "layout": {
+    "state_dimension": 51,
+    "control_dimension": 7,
+    "side_dimension": 12,
+    "output_dimension": 47,
+    "bilinear_start": 70
+  },
+  "condition_number": 5828950082.569354,
+  "parameter_count": 6109,
+  "fit_row_count": 158800
+}

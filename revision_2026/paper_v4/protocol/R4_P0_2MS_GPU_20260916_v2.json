@@ -1,0 +1,385 @@
+{
+  "protocol_id": "R5-BASELINE-P0-2MS-GPU-full-route-v2-rate-penalty-fixed",
+  "authorization": "User instruction 2026-09-15: complete everything until the full experiment can start.",
+  "scope": "R4_FULL_ROUTE",
+  "schema_version": "R4-FULL-ROUTE-v1",
+  "run": {
+    "parameter_id": "P0",
+    "backend": "gpu",
+    "workers": 1,
+    "plant_max_step_ms": 2.0,
+    "candidate_id": "EXP-R3-unfrozen-v1",
+    "implementation_id": "R4-full-route-gpu-v1",
+    "total_ticks": 2379,
+    "output": "results/20260916_R5_BASELINE_P0_2MS_GPU02",
+    "deadline_hours": 6.0
+  },
+  "previous_cell_same_parameter_point": null,
+  "required_completed_cells": [],
+  "absolute_parameters": {
+    "vehicle": {
+      "mass_kg": 1200.0,
+      "yaw_inertia_kgm2": 1800.0,
+      "lf_m": 1.2,
+      "lr_m": 1.3,
+      "cf_nprad": 55000.0,
+      "cr_nprad": 60000.0,
+      "mu": 0.9,
+      "gravity_mps2": 9.81
+    },
+    "payload": {
+      "mass_kg": 2000.0,
+      "length_m": 5.0,
+      "width_m": 2.0,
+      "cog_height_m": 1.2,
+      "gravity_mps2": 9.81,
+      "yaw_inertia_kgm2": 4833.333333333333
+    },
+    "connector": {
+      "law_version": "plant_r3_boundary_regularized",
+      "stiffness_npm": 30000.0,
+      "damping_nspm": 3500.0,
+      "free_play_m": 0.002,
+      "smoothing_width_m": 0.0001776170305060031,
+      "rated_force_n": 12000.0,
+      "ultimate_force_n": 15000.0,
+      "strength_source": "numerical_legacy_unverified"
+    },
+    "vehicle_anchor_body_m": [
+      [
+        -0.4,
+        -0.25
+      ],
+      [
+        -0.4,
+        0.25
+      ],
+      [
+        0.4,
+        -0.25
+      ],
+      [
+        0.4,
+        0.25
+      ]
+    ],
+    "payload_anchor_body_m": [
+      [
+        2.5,
+        1.0
+      ],
+      [
+        2.5,
+        -1.0
+      ],
+      [
+        -2.5,
+        1.0
+      ],
+      [
+        -2.5,
+        -1.0
+      ]
+    ]
+  },
+  "parent_g3": {
+    "path": "analysis/20260915_G3_RESTART_EQUIVALENCE_02/g3_restart_equivalence.json",
+    "sha256": "913b5cb1146f76436a68c0c70a1d069a187e8537d192dc0f838a8530c8af50c7",
+    "status": "FAIL_G3_STOP",
+    "required_verdicts": {
+      "force_peak.cpu_run_completed": true,
+      "force_peak.gpu_run_completed": true,
+      "force_peak.gpu_position_within_tolerance": true,
+      "force_peak.gpu_heading_within_tolerance": true,
+      "force_peak.gpu_force_peak_within_tolerance": true,
+      "force_peak.original_hard_gates_hold": true,
+      "steering_limit.cpu_run_completed": true,
+      "steering_limit.gpu_run_completed": true,
+      "steering_limit.gpu_position_within_tolerance": true,
+      "steering_limit.gpu_heading_within_tolerance": true,
+      "steering_limit.gpu_force_peak_within_tolerance": true,
+      "steering_limit.original_hard_gates_hold": true,
+      "late_prefix.cpu_run_completed": true,
+      "late_prefix.gpu_run_completed": true,
+      "late_prefix.gpu_position_within_tolerance": true,
+      "late_prefix.gpu_heading_within_tolerance": true,
+      "late_prefix.gpu_force_peak_within_tolerance": true,
+      "late_prefix.original_hard_gates_hold": true
+    },
+    "not_required_verdicts": {
+      "force_peak.restart_position_within_tolerance": true,
+      "force_peak.restart_heading_within_tolerance": true,
+      "steering_limit.restart_position_within_tolerance": true,
+      "steering_limit.restart_heading_within_tolerance": true,
+      "late_prefix.restart_position_within_tolerance": false,
+      "late_prefix.restart_heading_within_tolerance": true
+    }
+  },
+  "parent_g3_protocol": {
+    "path": "protocol/G3_RESTART_EQUIVALENCE_20260915_v4.json",
+    "sha256": "02e1ed84a82d90f6af28f30f5b4e3f6f68af213fa021d7fed7e260c157db5ee5"
+  },
+  "parent_g3b_mechanism": {
+    "path": "analysis/20260915_G3B_DIVERGENCE_MECHANISM_01/g3_divergence_mechanism.json",
+    "sha256": "2330300d6f0d03e9a9e3603ae1252edf8f80e43819cfe50755ea85da760556fd",
+    "protocol": "protocol/G3B_DIVERGENCE_MECHANISM_20260915_v1.json",
+    "protocol_sha256": "85645578396ae0c9d8c65794d40ac4a15bcb18a3ca9248e520ec0ca8d5368910",
+    "status": "PASS_READ_ONLY_MECHANISM_ANALYSIS"
+  },
+  "decision_rule_supersession": {
+    "rule": "Task-book section 19.6 requires all of 2 / 1 / 0.5 ms to be re-run with the new version whenever the control-algorithm source changes in a result-affecting way.",
+    "decision": "The user decided on 2026-09-16 not to re-run the six cells and instead to produce a single corrected reference run at 2 ms.",
+    "basis": "The four decisive convergence gates already measured the step-size influence at 1e-8 to 4e-5 (force relative 1.4e-08, terminal position 1.8e-05 m for P2), which is six to seven orders of magnitude below the metre-scale effect of the controller version. One corrected 2 ms reference therefore answers the open question at a fraction of the cost.",
+    "consequences_recorded": [
+      "the six R4 cells stay registered as defective-version evidence and are marked SUPERSEDED_BY_RATE_PENALTY_SIGN_FIX",
+      "old and new results must never be mixed into one candidate-version claim: the C1 total PASS obtained from the six old cells is retired and not re-claimed by this single run",
+      "the corrected run is the reference for re-measuring the section 42 late lateral deviation and for the R5 no-op gate"
+    ],
+    "not_a_gate_change": "No threshold, gate, weight or route is modified by this decision."
+  },
+  "parent_qualification": {
+    "path": "results/20260915_RTX5080_G0_G2_05/qualification.json",
+    "sha256": "51f1d8572d66ce520d9afa4caba2d87e6f5de4772e40e1864005b6609510dc9d",
+    "status": "PASS_G0_G2_GPU_QUALIFIED"
+  },
+  "identity_rule": "Only immutable inputs are gated. Documents revised by this same work are excluded on purpose.",
+  "unchanged_from_the_cpu_candidate": [
+    "control law, plant, horizon 20, controller step 20 ms, predictor step 2 ms",
+    "lambda_internal = 2.0, frozen_dynamics_jacobian = false, finite_difference_scale = 1.0",
+    "15000 N ultimate force, tyre utilisation 1.0, non-negative support load",
+    "route, reference speed and reference schedule"
+  ],
+  "gates": {
+    "ultimate_force_n": 15000.0,
+    "tire_limit": 1.0,
+    "minimum_support_n": 0.0,
+    "predicted_force_budget_n": 15000.0,
+    "source": "original frozen R4 thresholds; not relaxed by this protocol"
+  },
+  "analysis_plan": {
+    "comparator": "tools/full_route_compare.py",
+    "compare_against": "results/20260915_R4_P1_2MS01 over the first 2200 persisted ticks, and against the original hard gates over the whole route",
+    "must_report": [
+      "per-tick CPU/GPU divergence over the overlapping prefix",
+      "full-route hard-gate status, completion and reference progress",
+      "wall clock versus the 5 s per-solve budget",
+      "the configuration error, which this implementation does not maintain internally"
+    ],
+    "forbidden": [
+      "splicing the GPU continuation onto the interrupted CPU prefix as one trajectory",
+      "claiming real-time behaviour from offline wall clock",
+      "using the GPU speed-up to claim the P1 late-tracking question is answered"
+    ]
+  },
+  "decision_after_completion": {
+    "if_completed_and_gates_hold": "P1 2 ms is a complete GPU-route result whose identity differs from the interrupted CPU run; the 1 ms and 0.5 ms cells can then be frozen on the same candidate, and the P2 parameter point follows only after P1",
+    "if_late_divergence_reproduces": "the reproduction itself becomes the controlled case for the late-tracking investigation; do not widen gates",
+    "if_diverges_earlier_than_cpu": "treat CUDA-vs-CPU closed-loop divergence as the first hypothesis and re-run a matching short window rather than the full route"
+  },
+  "identity_files": [
+    {
+      "path": "src/paper_v4_core/diagnostics/full_route_gpu_runner.py",
+      "sha256": "8f50bbf5746d5b9c88de554e7f951f1575efb5cd48a9dce872c3f7cf92c668ae"
+    },
+    {
+      "path": "analysis/20260915_G3_RESTART_EQUIVALENCE_02/g3_restart_equivalence.json",
+      "sha256": "913b5cb1146f76436a68c0c70a1d069a187e8537d192dc0f838a8530c8af50c7"
+    },
+    {
+      "path": "analysis/20260915_G3B_DIVERGENCE_MECHANISM_01/g3_divergence_mechanism.json",
+      "sha256": "2330300d6f0d03e9a9e3603ae1252edf8f80e43819cfe50755ea85da760556fd"
+    },
+    {
+      "path": "protocol/G3_RESTART_EQUIVALENCE_20260915_v4.json",
+      "sha256": "02e1ed84a82d90f6af28f30f5b4e3f6f68af213fa021d7fed7e260c157db5ee5"
+    },
+    {
+      "path": "protocol/G3B_DIVERGENCE_MECHANISM_20260915_v1.json",
+      "sha256": "85645578396ae0c9d8c65794d40ac4a15bcb18a3ca9248e520ec0ca8d5368910"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/gpu_closed_loop_runner.py",
+      "sha256": "5ea4d570c8591b5738fe141eafa9edf4b4252c1daf1dd4497a26a2ddf1b06d0d"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/reference_memory.py",
+      "sha256": "47f91b50321b4f3d648770c5fa93083dd83e91eaf94b35af6bd46f8c7823aae5"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/post_r3_r4_runner.py",
+      "sha256": "32ba7e9f3807b45b49642f4869b1b9e6cffadc6e28a1b824bfe9931358a9d379"
+    },
+    {
+      "path": "tools/full_route_compare.py",
+      "sha256": "62c29768bdb991c24b67b194e6715b211c24f6f9d41ad3c076f79a6b30098003"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "a75ac69b9f6068813f89850760c929b2b58bbe77927959f8a65d7817545bce43"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/parallel_fd_backend.py",
+      "sha256": "d6ded1a9cbea08034bbb025276aee8569eb7fcac34cd95c54c4c590d9aad6495"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/__init__.py",
+      "sha256": "c0c603e663221615bb6dd3119021fcad617232239c2caa44cb5d384baa23365d"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/physics_torch.py",
+      "sha256": "8eaaac3e431d5b4b112d2e46722761f6b28092ac7fb07ca4f1b867ddbdef54dd"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/rollout_batch.py",
+      "sha256": "80bad4fdd7833e3a775f8dd3fe211f4034e038242bfcc91bdc8a5fa433ee603e"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/gpu_worker.py",
+      "sha256": "e41ca0ee45386b2a5dc9d796cbdf27c77d483a8aefe870412b55e418844206f1"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/ipc_backend.py",
+      "sha256": "c1449856a13e33ccbcd278a4444ea99e297173099c5f3b8c2d0a40d0e980244f"
+    },
+    {
+      "path": "src/paper_v4_core/plant/four_vehicle_common.py",
+      "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_adapter.py",
+      "sha256": "dd56ccb6e7117a6a101dba57884dda81cc04e2fecc520cc7d44568419e177dd7"
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_r3.py",
+      "sha256": "2c6ef95ac9e9c4afe88e005bc99d4644373f44dfd0448b07a6ac78e5e03de1de"
+    },
+    {
+      "path": "src/paper_v4_core/plant/internal_force.py",
+      "sha256": "5a9f24f6fbc7540847574a3d5ce435d40caa29cb99be1dd9dbb1282c804bdf2e"
+    },
+    {
+      "path": "src/paper_v4_core/plant/load_transfer.py",
+      "sha256": "0da410a3da05e538464c83ed1a02e081c1196631c121c6ab750ebc1068c8e74b"
+    },
+    {
+      "path": "src/paper_v4_core/plant/event_substep.py",
+      "sha256": "aad77aa5b9d45cefc72769062550a07c6f2593e5038f2e9e35fcd8242ab41726"
+    },
+    {
+      "path": "src/paper_v4_core/e01_100m.py",
+      "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"
+    },
+    {
+      "path": "src/paper_v4_core/pilot_runner.py",
+      "sha256": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728"
+    },
+    {
+      "path": "src/paper_v4_core/reference_geometry.py",
+      "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d"
+    },
+    {
+      "path": "src/paper_v4_core/references.py",
+      "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"
+    },
+    {
+      "path": "src/paper_v4_core/failure_boundary.py",
+      "sha256": "1bb27d9310005a1cd7db235e1505e530c160a4b89da140eb6f2c399669a604bd"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/raw.npz",
+      "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"
+    },
+    {
+      "path": "results/20260915_RTX5080_G0_G2_05/qualification.json",
+      "sha256": "51f1d8572d66ce520d9afa4caba2d87e6f5de4772e40e1864005b6609510dc9d"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    },
+    {
+      "path": "protocol/R4_C1_GATE_20260916_v1.json",
+      "sha256": "806edb62486364f64ac1a6b5fa46e6692063d489d5ae5330e25b83f4f79c8bfd"
+    },
+    {
+      "path": "src/paper_v4_core/r5_runner.py",
+      "sha256": "e1064b30cbdfb2b4ebe2e92f754346e071336365207eafdce7ecde318fd5946e"
+    },
+    {
+      "path": "src/paper_v4_core/information/legal_information.py",
+      "sha256": "02bb2e0e73fccff719930bbbcc449ab020531c4253c42653debea440b68d6365"
+    },
+    {
+      "path": "src/paper_v4_core/r5_information_tests.py",
+      "sha256": "1761ad98aa9f69a8283b38bc784380e028bb8c8aaea4affca2d52cbf81f2eba7"
+    },
+    {
+      "path": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+      "sha256": "8550f6a2b073d3eea83e9729997bd72bc6e2290247cdd635cc6556c9529f5946"
+    },
+    {
+      "path": "qp_rate_penalty_sign_defect_20260916.md",
+      "sha256": "3c00b9a6e2463e0625250173960383cd27a25d980d80909072a233bee8f2c790"
+    },
+    {
+      "path": "analysis/20260916_RATE_PENALTY_FIX_VERIFY_01/rate_penalty_fix_verify.json",
+      "sha256": "a1f8d69f5e8bbb5144abe6333a3aaa1da9cbc51e70703d3b8774fb6402cbbbb0"
+    }
+  ],
+  "role": "R5 noiseless no-op baseline, produced with the fixed rate-penalty sign",
+  "why_this_baseline": "Task-book section 5 names the CPU full-state baseline results/20260911_R3_UNFROZEN_FULL01/2ms. Per gpu_platform_decision_20260916.md rule P2, an invariance gate must be compared within one backend: a GPU R5 run against a CPU baseline would measure the cross-backend difference already qualified by G3 (2.4e-05 m over 2200 ticks) instead of the interface. This baseline therefore reproduces the same candidate identity (EXP-R3-unfrozen-v1, P0 nominal, 2 ms, frozen_dynamics_jacobian=False, finite_difference_scale=1.0, 15000 N / tyre 1.0 / non-negative support) on the GPU path, and the CPU baseline is retained as the cross-backend equivalence reference.",
+  "supersedes_protocol": {
+    "path": "protocol/R4_P0_2MS_GPU_20260915_v1.json",
+    "sha256": "5fbd027d6babb3b4262b1ddcbb988bda361943693296b3f5662b788a6c7ffbe4",
+    "reason": "physical_tracking_pilot.build_problem carried a sign error in the control-rate penalty (see qp_rate_penalty_sign_defect_20260916.md). The v1 run was aborted at 930/2379 and the protocol identity is stale because the controller source changed.",
+    "aborted_run": "results/20260916_R5_BASELINE_P0_2MS_GPU01",
+    "aborted_run_disposition": "retained as defective-version evidence; neither PASS nor FAIL; never to be spliced with fixed-version runs"
+  },
+  "controller_identity": {
+    "control_rate_penalty_sign": "corrected (target = + (u_nom[h] - u_nom[h-1]))",
+    "fix_record": "qp_rate_penalty_sign_defect_20260916.md",
+    "verification": "analysis/20260916_RATE_PENALTY_FIX_VERIFY_01/rate_penalty_fix_verify.json"
+  },
+  "preconditions": {
+    "reverified_on": "2026-09-16 (v2 rebuilt by hand; the builder refuses to overwrite the v1 file)",
+    "reverification_method": "the G3 verdicts are recomputed exactly as full_route_gpu_runner does it: windows[].verdicts for the required verdict names. The overall G3 status is FAIL_G3_STOP because the restart_* verdicts fail on the late free-play window, which is precisely why the runner pins a required subset instead of the status string.",
+    "g3_overall_status": "FAIL_G3_STOP",
+    "required_g3_verdicts_all_hold": true,
+    "required_g3_verdicts": {
+      "force_peak.cpu_run_completed": true,
+      "force_peak.gpu_run_completed": true,
+      "force_peak.gpu_position_within_tolerance": true,
+      "force_peak.gpu_heading_within_tolerance": true,
+      "force_peak.gpu_force_peak_within_tolerance": true,
+      "force_peak.original_hard_gates_hold": true,
+      "steering_limit.cpu_run_completed": true,
+      "steering_limit.gpu_run_completed": true,
+      "steering_limit.gpu_position_within_tolerance": true,
+      "steering_limit.gpu_heading_within_tolerance": true,
+      "steering_limit.gpu_force_peak_within_tolerance": true,
+      "steering_limit.original_hard_gates_hold": true,
+      "late_prefix.cpu_run_completed": true,
+      "late_prefix.gpu_run_completed": true,
+      "late_prefix.gpu_position_within_tolerance": true,
+      "late_prefix.gpu_heading_within_tolerance": true,
+      "late_prefix.gpu_force_peak_within_tolerance": true,
+      "late_prefix.original_hard_gates_hold": true
+    },
+    "not_required_g3_verdicts": {
+      "force_peak.restart_position_within_tolerance": true,
+      "force_peak.restart_heading_within_tolerance": true,
+      "steering_limit.restart_position_within_tolerance": true,
+      "steering_limit.restart_heading_within_tolerance": true,
+      "late_prefix.restart_position_within_tolerance": false,
+      "late_prefix.restart_heading_within_tolerance": true
+    },
+    "gpu_qualification_status": "PASS_G0_G2_GPU_QUALIFIED",
+    "gpu_qualification_run": "results/20260915_RTX5080_G0_G2_05",
+    "closed_loop_authorized": false,
+    "historical_cpu_full_state_reference_present": true,
+    "historical_cpu_reference": "results/20260911_R3_UNFROZEN_FULL01/2ms (defective rate-penalty version; cross-backend reference only)",
+    "output_does_not_exist": true,
+    "total_ticks": 2379,
+    "controller_identity_current": "physical_tracking_pilot.py SHA a75ac69b9f606881 (rate-penalty sign fixed)"
+  }
+}

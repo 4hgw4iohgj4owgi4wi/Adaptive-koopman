@@ -1,0 +1,222 @@
+"""EXP-R2 R5 legal-information physical-MPC development runner."""
+from __future__ import annotations
+
+import argparse
+import json
+import time
+from pathlib import Path
+
+import numpy as np
+
+from .cli import save, sha
+from .controllers.physical_tracking_pilot import PilotConfig
+from .diagnostics.relative_motion import extract
+from .e01_100m import DT, LIMIT, RATE, TAU, params
+from .failure_boundary import consume_audit
+from .information.legal_information import SensorNoise, sample_packets, solve_from_information
+from .pilot_runner import ROUTE_LENGTH, SPEED, _path_sample, make_preview
+from .plant.event_substep import EventSubstepConfig, advance_outer_step
+from .plant.four_vehicle_common import connector_diagnostics, initialize_state, system_derivative
+from .reference_geometry import transition_targets
+
+
+ESTIMATE_COLUMNS = [f"estimate_x{i}" for i in range(30)] + [f"estimate_delta{i}" for i in range(4)]
+ERROR_COLUMNS = [f"error_x{i}" for i in range(30)] + [f"error_delta{i}" for i in range(4)]
+
+
+def _checkpoint(out, rows, columns, subrows, subcolumns, estimates, status):
+    np.savez_compressed(out / "raw.npz", values=np.asarray(rows, float), columns=np.asarray(columns))
+    sub = np.asarray(subrows, float) if subrows else np.empty((0, len(subcolumns)))
+    np.savez_compressed(out / "substeps.npz", values=sub, columns=np.asarray(subcolumns))
+    estimate_values = np.asarray(estimates, float) if estimates else np.empty((0, 2 + 68))
+    np.savez_compressed(
+        out / "estimates.npz",
+        values=estimate_values,
+        columns=np.asarray(["tick", "time_s", *ESTIMATE_COLUMNS, *ERROR_COLUMNS]),
+    )
+    save(out, "status.json", status)
+
+
+def run(out, noise_name="none", seed=5105, segment_s=None):
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=False)
+    if noise_name not in {"none", "basic"}:
+        raise ValueError("noise_name must be none or basic")
+    noise = SensorNoise.none() if noise_name == "none" else SensorNoise.basic()
+    rng = np.random.default_rng(int(seed))
+    model = params("P0")
+    state = initialize_state(model, SPEED)
+    delta = np.zeros(4)
+    beta = np.zeros(4)
+    previous_u = np.zeros(8)
+    distance = 0.0
+    rows, subrows, estimates = [], [], []
+    solver_path = out / "solver.jsonl"
+    information_path = out / "information.jsonl"
+    started = time.perf_counter()
+    status, reason = "RUNNING", None
+    actual_path = 0.0
+    last_payload = state[24:26].copy()
+    max_force = max_internal = max_tire = max_eg = 0.0
+    min_support = float("inf")
+    iterations = 0
+    lambda_internal = 2.0
+    requested_segment_s = float(segment_s) if segment_s is not None else ROUTE_LENGTH / SPEED
+    count = int(np.ceil(requested_segment_s / DT))
+    columns = ["time_s", "reference_distance_m", "actual_payload_path_m", "lambda_internal"] + [f"x{i}" for i in range(30)] + [f"request_accel{i}" for i in range(4)] + [f"request_delta{i}" for i in range(4)] + [f"actual_delta{i}" for i in range(4)] + [f"point_force_norm{i}" for i in range(4)] + [f"tire_utilization{i}" for i in range(4)] + [f"support_load{i}" for i in range(4)] + ["internal_force_norm_n", "tension_x_n", "tension_y_n", "max_e_g_m", "solver_wall_s"]
+    subcolumns = ["time_s", "dt_s"] + [f"force_peak{i}" for i in range(4)] + [f"force_impulse_x{i}" for i in range(4)] + [f"force_impulse_y{i}" for i in range(4)] + [f"tire_utilization{i}" for i in range(4)] + [f"support_load{i}" for i in range(4)]
+
+    with solver_path.open("w", encoding="utf-8") as solver_handle, information_path.open("w", encoding="utf-8") as information_handle:
+        for k in range(count):
+            t = k * DT
+            u_nom, refs, _ = make_preview(distance, beta, model, previous_u, 20)
+            packet_bundle = sample_packets(state, delta, k, noise, rng)
+            result = solve_from_information(
+                packet_bundle,
+                k,
+                u_nom,
+                refs,
+                model,
+                PilotConfig(horizon=20, lambda_internal=lambda_internal),
+            )
+            estimate = np.asarray(result.pop("initial_estimate"), float)
+            information_audit = result.pop("information_audit")
+            estimate_error = estimate - np.r_[state, delta]
+            estimate_error[[2, 8, 14, 20, 26]] = (
+                estimate_error[[2, 8, 14, 20, 26]] + np.pi
+            ) % (2.0 * np.pi) - np.pi
+            estimates.append(np.r_[k, t, estimate, estimate_error])
+            information_handle.write(json.dumps({
+                "tick": k,
+                "time_s": t,
+                "noise_name": noise_name,
+                "noise": noise.metadata(),
+                "measurements_34": estimate.tolist(),
+                "audit": information_audit,
+            }, ensure_ascii=False, allow_nan=False) + "\n")
+            information_handle.flush()
+            solver_record = {key: result[key] for key in ("status", "solver_status", "iterations", "primal_residual", "dual_residual", "objective", "wall_s")}
+            solver_record.update({"tick": k, "time_s": t, "validation": result["validation"], "first_control": result["control"][0].tolist(), "last_control": result["control"][-1].tolist(), "information_audit": information_audit})
+            solver_handle.write(json.dumps(solver_record, ensure_ascii=False, allow_nan=False) + "\n")
+            solver_handle.flush()
+            if result["status"] != "PASS":
+                status, reason = "FAILED", "MPC_" + str(result["solver_status"])
+                break
+
+            command = np.asarray(result["control"][0]).reshape(4, 2)
+            previous_u = result["control"][0].copy()
+            interval_duration = 0.0
+            for _ in range(10):
+                delta_before = delta.copy()
+                free = command[:, 1] + np.exp(-0.002 / TAU) * (delta - command[:, 1])
+                delta = np.clip(delta + np.clip(free - delta, -RATE * 0.002, RATE * 0.002), -LIMIT, LIMIT)
+                try:
+                    state, audit = advance_outer_step(state, np.c_[command[:, 0], delta], "R3", model, 0.002, "ES", EventSubstepConfig(), max_step_s=0.002, load_transfer_enabled=True)
+                except Exception as error:
+                    status, reason = "FAILED", f"PLANT_{type(error).__name__}"
+                    break
+                boundary = consume_audit(audit, t + interval_duration, state, delta_before, delta)
+                local = 0.0
+                for segment in boundary["segments"]:
+                    local += float(segment["dt_s"])
+                    force_peak = np.asarray(segment["force_peak_n"])
+                    impulse = np.asarray(segment["force_interval_impulse_world_ns"])
+                    utilization = np.asarray(segment["tire_raw_utilization"])
+                    support = np.asarray(segment["payload_support_load_n"])
+                    subrows.append(np.r_[t + interval_duration + local, segment["dt_s"], force_peak, impulse[:, 0], impulse[:, 1], utilization, support])
+                    max_force = max(max_force, float(np.max(force_peak)))
+                    max_tire = max(max_tire, float(np.max(utilization)))
+                    min_support = min(min_support, float(np.min(support)))
+                interval_duration += boundary["accepted_duration_s"]
+                if audit["status"] != "PASS":
+                    status, reason = "FAILED", audit["status"]
+                    break
+
+            distance = min(distance + SPEED * interval_duration, ROUTE_LENGTH)
+            beta = beta + (interval_duration / DT) * (np.asarray(refs[0]["beta_star"]) - beta)
+            diagnostics = connector_diagnostics(state, model, "R3")
+            _, system = system_derivative(state, np.c_[command[:, 0], delta], model, "R3", load_transfer_enabled=True)
+            point_force = np.asarray(diagnostics["force_norm_n"])
+            tire = np.asarray([item["raw_utilization"] for item in system["tire"]])
+            support = np.asarray(system["payload_support_load_n"])
+            q_star = transition_targets(np.asarray([SPEED, 0.0]), SPEED * _path_sample(distance)[3], beta, model)["centers"]
+            relative = extract(state, model, q_star, beta)
+            e_g = float(np.max(np.linalg.norm(relative["e_g_m"], axis=1)))
+            payload = state[24:26]
+            actual_path += float(np.linalg.norm(payload - last_payload))
+            last_payload = payload.copy()
+            max_force = max(max_force, float(np.max(point_force)))
+            max_internal = max(max_internal, float(diagnostics["internal_force_norm_n"]))
+            max_tire = max(max_tire, float(np.max(tire)))
+            min_support = min(min_support, float(np.min(support)))
+            max_eg = max(max_eg, e_g)
+            rows.append(np.r_[t + interval_duration, distance, actual_path, lambda_internal, state, command[:, 0], command[:, 1], delta, point_force, tire, support, diagnostics["internal_force_norm_n"], diagnostics["tension_x_n"], diagnostics["tension_y_n"], e_g, result["wall_s"]])
+            iterations = k + 1
+            if max_force > 15000.0 + 1e-6:
+                status, reason = "FAILED", "STOP_ULTIMATE_FORCE_ENDPOINT"
+            elif max_tire > 1.0 + 1e-9:
+                status, reason = "FAILED", "TIRE_CAPABILITY_VIOLATION"
+            elif min_support < 0.0:
+                status, reason = "FAILED", "SUPPORT_LIFT"
+            if status == "FAILED":
+                break
+            if (k + 1) % 25 == 0:
+                _checkpoint(out, rows, columns, subrows, subcolumns, estimates, {"status": "RUNNING", "tick": k + 1, "time_s": t + interval_duration, "reference_distance_m": distance, "updated_unix": time.time()})
+        if status == "RUNNING":
+            status = "COMPLETED" if iterations == count else "PAUSED"
+
+    errors = np.asarray(estimates, float)[:, 36:] if estimates else np.empty((0, 34))
+    metrics = {
+        "status": status,
+        "reason": reason,
+        "role": "DEV",
+        "identity": "Centralized physical MPC supplied only by same-tick legal sensor packets; R5 interface diagnostic",
+        "information_architecture": "centralized same-tick fusion; no network impairment",
+        "noise_name": noise_name,
+        "noise": noise.metadata(),
+        "noise_seed": int(seed),
+        "parameter_id": "P0",
+        "lambda_internal": lambda_internal,
+        "horizon": 20,
+        "controller_step_s": DT,
+        "plant_step_s": 0.002,
+        "maximum_plant_step_s": 0.002,
+        "requested_segment_s": requested_segment_s,
+        "iterations": iterations,
+        "duration_s": float(rows[-1][0]) if rows else 0.0,
+        "reference_distance_m": distance,
+        "route_length_m": ROUTE_LENGTH,
+        "actual_payload_path_m": actual_path,
+        "maximum_point_force_n": max_force,
+        "maximum_internal_force_norm_n": max_internal,
+        "maximum_tire_utilization": max_tire,
+        "minimum_support_load_n": min_support,
+        "maximum_configuration_error_m": max_eg,
+        "trajectory_completed": bool(status == "COMPLETED" and distance >= ROUTE_LENGTH - 1e-9),
+        "predicted_force_budget_n": 12000.0,
+        "ultimate_stop_n": 15000.0,
+        "solver_calls": iterations + (1 if status == "FAILED" and reason and reason.startswith("MPC_") else 0),
+        "state_estimate_rmse": float(np.sqrt(np.mean(errors[:, :30] ** 2))) if len(errors) else None,
+        "steering_estimate_rmse_rad": float(np.sqrt(np.mean(errors[:, 30:] ** 2))) if len(errors) else None,
+        "wall_s": time.perf_counter() - started,
+        "source_sha256": sha(__file__),
+    }
+    _checkpoint(out, rows, columns, subrows, subcolumns, estimates, metrics)
+    save(out, "metrics.json", metrics)
+    if status != "COMPLETED":
+        raise SystemExit(20)
+    return metrics
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out", required=True)
+    parser.add_argument("--noise", choices=["none", "basic"], required=True)
+    parser.add_argument("--seed", type=int, default=5105)
+    parser.add_argument("--segment-s", type=float)
+    args = parser.parse_args()
+    run(args.out, args.noise, args.seed, args.segment_s)
+
+
+if __name__ == "__main__":
+    main()

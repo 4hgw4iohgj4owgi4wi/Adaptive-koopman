@@ -1,0 +1,91 @@
+{
+  "definition": "sign of maximum-absolute Q_FR, Q_LR and virtual-front-steering value in every non-overlapping 20-step window",
+  "counts": {
+    "train": {
+      "Q_FR": {
+        "positive": 5435,
+        "negative": 8637,
+        "zero": 88,
+        "positive_fraction_nonzero": 0.3862279704377487,
+        "negative_fraction_nonzero": 0.6137720295622513
+      },
+      "Q_LR": {
+        "positive": 4880,
+        "negative": 9192,
+        "zero": 88,
+        "positive_fraction_nonzero": 0.34678794769755544,
+        "negative_fraction_nonzero": 0.6532120523024446
+      },
+      "steering": {
+        "positive": 4918,
+        "negative": 4322,
+        "zero": 4920,
+        "positive_fraction_nonzero": 0.5322510822510822,
+        "negative_fraction_nonzero": 0.46774891774891775
+      }
+    },
+    "validation": {
+      "Q_FR": {
+        "positive": 1460,
+        "negative": 2292,
+        "zero": 24,
+        "positive_fraction_nonzero": 0.38912579957356075,
+        "negative_fraction_nonzero": 0.6108742004264393
+      },
+      "Q_LR": {
+        "positive": 1274,
+        "negative": 2478,
+        "zero": 24,
+        "positive_fraction_nonzero": 0.33955223880597013,
+        "negative_fraction_nonzero": 0.6604477611940298
+      },
+      "steering": {
+        "positive": 1424,
+        "negative": 1040,
+        "zero": 1312,
+        "positive_fraction_nonzero": 0.577922077922078,
+        "negative_fraction_nonzero": 0.42207792207792205
+      }
+    },
+    "development-test": {
+      "Q_FR": {
+        "positive": 1422,
+        "negative": 2337,
+        "zero": 17,
+        "positive_fraction_nonzero": 0.37829209896249,
+        "negative_fraction_nonzero": 0.62170790103751
+      },
+      "Q_LR": {
+        "positive": 1312,
+        "negative": 2447,
+        "zero": 17,
+        "positive_fraction_nonzero": 0.3490289970736898,
+        "negative_fraction_nonzero": 0.6509710029263102
+      },
+      "steering": {
+        "positive": 1133,
+        "negative": 1331,
+        "zero": 1312,
+        "positive_fraction_nonzero": 0.45982142857142855,
+        "negative_fraction_nonzero": 0.5401785714285714
+      }
+    }
+  },
+  "pass_min_20pct_each_sign": {
+    "train": {
+      "Q_FR": true,
+      "Q_LR": true,
+      "steering": true
+    },
+    "validation": {
+      "Q_FR": true,
+      "Q_LR": true,
+      "steering": true
+    },
+    "development-test": {
+      "Q_FR": true,
+      "Q_LR": true,
+      "steering": true
+    }
+  }
+}

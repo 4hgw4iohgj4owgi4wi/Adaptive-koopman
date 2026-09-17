@@ -1,0 +1,977 @@
+{
+  "source_manifest_sha256": "b3ded2ac3d2f5b0fee8314da425632a2e24906243fcb84f3b2379806af3455ce",
+  "mapping": {
+    "train": "train",
+    "validation": "validation",
+    "test": "dev_test_old",
+    "external": "dev_external_old"
+  },
+  "counts": {
+    "train": 70,
+    "validation": 15,
+    "dev_test_old": 15,
+    "dev_external_old": 20
+  },
+  "trajectories": [
+    {
+      "file": "trajectories\\train_staged_100m_000.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 0,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "caa09cd0a3d4f460e04196952b8a6d01ebe7d1900b42a47abe52325e7218b885"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_001.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 1,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d91d738d00d2b05b0022a58d29f6da197a5f6feff7fee6ae1e904e1bf99eab45"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_002.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 2,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "184c277d74629627896adba1af7a11d2be741b2d76966256dec68bf0abf46dac"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_003.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 3,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d2d26e14988c746f929377262994dcc657dc50bbeaf852c84edb7d38c2029e54"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_004.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 4,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d43304906f9f4193a4ad0ac9677118543d2e2a5ce0d0df00a8b034003143d32f"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_005.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 5,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "99ae490b457ed9e78049807e0b007cdc718aa1a5de376c485ee41fc38f18c281"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_006.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 6,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "e165b90685380596eabf3c43e2d539b5c24bc3d716808fc42c3a89516ce9e711"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_007.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 7,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "f6035c9b6ed3bef5d250a56f7ec1f391d0a6137a1ff46de9d112847a4c5cc133"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_008.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 8,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "13b2e79a38b4a82e3d9e7bd2090a956c47cd6bfefce5ef3cdae930b1f129ce4d"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_009.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 9,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "7b486f0a6a4b7fe9707016e01c18d792d26f09b7eb5318f3daeb7243ab3bf2a7"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_010.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 10,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "a0f36c17e2f1932a3cc56f6df8c92a81ed06502772a2d8d8e2bddbd305b42828"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_011.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 11,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "4ddd37594cb72ea287759091062e2d8f5c0f811d882b3a3e26c946128360ae05"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_012.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 12,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "8f3ca94f48b45d11a6b3005bd2e69bbfc66bd945d8ee33c582dde137f24f4a9d"
+    },
+    {
+      "file": "trajectories\\train_staged_100m_013.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 13,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "b9feb771afd402b8ad377db5e3f40344a718c72ea1834a7ce15400d32f84d917"
+    },
+    {
+      "file": "trajectories\\validation_staged_100m_014.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 14,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "6ff794b14d8e1be6aab5152f411b8ac83baad4452a61021838b236ab0a4a188a"
+    },
+    {
+      "file": "trajectories\\validation_staged_100m_015.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 15,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "b74e6527000f707826cb01990a4560efc5b299652424a40143815a9e5f3ebbc3"
+    },
+    {
+      "file": "trajectories\\validation_staged_100m_016.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 16,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "d843601dbe0ef0c3f7c11200628d82e9af10649e026243e25922004315420824"
+    },
+    {
+      "file": "trajectories\\test_staged_100m_017.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 17,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "51a3b72907d0f4f39d320c2f381705c192735c7f6887334fbd4bd318c3739c3b"
+    },
+    {
+      "file": "trajectories\\test_staged_100m_018.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 18,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "75fa8faf031eb63064162d2ec8bcda949bf293a5cbef1ea1ab99badf3edb6089"
+    },
+    {
+      "file": "trajectories\\test_staged_100m_019.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 19,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "7cd7b713133e59652dc1194179f86e28479d10d45e1a6caf958f9812d1204dd6"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_000.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 0,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "6f59ae8a1828a5a4fdfd611c345f37149cfe50df12721823d825b0b374177fbc"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_001.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 1,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "85f11d123f22b940a459a5c50ee35905e7d4ed7fcbeffc3a05f35ccb61eb3c97"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_002.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 2,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "27ff825411ae1298721f6b387ebdb9eb3ead3ece29676c4bca612244e4f86df6"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_003.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 3,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "4385195d95434788167c12a1bb59d81fae5aa979c70a7125811c9cca30b45b85"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_004.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 4,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "981526b7002b88bb8494451f8875f3c25ddc124dd63feda744104d39e1b575d7"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_005.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 5,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "32a2fe0b77cbc1ba996667b0a5d3f6736bc60ef7631d49b9e390d0a9fde3a6b6"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_006.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 6,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "9250c4afbb2afe76747b16b1b73c14ed7ecf87ee943c3beac6270e3cda1cf38e"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_007.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 7,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "01ae81ea28cc5720ae12942b335c54524dc66503bda31bf08888e1864aea6e22"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_008.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 8,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "e105b92f472ad11a3391e2bce037675b50b9dc234f1d64b2af80954e48d7ad14"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_009.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 9,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d0de6623822aafe3ed88153389ef9a972373772b70971240d4af87029f65d758"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_010.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 10,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "bcaefe301fa5c141f86b1b1ce2b4b4a85514780ff3b6bb8e63c207d045b2029b"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_011.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 11,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d82e1f90fe46e2947f08f69dea93d47ca6ba4abc82346fb4b7ae5c0456fbfeaa"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_012.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 12,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d1fbd5a663c225b67ef4a165ad88c17aa4514e80cb3f237e58cd169b042f051b"
+    },
+    {
+      "file": "trajectories\\train_single_lane_change_013.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 13,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "ab0bee186f318a48b6f17e6e5d8762f54a02af4792b1f9e90a44f3e0cd8fff50"
+    },
+    {
+      "file": "trajectories\\validation_single_lane_change_014.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 14,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "895104c80ba9444c9d38b1e0b84be4ef06877e26d45676cd0e366c111c970a1a"
+    },
+    {
+      "file": "trajectories\\validation_single_lane_change_015.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 15,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "65e3d5df3fdf001f1f24de93987eac36ac8f7c8b764ac1dea678fb3f702fa0e7"
+    },
+    {
+      "file": "trajectories\\validation_single_lane_change_016.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 16,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "da1e1647cbf023c969ef2575e56c458880ec82cd0ab8b189ea4f403bbd4b4414"
+    },
+    {
+      "file": "trajectories\\test_single_lane_change_017.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 17,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "5d9719c3d0859b62f330698003b557e857156270a83697b8ed7d3af492f79689"
+    },
+    {
+      "file": "trajectories\\test_single_lane_change_018.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 18,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "c8173a6aea15aa39a0230c099ee74307dbb064c5b089b6d124cda503c8a3af2b"
+    },
+    {
+      "file": "trajectories\\test_single_lane_change_019.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 19,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "39e2ad0bbe42d93774be6cca46526f9a5712ff2b1e9ed48cfa04d4f1f04f355f"
+    },
+    {
+      "file": "trajectories\\train_hairpin_000.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 0,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "67b177f0501ea065f848db7acebe48c296fff8c56c1d45d838322363391d4412"
+    },
+    {
+      "file": "trajectories\\train_hairpin_001.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 1,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "ab6f74d2dbcfd2114305e8e8cfeb66f52dfbe5ad90a6ff3706495fa169465c1f"
+    },
+    {
+      "file": "trajectories\\train_hairpin_002.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 2,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "c6ebef24ff23c04264a7b40ed243eed16f141d7f3a74db5a041be0edcdd2a155"
+    },
+    {
+      "file": "trajectories\\train_hairpin_003.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 3,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "6b9f1817a6f55218f61982022367dc6d629aa0b5f435fa6e873cd7edff358df4"
+    },
+    {
+      "file": "trajectories\\train_hairpin_004.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 4,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "e11990b8ac2a5e1ff475bf61f08b8b2bfaf341a5bd374a54c92d9f297b7de572"
+    },
+    {
+      "file": "trajectories\\train_hairpin_005.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 5,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "17c1958cd87e0f7ac3e4cced58fe154faf3d05bb5309edaecb0d9187d25a462d"
+    },
+    {
+      "file": "trajectories\\train_hairpin_006.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 6,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "31bbce0f0e17938fea70f96560406993b2423a193675e2089eaa2edd7039f3fe"
+    },
+    {
+      "file": "trajectories\\train_hairpin_007.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 7,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "4859f31445474dff279a981b4f5f1a5eb66f3d42f51c46b0c0cd989f802bf2eb"
+    },
+    {
+      "file": "trajectories\\train_hairpin_008.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 8,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "5253f51268440da5fca88dac110ec35738eb436ec50e2217767695387ddd27e0"
+    },
+    {
+      "file": "trajectories\\train_hairpin_009.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 9,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "87f602a46b666cf1de174aea20dddfd024e7ba0dc9a5f29490870b37cdea0532"
+    },
+    {
+      "file": "trajectories\\train_hairpin_010.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 10,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "812fac6ba4206627ca6b18296bd09fe24f99c55a6444fc792d0ffaeb087c5dca"
+    },
+    {
+      "file": "trajectories\\train_hairpin_011.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 11,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "b259d6fae5854c8150c8a4a8a0a5f748d089c9de7e4973d24ebf6aae4b348e24"
+    },
+    {
+      "file": "trajectories\\train_hairpin_012.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 12,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "ea797ae79133f932b71bd4144aeadf440c79e5be52b8edf30b65b2825029332e"
+    },
+    {
+      "file": "trajectories\\train_hairpin_013.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 13,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "e6e842500a2a4b7c135f3acaef5042a01821993fde4dd195d001f0be7dce97ed"
+    },
+    {
+      "file": "trajectories\\validation_hairpin_014.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 14,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "7d4f98664a7263e142f8cc41469595ed8d8d4d374eabb8cf5e1aed2f856526b4"
+    },
+    {
+      "file": "trajectories\\validation_hairpin_015.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 15,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "f69cdd683a08d5ab9fd53ad666d52ce0c67e1693235435dabbd575759784f089"
+    },
+    {
+      "file": "trajectories\\validation_hairpin_016.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 16,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "89df190d0550b8dc9f9323ca7c72a2035288d23dd1275ec519b5b0cab3ff6e0e"
+    },
+    {
+      "file": "trajectories\\test_hairpin_017.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 17,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "db0fa3cc89bec3ad6a9bb8473722bb8bd01c810ac3b85179e3044d819286fcdc"
+    },
+    {
+      "file": "trajectories\\test_hairpin_018.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 18,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "3fe0e187d01d03171ba630d468444f385ee33c8abeffec36ca08d9f972c53974"
+    },
+    {
+      "file": "trajectories\\test_hairpin_019.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 19,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "985f5bcf15271dc25d115bac635dba17f645151f4305f09d1aa2baf52857491e"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_000.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 0,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "27cc8b8e1c5c0378576aabc05737399b59fa0ee7c54c4025f73a0e44f505ee8a"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_001.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 1,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "628fffe483e63c4d316b94eb7233ec6bb430a8138e30d12986a2bdb412b4e072"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_002.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 2,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "75ce5e06df3dfca4fbefcb4628d537b761dd9ea897eaa9e73af3c6c3b1d74d7f"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_003.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 3,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "f0635fdea2ceaec1018b85f24211dd54a1f185b566b73aac826d39ce9430d198"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_004.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 4,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d5f71d33e30f50fdc49819790846921f1357717eae2385f7d49a4744d13206e5"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_005.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 5,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "5fadf36875da2d6ba66aef37bd24c136ba5338da4d64fdc60d2a9c914e173f79"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_006.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 6,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "4a36b65b2cadcec4723f97614cb7b361335363f8692b794908174a5c19fb41d9"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_007.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 7,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "0cf2931399a9f236da00d72c9a78895ec46de384e252ebce08fa5bd66fc00594"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_008.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 8,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "b10e93e8623ba9452519445a8071f3c4d6176238d679e866a0528fa71075ef5f"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_009.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 9,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "248daed61f26da605b3783329bd6210a47016f4c39ea6ebd1ff8f7b370d0f8f8"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_010.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 10,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "9440fc81d08e18ed276d076bea29f86480ce86c34b2efcfac57bfe3aea282ee4"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_011.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 11,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "b0be1b968bbe58c22cb2d0076da080eee8b59548ca4c3c61a20a95b5be1c6075"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_012.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 12,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "e3c1d9b2c2f4781d9a04a205258b7d6d5ccec5810f9358fd645760b4b5fe6cf4"
+    },
+    {
+      "file": "trajectories\\train_connector_directional_013.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 13,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "c1b809268826b3058a95a4bce88346d2bf06a4a3207fb24ef20c8fff11c21e39"
+    },
+    {
+      "file": "trajectories\\validation_connector_directional_014.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 14,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "91ce6f47f42493fd6230ea342006aa17e09e26c9b69bcbed1247784635626f8f"
+    },
+    {
+      "file": "trajectories\\validation_connector_directional_015.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 15,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "62109d0b6aa9c8b0cff164a76f161475546a609e843430e4887ca76a663894bc"
+    },
+    {
+      "file": "trajectories\\validation_connector_directional_016.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 16,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "aa0f241ef84e5a1fb7dfa95b7bfee68c245764026378f8250da395d9a2952a70"
+    },
+    {
+      "file": "trajectories\\test_connector_directional_017.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 17,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "53ccd4cc8b8978f9daeb3afbe1a75104a66fbe375efb8bf88ef2b2f90e15fe9a"
+    },
+    {
+      "file": "trajectories\\test_connector_directional_018.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 18,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "f43e753320510efbe50e4a030afc062942c9230109bb5e1ea435ff683079899f"
+    },
+    {
+      "file": "trajectories\\test_connector_directional_019.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 19,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "eb54a5db4f7899333f62afc43e016fb01c9f97424ea3733615503d891c81c591"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_000.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 0,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "69209f8b7e51c6ad23fadcaf94bc4ea82f38847998b8ac399ca90907d616cd71"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_001.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 1,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "4d12f242c3b9986e084b2877f924886f0c397393d3a0e81e98068e529999bbcc"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_002.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 2,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "39edfde1949e0c2cbcf1bb4dfae6a49a76640e90efa7e49fe472585c502d2862"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_003.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 3,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "e5a2253cafe2e22f0ec0821814ef4f80fed804367381948d6a2bbd7eb0a4d15e"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_004.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 4,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "d244103fcd4ac825492367105f5be01d125797cb1731b9b1a43314bb665b7ff2"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_005.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 5,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "614a20f20900b5e1e76f0a2328c1db1efb5a7815fe32df47b1b7164e2c139995"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_006.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 6,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "73b0fefcb9b1a9cf90713f762d68e64c2d55781533eba5ae1e9ce45af0e84687"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_007.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 7,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "1b7ff268a416f13ac8772e9839fa595ee3b1337dc4bf6b28f5f886b79fedbf78"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_008.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 8,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "2d94c5218d22db999724b9193125d61fc3466e2cf17d829f1156dde9ae103cd3"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_009.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 9,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "50a7da0d86ba9a4a04555bf0ccf948e84bbb598f82b36c0bb53f1b8fc7817946"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_010.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 10,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "b6c7717d508508d8d45b795c16dc62f3e03203a6c1c90f94d60b122d9b0182a4"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_011.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 11,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "4332e92ca9141c3f0aa6b91d21111e917bbd45a0947bba86fd5e3305348eb538"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_012.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 12,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "88586628d1eb763525511858f06882df5442fc738963a8b5b0d35588f12bec7b"
+    },
+    {
+      "file": "trajectories\\train_network_excitation_013.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 13,
+      "original_split": "train",
+      "k3_role": "train",
+      "sha256": "41ed500c7f1c4fb26dd9f9fdc14410ab3222974adfe2bd0cebb2cef77ac7c3f7"
+    },
+    {
+      "file": "trajectories\\validation_network_excitation_014.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 14,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "ab8214749cdcef3404d05b7c2ec71ba9e78832f09522edae30bea4cfa1f0739f"
+    },
+    {
+      "file": "trajectories\\validation_network_excitation_015.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 15,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "e589f6b6cf0045630219ea51ce7946156585b1692027b7b26b6922ce3c4378af"
+    },
+    {
+      "file": "trajectories\\validation_network_excitation_016.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 16,
+      "original_split": "validation",
+      "k3_role": "validation",
+      "sha256": "5781571237e8c7c6a18aad1a91bed415a255d5e227e8ac1717be5602e4078f3d"
+    },
+    {
+      "file": "trajectories\\test_network_excitation_017.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 17,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "43b2b71e2b1f852e93a875e79d6777b505bb770be82ec8e4103c2c6e44cab7ba"
+    },
+    {
+      "file": "trajectories\\test_network_excitation_018.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 18,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "672f72e82e3e12c29d585d1e4c10bab5a6dd8f608ea15636684059a707972d8d"
+    },
+    {
+      "file": "trajectories\\test_network_excitation_019.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 19,
+      "original_split": "test",
+      "k3_role": "dev_test_old",
+      "sha256": "16a6b5d9dd3469c6194f014b9eed960355f49b02f9a1c1e50bf544479a252352"
+    },
+    {
+      "file": "trajectories\\external_staged_100m_000.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 0,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "4ee45c64f139bd573ec5996634627735d892e89915fc4b9ca774fd87d715e467"
+    },
+    {
+      "file": "trajectories\\external_single_lane_change_001.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 1,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "a3e7ae3519a15cb86f69048e1cdb12b7fd4d7cac54cbfc3a5c20a59e73d56960"
+    },
+    {
+      "file": "trajectories\\external_hairpin_002.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 2,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "afc5539e7204ae6c36bf744d80f26870e20b4dbc7768ef4af1ceb0201754cf0d"
+    },
+    {
+      "file": "trajectories\\external_connector_directional_003.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 3,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "540d1f62f8c0f341609eed09d7258836dc106eff7f079e75905a71a621769904"
+    },
+    {
+      "file": "trajectories\\external_network_excitation_004.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 4,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "c533484f5349a275523789988968ec9297fe3465d35e9ffc32469b2d367559ff"
+    },
+    {
+      "file": "trajectories\\external_staged_100m_005.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 5,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "89f9e388fc7072477e0d72154be0d7e8c43e27702247c6afb6b4850663827e4e"
+    },
+    {
+      "file": "trajectories\\external_single_lane_change_006.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 6,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "f5b6ac9f7f83d81d19d0815c2804640383e0d35230420e769be17bcc8ace9b47"
+    },
+    {
+      "file": "trajectories\\external_hairpin_007.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 7,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "6badd7d570284840743a9a2e882b837265496d75f3b1f20b6a68b4e7d1fb6fa3"
+    },
+    {
+      "file": "trajectories\\external_connector_directional_008.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 8,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "3e5289cc6691d1dac1637308edb952addc70d1864eb51f0e73c0ab4f9793c86c"
+    },
+    {
+      "file": "trajectories\\external_network_excitation_009.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 9,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "828d5ad6a018458315d29cfd3c7d640ad0674114c411c189b4fee7c8f88a2e0a"
+    },
+    {
+      "file": "trajectories\\external_staged_100m_010.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 10,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "c5f7351a478f3354099090a1bcdf8531c8f4d97223c3dd2538ad0567756a30bb"
+    },
+    {
+      "file": "trajectories\\external_single_lane_change_011.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 11,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "8793726e394faaaf411e36f764f2078d2b0e6309d645f7c1dbf14f65bb788cf3"
+    },
+    {
+      "file": "trajectories\\external_hairpin_012.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 12,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "4cd151c3c68896fe0d378161fedd98f09e7965d568922e1c3aa4ac28def752f9"
+    },
+    {
+      "file": "trajectories\\external_connector_directional_013.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 13,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "d4175dd26cd2c7e5af76125f12d78204f11a629969ba585bc17ddf44b4c56e0e"
+    },
+    {
+      "file": "trajectories\\external_network_excitation_014.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 14,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "9e3eef37031c4bd73e355d970500caca3e27810cd558fd4df6bfc204b3f7a5af"
+    },
+    {
+      "file": "trajectories\\external_staged_100m_015.npz",
+      "scenario": "staged_100m",
+      "trajectory_id": 15,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "72b5a828d66b0a283ec20a25b331c5866944beb2527e2eb3e951adc2cbea9e07"
+    },
+    {
+      "file": "trajectories\\external_single_lane_change_016.npz",
+      "scenario": "single_lane_change",
+      "trajectory_id": 16,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "88697ca330a7e9ebb497449169705a31376686b02a3b0c5bafdacebe7637cd17"
+    },
+    {
+      "file": "trajectories\\external_hairpin_017.npz",
+      "scenario": "hairpin",
+      "trajectory_id": 17,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "cd77a62be9162e4da97ed1c9272c794b92faf6d23dc5057550e77b3592d5152c"
+    },
+    {
+      "file": "trajectories\\external_connector_directional_018.npz",
+      "scenario": "connector_directional",
+      "trajectory_id": 18,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "34862e1ea0f8b10f0f53f65450f2911b7b88c7b553de633462eb2fce5ad08211"
+    },
+    {
+      "file": "trajectories\\external_network_excitation_019.npz",
+      "scenario": "network_excitation",
+      "trajectory_id": 19,
+      "original_split": "external",
+      "k3_role": "dev_external_old",
+      "sha256": "bf89e5f641faf9d2f75dca18271295280d6a4203d50e84fa7dca65499c694911"
+    }
+  ]
+}

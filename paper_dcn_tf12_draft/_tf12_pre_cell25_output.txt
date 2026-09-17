@@ -1,0 +1,99 @@
+[TF12][hairpin] start try1: speed_scale=1.00, max_extra_steps=500
+[TF12] runtime_flags: team_guard=True, progress_supervisor=True, connection_compliance=False, comm_quality_consensus=False, delay_comp=False, tightening=False, degraded_fb=False, legacy_hard_brake=False, emergency_progress_override=True
+[TF12] Using bilinear Koopman dynamics
+[TF12] Bilinear fit RMSE: {'lifted_rmse': 0.005495066286095161, 'samples': 805248}
+[TF12] step 0/2785 | fail_counts=[0, 0, 0, 0] | payload_mask=() | team_u=(-0.011, -0.450) | q=1.000 delay=0.00 loss=0.00
+[TF12] step 180/2785 | fail_counts=[0, 0, 0, 0] | payload_mask=() | team_u=(+0.076, -0.077) | q=1.000 delay=0.00 loss=0.00
+[TF12] step 360/2785 | fail_counts=[0, 0, 0, 0] | payload_mask=() | team_u=(+0.087, -0.017) | q=1.000 delay=0.00 loss=0.00
+OSQP status: run time limit reached
+status_val: 8
+iter: 40
+obj_val: -8755.083965377391
+prim_res: 0.0993461636026248
+dual_res: 0.0028003525358606986
+[TF12] step 540/2785 | fail_counts=[0, 0, 1, 0] | payload_mask=() | team_u=(+0.106, -0.022) | q=1.000 delay=0.00 loss=0.00
+[WARN] OSQP reached iteration/time limit with small residuals, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[TF12] step 720/2785 | fail_counts=[0, 0, 1, 0] | payload_mask=() | team_u=(+0.146, +0.046) | q=1.000 delay=0.00 loss=0.00
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[TF12] step 900/2785 | fail_counts=[0, 0, 1, 0] | payload_mask=() | team_u=(+0.232, +0.056) | q=1.000 delay=0.00 loss=0.00
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+OSQP status: run time limit reached
+status_val: 8
+iter: 659
+obj_val: 470.02235883273784
+prim_res: 0.001440168751090329
+dual_res: 0.05535101083296849
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[WARN] OSQP solved inaccurate, accepting solution.
+[TF12] step 1080/2785 | fail_counts=[0, 0, 1, 1] | payload_mask=() | team_u=(+0.240, -0.226) | q=1.000 delay=0.00 loss=0.00
+OSQP status: run time limit reached
+status_val: 8
+iter: 100
+obj_val: -8882.027592102264
+prim_res: 0.5069311148770995
+dual_res: 9.560462081564761
+[WARN] OSQP solved inaccurate, accepting solution.
+OSQP status: run time limit reached
+status_val: 8
+iter: 105
+obj_val: 1297.8201178122572
+prim_res: 0.00776533003804207
+dual_res: 0.14445418653963316

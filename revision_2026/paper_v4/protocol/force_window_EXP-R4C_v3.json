@@ -1,0 +1,51 @@
+{
+  "schema_version": "EXP-R4C-force-bearing-window-v3",
+  "status": "FROZEN_FINAL_ENGINEERING_REPAIR",
+  "authorization": "User instruction to execute revision_2026/paper_v4/experiment.md on 2026-09-14",
+  "parent_protocol": {
+    "path": "protocol/force_window_EXP-R4C_v2.json",
+    "sha256": "d7a4271d3d349ad95d8eb820e633043dbfc2181e130535dc7ce55c6b6f04ddee",
+    "outcome": "REJECTED_BEFORE_QP_BUILD",
+    "only_change": "Correct the transcribed SHA256 of connector_adapter.py after verifying every identity entry."
+  },
+  "taskbook": {"path": "experiment.md", "sha256": "ab76e57e4830a8deb926ed6e65a602b799db1b4d9e0d830106587564c89a6b03", "entry": "section 25.2"},
+  "time_identity_parent": {
+    "protocol_sha256": "77e98747ff01cd8e615e0e307fa406938463d641099044be60439c90958b50c0",
+    "report": "results/20260914_R4C_TIME_IDENTITY02/time_identity_report.json",
+    "report_sha256": "9ac04bbea1107ead2da2c9ec1a2f3d401ad0e441b0fe3f26c8db944cee3b671e",
+    "required_status": "PASS_NEW_TIME_IDENTITY_CONTRACT"
+  },
+  "candidate_id": "EXP-R3-unfrozen-v1",
+  "selection_rule": "First full-route maximum force_peak occurrence; center a 1.00 s window to the nearest 20 ms control tick without endpoint crossing.",
+  "registered_peak": {"force_n": 288.0596665626036, "first_substep_row_zero_based": 13590, "connector_zero_based": 0, "time_s": 27.154, "substep_tick": 13577},
+  "force_window": {"start_s": 26.66, "end_s": 27.66, "duration_s": 1.0, "start_state_tick": 1333, "output_control_ticks_inclusive": [1334, 1383], "expected_control_cycles": 50, "expected_substeps": 500, "plant_max_step_s": 0.002, "workers": 8},
+  "state_restore_contract": {
+    "required": ["x0..x29", "actual_delta0..3", "request_accel0..3", "request_delta0..3", "reference_distance_m", "actual_payload_path_m"],
+    "connector_history": "NONE: algebraic frozen R3 connector law",
+    "forbidden": ["zero fill", "state interpolation", "other-candidate memory", "checkpoint concatenation"]
+  },
+  "exact_gates": [
+    "QP P/q/A/l/u/u_nom and first control bitwise exact between serial and parallel8.",
+    "Both nonlinear validations PASS.",
+    "Closed-loop non-time non-wall raw, non-time substeps, problem hashes and first controls exact.",
+    "Time fields satisfy the registered EXP-R4-C integer-tick identity contract.",
+    "Figures and manifests pass visual QA."
+  ],
+  "budget": {"closed_loop_pair_combined_wall_s": 3600, "failure_action": "save evidence and stop full 1 ms", "retry": "no automatic retry"},
+  "identity_files": [
+    {"path": "tools/r4c_force_qp_preflight.py", "sha256": "8c2acc6f7d0c5d44e8c1c1bb492db09b790bb8f82c0d72a0d0963d5b68f9d44c"},
+    {"path": "src/paper_v4_core/diagnostics/r4b_window_runner.py", "sha256": "45cf21d158767b099ee858b5c3f3119e67ae3932e00116e9ca3aeb81793b7f19"},
+    {"path": "src/paper_v4_core/controllers/physical_tracking_pilot.py", "sha256": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531"},
+    {"path": "src/paper_v4_core/controllers/parallel_fd_backend.py", "sha256": "d6ded1a9cbea08034bbb025276aee8569eb7fcac34cd95c54c4c590d9aad6495"},
+    {"path": "src/paper_v4_core/plant/four_vehicle_common.py", "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"},
+    {"path": "src/paper_v4_core/plant/event_substep.py", "sha256": "aad77aa5b9d45cefc72769062550a07c6f2593e5038f2e9e35fcd8242ab41726"},
+    {"path": "src/paper_v4_core/plant/connector_r3.py", "sha256": "2c6ef95ac9e9c4afe88e005bc99d4644373f44dfd0448b07a6ac78e5e03de1de"},
+    {"path": "src/paper_v4_core/plant/connector_adapter.py", "sha256": "dd56ccb6e7117a6a101dba57884dda81cc04e2fecc520cc7d44568419e177dd7"},
+    {"path": "results/20260911_R3_UNFROZEN_FULL01/2ms/raw.npz", "sha256": "1fe2b89860f1a791d788fd6e17a74421676522d8806c1226d36511aca525f57d"},
+    {"path": "results/20260911_R3_UNFROZEN_FULL01/2ms/substeps.npz", "sha256": "d68977b7539d32614d80d2474ee43608687c2574cd55c266c7283032b923f9b0"},
+    {"path": "results/20260911_R3_UNFROZEN_FULL01/2ms/solver.jsonl", "sha256": "c5601cbafff95d576d231c7fc5c936b615cd81a75f9c7b613340340781f9a603"},
+    {"path": "results/20260914_R4C_TIME_IDENTITY02/time_identity_report.json", "sha256": "9ac04bbea1107ead2da2c9ec1a2f3d401ad0e441b0fe3f26c8db944cee3b671e"}
+  ],
+  "outputs": {"qp": "results/20260914_R4C_FORCE_QP01", "serial": "results/20260914_R4C_FORCE_SERIAL01", "parallel": "results/20260914_R4C_FORCE_PARALLEL01", "comparison": "results/20260914_R4C_FORCE_COMPARE01"},
+  "release_rule": "Only complete state restore, QP exactness, both closed-loop windows, exact physical comparison, registered time identity and figure QA may release full 1 ms budget review."
+}

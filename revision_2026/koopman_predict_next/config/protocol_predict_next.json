@@ -1,0 +1,92 @@
+{
+  "protocol_id": "koopman_predict_next_n3_v1",
+  "taskbook_sha256": "E18CED5E8D3184B6B1FDABC0E489A5FA5B03FC161FA6CCAFE2D1062788889DC2",
+  "parent_taskbook_sha256": "2DE0F022D281401D5BCD674F1551F090782CF096D27D295944EE0C8CC47BBA95",
+  "source_root": "revision_2026/koopman_predict_next",
+  "results_root": "revision_2026/koopman_predict_next_results",
+  "authorized_stages": ["N3"],
+  "parent": {
+    "source_root": "revision_2026/koopman_icr_next",
+    "results_root": "revision_2026/koopman_icr_next_results",
+    "source_manifest_sha256": "F85147D518132C8133876CDCEC9D28DD1989C7A949B7635375700322CDFB4D39",
+    "protocol_sha256": "79D9A6E6A8558C7B35ED924B4AE09D456F1854D51D3B215CE7DF64FE1F6D6D40",
+    "n2_run_id": "20260831_165743_N2_ICR_RUN_R01_R01",
+    "n2_complete_sha256": "3BD3C07162BACB4D783038674D484772E0E269D7818A43CB9DA967364E07B5BE",
+    "n2_report_sha256": "A2ACA744074819DFEBBAA1713C21160ECD7A5B3243AC483558BDC4CB47023B0E",
+    "n2_data_manifest_sha256": "EAFE4BB5A0F0C31B9807D27BC6F11DA23E88FF078E38C52C40459A49CF80EBE8",
+    "n2_audit_summary_sha256": "5940618E718A644CB03A6E7D6FF80F4F72FA659AABACAC773DB9AE0AE349D2A9",
+    "n2_independent_complete_sha256": "511038B6675395F89A89F24266133C71C603BCE8D85401C762F1A2E7D6E787EF"
+  },
+  "actuator": {
+    "mode": "A3",
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "substeps_per_model_step": 10,
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "endpoint_atol_rad": 1e-12,
+    "horizon_steps": 20
+  },
+  "interfaces": {
+    "variants": ["S0", "S1", "S2"],
+    "state_base": "relative_state47",
+    "virtual_control": ["acceleration_request_mps2", "virtual_front_rad", "virtual_rear_rad"],
+    "requested_steering": "steering_request4_rad",
+    "s2_future_actual_source": "analytic_only_from_current_actual_and_known_requests"
+  },
+  "parameter_ranges": {
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.9, 1.1],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.8, 0.95]
+  },
+  "n4_parameter_families": [
+    {"parameter_family": "P0", "seed": 985000},
+    {"parameter_family": "P1", "seed": 985001},
+    {"parameter_family": "P2", "seed": 985002}
+  ],
+  "plants": [
+    {"plant": "V1-ES", "law": "V1"},
+    {"plant": "R3-ES", "law": "R3"}
+  ],
+  "scenarios": {
+    "order": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11"],
+    "directional": ["D2", "D3", "D4", "D5", "D6", "D8", "D10", "D11"],
+    "d9_members": ["A", "B"],
+    "durations_s": {"D0": 6.0, "D1": 8.0, "D3": 8.0, "D4": 8.0, "D5": 9.0, "D6": 7.0, "D7": 6.0, "D8": 6.0, "D9": 6.0, "D10": 8.0, "D11": 10.0},
+    "d2_distance_m": 100.0,
+    "d7_d9_idle_entry_s": 1.0,
+    "d7_d9_primary_duration_s": 2.0,
+    "d7_d9_reverse_duration_s": 2.0
+  },
+  "n3": {
+    "dry_run_required": true,
+    "expected_saved_trajectory_count": 126,
+    "expected_base_family_count": 36,
+    "expected_schema_variant_count": 3,
+    "expected_scenario_count": 12,
+    "run_tag_prefix": "PREDICT_N3",
+    "pytest_timeout_s": 1800,
+    "parent_identity_timeout_s": 1800
+  },
+  "future_split_contract": {
+    "train": {"base_family_count_per_scenario": 8, "seed_start": 986000, "seed_end": 986095},
+    "validation": {"base_family_count_per_scenario": 4, "seed_start": 987000, "seed_end": 987047},
+    "development": {"base_family_count_per_scenario": 4, "seed_start": 988000, "seed_end": 988047},
+    "confirm": {"base_family_count_per_scenario": 8, "seed_start": 989000, "seed_end": 989095, "visible_before_k7": false}
+  },
+  "physics_gates_inherited": {
+    "tire_raw_utilization_max": 0.9,
+    "support_min_atol_n": -1e-9,
+    "action_reaction_atol_n": 1e-9,
+    "internal_null_relative_atol": 1e-8,
+    "a3_rate_max_radps": 1.2,
+    "a3_angle_max_deg": 15.0
+  },
+  "resource_limits": {
+    "minimum_free_gib": 40.0,
+    "parallel_workers_future_n4": 4
+  },
+  "forbidden_without_later_authorization": ["N4", "N5", "N6", "N7", "N8", "C1", "C2", "F4", "K0", "K1", "K2", "K3", "K4", "K5", "K6", "K7"]
+}

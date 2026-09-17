@@ -1,0 +1,45 @@
+{
+  "task": "EXP-R1/E01 input-only plant diagnostics",
+  "frozen_before_full_hairpin_run": true,
+  "hairpin": {
+    "turn": "left",
+    "entry_straight_m": 24.0,
+    "nominal_radius_m": 11.5,
+    "exit_straight_m": 24.0,
+    "transition_m_each_end": 11.0,
+    "curvature_transition": "3*z^2-2*z^3",
+    "constant_curvature_length_m": 25.12831551628262,
+    "total_route_length_m": 95.12831551628262,
+    "reference_speed_mps": 2.0,
+    "front_rear_allocation": "delta_f=atan(kappa*5/2), delta_r=-delta_f",
+    "rationale": "A pre-run geometry sweep showed that 2-10 m ramps require 23.71-15.12 deg on at least one offset vehicle. An 11 m ramp gives a predicted four-vehicle maximum target angle of 14.88 deg, below the frozen 15 deg limit with a small discrete margin.",
+    "required_disclosures": [
+      "actual maximum deviation from the unsmoothed semicircle",
+      "requested and actual steering residuals",
+      "entry, middle and exit phase metrics"
+    ]
+  },
+  "parameter_points": {
+    "P0": {"payload_scale": 1.0, "connector_scale": 1.0, "mu": 0.9},
+    "P1": {"payload_scale": 0.9, "connector_scale": 0.95, "mu": 0.95},
+    "P2": {"payload_scale": 1.1, "connector_scale": 1.05, "mu": 0.8}
+  },
+  "maximum_substeps_s": [0.002, 0.001, 0.0005],
+  "hairpin_low_level_tracker_repair_1": {
+    "k_speed_per_s": 0.8,
+    "max_common_accel_mps2": 1.2,
+    "k_heading_per_s": 0.8,
+    "k_yaw_rate": 0.4,
+    "yaw_feasibility": "Scale one shared desired yaw rate toward zero by bisection until all four target steering angles are within 15 deg; do not clip wheels independently.",
+    "status": "frozen before the first repaired full P0/2ms trajectory"
+  },
+  "hairpin_low_level_tracker_repair_2": {
+    "k_speed_per_s": 0.8,
+    "max_common_accel_mps2": 1.2,
+    "k_heading_per_s": 0.0,
+    "k_yaw_rate": 0.0,
+    "rationale": "Repair 1 failed because yaw feedback drove the reference beta state outside the 15 deg feasible set. This final minimal ablation isolates common speed loss while retaining the prevalidated route yaw feedforward.",
+    "status": "frozen before the second repaired full P0/2ms trajectory"
+  },
+  "claim_boundary": "The three parameter points are coverage points, not a single-factor causal decomposition."
+}

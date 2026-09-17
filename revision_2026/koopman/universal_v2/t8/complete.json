@@ -1,0 +1,9 @@
+{
+  "stage": "T8",
+  "status": "complete",
+  "accepted": true,
+  "official_candidates": [],
+  "diagnostic_runs": 230,
+  "failures": 0,
+  "results_sha256": "72AF639FF7486444A2ADE9ED461A7D964F2EFA5C01F30C2DD6BC1FF76C91C4AC"
+}

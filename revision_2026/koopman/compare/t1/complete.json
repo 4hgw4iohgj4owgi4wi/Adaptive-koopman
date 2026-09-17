@@ -1,0 +1,20 @@
+{
+  "accepted": true,
+  "G1": {
+    "condition_over_1e8": false,
+    "effective_rank_ratio_below_0p90": false,
+    "k2_reliably_identifiable": true
+  },
+  "original_full_condition": 94904994.47988592,
+  "original_full_rank": [
+    827,
+    837
+  ],
+  "e9_full_condition": 95504476.88744529,
+  "e9_full_rank": [
+    827,
+    837
+  ],
+  "strong_force_fraction_original": 0.0,
+  "boundary": "K2 is trainable under the frozen numerical gate but remains marginal; no strong-force coverage claim"
+}

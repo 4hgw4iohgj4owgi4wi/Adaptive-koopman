@@ -1,0 +1,205 @@
+{
+  "root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned",
+  "figures_dir": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures",
+  "output_dir": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd",
+  "composites": [
+    {
+      "category": "comm_noise",
+      "group": "tf13_comm_noise_heavy",
+      "experiment": "comm_noise_heavy",
+      "title": "回头弯：强通信噪声",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\comm_noise\\tf13_comm_noise_heavy_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\comm_noise\\tf13_comm_noise_heavy_composite.pdf"
+    },
+    {
+      "category": "comm_noise",
+      "group": "tf13_comm_noise_medium",
+      "experiment": "comm_noise_medium",
+      "title": "回头弯：中等通信噪声",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\comm_noise\\tf13_comm_noise_medium_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\comm_noise\\tf13_comm_noise_medium_composite.pdf"
+    },
+    {
+      "category": "fault_degraded",
+      "group": "tf13_rand_fault_deg_v1",
+      "experiment": "rand_fault_deg_v1",
+      "title": "回头弯：随机单车降额故障（车1）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v1_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v1_composite.pdf"
+    },
+    {
+      "category": "fault_degraded",
+      "group": "tf13_rand_fault_deg_v2",
+      "experiment": "rand_fault_deg_v2",
+      "title": "回头弯：随机单车降额故障（车2）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v2_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v2_composite.pdf"
+    },
+    {
+      "category": "fault_degraded",
+      "group": "tf13_rand_fault_deg_v3",
+      "experiment": "rand_fault_deg_v3",
+      "title": "回头弯：随机单车降额故障（车3）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v3_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v3_composite.pdf"
+    },
+    {
+      "category": "fault_degraded",
+      "group": "tf13_rand_fault_deg_v4",
+      "experiment": "rand_fault_deg_v4",
+      "title": "回头弯：随机单车降额故障（车4）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v4_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\tf13_rand_fault_deg_v4_composite.pdf"
+    },
+    {
+      "category": "fault_zero",
+      "group": "tf13_rand_fault_zero_v1",
+      "experiment": "rand_fault_zero_v1",
+      "title": "回头弯：随机单车失效故障（车1）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v1_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v1_composite.pdf"
+    },
+    {
+      "category": "fault_zero",
+      "group": "tf13_rand_fault_zero_v2",
+      "experiment": "rand_fault_zero_v2",
+      "title": "回头弯：随机单车失效故障（车2）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v2_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v2_composite.pdf"
+    },
+    {
+      "category": "fault_zero",
+      "group": "tf13_rand_fault_zero_v3",
+      "experiment": "rand_fault_zero_v3",
+      "title": "回头弯：随机单车失效故障（车3）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v3_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v3_composite.pdf"
+    },
+    {
+      "category": "fault_zero",
+      "group": "tf13_rand_fault_zero_v4",
+      "experiment": "rand_fault_zero_v4",
+      "title": "回头弯：随机单车失效故障（车4）",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v4_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\tf13_rand_fault_zero_v4_composite.pdf"
+    },
+    {
+      "category": "nominal",
+      "group": "tf13_nominal_clean_pair",
+      "experiment": "nominal_clean_pair",
+      "title": "回头弯：无噪声无故障",
+      "panel_count": 8,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\nominal\\tf13_nominal_clean_pair_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\nominal\\tf13_nominal_clean_pair_composite.pdf"
+    },
+    {
+      "category": "summary",
+      "group": "tf13_stress_suite_global_summary",
+      "experiment": "stress_suite_global_summary",
+      "title": "stress_suite_global_summary",
+      "panel_count": 1,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\summary\\tf13_stress_suite_global_summary_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\summary\\tf13_stress_suite_global_summary_composite.pdf"
+    },
+    {
+      "category": "targeted_ablations",
+      "group": "tf13_comm_protection_ablation",
+      "experiment": "comm_protection_ablation",
+      "title": "回头弯：通信保护能力对比",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_comm_protection_ablation_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_comm_protection_ablation_composite.pdf"
+    },
+    {
+      "category": "targeted_ablations",
+      "group": "tf13_fault_redist_ablation",
+      "experiment": "fault_redist_ablation",
+      "title": "回头弯：故障重分配能力对比",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_fault_redist_ablation_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_fault_redist_ablation_composite.pdf"
+    },
+    {
+      "category": "targeted_ablations",
+      "group": "tf13_mixed_fault_and_noise",
+      "experiment": "mixed_fault_and_noise",
+      "title": "回头弯：故障+通信噪声混合扰动对比",
+      "panel_count": 9,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_mixed_fault_and_noise_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_mixed_fault_and_noise_composite.pdf"
+    },
+    {
+      "category": "targeted_ablations",
+      "group": "tf13_nominal_adapt_ablation",
+      "experiment": "nominal_adapt_ablation",
+      "title": "回头弯：名义工况针对性对比",
+      "panel_count": 8,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_nominal_adapt_ablation_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\tf13_nominal_adapt_ablation_composite.pdf"
+    },
+    {
+      "category": "comm_noise",
+      "group": "comm_noise_overview",
+      "experiment": "comm_noise_overview",
+      "title": "通信噪声实验：实验总览",
+      "panel_count": 2,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\comm_noise\\comm_noise_overview_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\comm_noise\\comm_noise_overview_composite.pdf"
+    },
+    {
+      "category": "fault_degraded",
+      "group": "fault_degraded_overview",
+      "experiment": "fault_degraded_overview",
+      "title": "随机单车输出降额故障实验：实验总览",
+      "panel_count": 4,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\fault_degraded_overview_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_degraded\\fault_degraded_overview_composite.pdf"
+    },
+    {
+      "category": "fault_zero",
+      "group": "fault_zero_overview",
+      "experiment": "fault_zero_overview",
+      "title": "随机单车无输出故障实验：实验总览",
+      "panel_count": 4,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\fault_zero_overview_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\fault_zero\\fault_zero_overview_composite.pdf"
+    },
+    {
+      "category": "nominal",
+      "group": "nominal_overview",
+      "experiment": "nominal_overview",
+      "title": "无噪声无故障实验：实验总览",
+      "panel_count": 1,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\nominal\\nominal_overview_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\nominal\\nominal_overview_composite.pdf"
+    },
+    {
+      "category": "summary",
+      "group": "summary_overview",
+      "experiment": "summary_overview",
+      "title": "全局汇总：实验总览",
+      "panel_count": 1,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\summary\\summary_overview_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\summary\\summary_overview_composite.pdf"
+    },
+    {
+      "category": "targeted_ablations",
+      "group": "targeted_ablations_overview",
+      "experiment": "targeted_ablations_overview",
+      "title": "针对性消融实验：实验总览",
+      "panel_count": 4,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\targeted_ablations_overview_composite.png",
+      "pdf_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\figures_composite_uhd\\targeted_ablations\\targeted_ablations_overview_composite.pdf"
+    }
+  ]
+}

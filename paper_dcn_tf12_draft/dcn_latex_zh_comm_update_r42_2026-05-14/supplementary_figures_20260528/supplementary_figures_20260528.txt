@@ -1,0 +1,249 @@
+Supplementary Figures
+Koopman lifting training and validation loss
+train total
+val total
+train prediction
+
+10−2
+
+10
+
+−3
+
+train
+val
+
+2 × 10−4
+
+loss (log)
+
+loss (log)
+
+10−1
+
+last 10 epoch mean
+val prediction
+train lifted
+val lifted
+
+10−4
+
+6 × 10−5
+
+10−4
+0
+
+25
+
+50
+
+75
+
+100
+
+125
+
+150
+
+epoch
+
+175
+
+l
+tota
+
+n
+
+ictio
+
+pred
+
+lifted
+
+Supplementary Fig. S1. Training and validation loss trace for the offline Koopman lifting network.
+
+1
+
+reference
+
+AKE-M degraded
+
+NR-KDCC
+
+fault start
+
+Team-center x-y trajectory, v=10 m/s
+
+y [m]
+
+0.5
+0.0
+−0.5
+
+10
+
+20
+
+30
+
+x [m]
+
+team lateral error
+
+50
+
+team longitudinal error
+0
+
+team e_s [m]
+
+team e_y [m]
+
+0.1
+
+40
+
+0.0
+
+−0.1
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+−5
+
+−10
+
+6
+
+0
+
+1
+
+2
+
+time [s]
+v1
+
+3
+
+4
+
+5
+
+6
+
+time [s]
+
+v2
+
+vehicle color and method line style
+v4
+AKE-M vehicle (dashed)
+
+v3
+
+vehicle lateral error
+
+NR-KDCC vehicle (solid)
+
+vehicle front steering
+0.050
+
+0.1
+
+δf, i [rad]
+
+vehicle ey, i [m]
+
+0.075
+
+0.0
+−0.1
+−0.2
+
+0.025
+0.000
+−0.025
+−0.050
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+0
+
+time [s]
+
+2
+
+4
+
+6
+
+8
+
+time [s]
+
+vehicle longitudinal speed
+
+vehicle longitudinal acceleration input
+ax, i [m/s2]
+
+vx, i [m/s]
+
+8.00
+7.95
+7.90
+7.85
+0
+
+2
+
+4
+
+6
+
+8
+
+0.2
+0.0
+−0.2
+0
+
+time [s]
+
+2
+
+4
+
+6
+
+8
+
+time [s]
+
+Supplementary Fig. S2. Same-initial-condition 10 m/s sine-path diagnostic retained as evidence of the onset of highspeed degradation.
+
+2
+
+

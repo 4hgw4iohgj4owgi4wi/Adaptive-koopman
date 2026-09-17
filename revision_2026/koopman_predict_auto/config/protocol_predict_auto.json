@@ -1,0 +1,152 @@
+{
+  "protocol_id": "koopman_predict_auto_a0_n6_v1",
+  "taskbook_sha256": "4446B7B4F6DC5FEE648C4F4A0E75971050450AF81B5EA7AE4E788C2E5BFF0182",
+  "parent_taskbook_sha256": "E18CED5E8D3184B6B1FDABC0E489A5FA5B03FC161FA6CCAFE2D1062788889DC2",
+  "source_root": "revision_2026/koopman_predict_auto",
+  "results_root": "revision_2026/koopman_predict_auto_results",
+  "data_root": "revision_2026/koopman_predict_auto_data",
+  "models_root": "revision_2026/koopman_predict_auto_models",
+  "authorized_stages": ["A0", "N4-S", "N4", "N5", "N6"],
+  "parent_n3": {
+    "source_root": "revision_2026/koopman_predict_next",
+    "results_root": "revision_2026/koopman_predict_next_results",
+    "run_id": "20260831_220745_N3_PREDICT_N3_R01",
+    "protocol_sha256": "5C3EAE4FA00A041646C23F1B5DAFD86B5C140722533C4A76CE97E8618CB01614",
+    "source_manifest_sha256": "723D97319F74E0003C8C3151D82F6AA64D01AB7D64AA1DA39DFDFDDA7D36B945",
+    "complete_sha256": "4B0D2976FFF3C8F0B690D4B4EA240E8B8983B4EEA28B6D57A2DCB671E4763B56",
+    "taskbook_sha256": "E18CED5E8D3184B6B1FDABC0E489A5FA5B03FC161FA6CCAFE2D1062788889DC2",
+    "status": "PASS_STOPPED_AFTER_N3"
+  },
+  "autonomy": {
+    "states": ["PASS_CONTINUE", "PASS_WITH_WARNING_CONTINUE", "REPAIR_CURRENT_STAGE", "BLOCKED_HUMAN_REQUIRED"],
+    "stage_order": ["A0", "N4-S", "N4", "N5", "N6"],
+    "human_stop_after": "N6",
+    "maximum_minimal_repairs_per_stage": 3,
+    "forbidden_stages": ["C1", "C2", "K0", "K1", "K2", "K3", "K4", "K5", "K6", "K7", "MPC", "NETWORK", "DOS", "CONFIRM"]
+  },
+  "actuator": {
+    "mode": "A3",
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "substeps_per_model_step": 10,
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "endpoint_atol_rad": 1e-12,
+    "horizon_steps": 20
+  },
+  "k2": {
+    "model_step_s": 0.02,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.9, 1.1],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.8, 0.95]
+  },
+  "interfaces": {
+    "variants": ["S0", "S1", "S2"],
+    "common_state_dimension": 47,
+    "actuator_state_dimension": 4,
+    "control_dimension": 7,
+    "s2_future_actual_source": "analytic_only_from_current_actual_and_known_requests"
+  },
+  "n4_parameter_families": [
+    {"parameter_family": "P0", "seed": 985000},
+    {"parameter_family": "P1", "seed": 985001},
+    {"parameter_family": "P2", "seed": 985002}
+  ],
+  "plants": [
+    {"plant": "V1-ES", "law": "V1"},
+    {"plant": "R3-ES", "law": "R3"}
+  ],
+  "scenarios": {
+    "order": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11"],
+    "directional": ["D2", "D3", "D4", "D5", "D6", "D8", "D10", "D11"],
+    "d9_members": ["A", "B"],
+    "durations_s": {"D0": 6.0, "D1": 8.0, "D3": 8.0, "D4": 8.0, "D5": 9.0, "D6": 7.0, "D7": 6.0, "D8": 6.0, "D9": 6.0, "D10": 8.0, "D11": 10.0},
+    "d2_distance_m": 100.0
+  },
+  "smoke": {
+    "scenarios": ["D0", "D2", "D4", "D5", "D7", "D9"],
+    "trajectory_count": 6,
+    "required_plants": ["V1-ES", "R3-ES"],
+    "required_directions": ["left", "right"],
+    "maximum_workers": 4,
+    "n4_wallclock_limit_h": 18.0
+  },
+  "n4": {
+    "expected_trajectory_count": 126,
+    "expected_base_family_count": 36,
+    "expected_scenario_count": 12,
+    "replay_each": true,
+    "load_transfer_enabled": true
+  },
+  "future_split_contract": {
+    "train": {"base_family_count_per_scenario": 8, "seed_start": 986000, "seed_end": 986095},
+    "validation": {"base_family_count_per_scenario": 4, "seed_start": 987000, "seed_end": 987047},
+    "development": {"base_family_count_per_scenario": 4, "seed_start": 988000, "seed_end": 988047},
+    "confirm": {"base_family_count_per_scenario": 8, "seed_start": 989000, "seed_end": 989095, "visible_before_k7": false}
+  },
+  "physics_gates": {
+    "time_step_atol_s": 1e-9,
+    "tire_raw_utilization_max": 0.9,
+    "support_min_atol_n": -1e-9,
+    "support_constraint_relative_atol": 1e-10,
+    "action_reaction_atol_n": 1e-9,
+    "internal_null_relative_atol": 1e-8,
+    "actuator_rate_atol_radps": 1e-12,
+    "actuator_angle_atol_rad": 1e-12,
+    "connector_ultimate_exceeded_allowed": false,
+    "mirror_relative_atol": 0.05
+  },
+  "audit_semantics": {
+    "version": "A3_D8_INTERNAL_POLARITY_WINDOW_SWITCH_SEMANTICS",
+    "d8_direction_source": "four_vehicle_alternating_steering_offset",
+    "d8_pair_symmetry": "fixed_endpoint_internal_lateral_polarity_reversal",
+    "dynamic_window_acceptance": ["maneuver", "switch", "connector_event"]
+  },
+  "window": {
+    "steps": 20,
+    "classes": ["steady", "maneuver", "switch", "connector_event"],
+    "control_change_atol": 1e-12,
+    "steering_active_rad": 0.008726646259971648,
+    "acceleration_active_mps2": 0.05
+  },
+  "training": {
+    "models": ["M0_FIXED_LINEAR", "M1_LOWRANK_BILINEAR"],
+    "ranks": [1, 2, 4],
+    "ridge_grid": [1e-8, 1e-6, 1e-4, 1e-2],
+    "horizons": [1, 5, 10, 20],
+    "primary_family_bootstrap_seeds": [990101, 990102, 990103, 990104, 990105],
+    "backup_family_bootstrap_seeds": [990106, 990107],
+    "paired_ci_replicates": 2000,
+    "paired_ci_seed": 990500,
+    "seed_semantics": "closed_form_ridge_has_no_initialization_dependence; seeds index train-family bootstrap stability models",
+    "divergence_abs_normalized": 20.0,
+    "important_scenarios": ["D2", "D4", "D6", "D10"],
+    "strong_coupling_scenarios": ["D1", "D2", "D7", "D8", "D9"],
+    "parameter_matched_sensitivity": true
+  },
+  "n6_engineering_acceptance": {
+    "condition_number_max": 1e14,
+    "inference_time_ratio_max": 5.0,
+    "divergence_rate_increase_max": 0.01,
+    "note": "pre-run quantitative interpretation of taskbook term acceptable; does not alter accuracy decision thresholds"
+  },
+  "metric_weights": {
+    "core": 0.25,
+    "relative": 0.2,
+    "force4": 0.2,
+    "internal": 0.15,
+    "yaw": 0.1,
+    "actuator": 0.1,
+    "common_weight_sum": 0.9
+  },
+  "resource_limits": {
+    "minimum_free_gib": 40.0,
+    "maximum_workers": 4,
+    "maximum_total_hours": 18.0,
+    "stall_minutes": 30,
+    "n5_checkpoint_trajectories": 24
+  }
+}

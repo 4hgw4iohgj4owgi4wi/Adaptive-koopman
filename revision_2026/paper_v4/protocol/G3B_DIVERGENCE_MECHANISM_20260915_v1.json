@@ -1,0 +1,80 @@
+{
+  "protocol_id": "G3B-divergence-mechanism-read-only-v1",
+  "authorization": "User instruction 2026-09-15: complete everything until the full experiment can start.",
+  "scope": "G3B_DIVERGENCE_MECHANISM_READ_ONLY",
+  "output": "analysis/20260915_G3B_DIVERGENCE_MECHANISM_01",
+  "inputs": {
+    "source_run": "results/20260915_R4_P1_2MS01"
+  },
+  "gates": {
+    "restart_position_atol_m": 1e-06,
+    "window_position_atol_m": 0.01
+  },
+  "windows": [
+    {
+      "name": "force_peak",
+      "start_tick": 1335,
+      "ticks": 30
+    },
+    {
+      "name": "steering_limit",
+      "start_tick": 820,
+      "ticks": 30
+    },
+    {
+      "name": "late_prefix",
+      "start_tick": 2170,
+      "ticks": 30
+    }
+  ],
+  "runs": [
+    {
+      "window": "force_peak",
+      "backend": "cpu",
+      "output": "results/20260915_G3_FORCE_CPU03"
+    },
+    {
+      "window": "force_peak",
+      "backend": "gpu",
+      "output": "results/20260915_G3_FORCE_GPU03"
+    },
+    {
+      "window": "steering_limit",
+      "backend": "cpu",
+      "output": "results/20260915_G3_STEER_CPU03"
+    },
+    {
+      "window": "steering_limit",
+      "backend": "gpu",
+      "output": "results/20260915_G3_STEER_GPU03"
+    },
+    {
+      "window": "late_prefix",
+      "backend": "cpu",
+      "output": "results/20260915_G3_LATE_CPU03"
+    },
+    {
+      "window": "late_prefix",
+      "backend": "gpu",
+      "output": "results/20260915_G3_LATE_GPU03"
+    }
+  ],
+  "identity_files": [
+    {
+      "path": "tools/g3_divergence_mechanism.py",
+      "sha256": "1b027b787db3bed3bbab075f738b5da0dc072612f254f436f34243ff05cea444"
+    },
+    {
+      "path": "protocol/G3_RESTART_EQUIVALENCE_20260915_v4.json",
+      "sha256": "02e1ed84a82d90f6af28f30f5b4e3f6f68af213fa021d7fed7e260c157db5ee5"
+    },
+    {
+      "path": "analysis/20260915_G3_RESTART_EQUIVALENCE_02/g3_restart_equivalence.json",
+      "sha256": "913b5cb1146f76436a68c0c70a1d069a187e8537d192dc0f838a8530c8af50c7"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/raw.npz",
+      "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"
+    }
+  ]
+}

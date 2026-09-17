@@ -1,0 +1,321 @@
+{
+  "stage": "K0_K1_current_koopman_audit",
+  "diagnostic_only": true,
+  "data": {
+    "dataset_shapes": {
+      "X": [
+        720,
+        1400,
+        6
+      ],
+      "X_changed": [
+        720,
+        1400,
+        6
+      ],
+      "U": [
+        720,
+        1399,
+        2
+      ]
+    },
+    "bootstrap_train_shape": [
+      576,
+      1400,
+      6
+    ],
+    "bootstrap_validation_shape": [
+      144,
+      1400,
+      6
+    ],
+    "independent_test_exists": false,
+    "validation_used_for_training_selection": true,
+    "scenario_labels_available": false,
+    "network_metadata_available": false,
+    "evaluation_windows": 2048,
+    "window_seed": 42026
+  },
+  "state_contract": {
+    "old_output_states": [
+      "s",
+      "e_y",
+      "e_psi",
+      "v_x",
+      "v_y",
+      "r"
+    ],
+    "old_output_dimension": 6,
+    "payload_state_included": false,
+    "connector_deformation_included": false,
+    "connector_force_included": false,
+    "force_prediction_defined": false
+  },
+  "matrix_report": {
+    "linear": {
+      "shape": [
+        31,
+        31
+      ],
+      "finite": true,
+      "spectral_radius": 1.0025518391340469,
+      "norm_2": 1.0880760449574585,
+      "norm_fro": 3.2711530996739544
+    },
+    "linear_projected": {
+      "shape": [
+        31,
+        31
+      ],
+      "finite": true,
+      "spectral_radius": 0.9990000000000009,
+      "norm_2": 1.0847293494593395,
+      "norm_fro": 3.268230671189989
+    },
+    "bilinear": {
+      "shape": [
+        31,
+        31
+      ],
+      "finite": true,
+      "spectral_radius": 1.004172294624375,
+      "norm_2": 1.1137604162319354,
+      "norm_fro": 2.623201823782842
+    },
+    "bilinear_irsp": {
+      "shape": [
+        31,
+        31
+      ],
+      "finite": true,
+      "spectral_radius": 0.9920000206979065,
+      "norm_2": 1.0980026542847863,
+      "norm_fro": 2.601552777975216
+    },
+    "B_linear": {
+      "shape": [
+        31,
+        2
+      ],
+      "finite": true,
+      "spectral_radius": null,
+      "norm_2": 0.009332997406568462,
+      "norm_fro": 0.009584394631196128
+    },
+    "B_bilinear": {
+      "shape": [
+        31,
+        62
+      ],
+      "finite": true,
+      "spectral_radius": null,
+      "norm_2": 0.2822190382941497,
+      "norm_fro": 0.29987603639579713
+    },
+    "B_bilinear_irsp": {
+      "shape": [
+        31,
+        62
+      ],
+      "finite": true,
+      "spectral_radius": null,
+      "norm_2": 0.06958993374472132,
+      "norm_fro": 0.07394381924152278
+    },
+    "irsp_info": {
+      "input_aware_projection": true,
+      "projection_radius": 0.998,
+      "projection_drift_radius": 0.992,
+      "projection_samples": 96,
+      "projection_gamma_sampled": 0.2465812845621258,
+      "projection_gamma_applied": 0.2465812845621258,
+      "effective_radius_after_max": 0.9979999999538808,
+      "effective_radius_after_p95": 0.9928913889454377
+    },
+    "irsp_zero_input_norm_gate": {
+      "required_upper_bound": 0.998,
+      "actual_norm_2": 1.0980026721954346,
+      "passes": false
+    }
+  },
+  "actual_lifted_validation_metrics": {
+    "lifted_linear": {
+      "h1_rmse": {
+        "s": 0.0705981660444183,
+        "e_y": 0.030271763969953205,
+        "e_psi": 0.011526837217086796,
+        "v_x": 0.02235248831887743,
+        "v_y": 0.060184127166341056,
+        "r": 0.018447189133156044
+      },
+      "h10_rmse": {
+        "s": 0.2408655353298913,
+        "e_y": 0.1544704023617909,
+        "e_psi": 0.04500995135754424,
+        "v_x": 0.16739102719439186,
+        "v_y": 0.36768483008079184,
+        "r": 0.15372515747235316
+      },
+      "h20_rmse": {
+        "s": 0.36157268204984383,
+        "e_y": 0.19778877674767684,
+        "e_psi": 0.06353403441917874,
+        "v_x": 0.20850906020347124,
+        "v_y": 0.46066285559181386,
+        "r": 0.1693540568848543
+      },
+      "h10_mean_nrmse": 0.07674086115509841,
+      "h20_mean_nrmse": 0.09593666312462958
+    },
+    "lifted_linear_projected": {
+      "h1_rmse": {
+        "s": 0.08906774084498045,
+        "e_y": 0.03899234914480252,
+        "e_psi": 0.011557254168389186,
+        "v_x": 0.023042573820470813,
+        "v_y": 0.060874312256692466,
+        "r": 0.01889202960537278
+      },
+      "h10_rmse": {
+        "s": 0.5924534649621758,
+        "e_y": 0.2707639613295022,
+        "e_psi": 0.047402666506757986,
+        "v_x": 0.1739950513381967,
+        "v_y": 0.3735281587253294,
+        "r": 0.15832814970492678
+      },
+      "h20_rmse": {
+        "s": 1.1346182781982408,
+        "e_y": 0.49045850881171205,
+        "e_psi": 0.06993852659891345,
+        "v_x": 0.2280573774292642,
+        "v_y": 0.4789282583762429,
+        "r": 0.18526301841341986
+      },
+      "h10_mean_nrmse": 0.08804500255610827,
+      "h20_mean_nrmse": 0.12499518258796305
+    },
+    "bilinear": {
+      "h1_rmse": {
+        "s": 0.1217249825874336,
+        "e_y": 0.04448736402859363,
+        "e_psi": 0.016629206107248492,
+        "v_x": 0.015573635151879716,
+        "v_y": 0.0789811988438189,
+        "r": 0.033005591775153005
+      },
+      "h10_rmse": {
+        "s": 0.32158696377332685,
+        "e_y": 0.18344098487602797,
+        "e_psi": 0.04468029954929081,
+        "v_x": 0.157267273243261,
+        "v_y": 0.37985203713399945,
+        "r": 0.1545365057554151
+      },
+      "h20_rmse": {
+        "s": 1.3704879874073796,
+        "e_y": 0.6174580088378219,
+        "e_psi": 0.08764597965030523,
+        "v_x": 0.3180302944060922,
+        "v_y": 0.8444429852285115,
+        "r": 0.23164048512269766
+      },
+      "h10_mean_nrmse": 0.07878270464903338,
+      "h20_mean_nrmse": 0.17239318648373836
+    },
+    "bilinear_irsp": {
+      "h1_rmse": {
+        "s": 0.3649070658593444,
+        "e_y": 0.05463853797000038,
+        "e_psi": 0.018019709593048775,
+        "v_x": 0.027644768231138185,
+        "v_y": 0.08165887281596225,
+        "r": 0.0347387312847689
+      },
+      "h10_rmse": {
+        "s": 3.3491409448879326,
+        "e_y": 0.28207552516007356,
+        "e_psi": 0.0696301830722122,
+        "v_x": 0.22691206466199718,
+        "v_y": 0.43986785389346145,
+        "r": 0.20163170219277088
+      },
+      "h20_rmse": {
+        "s": 6.44932242815476,
+        "e_y": 0.5047505405900716,
+        "e_psi": 0.11694522526319134,
+        "v_x": 0.35984268551931686,
+        "v_y": 0.6481368357932912,
+        "r": 0.2971189283230123
+      },
+      "h10_mean_nrmse": 0.11979128967778944,
+      "h20_mean_nrmse": 0.195036553946674
+    }
+  },
+  "cached_lightweight_screening": {
+    "linear": {
+      "h10_l2": 0.7416754016657985,
+      "h20_l2": 1.211898800479074
+    },
+    "bilinear": {
+      "h10_l2": 0.7460187182988501,
+      "h20_l2": 1.6742968073893858
+    },
+    "stable_bilinear": {
+      "h10_l2": 0.760421218174233,
+      "h20_l2": 1.6347885197251044
+    }
+  },
+  "force_nonidentifiability": {
+    "old_vehicle_observation_equal": true,
+    "old_control_equal": true,
+    "omitted_payload_x_difference_m": 0.012,
+    "case_a_force_body_n": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "case_b_force_body_n": [
+      [
+        -300.00000000000034,
+        0.0
+      ],
+      [
+        -300.00000000000034,
+        0.0
+      ],
+      [
+        -300.00000000000034,
+        0.0
+      ],
+      [
+        -300.00000000000034,
+        0.0
+      ]
+    ],
+    "max_point_force_change_n": 300.00000000000034,
+    "proof_result": true,
+    "interpretation": "No unique four-point force map exists from the old vehicle-only Koopman observation and control."
+  },
+  "gates": {
+    "GK0_independent_test": false,
+    "GK1_1_to_20_state_diagnostic": true,
+    "GK1_scenario_stratification": false,
+    "GK1_force_prediction_error": false,
+    "continue_to_K2": false
+  },
+  "stop_reason": "The current model has no independent test split and its six-state output cannot define four-point connector-force prediction."
+}

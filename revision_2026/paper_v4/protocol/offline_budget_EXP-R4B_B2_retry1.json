@@ -1,0 +1,24 @@
+{
+  "schema_version": "EXP-R4B-B2-retry-budget-v1",
+  "status": "FROZEN",
+  "authorization": "User instruction continue on 2026-09-13",
+  "reason": "Retry the identical B2b serial and parallel8 windows after foreground-session lifecycle interruption; do not reuse or concatenate the 45 accepted ticks.",
+  "parent_protocol": {
+    "path": "protocol/offline_budget_EXP-R4B.json",
+    "sha256": "56c05813ea85a71c95e57d2178dceea6f43f519c2cb6e3901cac34e8694a4870"
+  },
+  "taskbook_sha256": "5586d94a6484f564b735003e27384d57cf39cc831a166dff81382b66b74bb2ac",
+  "scientific_candidate_id": "EXP-R3-unfrozen-v1",
+  "serial_implementation_id": "EXP-R4B-serial-v1",
+  "parallel_implementation_id": "EXP-R4B-parallel8-v1",
+  "window_s": [42.0, 44.5],
+  "combined_retry_wall_s": 7200,
+  "attempt_limit": 1,
+  "required_launcher_probe": "HIDDEN_CHILD_SURVIVES_PARENT_EXIT",
+  "stop_rules": [
+    "Do not concatenate attempt 01 checkpoints.",
+    "Run serial attempt 02 from 42.0; only PASS may release parallel8 attempt 01.",
+    "Stop on timeout, incomplete evidence, physics failure, or exact-equivalence failure.",
+    "Do not release full 1 ms until both retry windows and the comparison pass."
+  ]
+}

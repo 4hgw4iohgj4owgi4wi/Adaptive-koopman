@@ -1,0 +1,10 @@
+{
+  "accel_low_q25": 0.01079783467866946,
+  "steer_low_q25_rad": 2.7565372874960303e-05,
+  "steer_q50_rad": 0.005478262901306152,
+  "steer_q80_rad": 0.08866880345885875,
+  "steer_delta_q90_rad": 0.0020599126815795867,
+  "source": "original train rows only",
+  "window_horizon": 20,
+  "window_stride": 20
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "EXP-R2-E00-historical-production-source-v1",
+  "status": "PASS_HISTORICAL_PRODUCTION_CHAIN",
+  "checks": {
+    "r03_manifest_digest_matches_freeze": true,
+    "r03_manifest_repeat_stable": true,
+    "r03_a0_records_same_manifest": true,
+    "r03_raw_generation_source_identity_gate": true,
+    "r04_manifest_digest_matches_freeze": true,
+    "r04_manifest_repeat_stable": true,
+    "r04_a0_records_same_manifest": true,
+    "r04_cache_generation_source_identity_gate": true,
+    "r04_reuse_points_to_r03": true,
+    "r04_reuse_r03_complete_hash_matches": true,
+    "r04_reuse_count_matches_manifest": true,
+    "manifest_raw_paths_point_to_r03_data": true,
+    "v3w_parent_run_matches_r04": true,
+    "v3w_parent_source_manifest_matches_r04": true,
+    "v3w_parent_complete_hash_matches_r04": true,
+    "v3w_parent_status_matches_r04": true,
+    "current_r04_source_files_still_match_frozen_manifest": true
+  },
+  "raw_generation": {
+    "run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto_results\\runs\\20260901_071606_AUTO_PREDICT_AUTO_R03_R01",
+    "source_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto",
+    "source_manifest_entries": 97,
+    "source_manifest_digest": "A5C3098BDAA736F12B846496752794EEEF18579F06FACD27F1F9EEB9AE4F7050",
+    "source_manifest_file_sha256": "BF00D2D178FC9EBE0D371FA8CC54137728DC484D761994448F6763A779370C0C",
+    "generate_data_sha256": "5ECEA287F9EDC7D27A7F64E1573C3E44D225FCE0CF5D511C4F17019310489892",
+    "dataset_sha256": "0725667D91B4ECA299994D8D0E27DF4A7C6A68296BB71C474D2FA336BED4EFE4",
+    "data_adapter_sha256": "B51CD3C8D3E3628E1BD57042DF44F6857DCA9D8B803166838949E827F35E347A",
+    "n5_complete_sha256": "7D2EA314D9BA794A953FDAC1386E8FDAC82B7D74F24886238C6E01A682AF333B"
+  },
+  "cache_reclassification": {
+    "run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto_results\\runs\\20260901_214725_AUTO_PREDICT_AUTO_R04_R01",
+    "source_manifest_entries": 97,
+    "source_manifest_digest": "B421EE89D2E6C86B33C1D536AB18192630308C5A17306268DAB1A0E512B3D55F",
+    "source_manifest_file_sha256": "E57F55F79E6075C5E6E6CB551B99079D6DDEE8115C583F2C442EF240B164E1E7",
+    "changed_source_entries_since_raw_run": [
+      "config/protocol_predict_auto.json",
+      "development_log.md",
+      "scripts/auto_pipeline.py",
+      "src/physics_audit.py",
+      "tests/test_auto_stage_gates.py"
+    ],
+    "reuse_provenance": {
+      "source_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto_results\\runs\\20260901_071606_AUTO_PREDICT_AUTO_R03_R01",
+      "reason": "window-classification-only repair; simulator, identities, parameters, scenarios, seeds, and raw arrays unchanged",
+      "source_complete_sha256": "7D2EA314D9BA794A953FDAC1386E8FDAC82B7D74F24886238C6E01A682AF333B",
+      "raw_trajectory_count": 672
+    },
+    "manifest_rows": 672,
+    "raw_roots": [
+      "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto_data\\20260901_071606_AUTO_PREDICT_AUTO_R03_R01\\n5\\raw"
+    ],
+    "current_source_match": {
+      "files": 97,
+      "matched": 97,
+      "missing": [],
+      "mismatched": []
+    }
+  },
+  "downstream_model_link": {
+    "model_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02",
+    "registered_parent_n6": {
+      "source_root": "revision_2026/koopman_predict_auto",
+      "results_root": "revision_2026/koopman_predict_auto_results",
+      "data_root": "revision_2026/koopman_predict_auto_data",
+      "models_root": "revision_2026/koopman_predict_auto_models",
+      "run_id": "20260901_214725_AUTO_PREDICT_AUTO_R04_R01",
+      "source_manifest_sha256": "B421EE89D2E6C86B33C1D536AB18192630308C5A17306268DAB1A0E512B3D55F",
+      "protocol_sha256": "D90AB923C7FCC1CD3D72A8BC5F4AA8D62E7A400331F63437FD9292D275EB3BFC",
+      "taskbook_sha256": "4446B7B4F6DC5FEE648C4F4A0E75971050450AF81B5EA7AE4E788C2E5BFF0182",
+      "complete_sha256": "4F62F1454B6C7A3121AA9B5C53009329B139990497034047F206B5FCE2D91CC4",
+      "status": "PASS_STOPPED_AFTER_N6"
+    },
+    "actual_parent_n6_complete_sha256": "4F62F1454B6C7A3121AA9B5C53009329B139990497034047F206B5FCE2D91CC4"
+  },
+  "claim_boundary": "This audit proves the recorded raw-generator and cache-builder source identities and their hash linkage into the v3w model run. It does not prove submission-PDF identity, later confirmation-pool blindness, or E02 prediction accuracy."
+}

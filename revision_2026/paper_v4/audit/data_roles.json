@@ -1,0 +1,105 @@
+{
+  "schema_version": "EXP-R2-E00-data-roles-v1",
+  "generated_on": "2026-09-11",
+  "status": "PARTIAL",
+  "detailed_report": {
+    "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4\\audit\\data_roles_refresh_20260911\\data_audit.json",
+    "sha256": "04B43453662E0061F97E834759D702F89A76137EE22689A53DAED515BC73C6D3"
+  },
+  "identity_checks": {
+    "source_files_checked": 97,
+    "source_mismatches": 0,
+    "checkpoint_files_checked": 3,
+    "checkpoint_mismatches": 0
+  },
+  "checkpoints": [
+    {"repeat": 0, "seed": 997100, "gamma": 0.75, "sha256": "988AEB514191071EC2A9770A58FA201051EA81559206A6926118215044FDB268"},
+    {"repeat": 1, "seed": 997200, "gamma": 0.5, "sha256": "59737EFAB937B6938D39856BBB7F00FC9594ACEE7D5FDF87C1B7708B434C9621"},
+    {"repeat": 2, "seed": 997300, "gamma": 0.5, "sha256": "81A5A974778DBA009128092B9983D321539A1376BDAD9ED7D869811A7AB0106F"}
+  ],
+  "manifest": {
+    "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_auto_results\\runs\\20260901_214725_AUTO_PREDICT_AUTO_R04_R01\\n5\\data_manifest.csv",
+    "sha256": "B04F2C0CC2638EF7AECC8ED70CE54F9E16BEA645A79FC810C6DB8118DB3A8CA9",
+    "rows": 672
+  },
+  "access_ledger": {
+    "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\split_access.jsonl",
+    "sha256": "F82C3BE379893DE0031548A9846D820A6060A981E991FAC64548710F78D65C71",
+    "records": 14842,
+    "denied_records": 0,
+    "unmapped_records": 0,
+    "roles_seen": ["fit", "inner", "outer"],
+    "within_fold_cross_role_family_overlap": 0
+  },
+  "normalization": {
+    "file_sha256": "117E562D37F5845EB9441F958949B34A0E30F0E85527590A1BA3ED9482B5B085",
+    "array_content_digest": "DD408EB0EE914FA894C2C5E00D4DDAB205314D5E0CD8CF0DF5296EAAD9487CC7",
+    "logged_role": "fit",
+    "fit_only_loader_and_open_audit_verified": true,
+    "numeric_array_recomputation_verified": false,
+    "normalization_context_reads": 2298,
+    "non_fit_normalization_reads": 0,
+    "provenance_report": "audit/normalization_provenance.json"
+  },
+  "s0": {
+    "file_sha256": "9CF4E245704A5A86366D35986A4B68A2FCD74FF9190485276FEF9C84C2C960B3",
+    "registered_content_digest_match": true
+  },
+  "pool_counts": [
+    {"fold": 0, "role": "fit", "files": 113, "families": 65},
+    {"fold": 0, "role": "inner", "files": 21, "families": 12},
+    {"fold": 0, "role": "outer", "files": 34, "families": 19},
+    {"fold": 1, "role": "fit", "files": 112, "families": 64},
+    {"fold": 1, "role": "inner", "files": 21, "families": 12},
+    {"fold": 2, "role": "fit", "files": 113, "families": 64},
+    {"fold": 2, "role": "inner", "files": 21, "families": 12},
+    {"fold": 3, "role": "fit", "files": 114, "families": 65},
+    {"fold": 3, "role": "inner", "files": 21, "families": 12},
+    {"fold": 4, "role": "fit", "files": 115, "families": 66},
+    {"fold": 4, "role": "inner", "files": 21, "families": 12}
+  ],
+  "confirmation_blindness": "NOT_PROVEN_BY_SINGLE_RUN_LEDGER",
+  "later_ledger_scan": {
+    "path": "audit/later_access_ledger_scan_20260911_02.json",
+    "sha256": "338029A260BC11B5CA32B318CC83EBDA1773BA2B42205BCD1925914EEA42FE07",
+    "ledgers_scanned_since_2026_09_05": 14,
+    "confirmation_like_records": 5,
+    "allowed_confirmation_like_records": 0,
+    "decision_purpose_confirmation_records": 0,
+    "interpretation": "No allowed confirmation-like access was found in instrumented ledgers; four synthetic denied.npz accesses and one denied partial output were recorded. This does not cover uninstrumented loaders or neutrally named assets.",
+    "confirmation_named_artifact_followup": {
+      "path": "audit/confirmation_artifact_followup_20260911.json",
+      "sha256": "74527369C2C50CB01C99F63AC9A4406E589273F3913C711E5CBC9CCA156868C7",
+      "result": "Two 20260907 paper_results confirmation files are explicit NOT_RUN placeholders; 3697 combined ledger records contain fit/inner/outer only and confirmation_opened=false."
+    }
+  },
+  "model_provenance": {
+    "path": "audit/model_provenance_20260911.json",
+    "sha256": "46E68217C7119E9A62EF6FE89497BC7EE84A877F0C3866E0347A7278AAEA1F91",
+    "status": "PASS_METADATA_CHAIN",
+    "backbone_parent_hash_match": true,
+    "formal_selection_records": 45,
+    "formal_coordinates_complete": true,
+    "checkpoint_hash_and_selection_rule_replay": "PASS",
+    "selected_gamma_counts": {"0.25":2,"0.5":37,"0.75":6},
+    "claim_boundary": "Metric values were not recomputed from prediction arrays; EXP-R2 E02 qualification remains pending."
+  },
+  "historical_production_source": {
+    "path": "audit/historical_source_20260911.json",
+    "sha256": "4006D396B8899266EDC40081B9B2CF111F30579E567F133EEC53A98FF8498491",
+    "status": "PASS_HISTORICAL_PRODUCTION_CHAIN",
+    "raw_generator_run": "20260901_071606_AUTO_PREDICT_AUTO_R03_R01",
+    "raw_source_manifest_sha256": "A5C3098BDAA736F12B846496752794EEEF18579F06FACD27F1F9EEB9AE4F7050",
+    "cache_reclassification_run": "20260901_214725_AUTO_PREDICT_AUTO_R04_R01",
+    "cache_source_manifest_sha256": "B421EE89D2E6C86B33C1D536AB18192630308C5A17306268DAB1A0E512B3D55F",
+    "frozen_source_files_matching_current": "97/97",
+    "downstream_v3w_parent_link": "PASS",
+    "claim_boundary": "Closes recorded raw-generator/cache-builder source identity and linkage only; it does not establish later confirmation blindness or E02 prediction accuracy."
+  },
+  "remaining": [
+    "Recompute recorded prediction metrics from authorized data before EXP-R2 E02 qualification; the imported backbone/checkpoint/selection metadata chain now passes.",
+    "Audit every later 42/84 confirmation-data access before reuse.",
+    "Optionally recompute the saved normalization arrays from the declared fit caches; code and runtime opens already prove fit-only access for the audited run."
+  ],
+  "formal_data_authorized": false
+}

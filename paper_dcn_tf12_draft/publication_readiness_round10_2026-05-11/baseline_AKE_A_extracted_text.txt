@@ -1,0 +1,2027 @@
+1
+Adaptive Koopman Embedding for Robust Control of Complex
+Nonlinear Dynamical Systems
+Rajpal Singh ∗†, Chandan Kumar Sah † and Jishnu Keshavan
+Abstract—The discovery of linear embedding is the key to
+the synthesis of linear control techniques for nonlinear systems.
+In recent years, while Koopman operator theory has become
+a prominent approach for learning these linear embeddings
+through data-driven methods, these algorithms often exhibit
+limitations in generalizability beyond the distribution captured
+by training data and are not robust to changes in the nominal
+system dynamics induced by intrinsic or environmental factors.
+To overcome these limitations, this study presents an adaptive
+Koopman architecture capable of responding to the changes
+in system dynamics online. The proposed framework initially
+employs an autoencoder-based neural network that utilizes
+input-output information from the nominal system to learn the
+corresponding Koopman embedding offline. Subsequently, we
+augment this nominal Koopman architecture with a feed-forward
+neural network that learns to modify the nominal dynamics in
+response to any deviation between the predicted and observed
+lifted states, leading to improved generalization and robustness
+to a wide range of uncertainties and disturbances compared to
+contemporary methods. Extensive tracking control simulations,
+which are undertaken by integrating the proposed scheme within
+a Model Predictive Control framework, are used to highlight
+its robustness against measurement noise, disturbances, and
+parametric variations in system dynamics.
+I. I NTRODUCTION
+The control of complex nonlinear dynamical systems re-
+mains a critical problem across diverse scientific and engi-
+neering disciplines [1]. Unfortunately, a unifying mathematical
+framework for the control of such complex systems remains
+elusive. The well-developed field of linear control theory
+offers a robust toolbox for analyzing and controlling linear
+systems. Consequently, there is a significant appeal in de-
+veloping methods that represent nonlinear dynamical systems
+within a linear framework. Koopman operator theory [2]
+has emerged as one of the prominent methods for obtaining
+linear representations of any nonlinear systems. Unlike local
+methods like Taylor series linearization, Koopman operator
+theory linearly encodes the system dynamics throughout the
+entire workspace and, hence, offers a significantly superior
+prediction performance [3].
+In particular, Koopman operator theory leverages nonlinear
+observable functions of the system states that reside within
+an infinite-dimensional Hilbert space to represent system
+dynamics. By lifting the original dynamics through these
+infinite-dimensional observables, the ensuing system evolves
+linearly via infinite-dimensional Koopman operator [4], [5].
+However, the practical application of Koopman operator the-
+ory is often impeded by its infinite dimensionality and the
+†These authors have contributed equally to the present work.
+This research was supported in part by the SERB Core Research Grant.
+The authors are with the Department of Mechanical Engineering, Indian
+Institute of Science, Bangalore, Karnataka 560012, India (email: rajpals-
+ingh@iisc.ac.in, chandanks@iisc.ac.in, kjishnu@iisc.ac.in).
+absence of a comprehensive mathematical framework for
+computing the operator accurately. Nevertheless, data-driven
+methods such as Dynamic Mode Decomposition (DMD) [6],
+Extended DMD (EDMD) [7], and Sparse Identification of
+Nonlinear Dynamics (SINDY) [8] have been proposed to
+compute a finite-dimensional approximation of the Koopman
+operator for autonomous systems, while DMD with Control
+(DMDc) [9], EDMD with control (EDMDc), and SINDY with
+control (SINDYc) [10] are their extensions to control-affine
+systems. These linear representations frequently suffer from
+reduced prediction accuracy, particularly when dealing with
+more complex systems. Hence, bilinear Koopman represen-
+tations have been suggested [11], [12] to better approximate
+nonlinear systems in contrast with a purely linear one. Al-
+though this approach enhances prediction, it remains incom-
+patible with linear control methods. Moreover, the selection of
+basis/observable functions significantly impacts the learning
+performance of both bilinear and linear Koopman representa-
+tions. While traditionally performed through manual selection,
+this approach becomes increasingly laborious for complex
+systems and often yields suboptimal results. Consequently,
+learning-based algorithms such as dictionary learning [13],
+autoencoders [14], variational autoencoders [15], and invert-
+ible neural networks [16] have been proposed to automate the
+identification of an optimal basis set. The efficacy of these
+learning frameworks in generating high-fidelity linear/bilinear
+Koopman models has fostered their application in the model-
+ing and control of robotic systems such as manipulators [12],
+[17], quadrotors [13], [18], [19], and soft robots [20]–[22].
+The performance of model-based control methods is heavily
+influenced by the accuracy of the underlying model, under-
+scoring the significance of high-fidelity system identification
+algorithms. Since Koopman-based algorithms rely on data
+for learning, they suffer from the limitations of data-driven
+algorithms. For instance, the validity of the learned model
+is confined to the specific region of the configuration space
+captured in the training data. Hence, the learned model doesn’t
+generalize well outside the space captured by training data.
+However, many real-world scenarios involve systems with
+dynamics that can vary over time. Thus, any changes in the
+system’s dynamics resulting from variations in system param-
+eters or environmental conditions render the learned model
+obsolete. This requires fresh data collection from the modified
+system and subsequent retraining to account for any unmod-
+eled dynamics and/or disturbances, which is computationally
+expensive and time-consuming. This significantly restricts the
+applicability of most previous Koopman frameworks. Hence,
+some recent studies have been proposed to improve the ac-
+curacy of the previously learned system models; for instance,
+Jacobian-Regularized Dynamic-Mode Decomposition (JDMD)
+arXiv:2405.09101v2  [cs.RO]  20 May 2024
+2
+proposed in [23] offers improved efficiency over traditional
+Koopman approaches based on DMD by leveraging Jacobian
+information from a faulty prior theoretical model of the
+system. Similarly, Koopman models are retrained offline for a
+better control performance in [24]. However, these Koopman
+architectures do not extend to include any adaptive module
+online, which allows learning unmodeled dynamics or changes
+in the system dynamics during deployment without the need
+to retrain it from scratch.
+To mitigate this problem, we propose an adaptive Koopman
+architecture that leverages both offline and online learning to
+account for variations in system dynamics. The nominal Koop-
+man model consists of an autoencoder-based neural structure
+that uses input-output information from the nominal system
+to learn the corresponding linear/bilinear Koopman model
+offline. This offline structure is then augmented with a feed-
+forward neural network that learns any model uncertainties or
+disturbances affecting system dynamics online. Owing to this
+online learning structure, the proposed architecture demon-
+strates remarkable versatility in adapting to complex variations
+in system dynamics, thus rendering it sample-efficient with
+respect to how such large variations in dynamics are implicitly
+captured through training data.
+In addition, it is resource-intensive and time-consuming
+to generate large datasets for complex systems to train the
+neural networks effectively. The proposed adaptive algorithm
+mitigates this problem by continuously gathering data online,
+thereby enabling it to correct faulty/poorly trained Koopman
+models and enhance the accuracy of the learned model,
+reducing the burden of requiring a vast offline dataset and
+facilitating more efficient model learning for complex systems.
+Consequently, online adaptation allows even poorly trained
+inaccurate Koopman models to acquire high prediction ac-
+curacy. Further, the proposed adaptive architecture empowers
+the linear Koopman model to achieve a prediction perfor-
+mance similar to or even better than their nominal bilinear
+counterparts, enabling full integration of these models within
+linear control frameworks. In this study, the proposed adaptive
+Koopman model is paired with a Model Predictive Control
+(MPC) scheme for the control of nonlinear systems. This on-
+line adaptation method also makes the model more amenable
+to control, as suggested in [24].
+Our work stands alone in the Koopman literature as it
+leverages an adaptive network to learn changing dynam-
+ics/uncertainties online, resulting in more accurate models
+suitable for precise control. While our research is closely
+related to the JDMD algorithm proposed in [23], it is worth
+noting that JDMD relies on a pre-existing mathematical model
+and operates offline. Consequently, it lacks robustness against
+unmodeled dynamics and disturbances. Unlike previous works,
+our adaptive algorithm is designed to operate beyond the
+workspace captured by the training data, which is a signifi-
+cant advantage over conventional data-driven approaches. We
+demonstrate tracking control with a wide range of robotic
+systems to highlight the superior performance and robustness
+of the proposed scheme.
+II. R ESULTS
+A. Koopman Preliminaries
+To give context to our work, we first summarize the funda-
+mentals of the Koopman Operator theory. Consider a nonlinear
+autonomous system described as:
+˙x = f(x), (1)
+where the state of the system, x ∈ X ⊂ Rn and f : X → X are
+assumed to be Lipschitz continuous on X. The corresponding
+discrete dynamics can be given as, xk+1 = S(xk). where
+S : X → X represents the flow map and xk describes the
+state at kth time step. The seminal study in [2] offers a
+distinct perspective for analyzing Hamiltonian systems by their
+transformations within a Hilbert space. This approach departs
+from the traditional focus on state evolution and instead
+emphasizes the dynamics of observable functions, σ : X → C,
+within a Hilbert space, whose evolution is described by the
+continuous Koopman operator, K : C → C as
+K ◦ σ(xk) = σ ◦ S(xk) = σ(xk+1),
+where ◦ represents functional composition. Note that the
+evolution of the observables in Koopman space is linear.
+However, the Koopman operator must be infinite-dimensional
+for an exact Koopman representation [4].
+The same theoretical concepts can also be extended to a
+system with control inputs. Consider a control-affine system
+of the form:
+˙x = f0(x) +
+mX
+i=1
+fi(x)ui, (2)
+where u ∈ Rm represents the control input to the system,
+and f0 and fi represent the drift and state-dependent control
+vectors respectively. The importance of control-affine systems
+stems from their wide applicability across diverse engineering
+and science fields such as robotics [17], [19], [25], population
+ecology [26], cellular signaling [27], chemical reactor opti-
+mization [28], and quantum mechanics [29], [30].
+The system (2) admits an exact finite dimensional bilinear
+representation in a Hilbert space when Koopman eigenfunc-
+tions (KEFs), ϕ(·), are employed as observable functions as
+given below:
+˙z = Acz + Bc(z ⊗ u), x = Cz , (3)
+where z = T (x) = [ ϕ1(x), ϕ2(x), ..., ϕp(x)]T , Ac ∈ Rp×p,
+Bc ∈ Rp×mp and C ∈ Rn×p are Koopman model matri-
+ces, p is the dimension of the Koopman invariant subspace,
+and ⊗ represents the Kronecker product. A linear Koopman
+representation can similarly be given as:
+˙z = Acz+Bcu, x = Cz , (4)
+where Bc ∈ Rp×m and C ∈ Rn×p. A rigorous theoretical
+analysis of the Koopman representation of control-affine sys-
+tems using the KEF basis is given in section IV-A.
+To learn Koopman embeddings, we leverage the well-
+established function approximation capabilities of neural net-
+works. This inherently automates the selection of an appro-
+priate set of basis functions within the Koopman framework,
+3
+zkxk
+'  (xk,WE)
+…
+…
+…
+……
+Encoder network
+zk
+zk
+xk+1
+zk+1A C
+B
+^ ^
+^
+^
+…
+…
+……
+¢ A
+¢B
+¢zk+1
+…
+……
+uk
+uk
+Lifting block
+Linear adaptive neural network
+Bilinear adaptive neural network
+Xi= [xi
+1 ,xi
+2 ,...,xi
+N-1 ]
+Yi = [xi
+2 ,xi
+3 ,...,xi
+N  ]
+Ui = [ui
+1 ,ui
+2 ,...,ui
+N-1 ]
+  Dnom=(Xi,Yi,Ui)i=1
+M
+ 
+    
+Dk,online = (Zk,obs, ¢Zk, Uk)
+Zk,obs =[zk-w,obs,zk-w+1,obs,...,zk-1,obs]
+¢Zk =[¢zk-w+1,¢zk-w+2,...,¢zk]
+Uk =[uk-w,uk-w+1,...,uk-1]
+Losses:
+Lrec = ||xk- Czk||2
+Adaptation loss:
+Ldif =|| ¢zk,lin-¢Azk-1-¢Buk-1||2 
+Lpred = ||xk+1- Czk+1||2^
+Llift = ||zk+1-zk+1||2
+      = ||zk+1-Azk-Buk||2
+^
+zkxk
+(xk,WE)
+…
+…
+…
+……
+Encoder network
+^
+^
+k¢z +1
+Lifting block
+Losses:
+Lrec = ||xk- Czk||2
+Adaptation loss:
+Ldif =|| ¢zk,bil-¢Azk-1
+        -¢B(zk-1× uk-1)||2 
+Lpred = ||xk+1- Czk+1||2^
+Lz_pred = ||zk+1-zk+1||2^
+zk
+xk+1
+zk+1
+zku1,k
+zkum,k
+…
+…
+…
+A C
+Bm
+^ ^
+…
+…
+……
+zk
+…
+…
+…
+¢Bm
+…
+……
+¢A
+tktk-1tk-w+1
+adaptation 
+windowx
+Linear adaptive Koopman frameworkBilinear adaptive Koopmaan frameworkNominal Koopman 
+learning framework
+Nominal Koopman 
+learning framework
+Online linear
+adaptive module
+Online bilinear 
+adaptive module
+'  
+Nominal system dynamics
+Online measured 
+data
+○  
+○  
++
+Disturbances/
+uncertainties
+zkum,k
+zku1,k
+Ladapt =Ldif+¯1||¢A||1+¯2||¢B||1
+        +¯3||¢A||2+¯4||¢B||2 
+Ladapt =Ldif+¯1||¢A||1+¯2||¢B||1
+        +¯3||¢A||2+¯4||¢B||2 
+= ||zk+1-Azk-     B(zk-1× uk-1)||2
+Fig. 1. Illustration of the proposed adaptive embedding along with their neural network architectures . The proposed
+architecture combines online and offline learning. An offline model (shown in grey-colored blocks) is initially leveraged to
+train a nominal model by minimizing Lnom. The dataset Dnom, generated from nominal system dynamics, consists of snapshot
+matrices of states Xi and Yi together with control inputs Ui for each trajectory i, used to train the nominal model. The online
+network (shown in green colored blocks) consists of the pre-trained lifting block and an adaptive neural network block. The
+adaptive network is employed to update the nominal Koopman model by adapting to any change in dynamics that happens post-
+training or unmodeled dynamics unaccounted for in the training dataset. The online adaptation module minimizes the adaptation
+losses over the window of w latest datasets collected online during deployment. For time-step k, the online dataset Dk,online
+includes snapshot matrices Zk,obs, ∆Zk,obs, and Uk,obs which contain past w values of the actual lifted state (obtained after
+lifting the measured state xobs) of the system ( zk,obs), prediction error ( ∆zk = zk,obs − ˆzk), and control inputs ( uk).
+facilitating its realization through an autoencoder architecture
+as shown in Fig. 1, which is referred to as a nominal
+linear/bilinear Koopman neural network. The autoencoder is
+employed to learn a set of suitable lifting functions φ(·)
+such that zk = φ(xk). Note that the lifting function φ(·)
+discovered offline by the autoencoder is an approximation of
+the KEF-based observable function T (·). This autoencoder is
+followed by a set of dense layers that are employed to discover
+the Koopman model matrices A, B, and C. Further details
+of the architecture, the definition of losses, and the training
+process can be found in Section IV-C. The linear/bilinear
+Koopman models learned for the nominal dynamics (2) can
+be expressed as:
+4
+ˆzk+1=Azk+Buk, ˆxk+1=Cˆzk+1, (5)
+ˆzk+1=Azk+B(zk ⊗ uk), ˆxk+1=Cˆzk+1, (6)
+where ˆzk+1 and ˆxk+1 are lifted and base state as predicted
+by the nominal Koopman model at (k + 1) th time step.
+Note that Koopman models (5) and (6) are the discrete-
+time equivalents of the continuous-time Koopman models (4)
+and (3) respectively.
+B. Adaptive Koopman Module
+Now, we consider the synthesis of an adaptive Koopman
+model. To this end, consider a modified control-affine (2)
+system as
+˙x = f0(x) + ˜f0(x) +
+mX
+i=1
+(fi(x) + ˜fi(x))ui, (7)
+where ˜f0 and ˜fi represent the change in system dynamics
+induced by intrinsic/environmental factors. Alternatively, due
+to poor training or a limited amount of data, system (2) can
+be considered as the incomplete dynamics captured by the
+nominal Koopman model, while system (7) may be considered
+as the actual dynamics of the system. This work hinges
+on the assumption that any deviations in the actual system
+dynamics, captured by ˜f0 and ˜fi, lead to corresponding
+variations in the Koopman representation. Mathematically,
+this translates to adjustments in the model matrices A and
+B, represented by ∆A and ∆B, respectively. Section IV-B
+provides theoretical analysis establishing the conditions for
+this relationship between system dynamics deviations and their
+Koopman representations. Consequently, under these assump-
+tions, system (7) can be expressed with the following linear
+Koopman representation:
+zk+1=(A + ∆A)zk+(B + ∆B)uk, xk=Cz k. (8)
+Note here that zk+1 is the lifted state predicted at (k + 1)th
+time-step by the adaptive Koopman model and should be ide-
+ally equal to the lifted state obtained by lifting the actual state
+observed for system (7), i.e., zk+1 = zk+1,obs = φ(xk+1,obs).
+Hence, we make adjustments to the nominal Koopman models
+such that the lifted states predicted by the nominal Koopman
+network ˆz align with the lifted states corresponding to the
+observed states xobs of the actual dynamics (7). From Eqs. (5)
+and (8), we get
+∆zk,lin = ∆Azk−1 + ∆Buk−1, (9)
+where ∆zk,lin = zk,obs − ˆzk represents the prediction error
+at kth timestep for the linear Koopman representation. Then,
+computing the matrices ∆A and ∆B can be framed as the
+following optimization problem:
+min∆A,∆B ∥∆zk,lin−∆Azk−1−∆Buk−1∥2. (10)
+Although a computationally efficient least-squares solution
+exists in theory, achieving sparsity in matrices ∆A and
+∆B for practical applications would require some form of
+regularization of the corresponding weights. Hence, for ease of
+implementation, we instead use a feed-forward neural network
+to learn the error system (9).
+Similarly, for the bilinear representation, the adaptive Koop-
+man representation can be given as
+zk+1=(A+∆A)zk+(B+∆B)(zk ⊗ uk), xk=Cz k, (11)
+and the corresponding prediction error can be given as
+∆zk,bil=∆Azk−1+∆B(zk−1 ⊗ uk−1), (12)
+where ∆zk,bil represents the prediction error at kth timestep
+for the bilinear representation. The corresponding optimization
+problem can then be written as
+min
+∆A,∆B
+∥∆zk,bil−∆Azk−1−∆B(zk−1 ⊗ uk−1)∥2. (13)
+The neural network employed to learn the ∆A and ∆B
+matrices online is referred to as an adaptive linear/bilinear
+neural architecture depending on the nature of the nominal
+Koopman model it augments. This online adaptation is further
+explained in Section IV-E. A visual overview of the complete
+architecture is shown in Fig. 1.
+Fig. 2 illustrates the overall adaptive algorithm for simul-
+taneous adaptation and control. The input-output dataset is
+generated offline from the nominal system to train the Koop-
+man neural network architecture (detailed in Section IV-C).
+This architecture yields the mapping φ(·) and Koopman
+model matrices A, B, and C. During deployment, the sensor
+measurements provide the current true state, xk,obs, of the
+actual system (accounting for uncertainties/disturbances). This
+state is lifted to the invariant Koopman embedding space using
+the pre-trained lifting map, φ(·), resulting in zk,obs. The online
+adaptive module aims to minimize the discrepancy between
+the measured lifted state, zk,obs, and its predicted counterpart,
+ˆzk, over a predefined adaptation window of w latest data,
+via the minimization of the optimization problem (10) and
+(13) for linear and bilinear adaptive models, respectively. The
+solution, ∆A and ∆B, represents the corrections made to the
+nominal model matrices, A and B, respectively, to account for
+uncertainties/disturbances. Subsequently, the updated model
+matrices are employed in conjunction with a control strategy,
+such as Model Predictive Control (MPC) or Nonlinear Model
+Predictive Control (NMPC) (further details in Section IV-F),
+to compute the control input, uk to steer the current state
+towards the desired reference state, xref . The computed uk
+is applied to the real system, and the resulting next state,
+xk+1,obs, is measured by the sensors. This iterative process
+continues at each time step, k, enabling the system to achieve
+the control objective while simultaneously adapting to uncer-
+tainties/disturbances.
+Although the MPC framework is employed for feedback
+control, it should be noted that the adaptive Koopman frame-
+work proposed in this study is controller-agnostic and can
+be paired with any other suitable control policy, which is a
+desirable attribute of the proposed scheme.
+C. Simulation Results
+To assess the efficacy and generalizability of the proposed
+adaptive Koopman algorithm, we conduct a series of sim-
+ulation studies encompassing diverse dynamical systems: a
+5
+Lifting
+Update modelOnline adaptive Module
+¢A, ¢B
+A  ←A+¢A
+B←B+¢B
+uk
+xk,obsxk,obs
+xk,ref
+          System with 
+uncertainties/perturbations
+Nominal system
+A,B
+zk,obs
+zk,obs
+zk,obs
+¢zk
+¢zk
+xk,uk
+zk-1,obs
+uk-1
+zk zk+1
+xk+1A,B
+¢A,
+¢B
+C'
+'
+Model matrices (A,B,C)
+Lifting function (')
+Controller
+Input-output 
+dataset
+Online adaptation block
+Offline training block
+Sensor
+noise
+Input 
+disturbances
+-
++ +
+Nominal Koopman-based learning algorithm
+zkˆ
+ˆ
+ˆ
+Fig. 2. Illustration of the adaptive Koopman architecture embedded in a closed loop control framework. During the
+offline training phase, input-output data from the nominal system is used to train the nominal Koopman Neural networks,
+which, upon training, gives the model matrices A, B, C and lifting function φ(.). During the deployment phase, the online
+adaptive architecture uses the difference between predicted lifted values, ˆzk and actual lifted values, zk,obs to calculate the
+required correction to the Koopman matrices in the form of ∆A and ∆B. The controller (MPC in the present study) uses the
+updated Koopman model matrices to compute the required control output uk required to drive xk,obs to its reference value
+xref . This computed control input uk is applied to the real system (with uncertainties), and the resulting state is measured.
+coupled pendulum, a serial manipulator, and a planar quadro-
+tor. We assume that all these systems are fully observable.
+Each system initially undergoes offline training to generate a
+nominal Koopman model. During deployment, we introduce
+variations to the system parameters or inject external uncer-
+tainties/disturbances to evaluate the algorithm’s capacity to
+adapt to these implemented variations in real-time. Throughout
+the simulation study, OSQP [31] solver is used to implement
+MPC and NMPC.
+1) Coupled Pendulums: The coupled pendulum system
+consists of an array of simple pendulums with shared pivot
+points interconnected by torsion springs. This system ex-
+hibits highly nonlinear dynamics with complexity scaling
+exponentially with the number of pendulums. Further, it is
+underactuated, as the motor can directly control only one of
+the pendulums at the boundary, which adds to the challenge
+of control. This combination of factors – high dimensionality,
+underactuation, and intricate, parameter-sensitive dynamics
+6
+Algorithm 1 Pseudo Code For Adaptive Koopman MPC
+Offline:
+Data: Dnom = (Xi, Yi, Ui)M
+i=1
+1) Calculate φ(·), A, B and C using nominal Koopman
+model.
+Online:
+assign window: w
+For each discrete time step k = 1, 2, 3, .... do
+• if k < w :
+∆A = 0, ∆B = 0
+• else:
+1) zk ← φ(xk)
+2) Dk,online = {(zk−w,obs, ∆zk−w+1, uk−w),
+(zk−w+1,obs, ∆zk−w, uk−w+1), ...,(zk−1,obs, ∆zk,
+uk−1)}, where, ∆zi = zi,obs − ˆzi−1 for
+i = k − w, ..., k
+3) Compute ∆A and ∆B using the adaptive module
+(24)
+4) A ← A + ∆A, B ← B + ∆B
+• Compute the control output uk using (25) or (26).
+• Apply control input uk to the system
+end
+– renders traditional data-driven Koopman learning particu-
+larly arduous. Consequently, the robust adaptation capabilities
+embedded within our adaptive Koopman framework become
+crucial for successful control in this scenario.
+In this study, we integrate the proposed adaptive Koopman-
+based learning with an MPC-based controller for controlled
+synchronization of the coupled pendulum in the presence of
+model uncertainties/disturbances. The problem of controlled
+synchronization in an underactuated coupled pendulum system
+represents a specific instance of reference tracking, where
+individual pendulums achieve a uniform state or trajectory via
+feedback control. This problem has been previously explored
+using Koopman Model Predictive Control (KMPC) in [32],
+where Koopman-based learning extracts a linear model of
+the system from data, which is integrated within an MPC
+framework for control. The coupled pendulum system is mod-
+eled using the mechanical realization of the Frenkel-Kontorova
+(FK) model [33] in the form of a finite, one-dimensional array
+of N identical pendulums as
+I ¨θi + mgl sin θi + γ ˙θi − κ
+2
+∂
+∂θi
+PN −1
+j=1 (θj+1 − θj)2 −
+b
+2
+∂
+∂ ˙θi
+PN −1
+j=1 ( ˙θj+1 − ˙θj)2 = Mi, i = 1, 2, ..., N, (14)
+where κ is the stiffness of torsion springs coupling adjacent
+pendulums, b and γ are the damping coefficients, g is the
+acceleration due to gravity, and I, m, and l are the moment of
+inertia, mass and length of each pendulum, respectively. Since
+all the pendulums are identical, the suffix i is omitted. θi and
+Mi represent the angular displacement and the external torques
+on the ith pendulum, respectively. Since the system is actuated
+by only one motor, assuming it drives the first pendulum, we
+have M1 ̸= 0 and Mi = 0 for i = 2, 3, ..., N . Eq. (14) can
+be written in state-space form using the multi-agent system
+formalism (refer to [32] for comprehensive details) as:
+˙x = F (x) − 1
+I (L ⊗ GK)x + 1
+I (d ⊗ G)u, (15)
+where L = (Lij) ∈ RN ×N is the graph Laplacian describing
+the topological structure of the interactions between the pendu-
+lums. The state x = [x⊤
+1 , ..., x⊤
+N]⊤, where xi = [θi, ˙θi]⊤ is the
+state of the ith pendulum. F (x) = [ f(x1)⊤, ..., f(xN)⊤]⊤,
+where f(xi) is the uncoupled dynamics of ith pendulum, given
+by:
+f(xi) =
+ xi,2
+−(mgl/I) sin(xi,1) − (γ/I)xi,2
+
+(16)
+G = [0 , 1]⊤ and K = [ κ, b] represents the torsion coupling
+through springs with dissipation. d = [1 , 0, ...,0]⊤ ∈ RN ,
+u = M1.
+For simulations, we considered a system of N = 5 identical
+coupled pendulums (hence, x ∈ R10) with the following
+dynamic parameters: m = 0 .017 kg, l = 0 .1 m, γ =
+3.1956332 × 10−4 Nms rad−1, b = 6.819 × 10−4 Nms rad−1,
+and k = 0.079 Nm−1. The control loop is operated at 100 Hz,
+emulating realistic experimental conditions.
+Adaptation to Parametric Uncertainties: To evaluate the
+performance of the proposed adaptive Koopman architecture
+against conventional non-adaptive approaches, we conduct
+a comprehensive suite of simulation studies. Specifically,
+we simulate parametric uncertainties by either increasing or
+decreasing each constant parameter (I, m, l, γ, k, and b) at
+random by δ%, where δ ∈ { 5, 10, 15, 20, 25, 30, 35, 40}.
+Additionally, we simulate sensor noise by corrupting the
+measured states with Gaussian noise at different amplitudes,
+characterized by various signal-to-noise (SNR) ratios.
+Fig. 3 illustrates the reference and the traced trajectories of
+θ and ˙θ for the coupled synchronization problem for δ = 40
+and SNR of 30 dB. The comparison encompasses both linear
+and bilinear Koopman models, with and without adaptation.
+Initially, both approaches rely on the same pre-trained nominal
+Koopman model, leading to similar tracking behavior in the
+early phase. However, after approximately 1.25 seconds, dis-
+cernible divergence occurs. Notably, the adaptive algorithm
+achieves successful convergence to the reference trajectory
+in around 3 seconds, while the non-adaptive algorithm fails
+to do so. This failure manifests as a constant drift in angle
+tracking observed in non-adaptive schemes, contrasting with
+the accurate tracking exhibited by the adaptive scheme. Similar
+trends are observed for angular velocities, with non-adaptive
+trajectories diverging and oscillating around a constant value,
+while adaptive trajectories converge to and oscillate around the
+reference value. This discrepancy arises because the control
+signal computed by MPC using nominal Koopman models
+becomes erroneous due to changes in system dynamics. In
+contrast, the adaptive algorithm updates the nominal Koopman
+model online to account for these uncertainties, resulting in
+precise tracking performances. Additionally, including richer
+basis functions in the bilinear model contributes to marginally
+better performance than its linear counterpart, as reflected in
+the presented results.
+Figs. 4a and 4b depict the average reduction in root mean
+square (RMS) tracking error for the linear and bilinear adaptive
+7
+0
+200
+400
+600
+800
+0
+200
+400
+600
+800
+µref
+µ1(no adapt)
+µ1(adapt)
+µ2(no adapt)
+µ2(adapt)
+µ3(no adapt)
+µ3(adapt)
+µ4(no adapt)
+µ4(adapt)
+µ5(no adapt)
+µ5(adapt)
+µ(rad/s)
+20
+40
+60
+20
+20
+40
+20
+40
+40
+20
+40
+20
+40
+60
+µ1(rad/s)
+.
+µ2(rad/s)
+.
+µ3(rad/s)
+.
+µ4(rad/s)
+.
+µ5(rad/s)
+. 0 5 10 15 20 0 5 10 15 20
+20
+40
+60
+20
+40
+60
+20
+40
+60
+20
+40
+60
+t(s)
+t(s) t(s)
+t(s)
+µref µ   (adapt) µ   (no adapt)
+. . .
+0
+0
+5
+5
+10 15 20 0
+0
+5
+5
+10 15 20
+a) Linear Models b) Bilinear Models
+Fig. 3. Simulation results of the proposed linear(left)/bilinear(right) adaptive Koopman framework for the controlled
+synchronous revolution of the coupled pendulum system with N = 5. The figure presents tracking performance with the
+nominal system dynamics modified by δ = 40% change in system parameters, and the measured state, xobs, is corrupted with
+the Gaussian noise with SNR = 30 dB. The adaptive Koopman algorithm is integrated with MPC to drive the coupled pendulum
+system to track a reference angular velocity ˙θ = 40 rad/s. a) Evolution of θ and ˙θ for the nominal linear Koopman and the
+linear adaptive Koopman algorithm. b) Evolution of θ and ˙θ for the nominal bilinear Koopman and the bilinear adaptive
+Koopman algorithm.
+Koopman control schemes compared to their non-adaptive
+counterparts. This heatmap visualization summarizes the re-
+sults of simulations conducted across a range of parametric
+uncertainties (δ ∈ {5, 10, 15, 20, 25, 30, 35, 40}) and measure-
+ment noise (SNR ∈ { 40, 35, 30, 25, 20} dB), including the
+scenario with no sensor noise. The heatmap visually demon-
+strates the substantial reduction in tracking error achieved by
+the adaptive algorithm over the non-adaptive approach. The
+error reduction observed in θ ranges approximately from 87%
+to 93%. Similarly, tracking errors in ˙θ exhibits a minimum
+8
+no
+40 35 30 25 20
+0 10 20 30 40
+0 10 20 30 40 0 10 20 30 40 0 10 20 30 400 10 20 30 40
+0 10 20 30 400 10 20 30 400 10 20 30 40
+percent change (±  %)
+percent change (±  %) percent change (±  %) percent change (±  %) percent change (±  %)
+percent change (±  %) percent change (±  %) percent change (±  %)
+% Improvement (µ)
+(eµ) 
+% Improvement (µ)
+93
+92
+91
+90
+89
+88
+87
+SNR (dB)
+noiseno
+40 35 30 25 20
+0.125
+0.20
+0.18
+0.16
+0.14
+0.12
+0.10
+0.115
+0.110
+0.095
+SNR (dB)
+noise
+no
+40 35 30 25 20
+SNR (dB)
+noise
+no
+40 35 30 25 20
+SNR (dB)
+noise
+30
+20
+60
+50
+40
+a) b)
+c) d)
+.
+Linear model
+Linear model
+Linear model
+Linear model
+Bilinear model
+Bilinear model Bilinear model
+Bilinear model
+(eµ) .
+Fig. 4. Robustness analysis of the proposed adaptive Koopman framework against parametric uncertainty of range
+δ ∈ { 0, 5, 10, 15, 20, 25, 30, 35, 40} and measured states xobs corrupted by Gaussian noise with SNR in range
+{no noise , 40, 35, 30, 25, 20} dB for solving controlled synchronization problem with ˙θref = 40 rad/s. a) Percent
+decrease in the average RMS tracking error in θ for (left: linear, right: bilinear) adaptive Koopman framework compared to
+nominal Koopman framework. b) Percent decrease in the average RMS tracking error in ˙θ for (left: linear, right: bilinear)
+adaptive Koopman framework compared to nominal Koopman framework. c) Average RMS tracking error (eθ) in θ for (left:
+linear, right: bilinear) adaptive Koopman framework. d) Average RMS tracking error e ˙θ in ˙θ for (left: linear, right: bilinear)
+adaptive Koopman framework.
+reduction of at least 20%, potentially reaching improvements
+exceeding 60%. Figs. 4c and 4d presents the corresponding
+heatmap for the same range of conditions for the average
+tracking errors in θ and ˙θ for the linear and bilinear adaptive
+algorithms. The average tracking error for θ is defined as
+eθ = (1 /N)PN
+i=1 |θi,ref − θi|/|θi,ref | where θref and θ
+are the reference and traced joint angles, respectively. The
+average tracking error for joint angular velocity e ˙θ is defined
+analogously.
+Analyzing the scenario with zero parametric uncertainties
+(δ = 0) and no sensor noise unveils that even when the
+system dynamics remain unchanged, non-adaptive Koopman
+controllers exhibit inferior performance compared to their
+adaptive counterparts. This exposes a crucial limitation: pre-
+trained Koopman models, even under ideal conditions, may
+not perfectly capture true system dynamics. The nominal
+Koopman neural network might be insufficient for accurately
+representing a complex system like the coupled pendulum with
+N = 5 . This might result from insufficient training data, or
+the offline training process might have identified a sub-optimal
+model potentially causing discrepancies between the learned
+model and the actual system dynamics. The adaptive algorithm
+achieves significantly improved tracking performance even
+with potentially suboptimal pre-trained models. Consequently,
+the adaptive Koopman framework presents a data-efficient
+approach for learning and control tasks within the Koop-
+man operator-theoretic paradigm. Further, while a nominal
+Koopman model might offer accurate state predictions, using
+it directly in closed-loop control can be problematic due to
+modeling errors in the embedding process (as shown in [24]).
+These errors can manifest differently during control execution
+compared to prediction, leading to performance degradation.
+The proposed adaptive framework addresses this by incorpo-
+rating an online adaptive module that regularizes the nominal
+model for the specific control task, similar to the offline
+network approach in [24], leading to improved closed-loop
+control performance. These observations highlight that the
+adaptive algorithm alleviates the burden of requiring high-
+9
+fidelity Koopman models, making it suitable for real-world
+applications.
+Figs. 3 and 4 reveal comparable tracking performance
+between the linear and bilinear adaptive algorithms. While
+the bilinear model exhibits a slight advantage in tracking
+accuracy, this benefit comes at a high computational cost, as
+seen in Fig. 5. Notably, the linear MPC problem is convex,
+guaranteeing a unique global optimum that can be efficiently
+computed. Conversely, the bilinear MPC problem is non-
+convex, necessitating initialization for the OSQP solver. This
+solver may struggle to locate the global minimum, leading to
+increased computation time per iteration in the bilinear case.
+Since the adaptive algorithm operates online, its computational
+cost must remain lower than the sampling period for deploy-
+ment. Although the bilinear approach offers marginally better
+tracking performance, its substantial computational burden
+renders it impractical for online applications. Consequently,
+the remainder of this work focuses solely on the results
+obtained with the linear adaptive algorithm, prioritizing real-
+time feasibility over slight performance gains.
+   linear 
+(no adapt)
+ linear 
+(adapt)
+ bilinear 
+(no adapt)
+ bilinear 
+  (adapt)
+0.005
+0.01
+0.015
+0.02 computation time/per iteration [s]
+Fig. 5. Comparison of average computation time per
+iteration between linear and bilinear nominal Koopman
+framework with their corresponding adaptive Koopman
+formulation for solving controlled synchronization prob-
+lem. The box plot is generated from simulation data using 42
+different trials with different values of δ and noise levels.
+Intriguingly, the non-adaptive bilinear algorithm exhibits
+a higher computational burden than its adaptive counterpart.
+This might seem counterintuitive, but it likely stems from the
+substantial deviations between predicted and desired states in
+the nominal model necessitating a greater number of iterations
+within the iterative ADMM (alternating direction method of
+multipliers) algorithm, employed by OSQP [31], to achieve
+convergence for each initialization. The algorithm iteratively
+refines the solution by linearizing the bilinear dynamics around
+the new solution at each step, which iteratively continues until
+convergence.
+Adaptation to Non-parametric Uncertainties: Now, we
+evaluate the performance of the adaptive linear Koopman
+control algorithm under non-parametric uncertainties. In par-
+ticular, we explore two types of non-parametric uncertainties:
+a constant input torque disturbance and a time-varying sinu-
+soidal input torque disturbance. Additionally, sensor noise with
+the same amplitude range as the previous case is introduced. It
+is crucial to demonstrate that the effectiveness and robustness
+of the adaptive algorithm observed in parametric settings
+generalize to non-parametric scenarios as well because for
+parametric uncertainties, unlike their non-parametric counter-
+parts, it cannot be guaranteed that the system dynamics still
+resides within the invariant Koopman subspace spanned by
+pre-learned observables.
+Fig. 6 presents simulation results depicting the per-
+formance of the adaptive linear algorithm in the pres-
+ence of non-parametric input disturbances and sensor
+noise. The constant non-parametric input torque distur-
+bance and the time-varying sinusoidal input disturbance
+are mathematically expressed as τdist = c, where c ∈
+{−0.1, −0.05, −0.025, −0.01, 0.01, 0.025, 0.05, 0.1} Nm and
+τdist(t) = c′ sin(2πf t), where f ∈ {5, 10, 100, 500, 1000} Hz
+is the frequency and c′ = 0.1 Nm is the disturbance amplitude.
+Figs. 6a and 6b depict the improvement in the average RMS
+tracking error for constant and sinusoidal disturbances, respec-
+tively. For the constant torque disturbance case, the reduction
+in tracking error for θ ranges 89.1% to 97%, while for ˙θ,
+it ranges from 20% to 55.3%. This reduction is observed
+across all tested amplitudes and SNR levels, confirming the
+effectiveness of the adaptive algorithm in adapting to non-
+parametric disturbances. Similar results are obtained for the
+sinusoidal disturbance case across the chosen frequency range
+and SNR. Figs. 6c and 6d present the corresponding average
+tracking errors of the linear adaptive Koopman algorithm for
+constant and sinusoidal torque disturbances, respectively. The
+consistently low average errors for both θ and ˙θ demonstrate
+the effectiveness of the adaptive algorithm in achieving the
+control objective, even in the presence of non-parametric
+disturbances.
+These observations show that the efficacy of the adaptive
+algorithm extends to scenarios encompassing uncertainties that
+may not fully lie in the subspace spanned by the pre-learned
+basis function. This is because when sufficiently rich basis
+functions are learned during offline training, the uncertainties
+can be approximated with adequate accuracy by projecting
+them onto these basis functions. This enables the adaptive
+algorithm to learn these uncertainties online by adapting the
+existing A and B matrices without the need to retrain the
+lifting function φ(·).
+2) Serial Manipulator: As our second example, we con-
+sider trajectory tracking for a 3R serial manipulator. Serial
+robots, with their multiple interconnected links, exhibit intri-
+cate dynamic behaviors, which, along with their widespread
+application, makes them a prime candidate to benchmark the
+performance of the proposed algorithm.
+The system dynamics for a serial manipulator [34] is given
+as:
+M(θ)¨θ + C(θ, ˙θ) + G(θ) = τ , (17)
+where θ ∈ R3 and τ ∈ R3 represent the joint angles and the
+torque inputs, respectively. M(·) ∈ R3×3, C(·, ·) ∈ R3×3 and
+G(·) ∈ R3×1 represent the mass, the Coriolis and the gravity
+10
+no
+40 35 30 25 20
+SNR (dB)
+noise
+no
+40 35 30 25 20
+SNR (dB)
+noise
+-0.1
+-0.05
+-0.025
+-0.01
+0.01
+0.025
+0.05
+0.1
+-0.1
+-0.05
+-0.025
+-0.01
+0.01
+0.025
+0.05
+0.1
+96
+94
+92
+90
+50
+40
+30
+20
+5
+10
+100
+500
+1000
+5
+10
+100
+500
+1000
+93.5
+93.0
+92.5
+92.0
+20
+30
+40
+50
+Amplitude of constant torque disturbance (Nm)
+% Improvement (µ) % Improvement (µ) 
+Frequency of periodic torque disturbance (Hz)
+no
+40 35 30 25 20
+SNR (dB)
+noise
+no
+40 35 30 25 20
+SNR (dB)
+noise
+-0.1
+-0.05
+-0.025
+-0.01
+0.01
+0.025
+0.05
+0.1
+-0.1
+-0.05
+-0.025
+-0.01
+0.01
+0.025
+0.05
+0.1
+0.11
+0.26
+0.22
+0.18
+0.14
+0.10
+0.09
+0.08
+Amplitude of constant torque disturbance (Nm)
+5
+10
+100
+500
+1000
+5
+10
+100
+500
+1000
+0.094
+0.093
+0.092
+0.091
+0.090
+0.30
+0.26
+0.22
+0.18
+0.14
+Frequency of periodic torque disturbance (Hz)
+(a) (b)
+(c) (d)
+% Improvement (µ) % Improvement (µ) 
+..
+(eµ) (eµ) (eµ) .(eµ) .
+Fig. 6. Robustness study of the proposed linear adaptive Koopman framework against non-parametric input
+disturbances and sensor noise . In particular, two types of input disturbances are considered- constant torque distur-
+bance and time-varying sinusoidal torque disturbance. The constant torque disturbances, denoted as τdist(t) = c, where
+c ∈ {− 0.1, −0.05, −0.025, −0.01, 0.01, 0.025, 0.05, 0.1} Nm and the time-varying sinusoidal disturbance is written as
+τdist ∈ c′ sin(2πf t), where c′ = 0 .1 Nm and f = {5, 10, 100, 500, 1000} Hz. a) Percentage decrease in average RMS
+tracking error in θ (left) and ˙θ (right) for linear adaptive Koopman algorithm as compared to the nominal linear Koopman
+framework for constant input disturbance. b) Percentage decrease in average RMS tracking error in θ (left) and ˙θ (right)
+for linear adaptive Koopman algorithm as compared to the nominal linear Koopman framework for constant sinusoidal input
+disturbance. c) Average RMS tracking error in θ (left) and ˙θ (right) for linear adaptive Koopman algorithm for constant
+input torque disturbances. d) Average RMS tracking error in θ (left) and ˙θ (right) for linear adaptive Koopman algorithm for
+sinusoidal input torque disturbances.
+matrix, respectively. To train the nominal linear model, we take
+the system parameters of each link to be mi = 0 .8 kg, li =
+1 m, Ii = mil2
+i
+12 kgm2, for i = 1 , 2, 3, where mi, Ii and li
+represent the mass, inertia, and length of ith link, respectively.
+In order to conduct a comprehensive analysis of the efficacy
+of the proposed linear adaptive Koopman algorithm, we have
+performed a robustness study with varying levels of mass
+variations to the links along with the addition of noise to the
+measured states xobs = [θ⊤, ˙θ⊤]⊤. The considered variation
+for the mass of all the links ranges from −60% to 60%.
+Meanwhile, the SNR values for the noise range from 50dB to
+25dB. For the current study, we illustrate trajectory tracking
+control, wherein feedback control is implemented to ensure
+all the joints follow a reference sinusoidal path. The tracking
+11
+25
+30
+35
+40
+45
+50
+NN
+Percentage Change(%)
+0-20-40-60 20 40 60
+RMSE(rad)
+0.1
+0.2
+0.3
+0.4
+0.5
+25
+30
+35
+40
+45
+50
+NN
+Percentage Change(%)
+0-20-40-60 20 40 60
+Percentage improvement(%)
+20
+40
+60
+80
+Noise level(dB)
+0 5 10 15 20 25 30
+t(s)  
+0.5
+0
+-1
+-1.5
+-0.5µ1(rad)
+0 5 10 15 20 25 30
+t(s)  
+0.5
+0
+-1
+-1.5
+-0.5µ2(rad)
+0 5 10 15 20 25 30
+t(s)  
+µ3(rad)0.2
+0
+-0.4
+-0.2
+0.4
+0.8
+0.6
+AdaptiveReference Nominal *NN - No Noise
+b)
+a)
+c)
+Fig. 7. Simulation results for the 3R serial manipulator . Shown are the results for tracking control of a 3R serial manipulator
+for changes in mass (-60% to 60%) and inclusion of noise (25 −50 dB). a) Evolution of joint angles with mass change of
+-50% and noise level of 25 dB. b) Percentage improvement in tracking error for the adaptive linear Koopman models over the
+nominal linear model. c) Joint position RMSE error for the adaptive linear Koopman model.
+results for a particular case where we reduce the mass of
+each link, and consequently its inertia, by 50% along with the
+inclusion of measurement noise of 25dB shown in Fig. 7a.
+Similar to the prior example, during the initial phase lasting
+approximately one second, both the nominal and adaptive
+control architectures exhibit similar behavior in tracking the
+reference trajectory. However, beyond that, notable deviations
+are observed in the traced joint angles as compared to the
+specified reference sinusoidal signal for the nominal model.
+It can be seen that the tracking performance of the nominal
+model is significantly worse for lower joints ( θ1 and θ2) than
+the higher joint ( θ3). This can be explained by the fact that
+the torque required to actuate a joint is heavily dependent
+on the links that follow it. As such, the torque required by
+the first joint to trace the desired trajectory is affected by
+the mass change of all the three links that follow it, while
+the torque required by the third joint is only affected by the
+mass change of the last link. Despite these complexities, the
+adaptive Koopman algorithm demonstrates exceedingly better
+tracking performance for all three joints. The corresponding
+root mean square tracking errors for the adaptive and nominal
+models are 0.189 rad and 1.27 rad, respectively, corresponding
+to a 92% improvement in the tracking error. A visual analysis
+of the performance of the adaptive Koopman algorithm over
+the complete range of induced variations in the form of
+heatmaps is shown in Figs. 7b and 7c. It can be seen that
+the adaptive Koopman model consistently outperforms the
+nominal Koopman model with a percentage improvement in
+tracking error up to 90%.
+3) Planar Quadrotor: To conclude our exploration of the
+algorithm’s capabilities, we evaluate the adaptive linear Koop-
+man algorithm for tracking control of a planar quadrotor. This
+choice serves a two-fold purpose. Firstly, it showcases the
+algorithm’s effectiveness on a mobile robot platform, whose
+dynamics is inherently different compared to the previously
+studied systems. This application highlights the algorithm’s
+ability to adapt to diverse robotic systems. Secondly, we
+further emphasize the algorithm’s generality and platform-
+agnostic nature by successfully controlling a system with agile
+dynamics.
+For this simulation, in addition to parametric variations, we
+also incorporate wind gusts in the simulation environment to
+show the robustness of the proposed scheme against changes in
+system dynamics induced by environmental factors, which are
+inherently non-parametric. The system dynamics for a planar
+quadrotor in the presence of wind gusts is given by [13]:
+
+
+¨y
+¨z
+¨θ
+
+ =
+
+
+0
+−g
+0
+
+ +
+
+
+− 1
+m sinθ − 1
+m sinθ
+1
+m cosθ 1
+m cosθ
+− larm
+I
+larm
+I
+
+
+T1
+T2
+
++ Fw
+m ,
+Fw =
+Kv 2
+wcos(αw), Kv 2
+wsin(αw), 0⊤
+, (18)
+where y, z and θ represent the Cartesian position and
+orientation in the y − z plane, respectively. T1 and T2 are
+the thrust inputs for the propellers. m, l arm, I , and g refer to
+the mass, length of the propeller arm, rotational inertia, and
+12
+2
+1.5
+0.5
+0
+1
+-2 -1 0 1 2
+Lemniscate S Hypotrochoid
+AdaptiveReference Nominal Wind gust
+-1 -0.5 0 0.5 1
+-0.5
+-1
+-2
+-1.5
+0.0
+y(m)  
+2
+1.5
+0.5
+0
+1
+-2 -1 0 1 2y(m)  
+z(m)  
+1
+0.5
+0.5
+1
+0
+-2 -1 0 1 2y(m)  
+-2 -1 0 1 2
+1
+0.5
+0.5
+1
+0
+z(m)  
+y(m)  
+-1 -0.5 0 0.5 1 1.5
+-0.5
+-1
+-2
+-1.5
+0.0
+0 2 4 6 8 10 12
+e (m)  
+0
+0.2
+t(s)  
+0.4
+0.6
+0.15
+0.05
+0.1
+0
+0.2
+0.25
+0 2 4 6 8 10t(s)  
+y(m)  y(m)  
+No  Wind
+0
+0.1
+0.2e (m)  
+0 2 4 6 8 10 12t(s)  
+0 2 4 6 8 10
+0.6
+0.2
+0.4
+0
+0.8
+t(s)  
+0.1
+0
+0.2
+0.3
+0 2 4 6 8 10
+t(s)  
+0 2 4 6 8 10
+0.6
+0.2
+0.4
+0
+t(s)  
+vm= 3 m/s, ®w= ¼/4
+a)
+b)
+c)
+d)
+Fig. 8. Simulation results for the planar quadrotor. Shown are the results for tracking control of a planar quadrotor whose
+mass has been changed by 40% post training of the nominal model in the presence (c,d) and absence of wind gusts (a,b) for
+different shapes (Lemniscate, S-shape, and Hypotrochoid). The wind gust has a mean velocity of 3 m/s with a direction of
+45◦ anticlockwise w.r.t to the y-coordinate axis. a,c) Paths traced. b,d) Evolution of tracking errors.
+gravity, respectively. Fw represents the drag force exerted by
+the wind on the planar quadrotor. vw and αw represent the
+speed and direction of the wind gust, respectively. K is the
+drag force coefficient. Initially, the parameters are taken as
+m = 2 kg, I = 1 kgm/s2, g = 9 .81 m/s2, larm = 0 .2 m,
+K = 0 .1 kg/m,vw = 0 m/s and αw = 0 rad to generate the
+input-output dataset for training the nominal linear Koopman
+model. For this system, we perform trajectory tracking across
+multiple shapes, as shown in Fig. 8. During deployment,
+we change the planar quadrotor parameters to m = 2 .4 kg,
+I = 1 .2 kgm/s2. The corresponding results are shown in
+Figs. 8a and 8b. It can be seen that the adaptive Koopman
+architecture offers significantly better tracking performance
+than the nominal model for all the chosen paths. Subsequently,
+we also introduce wind gusts with velocity vw = 3 m/s and
+direction αw = π
+4 rad. The corresponding results are shown
+in Figs. 8c and 8d. Similar to the previous case, the adaptive
+architecture significantly outperforms the nominal model for
+tracking the reference paths.
+Hence, the presented simulation studies demonstrate the
+efficacy of the proposed algorithm in adapting to changes in
+system dynamics resulting from both intrinsic and environ-
+mental factors.
+III. D ISCUSSION
+This work presents an adaptive Koopman formulation for
+the control of nonlinear systems, capable of adapting online
+to disturbances, noise, and variations in system dynamics. The
+framework leverages a pre-trained Koopman model alongside
+an online adaptive module for real-time adaptation to the afore-
+mentioned variations. This online learning capability empow-
+ers the framework to achieve robust control performance under
+uncertainties. The proposed framework demonstrates efficacy
+through the successful implementation of tracking control
+13
+within an MPC framework across diverse robotic paradigms,
+including coupled pendulums, serial manipulators, and planar
+quadrotors. This highlights the framework’s generalizability
+and robustness across various robotic systems. The robustness
+is further emphasized by exploring the performance of the
+adaptive algorithm for these systems to a wide range of para-
+metric and non-parametric uncertainties, measurement noise,
+input disturbances, and even environmental changes (e.g., wind
+gusts). This comprehensive evaluation underscores the supe-
+rior performance of the adaptive architecture compared to the
+nominal Koopman model. Notably, the algorithm demonstrates
+robustness while adapting to non-parametric uncertainties that
+may not strictly satisfy the underlying theoretical assumptions
+behind the adaptive algorithm.
+The efficacy of the proposed adaptive algorithm in achieving
+robust control performance across diverse, complex systems
+with varied uncertainties and limited online data for adaptation
+presents a compelling contrast to the offline model’s require-
+ment for a significantly larger dataset for accurate model
+training. This disparity can be attributed to the fundamental
+difference in their learning approaches. Unlike the offline
+model, which aims to learn a globally valid Koopman rep-
+resentation, the adaptive algorithm strategically tailors correc-
+tions to the nominal Koopman model only in the local vicinity
+of the current state. This targeted adaptation facilitates accurate
+control performance within the local operating region while
+circumventing the need for extensive offline data collection.
+Beyond its robustness, the proposed adaptive Koopman
+framework offers a significant improvement in achieving con-
+trol objectives even with inaccurate Koopman models. Tradi-
+tionally, generating highly accurate Koopman models of com-
+plex robotic systems from data is a challenging and resource-
+intensive endeavor. This framework, however, overcomes this
+limitation by effectively leveraging faulty Koopman models for
+high-fidelity control performance. This ability to compensate
+for initial model inaccuracies paves the way for a broader
+application of Koopman operator theory in practical robotic
+control tasks. Furthermore, the proposed adaptive algorithm
+offers a compelling advantage by enabling the utilization of
+computationally efficient linear Koopman models. Typically,
+achieving high accuracy with traditional linear Koopman
+models for complex systems necessitates a large number of
+observable functions, significantly increasing computational
+cost. Consequently, researchers often resort to computationally
+expensive bilinear models. However, these bilinear models
+retain a degree of nonlinearity, limiting the applicability of
+established linear control techniques. The proposed framework
+overcomes this trade-off by empowering the use of sim-
+pler, computationally efficient linear Koopman models while
+achieving prediction accuracy comparable to bilinear models
+through online adaptation. This reduces the computational
+burden and unlocks the vast toolbox of well-developed linear
+control methods for complex nonlinear systems.
+Despite the numerous advantages, the requirement for man-
+ual hyperparameter tuning (window size, epochs, regulariza-
+tion parameters) of the online adaptive module remains a
+limitation of this study. While simulations indicate robust
+performance within a specific hyperparameter range, this range
+needs manual discovery. Thus, integrating algorithms for auto-
+mated hyperparameter tuning within the online architecture is
+a major focus of future work. Additionally, while simulations
+demonstrate robustness under significant parametric variations
+and noise, experimental validation with real robots exhibiting
+large parameter changes presents a fascinating and challenging
+as the OSQP solver, employed to solve the MPC optimization
+problem, may encounter difficulty converging in these scenar-
+ios, compromising the ability of the adaptive scheme to handle
+extremely large uncertainties. Our future endeavors aim to
+translate these promising simulation results into quantitative
+performance metrics through controlled experiments on a
+diverse range of physical systems. This will further solidify the
+potential of the adaptive Koopman framework for expanding
+the applicability of Koopman theory to real-world robotic
+control.
+IV. M ETHODS
+A. Koopman Operator Theory for Control-Affine Systems
+The time evolution of the the time-varying observable,
+ψ(t, x), for the control-affine system (2) is given by [11]
+∂ψ
+∂t = Lf0 ψ +
+mX
+i=1
+uiLfi ψ, ψ (0, x) = ϑ(x0), (19)
+where Lfi = fi · ∇ ∀ i=1, ..., m are the corresponding
+Lie derivatives. Often, KEFs are the preferred choice of the
+basis function for the observable space. The mathematical
+transformation of the state space basis to KEFs is known
+as the Koopman Canonical Transform (KCT) [35]. Given
+a sufficiently large number of basis functions, any observ-
+able function can be expressed in terms of KEFs within
+the observable space. Therefore, the state vector x can be
+written as x = Pp
+i=1 ϕi(x)vx
+i , p → ∞ ; where ϕi(·) rep-
+resents the KEF and vx
+i ∈ Cp represents the corresponding
+Koopman eigenmodes (KEMs). Invoking the transformation
+z = T (x) = [ ϕ1(x), ϕ2(x), ..., ϕp(x)]T , the system (2) can
+be represented in terms of the Koopman eigen-coordinates as:
+˙z=Lf0 z +
+mX
+i=1
+Lfi T (x)ui|x=Cz , x=Cz , (20)
+where C = [vx
+1 |...|vx
+n].
+The dynamics expressed in canonical coordinates (20) re-
+main nonlinear with respect to the control term. In order
+to linearize/bilinearize the Koopman dynamics, the following
+assumptions are considered:
+Assumption - 1 - There exist a finite set of KEFs of the drift
+vector field, f00 such that {ϕj : j = 1, ..., p}, p ∈ N, p < ∞
+and the span {ϕ1, ..., ϕp} forms an invariant subspace of Lf0,
+i.e., Lf 0 T (x) ∈ {ϕ1, ..., ϕp}.
+Assumption - 2 - The span {ϕ1, ..., ϕp} forms an invariant
+subspace of Lfi , ∀i = 1, ..., m.
+Assumption - 3 - Lf i T (x)u ∈ span{u1, u2, ..., um}.
+Under assumptions 1-2, the continuous-time finite dimen-
+sional Koopman bilinear dynamics for system (2) can be
+obtained as
+˙z = Acz + Bc(z ⊗ u), x = Cz .
+14
+A detailed proof can be found in [11]. Further, given as-
+sumption 3, a linear Koopman representation can similarly be
+obtained as
+˙z = Acz+Bcu, x = Cz .
+Remark 1: Assumptions 1-3 require the span of KEFs to
+be an invariant subspace under the action of the Koopman
+operator K, which may seem restrictive in the context of
+practical implementation where such closure guarantees may
+not necessarily hold. Nevertheless, extensive research has
+demonstrated that finite-dimensional linear [24], [36] and
+bilinear models [12], [17], [19] can be synthesized with
+commendable accuracy by invoking these assumptions for a
+wide variety of nonlinear dynamical systems.
+The corresponding discrete-time representations for the lin-
+ear/bilinear Koopman dynamics can be given as
+zk+1=Azk+Buk, xk+1=Cz k+1, (21)
+zk+1=Azk+B(zk ⊗ uk), xk+1=Cz k+1, (22)
+where zk+1 and xk+1 are the one-step ahead lifted state and
+base state, respectively.
+B. Theoretical Analysis
+Under conditions similar to assumptions 1-3, we now
+undertake a formal synthesis of continuous-time adaptive
+bilinear/linear Koopman models by invoking the following
+theorems.
+Theorem 1 - Under the assumption L ˜f0
+T (x), L ˜fi
+T (x) ∈
+span{ϕ1(x), ϕ2(x), ..., ϕp(x)}, the uncertain control-affine
+system (7) can be compensated via adapted Koopman matrices
+∆Ac and ∆Bc within the bilinear framework (11), where
+∆Ac and ∆Bc are the continuous-time analogues of the
+adaptive matrices ∆A and ∆B in (11).
+Proof: Invoking the KCT transformation, the system (7) in
+the new coordinates becomes:
+˙z = ∂T (x)
+∂x ˙x
+= ∂T (x)
+∂x
+ 
+f0(x) + ˜f0(x) +
+mX
+i=1
+(fi(x) + ˜fi(x))ui
+!
+=Lf0 T (x)+
+mX
+i=1
+Lfi T (x)ui + L ˜f0
+T (x)
++
+mX
+i=1
+L ˜fi
+T (x)ui.
+Under assumptions 1 and 2, we have
+˙z = Acz+Bc(z ⊗ u) + L ˜f0
+T (x)+
+mX
+i=1
+L ˜fi
+T (x)ui,
+Now, if L ˜f0
+T (x) ∈ span{ϕ1(x), ϕ2(x), ..., ϕp(x)} and
+L ˜fi
+T (x) ∈ span{ϕ1(x), ϕ2(x), ..., ϕp(x)}, then L ˜f0
+zi =
+∆ac,izi, ∆ac,i ∈ RN and L ˜fi
+zui = ∆Bc,izui, ∆Bc,i ∈
+RN ×N . Hence
+˙z = ( Ac + ∆Ac) z+Bc(z ⊗ u) +
+mX
+i=1
+∆Bc,izui,
+= ( Ac + ∆Ac) z+ (Bc + ∆Bc) (z ⊗ u),
+where ∆Ac = [ ∆ac,1 ∆ac,2 ... ∆ac,N] ∈ RN ×N and
+∆Bc = [∆Bc,1 ∆Bc,2 ... ∆Bc,m] ∈ RN ×N m.
+Theorem 2 - Under the assumptions L ˜f0
+T (x) ∈
+span{ϕ1(x), ϕ2(x), ..., ϕp(x)} and L ˜f i
+T (x)u ∈
+span{u1, u2, ..., um}, the uncertain control-affine system
+(7) can be compensated via adapted Koopman matrices ∆Ac
+and ∆Bc within the linear framework (8), where ∆Ac and
+∆Bc are the continuous-time analogues of the adaptive
+matrices ∆A and ∆B in (8).
+Proof: Invoking the KCT transformation, the system (7) in
+the new coordinates becomes:
+˙z = Lf0 T (x)+
+mX
+i=1
+Lfi T (x)ui + L ˜f0
+T (x)
++
+mX
+i=1
+L ˜fi
+T (x)ui.
+Under assumptions 1 and 3, we have
+˙z = Acz+Bcu + L ˜f0
+T (x)+
+mX
+i=1
+L ˜fi
+T (x)ui.
+Now, if L ˜f0
+T (x) ∈ span{ϕ1(x), ϕ2(x), ..., ϕp(x)}
+and L ˜f i
+T (x)u ∈ span{u1, u2, ..., um}, then L ˜fo
+zi =
+∆ac,izi, ∆ac,i ∈ RN and L ˜fi
+zui = ∆bc,iui, ∆bc,i ∈ RN .
+Hence
+˙z = (Ac + ∆Ac) z+ (Bc + ∆Bc) u,
+where ∆Bc = [∆bc,1 ∆bc,2 ... ∆bc,m] ∈ RN ×m.
+C. Network Architecture
+This investigation explores two adaptive Koopman frame-
+works: linear and bilinear. Each framework leverages a dis-
+tinct neural network architecture specifically tailored to the
+targeted Koopman representation. These architectures share
+a fundamental structure comprised of two distinct network
+architectures:
+• Nominal Koopman Neural Network: This network,
+trained offline on the nominal system dataset, aims to
+capture a global Koopman representation of the nominal
+system dynamics. Upon training, the nominal Koopman
+neural network generates mapping φ(·) from state space
+to observable space, and the Koopman model matrices
+A, B and C.
+• Adaptive Neural Network: This neural network learns
+online to refine the Koopman model in real-time by
+correcting for deviations between the nominal model and
+the true system dynamics.
+Figure 2 provides a schematic illustration of both the lin-
+ear and bilinear Koopman network architectures, along with
+their corresponding adaptation networks. Despite their distinct
+15
+model representation (linear vs. bilinear), both network types
+share a core foundational architecture. The nominal Koopman
+architecture for both the bilinear and linear models consists of
+three key components (refer to [17] for more comprehensive
+details):
+• Lifting block: This block consists of a fully connected
+deep neural network that learns the mapping φ(.) from
+the base state ( x) into the lifted state ( z).
+• Linear layer: This layer utilizes fully connected neu-
+rons with linear activation functions to emulate the lin-
+ear/bilinear Koopman dynamics in the KEF space. The
+weights of these neurons are A and B matrices that
+represent the linear/bilinear Koopman dynamics.
+• Projection network: This network consists of fully con-
+nected linear neurons that project the high-dimensional
+representation back to the original state space. The
+weights of this layer represent the matrix C.
+It is important to note that the architecture of the linear
+Koopman model is very similar to that of the bilinear one.
+The key difference lies in the linear layer, which is designed
+to capture linear dynamics instead of bilinear dynamics of
+lifted states. Hence, for the linear Koopman network, the linear
+layer consists of m input neurons with ui as input to ith input
+neuron. In contrast, for the bilinear Koopman network, the
+linear layer consists of pm input neurons with ziuj as inputs
+for i = 1, .., p. j = 1, ..., m. This fundamental difference in the
+linear layer design persists across both the nominal Koopman
+network and the online adaptive network.
+The offline training process for the nominal Koopman archi-
+tecture leverages a composite loss function that incorporates
+the contributions of three distinct loss terms- a) reconstruction
+loss, b) prediction loss, and c) lifted-state prediction loss.
+These terms are designed based on the functionality of dif-
+ferent components of the network. A detailed explanation of
+these losses can be found in [17]. Mathematically, these losses
+are defined as:
+Lrec = ∥xk−Cz k∥2, L pred = ∥xk+1−Cˆzk+1∥2,
+Llif t = ∥zk+1−ˆzk+1∥2, (23)
+The total loss is the weighted sum of all the three losses:
+Lnom=α1Lrec+α2Lpred+α3Llif t+γ1∥W ∥1+γ2∥W ∥2,
+where, α1, α2, and α3 are the weighing factors. W represents
+the trainable weights of the system. To prevent overfitting,
+the total loss function additionally incorporates L1 and L2
+regularization terms applied to the network’s total trainable
+parameters. These regularization terms are weighted by hy-
+perparameters γ1 and γ2, respectively.
+Since the adaptive neural network learns the prediction error
+equations 9 and 12, its network structure is a replica of the
+linear layer of the nominal Koopman neural network, i.e., it
+consists of a fully connected neural network architecture with
+linear activation functions, as shown in Fig. 1. The adaptation
+network is trained by minimization of loss function defined
+as Ldif = ∥∆zk,bil−∆Azk−1−∆B(zk−1 ⊗ uk−1)∥2 and
+Ldif = ∥∆zk,lin−∆Azk−1−∆Buk−1)∥2 for the bilinear
+and linear architectures, respectively. The overall composite
+loss is defined as:
+Ladapt = Ldif + β1∥∆A∥1 + β2∥∆B∥1
++β3∥∆A∥2 + β4∥∆B∥2. (24)
+Here, Ldif quantifies the discrepancy between the pre-
+dicted lifted state ˆzk and the observed lifted state zk,obs.
+The remaining terms enforce regularization on the train-
+able weights ∆A and ∆B of the adaptive network using
+L1(β1, β2) = β1∥∆A∥1 + β2∥∆B∥1 and L2(β3, β4) =
+β3∥∆A∥2 + β4∥∆B∥2 penalties. As shown in Table I,
+the regularization factors β1, β2, β3, and β4 for training the
+adaptive network are typically larger compared to those used
+for the offline model. This suggests that the elements within
+the matrices ∆A and ∆B are sparse. This implies that even
+though the disturbances/uncertainties are nonlinear, they can
+be effectively described by a limited number of interactions
+between the lifted state variables in the Koopman invariant
+subspace. Consequently, the adaptive Koopman architecture
+can represent these nonlinearities within a linear or bilinear
+framework, thereby preserving the existing control policy
+design. This offers a significant advantage over traditional
+methods that estimate model uncertainties in the original state
+space. Such approaches introduce the learned uncertainties as
+nonlinear terms or disturbances, necessitating the development
+of dedicated nonlinear controllers.
+The hyperparameters of the neural networks employed in
+all three study examples are detailed in Table I. All network
+architectures are implemented using the PyTorch library. In
+this work, the activation function is linear for linear neurons
+and tanh(·) for all others.
+Table I: Hyperparameters of Koopman network
+Coupled
+Pendulum
+3R
+manipulator
+Planar Quadro-
+tor
+Nominal Koopman Autoencoder (linear and bilinear)
+Architecture [10, 40, 40, 17] [6, 30, 30, 10] [4, 20, 20, 10]
+# lifted state 17 17 15
+α1, α2, α3 1, 0.4, 1 1, 0.3, 1 1, 0.3, 1
+γ1, γ2 1e − 5, 1e − 5 0, 0 0, 0
+Batch Size 256 256 256
+Koopman Adaptive Architecture
+linear linear linear
+# lifted state 17 17 15
+activation
+function
+linear linear linear
+β1(= β2), β3(=
+β4)
+0.05, 0.05 1, 0.01 1, 1
+window size 4 10 10
+Epochs 2 10 10
+Optimizer adam adam adam
+In Table I, the architecture of the coupled pendulum is
+written as [10, 40, 40, 17], which basically means that the
+encoder has an input layer of dimension 10 corresponding to
+each state, there are two hidden layers, each of width 40 and
+the output dimension is 17, which basically is the dimension
+of the lifted states. The same nomenclature holds for the other
+two systems. Note that it is general practice to include the
+original states x as a part of the lifted states for ease of control
+implementation. This is reflected in the projection matrix C,
+16
+which is an identity matrix of dimension n augmented with a
+zero matrix of dimension n×(p−n), where p is the dimension
+of the lifted states.
+D. Generating Dataset for Offline Training
+To train and validate the nominal Koopman model, datasets
+are generated by numerically solving the system’s governing
+equations using Python libraries. The dataset used for learning
+the nominal model consists of a collection of M trajectory of
+length T . Each trajectory consists of N data points with the
+state and control input sampled at fixed sampling intervals ∆t.
+The dataset obtained as a result is given as
+Dnom = (Xi, Yi, Ui)M
+i=1 , Ui =
+ui
+1, ui
+2, . . . ,ui
+N −1
+
+,
+Xi =
+xi
+1, xi
+2, . . . ,xi
+N −1
+
+, Yi =
+xi
+2, xi
+3, . . . ,xi
+N
+
+.
+For the coupled pendulum system, random initial states are
+chosen within the workspace given by θ ∈ [−20, 20] rad and
+˙θ ∈ [−1, 1] rad/s. For each initial state, a unique trajectory
+is generated by applying random, continuous input signals,
+allowing the generation of rich and diverse datasets. For the
+serial manipulator and the planar quadrotor, initially, random
+points are sampled within the system’s output space. Then,
+a smooth trajectory is obtained with the sampled points used
+as waypoints via polynomial curves. Then, any nominal con-
+troller can be used to follow the trajectories generated to obtain
+the state and control snapshots. We generate 100 trajectories
+for each system. The number of snapshots is chosen to be 800,
+100, and 600 for the coupled pendulum, the 3R manipulator,
+and the planar quadrotor, respectively. The time-step between
+each snapshot is 0.01 s for all the systems. The generated
+dataset is then split, with 75% allocated for training the model
+and the remaining 25% reserved for validation purposes.
+E. Training for Online Adaptation
+The online adaptation framework employs a continuous
+learning paradigm where the online adaptive network is trained
+on a sequence of real-time datasets. Intuitively, the weights
+of the online adaptation network ∆A, ∆B are initialized
+to zero. The adaptation module can be trained using two
+primary paradigms: single-step and multi-step adaptation. In
+single-step adaptation, the error between the predicted lifted
+state, ˆzk, and the lifted state corresponding to the observed
+system state, denoted by xk,obs at time step k, is utilized to
+update the network parameters. However, this approach can
+lead to significant weight fluctuations due to its reliance on
+error information from a single time step. This work leverages
+multi-step adaptation, which incorporates error information
+from a window of w latest time steps for network training.
+At time step k, the error between a batch of w past observed
+states and their corresponding predicted states are used for
+training. The complete dataset employed for online learning
+at kth time step is given as
+Dk,online = (Z, ∆Z, U) , ∆Z k = [∆zk−w+1, . . . ,∆zk] ,
+Zk,obs = [zk−w,obs, . . . ,zk−1,obs] , Uk = [uk−w, . . . ,uk−1] .
+where, ∆zi = zi,obs − ˆzi, where zi,obs and ˆzi are the
+observed and predicted value of lifted state for ith time-step.
+This approach provides a richer dataset encompassing recent
+predicted and actual states compared to single-step training.
+By incorporating this batch of data, multi-step adaptation
+facilitates more robust and stable training of the adaptation
+network, ultimately leading to improved performance.
+F . Model Predictive Control (MPC)
+In this study, the proposed adaptive Koopman architecture
+(8) is paired with the linear MPC, the implementation of which
+is formulated as the solution to the optimization problem with
+a prediction (and control) horizon S as
+min
+Z,U
+SX
+k=0
+
+Cz k − xref,k
+uk
+T
+R
+
+Cz k − xref,k
+uk
+
+(25)
+s.t zk+1=Azk+Buk, z0 = φ(x0),
+x− ≤ Cz k ≤ x+, u− ≤ uk ≤ u+, k = 0, ..., S − 1,
+where xref,k refers to the reference trajectory at kth timestep.
+R represents the penalty matrix, while [x−, x+] and [u−, u+]
+represent the constraints on the state and control input, respec-
+tively.
+Similarly, the bilinear MPC optimization for the bilinear
+model (11) is given as
+min
+Z,U
+SX
+k=0
+
+Cz k − xref,k
+uk
+T
+R
+
+Cz k − xref,k
+uk
+
+(26)
+s.t zk+1=Azk+B(zk ⊗ uk), z0 = φ(x0),
+x− ≤ Cz k ≤ x+, u− ≤ uk ≤ u+, k = 0, ..., S − 1.
+The linear and bilinear MPC schemes are implemented via
+Sequential Quadratic Programming (SQP) that relies on the
+OSQP (Operator Splitting QP) solver [31], in a manner similar
+to [19].
+G. Data Availability
+The data used in the study can be found
+at GitHub: https://github.com/Rajpal9/Adaptive-
+koopman/tree/main/datasets
+H. Code Availability
+The code used for generating all the results in the study
+can be found at GitHub: https://github.com/Rajpal9/Adaptive-
+koopman
+REFERENCES
+[1] Strogatz, S. H. Nonlinear dynamics and chaos: with applications to
+physics, biology, chemistry, and engineering (CRC press, 2018).
+[2] Koopman, B. O. Hamiltonian systems and transformation in hilbert
+space. Proceedings of the National Academy of Sciences 17, 315–318
+(1931).
+[3] Korda, M. & Mezi ´c, I. Linear predictors for nonlinear dynamical
+systems: Koopman operator meets model predictive control. Automatica
+93, 149–160 (2018).
+[4] Mauroy, A., Susuki, Y . & Mezi ´c, I. Koopman operator in systems and
+control (Springer, 2020).
+[5] Brunton, S. L., Budi ˇsi´c, M., Kaiser, E. & Kutz, J. N. Modern koopman
+theory for dynamical systems. arXiv preprint arXiv:2102.12086 (2021).
+17
+[6] Rowley, C. W., Mezi ´c, I., Bagheri, S., Schlatter, P. & Henningson, D. S.
+Spectral analysis of nonlinear flows. Journal of fluid mechanics 641,
+115–127 (2009).
+[7] Williams, M. O., Kevrekidis, I. G. & Rowley, C. W. A data–driven
+approximation of the koopman operator: Extending dynamic mode
+decomposition. Journal of Nonlinear Science 25, 1307–1346 (2015).
+[8] Brunton, S. L., Proctor, J. L. & Kutz, J. N. Discovering governing
+equations from data by sparse identification of nonlinear dynamical
+systems. Proceedings of the national academy of sciences 113, 3932–
+3937 (2016).
+[9] Proctor, J. L., Brunton, S. L. & Kutz, J. N. Dynamic mode decompo-
+sition with control. SIAM Journal on Applied Dynamical Systems 15,
+142–161 (2016).
+[10] Brunton, S. L., Proctor, J. L. & Kutz, J. N. Sparse identification of
+nonlinear dynamics with control (sindyc). IFAC-PapersOnLine49, 710–
+715 (2016).
+[11] Goswami, D. & Paley, D. A. Global bilinearization and controllability
+of control-affine nonlinear systems: A koopman spectral approach. In
+2017 IEEE 56th Annual Conference on Decision and Control (CDC) ,
+6107–6112 (IEEE, 2017).
+[12] Bruder, D., Fu, X. & Vasudevan, R. Advantages of bilinear koopman
+realizations for the modeling and control of systems with unknown
+dynamics. IEEE Robotics and Automation Letters 6, 4369–4376 (2021).
+[13] Folkestad, C. & Burdick, J. W. Koopman nmpc: Koopman-based learn-
+ing and nonlinear model predictive control of control-affine systems.
+In 2021 IEEE International Conference on Robotics and Automation
+(ICRA), 7350–7356 (IEEE, 2021).
+[14] Lusch, B., Kutz, J. N. & Brunton, S. L. Deep learning for universal
+linear embeddings of nonlinear dynamics. Nature communications 9,
+4950 (2018).
+[15] Murata, S., Koizumi, Y . & Harada, N. Finding low-dimensional
+dynamical structure through variational auto-encoding dynamic mode
+decomposition. In 2019 IEEE 29th International Workshop on Machine
+Learning for Signal Processing (MLSP) , 1–6 (IEEE, 2019).
+[16] Meng, Y ., Huang, J. & Qiu, Y . Koopman operator learning using
+invertible neural networks. Journal of Computational Physics 112795
+(2024).
+[17] Sah, C. K., Singh, R. & Keshavan, J. Real-time constrained tracking
+control of redundant manipulators using a koopman-zeroing neural
+network framework. IEEE Robotics and Automation Letters (2024).
+[18] Folkestad, C., Pastor, D. & Burdick, J. W. Episodic koopman learning
+of nonlinear robot dynamics with application to fast multirotor landing.
+In 2020 IEEE International Conference on Robotics and Automation
+(ICRA), 9216–9222 (2020).
+[19] Folkestad, C., Wei, S. X. & Burdick, J. W. Koopnet: Joint learning
+of koopman bilinear models and function dictionaries with application
+to quadrotor trajectory tracking. In 2022 International Conference on
+Robotics and Automation (ICRA) , 1344–1350 (IEEE, 2022).
+[20] Bruder, D., Remy, C. D. & Vasudevan, R. Nonlinear system identifi-
+cation of soft robot dynamics using koopman operator theory. In 2019
+International Conference on Robotics and Automation (ICRA) , 6244–
+6250 (IEEE, 2019).
+[21] Haggerty, D. A., Banks, M. J., Curtis, P. C., Mezi ´c, I. & Hawkes, E. W.
+Modeling, reduction, and control of a helically actuated inertial soft
+robotic arm via the koopman operator. arXiv preprint arXiv:2011.07939
+(2020).
+[22] Casta ˜no, M. L. et al. Control-oriented modeling of soft robotic swimmer
+with koopman operators. In 2020 IEEE/ASME International Conference
+on Advanced Intelligent Mechatronics (AIM) , 1679–1685 (IEEE, 2020).
+[23] Jackson, B. E., Lee, J. H., Tracy, K. & Manchester, Z. Data-efficient
+model learning for control with jacobian-regularized dynamic-mode
+decomposition. In Conference on Robot Learning , 2273–2283 (PMLR,
+2023).
+[24] Uchida, D. & Duraisamy, K. Control-aware learning of koopman
+embedding models. In 2023 American Control Conference (ACC), 941–
+948 (IEEE, 2023).
+[25] Morgansen, K. A., Duidam, V ., Mason, R. J., Burdick, J. W. & Murray,
+R. M. Nonlinear control methods for planar carangiform robot fish
+locomotion. In Proceedings 2001 ICRA. IEEE International Conference
+on Robotics and Automation (Cat. No. 01CH37164) , vol. 1, 427–434
+(IEEE, 2001).
+[26] Tian, X. & Xu, R. Global dynamics of a predator-prey system with
+holling type ii functional response. Nonlinear Analysis: Modelling and
+Control 16, 242–253 (2011).
+[27] Sun, J. & Nan, G. The mitogen-activated protein kinase (mapk)
+signaling pathway as a discovery target in stroke. Journal of Molecular
+Neuroscience 59, 90–98 (2016).
+[28] Maya-Yescas, R. & Aguilar, R. Controllability assessment approach
+for chemical reactors: nonlinear control affine systems. Chemical
+Engineering Journal 92, 69–79 (2003).
+[29] Boscain, U., Chambrion, T. & Gauthier, J.-P. On the k+ p problem for
+a three-level quantum system: Optimality implies resonance. Journal of
+Dynamical and Control Systems 8, 547–572 (2002).
+[30] Khaneja, N., Glaser, S. J. & Brockett, R. Sub-riemannian geometry and
+time optimal control of three spin systems: Quantum gates and coherence
+transfer. Physical Review A 65, 032301 (2002).
+[31] Stellato, B., Banjac, G., Goulart, P., Bemporad, A. & Boyd, S. OSQP:
+an operator splitting solver for quadratic programs. Mathematical
+Programming Computation 12, 637–672 (2020). URL https://doi.org/
+10.1007/s12532-020-00179-2.
+[32] Do, L., Korda, M. & Hur ´ak, Z. Controlled synchronization of coupled
+pendulums by koopman model predictive control. Control Engineering
+Practice 139, 105629 (2023).
+[33] Braun, O. M. & Kivshar, Y . S. Nonlinear dynamics of the frenkel–
+kontorova model. Physics Reports 306, 1–108 (1998).
+[34] Ogata, K. et al. Modern control engineering , vol. 5 (Prentice hall Upper
+Saddle River, NJ, 2010).
+[35] Surana, A. Koopman operator based observer synthesis for control-
+affine nonlinear systems. In 2016 IEEE 55th Conference on Decision
+and Control (CDC) , 6492–6499 (IEEE, 2016).
+[36] Zhang, X., Pan, W., Scattolini, R., Yu, S. & Xu, X. Robust tube-
+based model predictive control with koopman operators. Automatica
+137, 110114 (2022).
+V. A UTHORSHIP CONTRIBUTION
+All three authors contributed to the conception, design
+and development of the proposed algorithm. R.S and C.K.S.
+implemented, tested, and refined the method. The manuscript
+was written by R.S and C.K.S with support from J.K.
+VI. C OMPETING INTERESTS
+The authors have no competing interests to declare.

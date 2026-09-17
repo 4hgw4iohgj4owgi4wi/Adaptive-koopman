@@ -1,0 +1,430 @@
+
+% Template for Elsevier CRC journal article
+% version 1.2 dated 09 May 2011
+
+% This file (c) 2009-2011 Elsevier Ltd.  Modifications may be freely made,
+% provided the edited file is saved under a different name
+
+% This file contains modifications for Procedia Computer Science
+% but may easily be adapted to other journals
+
+% Changes since version 1.1
+% - added "procedia" option compliant with ecrc.sty version 1.2a
+%   (makes the layout approximately the same as the Word CRC template)
+% - added example for generating copyright line in abstract
+
+%-----------------------------------------------------------------------------------
+
+%% This template uses the elsarticle.cls document class and the extension package ecrc.sty
+%% For full documentation on usage of elsarticle.cls, consult the documentation "elsdoc.pdf"
+%% Further resources available at http://www.elsevier.com/latex
+
+%-----------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                          %%
+%% Important note on usage                                  %%
+%% -----------------------                                  %%
+%% This file should normally be compiled with PDFLaTeX      %%
+%% Using standard LaTeX should work but may produce clashes %%
+%%                                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The '3p' and 'times' class options of elsarticle are used for Elsevier CRC
+%% Add the 'procedia' option to approximate to the Word template
+%\documentclass[3p,times,procedia]{elsarticle}
+\documentclass[twocolumn,3p,times,procedia]{elsarticle}
+
+
+%% The `ecrc' package must be called to make the CRC functionality available
+\usepackage{ecrc}
+\usepackage{graphicx}
+\usepackage{balance}
+\usepackage{array,threeparttable}
+\usepackage{url}
+%\usepackage[font=small,labelfont=bf,labelsep=none]{caption}
+%\usepackage{caption}
+%\lhead{}
+
+%\chead{}
+%\rhead{bfseries The performance of new graduates}
+%\lfoot{From: K. Grant}
+%\cfoot{To: Dean A. Smith}
+%\rfoot{thepage}
+%% The ecrc package defines commands needed for running heads and logos.
+%% For running heads, you can set the journal name, the volume, the starting page and the authors
+
+%% set the volume if you know. Otherwise `00'
+\volume{00}
+
+%% set the starting page if not 1
+\firstpage{1}
+
+%% Give the name of the journal
+
+%% Give the author list to appear in the running head
+%% Example \runauth{C.V. Radhakrishnan et al.}
+\runauth{}
+
+%% The choice of journal logo is determined by the \jid and \jnltitlelogo commands.
+%% A user-supplied logo with the name <\jid>logo.pdf will be inserted if present.
+%% e.g. if \jid{yspmi} the system will look for a file yspmilogo.pdf
+%% Otherwise the content of \jnltitlelogo will be set between horizontal lines as a default logo
+
+%% Give the abbreviation of the Journal.  Contact the journal editorial office if in any doubt
+\jid{procs}
+
+%% Give a short journal name for the dummy logo (if needed)
+ % clear all fields
+%\fancyhead[RO,LE]{bfseries The performance of new graduates}
+%\fancyfoot[LE,RO]{thepage}
+%\fancyfoot[LO,CE]{From: K. Grant}
+%\fancyfoot[CO,RE]{To: Dean A. Smith}
+
+%% Provide the copyright line to appear in the abstract
+%% Usage:
+%   \CopyrightLine[<text-before-year>]{<year>}{<restt-of-the-copyright-text>}
+%   \CopyrightLine[Crown copyright]{2015}{Published by Elsevier Ltd.}
+%   \CopyrightLine{2015}{Elsevier Ltd. All rights reserved}
+\CopyrightLine{2022}{Published by Elsevier Ltd.}
+
+%% Hereafter the template follows `elsarticle'.
+%% For more details see the existing template files elsarticle-template-harv.tex and elsarticle-template-num.tex.
+
+%% Elsevier CRC generally uses a numbered reference style
+%% For this, the conventions of elsarticle-template-num.tex should be followed (included below)
+%% If using BibTeX, use the style file elsarticle-num.bst
+
+%% End of ecrc-specific commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+%% \usepackage{lineno}
+
+%% natbib.sty is loaded by default. However, natbib options can be
+%% provided with \biboptions{...} command. Following options are
+%% valid:
+
+%%   round  -  round parentheses are used (default)
+%%   square -  square brackets are used   [option]
+%%   curly  -  curly braces are used      {option}
+%%   angle  -  angle brackets are used    <option>
+%%   semicolon  -  multiple citations separated by semi-colon
+%%   colon  - same as semicolon, an earlier confusion
+%%   comma  -  separated by comma
+%%   numbers-  selects numerical citations
+%%   super  -  numerical citations as superscripts
+%%   sort   -  sorts multiple citations according to order in ref. list
+%%   sort&compress   -  like sort, but also compresses numerical citations
+%%   compress - compresses without sorting
+%%
+%% \biboptions{comma,round}
+
+% \biboptions{}
+
+% if you have landscape tables
+\usepackage[figuresright]{rotating}
+\usepackage{bm}
+\usepackage{caption}
+\captionsetup[figure]{labelfont={footnotesize,bf},name={Fig.},labelsep=period,font={footnotesize}}
+\captionsetup[table]{labelfont={footnotesize,bf},name={Table},labelsep=newline,singlelinecheck=false,font={footnotesize}}
+\captionsetup[algorithm]{labelfont={footnotesize,bf},font={footnotesize}}
+
+
+\usepackage{titlesec}
+\titleformat*{\section}{\small \bf}
+\titleformat*{\subsection}{\small \em}
+\titleformat*{\subsubsection}{\small \em}
+
+% put your own definitions here:
+%   \newcommand{\cZ}{\cal{Z}}
+%   \newtheorem{def}{Definition}[section]
+%   ...
+
+% add words to TeX's hyphenation exception list
+%\hyphenation{author another created financial paper re-commend-ed Post-Script}
+
+% declarations for front matter
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyheadoffset[RO,EL]{0pt}
+\fancyhead[RO,LE]{\footnotesize \thepage}
+\fancyhead[ER]{\em \footnotesize Name of the first author, et al.}
+\fancyhead[LO]{\em \footnotesize Paper Title (The title should be descriptive, not full sentence)}
+%\fancyfoot[LO,EL]{\small Please cite this article as: Author name, Author name, Author name, Date, Website}
+
+\usepackage{geometry}
+\geometry{left=1.25cm,right=1.15cm,top=1.9cm,bottom=1.9cm,foot=1.05cm}
+\setlength\columnsep{0.6cm}
+
+\begin{document}\small
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for the associated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for the associated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for the associated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%%
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+
+
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+
+
+\dochead{}
+%% Use \dochead if there is an article header, e.g. \dochead{Short communication}
+%% \dochead can also be used to include a conference title, if directed by the editors
+%% e.g. \dochead{17th International Conference on Dynamical Processes in Excited States of Solids}
+\title{
+\begin{flushleft}
+{\LARGE Paper Title} (The title should be descriptive, not full sentence)
+\end{flushleft}
+}
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{<author name>}
+ %
+%% \address[label2]{<address>}
+
+\author[]{ \leftline {Si Li$^*$$^a$, San Zhang $^b$}}
+
+\address{ \leftline {$^a$Chongqing Key Lab of Mobile Communications Technology
+Chongqing University of Post and Telecommunications, }
+  \leftline{Chongqing 400065, China}
+
+  \leftline {$^b$College of Computer Science and Engineering,
+Chongqing University of Technology, Chongqing 400054, China}
+
+}
+
+
+
+\cortext[]{Si Li (Corresponding author) Clearly indicate who will handle correspondence at all stages of refereeing and publication, also post publication (email:).}
+
+\fntext[]{a simple introduction about San Zhang (email:).}
+
+
+\begin{abstract}
+
+The abstract of about 100$\sim$150 words should be a concise summary of the aims, methods, results, and conclusions and /or other significant items in the paper, without mathematical, equations, or cited marks. Together with the title, it must be adequate as an index to all the subjects treated in the paper, and will be used as a base for indexing. Define all nonstandard symbols and abbreviations. Do not use footnote indicators. Reference should be avoided, but if essential, include it in square brackets. Summarize the experimental or theoretical results, the conclusions, and /or other significant items in the paper. If space permits, include any important new quantitative data. Summarized results should be exact, direct, and specific.
+
+
+\end{abstract}
+
+
+
+\begin{keyword}
+
+
+%% keywords here, in the form: keyword \sep keyword
+Provide 3 to 8 pieces of words or phrases to serve as guidelines for indexing \sep Using American spelling \sep  avoiding general and plural terms and multiple concepts
+%% PACS codes here, in the form: \PACS code \sep code
+
+
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+
+
+\end{frontmatter}
+
+%%
+%% Start line numbering here if you want
+%%
+% \linenumbers
+
+%% main text
+\section{Introduction}
+State the objectives of the work and provide an adequate background, avoiding a detailed literature survey or a summary of the results.
+
+
+\section{Author names and affiliations}
+Please clearly indicate the given name(s) and family name(s) of each author and check that all names are accurately spelled. Present the authors' affiliation addresses (where the actual work was done) below the names. Indicate all affiliations with a lower-case superscript letter immediately after the author's name and in front of the appropriate address. Provide the full postal address of each affiliation, including the country name and, if available, the e-mail address of each author.
+
+\section{Math formulae}
+Please submit math equations as editable text and not as images. Present simple formulae in line with normal text where possible and use the solidus (/) instead of a horizontal line for small fractional terms, e.g., X/Y. In principle, variables are to be presented in italics. Matrix and vector are to be used black italic. Powers of e are often more conveniently denoted by exp. Number consecutively any equations that have to be displayed separately from the text (if referred to explicitly in the text).
+
+\begin{equation}
+      c^{2}=a^{2}+b^{2}
+\end{equation}
+\begin{equation}
+      c_{1}=a_{2}+b_{2}
+\end{equation}
+\begin{equation}
+\begin{array}{l}
+\bm{S_o} = \{ S_{o_1 }, \ldots S_{o_i } \}, \alpha _{o_x }  >  = \alpha _{o_y } (x \ne y,x < y) \\
+\bm{S_l}  = \{ S_{l_1 }, \ldots S_{l_j } \}, c_{l_x }  >  = c_{l_y } (x \ne y,x < y) \\
+ \end{array}
+\end{equation}
+
+
+
+\section{Footnotes}
+Footnotes should be used sparingly. Number them consecutively throughout the article. Please indicate the position of footnotes in the text and list the footnotes themselves separately at the end of the article. Do not include footnotes in the Reference list.
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.7\linewidth]{Fig-1.png}
+\caption{This is an example of a figure caption.}
+\end{figure*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{Fig-2.pdf}
+\caption{This is an example of a figure caption.}
+\end{figure}
+
+\section{Artwork}
+
+\subsection{General points}
+
+\textbf{Make sure you use uniform lettering and sizing of your original artwork (i.e., use uniform font and font-size within all figures). The aim is to have a uniform look for all artwork contained in a single article. Normally, the font within the figures should be one size smaller than that in the main text.} Embed the used fonts if the application provides that option. Aim to use the following fonts in your illustrations: Arial, Courier, Times New Roman, Symbol, or use fonts that look similar. Number the illustrations according to their sequence in the text. Use a logical naming convention for your artwork files. Provide captions to illustrations separately. Size the illustrations close to the desired dimensions of the published version. Submit each illustration as a separate file. A detailed guide on electronic artwork is available on our website: http://www.elsevier.com/artworkinstructions. You are urged to visit this site; some excerpts from the detailed information are given here.
+
+
+
+\subsection{Sizing of Graphics}
+
+\textbf{Most charts, graphs, and tables are one column wide or page wide. Figures can be sized between column and page widths if the author chooses, however, it is recommended that figures not be sized less than column width unless when necessary.}
+
+\subsection{Color artwork}
+Please make sure that artwork files are in an acceptable format (TIFF (or JPEG), EPS (or PDF), or MS Office files) and with the correct resolution. If, together with your accepted article, you submit usable color figures then Elsevier will ensure, at no additional charge, that these figures will appear in color (e.g., ScienceDirect and other sites) regardless of whether or not these illustrations are reproduced in color in the printed version.
+\subsection{Figure captions}
+Ensure that each illustration has a caption. Supply captions separately, not attached to the figure. A caption should comprise a brief title (not on the figure itself) and a description of the illustration.
+
+
+
+
+\section{Algorithm}
+
+It is recommended that the font within the algorithm is one size smaller than that in the main text.
+
+\begin {algorithm}[h] \footnotesize
+	\caption{This is an example algorithm}
+	\textbf{Input:} Some parameters\\
+	\textbf{Output:} Some parameters
+	
+	\begin{algorithmic}[1]
+		\State The flow of the algorithm needs to be shown.	
+	\end{algorithmic}
+\end{algorithm}
+
+\section{Tables}
+Please submit tables as editable text and not as images. Tables can be placed either next to the relevant text in the article, or on separate page(s) at the end. Number tables consecutively in accordance with their appearance in the text and place any table notes below the table body. Be sparing in the use of tables and ensure that the data presented in them do not duplicate results described elsewhere in the article. Please avoid using vertical rules.
+
+\begin{table}[h]\footnotesize
+\centering
+\begin{threeparttable}
+\setlength{\abovecaptionskip}{0pt}
+\caption{This is an example of a table title.}
+\begin{tabular}{p{1.2cm} p{1.2cm} p{1.2cm} p{1.2cm} p{1.2cm}}
+\hline
+a & b & e & h & i\\
+\hline
+c & d & f & j & k\\
+\hline
+
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+
+\section{References}
+
+\subsection{Citation in text}
+
+Please ensure that every reference cited in the text is also present in the reference list (and vice versa). Any references cited in the abstract must be given in full. Unpublished results and personal communications are not recommended in the reference list, but may be mentioned in the text. If these references are included in the reference list they should follow the standard reference style of the journal and should include a substitution of the publication date with either 'Unpublished results' or 'Personal communication'. Citation of a reference as 'in press' implies that the item has been accepted for publication. \textbf{ \cite{atakan2012body} is a sample for reference to a journal publication; \cite{russu2016secure} is a sample for reference to proceedings; \cite{strunk2000elements} is a sample for reference to a book; \cite{Mettam2009} is a sample for reference to a chapter in an edited book.}
+
+\subsection{Web references}
+
+As a minimum, the full URL should be given and the date when the reference was last accessed. Any further information, if known (DOI, author names, dates, reference to a source publication, etc.), should also be given. Web references can be listed separately (e.g., after the reference list) under a different heading if desired, or can be included in the reference list.  \textbf{ \cite{web} is a sample for reference to a website.}
+
+
+\section*{Acknowledgements}
+Collate acknowledgements in a separate section at the end of the article before the references and do not, therefore, include them on the title page, as a footnote to the title or otherwise. List here those individuals who provided help during the research (e.g., providing language help, writing assistance or proof reading the article, etc.).
+
+%-\frac{2l^{4}\tan^{2}\alpha}{\cos\alpha})$ be $g(\alpha)$. \\
+%Let $h=2l,2.5l,3l,3.5l,4l$ respectively, if there exists $\alpha_0$, $\alpha_1$ and $\alpha_2$ satisfying:\\
+% \text{~~~~~~~~}$g(\alpha_1)'=0$, \\
+% \text{~~~~~~~~}$g(\alpha_0)'<0$,\\
+% \text{~~~~~~~~}and $g(\alpha_2)'>0$ \\
+% where $\alpha_0$ is minor smaller than $\alpha_1$,$\alpha_2$ is minor larger than $\alpha_1$,
+% then the expected $\alpha$ can be derived. Unfortunately, when  $g(\alpha_1)'=0$, $\alpha\notin\lbrack0,\frac{\pi}{2}\rbrack$.
+% We substitute the series values of h to $g(\alpha)$, then
+% achieve the minimal values of $g(\alpha)$ and their corresponding values of $\alpha$. The average value of $\alpha$ is 1.05.
+% $\tan1.05=1.74$, so the depth of hole information announcement is:\\
+% \text{~~~~~~~~}$1.74*l=1.74*\frac{L}{2}=0.87L$,\\
+% Note  here $l$ is approximately represented by  $\frac{L}{2}$.
+%
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%comment ends 12/25/14
+
+
+%%%%%%%%%%%%%%%
+%\cite{atakan2012body} is an example for a journal publication;\\
+%\cite{russu2016secure}
+
+
+\bibliographystyle{elsarticle-num}
+\balance
+\bibliography{egbib}
+~~~\\
+~~~\\
+%\large{ Note: The manuscript was extended from the conference proceeding ``Jianjun Yang and Zongming Fei, HDAR: Hole Detection and Adaptive Geographic Routing for Ad Hoc Networks, Computer Communications and Networks (ICCCN), 2010 Proceedings of 19th International Conference on (pp. 1-6). IEEE, Zurich, Switzerland, August 2010."}
+
+%% Authors are advised to use a BibTeX database file for their reference list.
+%% The provided style file elsarticle-num.bst formats references in the required Procedia style
+
+%% For references without a BibTeX database:
+
+% \begin{thebibliography}{00}
+
+%% \bibitem must have the following form:
+%%   \bibitem{key}...
+%%
+
+% \bibitem{}
+
+% \end{thebibliography}
+
+\section*{Biography}
+
+\begin{center}
+\begin{tabular}{@{}p{1in}p{2.38in}@{}}
+\raisebox{-\totalheight}{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{fig1}} &
+\textbf{John Doe} is currently with the School of Information Science and Engineering, 
+Central South University, China. His research interests include deep learning, semantic 
+communication, and wireless networks.
+\end{tabular}
+\end{center}
+ 
+
+
+\end{document}
+
+
+%%
+%% End of file `ecrc-template.tex'.

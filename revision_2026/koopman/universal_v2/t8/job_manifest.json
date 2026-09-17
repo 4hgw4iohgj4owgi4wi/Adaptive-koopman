@@ -1,0 +1,2305 @@
+{
+  "planned": 230,
+  "jobs": [
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985100,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985100.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985101,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985101.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985102,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985102.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985103,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985103.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985104,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985104.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985105,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985105.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985106,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985106.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985107,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985107.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985108,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985108.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "single_lane_change",
+      "seed": 985109,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985109.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985200,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985200.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985201,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985201.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985202,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985202.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985203,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985203.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985204,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985204.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985205,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985205.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985206,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985206.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985207,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985207.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985208,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985208.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "hairpin",
+      "seed": 985209,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985209.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K0",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985100,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985100.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985101,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985101.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985102,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985102.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985103,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985103.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985104,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985104.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985105,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985105.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985106,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985106.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985107,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985107.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985108,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985108.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "single_lane_change",
+      "seed": 985109,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\single_lane_change_int_985109.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985200,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985200.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985201,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985201.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985202,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985202.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985203,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985203.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985204,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985204.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985205,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985205.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985206,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985206.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985207,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985207.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985208,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985208.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "hairpin",
+      "seed": 985209,
+      "profile": "clean",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_int_985209.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "iid",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "iid",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "burst",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "burst",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "delay",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "delay",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "dos",
+      "protected": false,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985000,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985000.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985001,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985001.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985002,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985002.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985003,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985003.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985004,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985004.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985005,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985005.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985006,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985006.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985007,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985007.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985008,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985008.npz"
+    },
+    {
+      "model": "K1",
+      "scenario": "staged_100m",
+      "seed": 985009,
+      "profile": "dos",
+      "protected": true,
+      "external": false,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\staged_100m_int_985009.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985300,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 0,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985300.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985301,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 1,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985301.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985302,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 2,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985302.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985303,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 3,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985303.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985304,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 4,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985304.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985305,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 5,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985305.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985306,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 6,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985306.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985307,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 7,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985307.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985308,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 8,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985308.npz"
+    },
+    {
+      "model": "K5-linear",
+      "scenario": "hairpin",
+      "seed": 985309,
+      "profile": "clean",
+      "protected": false,
+      "external": true,
+      "trace_id": 9,
+      "reference_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\universal_v2\\t8\\references\\hairpin_ext_985309.npz"
+    }
+  ]
+}

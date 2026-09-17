@@ -1,0 +1,20 @@
+{
+  "source_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned",
+  "out_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned",
+  "required_copied": 15,
+  "optional_copied": 8,
+  "missing_selected": [],
+  "generated_new_figures": [
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N01_solve_time_summary.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N02_fixed_attempt_audit.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N03_connection_safety_summary.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N04_force_demand_summary.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N05_degraded_fault_vehicle_symmetry_fault_symmetry.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N06_zero_fault_vehicle_symmetry_fault_symmetry.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N07_comm_noise_dose_response.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N08_mixed_disturbance_ablation_heatmap.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N09_online_adaptation_trigger.png",
+    "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\hairpin_stress_suite_2026-05-07_comm_ablation_retuned\\safe_supplement_pack_retuned\\new_figures\\N10_stochastic_ensemble_proxy.png"
+  ],
+  "note": "N10 uses the stochastic/fault ensemble already present in the suite. Strict multi-seed communication simulation would require additional heavy reruns."
+}

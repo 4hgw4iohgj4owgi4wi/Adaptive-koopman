@@ -1,0 +1,57 @@
+{
+  "protocol_id": "POST-P1-D0-D1-read-only-v2",
+  "authorization": "User instruction to continue updated experiment.md",
+  "scope": "D0_D1_READ_ONLY_NO_GPU_OR_DYNAMICS_EXECUTION",
+  "output": "analysis/20260915_D0_D1_GPU_GATE_P1_02",
+  "supersedes_protocol": {
+    "path": "protocol/D0_D1_P1_GPU_GATE_20260915.json",
+    "sha256": "9f5e62001923d71c390113e6de2117f9e88b402d225c4dac75b5ecae4d01b57e",
+    "reason": "First correct-hash attempt stopped during statistics generation because ndarray.square is unavailable; its partial output remains preserved."
+  },
+  "d0": {
+    "prior_protocol": "protocol/RTX5080_G0_G2_20260915_v3.json",
+    "prior_g0": "results/20260915_RTX5080_G0_G2_03/g0_environment.json",
+    "prior_failure": "results/20260915_RTX5080_G0_G2_03/failure.json",
+    "decision_contract": "Device/source/G0 presence does not substitute for G1/G2 or current-taskbook identity"
+  },
+  "d1": {
+    "run": "results/20260915_R4_P1_2MS01",
+    "observed_interval_s": [0.02, 44.0],
+    "reference_speed_mps": 2.0,
+    "route_segments_m": [0.0, 24.0, 35.0, 60.12831551628262, 71.12831551628262, 95.12831551628262],
+    "tracking_components": ["reference-frame longitudinal", "reference-frame lateral", "heading", "forward speed", "lateral speed", "yaw rate"],
+    "failure_label": "FAIL_LATE_TRACKING_DIVERGENCE_USER_DESIGNATED",
+    "causality_rule": "correlation and timing alignment are diagnostic only",
+    "unobserved_rule": "do not extrapolate or draw the final 179 ticks",
+    "memory_rule": "report previous_u and beta recovery separately; do not claim a complete checkpoint"
+  },
+  "stop_rules": {
+    "gpu_execution": false,
+    "dynamics_replay": false,
+    "p1_resume_or_retry": false,
+    "d3_release_requires": ["G1 PASS", "G2 PASS", "complete state and memory", "separate frozen short-window protocol"]
+  },
+  "engineering_fix": {
+    "symptom": "AttributeError: numpy.ndarray has no attribute square",
+    "change": "finite_stats now uses np.square(value)",
+    "scientific_effect": "none; only restores read-only scalar RMSE calculation"
+  },
+  "expected_figures": [
+    "D0 device/source/G0/G1/G2/taskbook coverage",
+    "D1 route and longitudinal/lateral/heading/speed decomposition",
+    "D1 reference transition, request/actual steering, acceleration and observed physical gates"
+  ],
+  "identity_files": [
+    {"path": "experiment.md", "sha256": "a6b1a5c994c0dede6080ad3310c2836dabd55c571657eb79f06760a4a3b678a0"},
+    {"path": "protocol/P1中断数据分析与RTX5080迁移任务说明_20260915.md", "sha256": "830b70dd4d778bc96f279276d60805a95d0e7aaf2eacfe9a12df8ab4242f67a3"},
+    {"path": "tools/d0_d1_p1_gpu_gate_analysis.py", "sha256": "40062ece88c5b900a19b1c37465e45348ad2df9faddd3c53c526e611fdcffe39"},
+    {"path": "src/paper_v4_core/references.py", "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"},
+    {"path": "results/20260915_R4_P1_2MS01/raw.npz", "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"},
+    {"path": "results/20260915_R4_P1_2MS01/substeps.npz", "sha256": "ad60eb7f2e7a1fa9b556ad5ab57489745895a031c0841164b69da01b2c527043"},
+    {"path": "results/20260915_R4_P1_2MS01/solver.jsonl", "sha256": "9189e93618e38cd95672f0f175e38ad2f9a8d1ea4a84d4848d06e7b86e9c9bbb"},
+    {"path": "results/20260915_R4_P1_2MS01/status.json", "sha256": "1aa4af6d051841c525c50114076076f827261aaca8a687b181a371070ed843d2"},
+    {"path": "protocol/RTX5080_G0_G2_20260915_v3.json", "sha256": "517bedf7a36f8714474ae2e3c98aecea0557a1648c51efff8190b5d6d658dd13"},
+    {"path": "results/20260915_RTX5080_G0_G2_03/g0_environment.json", "sha256": "8483f09b98c20cd3c7653f2fd8230ffdb95a3835b118cd96de44b490e439e59e"},
+    {"path": "results/20260915_RTX5080_G0_G2_03/failure.json", "sha256": "5ebce7ad16b6eddb8f979fb89c57b3ff66c92c9cd09ce6a3567f2ed3bb75ddc3"}
+  ]
+}

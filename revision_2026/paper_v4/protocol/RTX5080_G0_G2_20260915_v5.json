@@ -1,0 +1,268 @@
+{
+  "protocol_id": "RTX5080-G0-G2-v5-primitive-reply-boundary",
+  "authorization": "User instruction 2026-09-15: continue with P1, reopen the engineering repair round, freeze the protocol, launch the qualification and report every 30 minutes.",
+  "scope": "RTX5080_G0_G2_ONLY_NO_CLOSED_LOOP",
+  "output": "results/20260915_RTX5080_G0_G2_05",
+  "supersedes_protocol": {
+    "path": "protocol/RTX5080_G0_G2_20260915_v4.json",
+    "sha256": "d8f0e9ec705394bddb393d64ec3a1118e6ebbf368d05583282713981d74afbef",
+    "status": "FAILED_AND_SUPERSEDED",
+    "failed_output": "results/20260915_RTX5080_G0_G2_04",
+    "measured_failure": "G0 PASS and its figure written; the parent then aborted with OMP Error #15 (exit 3) on the first parent-side system_derivative call, i.e. before any G1 sample was completed.",
+    "falsified_hypothesis": "The D2 audit's candidate root cause - NumPy ndarrays travelling from the parent to the worker in pickle requests - is falsified by measurement: the worker's own module audit reported numpy present at worker startup with an empty imported_after_startup list, so NumPy never entered via unpickling of requests.",
+    "true_root_cause_measured": "torch.__version__ is a torch.torch_version.TorchVersion instance, a str subclass. Pickling it in the worker's environment reply stored a class reference, so the parent's pickle.loads imported the entire torch package into the CPU parent (718 modules), loading torch's OpenMP runtime beside the MKL runtime the parent already owns; the parent then aborted inside numpy.linalg.svd via internal_force._pinv -> connector_diagnostics -> system_derivative. faulthandler located the abort, and an __import__ trap located torch.torch_version as the entry point.",
+    "previous_versions": {
+      "v1": "in-process CUDA stopped by the dual OpenMP runtime before G1",
+      "v2": "isolated worker reached G0 but the same conflict stopped the run before G1",
+      "v3": "pure-Torch worker with list-return IPC; same conflict; protocol later invalidated by stale document identities"
+    }
+  },
+  "engineering_history": {
+    "v4": "array-free request path (nested lists) plus worker module audit plus np.square RMSE; measured insufficient, and it produced the evidence that falsified the registered root cause",
+    "v5": "primitive-only reply boundary: the worker coerces every reply value to exact built-in primitives before pickling and rejects anything else, so no torch class reference can cross the boundary; the parent additionally asserts after every unpickle that no torch module appeared and raises CUDA_PARENT_TORCH_CONTAMINATION if one did"
+  },
+  "repair_authorization": {
+    "round": 4,
+    "granted_by": "user instruction on 2026-09-15 to continue and launch the experiment; round 4 was opened only after the round-3 change was measured to be insufficient and the true root cause was located by measurement",
+    "changes_permitted": [
+      "worker reply sanitizer to exact built-in primitives, with a hard rejection of anything else",
+      "parent-side torch-contamination assertion after every unpickle",
+      "the round-3 changes retained: array-free requests, worker module audit, np.square RMSE"
+    ],
+    "changes_forbidden": [
+      "KMP_DUPLICATE_LIB_OK or any runtime-library bypass",
+      "float32, AMP, autodiff, frozen Jacobian",
+      "gate, threshold, tolerance, dtype, solver or controller modification",
+      "closed loop, P1 resume or prefix splicing"
+    ]
+  },
+  "candidate": {
+    "name": "POST-R3-R4-CUDA-batched-FD-primitive-reply-boundary-v5",
+    "dtype": "float64",
+    "horizon": 20,
+    "controller_step_s": 0.02,
+    "predictor_step_s": 0.002,
+    "batch_size": 85,
+    "jacobian": "central finite difference at every horizon step",
+    "runtime": "one CPU SciPy/OSQP parent plus one persistent NumPy-free Torch CUDA worker",
+    "cpu_retained": [
+      "event-substep true plant",
+      "QP assembly",
+      "OSQP",
+      "nonlinear validation"
+    ],
+    "forbidden": [
+      "closed loop",
+      "P1 resume",
+      "float32",
+      "AMP",
+      "autodiff",
+      "frozen Jacobian",
+      "KMP_DUPLICATE_LIB_OK"
+    ]
+  },
+  "preconditions_verified_at_freeze": {
+    "ipc_backend_converts_outbound_arrays": true,
+    "ipc_backend_has_no_raw_request_arrays": true,
+    "worker_has_module_audit": true,
+    "worker_has_no_explicit_numpy_import": true,
+    "qualifier_uses_np_square": true,
+    "qualifier_has_no_ndarray_square": true,
+    "no_forbidden_runtime_workaround": true,
+    "worker_sanitizes_reply_to_primitives": true,
+    "worker_rejects_non_primitive_replies": true,
+    "parent_guards_against_torch_contamination": true
+  },
+  "inputs": {
+    "parameter_id": "P1",
+    "partial_run": "results/20260915_R4_P1_2MS01",
+    "g1_samples": [
+      "straight",
+      "curve_entry",
+      "force_peak",
+      "steering_limit",
+      "near_gap_boundary",
+      "late_prefix"
+    ],
+    "g2_fixed_qp": [
+      "initial",
+      "force_bearing_vehicle1_x_plus_0.03m"
+    ]
+  },
+  "g0": {
+    "required_device_name": "NVIDIA GeForce RTX 5080",
+    "required_cuda_available": true,
+    "required_dtype": "torch.float64",
+    "required_single_process_single_device": true
+  },
+  "gates": {
+    "error_definition": "abs_error/(atol+rtol*abs(CPU_reference)); max normalized error <= 1",
+    "g1_rhs": {
+      "atol": 2e-09,
+      "rtol": 2e-10,
+      "maximum_normalized_error": 1.0
+    },
+    "g1_rk4": {
+      "atol": 2e-11,
+      "rtol": 2e-10,
+      "maximum_normalized_error": 1.0
+    },
+    "g1_rollout": {
+      "atol": 2e-10,
+      "rtol": 2e-09,
+      "maximum_normalized_error": 1.0
+    },
+    "g2_f0": {
+      "atol": 2e-10,
+      "rtol": 2e-09,
+      "maximum_normalized_error": 1.0
+    },
+    "g2_jacobian": {
+      "atol": 2e-07,
+      "rtol": 2e-06,
+      "maximum_normalized_error": 1.0
+    },
+    "g2_qp_matrix": {
+      "atol": 1e-05,
+      "rtol": 2e-05,
+      "maximum_normalized_error": 1.0
+    },
+    "g2_qp_bounds": {
+      "atol": 1e-07,
+      "rtol": 1e-06,
+      "maximum_normalized_error": 1.0
+    },
+    "first_control": {
+      "acceleration_atol_mps2": 0.0001,
+      "steering_atol_rad": 1e-05
+    },
+    "performance": {
+      "baseline": "CPU parallel8 fixed-QP end-to-end",
+      "must_be_faster_for_promotion": true,
+      "original_budget_s": 5.0
+    }
+  },
+  "stop_rules": {
+    "engineering_repairs_used": 4,
+    "further_engineering_failure": "stop and report; do not open a fifth round without explicit authorization",
+    "g1_or_g2_numerical_failure": "stop without widening gates",
+    "no_performance_benefit": "stop before G3/G4",
+    "closed_loop_authorized": false
+  },
+  "monitoring": {
+    "cadence_minutes": 30,
+    "report_fields": [
+      "process alive",
+      "elapsed",
+      "last stdout line",
+      "stderr content",
+      "which G-stage is reached",
+      "whether qualification.json exists"
+    ],
+    "note": "G1/G2 are fixed-sample checks; the expected wall clock is minutes, not hours, so a missing output after the first interval is itself a finding."
+  },
+  "identity_rule": "Only immutable inputs are enforced. Documents revised by the same work are recorded under authorization_documents_at_freeze and are not enforced, because enforcing them is exactly what invalidated v3.",
+  "authorization_documents_at_freeze": [
+    {
+      "path": "experiment.md",
+      "sha256": "18a9f43caead2f55946389a2f54c8f1cc4441137e858b6171e68fa9aadb00cd7"
+    },
+    {
+      "path": "protocol/P1中断数据分析与RTX5080迁移任务说明_20260915.md",
+      "sha256": "830b70dd4d778bc96f279276d60805a95d0e7aaf2eacfe9a12df8ab4242f67a3"
+    }
+  ],
+  "identity_files": [
+    {
+      "path": "src/paper_v4_core/gpu_port/__init__.py",
+      "sha256": "c0c603e663221615bb6dd3119021fcad617232239c2caa44cb5d384baa23365d"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/physics_torch.py",
+      "sha256": "8eaaac3e431d5b4b112d2e46722761f6b28092ac7fb07ca4f1b867ddbdef54dd"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/rollout_batch.py",
+      "sha256": "80bad4fdd7833e3a775f8dd3fe211f4034e038242bfcc91bdc8a5fa433ee603e"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/gpu_worker.py",
+      "sha256": "e41ca0ee45386b2a5dc9d796cbdf27c77d483a8aefe870412b55e418844206f1"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/ipc_backend.py",
+      "sha256": "c1449856a13e33ccbcd278a4444ea99e297173099c5f3b8c2d0a40d0e980244f"
+    },
+    {
+      "path": "tools/gpu_g0_g2_qualify.py",
+      "sha256": "bee91a23ee2d1f73a023ae2dbc4c9245d16ed2e1bfd2620182b3d0e243285dc5"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "694ab7b85908c3a595c940f41933ad023db58eea95fdab735a9ca8aee96b1531"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/parallel_fd_backend.py",
+      "sha256": "d6ded1a9cbea08034bbb025276aee8569eb7fcac34cd95c54c4c590d9aad6495"
+    },
+    {
+      "path": "src/paper_v4_core/plant/four_vehicle_common.py",
+      "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_adapter.py",
+      "sha256": "dd56ccb6e7117a6a101dba57884dda81cc04e2fecc520cc7d44568419e177dd7"
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_r3.py",
+      "sha256": "2c6ef95ac9e9c4afe88e005bc99d4644373f44dfd0448b07a6ac78e5e03de1de"
+    },
+    {
+      "path": "src/paper_v4_core/plant/internal_force.py",
+      "sha256": "5a9f24f6fbc7540847574a3d5ce435d40caa29cb99be1dd9dbb1282c804bdf2e"
+    },
+    {
+      "path": "src/paper_v4_core/plant/load_transfer.py",
+      "sha256": "0da410a3da05e538464c83ed1a02e081c1196631c121c6ab750ebc1068c8e74b"
+    },
+    {
+      "path": "src/paper_v4_core/e01_100m.py",
+      "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/post_r3_r4_runner.py",
+      "sha256": "32ba7e9f3807b45b49642f4869b1b9e6cffadc6e28a1b824bfe9931358a9d379"
+    },
+    {
+      "path": "src/paper_v4_core/reference_geometry.py",
+      "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d"
+    },
+    {
+      "path": "src/paper_v4_core/references.py",
+      "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/raw.npz",
+      "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/substeps.npz",
+      "sha256": "ad60eb7f2e7a1fa9b556ad5ab57489745895a031c0841164b69da01b2c527043"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/solver.jsonl",
+      "sha256": "9189e93618e38cd95672f0f175e38ad2f9a8d1ea4a84d4848d06e7b86e9c9bbb"
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/status.json",
+      "sha256": "1aa4af6d051841c525c50114076076f827261aaca8a687b181a371070ed843d2"
+    }
+  ],
+  "deliverables": [
+    "G0/G1/G2 JSON",
+    "G0/G1/G2 PNG and SVG",
+    "figure_manifest.json",
+    "README.md",
+    "Chinese execution record"
+  ]
+}

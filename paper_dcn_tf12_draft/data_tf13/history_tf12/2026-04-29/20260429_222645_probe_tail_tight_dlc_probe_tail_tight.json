@@ -1,0 +1,29 @@
+{
+  "timestamp_local": "2026-04-29T22:26:45",
+  "history_version": "tf12_v1",
+  "case_name": "probe_tail_tight",
+  "scenario_mode": "dlc",
+  "method_name": "probe_tail_tight",
+  "full_path_reached": true,
+  "sim_steps": 1011,
+  "step_time_mean": 0.1800355596439526,
+  "step_time_max": 0.24123260006308556,
+  "rmse_lat_mean": 0.033763936003373685,
+  "rmse_long_mean": 2.2086849868294594,
+  "max_lat_global": 0.08649000163258647,
+  "max_long_global": 3.8399036767658963,
+  "fleet_vehicle_max_abs_ey": [
+    0.07799111826695526,
+    0.08649000163258647,
+    0.03762867322993002,
+    0.048796905467547
+  ],
+  "fleet_vehicle_max_abs_es": [
+    3.8399036767658963,
+    3.803426593961099,
+    3.8380752186060896,
+    3.803096617983453
+  ],
+  "npz_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_222645_probe_tail_tight_dlc_probe_tail_tight.npz",
+  "json_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_222645_probe_tail_tight_dlc_probe_tail_tight.json"
+}

@@ -1,0 +1,29 @@
+{
+  "timestamp_local": "2026-04-29T19:22:08",
+  "history_version": "tf12_v1",
+  "case_name": "probe_m2",
+  "scenario_mode": "dlc",
+  "method_name": "probe_m2",
+  "full_path_reached": true,
+  "sim_steps": 1000,
+  "step_time_mean": 0.02663509879959747,
+  "step_time_max": 0.0437411000020802,
+  "rmse_lat_mean": 0.05950892522056184,
+  "rmse_long_mean": 1.5732218616204308,
+  "max_lat_global": 0.11777722820486769,
+  "max_long_global": 2.500097397201251,
+  "fleet_vehicle_max_abs_ey": [
+    0.0796906426793964,
+    0.11040936015545944,
+    0.07062757135155551,
+    0.11777722820486769
+  ],
+  "fleet_vehicle_max_abs_es": [
+    2.5000972790621883,
+    2.5,
+    2.500097397201251,
+    2.5
+  ],
+  "npz_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_192208_probe_m2_dlc_probe_m2.npz",
+  "json_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_192208_probe_m2_dlc_probe_m2.json"
+}

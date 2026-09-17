@@ -1,0 +1,264 @@
+{
+  "configuration": {
+    "initial_speed_mps": 2.0,
+    "acceleration_first_30m_mps2": 0.5,
+    "positive_step_s": 5.0,
+    "negative_step_s": 5.0,
+    "virtual_front_step_deg": 4.0,
+    "virtual_rear_step_deg": -2.0,
+    "coordinate_note": "Fx longitudinal and Fy lateral are planar; Fz is auxiliary support load."
+  },
+  "summary": {
+    "dt_s": 0.002,
+    "completed_100m": true,
+    "final_time_s": 21.03599999999922,
+    "final_distance_m": 100.00048219016946,
+    "final_payload_speed_mps": 0.4821390818589597,
+    "final_state_finite": true,
+    "connector_peak_n": 2220.1873203750756,
+    "final_payload_state": [
+      96.25690586721421,
+      17.53528410704125,
+      -0.0037687991513236795,
+      0.48151147836445823,
+      -0.02459248785858168,
+      -0.0015507180136187
+    ],
+    "final_vehicle_state": [
+      [
+        99.13244065619595,
+        18.773487943894086,
+        -0.0023596728073078167,
+        0.4773147514552632,
+        -0.0004706062333765284,
+        -2.7091623841092925e-05
+      ],
+      [
+        99.12256021913163,
+        16.271838512783077,
+        -0.005245191284159236,
+        0.48901990864950445,
+        0.0009846567398078944,
+        -2.565951542670905e-05
+      ],
+      [
+        93.33269179286013,
+        18.794338382387085,
+        -0.002393165102784229,
+        0.4787821522054293,
+        -0.00046156139171991625,
+        7.729678598608243e-05
+      ],
+      [
+        93.32238020474276,
+        16.29495336646612,
+        -0.005160001916559781,
+        0.48807681038434003,
+        0.0009358779282582909,
+        6.889693644922482e-05
+      ]
+    ],
+    "deceleration_mps2": -1.6336158081383436,
+    "stage_summary": {
+      "accelerate": {
+        "start_distance_m": 0.0,
+        "end_distance_m": 29.99317959006376,
+        "duration_s": 7.661999999999378,
+        "mean_payload_fx_n": 999.9339336816361,
+        "mean_payload_fy_n": 0.0,
+        "peak_abs_payload_fy_n": 0.0,
+        "mean_system_yaw_rate_radps": 0.0,
+        "peak_abs_system_yaw_rate_radps": 0.0,
+        "peak_q_front_rear_n": 0.004581463640022321,
+        "peak_q_left_right_n": 0.0
+      },
+      "step_positive": {
+        "start_distance_m": 30.00484258298429,
+        "end_distance_m": 59.31455728968205,
+        "duration_s": 4.99800000000152,
+        "mean_payload_fx_n": -22.743176189932957,
+        "mean_payload_fy_n": 1495.8282299973503,
+        "peak_abs_payload_fy_n": 2507.7957355746566,
+        "mean_system_yaw_rate_radps": 0.12157478357745012,
+        "peak_abs_system_yaw_rate_radps": 0.1322858376000324,
+        "peak_q_front_rear_n": 351.1341198307304,
+        "peak_q_left_right_n": 146.55255121700662
+      },
+      "step_negative": {
+        "start_distance_m": 59.326347082498856,
+        "end_distance_m": 89.0523031519546,
+        "duration_s": 4.998000000000191,
+        "mean_payload_fx_n": -14.255748748671216,
+        "mean_payload_fy_n": -1580.5247691706334,
+        "peak_abs_payload_fy_n": 3959.114796069468,
+        "mean_system_yaw_rate_radps": -0.12100245003450368,
+        "peak_abs_system_yaw_rate_radps": 0.14306256322972,
+        "peak_q_front_rear_n": 323.56231258190746,
+        "peak_q_left_right_n": 304.6129570721562
+      },
+      "decelerate": {
+        "start_distance_m": 89.0642579678008,
+        "end_distance_m": 99.99951465634696,
+        "duration_s": 3.3699999999981323,
+        "mean_payload_fx_n": -3258.4311658004553,
+        "mean_payload_fy_n": 65.96527832849972,
+        "peak_abs_payload_fy_n": 1851.8795570504576,
+        "mean_system_yaw_rate_radps": -0.001990993055666034,
+        "peak_abs_system_yaw_rate_radps": 0.125886151755683,
+        "peak_q_front_rear_n": 363.04984337931717,
+        "peak_q_left_right_n": 316.0567355196712
+      }
+    },
+    "peak_connector_force_n": 2220.1873203750756,
+    "peak_vehicle_yaw_rate_radps": 0.556518753225413,
+    "peak_system_yaw_rate_radps": 0.14306256322972,
+    "max_internal_force_residual_n": 0.0,
+    "max_icr_normal_velocity_residual_mps": 1.0602629885170245e-14,
+    "rated_connector_force_exceeded": false,
+    "positive_step_mean_fy_n": 1495.8282299973503,
+    "negative_step_mean_fy_n": -1580.5247691706334,
+    "opposite_step_fy_sign": true,
+    "tensile_pattern_present": true,
+    "actual_tearing_conclusion_available": false
+  },
+  "half_dt_summary": {
+    "dt_s": 0.001,
+    "completed_100m": true,
+    "final_time_s": 21.035000000002725,
+    "final_distance_m": 100.00013695398327,
+    "final_payload_speed_mps": 0.48263798012024445,
+    "final_state_finite": true,
+    "connector_peak_n": 2218.485806820984,
+    "final_payload_state": [
+      96.25482392460312,
+      17.54273194248801,
+      -0.003657060594090013,
+      0.482019013401613,
+      -0.024435436846618624,
+      -0.0015364687748350234
+    ],
+    "final_vehicle_state": [
+      [
+        99.13021976920992,
+        18.781204736040305,
+        -0.002248990733068882,
+        0.47780468894619404,
+        -0.00046443613553404366,
+        -2.8318396457394216e-05
+      ],
+      [
+        99.12058679868464,
+        16.279552824167812,
+        -0.005135957835124745,
+        0.48949247562455833,
+        0.0009919330282997744,
+        -2.6883146358887493e-05
+      ],
+      [
+        93.33046733399433,
+        18.801417529896725,
+        -0.0022827422925895562,
+        0.47930370488497404,
+        -0.00045615300706335527,
+        7.899571571685996e-05
+      ],
+      [
+        93.32040464199926,
+        16.3020323699268,
+        -0.005050944312875205,
+        0.488532611530434,
+        0.0009422174991756401,
+        7.062349626622694e-05
+      ]
+    ],
+    "deceleration_mps2": -1.6344139407475828,
+    "stage_summary": {
+      "accelerate": {
+        "start_distance_m": 0.0,
+        "end_distance_m": 29.99901073423822,
+        "duration_s": 7.663000000000894,
+        "mean_payload_fx_n": 999.9013801999355,
+        "mean_payload_fy_n": 0.0,
+        "peak_abs_payload_fy_n": 0.0,
+        "mean_system_yaw_rate_radps": 0.0,
+        "peak_abs_system_yaw_rate_radps": 0.0,
+        "peak_q_front_rear_n": 0.0045348514140357565,
+        "peak_q_left_right_n": 0.0
+      },
+      "step_positive": {
+        "start_distance_m": 30.004842480702408,
+        "end_distance_m": 59.32622804545936,
+        "duration_s": 4.999999999997526,
+        "mean_payload_fx_n": -22.800580062960343,
+        "mean_payload_fy_n": 1495.8038589476155,
+        "peak_abs_payload_fy_n": 2507.7214357304756,
+        "mean_system_yaw_rate_radps": 0.12157463349599498,
+        "peak_abs_system_yaw_rate_radps": 0.1322596828102386,
+        "peak_q_front_rear_n": 350.76425958920777,
+        "peak_q_left_right_n": 146.2963284508828
+      },
+      "step_negative": {
+        "start_distance_m": 59.33212306580078,
+        "end_distance_m": 89.0637202808977,
+        "duration_s": 4.999000000000185,
+        "mean_payload_fx_n": -14.346825060144427,
+        "mean_payload_fy_n": -1580.5138726574646,
+        "peak_abs_payload_fy_n": 3957.9283918657575,
+        "mean_system_yaw_rate_radps": -0.12100582509738939,
+        "peak_abs_system_yaw_rate_radps": 0.14301893196770155,
+        "peak_q_front_rear_n": 345.32440668622985,
+        "peak_q_left_right_n": 308.88899776547663
+      },
+      "decelerate": {
+        "start_distance_m": 89.0696976700335,
+        "end_distance_m": 99.99965350171449,
+        "duration_s": 3.3690000000041174,
+        "mean_payload_fx_n": -3260.52400927845,
+        "mean_payload_fy_n": 66.09921954162424,
+        "peak_abs_payload_fy_n": 1851.8815375438667,
+        "mean_system_yaw_rate_radps": -0.0019907296346815193,
+        "peak_abs_system_yaw_rate_radps": 0.1258831986923985,
+        "peak_q_front_rear_n": 362.4465681533894,
+        "peak_q_left_right_n": 314.6711689153685
+      }
+    },
+    "peak_connector_force_n": 2218.485806820984,
+    "peak_vehicle_yaw_rate_radps": 0.5560839109068656,
+    "peak_system_yaw_rate_radps": 0.14301893196770155,
+    "max_internal_force_residual_n": 0.0,
+    "max_icr_normal_velocity_residual_mps": 1.0602629885170245e-14,
+    "rated_connector_force_exceeded": false,
+    "positive_step_mean_fy_n": 1495.8038589476155,
+    "negative_step_mean_fy_n": -1580.5138726574646,
+    "opposite_step_fy_sign": true,
+    "tensile_pattern_present": true,
+    "actual_tearing_conclusion_available": false
+  },
+  "convergence": {
+    "peak_connector_force_n": {
+      "dt": 2220.1873203750756,
+      "dt_half": 2218.485806820984,
+      "relative_difference": 0.0007669706738082072
+    },
+    "peak_vehicle_yaw_rate_radps": {
+      "dt": 0.556518753225413,
+      "dt_half": 0.5560839109068656,
+      "relative_difference": 0.0007819724865591914
+    },
+    "peak_system_yaw_rate_radps": {
+      "dt": 0.14306256322972,
+      "dt_half": 0.14301893196770155,
+      "relative_difference": 0.0003050733313286405
+    }
+  },
+  "acceptance": {
+    "completed_100m": true,
+    "finite": true,
+    "internal_force_closure": true,
+    "common_icr_kinematics": true,
+    "opposite_step_fy_sign": true,
+    "step_convergence_within_5pct": true
+  },
+  "all_acceptance_passed": true,
+  "tearing_interpretation": "Positive Q indicates an opposing-tension pattern only. Actual cargo tearing cannot be concluded without structural allowables."
+}

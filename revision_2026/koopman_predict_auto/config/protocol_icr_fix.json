@@ -1,0 +1,81 @@
+{
+  "protocol_id": "koopman_icr_fix_i0_i1_v1",
+  "taskbook_sha256": "F64590B02CF3C62B80C6A83EBBC37100AD3A2DC9427DE563E7EF4533108D1564",
+  "parent_taskbook_sha256": "162077332C44C7430F828B5D8BCB0F248CDD2218653BE39236033AD17575C6E4",
+  "project_host": "DESKTOP-9IUUGEO",
+  "python_exe": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "source_root": "revision_2026/koopman_icr_fix",
+  "results_root": "revision_2026/koopman_icr_results",
+  "parent_source_root": "revision_2026/koopman_focus",
+  "parent_source_manifest_sha256": "20A10798053E2803606C0601CBDD1A2344D6F93BF64179A41592758E2B4DA331",
+  "parent_f3": {
+    "run_id": "20260830_153233_F3_R01",
+    "run_root": "revision_2026/koopman_focus_results/runs/20260830_153233_F3_R01",
+    "data_root": "revision_2026/koopman_focus_data/f3/20260830_153233_F3_R01/raw",
+    "manifest_relpath": "f3/data_manifest.csv",
+    "manifest_sha256": "C1D430E4718832A27253C2D7C8290678A186EAD570C3948E6D5AC2463C25533B",
+    "expected_trajectory_count": 24
+  },
+  "threads": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "identity_max_abs": 1e-12
+  },
+  "resource_limits": {
+    "minimum_free_gib": 80.0,
+    "maximum_i1_hours": 2.5,
+    "parallel_workers": 4,
+    "pilot_trajectory_count": 2
+  },
+  "actuator": {
+    "status": "SIMULATION_ASSUMPTION_TRACEABLE_NOT_HARDWARE_CALIBRATED",
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "plant_step_s": 0.002,
+    "request_hold_s": 0.020,
+    "substeps_per_request": 10,
+    "modes": ["A0", "A1", "A2", "A3"]
+  },
+  "request_layers": ["G0", "G1", "G2"],
+  "k2": {
+    "model_step_s": 0.020,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.90, 1.10],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.80, 0.95]
+  },
+  "f3": {
+    "distance_target_m": 100.0,
+    "time_step_atol_s": 1e-9,
+    "angle_atol_rad": 1e-12,
+    "rate_atol_radps": 1e-12,
+    "geometry_residual_atol_mps": 1e-8,
+    "support_constraint_relative_atol": 1e-10,
+    "support_min_atol_n": -1e-9,
+    "action_reaction_atol_n": 1e-9,
+    "internal_null_relative_atol": 1e-8,
+    "tire_raw_utilization_max": 0.90,
+    "diagnostic_icr_threshold_mps": 0.5,
+    "a3_parent_common_field_atol": 1e-12,
+    "g2_parent_request_atol_rad": 1e-12,
+    "switching_window_s": 1.0
+  },
+  "i1": {
+    "seed": 910021,
+    "scenario": "D2",
+    "directions": ["left", "right"],
+    "plants": [
+      {"name": "V1-ES", "law": "V1"},
+      {"name": "R3-ES", "law": "R3"}
+    ],
+    "load_mode": "L1",
+    "load_transfer_enabled": true,
+    "actuator_modes": ["A0", "A1", "A2", "A3"]
+  },
+  "authorized_stages": ["I0", "I1"],
+  "forbidden_before_next_authorization": [
+    "I2", "I3", "I4", "I5", "C1", "C2", "F4", "K0", "K1", "K2", "K3", "K4", "K5", "K6", "K7"
+  ]
+}

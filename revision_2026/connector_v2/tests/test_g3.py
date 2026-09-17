@@ -1,0 +1,17 @@
+from __future__ import annotations
+import json,sys
+from pathlib import Path
+import numpy as np
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
+from connector_v2 import ConnectorV2Params
+from four_vehicle_v2 import ModelParamsV2,initialize_state,rk4_step,connector_diagnostics,split_state
+def simulate(params,dt,duration=2.):
+ p=ModelParamsV2(connector=params);s=initialize_state(p,1.5);veh,_=split_state(s);veh[:,3]+=[.012,-.008,.006,-.01];s[:24]=veh.ravel();steps=int(duration/dt);peak=imp=ipeak=action=null=0.;switch=np.zeros(4,int);last=None;energy0=None;energy_end=0.
+ for j in range(steps+1):
+  t=j*dt;steer=.012 if t<.7 else -.012 if t<1.4 else 0.;ctrl=np.tile([.08,steer],(4,1));diag=connector_diagnostics(s,p);f=diag['force_norm_n'];peak=max(peak,float(np.max(f)));imp+=float(np.sum(f))*dt;ipeak=max(ipeak,float(diag['internal_force_norm_n']));action=max(action,float(np.max(np.abs(diag['force_payload_world_n']+diag['force_vehicle_world_n']))));null=max(null,float(np.linalg.norm(diag['internal_null_residual'])));a=diag['contact_active'];switch+=0 if last is None else (a!=last);last=a.copy();veh,pay=split_state(s);kin=.5*p.payload.mass_kg*np.sum(pay[3:5]**2)+.5*p.payload.yaw_inertia_kgm2*pay[5]**2+sum(.5*p.vehicle.mass_kg*np.sum(v[3:5]**2)+.5*p.vehicle.yaw_inertia_kgm2*v[5]**2 for v in veh);energy_end=float(kin+np.sum(diag['elastic_energy_j']));energy0=energy_end if energy0 is None else energy0
+  if j<steps:s=rk4_step(s,ctrl,dt,p)
+ return {'dt':dt,'terminal_state':s,'peak_force_n':peak,'force_impulse_sum_ns':imp,'internal_peak_n':ipeak,'switches':switch,'action_reaction_max_n':action,'internal_null_max':null,'energy_initial_j':energy0,'energy_terminal_j':energy_end,'finite':bool(np.all(np.isfinite(s))),'limit':bool(any(np.any(x) for x in diag['limit_flags'].values()))}
+def run(params,out):
+ out.mkdir(parents=True,exist_ok=True);runs={str(dt):simulate(params,dt) for dt in (.002,.001,.0005)};ref=runs['0.0005'];coarse=runs['0.002'];peak=abs(coarse['peak_force_n']-ref['peak_force_n'])/max(ref['peak_force_n'],1.);imp=abs(coarse['force_impulse_sum_ns']-ref['force_impulse_sum_ns'])/max(ref['force_impulse_sum_ns'],1.);scale=np.tile([100,100,np.pi,5,5,1.],5);state=float(np.max(np.abs((coarse['terminal_state']-ref['terminal_state'])/scale)));checks={'peak_force_rel_le_5pct':peak<=.05,'impulse_rel_le_2pct':imp<=.02,'terminal_state_scaled_le_1pct':state<=.01,'finite':all(r['finite'] for r in runs.values()),'no_limits':not any(r['limit'] for r in runs.values()),'action_reaction':max(r['action_reaction_max_n'] for r in runs.values())<=1e-10,'internal_null':max(r['internal_null_max'] for r in runs.values())<=1e-8*max(1.,max(r['internal_peak_n'] for r in runs.values()))};checks={k:bool(v) for k,v in checks.items()};serial={k:{kk:(vv.tolist() if isinstance(vv,np.ndarray) else vv) for kk,vv in v.items()} for k,v in runs.items()};result={'passed':all(checks.values()),'checks':checks,'coarse_vs_ref':{'peak_force_relative':peak,'impulse_relative':imp,'terminal_state_scaled_max':state},'runs':serial};(out/'g3_results.json').write_text(json.dumps(result,indent=2));np.savez_compressed(out/'g3_raw.npz',**{f'state_{k}':v['terminal_state'] for k,v in runs.items()});return result
+if __name__=='__main__':
+ p=ConnectorV2Params(**json.loads(Path(sys.argv[1]).read_text()));r=run(p,Path(sys.argv[2]));print(json.dumps(r));raise SystemExit(0 if r['passed'] else 2)

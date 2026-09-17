@@ -1,0 +1,122 @@
+{
+  "K0": {
+    "single_ms": {
+      "mean": 0.0074896,
+      "p95": 0.0075,
+      "p99": 0.010601
+    },
+    "rollout20_ms": {
+      "mean": 0.14586690000000002,
+      "p95": 0.209505,
+      "p99": 0.226101
+    },
+    "resident_array_bytes": 39592,
+    "parameter_count": 4841,
+    "realtime_gate": true
+  },
+  "K1": {
+    "single_ms": {
+      "mean": 0.008076999999999999,
+      "p95": 0.0081,
+      "p99": 0.0082
+    },
+    "rollout20_ms": {
+      "mean": 0.1611648,
+      "p95": 0.163105,
+      "p99": 0.1830019999999998
+    },
+    "resident_array_bytes": 111720,
+    "parameter_count": 13857,
+    "realtime_gate": true
+  },
+  "K2": {
+    "single_ms": {
+      "mean": 0.020928399999999996,
+      "p95": 0.021,
+      "p99": 0.023902
+    },
+    "rollout20_ms": {
+      "mean": 0.4219763,
+      "p95": 0.48583499999999996,
+      "p99": 0.616718
+    },
+    "resident_array_bytes": 660120,
+    "parameter_count": 82305,
+    "realtime_gate": true
+  },
+  "K3": {
+    "single_ms": {
+      "mean": 0.030352999999999998,
+      "p95": 0.0305,
+      "p99": 0.035203
+    },
+    "rollout20_ms": {
+      "mean": 0.6047878000000001,
+      "p95": 0.6503249999999997,
+      "p99": 0.8450639999999999
+    },
+    "resident_array_bytes": 454776,
+    "parameter_count": 15707,
+    "realtime_gate": true
+  },
+  "K3-r2": {
+    "single_ms": {
+      "mean": 0.030263299999999996,
+      "p95": 0.0304,
+      "p99": 0.03421499999999999
+    },
+    "rollout20_ms": {
+      "mean": 0.6036247,
+      "p95": 0.61874,
+      "p99": 0.732328
+    },
+    "resident_array_bytes": 454776,
+    "parameter_count": 15707,
+    "realtime_gate": true
+  },
+  "K4": {
+    "single_ms": {
+      "mean": 0.0088859,
+      "p95": 0.0085,
+      "p99": 0.0168
+    },
+    "rollout20_ms": {
+      "mean": 0.16233329999999999,
+      "p95": 0.1639,
+      "p99": 0.21003799999999995
+    },
+    "resident_array_bytes": 160520,
+    "parameter_count": 19855,
+    "realtime_gate": true
+  },
+  "K5-linear": {
+    "single_ms": {
+      "mean": 0.0082781,
+      "p95": 0.0084,
+      "p99": 0.0084
+    },
+    "rollout20_ms": {
+      "mean": 0.16196449999999998,
+      "p95": 0.1641,
+      "p99": 0.200502
+    },
+    "resident_array_bytes": 111720,
+    "parameter_count": 13857,
+    "realtime_gate": true
+  },
+  "K5-bilinear": {
+    "single_ms": {
+      "mean": 0.020894999999999997,
+      "p95": 0.021,
+      "p99": 0.0242
+    },
+    "rollout20_ms": {
+      "mean": 0.4186551,
+      "p95": 0.43615499999999996,
+      "p99": 0.55921
+    },
+    "resident_array_bytes": 660120,
+    "parameter_count": 82305,
+    "realtime_gate": true
+  }
+}

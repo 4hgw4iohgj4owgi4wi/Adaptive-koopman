@@ -1,0 +1,17 @@
+{
+  "stage": "T2-v2",
+  "accepted": true,
+  "eligible": [],
+  "excluded": [
+    "K0",
+    "K1",
+    "K2",
+    "K3",
+    "K3-r2",
+    "K4",
+    "K5-linear",
+    "K5-bilinear"
+  ],
+  "normalizers_sha256": "8963AF92D03542EC6AB2413AB42990D745FF2C89F87A4E04F8A43788A98A53DF",
+  "results_sha256": "555756C16E4E5C03F5B3FB92E0EE13B1089852AB836929DECA3835304FC380C3"
+}

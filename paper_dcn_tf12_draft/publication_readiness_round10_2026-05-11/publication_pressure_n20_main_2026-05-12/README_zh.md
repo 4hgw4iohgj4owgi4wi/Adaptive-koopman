@@ -1,0 +1,29 @@
+# TF14 剩余实验记录
+
+- 生成时间：2026-05-12T16:51:05
+- 来源实验方案：`D:\LEARNING\ZNN\ZNN\Adaptive-koopman\Adaptive-koopman-main\paper_dcn_tf12_draft\tf14_remaining_experiments_figures_plan_zh_2026-05-09.docx`
+- 当前 run 行数：60
+- 已包含实验：`E0`
+- 是否达到正式 n>=20：`True`
+- 数据目录：`D:\LEARNING\ZNN\ZNN\Adaptive-koopman\Adaptive-koopman-main\paper_dcn_tf12_draft\publication_readiness_round10_2026-05-11\publication_pressure_n20_main_2026-05-12\data`
+- 图片目录：`D:\LEARNING\ZNN\ZNN\Adaptive-koopman\Adaptive-koopman-main\paper_dcn_tf12_draft\publication_readiness_round10_2026-05-11\publication_pressure_n20_main_2026-05-12\figures`
+- 推荐 Python 环境：`E:\anaconda\envs\pytorch_new\python.exe`。
+
+## P0 状态
+
+- 除非使用 `--full-final-seeds` 生成，否则当前行可能只是 smoke 或部分数据，不能作为最终 n=20 统计引用。
+- 默认每个 run 使用隔离 notebook 命名空间；`--reuse-env` 仅用于快速调试。
+- E0 多 seed 主对比已在本 runner 中实现；正式统计使用 `--experiments E0 --full-final-seeds`。
+- E1 Koopman DNN 多 seed 预测仍需要单独的 DNN 训练/评估 runner。
+- E2 模块消融已实现；正式统计使用 `--experiments E2 --full-final-seeds`。
+- E3 证书验证已基于当前证书记录器实现；论文中的实践稳定性/ISS 表达仍需与理论段落保持一致。
+- E7 同扰动货物受力与连接安全已实现；记录字段包括受力峰值/RMS、受力变化率、连接利用率/违规次数和角点载荷差。
+- 正式长批次建议启用 `--continue-on-error --retry-exceptions`，保证单个异常 case 有记录且不会中断整批。
+
+## 聚合指标
+
+| 实验 | 工况 | 方法 | n | RMSE_y | RMSE_s | 完整路径率 | 单步 p95 | 证书通过率 | 最小裕度 |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| E0 | sine_publication_mixed_pressure | ake_a_bilinear_ridge | 20 | 0.1543 | 14.2327 | 0.000 | 0.2306 | 0.177 | -2.115e+00 |
+| E0 | sine_publication_mixed_pressure | baseline | 20 | 0.1520 | 13.5521 | 0.050 | 0.2195 | 0.187 | -2.017e+00 |
+| E0 | sine_publication_mixed_pressure | tf14_phase_role | 20 | 0.1491 | 14.1960 | 0.000 | 0.2272 | 0.177 | -2.065e+00 |

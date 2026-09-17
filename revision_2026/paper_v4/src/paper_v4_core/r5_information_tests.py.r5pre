@@ -1,0 +1,111 @@
+"""Non-dynamic contract tests for the EXP-R2 R5 legal-information boundary."""
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+import numpy as np
+
+from .cli import save, sha
+from .e01_100m import params
+from .information.legal_information import SensorNoise, assemble_joint_estimate, sample_packets
+from .plant.four_vehicle_common import initialize_state
+
+
+def _record(tests, name, passed, **details):
+    tests.append({"name": name, "pass": bool(passed), **details})
+
+
+def run(out):
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=False)
+    state = initialize_state(params("P0"), 2.0)
+    actuator = np.asarray([0.01, -0.02, 0.03, -0.04])
+    tests = []
+
+    packet = sample_packets(state, actuator, 7, SensorNoise.none(), np.random.default_rng(1))
+    estimate, audit = assemble_joint_estimate(packet, 7)
+    _record(
+        tests,
+        "noiseless_round_trip",
+        np.array_equal(estimate[:30], state) and np.array_equal(estimate[30:], actuator),
+        maximum_absolute_error=float(np.max(np.abs(estimate - np.r_[state, actuator]))),
+    )
+    _record(
+        tests,
+        "five_declared_same_tick_sources",
+        audit["packet_count"] == 5 and audit["maximum_age_ticks"] == 0 and audit["truth_field_count"] == 0,
+    )
+
+    unwrapped = state.copy()
+    unwrapped[[2, 8, 14, 20, 26]] = np.asarray([3.2, 3.3, 3.4, 3.5, 3.6])
+    unwrapped_packet = sample_packets(unwrapped, actuator, 7, SensorNoise.none(), np.random.default_rng(1))
+    unwrapped_estimate, _ = assemble_joint_estimate(unwrapped_packet, 7)
+    _record(tests, "causal_unwrapped_heading_preserved", np.array_equal(unwrapped_estimate[:30], unwrapped))
+
+    try:
+        assemble_joint_estimate(state, 7)
+        rejected_raw = False
+    except TypeError:
+        rejected_raw = True
+    _record(tests, "raw_plant_state_rejected", rejected_raw)
+
+    future = sample_packets(state, actuator, 8, SensorNoise.none(), np.random.default_rng(1))
+    try:
+        assemble_joint_estimate(future, 7)
+        rejected_future = False
+    except ValueError:
+        rejected_future = True
+    _record(tests, "future_packet_rejected", rejected_future)
+
+    truth = sample_packets(state, actuator, 7, SensorNoise.none(), np.random.default_rng(1))
+    truth["plant_state"] = state.tolist()
+    try:
+        assemble_joint_estimate(truth, 7)
+        rejected_truth = False
+    except ValueError:
+        rejected_truth = True
+    _record(tests, "truth_side_channel_rejected", rejected_truth)
+
+    missing = sample_packets(state, actuator, 7, SensorNoise.none(), np.random.default_rng(1))
+    del missing["packets"]["vehicle_3"]
+    try:
+        assemble_joint_estimate(missing, 7)
+        rejected_missing = False
+    except ValueError:
+        rejected_missing = True
+    _record(tests, "missing_node_rejected", rejected_missing)
+
+    noisy = sample_packets(state, actuator, 7, SensorNoise.basic(), np.random.default_rng(5105))
+    noisy_estimate, _ = assemble_joint_estimate(noisy, 7)
+    changed = noisy_estimate[:30] - state
+    _record(
+        tests,
+        "basic_noise_changes_measured_channels_only",
+        np.any(changed != 0.0) and np.array_equal(noisy_estimate[30:], actuator),
+        maximum_state_perturbation=float(np.max(np.abs(changed))),
+        maximum_steering_perturbation=float(np.max(np.abs(noisy_estimate[30:] - actuator))),
+    )
+
+    report = {
+        "status": "PASS" if all(item["pass"] for item in tests) else "FAIL",
+        "tests": tests,
+        "basic_noise": SensorNoise.basic().metadata(),
+        "scope": "information contract only; no plant dynamics and no performance evidence",
+        "source_sha256": sha(__file__),
+    }
+    save(out, "r5_information_tests.json", report)
+    if report["status"] != "PASS":
+        raise SystemExit(20)
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out", required=True)
+    args = parser.parse_args()
+    run(args.out)
+
+
+if __name__ == "__main__":
+    main()

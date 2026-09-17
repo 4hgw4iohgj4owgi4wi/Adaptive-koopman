@@ -1,0 +1,77 @@
+{
+  "K0": {
+    "single_ms": {
+      "mean": 0.007134700000000001,
+      "p95": 0.0072,
+      "p99": 0.007603999999999996
+    },
+    "rollout20_ms": {
+      "mean": 0.13933049999999997,
+      "p95": 0.1411,
+      "p99": 0.16193399999999997
+    },
+    "resident_array_bytes": 39592,
+    "parameter_count": 4841,
+    "realtime_gate": true
+  },
+  "K1": {
+    "single_ms": {
+      "mean": 0.0080832,
+      "p95": 0.0081,
+      "p99": 0.0082
+    },
+    "rollout20_ms": {
+      "mean": 0.16064330000000002,
+      "p95": 0.1627,
+      "p99": 0.1890149999999999
+    },
+    "resident_array_bytes": 111720,
+    "parameter_count": 13857,
+    "realtime_gate": true
+  },
+  "K2": {
+    "single_ms": {
+      "mean": 0.0207173,
+      "p95": 0.0208,
+      "p99": 0.024002999999999997
+    },
+    "rollout20_ms": {
+      "mean": 0.41390049999999995,
+      "p95": 0.4232,
+      "p99": 0.49452999999999997
+    },
+    "resident_array_bytes": 660120,
+    "parameter_count": 82305,
+    "realtime_gate": true
+  },
+  "K3": {
+    "single_ms": {
+      "mean": 0.030185,
+      "p95": 0.0303,
+      "p99": 0.037406999999999996
+    },
+    "rollout20_ms": {
+      "mean": 0.6041719000000001,
+      "p95": 0.6366999999999995,
+      "p99": 0.8301499999999997
+    },
+    "resident_array_bytes": 454776,
+    "parameter_count": 15707,
+    "realtime_gate": true
+  },
+  "K3-r2": {
+    "single_ms": {
+      "mean": 0.030043399999999994,
+      "p95": 0.0302,
+      "p99": 0.0337
+    },
+    "rollout20_ms": {
+      "mean": 0.6066881,
+      "p95": 0.69131,
+      "p99": 0.858715
+    },
+    "resident_array_bytes": 454776,
+    "parameter_count": 15707,
+    "realtime_gate": true
+  }
+}

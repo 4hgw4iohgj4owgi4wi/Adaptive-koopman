@@ -1,0 +1,61 @@
+{
+  "batch": "ABL-READY",
+  "cases": [
+    {
+      "families": 30,
+      "profiles": [
+        "CLEAN",
+        "DELAY100",
+        "LOSS10",
+        "LOSS30",
+        "BURST10",
+        "DOS200",
+        "DOS400",
+        "DOS800",
+        "DOS_REPEAT"
+      ],
+      "scenario": "100m_accel_turn"
+    },
+    {
+      "families": 30,
+      "profiles": [
+        "CLEAN",
+        "DELAY100",
+        "LOSS10",
+        "LOSS30",
+        "BURST10",
+        "DOS200",
+        "DOS400",
+        "DOS800",
+        "DOS_REPEAT"
+      ],
+      "scenario": "single_lane_change"
+    },
+    {
+      "families": 30,
+      "profiles": [
+        "CLEAN",
+        "DELAY100",
+        "LOSS10",
+        "LOSS30",
+        "BURST10",
+        "DOS200",
+        "DOS400",
+        "DOS800",
+        "DOS_REPEAT"
+      ],
+      "scenario": "hairpin"
+    }
+  ],
+  "methods": [
+    "P0",
+    "P1",
+    "K0",
+    "K0N",
+    "K1",
+    "K1N",
+    "ND",
+    "DC",
+    "NC"
+  ]
+}

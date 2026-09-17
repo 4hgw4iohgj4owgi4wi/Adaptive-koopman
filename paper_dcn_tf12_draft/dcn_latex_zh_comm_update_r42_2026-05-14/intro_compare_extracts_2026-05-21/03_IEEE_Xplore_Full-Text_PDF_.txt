@@ -1,0 +1,65 @@
+FILE: D:\LEARNING\ZNN\ZNN\save\IEEE Xplore Full-Text PDF_.pdf
+PAGES: 13
+TITLE_GUESS: IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS | 1 | Data-Driven Modeling With Deep Koopman
+
+INTRO_EXTRACT:
+I. INTRODUCTION
+A
+UTONOMOUS vehicles (AVs) have garnered increasing
+attention in recent years due to their potential to allevi-
+ate humans from the dangers of driving in complex scenar-
+ios, as well as mitigate various trafﬁc congestion and acci-
+dents stemming from human errors [1], [2]. Within a complete
+autonomous driving framework, path tracking control servers as
+the bottom module and ﬁnal link, whose performance is crucial
+for ensuring driving safety, reliability, and integrity, particularly
+under uncertainties and external disturbances.
+Path tracking control is typically formulated as a two-
+stage process: principled system modeling and controller
+design. Numerous studies within this framework highlight
+the importance of an accurate model, as it enables reliable
+state prediction and directly affects the performance of widely
+used methods such as MPC and adaptive control [3], [4], [5].
+However, principled vehicle models are usually simpliﬁed
+through
+approximations
+(e.g.,
+bicycle
+or
+reduced-order
+dynamic models), making it difﬁcult to capture strongly
+nonlinear behaviors [6], [7]. These models are also sensitive to
+noise and parameter variations, and their prediction accuracy
+degrades signiﬁcantly once the vehicle state deviates from
+the nominal linearization regime. Such limitations become
+particularly prominent in AV path-tracking applications, where
+inherent nonlinearities and strong couplings—such as tire–road
+interactions,
+load
+transfer,
+and
+actuator
+nonlinearities—
+frequently drive the system into highly nonlinear domains [8].
+Although fully model-free alternatives based on reinforcement
+learning (RL) have been explored [9], [10], they often suffer
+from
+limited
+interpretability,
+poor
+generalization
+across
+diverse scenarios, and the lack of explicit constraint handling
+needed for safety-critical tasks. As a result, the modeling–
+controller paradigm remains the dominant approach. The
+central challenge, however, lies in enhancing model ﬁdelity
+under nonlinear conditions while ensuring robust control
+performance, which is key to achieving high-precision path
+tracking for AVs.
+In parallel, increasing research attention has shifted toward
+data-driven system identiﬁcation as a means of overcoming the
+1557-9948 © 2026 IEEE. All rights reserved, including rights for text and data mining, and training of artiﬁcial intelligence and similar technologies.
+Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html
+for more information.
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination. 
+Authorized licensed use limited to: University of Manchester. Downloaded on May 21,2026 at 12:55:31 UTC from IEEE Xplore.  Restrictions apply. 

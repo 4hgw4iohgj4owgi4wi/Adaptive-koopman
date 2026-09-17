@@ -1,0 +1,88 @@
+{
+  "seed": 82304,
+  "best_epoch": 6,
+  "validation_macro_J_pred": 418536737422.985,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 2.598422937110441e+25,
+      "validation_macro_J_pred": 1204875241805.2551
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.0097793410837257e+27,
+      "validation_macro_J_pred": 4783072543231.977
+    },
+    {
+      "epoch": 3,
+      "train_loss": 2.7755885726942116e+27,
+      "validation_macro_J_pred": 2244152553995.0454
+    },
+    {
+      "epoch": 4,
+      "train_loss": 3.7396820148744505e+24,
+      "validation_macro_J_pred": 593592064957.5864
+    },
+    {
+      "epoch": 5,
+      "train_loss": 9.415271106318757e+26,
+      "validation_macro_J_pred": 2969698650142.6626
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.5112413540620882e+26,
+      "validation_macro_J_pred": 418536737422.985
+    },
+    {
+      "epoch": 7,
+      "train_loss": 2.2516259644870415e+26,
+      "validation_macro_J_pred": 1810092475342.1873
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1.4537659819672072e+27,
+      "validation_macro_J_pred": 3794276166777.762
+    },
+    {
+      "epoch": 9,
+      "train_loss": 1.6645416516727704e+27,
+      "validation_macro_J_pred": 3612901929505.3438
+    },
+    {
+      "epoch": 10,
+      "train_loss": 1.5349320286964607e+27,
+      "validation_macro_J_pred": 4440930089794.746
+    },
+    {
+      "epoch": 11,
+      "train_loss": 1.106446801307765e+27,
+      "validation_macro_J_pred": 803894103529.6721
+    },
+    {
+      "epoch": 12,
+      "train_loss": 4.0076865843554276e+26,
+      "validation_macro_J_pred": 1708821607038.9558
+    },
+    {
+      "epoch": 13,
+      "train_loss": 5.8192605240068235e+26,
+      "validation_macro_J_pred": 1811832647510.6375
+    },
+    {
+      "epoch": 14,
+      "train_loss": 6.0774173586581485e+26,
+      "validation_macro_J_pred": 1820610140155.1553
+    },
+    {
+      "epoch": 15,
+      "train_loss": 6.22030664077279e+26,
+      "validation_macro_J_pred": 1821352107918.7844
+    },
+    {
+      "epoch": 16,
+      "train_loss": 6.0945753551743536e+26,
+      "validation_macro_J_pred": 1821418715214.1108
+    }
+  ],
+  "fit_seconds": 36.003579700001865
+}

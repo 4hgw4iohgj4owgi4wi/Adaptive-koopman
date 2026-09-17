@@ -1,0 +1,169 @@
+{
+  "protocol_id": "koopman_icr_next_n0_n2_v2",
+  "taskbook_sha256": "2DE0F022D281401D5BCD674F1551F090782CF096D27D295944EE0C8CC47BBA95",
+  "parent_icr_taskbook_sha256": "3DCC36838813DD47D9BDA79485606925E2403C1AC7819B5F075DA295E3957C19",
+  "parent_icr_fix_taskbook_sha256": "F64590B02CF3C62B80C6A83EBBC37100AD3A2DC9427DE563E7EF4533108D1564",
+  "parent_koopman_taskbook_sha256": "162077332C44C7430F828B5D8BCB0F248CDD2218653BE39236033AD17575C6E4",
+  "project_host": "DESKTOP-9IUUGEO",
+  "python_exe": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "source_root": "revision_2026/koopman_icr_next",
+  "results_root": "revision_2026/koopman_icr_next_results",
+  "parent_source_root": "revision_2026/koopman_icr_fix",
+  "parent_source_manifest_sha256": "B816BD45E795525680637EB612B48409C3689296F72054EE4130C2DFF26BEC2C",
+  "parent_i0": {
+    "complete_path": "revision_2026/koopman_icr_results/runs/20260831_004011_I0_R01/i0/complete.json",
+    "complete_sha256": "894E99D0862BF1FDA6F2D1B5C636B5781666892294579C4903A07BD6573B7F96"
+  },
+  "parent_i1_failure": {
+    "complete_path": "revision_2026/koopman_icr_results/runs/20260831_004036_I1_R01/i1/complete.json",
+    "complete_sha256": "597F8485501EF04BB8E2682A73C915F218AA05EB5B9BF178B011448766DEB65B",
+    "diagnostic_path": "revision_2026/koopman_icr_results/runs/20260831_004036_I1_R01/i1/failure/failure_diagnostic.json",
+    "diagnostic_sha256": "F38D62CEF293468194FF7629189AE98FDCE1EB87E078D1D3CEE4B5B61F82E012",
+    "a0_raw_path": "revision_2026/koopman_icr_results/runs/20260831_004036_I1_R01/i1/raw/trajectory_0000_D2_left_V1-ES_A0_L1.npz",
+    "a0_raw_sha256": "23367BDA6C2487087457C8D88087E3A2210DBE2E771774D6C4E5EE24CF423000"
+  },
+  "parent_f3": {
+    "run_id": "20260830_153233_F3_R01",
+    "run_root": "revision_2026/koopman_focus_results/runs/20260830_153233_F3_R01",
+    "data_root": "revision_2026/koopman_focus_data/f3/20260830_153233_F3_R01/raw",
+    "manifest_relpath": "f3/data_manifest.csv",
+    "manifest_sha256": "C1D430E4718832A27253C2D7C8290678A186EAD570C3948E6D5AC2463C25533B",
+    "expected_trajectory_count": 24
+  },
+  "threads": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "identity_max_abs": 1e-12
+  },
+  "resource_limits": {
+    "minimum_free_gib": 40.0,
+    "maximum_n0_minutes": 30.0,
+    "maximum_n1_hours": 2.0,
+    "maximum_n2_hours": 2.5,
+    "parallel_workers": 4,
+    "pilot_trajectory_count": 2
+  },
+  "actuator": {
+    "status": "SIMULATION_ASSUMPTION_TRACEABLE_NOT_HARDWARE_CALIBRATED",
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "plant_step_s": 0.002,
+    "request_hold_s": 0.020,
+    "substeps_per_request": 10,
+    "modes": {
+      "A0": {"identity": "COUNTERFACTUAL_ACTUAL_EQUALS_REQUEST", "deployment_applicable": false},
+      "A1": {"identity": "COUNTERFACTUAL_LAG_ONLY", "deployment_applicable": false},
+      "A2": {"identity": "NEAR_PHYSICAL_LAG_RATE", "deployment_applicable": true},
+      "A3": {"identity": "DEPLOYMENT_BASELINE_LAG_RATE_ANGLE", "deployment_applicable": true}
+    }
+  },
+  "gate_semantics": {
+    "diagnostic_hard_all_modes": [
+      "finite", "time_grid", "completion", "support_constraints",
+      "geometry_icr", "g0_icr", "action_reaction", "internal_null",
+      "replay", "scenario"
+    ],
+    "counterfactual_report_only": [
+      "actuator_rate", "actuator_angle", "tire", "support_nonnegative", "connector_ultimate"
+    ],
+    "a2_deployment_hard": [
+      "actuator_rate", "tire", "support_nonnegative", "connector_ultimate"
+    ],
+    "a2_report_audit": ["actuator_angle"],
+    "a3_deployment_hard": [
+      "actuator_rate", "actuator_angle", "tire", "support_nonnegative",
+      "connector_ultimate", "a3_parent_common_fields"
+    ]
+  },
+  "request_layers": ["G0", "G1", "G2"],
+  "k2": {
+    "model_step_s": 0.020,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.90, 1.10],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.80, 0.95]
+  },
+  "f3": {
+    "distance_target_m": 100.0,
+    "time_step_atol_s": 1e-9,
+    "angle_atol_rad": 1e-12,
+    "rate_atol_radps": 1e-12,
+    "geometry_residual_atol_mps": 1e-8,
+    "support_constraint_relative_atol": 1e-10,
+    "support_min_atol_n": -1e-9,
+    "action_reaction_atol_n": 1e-9,
+    "internal_null_relative_atol": 1e-8,
+    "tire_raw_utilization_max": 0.90,
+    "diagnostic_icr_threshold_mps": 0.5,
+    "a3_parent_common_field_atol": 1e-12,
+    "g2_parent_request_atol_rad": 1e-12,
+    "switching_window_s": 1.0
+  },
+  "switch_detection": {
+    "virtual_steering_delta_deg": 0.5,
+    "acceleration_delta_mps2": 0.05,
+    "recovery_window_s": 0.8,
+    "recovery_window_steps": 40
+  },
+  "independent_recompute_tolerances": {
+    "icr_mps_abs": 1e-10,
+    "fraction_abs": 1e-15,
+    "rate_radps_abs": 1e-12,
+    "angle_rad_abs": 1e-12,
+    "tire_abs": 1e-12,
+    "support_n_abs": 1e-8,
+    "force_n_abs": 1e-8,
+    "impulse_ns_abs": 1e-8,
+    "relative_abs": 1e-10,
+    "parent_common_abs": 1e-12
+  },
+  "seed_blocks": {
+    "N2_DIAGNOSTIC": [910021, 910021],
+    "N4_FUTURE": [985000, 985999],
+    "N5_TRAIN_FUTURE": [986000, 986999],
+    "N5_VALIDATION_FUTURE": [987000, 987999],
+    "N5_DEVELOPMENT_FUTURE": [988000, 988999],
+    "N8_CONFIRM_FUTURE": [989000, 989999]
+  },
+  "n2": {
+    "seed": 910021,
+    "scenario": "D2",
+    "directions": ["left", "right"],
+    "plants": [
+      {"name": "V1-ES", "law": "V1"},
+      {"name": "R3-ES", "law": "R3"}
+    ],
+    "load_mode": "L1",
+    "load_transfer_enabled": true,
+    "mathematical_mode_order": ["A0", "A1", "A2", "A3"],
+    "execution_mode_order": ["A3", "A2", "A1", "A0"],
+    "pilot_order": [
+      {"direction": "left", "plant": "V1-ES", "actuator_mode": "A3"},
+      {"direction": "left", "plant": "V1-ES", "actuator_mode": "A0"}
+    ]
+  },
+  "future_interface": {
+    "variants": ["S0", "S1", "S2"],
+    "switch_gate_uses_past_only": true,
+    "future_actual_steering_input_forbidden": true,
+    "duplicate_physical_feature_count_required": 0,
+    "horizons": [1, 5, 10, 20],
+    "models": ["M0_FIXED_LINEAR", "M1_LOWRANK_BILINEAR"],
+    "m1_rank_candidates": [1, 2, 4],
+    "j20_weights": {
+      "core": 0.25,
+      "relative": 0.20,
+      "force4": 0.20,
+      "internal": 0.15,
+      "yaw": 0.10,
+      "actuator": 0.10
+    }
+  },
+  "authorized_stages_after_explicit_execution_request": ["N0", "N1", "N2"],
+  "forbidden_before_later_authorization": [
+    "N3", "N4", "N5", "N6", "N7", "N8", "C1", "C2", "F4",
+    "K0", "K1", "K2", "K3", "K4", "K5", "K6", "K7"
+  ]
+}

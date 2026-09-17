@@ -1,0 +1,5 @@
+{
+  "status": "not_applicable_no_offline_candidate",
+  "eligible_offline_candidates": [],
+  "reason": "G4 produced no method satisfying every preregistered offline advantage gate"
+}

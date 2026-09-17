@@ -1,0 +1,26 @@
+{
+  "protocol_id": "POST-P1-D2-GPU-runtime-blocker-read-only-v1",
+  "authorization": "User instruction to continue updated experiment.md",
+  "scope": "D2_GPU_RUNTIME_BLOCKER_READ_ONLY",
+  "output": "analysis/20260915_D2_GPU_RUNTIME_BLOCKER_AUDIT",
+  "purpose": "Localize the existing pre-G1 OpenMP blocker without modifying the GPU candidate or consuming another engineering repair.",
+  "stop_rules": {
+    "source_change": false,
+    "software_installation": false,
+    "gpu_g1_g2_execution": false,
+    "dynamics_or_closed_loop": false,
+    "old_p1_resume_or_rerun": false,
+    "candidate_root_cause_must_remain_inference_until_fixed_and_retested": true
+  },
+  "identity_files": [
+    {"path": "experiment.md", "sha256": "05186554624fef76bb8ed4e3fb8e10481dccea38c60f79c0a6f111994ac492fa"},
+    {"path": "protocol/P1中断数据分析与RTX5080迁移任务说明_20260915.md", "sha256": "830b70dd4d778bc96f279276d60805a95d0e7aaf2eacfe9a12df8ab4242f67a3"},
+    {"path": "protocol/D0_D1_P1_GPU_GATE_20260915_v2.json", "sha256": "9756ce4d0a569c96fcc79f06eee6f73576c695b8c770a3c2bf5c7122ec371025"},
+    {"path": "analysis/20260915_D0_D1_GPU_GATE_P1_02/d0_gpu_entry_audit.json", "sha256": "91e071f94bda92f481880f8a72815253c2b30b4c34efa1ffd572dbba59ab7e33"},
+    {"path": "results/20260915_RTX5080_G0_G2_03/failure.json", "sha256": "5ebce7ad16b6eddb8f979fb89c57b3ff66c92c9cd09ce6a3567f2ed3bb75ddc3"},
+    {"path": "src/paper_v4_core/gpu_port/ipc_backend.py", "sha256": "e6ca7368f56e5f0e8e8bd650ca8fa1c6f9e2023286a49d3054c55d9c709898e5"},
+    {"path": "src/paper_v4_core/gpu_port/gpu_worker.py", "sha256": "4c06d8ba829191eb4dc51a38cce4d57d233d94f10ee3bfe350da11a9af60f36b"},
+    {"path": "tools/gpu_g0_g2_qualify.py", "sha256": "fcf4c6eac2b63662618f18ac28f7f6570160544da0ad97f43c58a029ca605df2"},
+    {"path": "tools/d2_gpu_runtime_blocker_audit.py", "sha256": "19d594eb166b726fd3f804213d432dda846def4f38912eedf753d54b9ba99bd7"}
+  ]
+}

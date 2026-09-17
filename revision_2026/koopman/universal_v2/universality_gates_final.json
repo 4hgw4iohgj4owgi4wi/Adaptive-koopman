@@ -1,0 +1,22 @@
+{
+  "internal_relative_candidates": [],
+  "external_adaptation_candidates": [
+    "K5-linear"
+  ],
+  "cross_family_F": false,
+  "cross_family_H": false,
+  "absolute_deployment_candidates": [],
+  "closed_loop_official": [],
+  "closed_loop_diagnostic": [
+    "K0",
+    "K1",
+    "K5-linear-A"
+  ],
+  "claim": "no universal combination; external adaptation only if independently reproduced",
+  "external_adaptation_candidates_mean_only": [
+    "K5-linear"
+  ],
+  "external_adaptation_statistics_sha256": "301687B64445E572B53C995C36EBCBFD062D2911949D2747B3F27AA916A8499B",
+  "evidence_version": "D3_recovery",
+  "D2_status": "invalid_protocol_path_changed_after_view"
+}

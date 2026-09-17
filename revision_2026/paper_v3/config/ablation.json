@@ -1,0 +1,58 @@
+{
+  "protocol_id": "ABL-R1-PR-R4-20260907",
+  "host_role": "DESKTOP-9IUUGEO_RTX5080",
+  "dt_s": 0.02,
+  "substep_dt_s": 0.002,
+  "horizon": 20,
+  "formal_ticks": 1200,
+  "dev_ticks": 1200,
+  "formal_integrator": "direct_equivalent",
+  "dev_integrator": "substep_2ms",
+  "scenarios": ["100m_accel_turn", "single_lane_change", "hairpin"],
+  "profiles": ["CLEAN", "DELAY100", "LOSS10", "LOSS30", "BURST10", "DOS200", "DOS400", "DOS800", "DOS_REPEAT"],
+  "methods": {
+    "P0": {"model": "physical", "protection": false, "align": false, "bound_mode": "model", "label": "P0 physical MPC"},
+    "P1": {"model": "physical", "protection": true, "align": true, "bound_mode": "model", "label": "P1 physical MPC + protection"},
+    "K0": {"model": "baseline_koopman", "protection": false, "align": false, "bound_mode": "model", "label": "K0 baseline Koopman"},
+    "K0N": {"model": "baseline_koopman", "protection": true, "align": true, "bound_mode": "model", "label": "K0N baseline Koopman + protection"},
+    "K1": {"model": "improved_koopman", "protection": false, "align": false, "bound_mode": "model", "label": "K1 improved Koopman"},
+    "K1N": {"model": "improved_koopman", "protection": true, "align": true, "bound_mode": "model", "label": "K1N improved Koopman + protection"},
+    "ND": {"model": "improved_koopman", "protection": true, "align": false, "bound_mode": "model", "label": "ND no stale-mean alignment"},
+    "DC": {"model": "improved_koopman", "protection": true, "align": true, "bound_mode": "common_hold", "label": "DC aligned common bound"},
+    "NC": {"model": "improved_koopman", "protection": true, "align": false, "bound_mode": "common_hold", "label": "NC held common bound"}
+  },
+  "seed_roots": {"control_dev": 2026090781, "physical": 2026090782, "network": 2026090783, "bootstrap": 2026090784},
+  "families": 30,
+  "ages": {"degraded_tick": 3, "degraded_consecutive": 2, "recovery_tick": 1, "recovery_consecutive": 3, "max_alignment_age": 20, "recovery_ramp_ticks": 5},
+  "dos_topologies": {"single_in": 3, "cross_group": 8, "all_edges": 12},
+  "network": {
+    "edges": 12,
+    "clean_delay_ticks": 1,
+    "profiles": {
+      "DELAY60": {"delay_ticks": 3, "drop_probability": 0.0},
+      "DELAY100": {"delay_ticks": 5, "drop_probability": 0.0},
+      "DELAY180": {"delay_ticks": 9, "drop_probability": 0.0},
+      "LOSS10": {"delay_ticks": 1, "drop_probability": 0.1},
+      "LOSS30": {"delay_ticks": 1, "drop_probability": 0.3},
+      "BURST10": {"p_gb": 0.02, "p_bg": 0.2, "loss_good": 0.02, "loss_bad": 0.9},
+      "DOS200": {"block_ticks": 10},
+      "DOS400": {"block_ticks": 20},
+      "DOS800": {"block_ticks": 40},
+      "DOS_REPEAT": {"block_ticks": 10, "repeat_period": 50, "repeat_count": 5}
+    }
+  },
+  "gates": {"state_atol": 1e-8, "force_atol_n": 1e-8, "jacobian_rtol": 1e-4, "bootstrap_replicates": 10000, "improvement_threshold": 0.05},
+  "source_paths": {
+    "protocol": "ablation.md",
+    "plant": "revision_2026/paper_v3/src/vendor/four_vehicle_coupled.py",
+    "steering": "revision_2026/paper_v3/src/vendor/steering_allocator.py",
+    "predictor_source": "revision_2026/koopman_predict_v3y/src/lift.py",
+    "predictor_evidence": "revision_2026/koopman_predict_v3w_results/runs/20260905_221832_KC_BG02/identity.json"
+  },
+  "batches": {
+    "ABL-DEV": {"methods": ["P0", "P1", "K0", "K0N", "K1", "K1N"], "profiles": ["CLEAN", "DELAY100", "DOS200"], "families": 3},
+    "ABL-CORE": {"methods": ["P0", "P1", "K0", "K0N", "K1", "K1N"], "profiles": ["CLEAN", "DELAY100", "LOSS10", "LOSS30", "BURST10", "DOS200", "DOS400", "DOS800", "DOS_REPEAT"], "families": 30},
+    "ABL-DELAY": {"methods": ["K1N", "ND"], "profiles": ["CLEAN", "DELAY60", "DELAY100", "DELAY180", "JITTER100"], "families": 30},
+    "ABL-COMMON": {"methods": ["DC", "NC"], "profiles": ["DELAY100", "JITTER100"], "families": 30}
+  }
+}

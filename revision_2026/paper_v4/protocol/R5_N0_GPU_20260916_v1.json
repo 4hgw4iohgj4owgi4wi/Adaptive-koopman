@@ -1,0 +1,156 @@
+{
+  "protocol_id": "R5-N0-noiseless-gpu-v1",
+  "scope": "R5_LEGAL_INFORMATION",
+  "authorization": "Task-book section 5 C2/R5, released by C1 total PASS (analysis/20260916_R4_GATE_01/r4_gate.json) under gpu_platform_decision_20260916.md.",
+  "run": {
+    "output": "results/20260916_R5_N0_GPU01",
+    "noise": "none",
+    "seed": 5105,
+    "backend": "gpu",
+    "parameter_id": "P0",
+    "plant_max_step_ms": 2.0,
+    "controller_step_ms": 20.0,
+    "horizon": 20,
+    "lambda_internal": 2.0,
+    "frozen_dynamics_jacobian": false,
+    "finite_difference_scale": 1.0,
+    "total_ticks": 2379
+  },
+  "information_interface": {
+    "schema": "EXP-R2-R5-legal-information-v2-absolute-tick-noise",
+    "architecture": "centralized same-tick fusion of four vehicle-local packets and one payload-coordinator packet",
+    "noise_indexing": "per absolute tick, node and field; entropy hashed per tick",
+    "not_claimed": "R5 proves interface transfer only. It does not establish distributed or communication-robust control; impairment injection belongs to E03/E05."
+  },
+  "noiseless_no_op_gate": {
+    "baseline": "results/20260916_R5_BASELINE_P0_2MS_GPU01",
+    "rule": "same-backend comparison per gpu_platform_decision_20260916.md rule P2",
+    "whitelist": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6",
+      "x7",
+      "x8",
+      "x9",
+      "x10",
+      "x11",
+      "x12",
+      "x13",
+      "x14",
+      "x15",
+      "x16",
+      "x17",
+      "x18",
+      "x19",
+      "x20",
+      "x21",
+      "x22",
+      "x23",
+      "x24",
+      "x25",
+      "x26",
+      "x27",
+      "x28",
+      "x29",
+      "request_accel0",
+      "request_accel1",
+      "request_accel2",
+      "request_accel3",
+      "request_delta0",
+      "request_delta1",
+      "request_delta2",
+      "request_delta3",
+      "actual_delta0",
+      "actual_delta1",
+      "actual_delta2",
+      "actual_delta3",
+      "point_force_norm0",
+      "point_force_norm1",
+      "point_force_norm2",
+      "point_force_norm3",
+      "tire_utilization0",
+      "tire_utilization1",
+      "tire_utilization2",
+      "tire_utilization3",
+      "support_load0",
+      "support_load1",
+      "support_load2",
+      "support_load3",
+      "internal_force_norm_n",
+      "tension_x_n",
+      "tension_y_n",
+      "max_e_g_m",
+      "reference_distance_m",
+      "actual_payload_path_m"
+    ],
+    "excluded": [
+      "solver_wall_s",
+      "time_s"
+    ],
+    "threshold_absolute": 1e-12,
+    "why_not_the_cpu_baseline": "results/20260911_R3_UNFROZEN_FULL01/2ms is retained as the cross-backend equivalence reference (2.4e-05 m over 2200 ticks). Comparing a GPU run against it would measure the already-qualified backend difference instead of the interface, so the no-op gate is applied within one backend and the 1e-12 threshold is unchanged."
+  },
+  "hard_gates": {
+    "ultimate_force_n": 15000.0,
+    "tire_utilization": 1.0,
+    "minimum_support_load_n": 0.0
+  },
+  "stop_rule": "N0 failure stops N1. N1 violating a hard gate fails R5; no filter is added and the noise is not reduced to hide it.",
+  "identity_files": [
+    {
+      "path": "src/paper_v4_core/r5_runner.py",
+      "sha256": "5c1a86f10ccfd99e582dafb0baddf196044d2d3309163513d4e4ae372051351f"
+    },
+    {
+      "path": "src/paper_v4_core/information/legal_information.py",
+      "sha256": "02bb2e0e73fccff719930bbbcc449ab020531c4253c42653debea440b68d6365"
+    },
+    {
+      "path": "src/paper_v4_core/r5_information_tests.py",
+      "sha256": "1761ad98aa9f69a8283b38bc784380e028bb8c8aaea4affca2d52cbf81f2eba7"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "a75ac69b9f6068813f89850760c929b2b58bbe77927959f8a65d7817545bce43"
+    },
+    {
+      "path": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+      "sha256": "8550f6a2b073d3eea83e9729997bd72bc6e2290247cdd635cc6556c9529f5946"
+    },
+    {
+      "path": "analysis/20260916_R4_GATE_01/r4_gate.json",
+      "sha256": "8e7aa6c76c55f3c63da634ecdbfad7161993cf877d24432010350742393f6905"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    },
+    {
+      "path": "protocol/R4_P0_2MS_GPU_20260915_v1.json",
+      "sha256": "5fbd027d6babb3b4262b1ddcbb988bda361943693296b3f5662b788a6c7ffbe4"
+    },
+    {
+      "path": "results/20260916_R5_BASELINE_P0_2MS_GPU01/pool.json",
+      "sha256": "fb1fba6d3b0103d4ef0a14685bc8766122dddfe57797d2efccbf8ba6386c3fd3"
+    },
+    {
+      "path": "results/20260916_R5_BASELINE_P0_2MS_GPU02/metrics.json",
+      "sha256": "0b7d740c1e0e2c9c31be04adbc1059c16f5f4e32dcb98d2cf9dffd5f7a1cf1c2"
+    },
+    {
+      "path": "analysis/20260917_RATE_PENALTY_FIXED_EFFECT_02/fixed_vs_buggy_tracking.json",
+      "sha256": "b10cbf36b4e48c629a5fcf716907b9fbb6aa65df76859ed1e7afccbba3b1d501"
+    }
+  ],
+  "launch_defect_record": {
+    "defect_1": "main() created the output directory for pool.json and run() created it again: FileExistsError at tick 0 (first launch attempt).",
+    "defect_2": "run() derived its own model via params('P0') while the CUDA backend was constructed from a different instance. The backend validates identity with `model is not self.source_model`, so linearisation raised CUDA_BACKEND_MODEL_IDENTITY_MISMATCH; solve()'s catch-all turned that into infinite residuals and the JSON writer then raised 'Out of range float values are not JSON compliant' (second launch attempt, 1 tick).",
+    "defect_3": "a failed solve crashed the run instead of being recorded; a non-finite solver record is now written to solver_failure.json and stops the run.",
+    "disposition": "all three fixed on 2026-09-17; verified end to end on a 3-tick segment (3 solver and 3 information records). No R5 result exists from the defective code.",
+    "precedent": "defect_2 and defect_3 are the same classes already hit and fixed in the G3 window runner on 2026-09-15."
+  }
+}

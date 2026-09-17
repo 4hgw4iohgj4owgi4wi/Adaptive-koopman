@@ -1,0 +1,19 @@
+{
+  "status": "not_applicable",
+  "reason": "at least one frozen expert class has <10 train trajectories or <2000 non-overlapping 20-step windows",
+  "coverage": {
+    "straight": {
+      "windows": 864,
+      "trajectories": 14
+    },
+    "curve": {
+      "windows": 1540,
+      "trajectories": 14
+    },
+    "transition": {
+      "windows": 1021,
+      "trajectories": 28
+    },
+    "sample_gate_pass": false
+  }
+}

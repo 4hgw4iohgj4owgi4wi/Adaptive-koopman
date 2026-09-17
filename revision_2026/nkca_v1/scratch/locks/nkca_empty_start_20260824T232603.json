@@ -1,0 +1,11 @@
+﻿{
+    "pid":  7728,
+    "phase":  "calibration",
+    "started_at":  "2026-08-24T23:26:03.2100131+08:00",
+    "branch":  "exp/no-koopman-control-v1-20260824",
+    "commit":  "f6ec9327ef84eff2ed9625d8db01ed8bceb075a8",
+    "stdout":  "D:\\EXPERIMENTS\\NKCA-v1-scratch\\calibration2.stdout.log",
+    "stderr":  "D:\\EXPERIMENTS\\NKCA-v1-scratch\\calibration2.stderr.log",
+    "launcher":  "powershell run_calibration.ps1",
+    "cuda_visible_devices":  "-1"
+}

@@ -1,0 +1,29 @@
+{
+  "timestamp_local": "2026-04-29T17:51:33",
+  "history_version": "tf12_v1",
+  "case_name": "probe_ff110",
+  "scenario_mode": "dlc",
+  "method_name": "probe_ff110",
+  "full_path_reached": true,
+  "sim_steps": 1000,
+  "step_time_mean": 0.030264976399950683,
+  "step_time_max": 0.04044040001463145,
+  "rmse_lat_mean": 0.05971154558806793,
+  "rmse_long_mean": 1.5748416374221328,
+  "max_lat_global": 0.1177824571827415,
+  "max_long_global": 2.5000981188448446,
+  "fleet_vehicle_max_abs_ey": [
+    0.07891443417615296,
+    0.11069773396241867,
+    0.06867181807219103,
+    0.1177824571827415
+  ],
+  "fleet_vehicle_max_abs_es": [
+    2.5000979999200204,
+    2.5,
+    2.5000981188448446,
+    2.5
+  ],
+  "npz_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_175133_probe_ff110_dlc_probe_ff110.npz",
+  "json_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_175133_probe_ff110_dlc_probe_ff110.json"
+}

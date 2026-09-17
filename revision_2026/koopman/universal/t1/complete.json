@@ -1,0 +1,60 @@
+{
+  "stage": "T1",
+  "accepted": false,
+  "status": "failed_full_D1_coverage",
+  "coverage": {
+    "train": {
+      "L0": 8016,
+      "L1": 3808,
+      "L2": 1398,
+      "L3": 927,
+      "L4-high": 11,
+      "R0": 88,
+      "R1": 2733,
+      "R2": 11046,
+      "R3": 2612,
+      "R4": 1019,
+      "R5": 5141,
+      "trajectories": 240
+    },
+    "validation": {
+      "L0": 2122,
+      "L1": 1036,
+      "L2": 367,
+      "L3": 249,
+      "L4-high": 2,
+      "R0": 24,
+      "R1": 745,
+      "R2": 2921,
+      "R3": 721,
+      "R4": 242,
+      "R5": 1397,
+      "trajectories": 64
+    },
+    "development-test": {
+      "L0": 2149,
+      "L1": 1023,
+      "L2": 359,
+      "L3": 235,
+      "L4-high": 10,
+      "R0": 17,
+      "R1": 782,
+      "R2": 2903,
+      "R3": 739,
+      "R4": 296,
+      "R5": 1361,
+      "trajectories": 64
+    }
+  },
+  "failures": [],
+  "downstream": {
+    "T2": "not_applicable_upstream_G1_failed",
+    "T3": "not_applicable_upstream_G1_failed",
+    "T4": "not_applicable_upstream_G1_failed",
+    "T5": "not_applicable_upstream_G1_failed",
+    "T6": "not_applicable_upstream_G1_failed",
+    "T7": "not_applicable_upstream_G1_failed",
+    "T8": "not_applicable_upstream_G1_failed",
+    "T9": "not_applicable_upstream_G1_failed"
+  }
+}

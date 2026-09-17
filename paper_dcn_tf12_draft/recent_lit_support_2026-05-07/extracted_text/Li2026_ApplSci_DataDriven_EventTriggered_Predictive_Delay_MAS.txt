@@ -1,0 +1,1066 @@
+Academic Editor: Douglas
+O’Shaughnessy
+Received: 11 January 2026
+Revised: 3 February 2026
+Accepted: 3 February 2026
+Published: 9 February 2026
+Copyright: © 2026 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license.
+Article
+Data-Driven Event-Triggered Predictive Control for Consensus of
+Discrete-Time Multi-Agent Systems with Time-Varying Delays
+Chang-Jiang Li
+ , Weifeng Xu
+ , Liang Qi *
+ , Zhaoping Du
+ , Jianzhen Li
+ and Shuxia Ye
+School of Automation, Jiangsu University of Science and Technology, Zhenjiang 212100, China;
+changjiang.li@hit.edu.cn (C.-J.L.); xuweifeng1119@stu.just.edu.cn (W.X.); duzhaoping98@163.com (Z.D.)
+* Correspondence: alfred_02030210@just.edu.cn
+Abstract
+Consensus control for discrete-time multi-agent systems is increasingly complex when
+facing unknown dynamics and time-varying communication delays. Although data-driven
+control has emerged as a powerful tool to bypass model reliance, few existing studies
+simultaneously address the challenges of delay compensation and limited communication
+bandwidth. To bridge this gap, this paper proposes a novel data-driven event-triggered
+predictive control framework. We leverage Willems’ fundamental lemma to construct a
+predictive model directly from historical data, eliminating the need for system identifica-
+tion. Furthermore, an integrated event-triggered mechanism with a dynamic threshold
+updates control signals only when necessary, effectively reducing transmission load. Theo-
+retical analysis confirms the recursive feasibility and stability of the closed-loop system,
+while simulations demonstrate that the proposed method achieves robust consensus with
+significantly reduced event-triggering frequency.
+Keywords: time-varying; data-driven; event-triggered; predictive control; consensus
+1. Introduction
+Communication delays significantly alter multi-agent system states and can induce
+complex dynamics. Olfati-Saber studied distributed consensus control in multi-agent
+systems with directed networks, analyzing protocols for fixed/switching topologies and
+time-delays while establishing connections between algebraic connectivity and system per-
+formance [1]. Li established necessary and sufficient conditions for consensus in first-order
+discrete-time multi-agent systems with communication delays, fully characterizing the
+exact consensus region in the step-size and delay parameter space [2]. Ma D. developed a
+MID-based PID control for first-order unstable delayed systems, ensuring guaranteed decay
+rate, steady-state tracking, and maximum delay robustness through a pseudo-concave
+optimization [3]. Wang proposed an event-triggered consensus control strategy for second-
+order multi-agent systems with actuator saturation and input delay, achieving exponential
+consensus via Lyapunov–Krasovskii methods and LMI-based stability analysis [4]. Ma Q.
+established the exact delay margin guaranteeing consensus in second-order multi-agent
+systems under delayed PI control and characterizes the switching behavior between consen-
+sus and non-consensus with increasing delay [5]. Yang addressed distributed optimization
+for continuous-time multi-agent systems with time-varying communication delays by
+establishing the relationship between optimal solutions and system equilibria, deriving
+both delay-dependent and delay-independent convergence conditions, and proposing a
+sampled-data communication scheme for fast-varying delays, with the theoretical results
+Appl. Sci. 2026, 16, 1723 https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 2 of 20
+supported by simulations and an application [6]. While advancements in electronic hard-
+ware continue to reduce signal transmission latency, physical delays remain inevitable
+in large-scale networked systems. Consequently, control-theoretic approaches, such as
+Event-Triggered Mechanisms (ETMs) and Model Predictive Control (MPC), have become
+indispensable for actively compensating for these time-varying delays at the algorith-
+mic level.
+With the advancement of electronic information technologies, computer science, and ar-
+tificial intelligence, the application domains of coordinated control in multi-agent systems
+have been expanding, while data-driven control strategies are continuously evolving and
+being updated. Bu proposed a distributed model-free adaptive control method for data-
+driven consensus tracking of multi-agent systems with unknown nonlinear dynamics
+under fixed and switching topologies, using only input–output data without requiring
+model information [7]. Zhou developed two data-driven optimal synchronization control
+algorithms for leader-follower multiagent systems with unknown dynamics and distur-
+bances, using output error and input data, respectively, to achieve output synchronization
+while minimizing errors and rejecting disturbances [ 8]. Zhang proposed a data-driven
+distributed optimal consensus control method for multi-agent systems with input delays,
+using a model reduction approach to transform the delayed system into a delay-free form
+and adopting neural networks to learn control policies online via adaptive dynamic pro-
+gramming [9]. Li proposed a data-driven optimal output cluster synchronization control
+method for heterogeneous multi-agent systems with disturbances, using adaptive dynamic
+programming and a distributed adaptive observer to achieve synchronization without
+knowledge of system matrices [10]. Huang proposed a model-free distributed predictive
+control scheme for nonlinear multi-agent systems under communication delays, which
+actively compensates for delays by introducing a consensus-based auxiliary variable and
+employing dynamic linearization to design a distributed controller, with its stability and
+effectiveness verified by analysis and simulation [11].
+Event-triggered control improves the consistency and efficiency of multi-agent sys-
+tems while ensuring the operational quality of the system by updating control signals.
+Dou systematically reviewed event-triggered control for multi-agent systems, focusing
+on reducing resource consumption, excluding Zeno behavior, and advances in finite-time,
+fixed-time, and prescribed-time event-triggered consensus strategies [12]. Yang proposed
+an event-triggered secure consensus control scheme for multi-agent systems under inde-
+pendent multi-channel DoS attacks, establishing sufficient conditions on attack duration
+and ensuring stability while excluding Zeno behavior [ 13]. Liu investigated consensus
+for multi-agent systems with general linear dynamics using an adaptive dynamic event-
+triggered strategy that relies only on event-triggered information to reduce communication
+and exclude Zeno behavior [14]. Dong proposed an event-triggered differentially private
+optimal consensus algorithm to protect agents’ state and cost function privacy during com-
+putation while maintaining consensus and optimizing performance [15]. Zhang studied an
+adaptive event-triggered control strategy for leader-following consensus of non-strict feed-
+back multi-agent systems subject to unknown disturbances and full-state constraints [16].
+Zhang studied consensus of multi-agent systems with time-varying delays using an event-
+triggered delayed impulsive control strategy, establishing sufficient conditions under both
+continuous and periodic event-triggered mechanisms [ 17]. Milad Abbasi proposed an
+observer-based asynchronous periodic event-triggered control scheme to achieve consen-
+sus in linear multi-agent systems under time-varying communication delays, employing
+a bank of observers to reduce communication load and deriving LMI-based stability con-
+ditions, with effectiveness validated through simulations and experiments on e-puck2
+robots [18].
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 3 of 20
+Distributed model predictive control has become one of the main methods for solving
+the coordination problems of multi-agent systems due to its ability to enable agents to
+estimate the future dynamic behaviors of their neighbors and achieve optimal control
+performance for constrained systems. Cheng addressed the discrete-time double-integrator
+consensus problem for multi-agent systems with directed switching proximity topologies
+and input constraints via model predictive control protocols that ensure stable consensus
+under directed spanning tree conditions [19]. Pang proposed an incremental networked
+predictive control scheme for linear heterogeneous multi-agent systems subject to random
+delays and packet dropouts, achieving stable cooperative output tracking with zero steady-
+state error even under plant-model mismatch [20]. Matthias Köhler studied a distributed
+MPC framework for constrained heterogeneous nonlinear multi-agent systems, achieving
+cooperative objectives through local optimization of artificial references with guaranteed
+feasibility and stability [21]. Liu proposed a high-order fully actuated (HOFA) predictive
+coordination method for networked nonlinear multi-agent systems with communication
+delays, achieving simultaneous stability and consensus while actively compensating for
+delays [22]. Su proposed a robust distributed model predictive control scheme for consensus
+tracking of linear multi-agent systems under additive disturbances and time-varying delays,
+utilizing a Lyapunov-Razumikhin-based terminal constraint set and LMI conditions to
+guarantee recursive feasibility and input-to-state stability, with an illustrative example
+verifying the approach [23].
+Research on multi-agent consensus is one of the key issues, and a solid foundation has
+been established in this area. This paper will also build upon this foundation for further
+discussion. Yang studies output consensus of heterogeneous linear multi-agent systems
+on directed graphs using a predictive event-triggered mechanism with internal reference
+models, significantly reducing communication costs while excluding Zeno behavior [24].
+Liu proposed an event-triggered predictive consensus protocol for linear discrete-time
+multi-agent systems with norm-bounded parameter uncertainties, achieving consensus
+via local state monitoring and excluding Zeno behavior under LMI-based conditions [25].
+Yin investigated a distributed adaptive event-triggered predictive control protocol for
+discrete-time multi-agent systems with communication delays, reducing network burden
+and actively compensating delays via a switched time-delay system formulation solvable
+via linear matrix inequalities [26]. Qin proposed synchronous and asynchronous distributed
+model predictive control algorithms for optimal output consensus of high-order multi-
+agent systems, allowing uncoordinated step-sizes and achieving convergence without
+global synchronization requirements [27]. Tang proposed an event-triggered distributed
+model predictive control (DMPC) approach for dynamically decoupled systems with
+coupled objectives, utilizing compatibility constraints and a stability-based triggering
+condition to reduce communication while preserving feasibility and stability [ 28]. The
+main contributions of this article are as follows:
+(1) This paper proposes a novel framework that integrates data-driven, event-triggered,
+and predictive control techniques to address the consensus problem for discrete-time
+multi-agent systems with time-varying communication delays.
+(2) Leveraging Willems’ fundamental lemma, the proposed controller design relies solely
+on a pre-collected dataset of system trajectories, eliminating the need for an explicit
+system model. This makes the approach suitable for systems with unknown or
+complex dynamics.
+(3) Rigorous theoretical analysis guarantees the framework’s Zeno-free behavior, the re-
+cursive feasibility of the control law, and the asymptotic stability of the closed-loop
+system, ensuring consensus is achieved.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 4 of 20
+(4) The effectiveness of the method is validated through simulations, which also reveal
+the dual impact of the prediction horizon (NP); a longer horizon not only enhances
+control performance (e.g., faster convergence) but also significantly reduces the total
+number of event triggers, thereby lowering communication overhead.
+This paper is organized as follows: Section 2 provides some preliminaries. Section 3
+gives the mathematical derivation and main results. Numerical examples and experimental
+verifications are proposed in Section 4. Section 5 concludes the article.
+2. Preliminaries
+Given a nonnegative adjacency matrix A ∈ R≥ 0N×N, the associated directed graph
+is denoted by G = ( V, E, A), where V = 1, 2, . . . ,N is the vertex set and E ⊆ V × V
+represents the set of directed edges such that (i, j) ∈ E iff aij > 0. The Laplacian matrix
+L of the graph G is defined as L = D − A, where D = diag(d1, d2, . . ., dN) is the degree
+matrix with di = ∑N
+j=1 aij. A fundamental property of L is that it possesses a zero row
+sum, i.e., L1N = 0N, where 1N and 0N denote the N-dimensional all-one and all-zero
+vectors, respectively.
+The graph G is said to contain a directed spanning tree if there exists at least one root
+vertex from which every other vertex is reachable via a directed path. Given a collection
+of directed graphs G1, G2, . . . ,Gk sharing the same vertex set V, their union is defined as
+the directed graph with vertex set V and edge set given byS i = 1kEi. ∥ · ∥ represents the
+corresponding Euclidean norm. In ∈ Rn×n denotes an n × n-dimensional identity matrix.
+3. Main Results
+3.1. Event-Triggered Design
+Consider a discrete-time multi-agent system composed of N agents. The dynamics of
+each agent is described by the following second-order model:
+xi(k + 1) = xi(k) + hvi(k)
+vi(k + 1) = vi(k) + hui(k)
+(1)
+where xi(k) ∈ R are the position variable of thei-th agent, vi(k) ∈ R are the velocity variable
+of the i-th agent and ui(k) ∈ R are the control input of the i-th agent. The parameter h is
+the sampling period of the discrete-time system.
+The Laplacian matrix of the graph G(A(k)) is denoted by L(k). To ensure consensus
+in system (1) under time-varying delays, a control protocol is formulated using relative
+position and velocity measurements:
+ui(k) = − ∑
+j∈Ni
+aij (k)
+
+α(xi(k − τ(k)) − xj(k − τ(k)))
++ (vi(k − τ(k)) − vj(k − τ(k)))
+ (2)
+where Ni denotes the set of neighbors of agent i, α > 0 is a control gain, and τ(k) is a
+time-varying unknown but bounded communication delay satisfying
+0 ≤ τ(k) ≤ τmax (3)
+in which 0 and τmax represent the known lower and upper bounds of the delay, respectively.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 5 of 20
+This paper aims to develop an event-triggered control strategy to achieve consensus
+in system (1) from any initial condition.
+lim
+k→∞
+∥xi(k) − xj(k)∥ = 0
+lim
+k→∞
+∥vi(k) − vj(k)∥ = 0
+(4)
+for all i, j ∈ {1, 2,· · · , N}
+To reduce unnecessary communication, an event-triggered mechanism is introduced in
+this paper. Under this mechanism, each agent i broadcasts its current state to its neighbors
+only when a specific triggering condition is satisfied. The discrete time instants at which
+these triggers occur form a sequence. The timestamp of the s-th event trigger for agent i is
+denoted by ti
+s, and thus the complete sequence of its triggering instants can be represented
+as{ti
+1, ti
+2, · · · , ti
+s}.
+Between two consecutive triggering instants (e.g., ti
+s and ti
+s+1), that is, for k ∈
+ti
+s, ti
+s+1 − 1
+
+, agent i’s neighbors continuously use the state information broadcast at time
+ti
+s. To mathematically formalize this, the latest triggering instant at any time step k is
+defined as follows:
+ˆki(k) ≜ max
+s∈N+
+{ti
+s|ti
+s ≤ k} (5)
+To streamline the subsequent derivation, the symbolˆki is substituted for ˆki(k). The mea-
+surement error of agent i at time k is defined as the difference between its current state and
+the most recent state:
+ex,i(k) = xi(ˆki) − xi(k)
+ev,i(k) = vi(ˆki) − vi(k)
+(6)
+Let ˆxi(k) = xi(ˆki) and ˆvi(k) = vi(ˆki). Under the event-triggered mechanism, control
+protocol (2) is modified to
+ui(k) = − ∑
+j∈Ni
+aij (k)
+
+α( ˆxi(k − τ(k)) − ˆxj(k − τ(k)))
++ ( ˆvi(k − τ(k)) − ˆvj(k − τ(k)))
+ (7)
+The local neighborhood error for agent i is defined as follows:
+ζi(k) = − ∑
+j∈Ni
+aij (k)
+
+α(xi(k) − xj(k)) + (vi(k) − vj(k))
+
+(8)
+To formulate a fully distributed triggering condition that relies only on locally available
+information, it defines an estimated neighborhood error based on the last broadcasted
+states from neighbors:
+ˆζi(k) = − ∑
+j∈Ni
+aij (k)
+
+α( ˆxi(k) − ˆxj(k)) + ( ˆvi(k) − ˆvj(k))
+
+(9)
+The measurement error vector is defined as
+ei(k) =
+h
+αeT
+x,i(k) eT
+v,i(k)
+iT
+(10)
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 6 of 20
+The sequence of triggering instants {ti
+s} is recursively generated according to the
+following rule. Given the s-th triggering instant ti
+s, the next triggering instant ti
+s+1 is
+determined as follows:
+ti
+s+1 = min
+n
+k > ti
+s | fi(k) > 0
+o
+(11)
+where the event-triggering function fi(k) is designed as follows:
+fi(k) = ∥ei(k)∥2 − σi∥ ˆζi(k − τ(k))∥2 − ciρk (12)
+and 0 < σi < 1 is an adjustable parameter, ci > 0 is a positive constant, and ρ ∈ (0, 1)
+denotes a decay rate.
+It is important to clarify how the system ensures the validity of the control signals
+despite relying on discontinuous updates. The use of the last broadcast state ˆxj(k) effec-
+tively functions as a Zero-Order Hold (ZOH) mechanism for inter-agent communication.
+Although this introduces a discrepancy (defined as the measurement error ei(k)) between
+the broadcast value and the actual real-time state, this error is not arbitrary. The correctness
+of the scheme is actively guaranteed by the event-triggering condition (12). This condition
+serves as a dynamic bounding constraint: it enforces that the measurement error ei(k) re-
+mains strictly within a permissible range governed by the threshold functionσi|| ˆζi||2 + ciρk.
+Consequently, the information used by neighbors is mathematically guaranteed to be a
+sufficiently accurate approximation of the true state to maintain system stability, as any
+deviation exceeding this safety margin will instantaneously trigger a state update.
+It is worth noting that the event-triggering threshold is not a fixed constant but a
+dynamically vanishing quantity, which is crucial for achieving asymptotic consensus rather
+than merely bounded consensus. The threshold consists of two components: a state-
+dependent term, σi∥ ˆζi(k − τ(k))∥2, and a time-dependent term ciρk. As the closed-loop
+system stabilizes, the neighborhood consensus error ˆζi converges to zero, causing the
+state-dependent term to vanish. Simultaneously, the time-dependent term deterministically
+decays to zero as k → ∞ due to ρ ∈ (0, 1). This vanishing threshold design compels the
+measurement error ei(k) to also converge to zero, thereby enabling the system to achieve
+precise asymptotic consensus.
+Theorem 1. The parameters of the event-triggered mechanism are chosen within the following
+ranges: ci > 0, ρ ∈ (0, 1), ensuring that the system can avoid Zeno behavior.
+Proof of Theorem 1. There exists a positive lower bound on the time interval between ti
+s
+and ti
+s+1.
+Let Ti
+s = ti
+s+1 − ti
+s denote the inter-event time between the s-th triggering instants of
+agent i. It is necessary to prove that there exists a constant Tmin > 0, independent of s and i,
+such that Ti
+s > Tmin for all s,i.
+Consider an arbitrary triggering instant, denoted aski
+s. By definition, the measurement
+error is reset to zero at this instant, i.e., ei(ti
+s) = 0. To analyze the evolution of the error
+between two consecutive triggering instants ti
+s and ti
+s+1, it considers any time step k
+satisfying ti
+s ≤ k ≤ ti
+s+1 − 1. Within this specific interval, the value of the latest triggering
+instant ˆki for the error terms ei(k) and ei(k + 1) remains fixed at ti
+s. Consequently, the one-
+step difference of the error can be analyzed as follows:
+At any time instant k > ti
+s, consider the one-step difference of the error vector:
+ei(k + 1) − ei(k) =
+"
+α(ex,i(k + 1) − ex,i(k))
+ev,i(k + 1) − ev,i(k)
+#
+(13)
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 7 of 20
+The validity of the following one-step error derivation is restricted to the interval be-
+tween two triggering instants. Specifically, for any time stepk within the range
+
+ti
+s, ti
+s+1 − 1
+
+,
+the latest triggering instant used to define the error is invariant and equal to ti
+s. Based
+on Definition (6) of the measurement error and System (1), the following expression can
+be derived:
+ex,i(k + 1) − ex,i(k) =( xi(ti
+s) − xi(k + 1)) − (xi(ti
+s) − xi(k))
+=xi(k) − xi(k + 1) − hvi(k)
+ev,i(k + 1) − ev,i(k) =( vi(ti
+s) − vi(k + 1)) − (vi(ti
+s) − vi(k))
+=vi(k) − vi(k + 1) − hui(k)
+(14)
+The error vector can be represented in the form of
+ei(k + 1) = ei(k) − h
+"
+αvi(k)
+ui(k)
+#
+(15)
+By applying the triangle inequality, an upper bound on the norm can be obtained
+as follows:
+∥ei(k + 1)∥ ≤ ∥ ei(k)∥ + h
+
+"
+αvi(k)
+ui(k)
+# (16)
+The existence of this bound is guaranteed by the controller design itself: the inputui(k)
+is inherently bounded by constraint (C2) in (25), which, for a finite initial state, ensures
+the state trajectory remains bounded over any finite time interval, including
+
+ti
+s, ti
+s+1
+
+.
+This implies that there exists a positive constant Mi such that for all k, the following
+inequality holds:
+h
+
+"
+αvi(k)
+ui(k)
+# ≤ Mi (17)
+Beginning at k = ki
+s, ∥ei(ti
+s)∥ = 0, successive application of the above inequality over
+∆k iterations yields the following:
+∥ei(ki
+s + ∆k)∥ ≤
+∆k−1
+∑
+i=0
+Mi = ∆k · Mi (18)
+The next triggering instant ki
+s+1 is defined as the first time instant after ti
+s at which the
+triggering condition is satisfied. According to the triggering function fi(k), this condition is
+given by the following:
+∥ei(k)∥2 > σi∥ ˆζi(k − τ(k))∥2 + ciρk (19)
+At the triggering instant ti
+s+1, the following condition must be satisfied: ∥ei(ti
+s+1)∥2 >
+ciρti
+s+1
+Let ∆k = Ti
+s = ti
+s+1 − ti
+s. By integrating the above-derived upper bound on the error
+growth, it follows that
+(∆k · Mi)2 ≥ ∥ei(ti
+s + ∆k)∥2 = ∥ei(ti
+s+1)∥2 > ciρti
+s+1 (20)
+A lower bound for ∆k can be explicitly solved:
+∆k >
+q
+ciρti
+s+1
+Mi
+(21)
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 8 of 20
+Since ci > 0 and ρ ∈ (0, 1), the right-hand side remains strictly positive. Consequently,
+the minimum time interval between two consecutive triggering events, denoted by Tmin, is
+strictly greater than zero. This guarantees that the number of triggering events within any
+finite time period is finite, thereby effectively excluding Zeno behavior.
+3.2. Data-Driven Predictive Model Construction
+The primary predictive technique employed in this study is a Data-Driven Model
+Predictive Control (DDMPC) framework, mathematically founded on Willems’ Funda-
+mental Lemma. Unlike traditional identification-based methods, this approach utilizes a
+subspace-based representation, where historical input-state data is organized into Hankel
+matrices. This structure enables the direct prediction of future system trajectories from
+pre-collected data without the explicit identification of parametric state-space matrices.
+Guided by this theory, an offline data-collection experiment is first conducted.
+The fundamental lemma by Willems states that any trajectory generated by a linear
+time-invariant (LTI) system lies in the linear span of a sufficiently rich set of previously
+collected “basis trajectories” from the same system [29]. This theory enables the prediction
+of the system’s future behavior based solely on historical data.
+Guided by the aforementioned theory , an offline data-collection experiment is first con-
+ducted in this work. Specifically , a persistently exciting input sequenceu(0), u(1), · · · , u(T − 1)
+is applied to a single-agent system, and the corresponding state sequenceξ(0), ξ(1), · · · , ξ(T − 1)
+is recorded simultaneously .
+The collected one-dimensional time-series data is structured into two-dimensional
+Hankel matrices using a sliding window technique. Since the state vector ξ(k) =h
+x(k)T, v(k)T
+iT
+∈ R2n is 2n-dimensional and the input ui(k) ∈ R is n-dimensional, the in-
+put Hankel matrix Udata ∈ RL×c and the state Hankel matrix Ξdata ∈ R2L×c are constructed
+as follows:
+Udata =
+
+
+u(0) u(1) · · · u(T − L)
+u(1) u(2) · · · u(T − L + 1)
+... ... ... ...
+u(L − 1) u(L) · · · u(T − 1)
+
+
+(22)
+Ξdata =
+
+
+ξ(0) ξ(1) · · · ξ(T − L)
+ξ(1) ξ(2) · · · ξ(T − L + 1)
+... ... ... ...
+ξ(L − 1) ξ(L) · · · ξ(T − 1)
+
+
+(23)
+where c = T − L + 1 is the number of columns, representing the number of valid basis
+trajectories extracted from data of total length T.
+A core assumption of this work is that all agents in the multi-agent network share
+identical linear time-invariant (LTI) dynamics. Therefore, data collected offline from a
+single agent is sufficient to describe the behavior of any agent in the network.
+To construct the predictive model, we partition the Hankel matrices row-wise. Let
+TP be the length of the past data window and NP be the prediction horizon, such that
+L = TP + NP. It partitions Ξdata into two blocks: ΞP ∈ R2TP×c, formed by the first 2TP rows,
+representing past state trajectories; and Ξ f uture ∈ R2NP×c, formed by the subsequent 2NP
+rows, representing future state trajectories. Similarly, U f uture ∈ RNP×c is formed by the last
+NP rows of Udata .
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 9 of 20
+According to Willems’ fundamental lemma [29], for any agent i, any valid trajectory
+starting from its current state ξi(k) is guaranteed to have a unique coefficient vector gi ∈ Rc
+that satisfies the following relation:
+
+
+ξi,init
+ui, f uture
+ξi, f uture
+
+ =
+
+
+ΞP
+U f uture
+Ξ f uture
+
+gi (24)
+where the initial state constraint is ξi,init = ξi(k), ui, f uture and ξi, f uture are the future input
+and state sequences over the prediction horizon NP.
+Remark 1. Theoretically, the validity of the data-driven representation relies on the Persistency of
+Excitation (PE) of the offline input sequence. In our implementation, we ensure that the offline con-
+trol input udata is persistently exciting of order L, guaranteeing that the Hankel matrix HL(udata )
+has full row rank. Furthermore, to handle potential measurement noise and avoid numerical ill-
+conditioning, Tikhonov regularization is employed in the optimization formulation. By penalizing
+the norm of the coefficient vector g (i.e., adding a term λg∥g∥2 to the cost function), we relax the
+rigid equality constraints. This regularization acts as a robustness margin, ensuring that the solver
+finds a smooth control solution even when the data is corrupted by mild noise.
+3.3. Input-Constrained Model Predictive Control Formulation
+At each triggering instant k for agent i, its optimal control policy is determined by
+solving a data-driven finite-horizon optimization problem, which is formulated as follows:
+g∗
+i (k) = arg min
+gi∈Rc
+Ji(gi, k)
+Objective Function: Ji(gi, k):
+Ji(gi, k) =
+NP−1
+∑
+l=0
+
+∑
+j∈Ni
+∥ξ pred
+i,l (gi) − ˆξτ(k)
+j,l (gi)∥2
+Q + ∥upred
+i,l (gi)∥2
+R
+
+(25)
+s.t.ξi(k) = Ξi,Pgi (C1)
+umin ≤ upred
+i,l (gi) ≤umax , ∀l ∈ 0, · · · , NP − 1 (C2)
+∑j∈Ni ∥ξ pred
+i,l (gi) − ˆξτ(k)
+j,l (k)∥2
+Q represents the consensus cost term, which serves as the core
+mechanism for driving the system toward consensus. It penalizes deviations between the
+planned trajectory of agent i and the time-delayed planned trajectories of its neighbors j.
+By minimizing this cost, the controller proactively computes a future path that reduces
+discrepancies with neighboring agents. ∥upred
+i,l (gi)∥2
+R represents the control effort cost,
+which quantifies the physical energy or resources required to execute the control actions.
+This term ensures the uniqueness and smoothness of the solution to the optimization
+problem. The weighting matrices Q ≥ 0 (positive semi-definite) and R > 0 (positive
+definite) are design parameters.
+At the triggering instant k, agent i computes the complete optimal future control
+sequence ui(k|k) =
+h
+u∗
+i,0, u∗
+i,1, · · · , u∗
+i,Np−1
+iT
+. However, the entire sequence is not imple-
+mented; instead, the agent applies only the first control input u∗
+i,0 from this sequence to
+the system. Upon the arrival of the subsequent triggering instant k′, agent i first measures
+its new current state ξi(k′) and then repeats the entire optimization procedure described
+above to compute a new optimal control sequence based on the updated information.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 10 of 20
+Remark 2. Although the presented framework focuses on homogeneous linear systems, it offers
+broad extensibility. For heterogeneous agents, the consensus protocol remains valid by simply
+constructing individual Hankel matrices from agent-specific datasets. For mild model mismatches
+or data noise, the proposed controller exhibits inherent robustness due to the receding horizon
+mechanism, which actively compensates for prediction errors via real-time state feedback updates.
+Future work will further explore extensions to nonlinear dynamics, potentially by integrating
+Koopman operator theory.
+3.4. Implementation Procedure
+To facilitate the practical application of the proposed theoretical framework, the com-
+plete execution workflow of the Data-Driven Event-Triggered Predictive Control (DD-
+ETPC) strategy is summarized in Table 1. This procedure delineates the offline data
+processing phase and the online recursive control loop.
+Table 1. Data-driven event-triggered predictive control strategy.
+Require: Pre-collected dataset {udata , ξdata }; Weighting matrices Q, R; Parameters
+σi, ci, ρ; Prediction horizon NP.
+1. Offline Phase:
+Construct Hankel matrices UP, U f uture, ΞP, Ξ f uture using (22) and (23) based on the
+sliding window technique.
+2. Online Phase:
+For time instant k = 0, 1, 2, . . .do
+For each agent i ∈ {1, . . . ,N} do
+Measure current state ξi(k) and compute measurement error ei(k) via (6).
+Check event-triggering condition: Is Equation (12) satisfied?
+If condition is satisfied (fi(k) > 0) then
+Update triggering instant ti
+s ← k.
+Broadcast current state ˆξi(k) to neighbors.
+Solve Optimization Problem (25) to find optimal coefficient vector g∗
+i .
+Compute optimal control input ui(k) = u∗
+i,0 from the sequence.
+Apply ui(k) to the system.
+Else
+Maintain silence (no broadcast).
+Apply control input based on the tail of the previous sequence.
+End If
+End For
+System state evolves to k + 1.
+End For
+3.5. Convergence Analysis for Multi-Agent Consensus
+Assumption 1. The communication graph among the agents is assumed to be strongly connected
+and permanently contain a directed spanning tree.
+Theorem 2. The following proof of recursive feasibility relies on the standard assumption that the in-
+put constraint set is admissible for a zero control input, i.e.,umin ≤ 0 ≤ umax . Under Assumptions 1,
+the closed-loop control system(1)—composed of the Objective Function(25) and the event-triggering
+mechanism(12)—is asymptotically stable, and all agents achieve asymptotic consensus.
+Proof of Theorem 2. This proof requires demonstrating recursive feasibility and asymp-
+totic stability.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 11 of 20
+First, recursive feasibility is considered. Using mathematical induction, we demon-
+strate that if the optimization problem is feasible at a triggering instantk, it remains feasible
+at the next triggering instant k′.
+Assume that at triggering instant k, agent i successfully solves the optimization prob-
+lem, obtaining the optimal solution g∗
+i (k) and the corresponding optimal control sequence
+u∗
+i (k|k). Considering the subsequent triggering instant k′ for agent i, we construct a candi-
+date control sequence ucand
+i (k′|k′), which consists of the tail portion of the optimal sequence
+from time k and a zero control input:
+ucand
+i (k′ + l|k′) =
+
+
+
+u∗
+i (k + l + 1|k), l = 0, . . . ,Np − 2
+0, l = Np − 1
+This candidate control sequence, driving the system starting from the actual state
+ξi(k′), forms a valid system trajectory. By the existence of the data-driven representation,
+there is guaranteed to exist a coefficient vectorgcand
+i (k′) capable of generating this trajectory
+and satisfying the initial state constraint ξi(k′) = Ξi,init gcand
+i (k′).
+For the first NP − 1 elements of the sequence l = (0, · · · , Np − 2), we have ucand
+i (k′ +
+l|k′). By the inductive hypothesis, these control inputs form part of the optimal sequence
+computed at time k. Hence, they already satisfy the input constraints, i.e., umin ≤ ucand
+i (k′ +
+l|k′) ≤ umax
+For the final element of the sequence (l = NP − 1), we have ucand
+i (k′ + Np − 1|k′) = 0.
+According to C2, the zero control input also satisfies the constraints, i.e., umin ≤ 0 ≤ umax
+Thus, a candidate vector gcand
+i (k′) has been constructed for the optimization problem at
+time k′, which satisfies all constraints. Therefore, if the problem is feasible at time k, it must
+also be feasible at time k′. Recursive feasibility of the optimization problem is guaranteed.
+Define the Lyapunov function candidate for the multi-agent system as the summation
+of the individual optimal cost functions of all agents:
+V(k) =
+N
+∑
+i=1
+J∗
+i (ˆki)
+where J∗
+i (ˆki) denotes the optimal cost value obtained by agent i by solving optimization
+problem at its most recent triggering instant ˆki ≤ k. Since the stage cost is nonnegative, it
+follows that V(k) ≥ 0. Consider agent i, which is triggered at time instant k′ (its previous
+triggering instant being k). By the principle of optimality, have J∗
+i (k′) ≤ Ji(gcand
+i (k′))
+The relationship between the cost of the candidate solution and the optimal cost from
+the previous time step is given by:
+Ji(gcand
+i (k′)) = J∗
+i (k) − Li(k) + Li(ξ∗
+i (k + NP|k), 0,k′)
+where Li(k) = ∑j∈Ni ∥ξi(k) − ˆξj(k − τ(k))∥2
+Q + ∥ui(k)∥2
+R denotes the actual stage cost
+incurred at time k. This yields the evolution of the Lyapunov function over one trigger-
+ing interval:
+J∗
+i (k′) − J∗
+i (k) ≤ − Li(k) + Li(ξ∗
+i (k + NP|k), 0,k′)
+The variation of the global Lyapunov function at time instant k satisfies the follow-
+ing relation:
+V(k′) − V(k) ≤ − Li(k) + Li(ξ∗
+i (k + NP|k), 0,k′) (26)
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 12 of 20
+Summing both sides of Inequality (26) from the initial triggering instant k0 to an
+arbitrary subsequent triggering instant kM, and denoting the sequence of triggered agents
+during this process as i0, i1, · · · , iM−1, yields the following cumulative relation:
+M−1
+∑
+s=0
+[V(ts+1) − V(ts)] ≤ −
+M−1
+∑
+s=0
+Lis (ts) +
+M−1
+∑
+s=0
+Lis (ξ∗
+is (ts + NP|ts), 0,ts+1) (27)
+Rearranging the inequality yields the following:
+M−1
+∑
+s=0
+Lis (ts) ≤V(t0) − V(tM) +
+M−1
+∑
+s=0
+Lis (ξ∗
+is (ts + NP|ts), 0,ks+1) (28)
+where V(t0) denotes the system’s initial optimal cost, which is a finite and positive quantity.
+Given that J∗
+i ≥ 0 is satisfied, it concludes that −V(tM) ≤ 0.
+Since the system input ui(k) is always constrained within the interval [umin, umax ],
+and the system is stabilizable, it follows that the state trajectory ξi(k) is guaranteed to be
+bounded provided that the initial state is bounded. Consequently, the value of the stage
+cost function Li(ξ, u, k) must also lie within a finite range.
+The objective of the MPC controller is to minimize the cumulative cost over the
+prediction horizon of NP steps. To achieve this, the controller must drive the system state
+toward regions with lower cost within the prediction horizon. If the prediction horizon
+NP is sufficiently long, the terminal state of the optimal trajectory, ξ∗
+is (ts + NP|ts) will
+lie in close proximity to the consensus state. Consequently, the value of the cost term
+Lis (ξ∗
+is (ts + NP|ts), 0,ts+1) will be significantly small.
+Moreover, since {Lis (ts)} constitutes a sequence of nonnegative terms whose partial
+sums are bounded, it follows from the convergence criterion for nonnegative series that
+∞
+∑
+s=0
+Lis (ts) < ∞ (29)
+According to the necessary condition for the convergence of a series—that its general
+term must tend to zero—the following can be concluded:
+lim
+k→∞
+Li(k) = 0, ∀i ∈ {1, · · · , N} (30)
+This result is the cornerstone of the consensus proof. Based on the fact that Li(k) → 0
+and that the weighting matrices Q and R are positive definite, two key preliminary results:
+(1) The control inputs converge to zero: lim
+k→∞
+ui(k) = 0
+(2) The state of agent i converges to the last broadcasted state of its neighbors:
+lim
+k→∞
+∥ξi(k) − ˆξj(k − τ(k))∥ = 0, ∀j ∈ Ni.
+First, velocity consensus is proven. From result (1), the velocity dynamics vi(k + 1) =
+vi(k) + hui(k) imply that lim
+k→∞
+∥vi(k + 1) − vi(k)∥ = 0. This shows that for each agent,
+the velocity sequence {ui(k)} is a Cauchy sequence, which guarantees its convergence to a
+constant value. A critical property of a convergent sequence is that for any bounded interval,
+such as the delay τ(k), the difference between terms also vanishes, i.e., lim
+k→∞
+∥vj(k) − vj(k −
+τ(k))∥ = 0.
+Furthermore, as the system stabilizes, the state-dependent part of the event-triggering
+threshold, ˆζi converges to zero, and the time-dependent term ciρk also decays to zero. Since
+Zeno’s behavior is excluded (Theorem 1), the inter-event times are strictly positive. This is
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 13 of 20
+only possible if the measurement error that drives the trigger also converges to zero. Thus,
+it holds that lim
+k→∞
+∥ej(k)∥ = lim
+k→∞
+∥ ˆξj(k) − ξj(k)∥ = 0 for all agents.
+Now, consider the triangle inequality:
+∥ξi(k) − ξj(k−τ(k))∥ ≤ ∥ ξi(k) − ˆξj(k − τ(k))∥
++ ∥ ˆξj(k − τ(k) − ξj(k − τ(k))∥
+The first term on the right-hand side converges to zero due to result (2). The sec-
+ond term is the measurement error ∥ej(k − τ(k))∥, which also converges to zero. This
+definitively proves that lim
+k→∞
+∥ξi(k) − ξj(k − τ(k))∥ = 0.
+Finally , velocity consensus is proven using another application of the triangle inequality:
+∥vi(k) − vj(k)∥ ≤∥ vi(k) − vj(k − τ(k))∥ + ∥vj(k − τ(k)) − vj(k)∥
+As shown above, both terms on the right-hand side converge to zero. This leads
+directly to the conclusion of velocity consensus across all neighbors. By Assumption 1, this
+extends to the entire network:
+lim
+k→∞
+∥vi(k) − vj(k)∥ = 0
+Since lim
+k→∞
+ui(k) = 0 and measurement errors vanish, it is implied that the neighbor-
+hood error lim
+k→∞
+ζi(k) = 0. From the definition of ζi(k) in (8):
+lim
+k→∞ ∑
+j∈Ni
+aij (k)
+ 
+α(xi(k) − xj(k)) + (vi(k) − vj(k))
+
+= 0
+Given that the velocity difference term converges to zero, the equation simplifies to
+lim
+k→∞ ∑
+j∈Ni
+aij (k)
+ 
+α(xi(k) − xj(k))
+
+= 0
+This expression indicates that the vector of position differences lies in the null space
+of the graph Laplacian. Under Assumption 1, the null space is spanned by the vectorh
+1, 1, · · · , 1
+iT
+. This condition can only be satisfied if all position differences are zero.
+Therefore, position consensus is achieved:
+lim
+k→∞
+∥xi(k) − xj(k)∥ = 0
+Thus, the asymptotic consensus of the system state is proven.
+It is worth noting that data-driven approaches must contend with empirical factors
+characterized by high variance, such as measurement noise or unmodeled disturbances.
+The proposed framework inherently handles these fluctuations through the receding hori-
+zon principle and the event-triggered mechanism. Specifically, at each triggering instant k,
+the optimization problem (25) is solved based on the current actual state feedback ξi(k),
+rather than relying solely on open-loop predictions. This feedback loop allows the con-
+troller to compensate for accumulated deviations caused by data variance. Furthermore,
+the event-triggering condition (12) acts as a dynamic supervisor: if high variance leads to a
+sudden increase in the measurement error ei(k) that exceeds the threshold, the mechanism
+forces an immediate update of the control input. This ensures that the system maintains
+robust consensus performance even in the presence of fluctuating empirical factors.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 14 of 20
+4. Numerical Examples
+In this section, a set of comparative experiments is conducted to validate the effective-
+ness of the proposed theory through simulations. The system model is constructed based
+on Equation (1), with the time delay set to 0 < τ(k) < 3. The initial states and velocities of
+the multi-agent system are configured as x1(0) = 0, x2(0) = 2, x3(0) = 5, x4(0) = −1 and
+v1(0) = 5, v2(0) = 3, v3(0) = −5, v4(0) = −2, respectively. Furthermore, the communica-
+tion topology is designed as follows:
+A =
+
+
+0 1 0 0
+0 0 1 0
+0 0 0 1
+1 0 0 0
+
+
+In this example, the parameters are selected as follows: h = 0.01, α = 0.9, σi =
+0.02, ci = 0.1, ρ = 0.99. Figures 1–3 present the simulation outcomes for the agent positions,
+velocities, and event-triggering instants under a prediction horizon of NP = 10. Figures 4–6
+show the simulation results obtained with a prediction horizon NP = 20, including the evo-
+lution of multi-agent positions, velocities, and the corresponding event-triggering instants.
+Figures 7–9 depict the simulation results for a prediction horizon ofNP = 30, demonstrating
+the resulting multi-agent position/velocity profiles and the event-triggering behavior.
+Figure 1. The positions of all agents (NP = 10).
+Figure 2. Velocity trajectories of all agents with prediction horizon (NP = 10).
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 15 of 20
+Figure 3. The triggering instants of all agents (NP = 10).
+Figure 4. The positions of all agents (NP = 20).
+Figure 5. Velocity trajectories of all agents with prediction horizon (NP = 20).
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 16 of 20
+Figure 6. The triggering instants of all agents (NP = 20).
+Figure 7. The positions of all agents (NP = 30).
+Figure 8. Velocity trajectories of all agents (NP = 30).
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 17 of 20
+Figure 9. The triggering instants of all agents (NP = 30).
+The results confirm that the proposed control protocol successfully drives all agents to
+achieve consensus in both position and velocity for all tested prediction horizons. A longer
+prediction horizon yields superior control performance. As NP increases from 10 to 30,
+the system exhibits a faster convergence speed and smaller overshoots, as visually demon-
+strated in the position and velocity trajectory plots. A critical finding is the inverse relation-
+ship between the prediction horizon length and the communication frequency. As shown
+in the comparative bar chart Figure 10, increasing NP significantly reduces the total number
+of event triggers for every agent.
+Figure 10. Comparison of the event-triggering frequency of the multi-agent system under different
+prediction horizons NP.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 18 of 20
+5. Conclusions
+To further evaluate the proposed framework, it is essential to discuss the results in
+relation to existing methodologies reported in the literature [7,30].
+Comparison with Model-Based Strategies: Traditional event-triggered consensus
+protocols, such as those reviewed in [30], typically rely on accurate system matrices (A, B) to
+compute control laws. While effective under ideal conditions, their performance degrades
+significantly when parametric uncertainties or modeling errors exist. In contrast, our
+DD-ETPC framework leverages Willems’ fundamental lemma to generate control actions
+directly from data, effectively eliminating the sensitivity to modeling mismatches.
+Comparison with Standard Data-Driven Methods: Although other data-driven ap-
+proaches (e.g., [7]) avoid model reliance, they often lack an explicit mechanism to compen-
+sate for time-varying communication delays. Our method distinguishes itself by integrating
+Predictive Control. The receding horizon mechanism allows agents to predict future states
+and actively compensate for delays during transmission gaps, ensuring smoother conver-
+gence and higher stability margins compared to non-predictive schemes.
+Furthermore, the inherent robustness of the proposed predictive framework against
+time-varying delays suggests its potential applicability in enhancing the security of multi-
+agent systems against availability attacks, such as DoS jamming. This paper has presented
+a systematic investigation into the consensus control of discrete-time multi-agent systems
+subject to time-varying delays. Addressing the specific research objectives outlined in the
+Introduction, the primary contributions and findings are summarized as follows:
+(1) First, we have established a robust data-driven event-triggered predictive control
+framework. By seamlessly integrating predictive control with an event-triggered
+mechanism, this architecture effectively mitigates the adverse effects of unknown
+system dynamics and time-varying communication delays, ensuring reliable consensus
+under resource-constrained conditions.
+(2) Second, distinct from traditional model-based paradigms, our approach utilizes
+Willems’ fundamental lemma to construct predictive models directly from histori-
+cal input-state trajectories. This methodology circumvents the need for explicit system
+identification, thereby enhancing the system’s adaptability to complex or hard-to-
+model environments.
+(3) Third, rigorous theoretical analysis has substantiated the recursive feasibility of the
+proposed optimization algorithm and the asymptotic stability of the closed-loop sys-
+tem. Crucially, we have mathematically derived a positive lower bound for inter-event
+times, guaranteeing the exclusion of Zeno behavior and ensuring the physical imple-
+mentability of the controller.
+(4) Finally, extensive numerical simulations have validated the efficacy of the proposed
+strategy. The results explicitly elucidate the dual impact of the prediction horizon (NP):
+a larger horizon not only accelerates consensus convergence but also significantly
+suppresses the frequency of event triggers, revealing a quantifiable trade-off between
+computational foresight and communication overhead.
+Author Contributions: Conceptualization: C.-J.L.; Methodology: C.-J.L. and W.X.; Software: C.-J.L.
+and W.X.; Validation: L.Q., Z.D., and J.L.; Investigation: L.Q., Z.D., and J.L.; Resources: C.-J.L.;
+Writing—original draft preparation: C.-J.L. and W.X.; Writing—review and editing: C.-J.L., W.X., and
+L.Q.; Visualization: W.X.; Project administration: C.-J.L. and S.Y.; Funding acquisition: C.-J.L. All
+authors have read and agreed to the published version of the manuscript.
+Funding: This work is supported in part by the National Science Foundation of China under grant
+No. 62441308.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 19 of 20
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Not applicable.
+Data Availability Statement: No new data were created or analyzed in this study.
+Conflicts of Interest: The authors declare no conflicts of interest.
+Nomenclature
+Symbol Description
+N Number of agents in the system
+G, L, A Communication graph, Laplacian matrix, and adjacency matrix
+xi(k), vi(k) Position and velocity of agent i at time step k
+ui(k) Control input of agent i
+τ(k) Time-varying communication delay
+ei(k) Measurement error at time k
+tis The s-th triggering instant for agent i
+NP Prediction horizon length
+Q, R Positive definite weighting matrices for state and input
+Ji(gi, k) Cost function for the predictive optimization problem
+References
+1. Olfati-Saber, R.; Murray, R.M. Consensus problems in networks of agents with switching topology and time-delays.IEEE Trans.
+Autom. Control 2004, 49, 1520–1533.
+2. Li, X.; Liu, J.C.; Li, X.G. Consensus of first-order discrete-time multi-agent systems with time delays. J. Frankl. Inst. 2019, 356,
+5315–5331.
+3. Ma, D.; Boussaada, I.; Chen, J.; Bonnet, C.; Niculescu, S.I.; Chen, J. PID control design for first-order delay systems via MID pole
+placement: Performance vs. robustness. Automatica 2022, 137, 110102.
+4. Wang, J.; Luo, X.; Yan, J.; Guan, X. Event-triggered consensus control for second-order multi-agent system subject to saturation
+and time delay. J. Frankl. Inst. 2021, 358, 4895–4916.
+5. Ma, Q.; Xu, S. Consensus switching of second-order multiagent systems with time delay. IEEE Trans. Cybern. 2022, 52, 3349–3353.
+6. Yang, S.; Liu, Q.; Wang, J. Distributed optimization based on a multiagent system in the presence of communication delays. IEEE
+Trans. Syst. Man Cybern. Syst. 2016, 47, 717–728.
+7. Bu, X.; Hou, Z.; Zhang, H. Data-Driven Multiagent Systems Consensus Tracking Using Model Free Adaptive Control. IEEE Trans.
+Neural Netw. Learn. Syst. 2018, 29, 1514–1524.
+8. Zhou, Y.; Li, D.; Gao, F. Data-Driven Optimal Synchronization Control for Leader-Follower Multiagent Systems.IEEE Trans. Syst.
+Man Cybern. Syst. 2023, 53, 495–503.
+9. Zhang, H.; Yue, D.; Dou, C.; Zhao, W.; Xie, X. Data-Driven Distributed Optimal Consensus Control for Unknown Multiagent
+Systems With Input-Delay. IEEE Trans. Cybern. 2019, 49, 2095–2105.
+10. Li, H.; Wei, Q. Data-Driven Optimal Output Cluster Synchronization Control of Heterogeneous Multi-Agent Systems. IEEE Trans.
+Autom. Sci. Eng. 2024, 21, 3910–3920.
+11. Huang, Y.; Liu, G.P .; Yu, Y.; Hu, W. Data-driven distributed predictive tracking control for heterogeneous nonlinear multiagent
+systems with communication delays. IEEE Trans. Autom. Control 2024, 69, 4786–4792.
+12. Dou, Y.; Xing, G.; Ma, A.; Zhao, G. A review of event-triggered consensus control in multi-agent systems. J. Control Decis. 2025,
+12, 1–23.
+13. Yang, Y.; Li, Y.; Yue, D. Event-trigger-based consensus secure control of linear multi-agent systems under DoS attacks over
+multiple transmission channels. Sci. China Inf. Sci. 2020, 63, 150208.
+14. Liu, K.; Ji, Z. Dynamic Event-Triggered Consensus of General Linear Multi-Agent Systems With Adaptive Strategy.IEEE Trans.
+Circuits Syst. II Express Briefs 2022, 69, 3440–3444.
+15. Dong, T.; Zhu, H.; Hu, W. Event-trigger optimal consensus for multi-agent system subject to differential privacy.Int. J. Control
+Autom. Syst. 2021, 19, 2940–2949.
+16. Zhang, X.Z.; Lan, J.; Liu, Y.J.; Liu, L. Adaptive event-triggered control of multi-agent systems with state constraints and unknown
+disturbances. IET Control Theory Appl. 2021, 17, 2171–2182.
+17. Zhang, W.; Chen, J.; Wen, S.; Huang, T. Event-Triggered Random Delayed Impulsive Consensus of Multi-Agent Systems With
+Time-Varying Delay.IEEE Trans. Emerg. Top. Comput. Intell. 2025, 9, 2059–2064.
+https://doi.org/10.3390/app16041723
+
+Appl. Sci. 2026, 16, 1723 20 of 20
+18. Abbasi, M.; Marquez, H.J. Observer-based event-triggered consensus control of multi-agent systems with time-varying communi-
+cation delays. IEEE Trans. Autom. Sci. Eng. 2023, 21, 6336–6346.
+19. Cheng, Z.; Zhang, H.T.; Fan, M.C.; Chen, G. Distributed Consensus of Multi-Agent Systems With Input Constraints: A Model
+Predictive Control Approach. IEEE Trans. Circuits Syst. I Regul. Pap. 2015, 62, 825–834.
+20. Pang, Y.; Zhao, X. Bayesian spatio-temporal graph transformer network (b-star) for multi-aircraft trajectory prediction. Knowl.-
+Based Syst. 2022, 249, 108998.
+21. Köhler, M.; Müller, M.A.; Allgöwer, F. Distributed Model Predictive Control for Dynamic Cooperation of Multi-Agent Systems.
+arXiv 2025, arXiv:2504.00225.
+22. Liu, G.P . Coordination of Networked Nonlinear Multi-Agents Using a High-Order Fully Actuated Predictive Control Strategy.
+IEEE/CAA J. Autom. Sin. 2022, 9, 615–623.
+23. Su, Y.; Shi, Y.; Sun, C. Distributed model predictive control for tracking consensus of linear multiagent systems with additive
+disturbances and time-varying communication delays. IEEE Trans. Cybern. 2019, 51, 3813–3823.
+24. Yang, Q.; Sun, J.; Chen, J. Output Consensus for Heterogeneous Linear Multiagent Systems With a Predictive Event-Triggered
+Mechanism. IEEE Trans. Cybern. 2021, 51, 1993–2005.
+25. Liu, X.; Xuan, Y.; Zhang, Z.; Diao, Z.; Mu, Z.; Li, Z. Event-triggered consensus for discrete-time multi-agent systems with
+parameter uncertainties based on a predictive control scheme. J. Syst. Sci. Complex. 2020, 33, 706–624.
+26. Yin, X.; Yue, D.; Hu, S.; Zhang, H. Distributed adaptive model-based event-triggered predictive control for consensus of
+multiagent systems. Int. J. Robust Nonlinear Control 2018, 28, 6180–6201.
+27. Qin D; Jin Z; Zhang, Z.; Asynchronous event-triggered distributed predictive control for multiagent systems with parameterized
+synchronization constraints IEEE Transactions on Automatic Control. 2023, 69, 403–409.
+28. Tang, X.; Li, M.; Wei, S.; Ding, B. Event-triggered synchronous distributed model predictive control for multi-agent systems.Int. J.
+Control Autom. Syst. 2021, 19, 1273–1282.
+29. Van Waarde, H.J.; De Persis, C.; Camlibel, M.K.; Tesi, P . Willems’ Fundamental Lemma for State-Space Systems and Its Extension
+to Multiple Datasets. IEEE Control Syst. Lett. 2020, 4, 602–607.
+30. Li, Y.; Wang, X.; Sun, J.; Wang, G.; Chen, J. Data-driven consensus control of fully distributed event-triggered multi-agent systems.
+Sci. China Inf. Sci. 2023, 66, 152202.
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.
+https://doi.org/10.3390/app16041723

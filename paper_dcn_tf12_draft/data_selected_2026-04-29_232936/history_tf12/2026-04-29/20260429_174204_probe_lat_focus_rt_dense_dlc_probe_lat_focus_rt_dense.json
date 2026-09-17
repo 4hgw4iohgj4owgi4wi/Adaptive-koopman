@@ -1,0 +1,29 @@
+{
+  "timestamp_local": "2026-04-29T17:42:04",
+  "history_version": "tf12_v1",
+  "case_name": "probe_lat_focus_rt_dense",
+  "scenario_mode": "dlc",
+  "method_name": "probe_lat_focus_rt_dense",
+  "full_path_reached": true,
+  "sim_steps": 1000,
+  "step_time_mean": 0.04182479729945771,
+  "step_time_max": 0.07155640004202724,
+  "rmse_lat_mean": 0.06033724150655194,
+  "rmse_long_mean": 1.5735102181894862,
+  "max_lat_global": 0.11778124680204927,
+  "max_long_global": 2.5001064752408557,
+  "fleet_vehicle_max_abs_ey": [
+    0.0859874236777507,
+    0.11149779056721343,
+    0.06973436767105723,
+    0.11778124680204927
+  ],
+  "fleet_vehicle_max_abs_es": [
+    2.50010634702755,
+    2.5,
+    2.5001064752408557,
+    2.5
+  ],
+  "npz_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_174204_probe_lat_focus_rt_dense_dlc_probe_lat_focus_rt_dense.npz",
+  "json_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_174204_probe_lat_focus_rt_dense_dlc_probe_lat_focus_rt_dense.json"
+}

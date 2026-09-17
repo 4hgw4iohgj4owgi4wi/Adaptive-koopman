@@ -1,0 +1,99 @@
+FILE: D:\LEARNING\ZNN\ZNN\save\2503.23396v1.pdf
+PAGES: 21
+TITLE_GUESS: Physics-Informed Adaptive Deep Koopman Operator Modeling for | Autonomous Vehicle Dynamics | Jianhua Zhanga, Yansong Hea and Hao Chena,b,∗
+
+INTRO_EXTRACT:
+1. INTRODUCTION
+Autonomous driving consists of five main components: perception, decision-making, control, communication, and
+vehicle dynamics modeling [1, 2, 3, 4, 5]. As for low-speed scenarios, classical kinematic models are commonly
+employed to capture vehicle motions [6]. However, in scenarios such as high-speed driving, tilting, drifting, etc., it is
+difficult to model the vehicle dynamics accurately due to the coupling between the lateral and longitudinal motions,
+as well as the strong nonlinearity of the tire characteristics. In light of the aforementioned reasons, researchers have
+proposed physics-based models, including the 7 DoF (degree-of-freedom) [7], the 14-DoF [8], and even the 17-DoF
+[9] to feature the behavior of vehicles in such scenarios. An increase in the degree of freedom of the model necessitates
+more precise knowledge in hyper-parameters (e.g., the center of gravity, the lateral cornering stiffness of tires, the road
+adhesion coefficient, etc.). This continues to be a challenging task in real events.
+Data-driven methodology has exhibited satisfactory performance in modeling, optimization, and control. Re-
+searchers have incorporated machine learning techniques into vehicle dynamics systems [10, 11]. The driving force
+behind their work is the utilization of raw data, which is employed to train network models in order to construct vehicle
+models that are approximations. For instance, Spielberg [12] adopted a neural network and trained it by collections
+data on dry and icy roads to predict the road adhesion coefficient, which simplified the estimation of road adhesion
+coefficient. Nevertheless, the neural network’s interpretability and generalization are insufficient because of its "black
+box" nature. Besides, the developed model lacks compatibility with further controller design. Among this, Koopman
+operator, named after Bernard Koopman, has received significant attention in recent years [13], where the nonlinear
+system in the original space is augmented into a linear form in the lifted space through an infinite-dimensional operator
+acting on system measurements. This enables the possibility of applying analysis and synthesis techniques for linear
+systems to realize modeling and control of nonlinear systems. The infinite-dimensional operator is impossible to deploy
+in real applications.
+∗Corresponding author
+202207131490@stu.cqu.edu.cn (J. Zhang); hys68@cqu.edu.cn (Y. He); h-c15@outlook.com (H. Chen)
+ORCID(s): 0000-0003-4649-5507 (H. Chen)
+Jianhua,Zhang et.al.: Preprint submitted to Elsevier
+Page 1 of 21
+
+Physics-Informed Adaptive Deep Koopman Operator Modeling for Autonomous Vehicle Dynamics
+Rowley et al. [14] first introduced Dynamic Mode Decomposition (DMD) to approximate the Koopman operator
+by singular value decomposition (SVD). The approach was initially employed by Schmid within fluid mechanics and
+has been a standard algorithm for neuroscience [15], robotics [16], and power systems [17]. However, the DMD fails
+to feature nonlinearities because of its inherent linear transformations. Williams et al. [18] proposed the Extended
+Dynamic Mode Decomposition (EDMD) technique as a solution. The EDMD primarily applies linear DMD logic to
+the extended nonlinear basis function, which has been proven to be more effective in Koopman operator approximation.
+Cibulka et al. [19] investigated the EDMD to capture vehicle dynamics, resulting in successful outcomes. Svec et al.
+[20] developed a model predictive controller identified by the Koopman operator through the EDMD approach for
+obtaining the optimal input in the form of longitudinal and lateral tire forces. Compared to linearization by Taylor
+expansion, the Koopman operator-based model has excellent accuracy for vehicle dynamics. Besides, the selection of
+nonlinear basis functions of EDMD depends on the expertise of researchers or the case-by-case basis, which impacts
+the model fidelity of Koopman operator approximation and lacks generalization ability[21].
+Machine Learning (ML) efficiently represents nonlinear functions and reveals promising potential in Koopman
+operator approximation [22]. Many scholars incorporated ML with the Koopman operator to simulate and regulate
+vehicle behaviors. Wang et al. [23] adopted the deep neural network (DNN) to construct the basis function of Koopman
+operator. The trained deep Koopman operator model was then used as a predictive model to follow the desired trajectory.
+The proposed controller presented superior tracking performance than the nonlinear kinematic-based model. Besides,
+the deep Koopman model also exhibits good robustness. Xiao et al. [24] employed DNN-based Koopman operator to
+model the dynamics of autonomous vehicle. The encoder and decoder nets were built during the training and validation,
+thereby mitigating the limitations of the manual selection of basis functions. The effectiveness of this strategy in terms
+of tracking accuracy and computation efficiency has been validated by experimental investigations. On the other hand,
+DNN is insufficient to extract interpretable information from extensive datasets despite its remarkable performance in
+a variety of contexts. In addition, autonomous vehicles operate in various scenarios with changing mass and moment of
+inertial, characterized as typical time-varying systems. Generalization issues may occur when the feature is not present
+in the training dataset, resulting in unexpected predictions. In recent times, there has been a growing awareness of
+these points, raising the development of a new machine learning algorithm called Physics-Informed Neural Networks
+(PINNs) [25]. PINNs makes full use of prior physical knowledge or constraints within the dataset to generate more
+interpretable results, which improves the robustness of neural networks and aligns with general physical principles in
+their predictions. Misyris et al. [26] applied PINNs to the power system for describing power system behavior. The
+computational efficiency of rotor angle and frequency is 87 times than that of the traditional method with less data. Xu
+et al. [27] used PINNs to identify the inertia and damping coefficient of unmanned surface vehicles (USV) instead of
+DNN. The speed (motion) and steering dynamics of the USV are embedded into the loss function to respect physical
+constraints and improve efficiency of neural network learning. The experimental results indicate that the PINNs have
+better generalization ability to predict the surge, sway velocities and rotation speed than than other incumbent ML
+algorithms.
+Furthermore, least squares-based methods such as recursive least squares (RLS) [28], forgetting factor recursive
+least squares (FFRLS) [29], and sliding window least squares (SWLS) [30], are able to estimate time-varying
+parameters in real-time. Towliat et al. [31] introduced a multi-layer RLS estimator for fast time-varying systems.
+By eliminating erroes from previous layer, the estimation accuracy is improved. Besides, this method also offers a
+moderate computational complexity. Wang et al. [32] proposed FFRLS to addresses data fluctuations caused by various
+factors during battery operation. It is verified that the FFRLS has more accurate estimations and stable performance
+on parameter identification. Retianza et al. [33] presented a SWLS method to compensate current sensor errors and
+mitigate computational load, while ensuring accuracy in highly dynamic three-phase electric drives.
+Motivated by these efforts, this study introduces a physical loss function term from the concept of PINNs during
+Koopman operator approximation, i.e., the acceleration loss between neural network output and sensor measurement,
+to extract the interpretable information of the dataset. Moreover, to improve the adaptive capability of the autonomous
+vehicle model based on the deep Koopman operator, the SWLS algorithm is employed to online update system matrices
+in the lift space with comparisons to the RLS and FFRLS. Therefore, the main contributions of this paper can be
+concluded as:
+(1) Introducing PINNs into the deep Koopman operator framework, and adding a physics-informed loss, i.e.,
+acceleration loss, to improve the efficiency of network learning and its interpretability. This enhances the accuracy
+of deep Koopman operator approximation and modeling accuracy of autonomous vehicle dynamics.
+Jianhua,Zhang et.al.: Preprint submitted to Elsevier
+Page 2 of 21
+
+Physics-Informed Adaptive Deep Koopman Operator Modeling for Autonomous Vehicle Dynamics
+(2) Using SWLS to update the system matrices in the lifted space augmented by the deep Koopman operator in a real-
+time manner; selecting an appropriate window size that can balance the impact of outdated historical and current
+data. This enforces the deep Koopman operator model adaptive to the time-varying dynamics of autonomous
+vehicles.
+The remainder of this paper is organized as follows: Section 2 gives an overview of the concept of Koopman
+operator, deep Koopman operator, and SWLS. Section 3 elaborates on the physics-informed deep Koopman model for
+autonomous vehicle dynamics, including the proposed acceleration loss added into network training and the online
+update system matrices in the lifted space by SWLS. The simulation tests and comparative studies are conducted and
+discussed on the various scenarios in Section 4, and conclusions are summarized in Section 5.

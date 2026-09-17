@@ -1,0 +1,12 @@
+{
+  "q_algebraic_residual_max_n": 154.78744061945588,
+  "contact_rows": 88,
+  "direction_rows": 256,
+  "example": {
+    "example_file": "internal_E6_1066008.npz",
+    "peak_connector_force_n": 9888.815667901485
+  },
+  "action_reaction_independent_observation": false,
+  "reason": "only payload-side connector force is present; vehicle-side negative is not independent evidence",
+  "Newton_Euler_prediction_residual": "not_identifiable_from_frozen_64D_output_without predicted accelerations aligned to force time"
+}

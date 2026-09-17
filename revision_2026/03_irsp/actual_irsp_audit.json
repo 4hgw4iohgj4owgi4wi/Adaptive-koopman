@@ -1,0 +1,56 @@
+{
+  "actual_interpreter": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "matrix_shapes": {
+    "raw_A": [
+      31,
+      31
+    ],
+    "raw_B": [
+      31,
+      62
+    ],
+    "projected_A": [
+      31,
+      31
+    ],
+    "projected_B": [
+      31,
+      62
+    ]
+  },
+  "fit_info": {
+    "lifted_rmse": 0.005493202633829495,
+    "samples": 805824
+  },
+  "projection_info": {
+    "lifted_rmse": 0.005493202633829495,
+    "samples": 805824,
+    "input_aware_projection": true,
+    "projection_radius": 0.998,
+    "projection_drift_radius": 0.992,
+    "projection_samples": 96,
+    "projection_gamma_sampled": 0.2465812845621258,
+    "projection_gamma_applied": 0.2465812845621258,
+    "effective_radius_after_max": 0.9979999999538808,
+    "effective_radius_after_p95": 0.9928913889454377
+  },
+  "configured_enforce_norm_bound": false,
+  "continuous_domain_audit": {
+    "radius": 0.998,
+    "u_scaled_min": [
+      -2.0625838241475867,
+      -2.5280043249116764
+    ],
+    "u_scaled_max": [
+      2.0310484060748415,
+      2.1080125730461794
+    ],
+    "spectral_radius_A_projected": 0.9920000206979065,
+    "induced_norm_A_projected_2": 1.0980026542847863,
+    "bilinear_norm_budget": 0.22811049911636105,
+    "triangle_upper_bound": 1.3261131534011472,
+    "gamma_norm_recomputed": 0.0,
+    "continuous_bound_feasible_without_reprojecting_A": false
+  },
+  "interpretation": "Current projected A alone violates the Euclidean induced-norm radius; scaling bilinear matrices to zero cannot certify the stated bound."
+}

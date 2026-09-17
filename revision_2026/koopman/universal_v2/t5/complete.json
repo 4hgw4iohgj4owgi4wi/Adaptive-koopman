@@ -1,0 +1,13 @@
+{
+  "stage": "T5-TC",
+  "status": "complete",
+  "T_status": "not_applicable_no_nonzero_legal_H",
+  "C_run_backbones": [
+    "K1",
+    "K4",
+    "K5-linear"
+  ],
+  "C_pass_backbones": [],
+  "mechanism_sha256": "E9D6C95C9819FE6D27D58AC1283F29CE54EEB4B9841B4F41887A8F970C34D198",
+  "C_sha256": "E87CA0FD49067EE5D8A4EAEDCD6ED0C1D00099FA838D95329524684E3B267A6F"
+}

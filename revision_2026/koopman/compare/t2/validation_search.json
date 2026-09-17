@@ -1,0 +1,344 @@
+{
+  "K2": [
+    {
+      "index": 5,
+      "name": "K2-ridge-1e-03",
+      "ridge": 0.001,
+      "rank": null,
+      "score": 0.1601280572062217
+    },
+    {
+      "index": 6,
+      "name": "K2-ridge-1e-02",
+      "ridge": 0.01,
+      "rank": null,
+      "score": 0.3305371382851535
+    },
+    {
+      "index": 7,
+      "name": "K2-ridge-1e-01",
+      "ridge": 0.1,
+      "rank": null,
+      "score": 2.945295022856003
+    },
+    {
+      "index": 4,
+      "name": "K2-ridge-1e-04",
+      "ridge": 0.0001,
+      "rank": null,
+      "score": 5.263038449858859
+    },
+    {
+      "index": 3,
+      "name": "K2-ridge-1e-05",
+      "ridge": 1e-05,
+      "rank": null,
+      "score": 165.62212366316226
+    },
+    {
+      "index": 0,
+      "name": "K2-ridge-1e-08",
+      "ridge": 1e-08,
+      "rank": null,
+      "score": 900.0444760699879
+    },
+    {
+      "index": 2,
+      "name": "K2-ridge-1e-06",
+      "ridge": 1e-06,
+      "rank": null,
+      "score": 999.2112163385113
+    },
+    {
+      "index": 1,
+      "name": "K2-ridge-1e-07",
+      "ridge": 1e-07,
+      "rank": null,
+      "score": 1223.2298440090476
+    }
+  ],
+  "K3": [
+    {
+      "index": 8,
+      "name": "K3-r2-ridge-1e-06",
+      "ridge": 1e-06,
+      "rank": 2,
+      "score": 0.3949675332450582
+    },
+    {
+      "index": 28,
+      "name": "K3-r2-ridge-1e-01",
+      "ridge": 0.1,
+      "rank": 2,
+      "score": 0.5714074351785435
+    },
+    {
+      "index": 12,
+      "name": "K3-r2-ridge-1e-05",
+      "ridge": 1e-05,
+      "rank": 2,
+      "score": 0.6025191030384377
+    },
+    {
+      "index": 13,
+      "name": "K3-r4-ridge-1e-05",
+      "ridge": 1e-05,
+      "rank": 4,
+      "score": 0.7482595644645778
+    },
+    {
+      "index": 25,
+      "name": "K3-r4-ridge-1e-02",
+      "ridge": 0.01,
+      "rank": 4,
+      "score": 0.8213623242734633
+    },
+    {
+      "index": 24,
+      "name": "K3-r2-ridge-1e-02",
+      "ridge": 0.01,
+      "rank": 2,
+      "score": 0.8937405254879969
+    },
+    {
+      "index": 26,
+      "name": "K3-r8-ridge-1e-02",
+      "ridge": 0.01,
+      "rank": 8,
+      "score": 0.9730924893781844
+    },
+    {
+      "index": 17,
+      "name": "K3-r4-ridge-1e-04",
+      "ridge": 0.0001,
+      "rank": 4,
+      "score": 1.1114168029202638
+    },
+    {
+      "index": 22,
+      "name": "K3-r8-ridge-1e-03",
+      "ridge": 0.001,
+      "rank": 8,
+      "score": 1.1519580514430214
+    },
+    {
+      "index": 23,
+      "name": "K3-r12-ridge-1e-03",
+      "ridge": 0.001,
+      "rank": 12,
+      "score": 1.3274839479266338
+    },
+    {
+      "index": 9,
+      "name": "K3-r4-ridge-1e-06",
+      "ridge": 1e-06,
+      "rank": 4,
+      "score": 1.4591481513146405
+    },
+    {
+      "index": 16,
+      "name": "K3-r2-ridge-1e-04",
+      "ridge": 0.0001,
+      "rank": 2,
+      "score": 1.5144846093456898
+    },
+    {
+      "index": 29,
+      "name": "K3-r4-ridge-1e-01",
+      "ridge": 0.1,
+      "rank": 4,
+      "score": 1.5310325501785604
+    },
+    {
+      "index": 21,
+      "name": "K3-r4-ridge-1e-03",
+      "ridge": 0.001,
+      "rank": 4,
+      "score": 1.5673929268236744
+    },
+    {
+      "index": 20,
+      "name": "K3-r2-ridge-1e-03",
+      "ridge": 0.001,
+      "rank": 2,
+      "score": 1.6257503299975922
+    },
+    {
+      "index": 4,
+      "name": "K3-r2-ridge-1e-07",
+      "ridge": 1e-07,
+      "rank": 2,
+      "score": 1.9408873543568046
+    },
+    {
+      "index": 27,
+      "name": "K3-r12-ridge-1e-02",
+      "ridge": 0.01,
+      "rank": 12,
+      "score": 1.9630930056282219
+    },
+    {
+      "index": 30,
+      "name": "K3-r8-ridge-1e-01",
+      "ridge": 0.1,
+      "rank": 8,
+      "score": 2.2635416822248806
+    },
+    {
+      "index": 31,
+      "name": "K3-r12-ridge-1e-01",
+      "ridge": 0.1,
+      "rank": 12,
+      "score": 2.3707446163998815
+    },
+    {
+      "index": 0,
+      "name": "K3-r2-ridge-1e-08",
+      "ridge": 1e-08,
+      "rank": 2,
+      "score": 8.660072181128662
+    },
+    {
+      "index": 18,
+      "name": "K3-r8-ridge-1e-04",
+      "ridge": 0.0001,
+      "rank": 8,
+      "score": 13.732285793501974
+    },
+    {
+      "index": 10,
+      "name": "K3-r8-ridge-1e-06",
+      "ridge": 1e-06,
+      "rank": 8,
+      "score": 25.000519773248374
+    },
+    {
+      "index": 19,
+      "name": "K3-r12-ridge-1e-04",
+      "ridge": 0.0001,
+      "rank": 12,
+      "score": 33.44533667971922
+    },
+    {
+      "index": 5,
+      "name": "K3-r4-ridge-1e-07",
+      "ridge": 1e-07,
+      "rank": 4,
+      "score": 41.97599165712598
+    },
+    {
+      "index": 14,
+      "name": "K3-r8-ridge-1e-05",
+      "ridge": 1e-05,
+      "rank": 8,
+      "score": 60.13033577499419
+    },
+    {
+      "index": 6,
+      "name": "K3-r8-ridge-1e-07",
+      "ridge": 1e-07,
+      "rank": 8,
+      "score": 67.89854304213571
+    },
+    {
+      "index": 7,
+      "name": "K3-r12-ridge-1e-07",
+      "ridge": 1e-07,
+      "rank": 12,
+      "score": 78.64554487982747
+    },
+    {
+      "index": 11,
+      "name": "K3-r12-ridge-1e-06",
+      "ridge": 1e-06,
+      "rank": 12,
+      "score": 382.0201734029856
+    },
+    {
+      "index": 15,
+      "name": "K3-r12-ridge-1e-05",
+      "ridge": 1e-05,
+      "rank": 12,
+      "score": 452.55843992142684
+    },
+    {
+      "index": 3,
+      "name": "K3-r12-ridge-1e-08",
+      "ridge": 1e-08,
+      "rank": 12,
+      "score": 5220.987818698299
+    },
+    {
+      "index": 1,
+      "name": "K3-r4-ridge-1e-08",
+      "ridge": 1e-08,
+      "rank": 4,
+      "score": 7022.148200575031
+    },
+    {
+      "index": 2,
+      "name": "K3-r8-ridge-1e-08",
+      "ridge": 1e-08,
+      "rank": 8,
+      "score": 9178.946902235002
+    }
+  ],
+  "K3_r2": [
+    {
+      "index": 2,
+      "name": "K3-r2-ridge-1e-06",
+      "ridge": 1e-06,
+      "rank": 2,
+      "score": 0.3949675332450582
+    },
+    {
+      "index": 7,
+      "name": "K3-r2-ridge-1e-01",
+      "ridge": 0.1,
+      "rank": 2,
+      "score": 0.5714074351785435
+    },
+    {
+      "index": 3,
+      "name": "K3-r2-ridge-1e-05",
+      "ridge": 1e-05,
+      "rank": 2,
+      "score": 0.6025191030384377
+    },
+    {
+      "index": 6,
+      "name": "K3-r2-ridge-1e-02",
+      "ridge": 0.01,
+      "rank": 2,
+      "score": 0.8937405254879969
+    },
+    {
+      "index": 4,
+      "name": "K3-r2-ridge-1e-04",
+      "ridge": 0.0001,
+      "rank": 2,
+      "score": 1.5144846093456898
+    },
+    {
+      "index": 5,
+      "name": "K3-r2-ridge-1e-03",
+      "ridge": 0.001,
+      "rank": 2,
+      "score": 1.6257503299975922
+    },
+    {
+      "index": 1,
+      "name": "K3-r2-ridge-1e-07",
+      "ridge": 1e-07,
+      "rank": 2,
+      "score": 1.9408873543568046
+    },
+    {
+      "index": 0,
+      "name": "K3-r2-ridge-1e-08",
+      "ridge": 1e-08,
+      "rank": 2,
+      "score": 8.660072181128662
+    }
+  ]
+}

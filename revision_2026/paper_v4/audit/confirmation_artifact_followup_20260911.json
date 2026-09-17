@@ -1,0 +1,29 @@
+{
+  "schema_version": "EXP-R2-E00-confirmation-artifact-followup-v1",
+  "status": "NO_CONFIRMATION_OPENED_IN_20260907_PAPER_RESULTS",
+  "reason_for_followup": "Two runs contain files named confirmation_metrics.csv and confirmation_verdict.json, so filename-only scanning could incorrectly classify them as confirmation exposure.",
+  "runs": [
+    {
+      "run_id": "20260907_110146_KR_A_SMOKE",
+      "confirmation_status": "NOT_RUN",
+      "confirmation_opened": false,
+      "access_records": 670,
+      "roles": {"fit": 565, "inner": 105, "outer": 0},
+      "confirmation_metrics_sha256": "F5A9386CD72292BB730EEA948665DDC4A55C4C0B5815AB17B7B8927C5DD0AA55",
+      "confirmation_verdict_sha256": "3CC2EA8292950FA5E0311B74B7A20F64E42606DC80CC6DB69590B3D6D6833B93",
+      "split_access_sha256": "7F19ED61CE95BCE0B9639A617530C46F5067F50DC7206548E3E65BC91A898539"
+    },
+    {
+      "run_id": "20260907_110213_KR_A",
+      "confirmation_status": "NOT_RUN",
+      "confirmation_opened": false,
+      "access_records": 3027,
+      "roles": {"fit": 2413, "inner": 443, "outer": 171},
+      "confirmation_metrics_sha256": "F5A9386CD72292BB730EEA948665DDC4A55C4C0B5815AB17B7B8927C5DD0AA55",
+      "confirmation_verdict_sha256": "3CC2EA8292950FA5E0311B74B7A20F64E42606DC80CC6DB69590B3D6D6833B93",
+      "split_access_sha256": "657C6253E6D914F88134B7C9307F2DA0BD9F3F5796ABBB98471F7040A08BC8F6"
+    }
+  ],
+  "interpretation": "Both confirmation_metrics.csv files are explicit NOT_RUN placeholders. Their ledgers contain only fit/inner/outer accesses and no confirmation role. They are not evidence of confirmation data exposure.",
+  "claim_boundary": "This resolves only the two 20260907 paper_results filenames. It does not prove that every uninstrumented loader or neutrally named historical asset avoided the 42/84 confirmation pools."
+}

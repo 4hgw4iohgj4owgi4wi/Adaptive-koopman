@@ -1,0 +1,46 @@
+{
+  "batch": "ABL-COMMON",
+  "config_sha256": "D9963AF034A10996F662065FBE8D59E9A9EDA0ABB66FB3D5E6A20E6ACC16D2C5",
+  "errors": [],
+  "host": {
+    "cuda_visible_devices": "",
+    "gpu": "NVIDIA GeForce RTX 5080, 16303 MiB, 595.79",
+    "host": "DESKTOP-9IUUGEO",
+    "host_role": "DESKTOP-9IUUGEO_RTX5080",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "project": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main",
+    "protocol_id": "ABL-R1-PR-R4-20260907",
+    "python": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+    "python_version": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]"
+  },
+  "protocol": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\ablation.md",
+  "protocol_sha256": "7B053100CF3378877F3BA5E66B6451351D53E79DCAB1E73BDC9423282249FF21",
+  "sources": {
+    "plant": {
+      "exists": true,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v3\\src\\vendor\\four_vehicle_coupled.py",
+      "sha256": "41CD5CB694A1A4A352895E8F783F03428152B0DE84CBCFD0B31E8A34AA0E7FE6"
+    },
+    "predictor_evidence": {
+      "exists": true,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02\\identity.json",
+      "sha256": "BC530C41990CFC3F5C58F761E7318BF0CFD0EAA36D8A13990A915EC675ACB2F9"
+    },
+    "predictor_source": {
+      "exists": true,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3y\\src\\lift.py",
+      "sha256": "74DDC536CAE7848F0DC4C135B5A01E2FE6617A9126A94B19CEA7376EE7599A4A"
+    },
+    "protocol": {
+      "exists": true,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\ablation.md",
+      "sha256": "7B053100CF3378877F3BA5E66B6451351D53E79DCAB1E73BDC9423282249FF21"
+    },
+    "steering": {
+      "exists": true,
+      "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v3\\src\\vendor\\steering_allocator.py",
+      "sha256": "B1632942CCBCD3204BCF1C3C45D9CEF36DD404D85EB6F0872B8A218FFBDC0FD5"
+    }
+  },
+  "status": "PASS"
+}

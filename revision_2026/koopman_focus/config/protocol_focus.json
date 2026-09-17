@@ -1,0 +1,103 @@
+{
+  "protocol_id": "koopman_focus_f0_f3_v1",
+  "taskbook_sha256": "162077332C44C7430F828B5D8BCB0F248CDD2218653BE39236033AD17575C6E4",
+  "parent_taskbook_sha256": "0927D1DBAF5BFD69387F3F9F0257F60E13BF4C9A94A2462BF9EA5BE9973A3E2E",
+  "project_host": "DESKTOP-9IUUGEO",
+  "python_exe": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "source_root": "revision_2026/koopman_focus",
+  "results_root": "revision_2026/koopman_focus_results",
+  "data_root": "revision_2026/koopman_focus_data",
+  "models_root": "revision_2026/koopman_focus_models",
+  "historical_source_root": "revision_2026/koopman_next_v2",
+  "historical_source_manifest_sha256": "A81AF621B5AB226B67BAE6873D971A9D5E660205807BFD4E2FEA2EA8D2B2AA5A",
+  "plant_source_root": "revision_2026/connector_r3_4/src",
+  "plant_source_manifest_sha256": "E75F5CF4284324A0A47DD16BC82E18C1180BB7166D0BB03F4CE1C9008A639D99",
+  "parent_p2": {
+    "run_id": "20260830_024918_P2_V2_R02",
+    "run_root": "revision_2026/koopman_next_v2_results/runs/20260830_024918_P2_V2_R02",
+    "data_root": "revision_2026/koopman_next_v2_data/p2/20260830_024918_P2_V2_R02/raw",
+    "complete_sha256": "441F308E99170F2F92F812F71FCBC3EF1983C488A211F0C52633BB7B395C434B",
+    "manifest_sha256": "C5013691B619C4C5EE90C963CAAAB7233A2D06376238D9DCB1D4F66F61B40AD5",
+    "physics_audit_sha256": "11B31CD0073124F2C64839F75454DD6186B6643B6C24D817793B0CBFD0EA955F",
+    "independent_audit_sha256": "744BD010013FB40D533292CE8393F30BD42A1E183CB38BBB913CC63BCF2F4C8A"
+  },
+  "actuator": {
+    "status": "SIMULATION_ASSUMPTION_TRACEABLE_NOT_HARDWARE_CALIBRATED",
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "plant_step_s": 0.002,
+    "request_hold_s": 0.020,
+    "substeps_per_request": 10
+  },
+  "seed_blocks": {
+    "F3_FIXED_TRAIN": [910020, 910021],
+    "F3_FIXED_VALIDATION": [911020, 911020],
+    "F4_FUTURE": [980000, 980999],
+    "K0_TRAIN_FUTURE": [981000, 981999],
+    "K0_VALIDATION_FUTURE": [982000, 982999],
+    "K0_DEVELOPMENT_FUTURE": [983000, 983999],
+    "K7_CONFIRM_FUTURE": [984000, 984999]
+  },
+  "intentional_historical_seed_reuse": {
+    "seeds": [910020, 910021, 911020],
+    "reason": "F3 is a paired L0/L1 isolation against the frozen parent P2 families"
+  },
+  "resource_limits": {
+    "minimum_free_gib": 80.0,
+    "maximum_f3_hours": 3.0,
+    "parallel_workers": 4
+  },
+  "k2": {
+    "model_step_s": 0.020,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.90, 1.10],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.80, 0.95]
+  },
+  "f1": {
+    "geometry_residual_atol_mps": 1e-8,
+    "recompute_atol_mps": 1e-12,
+    "mirror_atol_mps": 1e-8,
+    "diagnostic_threshold_mps": 0.5
+  },
+  "f2": {
+    "static_relative_atol": 1e-12,
+    "constraint_relative_atol": 1e-10,
+    "negative_load_atol_n": -1e-9,
+    "replay_relative_atol": 1e-10,
+    "replay_parent_trajectory_id": 1
+  },
+  "f3": {
+    "base_families": [
+      {"split": "train", "seed": 910020},
+      {"split": "train", "seed": 910021},
+      {"split": "validation", "seed": 911020}
+    ],
+    "directions": ["left", "right"],
+    "plants": [
+      {"name": "V1-ES", "law": "V1"},
+      {"name": "R3-ES", "law": "R3"}
+    ],
+    "load_modes": [
+      {"name": "L0", "enabled": false},
+      {"name": "L1", "enabled": true}
+    ],
+    "distance_target_m": 100.0,
+    "time_step_atol_s": 1e-9,
+    "angle_atol_rad": 1e-12,
+    "rate_atol_radps": 1e-12,
+    "mirror_atol": 1e-8,
+    "geometry_residual_atol_mps": 1e-8,
+    "support_constraint_relative_atol": 1e-10,
+    "support_min_atol_n": -1e-9,
+    "action_reaction_atol_n": 1e-9,
+    "internal_null_relative_atol": 1e-8,
+    "tire_raw_utilization_max": 0.90,
+    "tradeoff_relative_limit": 0.10,
+    "diagnostic_icr_threshold_mps": 0.5
+  },
+  "authorized_stages": ["F0", "F1", "F2", "F3"],
+  "forbidden_before_next_authorization": ["F4", "K0", "K1", "K2", "K3", "K4", "K5", "K6", "K7", "C0"]
+}

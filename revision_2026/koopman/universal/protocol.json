@@ -1,0 +1,59 @@
+{
+  "protocol_sha256": "DF6EE9810137687B9C3814040FFF827DB1DC2DFAE1ED2F2045E6F2618F69BCF7",
+  "control_dt_s": 0.02,
+  "plant_dt_s": 0.002,
+  "substeps": 10,
+  "scenes": [
+    "E0",
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E9"
+  ],
+  "load_bins": [
+    [
+      0,
+      0.1
+    ],
+    [
+      0.1,
+      0.3
+    ],
+    [
+      0.3,
+      0.5
+    ],
+    [
+      0.5,
+      0.8
+    ]
+  ],
+  "coarse_scan": {
+    "speeds": [
+      1.0,
+      2.5,
+      4.0
+    ],
+    "front_deg": [
+      10.0,
+      15.0
+    ],
+    "rear_ratios": [
+      -0.5,
+      -1.0
+    ],
+    "modes": [
+      "none",
+      "front-rear",
+      "left-right",
+      "diagonal"
+    ],
+    "profiles": [
+      "hold",
+      "reversal"
+    ]
+  }
+}

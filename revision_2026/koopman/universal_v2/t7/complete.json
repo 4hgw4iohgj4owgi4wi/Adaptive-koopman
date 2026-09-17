@@ -1,0 +1,12 @@
+{
+  "stage": "T7",
+  "status": "complete",
+  "confirm_evaluated_once": true,
+  "passing_internal": [],
+  "external_passing": [
+    "K5-linear"
+  ],
+  "absolute_deployment_candidates": [],
+  "results_sha256": "FEC238B83167809F8325867151F9DF3C022E646552E4D1ACF3C07519043C14EB",
+  "gates_sha256": "DDA191FD3C563A50368DE95834ED4A847D154031B2F19AC6E31E0674BFD49AEC"
+}

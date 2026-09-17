@@ -1,0 +1,7 @@
+{
+  "status": "complete",
+  "reason": "added preregistered paired external bootstrap and Holm statistics without changing candidates",
+  "final_report_sha256": "8660BE7235A7BF9DCB97B440C67034098EB8DB743ADBA73CF1E0AED05B26F9B9",
+  "external_statistics_sha256": "07B33719009574CCDE9785B360EA661C7DF6B23A024C4CFEF3324E33258A9F0E",
+  "gates_sha256": "351B99AC57D68FCE215CA4D62295643831EB6E4058BBAE4A37BDD21C13A19102"
+}

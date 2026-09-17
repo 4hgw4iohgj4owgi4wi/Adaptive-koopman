@@ -1,0 +1,22 @@
+{
+  "version": "PR-R2-KR-A",
+  "batch": "KR-A",
+  "taskbook_sha256": "97C5EED82DC359FC5763E03BDD0B2E76CB6EBE80E3C66384F5CA26B08B71EC97",
+  "old_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02",
+  "q1_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_230433_Q1_R01",
+  "predictor_source": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3y",
+  "parent_guard_core_sha256": "DD9B14C7030A9889640AEEE4A4FDA4402F70BD0774DB97E0A072D601E15072F3",
+  "parent_run_background_sha256": "24E4A6A063A624A530BCA7BA15E8073F5AB40D120D9CFAD66492E3B2C3EA9C01",
+  "training_allowed": false,
+  "confirmation_allowed": false,
+  "gamma_grid": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+  "legacy_limits": {"short": 0.03, "scenario": 0.03, "force_internal": 0.05, "tail": 0.03},
+  "internal_limits": {"short": 0.02, "scenario": 0.02, "force_internal": 0.04, "tail": 0.02},
+  "frozen_models": 30,
+  "calibration_recompute_units": 45,
+  "gamma_states": 330,
+  "maximum_seen_outer_replays": 60,
+  "minimum_free_gib": 60,
+  "wall_budget_hours": 2,
+  "stop": "AFTER_SHORT_GUARD_DECISION"
+}

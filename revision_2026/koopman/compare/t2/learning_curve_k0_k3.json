@@ -1,0 +1,565 @@
+{
+  "runs": [
+    {
+      "subset_seed": 82101,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K0",
+      "validation_macro_J_pred": 0.13418369319668277
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K1",
+      "validation_macro_J_pred": 0.1277350044216951
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K2",
+      "validation_macro_J_pred": 2.197917504280996
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K3",
+      "validation_macro_J_pred": 109.17172361032443
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K0",
+      "validation_macro_J_pred": 0.12961542646819474
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12290730914677181
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K2",
+      "validation_macro_J_pred": 0.1862810854391127
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K3",
+      "validation_macro_J_pred": 0.5727295579176452
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K0",
+      "validation_macro_J_pred": 0.1301213590378004
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12209291545435205
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K2",
+      "validation_macro_J_pred": 0.15230001869786058
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K3",
+      "validation_macro_J_pred": 0.4666720605874367
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K0",
+      "validation_macro_J_pred": 0.12930111296815977
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12206859595489898
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K2",
+      "validation_macro_J_pred": 0.14127666242612985
+    },
+    {
+      "subset_seed": 82101,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K3",
+      "validation_macro_J_pred": 0.2907399094894493
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K0",
+      "validation_macro_J_pred": 0.30260605655411993
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K1",
+      "validation_macro_J_pred": 0.44986984078469544
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K2",
+      "validation_macro_J_pred": 766696.1858832233
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K3",
+      "validation_macro_J_pred": 107.51484011832977
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K0",
+      "validation_macro_J_pred": 0.1494666664110733
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K1",
+      "validation_macro_J_pred": 0.15906913956204533
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K2",
+      "validation_macro_J_pred": 16.772825026779845
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K3",
+      "validation_macro_J_pred": 233.0491672476939
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K0",
+      "validation_macro_J_pred": 0.1300175832763843
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12211230967596706
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K2",
+      "validation_macro_J_pred": 0.16367763574307476
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K3",
+      "validation_macro_J_pred": 1.0776430913464914
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K0",
+      "validation_macro_J_pred": 0.1293011129681404
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12206859595492547
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K2",
+      "validation_macro_J_pred": 0.14127666241261563
+    },
+    {
+      "subset_seed": 82102,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K3",
+      "validation_macro_J_pred": 0.2907399020786103
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K0",
+      "validation_macro_J_pred": 0.12959688275741718
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12295241476147745
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K2",
+      "validation_macro_J_pred": 0.6278923740593412
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K3",
+      "validation_macro_J_pred": 12.762159333279222
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K0",
+      "validation_macro_J_pred": 0.13240612978376368
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12339506639980617
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K2",
+      "validation_macro_J_pred": 0.37191200168272676
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K3",
+      "validation_macro_J_pred": 0.838734488003947
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K0",
+      "validation_macro_J_pred": 0.1280464397654825
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12142247009953203
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K2",
+      "validation_macro_J_pred": 0.1740452493361352
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K3",
+      "validation_macro_J_pred": 1.1767413297776743
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K0",
+      "validation_macro_J_pred": 0.12930111296786873
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K1",
+      "validation_macro_J_pred": 0.1220685959540072
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K2",
+      "validation_macro_J_pred": 0.14127666244296314
+    },
+    {
+      "subset_seed": 82103,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K3",
+      "validation_macro_J_pred": 0.2907399142013498
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K0",
+      "validation_macro_J_pred": 0.13101450138315107
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K1",
+      "validation_macro_J_pred": 0.1249882951203547
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K2",
+      "validation_macro_J_pred": 1.9928130016425913
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K3",
+      "validation_macro_J_pred": 48.002904514530975
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K0",
+      "validation_macro_J_pred": 0.13124693380016406
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12469336142812099
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K2",
+      "validation_macro_J_pred": 0.5829256385543651
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K3",
+      "validation_macro_J_pred": 1.7918191884172932
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K0",
+      "validation_macro_J_pred": 0.13095058875723925
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12368446561942179
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K2",
+      "validation_macro_J_pred": 0.24206925771670285
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K3",
+      "validation_macro_J_pred": 0.38298601944151234
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K0",
+      "validation_macro_J_pred": 0.1293011129705362
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12206859595332073
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K2",
+      "validation_macro_J_pred": 0.1412766623784289
+    },
+    {
+      "subset_seed": 82104,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K3",
+      "validation_macro_J_pred": 0.2907399267821258
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K0",
+      "validation_macro_J_pred": 0.22497168425669684
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K1",
+      "validation_macro_J_pred": 0.3599981301951744
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K2",
+      "validation_macro_J_pred": 1004908.0391365215
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.1,
+      "train_trajectories": 10,
+      "method": "K3",
+      "validation_macro_J_pred": 1928.9580429525008
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K0",
+      "validation_macro_J_pred": 0.13132109396343006
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12424276598084752
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K2",
+      "validation_macro_J_pred": 0.30159136770697315
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.25,
+      "train_trajectories": 20,
+      "method": "K3",
+      "validation_macro_J_pred": 2.504006082032054
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K0",
+      "validation_macro_J_pred": 0.13075781651445081
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K1",
+      "validation_macro_J_pred": 0.12384207002985537
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K2",
+      "validation_macro_J_pred": 0.17682626869360613
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 0.5,
+      "train_trajectories": 35,
+      "method": "K3",
+      "validation_macro_J_pred": 0.8223758667837222
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K0",
+      "validation_macro_J_pred": 0.12930111296843483
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K1",
+      "validation_macro_J_pred": 0.122068595950649
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K2",
+      "validation_macro_J_pred": 0.14127666235786854
+    },
+    {
+      "subset_seed": 82105,
+      "fraction": 1.0,
+      "train_trajectories": 70,
+      "method": "K3",
+      "validation_macro_J_pred": 0.2907399074535689
+    }
+  ],
+  "status": "complete"
+}

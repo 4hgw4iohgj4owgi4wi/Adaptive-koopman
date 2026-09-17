@@ -1,0 +1,138 @@
+{
+  "K0": {
+    "F2-diagnostic": {
+      "trajectories": 160,
+      "mean_improvement": -0.0006548926839725661,
+      "ci95_low": -0.02000510071125705,
+      "ci95_high": 0.018781538228742335,
+      "bootstrap_p": 0.9452,
+      "holm_p": 1.0
+    },
+    "C-selected": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    },
+    "HLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    },
+    "HRLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    }
+  },
+  "K1": {
+    "F2-diagnostic": {
+      "trajectories": 160,
+      "mean_improvement": 0.00883625535502143,
+      "ci95_low": -0.006788454282771392,
+      "ci95_high": 0.025320796391133542,
+      "bootstrap_p": 0.2752,
+      "holm_p": 1.0
+    },
+    "C-selected": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    },
+    "HLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    },
+    "HRLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    }
+  },
+  "K4": {
+    "F2-diagnostic": {
+      "trajectories": 160,
+      "mean_improvement": 0.052733872308560636,
+      "ci95_low": 0.039162471393881404,
+      "ci95_high": 0.06626214087135153,
+      "bootstrap_p": 0.0,
+      "holm_p": 0.0
+    },
+    "C-selected": {
+      "trajectories": 160,
+      "mean_improvement": 0.016585831219596336,
+      "ci95_low": 0.009729363853829096,
+      "ci95_high": 0.023149079833139873,
+      "bootstrap_p": 0.0,
+      "holm_p": 0.0
+    },
+    "HLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    },
+    "HRLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    }
+  },
+  "K5-linear": {
+    "F2-diagnostic": {
+      "trajectories": 160,
+      "mean_improvement": 0.6172139007117379,
+      "ci95_low": 0.5843363693356974,
+      "ci95_high": 0.6476775016362353,
+      "bootstrap_p": 0.0,
+      "holm_p": 0.0
+    },
+    "C-selected": {
+      "trajectories": 160,
+      "mean_improvement": 0.2706618843857828,
+      "ci95_low": 0.23152311080924484,
+      "ci95_high": 0.30845216364867994,
+      "bootstrap_p": 0.0,
+      "holm_p": 0.0
+    },
+    "HLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    },
+    "HRLS-rank0": {
+      "trajectories": 160,
+      "mean_improvement": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "bootstrap_p": 1.0,
+      "holm_p": 1.0
+    }
+  }
+}

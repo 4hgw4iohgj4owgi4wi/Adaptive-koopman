@@ -1,0 +1,53 @@
+{
+  "schema_version": "EXP-R2-E00-submission-match-v1",
+  "generated_on": "2026-09-11",
+  "status": "SOURCE_PENDING",
+  "paper_id": "VT-2026-05393",
+  "reviewed_title": "Network-Resilient Cooperative Transport Control via Bilinear Koopman Learning and Delay-Compensated Consensus MPC",
+  "review_letter": {
+    "local_attachment": "C:\\Users\\lujun\\.codex\\attachments\\26e3e501-6f50-41be-a5a8-ac03e1a97aa2\\pasted-text.txt",
+    "remote_frozen_copy": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\00_baseline\\reviewer_decision.txt",
+    "sha256": "6604BCCE8EA62CDC4DF35F705F3ECD07D67B8B5A81A5B24B8952A349920E5A44",
+    "byte_identity_confirmed": true
+  },
+  "candidate_pdf": {
+    "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\tmp\\tvt_check_20260706\\main.pdf",
+    "sha256": "1482D00AAA095FD70B6EF6D868F90C1F7948FEE12FA778CFB168FF284C9EA9F5",
+    "bytes": 6804031,
+    "pages": 12,
+    "pdf_creation_time": "2026-07-06T15:28:36+08:00",
+    "source_tex_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\tmp\\tvt_check_20260706\\manuscript.tex",
+    "source_tex_sha256": "C4C0075FB181167B410410E7B0A255331A33FC9DA9068528D780C40A310117E6"
+  },
+  "frozen_baseline_tex": {
+    "path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\00_baseline\\manuscript.original.tex",
+    "sha256": "1E9E5154EC84AE25C51BE0B2E6C3EB849B9D559D83D0DCFC246FFA3E9D4A94F6",
+    "difference_from_candidate_tex": {
+      "changed_lines": 1,
+      "description": "Only the markboth journal header differs: generic IEEE Transactions in the candidate source versus IEEE Transactions on Vehicular Technology in the frozen baseline."
+    }
+  },
+  "content_checks": {
+    "title_exact_match": true,
+    "title_page": 1,
+    "equation_22_present": true,
+    "equation_22_page": 5,
+    "equation_22_description": "Continuous-input-envelope norm certificate for gamma_c; gamma_c=0 when r_u is below the projected base-matrix norm.",
+    "reviewer_formula_22_issue_content_match": true,
+    "table_ii_page": 8,
+    "table_ii_matches_reviewer_k1_k2_vs_k3_topic": true,
+    "table_iii_page": 10,
+    "table_iii_matches_reviewer_force_peak_topic": true,
+    "reviewer_reported_table_iii_page": 11,
+    "page_number_offset_unresolved": true,
+    "visual_pages_checked": [1, 5, 8, 9, 10]
+  },
+  "conflicts_and_missing_evidence": [
+    "README_source_20260706_14page.txt labels the package as IEEE Sensors Journal rather than IEEE Transactions on Vehicular Technology.",
+    "No submission-portal receipt, exported submission file list, or submitted-file SHA-256 was found in the audited locations.",
+    "The review refers to Table III on page 11, while the candidate PDF places Table III on printed page 10; a possible portal cover-page offset is only an inference."
+  ],
+  "inference": "The candidate PDF is highly likely to be the manuscript version reviewed under VT-2026-05393 because its exact title, equation (22), Table II criticism, Table III force values, and near-identical frozen baseline source align with the review letter. This does not establish submission-file identity.",
+  "blocked_claim": "Do not call candidate_pdf the submitted PDF until a portal receipt/export or the exact submitted PDF/hash is supplied.",
+  "allowed_use": "Use as a clearly labeled candidate manuscript for source mapping and independent formula/table auditing; keep submission-dependent claims SOURCE_PENDING."
+}

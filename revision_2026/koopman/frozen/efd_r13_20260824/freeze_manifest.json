@@ -1,0 +1,41 @@
+﻿{
+    "schema":  "efd-r13-freeze-v1",
+    "status":  "FROZEN_NEGATIVE_BASELINE",
+    "frozen_at":  "2026-08-24T22:38:36.5102559+08:00",
+    "host":  "DESKTOP-9IUUGEO",
+    "project_root":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main",
+    "code_root":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\innovation\\efd_r13",
+    "result_root":  "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman\\innovation_efd_r13_results",
+    "code_file_count":  36,
+    "code_bytes":  244616,
+    "code_tree_sha256":  "48A3A48BC11CD400C865CF8D0EF863FA00FA4AA223C4CCFBC4BA8BB265D8437A",
+    "result_file_count":  938,
+    "result_bytes":  825295130,
+    "result_tree_sha256":  "57D228D1B513F4DAE5B4581925DB5401E49BED2B82707F2D52BBF6FAA067667F",
+    "manifest_csv_sha256":  "4E159DDF3B668EFB6CFDFB9C09A641C0235CCE15EF0F9448B08ACFD8A316154A",
+    "executed_through":  "U7",
+    "blocked_stages":  [
+                           "U8",
+                           "U9",
+                           "U10"
+                       ],
+    "development_read":  false,
+    "confirm_generated":  false,
+    "active_training_at_freeze":  false,
+    "scientific_decision":  {
+                                "strongest_core":  "V-FL92-U8",
+                                "strongest_core_family_macro_J":  0.10198935809638017,
+                                "bilinear_advantage":  false,
+                                "continuous_irsp_certificate":  false,
+                                "physical_lift_advantage":  false,
+                                "V_M_validation_passed":  false
+                            },
+    "future_innovation":  {
+                              "name":  "EPD-Koopman",
+                              "status":  "NOT_STARTED",
+                              "code_created":  false,
+                              "data_generated":  false,
+                              "training_started":  false,
+                              "explicit_user_authorization_required":  true
+                          }
+}

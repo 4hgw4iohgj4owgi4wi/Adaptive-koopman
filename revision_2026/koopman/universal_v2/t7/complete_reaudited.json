@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "external_statistical_candidates": [
+    "K5-linear"
+  ],
+  "statistics_sha256": "301687B64445E572B53C995C36EBCBFD062D2911949D2747B3F27AA916A8499B",
+  "gates_sha256": "E03639ABC28C5820D43ACDAC985584C30DE6C608EB9E824E7C4C63315345AF29"
+}

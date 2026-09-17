@@ -1,0 +1,32 @@
+{
+  "schema_version": "EXP-R2-source-map-v1",
+  "taskbook_sha256": "417CFCDBF22A026973DFF617E29E4814361F9013AED7CA06F065992C20F0D81D",
+  "candidate_manuscript_sha256": "C4C0075FB181167B410410E7B0A255331A33FC9DA9068528D780C40A310117E6",
+  "candidate_only_warning": "The mapped TeX is highly consistent with the review but is not proven to be the submitted PDF. Equation numbers therefore refer to this candidate source only.",
+  "status": "PARTIAL",
+  "equations": [
+    {"number":1,"label":"eq:world_kinematics","tex_line":132,"implementation":["plant/four_vehicle_common.py::assemble_derivative","plant/four_vehicle_common.py::system_derivative"],"config":"plant/four_vehicle_common.py::ModelParams","output":"raw.npz x0..x29","status":"IMPLEMENTATION_MAPPED_MODEL_NOT_IDENTICAL_TO_SUBMISSION_PROVEN"},
+    {"number":2,"label":"eq:bicycle_dynamics","tex_line":149,"implementation":["plant/four_vehicle_common.py::tire_force","plant/four_vehicle_common.py::assemble_derivative"],"config":"VehicleParams plus payload support loads","output":"raw vehicle body velocities/yaw rates, tire utilization, support load","status":"IMPLEMENTATION_MAPPED_MODEL_NOT_IDENTICAL_TO_SUBMISSION_PROVEN"},
+    {"number":3,"label":"eq:s_dot","tex_line":181,"implementation":[],"config":"PENDING_E03","output":"PENDING_E03","status":"SOURCE_PENDING"},
+    {"number":4,"label":"eq:frenet_error","tex_line":186,"implementation":[],"config":"PENDING_E03","output":"PENDING_E03","status":"SOURCE_PENDING"},
+    {"number":5,"label":"eq:payload_anchor","tex_line":196,"implementation":["plant/four_vehicle_common.py::connector_kinematics"],"config":"ModelParams.payload_anchor_body_m","output":"connector diagnostics payload_anchor_world_m","status":"IMPLEMENTATION_MAPPED"},
+    {"number":6,"label":"eq:connection_error","tex_line":202,"implementation":["plant/four_vehicle_common.py::connector_kinematics","plant/four_vehicle_common.py::signed_connector_gaps"],"config":"payload and vehicle anchor geometry","output":"connector displacement/relative velocity/signed gaps","status":"IMPLEMENTATION_MAPPED"},
+    {"number":7,"label":"eq:connection_force","tex_line":207,"implementation":["plant/connector_r3.py::connector_force_r3","plant/connector_adapter.py::VectorConnector","plant/four_vehicle_common.py::connector_diagnostics"],"config":"ConnectorR3Params/adapter law R3","output":"four payload and vehicle connector forces plus action-reaction residual","status":"IMPLEMENTATION_MAPPED_CURRENT_R3_LAW_EXTENDS_CANDIDATE_PROXY"},
+    {"number":8,"label":"eq:comm_corrupted_measurements","tex_line":220,"implementation":[],"config":"E06 network protocol","output":"network packet ledger","status":"NOT_RUN"},
+    {"number":9,"label":"eq:delay_prediction","tex_line":229,"implementation":[],"config":"E06 legal-time alignment","output":"aligned estimate and age ledger","status":"NOT_RUN"},
+    {"number":10,"label":"eq:adjacent_distance_error","tex_line":234,"implementation":[],"config":"E03/E06 distributed information schema","output":"adjacent-distance error","status":"NOT_RUN"},
+    {"number":11,"label":"eq:fourws_beta_curvature","tex_line":294,"implementation":["plant/steering_allocator.py::virtual_4ws_icr","plant/steering_allocator.py::kinematic_targets"],"config":"AllocationConfig and array geometry","output":"target steering, yaw rate and no-slip residuals","status":"RELATED_IMPLEMENTATION_MAPPED_EXACT_PAPER_OPTIMUM_NOT_CLAIMED"},
+    {"number":12,"label":"eq:fourws_upper_opt","tex_line":312,"implementation":[],"config":"candidate weights w_kappa/w_beta/w_rho/w_delta","output":"upper front/rear steering","status":"SOURCE_PENDING_CURRENT_ALLOCATOR_IS_NOT_THIS_OPTIMIZER"},
+    {"number":13,"label":"eq:fourws_vehicle_heading","tex_line":328,"implementation":["plant/steering_allocator.py::kinematic_targets","reference_geometry.py::transition_targets"],"config":"payload anchors and relative headings","output":"reference_beta and target steering","status":"RELATED_IMPLEMENTATION_MAPPED"},
+    {"number":14,"label":"eq:fourws_local_path","tex_line":344,"implementation":["references.py::build_hairpin","pilot_runner.py::_path_sample"],"config":"radius 11.5 m, transition 11 m, straight 24 m","output":"frozen reference x/y/heading/curvature","status":"CURRENT_DIAGNOSTIC_REFERENCE_MAPPED_NOT_DISTRIBUTED_PATH_PUBLICATION"},
+    {"number":15,"label":"eq:koopman_lift","tex_line":358,"implementation":[],"config":"checkpoint/norm/S0 PENDING_E02","output":"47-dimensional lifted state PENDING_E02","status":"SOURCE_PENDING"},
+    {"number":16,"label":"eq:bilinear_koopman","tex_line":363,"implementation":[],"config":"checkpoint/norm/S0 and input schema PENDING_E02","output":"one/multi-step prediction PENDING_E02","status":"SOURCE_PENDING"},
+    {"number":17,"label":"eq:bilinear_regressor","tex_line":370,"implementation":[],"config":"training manifest and normalization PENDING_E02","output":"regression matrix PENDING_E02","status":"SOURCE_PENDING"},
+    {"number":18,"label":"eq:ridge_fit","tex_line":375,"implementation":[],"config":"ridge coefficient/fit pool PENDING_E02","output":"A/B/N matrices PENDING_E02","status":"SOURCE_PENDING"},
+    {"number":19,"label":"eq:effective_bilinear_matrix","tex_line":384,"implementation":[],"config":"u11 schema and Koopman matrices PENDING_E02","output":"A_eff(u) PENDING_E02","status":"SOURCE_PENDING"},
+    {"number":20,"label":"eq:irsp_projection","tex_line":389,"implementation":[],"config":"r_A/gamma PENDING_E02","output":"projected A/N matrices PENDING_E02","status":"SOURCE_PENDING"},
+    {"number":21,"label":"eq:sampled_irsp","tex_line":398,"implementation":[],"config":"sampled input set U_s and r_u PENDING_E02","output":"gamma_s/radius audit PENDING_E02","status":"SOURCE_PENDING"},
+    {"number":22,"label":"eq:norm_irsp_certificate","tex_line":408,"implementation":["cli.py::certificate (scalar sufficient-bound counterexample utility only)"],"config":"base_norm, coupling_bound, radius","output":"20260909 E16 counterexamples and preflight self-test copies","status":"FORMULA_ISSUE_CONFIRMED_CANDIDATE_ONLY_FULL_ALGORITHM_NOT_IMPLEMENTED"}
+  ],
+  "summary": {"equation_count":22,"direct_or_related_current_mappings":9,"source_pending_or_not_run":13,"submitted_formula_identity":"SOURCE_PENDING"}
+}

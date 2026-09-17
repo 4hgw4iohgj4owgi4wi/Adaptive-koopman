@@ -1,0 +1,29 @@
+{
+  "timestamp_local": "2026-04-29T22:29:54",
+  "history_version": "tf12_v1",
+  "case_name": "probe_balanced",
+  "scenario_mode": "dlc",
+  "method_name": "probe_balanced",
+  "full_path_reached": true,
+  "sim_steps": 1012,
+  "step_time_mean": 0.17617375938474428,
+  "step_time_max": 0.20778579998295754,
+  "rmse_lat_mean": 0.033773215219047976,
+  "rmse_long_mean": 2.1881687081798646,
+  "max_lat_global": 0.08550205142209166,
+  "max_long_global": 3.805322409212387,
+  "fleet_vehicle_max_abs_ey": [
+    0.07763682341453437,
+    0.08550205142209166,
+    0.038484120015292,
+    0.048926365506934744
+  ],
+  "fleet_vehicle_max_abs_es": [
+    3.805322409212387,
+    3.7682046134560707,
+    3.80347162087579,
+    3.7678486950362284
+  ],
+  "npz_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_222954_probe_balanced_dlc_probe_balanced.npz",
+  "json_path": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\data_tf13\\history_tf12\\2026-04-29\\20260429_222954_probe_balanced_dlc_probe_balanced.json"
+}

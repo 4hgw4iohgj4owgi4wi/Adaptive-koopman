@@ -1,0 +1,6 @@
+{
+  "frozen_before_training": true,
+  "assignment": "within every base scenario traj_id modulo 20: 0-13 train, 14-16 validation, 17-19 test",
+  "external": "separate out-of-range parameter trajectories; never used for normalization or tuning",
+  "window_rule": "windows may not cross trajectory or split boundaries"
+}

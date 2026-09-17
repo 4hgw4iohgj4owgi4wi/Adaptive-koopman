@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "batch": "KR-A",
+  "host": "DESKTOP-9IUUGEO",
+  "project": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main",
+  "protocol": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v2\\config\\repair.json",
+  "protocol_sha": "6902B77A6DC7B9E809012548E538B13C48A009EA52AF191EB9171808E4DD2678",
+  "taskbook": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v2\\protocol\\paper_run.md",
+  "taskbook_sha": "97C5EED82DC359FC5763E03BDD0B2E76CB6EBE80E3C66384F5CA26B08B71EC97",
+  "predictor_source": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3y",
+  "old_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\koopman_predict_v3w_results\\runs\\20260905_221832_KC_BG02",
+  "q1_run": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_results\\runs\\20260906_230433_Q1_R01",
+  "free_bytes": 278480326656,
+  "training": false,
+  "confirmation": false
+}

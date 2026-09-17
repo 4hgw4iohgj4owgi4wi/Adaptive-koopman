@@ -1,0 +1,114 @@
+{
+  "protocol_id": "koopman_v2_actuator_isolation_p0_p2_v1",
+  "taskbook_sha256": "0927D1DBAF5BFD69387F3F9F0257F60E13BF4C9A94A2462BF9EA5BE9973A3E2E",
+  "project_host": "DESKTOP-9IUUGEO",
+  "python_exe": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+  "source_root": "revision_2026/koopman_next_v2",
+  "results_root": "revision_2026/koopman_next_v2_results",
+  "data_root": "revision_2026/koopman_next_v2_data",
+  "frozen_connector_source": "revision_2026/connector_r3_4",
+  "historical_source_root": "revision_2026/koopman_next",
+  "historical_source_manifest_sha256": "F3FA2AB0117D86D6680543857F7FDB4762356EBA29114B4C08DEF437F527002B",
+  "expected_upstream_sha256": {
+    "revision_2026/connector_r3_4/src/connector_r3.py": "0BD16C4D4D2FB141BFC2689E4472E475EA23CF319E0B31A3C6448DDCEF310459",
+    "revision_2026/connector_r3_4/src/four_vehicle_common.py": "8DFEF4F4052ED24B0E6A22C679838A10AA271EBCD5A7FCEC8AA9E755A500A7C3",
+    "revision_2026/connector_r3_4/src/event_substep.py": "CB7A5BC83E1397B6440DAAC12DFAFC551D8A257C35E6F482A2FCE8D415E139F3",
+    "revision_2026/connector_r3_4/src/schema_r3.py": "18E1F343C7D5FFCC084C0A64BF17F112C61F33C8144BA3FED9D208B8E9307DDA",
+    "revision_2026/connector_r3_4/src/steering_allocator.py": "5493A0B7FF0F7E6834F6E61E57A6D169CE65EF0F1D37B7F93837045A18B64E2E",
+    "revision_2026/koopman_next_results/runs/20260829_205514_K2_PILOT_R06/complete.json": "75E17B5FEC1CAE13570B3173E2C6B1A448D9C3E423AD37032D6CB111C139A95A",
+    "revision_2026/koopman_next_results/runs/20260829_205514_K2_PILOT_R06/k2/physics_audit.csv": "0DECF1BFEC6BE658967125BBBB58878B4FD0A797162585CA7526787E6C0CB086",
+    "revision_2026/koopman_next_results/runs/20260829_205514_K2_PILOT_R06/failure/diagnosis.json": "15D6BF384DE9BA67C524B07695732260055458A8CA5C7BF49564D1F4438FE560"
+  },
+  "actuator_parameter_sources": [
+    {
+      "source_path": "D:\\PDxc\\Koopman_Train\\src\\controllers\\hierarchical_mpc.py",
+      "source_host": "CODEX_CONTROLLER",
+      "snapshot_relative_path": "reference_sources/hierarchical_mpc.py",
+      "sha256": "CDF9F4F8BE5EC2B318EBBCCE471AC4FC540639578E9DDEE6DE14D3CB8E8B00AF",
+      "lines": [
+        {"line": 24, "text": "steering_time_constant_s: float = 0.12"},
+        {"line": 30, "text": "maximum_steering_rate_radps: float = 1.2"}
+      ]
+    },
+    {
+      "source_path": "D:\\PDxc\\Koopman_Train\\src\\controllers\\comparison_mpc.py",
+      "source_host": "CODEX_CONTROLLER",
+      "snapshot_relative_path": "reference_sources/comparison_mpc.py",
+      "sha256": "14206527BCA798B97170D807099F818BDE439945A74B4D814EF793E47AFA2A2C",
+      "lines": [
+        {"line": 102, "text": "max_steer_rate_radps: float = 1.2"}
+      ]
+    },
+    {
+      "source_path": "D:\\PDxc\\Koopman_Train\\src\\controllers\\adaptive_hierarchical_mpc.py",
+      "source_host": "CODEX_CONTROLLER",
+      "snapshot_relative_path": "reference_sources/adaptive_hierarchical_mpc.py",
+      "sha256": "D78E55FB7D703B284B84ABD7807F7414EE804EEA79BB35B9D08E5D3C4AE2A818",
+      "lines": [
+        {"line": 455, "text": "maximum_steering_rate_radps: float = 1.4"}
+      ]
+    }
+  ],
+  "actuator": {
+    "status": "SIMULATION_ASSUMPTION_TRACEABLE_NOT_HARDWARE_CALIBRATED",
+    "tau_delta_s": 0.12,
+    "rate_max_radps": 1.2,
+    "angle_max_deg": 15.0,
+    "initial_actual_steering_rad": [0.0, 0.0, 0.0, 0.0],
+    "request_hold_s": 0.020,
+    "plant_step_s": 0.002,
+    "substeps_per_request": 10
+  },
+  "seed_blocks": {
+    "P2_FIXED_TRAIN": [910020, 910021],
+    "P2_FIXED_VALIDATION": [911020, 911020],
+    "P3_FUTURE": [940000, 940999],
+    "D0_FUTURE": [950000, 959999],
+    "CONFIRM_FUTURE": [970000, 979999]
+  },
+  "intentional_historical_seed_reuse": {
+    "seeds": [910020, 910021, 911020],
+    "reason": "paired isolation against historical R04/R06 parameter families; no split reassignment"
+  },
+  "resource_limits": {
+    "minimum_free_gib": 80.0,
+    "maximum_p2_hours": 3.0
+  },
+  "k2": {
+    "model_step_s": 0.020,
+    "plant_step_s": 0.002,
+    "initial_speed_mps": [1.8, 2.8],
+    "payload_mass_scale": [0.90, 1.10],
+    "connector_scale": [0.95, 1.05],
+    "mu": [0.80, 0.95]
+  },
+  "p2": {
+    "parallel_workers": 4,
+    "base_families": [
+      {"split": "train", "seed": 910020},
+      {"split": "train", "seed": 910021},
+      {"split": "validation", "seed": 911020}
+    ],
+    "directions": ["left", "right"],
+    "plants": [
+      {"name": "V1-ES", "law": "V1"},
+      {"name": "R3-ES", "law": "R3"}
+    ],
+    "actuator_modes": ["instant", "dynamic"],
+    "distance_target_m": 100.0,
+    "d2_acceleration_mps2": 0.25,
+    "virtual_front_step_deg": 5.0,
+    "virtual_rear_step_deg": 2.5,
+    "step_duration_s": 5.0,
+    "time_step_atol_s": 1e-9,
+    "angle_atol_rad": 1e-12,
+    "rate_atol_radps": 1e-12,
+    "mirror_atol": 1e-8,
+    "requested_icr_residual_atol_mps": 1e-8,
+    "action_reaction_atol_n": 1e-9,
+    "internal_null_relative_atol": 1e-8,
+    "tire_raw_utilization_max": 0.90
+  },
+  "authorized_stages": ["P0", "P1", "P2"],
+  "forbidden_before_next_authorization": ["P2S", "P3", "D0", "D1", "M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9"]
+}

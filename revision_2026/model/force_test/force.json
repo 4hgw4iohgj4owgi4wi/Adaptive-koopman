@@ -1,0 +1,387 @@
+{
+  "passed": true,
+  "connector_cases": 32,
+  "max_action_reaction_error_n": 0.0,
+  "max_vehicle_derivative_error": 1.4432899320127035e-15,
+  "max_payload_force_reconstruction_error": 0.0,
+  "max_payload_moment_reconstruction_error": 0.0,
+  "patterns": {
+    "net_x": {
+      "net_force_world_n": [
+        1200.0000000000014,
+        0.0
+      ],
+      "net_moment_nm": 0.0,
+      "q_front_rear_n": 0.0,
+      "q_left_right_n": 0.0,
+      "force_reconstruction_error": 0.0,
+      "moment_reconstruction_error": 0.0
+    },
+    "net_y": {
+      "net_force_world_n": [
+        0.0,
+        1200.0000000000014
+      ],
+      "net_moment_nm": 0.0,
+      "q_front_rear_n": 0.0,
+      "q_left_right_n": 0.0,
+      "force_reconstruction_error": 0.0,
+      "moment_reconstruction_error": 0.0
+    },
+    "front_rear_open": {
+      "net_force_world_n": [
+        0.0,
+        0.0
+      ],
+      "net_moment_nm": 0.0,
+      "q_front_rear_n": 600.0000000000007,
+      "q_left_right_n": 0.0,
+      "force_reconstruction_error": 0.0,
+      "moment_reconstruction_error": 0.0
+    },
+    "left_right_open": {
+      "net_force_world_n": [
+        0.0,
+        0.0
+      ],
+      "net_moment_nm": 0.0,
+      "q_front_rear_n": 0.0,
+      "q_left_right_n": 600.0000000000007,
+      "force_reconstruction_error": 0.0,
+      "moment_reconstruction_error": 0.0
+    },
+    "pure_yaw": {
+      "net_force_world_n": [
+        0.0,
+        0.0
+      ],
+      "net_moment_nm": 3231.098884280716,
+      "q_front_rear_n": 0.0,
+      "q_left_right_n": 0.0,
+      "force_reconstruction_error": 0.0,
+      "moment_reconstruction_error": 0.0
+    }
+  },
+  "cases": [
+    {
+      "vehicle": "FL",
+      "direction": "+x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000009,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 140.00000000000026,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FL",
+      "direction": "+x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FL",
+      "direction": "-x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000002,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 139.99999999999994,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FL",
+      "direction": "-x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FL",
+      "direction": "+y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "FL",
+      "direction": "+y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    },
+    {
+      "vehicle": "FL",
+      "direction": "-y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "FL",
+      "direction": "-y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    },
+    {
+      "vehicle": "FR",
+      "direction": "+x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000009,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 140.00000000000026,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FR",
+      "direction": "+x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FR",
+      "direction": "-x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000002,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 139.99999999999994,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FR",
+      "direction": "-x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "FR",
+      "direction": "+y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "FR",
+      "direction": "+y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    },
+    {
+      "vehicle": "FR",
+      "direction": "-y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "FR",
+      "direction": "-y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    },
+    {
+      "vehicle": "RL",
+      "direction": "+x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000009,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 140.00000000000026,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RL",
+      "direction": "+x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RL",
+      "direction": "-x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000002,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 139.99999999999994,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RL",
+      "direction": "-x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RL",
+      "direction": "+y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "RL",
+      "direction": "+y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    },
+    {
+      "vehicle": "RL",
+      "direction": "-y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "RL",
+      "direction": "-y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    },
+    {
+      "vehicle": "RR",
+      "direction": "+x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000009,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 140.00000000000026,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RR",
+      "direction": "+x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 0.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RR",
+      "direction": "-x",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000002,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 139.99999999999994,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RR",
+      "direction": "-x",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 180.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 0.0
+    },
+    {
+      "vehicle": "RR",
+      "direction": "+y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "RR",
+      "direction": "+y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": 90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    },
+    {
+      "vehicle": "RR",
+      "direction": "-y",
+      "velocity_sign": 1.0,
+      "force_norm_n": 1000.0000000000003,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 140.00000000000003,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 1.4432899320127035e-15
+    },
+    {
+      "vehicle": "RR",
+      "direction": "-y",
+      "velocity_sign": -1.0,
+      "force_norm_n": 300.00000000000034,
+      "force_angle_deg": -90.0,
+      "damping_power_w": 0.0,
+      "action_reaction_error_n": 0.0,
+      "vehicle_derivative_error": 2.7755575615628914e-16
+    }
+  ]
+}

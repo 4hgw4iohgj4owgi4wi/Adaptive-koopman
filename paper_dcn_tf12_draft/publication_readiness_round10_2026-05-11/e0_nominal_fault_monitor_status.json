@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-05-11T19:31:15",
+  "shard_counts": {
+    "e0_nominal_fault_shard_2026_2030": 40,
+    "e0_nominal_fault_shard_2031_2035": 40,
+    "e0_nominal_fault_shard_2036_2040": 40,
+    "e0_nominal_fault_shard_2041_2045": 40
+  },
+  "total_runs": 160,
+  "merged_min_group_n": 20,
+  "merged_scenarios": [
+    "sine_nominal_clean",
+    "sine_single_fault_v2"
+  ],
+  "merged_methods": [
+    "baseline",
+    "tf14_main",
+    "tf14_phase_role",
+    "zoh_consensus_surrogate"
+  ],
+  "ready": true,
+  "phase": "finalized",
+  "gate_dir": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\paper_dcn_tf12_draft\\publication_readiness_round10_2026-05-11\\e0_n20_nominal_single_fault_main_comparison_merged_gate"
+}

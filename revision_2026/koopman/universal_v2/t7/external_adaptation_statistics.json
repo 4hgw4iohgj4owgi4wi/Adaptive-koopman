@@ -1,0 +1,42 @@
+{
+  "K0": {
+    "trajectories": 24,
+    "mean_improvement": -0.002331774593143553,
+    "ci95_low": -0.004929836231037406,
+    "ci95_high": 0.00013706485230707968,
+    "bootstrap_p": 0.0662,
+    "condition": "A1-2s",
+    "holm_p": 0.1324,
+    "statistical_gate": false
+  },
+  "K1": {
+    "trajectories": 24,
+    "mean_improvement": -0.004453301796517986,
+    "ci95_low": -0.007111913885304373,
+    "ci95_high": -0.0019797823013737014,
+    "bootstrap_p": 0.0,
+    "condition": "A1-1s",
+    "holm_p": 0.0,
+    "statistical_gate": false
+  },
+  "K4": {
+    "trajectories": 24,
+    "mean_improvement": 0.0005197415764517894,
+    "ci95_low": -0.000978031954523664,
+    "ci95_high": 0.00247654552608869,
+    "bootstrap_p": 0.603,
+    "condition": "A1-1s",
+    "holm_p": 0.603,
+    "statistical_gate": false
+  },
+  "K5-linear": {
+    "trajectories": 24,
+    "mean_improvement": 0.10006471452173886,
+    "ci95_low": 0.09181060111280487,
+    "ci95_high": 0.10879681785226253,
+    "bootstrap_p": 0.0,
+    "condition": "A1-2s",
+    "holm_p": 0.0,
+    "statistical_gate": true
+  }
+}

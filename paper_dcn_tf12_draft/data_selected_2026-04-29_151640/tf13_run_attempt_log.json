@@ -1,0 +1,66 @@
+{
+  "dlc": {
+    "baseline": [
+      {
+        "attempt": 1,
+        "ok": true,
+        "speed_scale": 1.0,
+        "max_extra_steps": 1800,
+        "full_path_reached": true,
+        "max_err": 2.6965163432023864,
+        "step_time_mean": 0.023644012523880764,
+        "stop_reason": "full_path_reached"
+      }
+    ],
+    "main": [
+      {
+        "attempt": 1,
+        "ok": true,
+        "speed_scale": 0.94,
+        "max_extra_steps": 1700,
+        "full_path_reached": true,
+        "max_err": 3.431746138437731,
+        "step_time_mean": 0.209217806779441,
+        "stop_reason": "full_path_reached"
+      }
+    ],
+    "no_adapt": [
+      {
+        "attempt": 1,
+        "ok": true,
+        "speed_scale": 0.92,
+        "max_extra_steps": 1400,
+        "full_path_reached": true,
+        "max_err": 3.554815542662446,
+        "step_time_mean": 0.03462862637277474,
+        "stop_reason": "full_path_reached"
+      }
+    ]
+  },
+  "hairpin": {
+    "baseline": [
+      {
+        "attempt": 1,
+        "ok": true,
+        "speed_scale": 1.24,
+        "max_extra_steps": 2800,
+        "full_path_reached": true,
+        "max_err": 3.7068099878287204,
+        "step_time_mean": 0.011869594015708107,
+        "stop_reason": "full_path_reached"
+      }
+    ],
+    "main": [
+      {
+        "attempt": 1,
+        "ok": true,
+        "speed_scale": 0.96,
+        "max_extra_steps": 2400,
+        "full_path_reached": true,
+        "max_err": 3.6908792298049895,
+        "step_time_mean": 0.23179919913950522,
+        "stop_reason": "full_path_reached"
+      }
+    ]
+  }
+}
