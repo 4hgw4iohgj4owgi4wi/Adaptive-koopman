@@ -155,3 +155,25 @@ $TaskProcess = Start-Process @TaskStart
 | `revision_2026/paper_v4/protocol/RTX5060双机V2冻结前执行任务书_20260917.md` | 新机器接入步骤（环境、身份校验、资格、估时、回拷） |
 | `revision_2026/paper_v4/koopman_work_log.md` | 统一工作记录（追加式） |
 | `README_GIT_SCOPE.md` | 仓库收录范围与 clone 须知 |
+| `ENVIRONMENT.md` | 环境配置：硬件、依赖精确版本、进程模型、已知坑 |
+| `revision_2026/paper_v4/protocol/three_host_20260918/` | 三机（5080 / 5060 / 3050）任务包：各机小任务书、只读预检、必需文件 SHA 清单 |
+
+---
+
+## 7. 许可与来源
+
+本项目**新增部分**按 [MIT](LICENSE) 授权。
+
+仓库中另有一部分**派生自上游项目** [Rajpal9/Adaptive-koopman](https://github.com/Rajpal9/Adaptive-koopman)
+（R. Singh, C. K. Sah, J. Keshavan, *Adaptive Koopman Embedding for Robust Control of Complex
+Dynamical Systems*, [arXiv:2405.09101](https://arxiv.org/abs/2405.09101)）：
+
+- 上游仓库**没有 LICENSE 文件**，其授权状态未由作者明确；
+- 因此上述 MIT 授权**不覆盖**派生部分，至少包括 `core/`、`models/`、`dynamics/`
+  以及根目录的教程 notebook（`Coupled_pendulum_*`、`Serial_Manipulators_*`、
+  `Planar_Quadrotor_*`、`single_vehicle_*`、`tf3`—`tf9`、`test_single_lv*`、`testlv7z*`）；
+- 具体范围见 [LICENSE](LICENSE) 文件末尾的 SCOPE NOTE。若上游作者要求移除或改授，请开 issue。
+
+本仓库还包含未发表的论文稿件（`paper_dcn_tf12_draft/`）与投稿/审稿往来材料
+（`revision_2026/00_baseline/`、`revision_2026/connector_r3_4/`、`revision_2026/paper_v4/review/`）。
+这些材料的著作权属作者本人；标注为期刊往来函件的内容属保密通信，**请勿转载或引用**。
