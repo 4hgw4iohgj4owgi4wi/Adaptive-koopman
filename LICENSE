@@ -19,30 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----------------------------------------------------------------------------
-SCOPE NOTE (read together with the license above)
-
-The MIT license above covers the original contributions of this project:
-the four-vehicle cooperative transport plant, event-substep integrator,
-connector models, centralized physical MPC, CUDA finite-difference backend,
-legal-information interface, three-host task packs, protocols and tooling.
-
-Part of this repository is DERIVED FROM AN UPSTREAM PROJECT:
-
-    https://github.com/Rajpal9/Adaptive-koopman
-    R. Singh, C. K. Sah, J. Keshavan, "Adaptive Koopman Embedding for Robust
-    Control of Complex Dynamical Systems", arXiv:2405.09101
-
-That upstream repository carries NO license file, so its licensing status is
-unspecified by its authors. The MIT grant above therefore does NOT extend to
-upstream-derived material, which includes at least:
-
-    core/, models/, dynamics/, saved_models/ (paths only),
-    and the tutorial notebooks at the repository root
-    (Coupled_pendulum_*, Serial_Manipulators_*, Planar_Quadrotor_*,
-     single_vehicle_*, tf3--tf9, test_single_lv*, testlv7z*)
-
-If you are an upstream author and want these files removed or relicensed,
-please open an issue and the affected paths will be adjusted.
----------------------------------------------------------------------------

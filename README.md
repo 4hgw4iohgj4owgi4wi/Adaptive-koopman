@@ -172,7 +172,7 @@ Dynamical Systems*, [arXiv:2405.09101](https://arxiv.org/abs/2405.09101)）：
 - 因此上述 MIT 授权**不覆盖**派生部分，至少包括 `core/`、`models/`、`dynamics/`
   以及根目录的教程 notebook（`Coupled_pendulum_*`、`Serial_Manipulators_*`、
   `Planar_Quadrotor_*`、`single_vehicle_*`、`tf3`—`tf9`、`test_single_lv*`、`testlv7z*`）；
-- 具体范围见 [LICENSE](LICENSE) 文件末尾的 SCOPE NOTE。若上游作者要求移除或改授，请开 issue。
+- 具体范围见 [NOTICE.md](NOTICE.md)。若上游作者要求移除或改授，请开 issue。
 
 本仓库还包含未发表的论文稿件（`paper_dcn_tf12_draft/`）与投稿/审稿往来材料
 （`revision_2026/00_baseline/`、`revision_2026/connector_r3_4/`、`revision_2026/paper_v4/review/`）。
