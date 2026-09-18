@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "noiseless_round_trip",
+      "pass": true,
+      "maximum_absolute_error": 0.0
+    },
+    {
+      "name": "five_declared_same_tick_sources",
+      "pass": true
+    },
+    {
+      "name": "causal_unwrapped_heading_preserved",
+      "pass": true
+    },
+    {
+      "name": "raw_plant_state_rejected",
+      "pass": true
+    },
+    {
+      "name": "future_packet_rejected",
+      "pass": true
+    },
+    {
+      "name": "truth_side_channel_rejected",
+      "pass": true
+    },
+    {
+      "name": "missing_node_rejected",
+      "pass": true
+    },
+    {
+      "name": "basic_noise_changes_measured_channels_only",
+      "pass": true,
+      "maximum_state_perturbation": 0.038423294577916725,
+      "maximum_steering_perturbation": 0.0
+    },
+    {
+      "name": "absolute_tick_noise_is_a_pure_function_of_seed_tick_node_field",
+      "pass": true,
+      "same_input_repeat": true,
+      "different_tick_differs": true,
+      "different_node_differs": true
+    },
+    {
+      "name": "early_termination_does_not_shift_the_noise_stream",
+      "pass": true,
+      "ticks": 20
+    },
+    {
+      "name": "information_bundle_registers_seed_indexing_and_entropy_hash",
+      "pass": true,
+      "schema": "EXP-R2-R5-legal-information-v2-absolute-tick-noise",
+      "entropy_sha256": "6f79463c2d990e3e3692344f6155513cd8643390926eb3348bc2334ac5f48b50"
+    },
+    {
+      "name": "stale_packet_age_is_audited",
+      "pass": true,
+      "maximum_age_ticks": 1
+    },
+    {
+      "name": "noisy_heading_across_pi_stays_finite_and_causal",
+      "pass": true,
+      "headings": [
+        3.1343945859637867,
+        3.1420591558293576,
+        3.1433418349779365,
+        3.1428322528600643,
+        3.142666640388309
+      ]
+    }
+  ],
+  "basic_noise": {
+    "position_std_m": 0.01,
+    "heading_std_rad": 0.003490658503988659,
+    "velocity_std_mps": 0.02,
+    "yaw_rate_std_radps": 0.005,
+    "steering_std_rad": 0.0
+  },
+  "scope": "information contract only; no plant dynamics and no performance evidence",
+  "scope_note": "extended 2026-09-16 with absolute-tick noise indexing, early-termination invariance, entropy-hash registration, stale-packet auditing and a noisy cross-pi heading case, per section 5 and gpu_platform_decision_20260916.md",
+  "source_sha256": "1761ad98aa9f69a8283b38bc784380e028bb8c8aaea4affca2d52cbf81f2eba7"
+}

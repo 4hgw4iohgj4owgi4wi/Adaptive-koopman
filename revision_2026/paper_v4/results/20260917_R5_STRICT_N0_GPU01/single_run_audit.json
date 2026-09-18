@@ -1,0 +1,379 @@
+{
+  "run": "results\\20260917_R5_STRICT_N0_GPU01",
+  "interface_family": "R5 legal-information",
+  "status": "PASS_SINGLE_RUN_AUDIT",
+  "items_passed": 35,
+  "items_total": 35,
+  "checks": [
+    {
+      "item": 1,
+      "check": "status_completed",
+      "pass": true,
+      "detail": "COMPLETED"
+    },
+    {
+      "item": 2,
+      "check": "tick_count_equals_expected",
+      "pass": true,
+      "detail": {
+        "ticks": 2379,
+        "expected": 2379
+      }
+    },
+    {
+      "item": 3,
+      "check": "solver_records_equal_ticks",
+      "pass": true,
+      "detail": {
+        "solver_records": 2379,
+        "ticks": 2379
+      }
+    },
+    {
+      "item": 4,
+      "check": "information_records_equal_ticks",
+      "pass": true,
+      "detail": {
+        "information_records": 2379,
+        "ticks": 2379
+      }
+    },
+    {
+      "item": 5,
+      "check": "estimate_records_equal_ticks",
+      "pass": true,
+      "detail": {
+        "estimate_records": 2379,
+        "ticks": 2379
+      }
+    },
+    {
+      "item": 6,
+      "check": "accepted_substeps_present",
+      "pass": true,
+      "detail": {
+        "substeps": 23876,
+        "ticks": 2379
+      }
+    },
+    {
+      "item": 7,
+      "check": "raw_all_finite",
+      "pass": true,
+      "detail": "all raw entries finite"
+    },
+    {
+      "item": 8,
+      "check": "substeps_all_finite",
+      "pass": true,
+      "detail": "all substep entries finite"
+    },
+    {
+      "item": 9,
+      "check": "estimates_all_finite",
+      "pass": true,
+      "detail": "all estimate entries finite"
+    },
+    {
+      "item": 10,
+      "check": "time_strictly_increasing",
+      "pass": true,
+      "detail": {
+        "first_s": 0.020000000000000004,
+        "last_s": 47.580000000000005
+      }
+    },
+    {
+      "item": 11,
+      "check": "route_completed",
+      "pass": true,
+      "detail": {
+        "reference_distance_m": 95.12831551628261,
+        "route_length_m": 95.12831551628263
+      }
+    },
+    {
+      "item": 12,
+      "check": "force_peak_within_limit",
+      "pass": true,
+      "detail": {
+        "recomputed_peak_n": 398.4589430372676,
+        "limit_n": 15000.0
+      }
+    },
+    {
+      "item": 13,
+      "check": "tyre_within_limit",
+      "pass": true,
+      "detail": {
+        "recomputed_peak": 0.0492851818570941,
+        "limit": 1.0
+      }
+    },
+    {
+      "item": 14,
+      "check": "support_non_negative",
+      "pass": true,
+      "detail": {
+        "recomputed_min_n": 4686.285219002887
+      }
+    },
+    {
+      "item": 15,
+      "check": "request_equals_optimiser_first_control",
+      "pass": true,
+      "detail": {
+        "ticks_compared": 2379,
+        "max_abs_difference": 0.0
+      }
+    },
+    {
+      "item": 16,
+      "check": "solver_settings_recorded_and_self_consistent",
+      "pass": true,
+      "detail": {
+        "declared": {
+          "eps_abs": 1e-06,
+          "eps_rel": 1e-06,
+          "scaled_termination": false,
+          "max_iter": 4000,
+          "polishing": true
+        },
+        "effective": {
+          "eps_abs": 1e-06,
+          "eps_rel": 1e-06,
+          "scaled_termination": false,
+          "max_iter": 4000,
+          "polishing": true
+        },
+        "source": "protocol",
+        "rule": "the five settings must be present and the runtime-effective values must equal the declared ones"
+      }
+    },
+    {
+      "item": 17,
+      "check": "acceptance_tolerances_recorded_and_independent_of_eps_abs",
+      "pass": true,
+      "detail": {
+        "acceptance_tolerances": {
+          "requested_steering_acceptance_tolerance_rad": 1e-06,
+          "applied_steering_machine_tolerance_rad": 1e-12
+        },
+        "eps_abs": 1e-06,
+        "rule": "the requested-steering acceptance tolerance is a separately registered field; numerical equality with eps_abs is allowed and does not imply derivation"
+      }
+    },
+    {
+      "item": 18,
+      "check": "requested_steering_overshoot_is_measured_and_reported",
+      "pass": true,
+      "detail": {
+        "max_requested_rad": 0.2617993877991494,
+        "limit_rad": 0.2617993877991494,
+        "overshoot_rad": 0.0,
+        "overshoot_deg": 0.0,
+        "count_above_limit_raw": 0,
+        "count_above_limit_plus_1e_12": 0,
+        "elements_total": 9516,
+        "difference_between_the_two_counts": 0,
+        "note": "the raw count can include float-equality dust; both are reported so neither interpretation is hidden"
+      }
+    },
+    {
+      "item": 19,
+      "check": "requested_steering_within_registered_acceptance_tolerance",
+      "pass": true,
+      "detail": {
+        "overshoot_rad": 0.0,
+        "acceptance_tolerance_rad": 1e-06,
+        "note": "the 15 degree geometric bound is unchanged; this checks the separately registered acceptance tolerance"
+      }
+    },
+    {
+      "item": 20,
+      "check": "applied_steering_within_hard_limit_at_machine_precision",
+      "pass": true,
+      "detail": {
+        "max_applied_rad": 0.26175936281026463,
+        "limit_rad": 0.2617993877991494,
+        "machine_tolerance_rad": 1e-12,
+        "note": "the actuator model clips the applied steering, so the physical limit is enforced exactly"
+      }
+    },
+    {
+      "item": 21,
+      "check": "steering_rate_within_limit",
+      "pass": true,
+      "detail": {
+        "max_per_tick_change_rad": 0.0015704827003572008,
+        "limit_per_tick_rad": 0.024
+      }
+    },
+    {
+      "item": 22,
+      "check": "all_solver_records_pass",
+      "pass": true,
+      "detail": {
+        "failures": [],
+        "count": 0
+      }
+    },
+    {
+      "item": 23,
+      "check": "protocol_identity_matches_a_frozen_file",
+      "pass": true,
+      "detail": {
+        "recorded_sha256": "9006ec820b4a36be94e1d0794532e20cc1592ac73eabb510a25db32d2664db6d",
+        "matched": "protocol/R5_STRICT_N0_GPU_20260918_v2.json",
+        "supplementary_gpu_identity_pin": true,
+        "strict_protocol_run": true
+      }
+    },
+    {
+      "item": 24,
+      "check": "metrics_match_recomputation",
+      "pass": true,
+      "detail": {
+        "peak_force_relative": 0.0,
+        "peak_tire_relative": 0.0,
+        "min_support_absolute": 0.0
+      }
+    },
+    {
+      "item": 25,
+      "check": "every_tick_declares_five_same_tick_packets",
+      "pass": true,
+      "detail": {
+        "ticks_violating": 0,
+        "first": [],
+        "expected_nodes": [
+          "payload",
+          "vehicle_0",
+          "vehicle_1",
+          "vehicle_2",
+          "vehicle_3"
+        ]
+      }
+    },
+    {
+      "item": 26,
+      "check": "packet_age_is_zero_every_tick",
+      "pass": true,
+      "detail": {
+        "ticks_violating": 0,
+        "first": []
+      }
+    },
+    {
+      "item": 27,
+      "check": "no_truth_side_channel_anywhere",
+      "pass": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "item": 28,
+      "check": "noise_realisation_is_recoverable_from_artifacts",
+      "pass": true,
+      "detail": {
+        "definition": "estimate minus plant truth per tick per channel",
+        "max_absolute_over_measured_channels": 0.0,
+        "max_absolute_over_steering_channels": 0.0
+      }
+    },
+    {
+      "item": 29,
+      "check": "steering_channel_carries_zero_noise_as_declared",
+      "pass": true,
+      "detail": {
+        "max_absolute_steering_noise": 0.0,
+        "note": "the zero steering noise is a simulation assumption, not a calibration"
+      }
+    },
+    {
+      "item": 30,
+      "check": "reconstruction_matches_the_runners_own_error_block",
+      "pass": true,
+      "detail": {
+        "max_absolute_disagreement": 0.0,
+        "relative": 0.0,
+        "bound": 7.105427357601002e-15,
+        "ticks_compared": 2378
+      }
+    },
+    {
+      "item": 31,
+      "check": "noiseless_measurements_equal_truth_bitwise",
+      "pass": true,
+      "detail": {
+        "max_absolute_difference": 0.0,
+        "alignment": "estimates row k against raw row k-1"
+      }
+    },
+    {
+      "item": 32,
+      "check": "absolute_tick_noise_indexing_is_proven_by_the_contract_tests",
+      "pass": true,
+      "detail": {
+        "evidence": "results/20260916_R5_CONTRACT_TESTS_01",
+        "persistence_gap": "sample_packets computes schema, noise_seed, noise_indexing and a per-tick entropy hash, but r5_runner persists only tick/time/noise/measurements/audit, so those fields are absent from information.jsonl. The property is implemented and unit-tested and the realisation is fully recoverable, so this is recorded as a persistence deviation."
+      }
+    },
+    {
+      "item": 33,
+      "check": "noiseless_run_estimate_error_is_exactly_zero",
+      "pass": true,
+      "detail": {
+        "noise_name": "none",
+        "max_abs_estimate_error": 0.0
+      }
+    },
+    {
+      "item": 34,
+      "check": "estimate_rmse_recorded",
+      "pass": true,
+      "detail": {
+        "state_estimate_rmse": 0.0,
+        "steering_estimate_rmse_rad": 0.0,
+        "applicable": true
+      }
+    },
+    {
+      "item": 35,
+      "check": "figures_delivered_and_qa_pass",
+      "pass": true,
+      "detail": {
+        "manifest": "results/20260917_R5_STRICT_N0_GPU01/figures/figure_manifest.json",
+        "figure_status": "PASS_VISUAL_QA"
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "results\\20260917_R5_STRICT_N0_GPU01/raw.npz",
+      "sha256": "670837f403fee8c8b637dc30cad1ac843b789596624985fd4e7e78a2ceb93eb6"
+    },
+    {
+      "path": "results\\20260917_R5_STRICT_N0_GPU01/substeps.npz",
+      "sha256": "90f55d1a997fd92a24fb8995192900d769d7fba100089d3865133d6fc6abe99a"
+    },
+    {
+      "path": "results\\20260917_R5_STRICT_N0_GPU01/solver.jsonl",
+      "sha256": "9712fd6b2cefdd5ec554d1012bd8e984c424161b4aa66419bebdc99ebd337443"
+    },
+    {
+      "path": "results\\20260917_R5_STRICT_N0_GPU01/information.jsonl",
+      "sha256": "3005949cccee325ade309303999bc9fcaac4ff6401789da54a87c50c9a77f7fa"
+    },
+    {
+      "path": "results\\20260917_R5_STRICT_N0_GPU01/estimates.npz",
+      "sha256": "b1bd36db12b50981d1f2d9327ce1b923e76a573e0f4cdaa709dd0eeb592bd829"
+    },
+    {
+      "path": "results\\20260917_R5_STRICT_N0_GPU01/metrics.json",
+      "sha256": "9d03a598f67d8a6acc7289268eae658e0059825ca0b81a80965f4d79d1d0a4c7"
+    }
+  ],
+  "claim_boundary": "Artifact-level scientific audit of one deterministic interface run. Figure delivery and visual QA are checked independently by the release gate, avoiding a circular dependency between the audit and the figure that displays its status. It does not establish statistical robustness (one seed), does not test any network impairment, and does not register the method as distributed or communication-robust."
+}

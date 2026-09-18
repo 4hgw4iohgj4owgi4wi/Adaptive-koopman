@@ -1,0 +1,126 @@
+{
+  "status": "PASS_R5_STRICT_N0_NO_OP",
+  "protocol": "protocol/R5_STRICT_N0_GPU_20260918_v2.json",
+  "protocol_sha256": "9006ec820b4a36be94e1d0794532e20cc1592ac73eabb510a25db32d2664db6d",
+  "baseline": "results/20260917_R5_STRICT_BASELINE_P0_2MS_GPU01",
+  "n0": "results/20260917_R5_STRICT_N0_GPU01",
+  "threshold_absolute": 1e-12,
+  "maximum_absolute_difference": 0.0,
+  "time_maximum_absolute_difference": 0.0,
+  "columns_compared": 60,
+  "columns_exactly_identical": 60,
+  "missing_columns": [],
+  "column_maximum_absolute_differences": {
+    "x0": 0.0,
+    "x1": 0.0,
+    "x2": 0.0,
+    "x3": 0.0,
+    "x4": 0.0,
+    "x5": 0.0,
+    "x6": 0.0,
+    "x7": 0.0,
+    "x8": 0.0,
+    "x9": 0.0,
+    "x10": 0.0,
+    "x11": 0.0,
+    "x12": 0.0,
+    "x13": 0.0,
+    "x14": 0.0,
+    "x15": 0.0,
+    "x16": 0.0,
+    "x17": 0.0,
+    "x18": 0.0,
+    "x19": 0.0,
+    "x20": 0.0,
+    "x21": 0.0,
+    "x22": 0.0,
+    "x23": 0.0,
+    "x24": 0.0,
+    "x25": 0.0,
+    "x26": 0.0,
+    "x27": 0.0,
+    "x28": 0.0,
+    "x29": 0.0,
+    "request_accel0": 0.0,
+    "request_accel1": 0.0,
+    "request_accel2": 0.0,
+    "request_accel3": 0.0,
+    "request_delta0": 0.0,
+    "request_delta1": 0.0,
+    "request_delta2": 0.0,
+    "request_delta3": 0.0,
+    "actual_delta0": 0.0,
+    "actual_delta1": 0.0,
+    "actual_delta2": 0.0,
+    "actual_delta3": 0.0,
+    "point_force_norm0": 0.0,
+    "point_force_norm1": 0.0,
+    "point_force_norm2": 0.0,
+    "point_force_norm3": 0.0,
+    "tire_utilization0": 0.0,
+    "tire_utilization1": 0.0,
+    "tire_utilization2": 0.0,
+    "tire_utilization3": 0.0,
+    "support_load0": 0.0,
+    "support_load1": 0.0,
+    "support_load2": 0.0,
+    "support_load3": 0.0,
+    "internal_force_norm_n": 0.0,
+    "tension_x_n": 0.0,
+    "tension_y_n": 0.0,
+    "max_e_g_m": 0.0,
+    "reference_distance_m": 0.0,
+    "actual_payload_path_m": 0.0
+  },
+  "checks": [
+    {
+      "check": "baseline_completed",
+      "pass": true
+    },
+    {
+      "check": "n0_completed",
+      "pass": true
+    },
+    {
+      "check": "baseline_single_run_audit_pass",
+      "pass": true
+    },
+    {
+      "check": "n0_single_run_audit_pass",
+      "pass": true
+    },
+    {
+      "check": "baseline_figure_qa_pass",
+      "pass": true
+    },
+    {
+      "check": "n0_figure_qa_pass",
+      "pass": true
+    },
+    {
+      "check": "row_counts_match",
+      "pass": true
+    },
+    {
+      "check": "all_whitelist_columns_present",
+      "pass": true
+    },
+    {
+      "check": "solver_settings_identical",
+      "pass": true
+    },
+    {
+      "check": "acceptance_tolerances_identical",
+      "pass": true
+    },
+    {
+      "check": "time_is_bitwise_identical",
+      "pass": true
+    },
+    {
+      "check": "n0_no_op_within_absolute_threshold",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "Same-backend, same-controller deterministic no-op comparison between the strict full-state baseline and strict legal-information N0. It does not evaluate measurement noise."
+}

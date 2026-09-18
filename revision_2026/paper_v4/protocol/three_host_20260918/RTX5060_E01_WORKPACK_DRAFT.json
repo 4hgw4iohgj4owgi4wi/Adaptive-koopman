@@ -1,0 +1,58 @@
+{
+  "workpack_id": "H5060-E01-V2-PREP-20260918-v1",
+  "status": "PREP_ONLY_NOT_RUN",
+  "authorization": "experiment.md section 61; execution remains blocked until V2 is frozen and the RTX 5060 formal G0-G2 plus cross-device probe pass",
+  "current_gate": {
+    "status": "PLANT_GATE_NOT_READY",
+    "required": 33,
+    "passing_evidence": 9,
+    "without_passing_evidence": 24,
+    "old_failures_retained": 1
+  },
+  "matrices": [
+    {
+      "family": "hairpin",
+      "count": 9,
+      "parameter_ids": ["P0", "P1", "P2"],
+      "plant_step_ms": [2.0, 1.0, 0.5],
+      "note": "The old P0/2ms STOP_ULTIMATE_FORCE remains FAIL. A V2 rerun uses a new run id and cannot overwrite it."
+    },
+    {
+      "family": "steering_switch",
+      "count": 9,
+      "parameter_ids": ["P0", "P1", "P2"],
+      "plant_step_ms": [2.0, 1.0, 0.5],
+      "note": "Existing short HS/HG diagnostics do not count as this formal 3x3 matrix."
+    },
+    {
+      "family": "communication_plant_diagnostic",
+      "count": 6,
+      "parameter_ids": ["P0", "P1", "P2"],
+      "plant_step_ms": [2.0],
+      "impairments": ["delay_100ms", "outage_0.4s"],
+      "note": "Shows causal propagation into vehicle/payload force only; does not establish controller superiority."
+    }
+  ],
+  "per_run_deliverables": [
+    "frozen protocol and sha256",
+    "raw.npz and substeps.npz",
+    "metrics.json and solver/event log where applicable",
+    "single-run scientific audit",
+    "PNG and SVG diagnostic figure",
+    "figure_manifest.json with separate science and visual status"
+  ],
+  "aggregate_deliverables": [
+    "hairpin 3x3 convergence figure",
+    "steering-switch 3x3 convergence figure",
+    "delay/outage paired causal figure",
+    "updated E01 evidence matrix and plant-gate coverage figure"
+  ],
+  "stop_rules": [
+    "identity mismatch",
+    "attempt to reuse an existing output directory",
+    "hard physical gate or registered numerical-resolution failure",
+    "missing raw/substep evidence",
+    "missing PNG/SVG or figure QA",
+    "any request to relax a gate after viewing the result"
+  ]
+}

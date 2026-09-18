@@ -1342,3 +1342,20 @@
 - 正式S3协议：`protocol/R5_STRICT_BASELINE_P0_2MS_GPU_20260917_v2.json`，SHA `ded690eb5bcf1ea5df3346a530bbb8e44a498ec6f5b9a0406e089ab7c3493477`；钉住34项当前源码、父门和S2证据，只读`validate_protocol`通过，输出`results/20260917_R5_STRICT_BASELINE_P0_2MS_GPU02`不存在。
 - 当前状态：`READY_TO_START_S3_BASELINE / FULL_ROUTE_NOT_STARTED / R5_TOTAL_GATE_BLOCKED`。唯一下一步是按启动任务书v2运行S3；结束后必须先审计、再出图、再人工图QA，通过后才运行`build_r5_strict_protocols.py --stage n0`。
 - 补上N1释放前的真实无操作门：新增`tools/r5_strict_no_op_gate.py`，比较新基线/N0的60个协议白名单列和时间列，强制读取两条科学审计与两条图QA，并输出自己的JSON、PNG、SVG和manifest；`build_r5_strict_protocols.py --stage n1`现将该报告和图QA列为硬前置。S3未完成时试运行`--stage n0`已按预期因缺基线metrics非零拒绝。
+
+## 2026-09-17 R5 严格链 S2 完成、S3 启动
+
+- 三个严格协议冻结，`solver_settings` 逐位相同（`eps_abs=eps_rel=1e-6, scaled_termination=false, max_iter=4000, polishing=true`），`acceptance_tolerances` 逐位相同（1e-6 / 1e-12）。N0 无操作门改指严格基线，且**排除清单为空**（基准 max_e_g_m 桩值已在 S1 去除）。
+- 三类负例全过：错SHA、**篡改 solver 字段但不更新SHA**、输出目录已存在 → 均在建输出前退出1。
+- **固定QP探针 PASS（v2，7/7）**：旧 `2e-4` 设置在 16 个 tick 上**逐位复现**已保存首控制（差恰为 0.0）→ **时间基准对齐自证正确**；严格候选最差请求越界 **5.551115123125783e-17 rad**（容差 1e-6），迭代 200–825（未耗尽），残差全 0，耗时正常。
+- **探针首版指标缺陷（已修）**：v1 用 `max(|first_control|)` 当转角，但该向量交错为 `[a1,d1,a2,d2,…]`，取到的是加速度（限值2.0），产生**虚构的 1.03 rad 越界**并 FAIL。v2 改用 `[1::2]`（奇数索引才是转角）后 PASS。v1 保留为缺陷证据，未改任何门/阈值/run。
+- **S3 严格P0基准启动**：PID 19140，23:29:34，协议 SHA `9d8260bf...30b48`。回执记录 env（osqp 1.1.1、RTX 5080）。短检查1：存活、stderr空；短检查2（59 s）：首记录 tick 0 PASS/solved/25 迭代，status.json 10/2379。ETA 约 02:30。
+
+## 2026-09-18 R5 严格链 S3 完成、S4 启动
+
+- **S3 严格P0基准 COMPLETED**：09-17 23:29:34 → 09-18 约03:17，墙钟 13644.52 s = 3.79 h，2379/2379、全长。**构形误差去桩值成功**（严格 0.013750414 m vs 旧桩值 0.0）；`solver_settings` 严格五项已落盘。**审计 25/25 PASS**（已落盘），六面板图 `PASS_VISUAL_QA`。
+- **成本如实报告**：严格设置使求解显著变慢——均值 5.598 s（旧 4.562）、最大 6.956 s、**仅 755/2379 在 5 s 预算内**（旧 1993）。
+- **审计工具扩展为双家族**（任务书第5节明确要求不能跳过）：基准分支 24 项（物理/控制/设置/身份/复算，接口项标 not applicable）；接口分支 38 项。回归对比确认接口分支未改坏（34 项，差异仅 S1.4 有意替换的三项）。**同时修回一处真丢失**：S1.4 整文件重写漏掉了 `figures_delivered_and_qa_pass`（释放条件之一），已恢复。
+- **S4 首启被身份门正确拒绝**：`IDENTITY_FILE_MISMATCH:tools/r5_single_run_audit.py`（工具在协议冻结后扩展），无输出目录。处理：**基线协议 v1 保持字节不变**以保住 S3 的 `protocol_sha256` 可解析；差异写入 `analysis/20260917_STRICT_CHAIN_TOOL_EXTENSION_01/tool_extension_note.json`；**N0/N1 重冻 v2**（`9006ec82...`/`6180b511...`）。
+- **S4 严格N0 启动**：PID 11084，09:04:54，短检查2 得 15 条 solver＋15 条 information，首记录 tick 0 PASS/solved。ETA 约 11:40。
+- 顺带发现：旧基线 `R5_BASELINE_P0_2MS_GPU02/figures/` 为空（§55.6 修补未覆盖它）；旧链已被取代，不阻塞。

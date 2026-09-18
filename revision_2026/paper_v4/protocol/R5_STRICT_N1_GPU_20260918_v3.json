@@ -1,0 +1,249 @@
+{
+  "protocol_id": "R5-STRICT-N1-GPU-strict-solver-v3-parent-evidence",
+  "scope": "R5_LEGAL_INFORMATION",
+  "authorization": "R5_STRICT_CHAIN_EXECUTION_20260917.md stage S5, released only after the current GPU01 N0 audit, figure QA, exact no-op gate and no-op figure QA pass.",
+  "run": {
+    "output": "results/20260917_R5_STRICT_N1_GPU01",
+    "noise": "basic",
+    "seed": 5105,
+    "backend": "gpu",
+    "parameter_id": "P0",
+    "plant_max_step_ms": 2.0,
+    "controller_step_ms": 20.0,
+    "horizon": 20,
+    "lambda_internal": 2.0,
+    "frozen_dynamics_jacobian": false,
+    "finite_difference_scale": 1.0,
+    "total_ticks": 2379
+  },
+  "information_interface": {
+    "schema": "EXP-R2-R5-legal-information-v2-absolute-tick-noise",
+    "architecture": "centralized same-tick fusion of four vehicle-local packets and one payload-coordinator packet",
+    "noise_indexing": "per absolute tick, node and field; entropy hashed per tick",
+    "not_claimed": "R5 proves interface transfer only. It does not establish distributed or communication-robust control; impairment injection belongs to E03/E05."
+  },
+  "noiseless_no_op_gate": {
+    "not_applicable": "N1 changes the measurement noise by design and is not required to reproduce the noiseless run; it must pass the hard gates, the separately registered acceptance tolerances and its own single-run audit."
+  },
+  "hard_gates": {
+    "ultimate_force_n": 15000.0,
+    "tire_utilization": 1.0,
+    "minimum_support_load_n": 0.0
+  },
+  "stop_rule": "N0 failure stops N1. N1 violating a hard gate fails R5; no filter is added and the noise is not reduced to hide it.",
+  "identity_files": [
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "426b5a65ba4b61169ae69509aea96d6e78f4ee9a07ae649c6ea70492e6a4127f"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/gpu_closed_loop_runner.py",
+      "sha256": "eac126871104b11321f05038c36d9e6b966d522187326d6267b3cdfea1199114"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/full_route_gpu_runner.py",
+      "sha256": "4959306ae6f0b1879bfff35609cf06afdd736b4ef8fd68dbc4c6a6dbbee79c44"
+    },
+    {
+      "path": "src/paper_v4_core/r5_runner.py",
+      "sha256": "1b2aeb4481407c0cd536a5bdf0e90b10082ddb4cddf24b98f4d5676c22f84f4e"
+    },
+    {
+      "path": "src/paper_v4_core/information/legal_information.py",
+      "sha256": "02bb2e0e73fccff719930bbbcc449ab020531c4253c42653debea440b68d6365"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/__init__.py",
+      "sha256": "c0c603e663221615bb6dd3119021fcad617232239c2caa44cb5d384baa23365d"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/physics_torch.py",
+      "sha256": "8eaaac3e431d5b4b112d2e46722761f6b28092ac7fb07ca4f1b867ddbdef54dd"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/rollout_batch.py",
+      "sha256": "80bad4fdd7833e3a775f8dd3fe211f4034e038242bfcc91bdc8a5fa433ee603e"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/gpu_worker.py",
+      "sha256": "e41ca0ee45386b2a5dc9d796cbdf27c77d483a8aefe870412b55e418844206f1"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/ipc_backend.py",
+      "sha256": "c1449856a13e33ccbcd278a4444ea99e297173099c5f3b8c2d0a40d0e980244f"
+    },
+    {
+      "path": "src/paper_v4_core/plant/four_vehicle_common.py",
+      "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c"
+    },
+    {
+      "path": "src/paper_v4_core/plant/event_substep.py",
+      "sha256": "aad77aa5b9d45cefc72769062550a07c6f2593e5038f2e9e35fcd8242ab41726"
+    },
+    {
+      "path": "src/paper_v4_core/e01_100m.py",
+      "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025"
+    },
+    {
+      "path": "src/paper_v4_core/pilot_runner.py",
+      "sha256": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728"
+    },
+    {
+      "path": "src/paper_v4_core/reference_geometry.py",
+      "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d"
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/relative_motion.py",
+      "sha256": "4e2807596bd94f6189aedb813dbd24d6cdd00d9c408fcfe460f069cec55daea6"
+    },
+    {
+      "path": "src/paper_v4_core/failure_boundary.py",
+      "sha256": "1bb27d9310005a1cd7db235e1505e530c160a4b89da140eb6f2c399669a604bd"
+    },
+    {
+      "path": "tools/r5_single_run_audit.py",
+      "sha256": "37f79190423e0a3ad09d4cd7eb30f6967ec02252d54890bdc8124387061410ed"
+    },
+    {
+      "path": "tools/r5_information_gate.py",
+      "sha256": "feb36686a011084fc6b1181171584a88d2e7b302f961cb948072eff523589b62"
+    },
+    {
+      "path": "tools/r5_information_figures.py",
+      "sha256": "e4feb9bac2d07058d621d52e93ca9f1db2fe6276158bba2464a1c961368a474a"
+    },
+    {
+      "path": "tools/r4_cell_figure.py",
+      "sha256": "d92992a2cbf1a030a4bb33968bc4fbeba444db9e45f2e48dbf729cba9b5725bc"
+    },
+    {
+      "path": "analysis/20260915_G3_RESTART_EQUIVALENCE_02/g3_restart_equivalence.json",
+      "sha256": "913b5cb1146f76436a68c0c70a1d069a187e8537d192dc0f838a8530c8af50c7"
+    },
+    {
+      "path": "analysis/20260915_G3B_DIVERGENCE_MECHANISM_01/g3_divergence_mechanism.json",
+      "sha256": "2330300d6f0d03e9a9e3603ae1252edf8f80e43819cfe50755ea85da760556fd"
+    },
+    {
+      "path": "results/20260915_RTX5080_G0_G2_05/qualification.json",
+      "sha256": "51f1d8572d66ce520d9afa4caba2d87e6f5de4772e40e1864005b6609510dc9d"
+    },
+    {
+      "path": "results/20260916_R5_CONTRACT_TESTS_01/r5_information_tests.json",
+      "sha256": "8550f6a2b073d3eea83e9729997bd72bc6e2290247cdd635cc6556c9529f5946"
+    },
+    {
+      "path": "results/20260915_RTX5080_G0_G2_05/g0_environment.json",
+      "sha256": "58da08645226e3da6df0712b5a201379874bf7743696c9bc20976a9a76df9553"
+    },
+    {
+      "path": "gpu_platform_decision_20260916.md",
+      "sha256": "d029cafffddc3cdfde0f53f1fd597a39ebcecb6e9ee6b330eeabfb5a10ea1a1f"
+    },
+    {
+      "path": "qp_rate_penalty_sign_defect_20260916.md",
+      "sha256": "3c00b9a6e2463e0625250173960383cd27a25d980d80909072a233bee8f2c790"
+    },
+    {
+      "path": "R5_STRICT_CHAIN_EXECUTION_20260917.md",
+      "sha256": "6c925d939c8f0af171039fc16389cec2313fafd3e84b36111e084da0b513b1b0"
+    },
+    {
+      "path": "tools/build_r5_strict_n1_gpu01_v3.py",
+      "sha256": "1d8343984c03f4f4c968aff3ece28ffd03a79db749dd8570b41ebfeafcd02284"
+    },
+    {
+      "path": "tools/r5_strict_no_op_gate.py",
+      "sha256": "d8b24ed23e705ada7ba170eaa2b73433d65e8e0e9bc97ea58afc844d2201d6aa"
+    },
+    {
+      "path": "protocol/R5_STRICT_N0_GPU_20260918_v2.json",
+      "sha256": "9006ec820b4a36be94e1d0794532e20cc1592ac73eabb510a25db32d2664db6d"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/metrics.json",
+      "sha256": "9d03a598f67d8a6acc7289268eae658e0059825ca0b81a80965f4d79d1d0a4c7"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/raw.npz",
+      "sha256": "670837f403fee8c8b637dc30cad1ac843b789596624985fd4e7e78a2ceb93eb6"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/single_run_audit.json",
+      "sha256": "8ec1fa4e7f5a19eacbc1bd4a9d37da7c5faa5f1f522ae714be0b6592fe03d21a"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/figures/figure_manifest.json",
+      "sha256": "455850bd27602df28c9ceaabd1b8d020bee93a0cfc54cba39ec7a1fb46c653c4"
+    },
+    {
+      "path": "analysis/20260918_R5_STRICT_N0_NO_OP_01/no_op.json",
+      "sha256": "e2f9c5f992b4f9c291d01d8d26a70f7d22c4d1a09430ccd63fc8d7788ccd7b9e"
+    },
+    {
+      "path": "analysis/20260918_R5_STRICT_N0_NO_OP_01/figure_manifest.json",
+      "sha256": "ba78192b44dfda1f297de402cfc11795a88cad17a9e25e34100c2d014361f4f7"
+    }
+  ],
+  "refrozen_reason": "r5_runner.py changed after this protocol was frozen (double-mkdir fix and caller-model passing), so the pinned hash was stale and the first R5-N1 launch was refused with IDENTITY_FILE_MISMATCH before creating any output.",
+  "solver_settings": {
+    "eps_abs": 1e-06,
+    "eps_rel": 1e-06,
+    "scaled_termination": false,
+    "max_iter": 4000,
+    "polishing": true
+  },
+  "acceptance_tolerances": {
+    "requested_steering_acceptance_tolerance_rad": 1e-06,
+    "applied_steering_machine_tolerance_rad": 1e-12
+  },
+  "strict_chain": {
+    "entry": "R5_STRICT_CHAIN_EXECUTION_20260917.md",
+    "stage": "S5",
+    "solver_candidate_status": "forward-registered candidate, to be validated by the fixed-QP probe before launch",
+    "readiness": "READY_TO_START_AFTER_READ_ONLY_HOST_PREFLIGHT",
+    "n0_parent_evidence": {
+      "protocol": {
+        "path": "protocol/R5_STRICT_N0_GPU_20260918_v2.json",
+        "sha256": "9006ec820b4a36be94e1d0794532e20cc1592ac73eabb510a25db32d2664db6d"
+      },
+      "metrics": {
+        "path": "results/20260917_R5_STRICT_N0_GPU01/metrics.json",
+        "sha256": "9d03a598f67d8a6acc7289268eae658e0059825ca0b81a80965f4d79d1d0a4c7",
+        "status": "COMPLETED",
+        "iterations": 2379
+      },
+      "raw": {
+        "path": "results/20260917_R5_STRICT_N0_GPU01/raw.npz",
+        "sha256": "670837f403fee8c8b637dc30cad1ac843b789596624985fd4e7e78a2ceb93eb6"
+      },
+      "audit": {
+        "path": "results/20260917_R5_STRICT_N0_GPU01/single_run_audit.json",
+        "sha256": "8ec1fa4e7f5a19eacbc1bd4a9d37da7c5faa5f1f522ae714be0b6592fe03d21a",
+        "status": "PASS_SINGLE_RUN_AUDIT",
+        "items": "35/35"
+      },
+      "figure_manifest": {
+        "path": "results/20260917_R5_STRICT_N0_GPU01/figures/figure_manifest.json",
+        "sha256": "455850bd27602df28c9ceaabd1b8d020bee93a0cfc54cba39ec7a1fb46c653c4",
+        "figure_status": "PASS_VISUAL_QA"
+      },
+      "no_op": {
+        "path": "analysis/20260918_R5_STRICT_N0_NO_OP_01/no_op.json",
+        "sha256": "e2f9c5f992b4f9c291d01d8d26a70f7d22c4d1a09430ccd63fc8d7788ccd7b9e",
+        "status": "PASS_R5_STRICT_N0_NO_OP",
+        "maximum_absolute_difference": 0.0
+      },
+      "no_op_figure_manifest": {
+        "path": "analysis/20260918_R5_STRICT_N0_NO_OP_01/figure_manifest.json",
+        "sha256": "ba78192b44dfda1f297de402cfc11795a88cad17a9e25e34100c2d014361f4f7",
+        "figure_status": "PASS_VISUAL_QA"
+      }
+    }
+  },
+  "supersedes_protocol": {
+    "path": "protocol/R5_STRICT_N1_GPU_20260918_v2.json",
+    "sha256": "6180b51112bc3a8ee3d778e875ee5d9febc3deaad954bdb47a2a24b0bf4c39ed",
+    "reason": "v2 was frozen before S4 completed and did not pin the N0 audit, current N0 figure, exact no-op report or no-op figure manifest required by the strict chain."
+  }
+}

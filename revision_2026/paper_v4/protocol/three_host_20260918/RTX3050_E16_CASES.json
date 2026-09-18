@@ -1,0 +1,52 @@
+{
+  "contract_id": "E16-NEGATIVE-CASES-THREE-HOST-20260918-v1",
+  "status": "REGISTERED_NEGATIVE_TEST_INPUTS",
+  "claim_boundary": "These cases can falsify invalid implications. They do not by themselves prove closed-loop stability, recursive feasibility, or a communication-outage density bound.",
+  "formula_13_cases": [
+    {
+      "id": "positive_cu_feasible",
+      "norm_a_plus": 0.7,
+      "r_u": 1.0,
+      "c_u": 0.5,
+      "expected_status": "CERTIFIABLE_INTERVAL",
+      "expected_gamma_max": 0.6
+    },
+    {
+      "id": "zero_cu_feasible",
+      "norm_a_plus": 0.7,
+      "r_u": 1.0,
+      "c_u": 0.0,
+      "expected_status": "BASE_BLOCK_CERTIFIABLE"
+    },
+    {
+      "id": "base_block_over_limit",
+      "norm_a_plus": 1.2,
+      "r_u": 1.0,
+      "c_u": 0.5,
+      "expected_status": "NOT_CERTIFIABLE"
+    }
+  ],
+  "scalar_clip_counterexample": {
+    "norm_a_plus": 1.2,
+    "r_u": 1.0,
+    "c_u": 0.5,
+    "bad_rule": "clip((r_u-norm_a_plus)/c_u, 0, 1)",
+    "expected_bad_gamma": 0.0,
+    "expected_true_status": "NOT_CERTIFIABLE"
+  },
+  "nonnormal_case": {
+    "matrix": [[0.8, 6.0], [0.0, 0.8]],
+    "initial_state": [0.0, 1.0],
+    "steps": 30,
+    "expected_spectral_radius_below_one": true,
+    "expected_transient_growth_above_one": true
+  },
+  "switched_case": {
+    "matrix_a": [[0.8, 1.0], [0.0, 0.8]],
+    "matrix_b": [[0.8, 0.0], [1.0, 0.8]],
+    "initial_state": [1.0, 0.2],
+    "steps": 24,
+    "expected_each_spectral_radius_below_one": true,
+    "expected_alternating_growth": true
+  }
+}

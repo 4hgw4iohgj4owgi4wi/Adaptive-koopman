@@ -1,0 +1,104 @@
+{
+  "protocol_id": "R5-strict-fixed-QP-probe-v1",
+  "scope": "R5_STRICT_QP_PROBE",
+  "authorization": "R5_STRICT_CHAIN_EXECUTION_20260917.md section S2: the probe cannot be a three-tick smoke test.",
+  "output": "analysis/20260917_R5_STRICT_QP_PROBE_01",
+  "source_run": "results/20260916_R5_N1_GPU01",
+  "why_this_probe": "The first material requested-steering violation in the historical N1 run is at tick 834 and the worst is at tick 963 (19.28 s, about 38.56 m of reference distance). A three-tick smoke test from the initial condition cannot observe either, so the strict candidate is validated by replaying the registered violating ticks instead.",
+  "time_base_alignment": "r5_runner appends its row after updating previous_u and beta but captures distance_before before that update, so tick k's inputs are: distance from row k, beta and previous_u from row k-1 (zeros at tick 0). The old-settings reproduction check is what proves this alignment.",
+  "strict_candidate_solver_settings": {
+    "eps_abs": 1e-06,
+    "eps_rel": 1e-06,
+    "scaled_termination": false,
+    "max_iter": 4000,
+    "polishing": true
+  },
+  "acceptance_tolerances": {
+    "requested_steering_acceptance_tolerance_rad": 1e-06,
+    "applied_steering_machine_tolerance_rad": 1e-12
+  },
+  "probe_conditions": {
+    "old_settings_reproduction_max_abs_rad": 1e-10,
+    "note": "same environment prefers bitwise equality; otherwise at most 1e-10 with the source of the difference explained"
+  },
+  "registered_ticks": {
+    "material": [
+      834,
+      839,
+      853,
+      930,
+      963,
+      1112,
+      1180,
+      1194,
+      1298,
+      1301,
+      1370,
+      1384,
+      1524,
+      1538,
+      1549
+    ],
+    "float_dust": [
+      1652
+    ]
+  },
+  "identity_files": [
+    {
+      "path": "tools/r5_strict_qp_probe.py",
+      "sha256": "5471e1d143631d44e5a74d846b3cbe3b0f3aae13b324cb970c9db4e2d6fff4f5"
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "426b5a65ba4b61169ae69509aea96d6e78f4ee9a07ae649c6ea70492e6a4127f"
+    },
+    {
+      "path": "src/paper_v4_core/r5_runner.py",
+      "sha256": "1b2aeb4481407c0cd536a5bdf0e90b10082ddb4cddf24b98f4d5676c22f84f4e"
+    },
+    {
+      "path": "src/paper_v4_core/pilot_runner.py",
+      "sha256": "a0ba31234e8e8d47eb8064bc0eaab6f6670b53ab6ecd0ed47db00a64235d5728"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/ipc_backend.py",
+      "sha256": "c1449856a13e33ccbcd278a4444ea99e297173099c5f3b8c2d0a40d0e980244f"
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/physics_torch.py",
+      "sha256": "8eaaac3e431d5b4b112d2e46722761f6b28092ac7fb07ca4f1b867ddbdef54dd"
+    },
+    {
+      "path": "results/20260916_R5_N1_GPU01/raw.npz",
+      "sha256": "debc98427f820ed2103787c179efeb57210444909d8be48fe16d1c504f7e5992"
+    },
+    {
+      "path": "results/20260916_R5_N1_GPU01/estimates.npz",
+      "sha256": "26b8aea5c5b7e3fb7346396d14204bb12da3b83e87d82ed5edfb5348edeaccb5"
+    },
+    {
+      "path": "results/20260916_R5_N1_GPU01/solver.jsonl",
+      "sha256": "df63a5109e955d07bbcd0c27f7f1a087785ecd4ec46536d2b39b55df7ffd7c6d"
+    },
+    {
+      "path": "results/20260916_R5_N1_GPU01/single_run_audit.json",
+      "sha256": "a81a55fdedfb464134c69b6ec228833f1cffbf3b72fc82ecea1b89545a409a20"
+    },
+    {
+      "path": "protocol/R5_STRICT_BASELINE_P0_2MS_GPU_20260917_v1.json",
+      "sha256": "9d8260bff58fc43cfe86577de4869c5a2ec30c54eeb394338c9774040b130b48"
+    },
+    {
+      "path": "protocol/R5_STRICT_N0_GPU_20260917_v1.json",
+      "sha256": "dca01454793e6dfbbcaa359b581aaf34670add3d08873a8a3bcee60cec6a0837"
+    },
+    {
+      "path": "protocol/R5_STRICT_N1_GPU_20260917_v1.json",
+      "sha256": "ed7896d3bd8c24e4af2444ed25a0fcebb2a5ee6a6d5fc7ae1a45e1c41c6bba54"
+    },
+    {
+      "path": "R5_STRICT_CHAIN_EXECUTION_20260917.md",
+      "sha256": "6c925d939c8f0af171039fc16389cec2313fafd3e84b36111e084da0b513b1b0"
+    }
+  ]
+}

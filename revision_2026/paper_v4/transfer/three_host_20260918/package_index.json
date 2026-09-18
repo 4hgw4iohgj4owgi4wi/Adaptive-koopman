@@ -1,0 +1,37 @@
+{
+  "package_set": "THREE-HOST-20260918-v1",
+  "generated_at": "2026-09-18T07:34:47.400580+00:00",
+  "packages": [
+    {
+      "host": "RTX5080",
+      "zip": "transfer/three_host_20260918/RTX5080_TASK_PACKAGE.zip",
+      "sha256": "d42ac3b6299e807e48d44369ce621db37c0c33ed9b259e9f4d9c55d176570fc9",
+      "bytes": 1073189,
+      "entries": 43,
+      "required_manifest": "protocol/three_host_20260918/RTX5080_REQUIRED_FILES.json",
+      "required_manifest_sha256": "9f178f7e59371ecfb61dae5eb694782254fbc13ec1a8b593f915eaf44f0bcad5",
+      "crc_check": "PASS"
+    },
+    {
+      "host": "RTX5060",
+      "zip": "transfer/three_host_20260918/RTX5060_TASK_PACKAGE.zip",
+      "sha256": "faa5f2ba8f5ff44c61f47ede5964e84d2982349706de7a4bec1f2d10ed6aab9a",
+      "bytes": 5202093,
+      "entries": 36,
+      "required_manifest": "protocol/three_host_20260918/RTX5060_REQUIRED_FILES.json",
+      "required_manifest_sha256": "0c1b57cc7fba82c25d3ffa39b9284cf2037915f7085995209d67f99a5a4f8ae8",
+      "crc_check": "PASS"
+    },
+    {
+      "host": "RTX3050",
+      "zip": "transfer/three_host_20260918/RTX3050_TASK_PACKAGE.zip",
+      "sha256": "cf4bab59866fbaff302794325b972985a75fe02e808227019614aa18e6a0ecd9",
+      "bytes": 5194841,
+      "entries": 33,
+      "required_manifest": "protocol/three_host_20260918/RTX3050_REQUIRED_FILES.json",
+      "required_manifest_sha256": "f972bb6fe2ed0a3509a81314fc555d9c98ae254f6e0e56627ec8dbd66b99a022",
+      "crc_check": "PASS"
+    }
+  ],
+  "instruction": "Verify zip SHA-256, extract preserving the paper_v4 prefix, then verify the per-host REQUIRED_FILES manifest and run the host preflight."
+}

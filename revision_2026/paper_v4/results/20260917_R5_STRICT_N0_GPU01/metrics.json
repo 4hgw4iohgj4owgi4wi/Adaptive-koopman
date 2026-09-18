@@ -1,0 +1,73 @@
+{
+  "status": "COMPLETED",
+  "reason": null,
+  "role": "DEV",
+  "execution_backend": "gpu",
+  "solver_settings": {
+    "eps_abs": 1e-06,
+    "eps_rel": 1e-06,
+    "scaled_termination": false,
+    "max_iter": 4000,
+    "polishing": true
+  },
+  "solver_settings_effective": {
+    "eps_abs": 1e-06,
+    "eps_rel": 1e-06,
+    "scaled_termination": false,
+    "max_iter": 4000,
+    "polishing": true
+  },
+  "solver_settings_source": "protocol",
+  "acceptance_tolerances": {
+    "requested_steering_acceptance_tolerance_rad": 1e-06,
+    "applied_steering_machine_tolerance_rad": 1e-12
+  },
+  "environment": {
+    "python": "E:\\anaconda\\envs\\pytorch_new\\python.exe",
+    "version": "3.11.14",
+    "osqp": "1.1.1",
+    "numpy": "2.0.1"
+  },
+  "deadline_unix": 1789711474.0,
+  "frozen_dynamics_jacobian": false,
+  "finite_difference_scale": 1.0,
+  "noise_indexing": "per absolute tick, node and field via SeedSequence",
+  "information_schema": "EXP-R2-R5-legal-information-v2-absolute-tick-noise",
+  "identity": "Centralized physical MPC supplied only by same-tick legal sensor packets; R5 interface diagnostic",
+  "information_architecture": "centralized same-tick fusion; no network impairment",
+  "noise_name": "none",
+  "noise": {
+    "position_std_m": 0.0,
+    "heading_std_rad": 0.0,
+    "velocity_std_mps": 0.0,
+    "yaw_rate_std_radps": 0.0,
+    "steering_std_rad": 0.0
+  },
+  "noise_seed": 5105,
+  "parameter_id": "P0",
+  "lambda_internal": 2.0,
+  "horizon": 20,
+  "controller_step_s": 0.02,
+  "plant_step_s": 0.002,
+  "maximum_plant_step_s": 0.002,
+  "requested_segment_s": 47.564157758141306,
+  "iterations": 2379,
+  "duration_s": 47.580000000000005,
+  "reference_distance_m": 95.12831551628261,
+  "route_length_m": 95.12831551628261,
+  "actual_payload_path_m": 95.0473270809175,
+  "maximum_point_force_n": 398.4589430372676,
+  "maximum_internal_force_norm_n": 342.75590718333626,
+  "maximum_tire_utilization": 0.0492851818570941,
+  "minimum_support_load_n": 4686.285219002887,
+  "maximum_configuration_error_m": 0.013750414271154655,
+  "trajectory_completed": true,
+  "predicted_force_budget_n": 12000.0,
+  "ultimate_stop_n": 15000.0,
+  "solver_calls": 2379,
+  "state_estimate_rmse": 0.0,
+  "steering_estimate_rmse_rad": 0.0,
+  "wall_s": 10466.027920799796,
+  "source_sha256": "1b2aeb4481407c0cd536a5bdf0e90b10082ddb4cddf24b98f4d5676c22f84f4e",
+  "protocol_sha256": "9006ec820b4a36be94e1d0794532e20cc1592ac73eabb510a25db32d2664db6d"
+}

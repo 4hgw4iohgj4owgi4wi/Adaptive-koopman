@@ -1,0 +1,9 @@
+{
+  "status": "RUNNING",
+  "completed_ticks": 2200,
+  "total_ticks": 2379,
+  "time_s": 44.00000000000001,
+  "reference_distance_m": 88.00000000000256,
+  "updated_unix": 1789468532.4977803,
+  "deadline_unix": 1789480382.0
+}

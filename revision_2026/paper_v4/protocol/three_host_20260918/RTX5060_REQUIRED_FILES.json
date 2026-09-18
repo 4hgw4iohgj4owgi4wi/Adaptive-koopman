@@ -1,0 +1,187 @@
+{
+  "package_id": "THREE-HOST-RTX5060-20260918-v1",
+  "host_tag": "RTX5060",
+  "generated_at": "2026-09-18T15:34:27.4863978+08:00",
+  "source_root": "D:\\LEARNING\\ZNN\\ZNN\\Adaptive-koopman\\Adaptive-koopman-main\\revision_2026\\paper_v4",
+  "copy_rule": "Preserve paper_v4-relative paths and verify every SHA-256 before execution.",
+  "file_count": 35,
+  "total_bytes": 8246850.0,
+  "files": [
+    {
+      "path": "analysis/20260917_C4_E01_EVIDENCE_MATRIX_02/e01_evidence_matrix.json",
+      "sha256": "9d9fe699abdecece1008ed20bcd78453445edcae904c38fa7c7d533448859c78",
+      "bytes": 10840
+    },
+    {
+      "path": "experiment.md",
+      "sha256": "c1c4e9019736e629469424642167e83c1eaf114471d34bd95d6b5c80289fbf87",
+      "bytes": 389082
+    },
+    {
+      "path": "protocol/RTX5080_G0_G2_20260915_v5.json",
+      "sha256": "6e6142620b90245bbe46d5102c0a5c642acce39b1eb38b8836cbe3d139cf173f",
+      "bytes": 11307
+    },
+    {
+      "path": "protocol/three_host_20260918/README.md",
+      "sha256": "70e0b126b34f17a8dd85010df47980f091248799fea7fd44f4356a680babc3a0",
+      "bytes": 1691
+    },
+    {
+      "path": "protocol/three_host_20260918/RTX5060_E01_WORKPACK_DRAFT.json",
+      "sha256": "83521e960186af1e4794f2ba49636163d22d82dc65977996fc65cab8c1134615",
+      "bytes": 2079
+    },
+    {
+      "path": "protocol/three_host_20260918/RTX5060_PREFLIGHT.ps1",
+      "sha256": "c5c1dcbb3b32dacb5864a3d393b2a97bbc61715da63bec490f0b8b2e3cf2d82d",
+      "bytes": 2079
+    },
+    {
+      "path": "protocol/three_host_20260918/RTX5060_TASKBOOK.md",
+      "sha256": "e43a4865ae38755378d8e3a60ead3b7f8d95d97569c520fb31b777090d5af7cc",
+      "bytes": 3958
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/raw.npz",
+      "sha256": "64677e4eeae8da229cd2a11fbb720a92be3c9ca73773419cea310bc7fdc40825",
+      "bytes": 824786
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/solver.jsonl",
+      "sha256": "9189e93618e38cd95672f0f175e38ad2f9a8d1ea4a84d4848d06e7b86e9c9bbb",
+      "bytes": 4095282
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/status.json",
+      "sha256": "1aa4af6d051841c525c50114076076f827261aaca8a687b181a371070ed843d2",
+      "bytes": 230
+    },
+    {
+      "path": "results/20260915_R4_P1_2MS01/substeps.npz",
+      "sha256": "ad60eb7f2e7a1fa9b556ad5ab57489745895a031c0841164b69da01b2c527043",
+      "bytes": 2725001
+    },
+    {
+      "path": "src/paper_v4_core/controllers/parallel_fd_backend.py",
+      "sha256": "d6ded1a9cbea08034bbb025276aee8569eb7fcac34cd95c54c4c590d9aad6495",
+      "bytes": 3077
+    },
+    {
+      "path": "src/paper_v4_core/controllers/physical_tracking_pilot.py",
+      "sha256": "426b5a65ba4b61169ae69509aea96d6e78f4ee9a07ae649c6ea70492e6a4127f",
+      "bytes": 11495
+    },
+    {
+      "path": "src/paper_v4_core/diagnostics/post_r3_r4_runner.py",
+      "sha256": "32ba7e9f3807b45b49642f4869b1b9e6cffadc6e28a1b824bfe9931358a9d379",
+      "bytes": 14375
+    },
+    {
+      "path": "src/paper_v4_core/e01_100m.py",
+      "sha256": "2f3c93e7a24959ab2c0dc2785f043818f28f8a0f8ceb3c91ce13d88ba4841025",
+      "bytes": 7955
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/__init__.py",
+      "sha256": "c0c603e663221615bb6dd3119021fcad617232239c2caa44cb5d384baa23365d",
+      "bytes": 90
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/gpu_worker.py",
+      "sha256": "e41ca0ee45386b2a5dc9d796cbdf27c77d483a8aefe870412b55e418844206f1",
+      "bytes": 7608
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/ipc_backend.py",
+      "sha256": "c1449856a13e33ccbcd278a4444ea99e297173099c5f3b8c2d0a40d0e980244f",
+      "bytes": 7548
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/physics_torch.py",
+      "sha256": "8eaaac3e431d5b4b112d2e46722761f6b28092ac7fb07ca4f1b867ddbdef54dd",
+      "bytes": 11790
+    },
+    {
+      "path": "src/paper_v4_core/gpu_port/rollout_batch.py",
+      "sha256": "80bad4fdd7833e3a775f8dd3fe211f4034e038242bfcc91bdc8a5fa433ee603e",
+      "bytes": 1407
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_adapter.py",
+      "sha256": "dd56ccb6e7117a6a101dba57884dda81cc04e2fecc520cc7d44568419e177dd7",
+      "bytes": 4598
+    },
+    {
+      "path": "src/paper_v4_core/plant/connector_r3.py",
+      "sha256": "2c6ef95ac9e9c4afe88e005bc99d4644373f44dfd0448b07a6ac78e5e03de1de",
+      "bytes": 4007
+    },
+    {
+      "path": "src/paper_v4_core/plant/four_vehicle_common.py",
+      "sha256": "ae47550e7a612002753bf5d3fe0ea8c2ee22b309e2b570253f8b572e0461e42c",
+      "bytes": 13895
+    },
+    {
+      "path": "src/paper_v4_core/plant/internal_force.py",
+      "sha256": "5a9f24f6fbc7540847574a3d5ce435d40caa29cb99be1dd9dbb1282c804bdf2e",
+      "bytes": 2722
+    },
+    {
+      "path": "src/paper_v4_core/plant/load_transfer.py",
+      "sha256": "0da410a3da05e538464c83ed1a02e081c1196631c121c6ab750ebc1068c8e74b",
+      "bytes": 3914
+    },
+    {
+      "path": "src/paper_v4_core/reference_geometry.py",
+      "sha256": "6aeac2cbab4f96726915c9124c83b012c368ab5f06df8f2281a4b89fcb97228d",
+      "bytes": 3276
+    },
+    {
+      "path": "src/paper_v4_core/references.py",
+      "sha256": "25e6dccc7ce4cb5c4cfed90740cdd33ff9582d17b86d689f0d0f2893015d5732",
+      "bytes": 2039
+    },
+    {
+      "path": "src/paper_v4_core/e01_analyze.py",
+      "sha256": "82f1827e0109dd790c8be43cbe5016e9ea8dcdfa3dac40afc29525ea8049dbf4",
+      "bytes": 11220
+    },
+    {
+      "path": "src/paper_v4_core/e01_batch.py",
+      "sha256": "b8baaf4c79c28166e155ef9c8c7f464c3c8b132d11657db440bda2d5f48b432d",
+      "bytes": 1462
+    },
+    {
+      "path": "src/paper_v4_core/e01_hairpin_batch.py",
+      "sha256": "1a0a60ad494ef34ffa6c5fba90e4807cf516aff5c6bf2edf98b27dcfc51676f1",
+      "bytes": 634
+    },
+    {
+      "path": "src/paper_v4_core/e01_hairpin.py",
+      "sha256": "6fead661ab3a19a0b7e5d33d4e1b7b6d8510b12bc15ede416a305e03ac7ee890",
+      "bytes": 12983
+    },
+    {
+      "path": "tools/build_device_g0_g2_protocol.py",
+      "sha256": "af904972a37fbdde2fad57837307a4fda0f865be42ab67dca65fc8f2f08bd9bd",
+      "bytes": 6911
+    },
+    {
+      "path": "tools/c3_c4_figures.py",
+      "sha256": "c6653e3bf6c6c5e34fe0760333c8b514c128d22880321cee20442b0cbc0691b4",
+      "bytes": 13261
+    },
+    {
+      "path": "tools/c4_e01_evidence_matrix.py",
+      "sha256": "142af2244989764b560547ba07764f9a042a3102f71aca6c87145fbf99971c6f",
+      "bytes": 14664
+    },
+    {
+      "path": "tools/gpu_g0_g2_qualify_device.py",
+      "sha256": "69204b04e20b835c08f90cf384b795bdf510547542d4e9e92ffc4a5e19b0b80c",
+      "bytes": 19584
+    }
+  ],
+  "note": "Pre-V2 package authorizes fixed-sample DEV qualification and preparation only. V2 formal files must be regenerated after the frozen V2 sync."
+}

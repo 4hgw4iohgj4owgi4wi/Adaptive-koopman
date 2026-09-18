@@ -1,0 +1,65 @@
+{
+  "science_status": "PASS_SINGLE_RUN_AUDIT",
+  "run_status": "COMPLETED",
+  "figure_status": "PASS_VISUAL_QA",
+  "run": "20260917_R5_STRICT_N0_GPU01",
+  "candidate_id": "EXP-R3-unfrozen-v1",
+  "implementation_id": null,
+  "protocol_sha256": "9006ec820b4a36be94e1d0794532e20cc1592ac73eabb510a25db32d2664db6d",
+  "experiment_question": "What does the registered legal-information interface and configured measurement noise do to the full-route run, and does the run pass its single-run audit?",
+  "figures": [
+    "20260917_R5_STRICT_N0_GPU01_six_panel.png",
+    "20260917_R5_STRICT_N0_GPU01_six_panel.svg"
+  ],
+  "fields": {
+    "trajectory": "state x0..x29: four vehicle poses and the payload pose in world coordinates",
+    "error": "payload error against the route interpolated at the recorded reference distance, projected onto the reference heading (D1 convention)",
+    "force": "four point-force norms, internal force norm, cumulative impulse from accepted substeps",
+    "constraint": "tyre utilisation curves at controller-tick endpoints; hard-gate extrema recomputed over accepted substeps and endpoints; payload support reported by the same convention",
+    "input": "requested versus actual steering, maximum and maximum difference",
+    "cost": "per-solve wall clock against the frozen 5 s budget"
+  },
+  "units": "m, s, N, N s, deg, dimensionless utilisation",
+  "window": "ticks 0..2378 of 2379; {'whole route' if complete else 'accepted segment only, unobserved remainder not drawn'}",
+  "statistics_convention": "single trajectory, no confidence interval; force and constraint hard-gate extrema combine all accepted substeps and controller-tick endpoints; plotted tyre curves are endpoints",
+  "generating_script": "tools/r4_cell_figure.py",
+  "generating_script_sha256": "d92992a2cbf1a030a4bb33968bc4fbeba444db9e45f2e48dbf729cba9b5725bc",
+  "source_files": [
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/raw.npz",
+      "sha256": "670837f403fee8c8b637dc30cad1ac843b789596624985fd4e7e78a2ceb93eb6"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/substeps.npz",
+      "sha256": "90f55d1a997fd92a24fb8995192900d769d7fba100089d3865133d6fc6abe99a"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/status.json",
+      "sha256": "9d03a598f67d8a6acc7289268eae658e0059825ca0b81a80965f4d79d1d0a4c7"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/metrics.json",
+      "sha256": "9d03a598f67d8a6acc7289268eae658e0059825ca0b81a80965f4d79d1d0a4c7"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/single_run_audit.json",
+      "sha256": "8ec1fa4e7f5a19eacbc1bd4a9d37da7c5faa5f1f522ae714be0b6592fe03d21a"
+    }
+  ],
+  "caption": "R5 legal-information interface: 20260917_R5_STRICT_N0_GPU01, plant step 2 ms, COMPLETED. 2379 of 2379 ticks accepted, reference distance 95.128 m of 95.128 m. Substep peak point force 398.459 N against the 15000 N gate; all-sample peak tyre utilisation 0.049285; all-sample minimum support 4686.3 N; final payload position error 0.4428 m; single-run audit PASS_SINGLE_RUN_AUDIT.",
+  "claim_boundary": "One deterministic information-interface run; it contains no network impairment and states no statistical robustness. Completion and physical hard gates do not override the recorded single-run audit status.",
+  "visual_qa": {
+    "reviewed_at": "2026-09-18T15:08:17.5312727+08:00",
+    "reviewer": "Codex visual inspection",
+    "checks": [
+      "PNG readable and uncropped at original resolution",
+      "run identity and COMPLETED 2379/2379 title correct",
+      "trajectory and error panels labelled with units",
+      "force broken axis and 15000 N gate correctly labelled",
+      "all-sample tyre and support extrema shown",
+      "footer displays PASS_SINGLE_RUN_AUDIT, steering bound, and solve-time statistics"
+    ],
+    "result": "PASS",
+    "note": "Final rendering generated after PASS_SINGLE_RUN_AUDIT 35/35; PNG and SVG are the current deliverables."
+  }
+}

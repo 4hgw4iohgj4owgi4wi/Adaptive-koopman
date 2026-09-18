@@ -1,0 +1,36 @@
+{
+  "status": "PASS_G0_G2_GPU_QUALIFIED",
+  "scope": "RTX5080_G0_G2_ONLY_NO_CLOSED_LOOP",
+  "g0_status": "PASS",
+  "g1_status": "PASS",
+  "g2_numerical_status": "PASS",
+  "g2_performance_status": "PASS_PERFORMANCE",
+  "worker_boundary": {
+    "clean_at_environment": false,
+    "clean_after_linearize": false,
+    "imported_after_startup_at_environment": [],
+    "imported_after_startup_after_linearize": [],
+    "detail_after_linearize": {
+      "forbidden_present": {
+        "numpy": true,
+        "scipy": false,
+        "osqp": false,
+        "pandas": false
+      },
+      "forbidden_present_at_startup": {
+        "numpy": true,
+        "scipy": false,
+        "osqp": false,
+        "pandas": false
+      },
+      "imported_after_startup": [],
+      "worker_boundary_clean": false,
+      "module_count": 1114
+    },
+    "interpretation": "clean=True supports the registered NumPy-in-pickle root cause and its fix; clean=False with PASS falsifies that candidate, and clean=False with failure keeps it open."
+  },
+  "closed_loop_authorized": false,
+  "p1_interrupted_run_reused_or_resumed": false,
+  "next_action": "STOP_NO_G3_G4; separate authorization and protocol required",
+  "protocol_sha256": "6e6142620b90245bbe46d5102c0a5c642acce39b1eb38b8836cbe3d139cf173f"
+}

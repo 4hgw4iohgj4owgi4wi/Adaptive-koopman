@@ -3682,6 +3682,121 @@ C3的代码与源**均已存在**：`actuator_discretization{,_batch,_analyze}.p
 
 状态：`S0_ENVIRONMENT_FROZEN_NO_CONFLICTS / S1_SIX_CODE_PATCHES_COMPLETE / S2_COMPILE_PASS / SOLVER_SETTINGS_VALIDATION_NEGATIVES_PASS / AUDIT_DEHARDCODED_AND_OLD_RUNS_FAIL_AS_REQUIRED / FIGURE_TOOL_PARAMETERIZED / S2_PROTOCOLS_AND_PROBE_PENDING / STRICT_CHAIN_NOT_STARTED / R5_TOTAL_GATE_BLOCKED`。
 
+## 58. R5严格链S2完成与S3启动（2026-09-17）
+
+### 58.1 三个严格协议已冻结（`solver_settings`逐位相同）
+
+| 协议 | SHA-256（前16） | 输出 |
+|---|---|---|
+| `R5_STRICT_BASELINE_P0_2MS_GPU_20260917_v1.json` | `9d8260bff58fc43c` | `results/20260917_R5_STRICT_BASELINE_P0_2MS_GPU01` |
+| `R5_STRICT_N0_GPU_20260917_v1.json` | `dca01454793e6dfb` | `results/20260917_R5_STRICT_N0_GPU01` |
+| `R5_STRICT_N1_GPU_20260917_v1.json` | `ed7896d3bd8c24e4` | `results/20260917_R5_STRICT_N1_GPU01` |
+
+三者`solver_settings`**逐位相同**：`{eps_abs:1e-6, eps_rel:1e-6, scaled_termination:false, max_iter:4000, polishing:true}`；`acceptance_tolerances`亦逐位相同：`{requested_steering_acceptance_tolerance_rad:1e-6, applied_steering_machine_tolerance_rad:1e-12}`。身份文件各29项，钉住控制器、两个runner、GPU后端五文件、植物、路线/预览、信息接口、审计/绘图工具与父门。
+
+**N0的无操作门改为对拍严格基线**（`results/20260917_R5_STRICT_BASELINE_P0_2MS_GPU01`），且**排除清单为空**——因为基准的`max_e_g_m`桩值已在S1第2项去除，该列现在是真正计算的共同列，不再需要排除（旧v2协议里那条排除理由已不适用）。
+
+### 58.2 三类负例全部通过
+
+| 负例 | 结果 |
+|---|---|
+| 错误协议SHA（基线runner与N0 runner各一次） | `PROTOCOL_IDENTITY_MISMATCH`，退出1，**无输出目录** |
+| **篡改`solver_settings.eps_abs`为`1e-3`但不更新SHA** | `PROTOCOL_IDENTITY_MISMATCH`，退出1，无输出目录 |
+| 输出目录已存在 | `REFUSING_TO_OVERWRITE_OUTPUT`，退出1 |
+
+### 58.3 固定QP重放探针：PASS（v2）
+
+`analysis/20260917_R5_STRICT_QP_PROBE_02/`，状态`PASS_STRICT_QP_PROBE`，**7/7检查全过**：
+
+| 检查 | 结果 |
+|---|---|
+| 旧`2e-4`设置复现已保存首控制 | **最大差恰为`0.0`（逐位一致）**，16/16 tick |
+| 严格候选全部求解成功 | 16/16 `PASS` |
+| 非线性复核 | 16/16 `PASS` |
+| 无`solved inaccurate`／迭代耗尽 | 严格候选迭代200—825，远低于`max_iter=4000` |
+| 残差有限 | 全部为`0.0` |
+| **15个实质越界tick的请求越界≤登记容差** | **最差`5.551115123125783e-17 rad`**，容差`1e-6 rad` |
+| 求解耗时 | 最大约6.5 s，无异常 |
+
+**两条重要结论**：①**时间基准对齐由"旧设置必须逐位复现首控制"自证通过**——这确认了`distance`取第k行而`beta`/`previous_u`取第k−1行的修正正确；②**严格候选把15°请求越界从`1.81×eps_abs`（0.0207°）压到浮点尘埃级（5.55e-17 rad）**，即该重试链要解决的问题被候选设置彻底消除。
+
+### 58.4 探针首版的一处指标缺陷（已修，未改任何门）
+
+探针v1用`max(|first_control|)`作为请求转角——但`first_control`是**交错排列`[a1,d1,a2,d2,…]`**，该最大值实际取到了**加速度**（限值2.0），于是得到**虚构的`1.03 rad`越界**并判FAIL。**转角只在奇数索引**。v2改为`|first_control[1::2]|`后PASS。v1结果保留为该指标缺陷的证据，**没有修改任何门、阈值或run**。
+
+### 58.5 S3严格P0基准已启动
+
+按任务书第4节的`Start-PaperRun`函数启动（拒绝覆盖日志/回执、15秒存活探针、回执记录环境）：
+
+- **PID 19140**，2026-09-17 23:29:34启动
+- 协议SHA `9d8260bff58fc43cfe86577de4869c2ec30c54eeb394338c9774040b130b48`
+- 回执`logs/20260917_r5_strict_baseline_p0_gpu01.launch.json`记录：Python路径、osqp 1.1.1、numpy/scipy/torch版本、**CUDA设备`NVIDIA GeForce RTX 5080`**、完整命令
+- 短检查1（15秒）：进程存活、stderr为空
+- 短检查2（约59秒）：**首个solver记录 tick 0 / status PASS / solver_status solved / iterations 25**；`status.json`显示10/2379、参考距离0.400 m
+- 按约4.5 s/tick估计，**ETA约02:30**
+
+完成后按第5节：先跑单条审计（`tools/r5_single_run_audit.py --write`）与六面板图（`tools/r4_cell_figure.py`），**三条审计PASS且图QA PASS才释放S4**。
+
+状态：`S2_COMPLETE / THREE_STRICT_PROTOCOLS_FROZEN_IDENTICAL_SOLVER_SETTINGS / THREE_NEGATIVE_CLASSES_PASS / FIXED_QP_PROBE_PASS_7_OF_7 / OLD_SETTINGS_REPRODUCE_FIRST_CONTROL_BITWISE / STRICT_CANDIDATE_OVERSHOOT_5P55E-17_RAD / S3_STRICT_BASELINE_RUNNING_PID_19140 / S4_S5_PENDING / R5_TOTAL_GATE_BLOCKED`。
+
+## 59. R5严格链S3完成与S4启动（2026-09-18）
+
+### 59.1 S3严格P0基准完成、审计与图通过
+
+`results/20260917_R5_STRICT_BASELINE_P0_2MS_GPU01`于09-17 23:29:34启动、09-18约03:17结束（**墙钟13644.520622099983 s = 3.79 h**），`COMPLETED`、`2379/2379`、全长。
+
+| 量 | 严格（`eps=1e-6`） | 旧（`eps=2e-4`） |
+|---|---:|---:|
+| 点力峰值 | 398.4589430372676 N | 398.5295746870941 N |
+| 内部力范数 | 342.75590718333626 N | 342.8075377908096 N |
+| 轮胎利用率 | 0.0492851818570941 | 0.04928516371250939 |
+| 最小支承 | 4686.285219002887 N | 4686.285138588243 N |
+| **构形误差** | **0.013750414271154655 m** | **0.0（桩值）** |
+| `solver_settings`落盘 | ✅ 严格五项 | 无该字段 |
+| 墙钟 | **3.79 h** | 2.93 h |
+
+**构形误差去桩值成功**（旧版恒为0.0），严格设置已生效并落盘。
+
+**单条审计：`PASS_SINGLE_RUN_AUDIT 25/25`**，已落盘`single_run_audit.json`。六面板图已出且视觉复核通过，`figure_status=PASS_VISUAL_QA`。
+
+**成本必须如实报告**：严格设置使求解显著变慢——均值**5.598 s**（旧4.562 s）、最大**6.956 s**、**仅755/2379在5 s预算内**（旧1993）。
+
+### 59.2 审计工具扩展（任务书预告的必要步骤）
+
+任务书第5节要求：*"审计工具若只支持R5接口run，必须先扩展为共同基准审计或新建等价审计，**不能跳过**。"* 基准是集中全状态run，无`information.jsonl`/`estimates.npz`，故扩展为**双家族**审计：
+
+- **共同基准分支**（24项）：物理/控制/求解器设置/协议身份/指标复算等，接口专属项标为`interface_specific_checks_not_applicable`；
+- **R5接口分支**（38项，与之前一致）：另加包数/包龄/truth旁路/噪声实现可恢复/熵索引等；
+- **回归对比确认接口分支未被改坏**：N0的审计项改名前后均为34项，差异仅为我按S1.4有意替换的三项（`requested_steering_box_bound_...`→`requested_steering_within_registered_acceptance_tolerance`等）；
+- **同时发现并修回一处真丢失**：S1.4整文件重写时漏掉了`figures_delivered_and_qa_pass`——而它正是释放条件之一（"单条审计PASS、图QA PASS"）。已恢复，家族无关。
+
+### 59.3 身份一致性的处理（S4首启被正确拒绝）
+
+S4首次启动被**身份门正确拒绝**：`IDENTITY_FILE_MISMATCH:tools/r5_single_run_audit.py`——因为审计工具在协议冻结**之后**被扩展，协议钉住的哈希已过期；**未留下输出目录**。
+
+**处理原则是保住已完成run的可验证性**：
+
+- **基线协议v1保持字节不变**——修改它会使S3自身metrics里记录的`protocol_sha256`无法解析，令已完成的run不可验证。S3的**产出身份**（控制器/两runner/植物/后端/协议）完整；仅**后处理审计工具**比v1的钉住版本新。
+- 该差异写入独立记录`analysis/20260917_STRICT_CHAIN_TOOL_EXTENSION_01/tool_extension_note.json`，含扩展理由（任务书要求）、身份后果与处理，并明确"**未改任何门、阈值、容差或窗口**"。
+- **N0/N1重冻为v2**：`R5_STRICT_N0_GPU_20260918_v2.json`（`9006ec820b4a36be`）、`R5_STRICT_N1_GPU_20260918_v2.json`（`6180b51112bc3a8e`），`supersedes_protocol`记录原因。
+
+### 59.4 S4严格R5-N0已启动
+
+按任务书第5节S4命令启动：
+
+- **PID 11084**，09-18 09:04:54启动，协议SHA `9006ec820b4a36be…`（v2）
+- 短检查1（20秒）：存活、stderr为空
+- 短检查2（约59秒）：**15条solver记录 + 15条information记录**；首记录 tick 0 / PASS / solved / 25迭代
+- 按约3.9 s/tick估计，**ETA约11:40**
+
+完成后：单条审计、单条六面板图、**与S3的无操作对拍**（`max_e_g_m`桩值已去除，该列现为真正计算的共同列，**不再沿用旧v2协议的排除理由**）。三项及视觉QA全过才释放S5。
+
+### 59.5 顺带发现的一处图缺口（不阻塞）
+
+`results/20260916_R5_BASELINE_P0_2MS_GPU02/figures/`**为空**——§55.6的图表修补覆盖了N0/N1六面板与接口图，但**未覆盖旧基线**。旧链已被严格链取代，故不阻塞；登记备查。
+
+状态：`S3_STRICT_BASELINE_COMPLETED_2379_OF_2379 / S3_AUDIT_25_OF_25_PASS / S3_FIGURE_PASS_VISUAL_QA / CONFIG_ERROR_DESTUBBED / STRICT_SETTINGS_RECORDED / AUDIT_EXTENDED_TO_BOTH_FAMILIES / FIGURE_QA_ITEM_RESTORED / BASELINE_PROTOCOL_V1_KEPT_BYTE_IDENTICAL / N0_N1_REFROZEN_AS_V2 / S4_STRICT_N0_RUNNING_PID_11084 / S5_PENDING / R5_TOTAL_GATE_BLOCKED`。
+
 ## 58. R5严格链S2完成、协议修订与S3启动就绪（2026-09-17）
 
 ### 58.1 本轮确认已经修好的内容
@@ -3747,6 +3862,154 @@ S4 N0结束后还必须运行`r5_strict_no_op_gate.py`，比较新N0与新基线
 任何科学审计FAIL、图缺失/错标、身份不一致、求解异常、物理门失败或超过5小时都停止，不生成N0协议。当前没有启动S3，没有新全路线数据，旧R5总门仍为`R5_TOTAL_GATE_BLOCKED`。
 
 状态：`S0_PASS / S1_PASS / S2_PREFLIGHT_5_OF_5_PASS / S2_FIXED_QP_15_OF_15_PASS / S2_FIGURES_PASS_VISUAL_QA / BASELINE_V1_RETIRED_UNRUN / BASELINE_V2_IDENTITY_VALIDATED / READY_TO_START_S3_BASELINE / FULL_ROUTE_NOT_STARTED / R5_TOTAL_GATE_BLOCKED`。
+
+## 60. R5严格链S4完成、N0图和无操作门通过（2026-09-18）
+
+### 60.1 严格R5-N0完成
+
+`results/20260917_R5_STRICT_N0_GPU01`使用`protocol/R5_STRICT_N0_GPU_20260918_v2.json`（SHA-256=`9006ec820b4a36be94e1d0794532e20cc1592ac73eabb510a25db32d2664db6d`），于09:04启动、11:59完成：`COMPLETED 2379/2379`、全长95.12831551628261 m、墙钟`10466.027920799796 s`（约2.91 h）。stderr为空，结束后现场无R5实验进程。
+
+| 量 | 严格N0 | 严格P0基准 | 比较 |
+|---|---:|---:|---|
+| 点力峰值 | 398.4589430372676 N | 398.4589430372676 N | 相同 |
+| 内力范数峰值 | 342.75590718333626 N | 342.75590718333626 N | 相同 |
+| 轮胎利用率峰值 | 0.0492851818570941 | 0.0492851818570941 | 相同 |
+| 最小支承 | 4686.285219002887 N | 4686.285219002887 N | 相同 |
+| 最大构形误差 | 0.013750414271154655 m | 0.013750414271154655 m | 相同，已去桩值 |
+| N0求解耗时 | 均值4.263224936 s；最大5.410910100 s；2369/2379在5 s内 | 均值5.598 s；最大6.956 s；755/2379在5 s内 | 墙钟不是无操作数值门列；两条均不能据此宣称硬实时 |
+
+请求转角最大值恰为15°、越界0；实际转角最大14.997706737°。N0的三个物理硬门均通过。单条轨迹仍显示末端位置误差0.442842 m、最大位置误差0.469119 m和航向RMSE 0.354625°；这些跟踪量需要如实保留，物理硬门通过不等于跟踪质量已经达到后续方法排名要求。
+
+### 60.2 单条审计闭环和图
+
+第一次运行审计得到`34/35 FAIL_SINGLE_RUN_AUDIT`，唯一失败项是当时尚不存在的`figures/figure_manifest.json`；其余34项全部通过。工具拒绝覆盖审计文件，因此该前置文件保留为：
+
+`results/20260917_R5_STRICT_N0_GPU01/single_run_audit_pre_figure_20260918_01.json`。
+
+先生成首版PNG/SVG并人工核对，再登记图QA，随后重跑审计得到当前：
+
+- `single_run_audit.json`：`PASS_SINGLE_RUN_AUDIT 35/35`；
+- `figures/`：正式六面板PNG/SVG，科学状态`PASS_SINGLE_RUN_AUDIT`，`figure_status=PASS_VISUAL_QA`；
+- `figures_superseded_pre_final_audit_20260918_01/`：保留首版图。该图视觉本身无错误，但显示前置34/35状态，故标`FAIL_VISUAL_QA_SUPERSEDED`，不得作为当前图引用。
+
+正式六面板已人工检查：标题与run身份正确，2379/2379完整；轨迹/误差、断裂轴受力及15000 N门、冲量、轮胎/支承、转角、审计状态与求解耗时均可读，无裁切或错误标签。
+
+### 60.3 N0相对严格基准的无操作门
+
+执行`tools/r5_strict_no_op_gate.py`得到`analysis/20260918_R5_STRICT_N0_NO_OP_01/`：
+
+| 检查 | 结果 |
+|---|---|
+| 科学状态 | `PASS_R5_STRICT_N0_NO_OP` |
+| 协议白名单 | 60/60列存在且逐位相同 |
+| 最大绝对差 | **0.0**，门`1e-12` |
+| 时间列 | 2379 tick逐位相同，最大差0.0 |
+| solver设置/验收容差 | 基准与N0逐项相同 |
+| 父证据 | 两条审计PASS、两套图QA PASS |
+| 对拍图 | PNG/SVG齐全，`PASS_VISUAL_QA` |
+
+图中的`1e-18`蓝点/线只是为了在对数坐标中显示“数值恰为0”的绘图下限；JSON中的真实最大差是`0.0`，没有把零改成`1e-18`参与裁决。
+
+**科学含义**：同一RTX 5080、同一GPU后端、同一严格求解器设置且无测量噪声时，R5合法信息接口相对严格集中全状态基准为精确无操作。该结果不包含N1测量噪声，不测试网络延迟、丢包或分布式控制，也不构成统计鲁棒性结论。
+
+### 60.4 N1协议父证据缺口：S4科学通过，但尚不能直接启动S5
+
+S4的运行、审计、图和无操作门均已通过，但现场复核发现现有`protocol/R5_STRICT_N1_GPU_20260918_v2.json`是在N0完成前冻结的。其SHA为`6180b51112bc3a8ee3d778e875ee5d9febc3deaad954bdb47a2a24b0bf4c39ed`，当前29项`identity_files`全部匹配、目标输出不存在；然而协议**没有**把本节刚产生的N0父证据钉为身份：
+
+- 当前N0协议；
+- N0 `metrics.json`与`raw.npz`；
+- N0当前`single_run_audit.json`（35/35 PASS）；
+- N0当前`figures/figure_manifest.json`；
+- `analysis/20260918_R5_STRICT_N0_NO_OP_01/no_op.json`；
+- 无操作门`figure_manifest.json`及相应生成工具身份。
+
+这与`R5_STRICT_CHAIN_EXECUTION_20260917.md`第5节“构建器把N0审计、N0单条图、无操作报告及其图manifest作为N1硬前置”的要求不一致。现有`tools/build_r5_strict_protocols.py --stage n1`又仍指向旧`GPU02`运行和`analysis/20260917_R5_STRICT_N0_NO_OP_01`，不能不经修订直接用于当前GPU01链。
+
+处理：保留N1 v2字节不变、不得覆盖；另建当前GPU01链的新版本协议，钉住上述父证据，保持`noise=basic`、seed 5105、RTX 5080、GPU后端、五项严格solver设置和两项验收容差与S3/S4相同。新协议还必须通过正确SHA、错误SHA、父证据缺失和已有输出拒绝测试。完成这些后才把状态改为`READY_TO_START_S5`。
+
+状态：`S3_STRICT_BASELINE_PASS / S4_STRICT_N0_COMPLETED_2379_OF_2379 / N0_SINGLE_RUN_AUDIT_35_OF_35_PASS / N0_FIGURE_PASS_VISUAL_QA / N0_NO_OP_60_OF_60_COLUMNS_BITWISE_IDENTICAL / N0_NO_OP_FIGURE_PASS_VISUAL_QA / S5_SCIENCE_PREREQUISITES_PASS / N1_PROTOCOL_PARENT_EVIDENCE_MISSING / N1_NOT_STARTED / R5_TOTAL_GATE_BLOCKED`。
+
+## 61. RTX 5080＋RTX 5060＋RTX 3050三机重新分工（2026-09-18）
+
+### 61.1 当前三台机器和排产原则
+
+用户确认当前可用机器为：本机**RTX 5080**、另一台**RTX 5060**、第三台**RTX 3050**。三机不能简单按“各取一条正式实验”平均分配；必须保持科学变量和身份链：
+
+1. 严格R5的基准、N0、N1必须在同一RTX 5080、同一后端和同一求解器设置下串行完成。N0/N1不能拆到5060或3050。
+2. V2冻结前，5060/3050只做设备资格、估时、理论反例、证据审计和协议准备；不产生正式闭环/全路线论文证据。
+3. V2冻结后，5060作为主要正式植物动力学执行机；3050承担短型固定样本、理论、审计、单元残差和出图复核，不承担需要与5080直接作唯一变量对照的全路线。
+4. 三台机器不得同时写同一目录或同一MD。远端结果先在本机独立目录完成，再按SHA清单回拷；科学总门只在5080汇总端执行。
+5. 每个实际运行的实验必须交付协议及SHA、原始数据、科学审计、PNG、SVG、`figure_manifest.json`和人工视觉QA。缺图或图QA未完成的任务保持`INCOMPLETE`。
+
+### 61.2 三机固定角色
+
+| 机器 | 当前角色 | V2冻结前 | V2冻结后 | 明确禁止 |
+|---|---|---|---|---|
+| **H5080：RTX 5080，本机** | 严格R5主链、V2冻结、中央验收 | 补齐N1父证据协议；运行S5 N1；审计/出图；R5总门 | 实施四项GPU维护修补并冻结V2；5080正式G0—G2；跨设备参考侧；汇总plant gate与后续E02 | N1运行时并发其他GPU动力学；把N1拆到远端；覆盖旧协议/结果 |
+| **H5060：RTX 5060** | 正式动力学副执行机 | 环境/树身份；DEV G0—G2固定样本与估时；E01协议矩阵准备 | 重新做V2正式G0—G2和跨设备短窗；通过后执行E01剩余24个无通过证据单元的冻结动力学矩阵 | V2前跑正式E01/R4/R5/E02/E03；复用5080资格；放宽门迁就速度 |
+| **H3050：RTX 3050** | 理论、证据和低算力独立检查机 | 环境/树身份；DEV G0—G2短型资格；E16反例；E00/E17来源审计；回拷演练 | 重做V2短型资格；E01单元残差与独立证据/图表复核；继续E16证明边界和E17来源审计 | 承担严格R5或默认承担全路线；把固定样本资格写成闭环通过；用图代替解析证明 |
+
+### 61.3 当前并行波次P0（R5尚未闭合）
+
+三台机器可以立即并行，但工作类型不同：
+
+| 波次 | H5080 | H5060 | H3050 | 合流门 |
+|---|---|---|---|---|
+| P0-a | 新建N1父证据协议版本，钉住N0协议/metrics/raw/35项审计/当前图manifest/无操作JSON及图manifest；做身份和拒绝预检 | 登记hostname、GPU、驱动、Python/PyTorch/CUDA、磁盘；核对完整树 | 同5060环境登记；核对完整树 | 三端只读身份报告完成 |
+| P0-b | 只在新N1协议预检通过后启动S5；N1独占5080 | 运行`DEV_PRE_V2`版G0—G2固定样本，产出三组PNG/SVG和估时 | 运行`DEV_PRE_V2`版G0—G2固定样本；性能不足如实登记，不影响理论工作 | 远端资格只作DEV，不释放正式动力学 |
+| P0-c | N1完成后做35项审计、六面板图和视觉QA；通过后构建R5总门和最终图 | 准备E01回头弯9格、转向切换9格、通信诊断6格的协议/图合同，全部标`PREP_ONLY` | 做E16四类反例和E00/E17证据覆盖审计，输出JSON/CSV及PNG/SVG | R5闭合后才进入V2修补 |
+
+H5080当前没有实验进程，N1输出目录不存在。现有N1 v2的29项已有身份虽匹配，但缺N0父证据，保持历史只读，不直接启动。已由独立新增构建器生成`protocol/R5_STRICT_N1_GPU_20260918_v3.json`，SHA-256=`5966bd91755abc1c6ffc7e2be03931dcd8440bbf7e0447bddfd9f2c04f4bdf49`；共38项身份，钉住N0协议、metrics/raw、35/35审计、当前图manifest、无操作JSON/图manifest及生成工具。`RTX5080_PREFLIGHT.ps1`已在本机实测`PASS_RTX5080_PREFLIGHT`，输出仍不存在，N1尚未启动。
+
+### 61.4 V2冻结和三机资格波次P1
+
+R5总门闭合后，H5080先完成已登记的支撑clamp、strict语义、常量断言、纯度/污染检查，测试通过后冻结唯一V2整包。随后三机执行：
+
+1. 三机从同一V2整包开始，分别生成环境和树SHA清单；
+2. 5080、5060、3050分别运行本机G0—G2，协议中的设备名必须取`torch.cuda.get_device_name(0)`原字符串；
+3. 5080与5060执行同一短窗跨设备探针；3050默认只做固定样本资格，是否加入短窗由显存和DEV估时决定；
+4. 跨设备只按前瞻性登记的实测容差比较，不使用逐位或`1e-12`门，不把wall time列混入数值等价性；
+5. 任一设备数值资格FAIL不得靠放宽容差转绿。性能慢只影响排产，必须照实登记。
+
+### 61.5 V2后的正式工作波次P2
+
+| 顺序 | H5080 | H5060 | H3050 | 释放条件 |
+|---|---|---|---|---|
+| P2-1 | 冻结E01正式协议，维护中央运行索引 | 执行回头弯3参数×3步长共9格；已有旧FAIL保留，新V2结果另目录 | 执行/复核四类植物单元残差，按归一化`1e-8`登记；为旧失败接受段补诊断图 | 每条数据、审计、PNG/SVG和manifest齐全 |
+| P2-2 | 只读抽查回传身份和图 | 执行转向切换3参数×3步长共9格 | 独立核对输入身份、步长、参数点和收敛统计，不重算正式轨迹 | 9格完整且收敛报告通过 |
+| P2-3 | 维护回拷SHA和失败清单 | 执行100 ms延迟3族＋0.4 s中断3族，共6格 | 生成通信因果覆盖图、检查图注和失败状态 | 6格完成，不宣称控制优势 |
+| P2-4 | 重建C4证据矩阵、独立审查并生成plant gate图 | 保留所有PASS/FAIL原始目录 | 做第二份只读证据矩阵并与5080对拍 | `plant_gate=PASS`才释放E02 |
+
+“E01剩余24个无通过证据单元”包含旧回头弯FAIL对应的格；V2下可新增运行争取获得通过证据，但旧FAIL必须保留，不能覆盖或从失败计数中删除。5060承担正式动态矩阵，3050承担单元残差、独立审计和图表复核，可以避免把不同GPU/CPU数值路径混进同一3×3收敛矩阵。
+
+### 61.6 P2之后的排产
+
+只有`plant_gate=PASS`后，H5080才执行E02预测资格。H5060和H3050在E02完成前不提前跑E03控制排名：5060可准备E03协议草案，3050继续E16证明与E17来源审计。E02通过后再依据5060实测速度决定E03正式动力学是否由5080或5060承担；3050仍不作为默认全路线机。
+
+### 61.7 文件包和单写者规则
+
+三机文件包统一放在`protocol/three_host_20260918/`，每台机器至少包含：独立小任务书、`REQUIRED_FILES.json`、只读`PREFLIGHT.ps1`。共享新增工具为设备通用G0—G2协议构建器和资格脚本；H5080另有N1父证据v3构建器与新协议；H5060另有E01工作包草案；H3050另有E16反例用例合同。
+
+输出目录必须带主机标签：`H5080`、`H5060`、`H3050`。远端不得直接写本机`results/`、`analysis/`或`logs/`。回拷包必须包含相对路径、大小、SHA-256、主机、环境、实际命令、退出码、原始数据、图和manifest；传输完整不等于科学通过。
+
+### 61.8 已准备的三机文件
+
+目录`protocol/three_host_20260918/`已包含：
+
+- 三份独立任务书：`RTX5080_TASKBOOK.md`、`RTX5060_TASKBOOK.md`、`RTX3050_TASKBOOK.md`；
+- 三份只读预检：对应的`*_PREFLIGHT.ps1`；
+- 三份逐文件SHA清单：对应的`*_REQUIRED_FILES.json`；
+- 5060的`RTX5060_E01_WORKPACK_DRAFT.json`；
+- 3050的`RTX3050_E16_CASES.json`；
+- 总入口`README.md`。
+
+共享新增工具：`tools/build_device_g0_g2_protocol.py`、`tools/gpu_g0_g2_qualify_device.py`和`tools/e16_negative_cases_three_host.py`。原`gpu_g0_g2_qualify.py`保持不变。H5080另有`tools/build_r5_strict_n1_gpu01_v3.py`及已冻结N1 v3协议。
+
+四个新增Python文件已经以`-W error -m py_compile`通过；设备构建器在5080上完成干运行；E16用例干运行状态为`PASS_E16_NEGATIVE_TESTS`；N1 v3构建器干运行和正式冻结通过；5080只读预检通过。5060和3050的设备预检及DEV资格必须在对应实体机器上执行，不能用本机结果代替。
+
+### 61.9 当前状态
+
+状态：`THREE_HOST_ALLOCATION_DEFINED / THREE_HOST_TASK_PACKS_READY / H5080_R5_ONLY_UNTIL_GATE / N1_V3_SHA_5966BD91755ABC1C_READY_NOT_STARTED / H5060_PRE_V2_DEV_THEN_E01_DYNAMICS / H3050_THEORY_AUDIT_SHORT_QUALIFICATION / NO_EXPERIMENT_PROCESS_RUNNING / R5_TOTAL_GATE_BLOCKED / PLANT_GATE_NOT_READY_9_OF_33_PASSING_EVIDENCE`。
 
 
 

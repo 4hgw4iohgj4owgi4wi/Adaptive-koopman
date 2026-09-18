@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "host": "DESKTOP-9IUUGEO",
+  "python": "3.11.14",
+  "torch": "2.12.0.dev20260304+cu128",
+  "torch_cuda_build": "12.8",
+  "cuda_available": true,
+  "device_name": "NVIDIA GeForce RTX 5080",
+  "device_capability": [
+    12,
+    0
+  ],
+  "device_total_memory_bytes": 17094475776,
+  "float64_test_result": 3680.0,
+  "float64_test_finite": true,
+  "peak_allocated_bytes": 33559040,
+  "process_isolation": "persistent single CUDA worker; CPU parent retains SciPy/OSQP",
+  "worker_module_audit_at_environment": {
+    "forbidden_present": {
+      "numpy": true,
+      "scipy": false,
+      "osqp": false,
+      "pandas": false
+    },
+    "forbidden_present_at_startup": {
+      "numpy": true,
+      "scipy": false,
+      "osqp": false,
+      "pandas": false
+    },
+    "imported_after_startup": [],
+    "worker_boundary_clean": false,
+    "module_count": 1114
+  },
+  "versions": {
+    "numpy": "2.0.1",
+    "scipy": "1.17.1",
+    "osqp": "1.1.1"
+  }
+}

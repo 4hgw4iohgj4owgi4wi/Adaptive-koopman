@@ -1,0 +1,34 @@
+{
+  "science_status": "PASS_R5_STRICT_N0_NO_OP",
+  "figure_status": "PASS_VISUAL_QA",
+  "figures": [
+    "figures/r5_strict_n0_no_op.png",
+    "figures/r5_strict_n0_no_op.svg"
+  ],
+  "generating_script": "tools/r5_strict_no_op_gate.py",
+  "generating_script_sha256": "d8b24ed23e705ada7ba170eaa2b73433d65e8e0e9bc97ea58afc844d2201d6aa",
+  "source_files": [
+    {
+      "path": "results/20260917_R5_STRICT_BASELINE_P0_2MS_GPU01/raw.npz",
+      "sha256": "86a14040520778e527f11c89abaa8c4219f48223394dee9f3beb3b58a7fdc9c7"
+    },
+    {
+      "path": "results/20260917_R5_STRICT_N0_GPU01/raw.npz",
+      "sha256": "670837f403fee8c8b637dc30cad1ac843b789596624985fd4e7e78a2ceb93eb6"
+    }
+  ],
+  "caption": "Strict same-backend N0 no-op comparison across 60 registered columns; maximum absolute difference 0.000e+00 against 1.0e-12.",
+  "visual_qa": {
+    "reviewed_at": "2026-09-18T15:09:07.9725774+08:00",
+    "reviewer": "Codex visual inspection",
+    "checks": [
+      "PNG readable and uncropped at original resolution",
+      "PASS_R5_STRICT_N0_NO_OP title matches JSON",
+      "60-column maximum difference and per-tick maximum difference both plotted",
+      "1e-12 threshold visible",
+      "zero differences represented at the documented log-floor for visibility"
+    ],
+    "result": "PASS",
+    "note": "All registered numerical differences are exactly 0.0; the plotted 1e-18 floor is only a log-scale display floor."
+  }
+}

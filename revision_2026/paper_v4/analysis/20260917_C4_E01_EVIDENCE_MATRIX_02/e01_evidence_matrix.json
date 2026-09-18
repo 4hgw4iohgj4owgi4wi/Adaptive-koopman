@@ -1,0 +1,280 @@
+{
+  "status": "PLANT_GATE_NOT_READY",
+  "scope": "C4_E01_EVIDENCE_MATRIX",
+  "rule": "Task book section 6: the existing 33-item plan cannot be reduced by simply subtracting recent runs, old input generators must not be mixed with the new controller, failed trajectories stay FAIL, 100M05 covers only its own sub-gate, and no overall 'E01 complete' verdict may be invented.",
+  "requirement_source": "experiment.md section 'E01：植物和100m激励验收' (lines 756-772)",
+  "required_trajectories_total": 33,
+  "required_trajectories_accounted": 33,
+  "trajectories_covered": 9,
+  "trajectories_outstanding": 24,
+  "failed_trajectories_retained": [
+    {
+      "path": "20260909_E01_HAIRPIN01/P0_2ms",
+      "present": true,
+      "status": "FAIL",
+      "reason": "STOP_ULTIMATE_FORCE",
+      "passing": false,
+      "complete_registered_trajectory": true
+    }
+  ],
+  "items": [
+    {
+      "item": 1,
+      "e01_step": "1",
+      "requirement": "静态平衡、单连接器伸缩、匀速平移、纯几何转弯单元测试；验证作用反作用、坐标旋转、力矩、Wf_int≈0、Fz平衡",
+      "required_trajectories": 0,
+      "evidence": [
+        {
+          "path": "20260909_E01_D01",
+          "status": "PASS",
+          "note": "plant smoke; its own scope states convergence and registered E01 NOT_REACHED"
+        },
+        {
+          "path": "20260909_E01_S01",
+          "status": "PASS",
+          "note": "short plant run"
+        },
+        {
+          "path": "20260909_E01_HR00",
+          "status": "PASS",
+          "note": "support/load-transfer micro test"
+        }
+      ],
+      "science_gate": "按物理量尺度归一化的作用反作用/投影残差 ≤ 1e-8",
+      "figures": [
+        "20260909_E01_G01/geometry.json",
+        "20260909_E01_G02",
+        "20260909_E01_G03"
+      ],
+      "identities": "plant / 输入器 / 候选：不适用（纯植物单元测试）",
+      "remaining_action": "尚未找到覆盖全部四类单元测试的登记证据；几何类证据存在但作用反作用/力矩残差未按1e-8门逐项登记"
+    },
+    {
+      "item": 2,
+      "e01_step": "2a",
+      "requirement": "100m阶跃诊断：3个预定参数点 × 2/1/0.5ms = 9条",
+      "required_trajectories": 9,
+      "evidence": [
+        {
+          "path": "20260909_E01_100M05/P0_0.5ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P0_1ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P0_2ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P1_0.5ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P1_1ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P1_2ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P2_0.5ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P2_1ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        },
+        {
+          "path": "20260909_E01_100M05/P2_2ms",
+          "present": true,
+          "status": "PASS",
+          "reason": "",
+          "passing": true,
+          "complete_registered_trajectory": true
+        }
+      ],
+      "science_gate": "参考时间对齐比较真实峰值/冲量/能量/位置/横摆；最终两档相对差 ≤2%，位置 ≤1mm、航向 ≤0.01°",
+      "figures": [
+        "20260909_E01_100M05/figure_100m_P0_0p5ms.png",
+        "20260909_E01_100M05/figure_connector_directions_100m.png",
+        "20260909_E01_100M05/figure_convergence_100m.png"
+      ],
+      "identities": "plant identity 未变；输入器为冻结100m激励；参数点 P0/P1/P2；步长 2/1/0.5ms",
+      "remaining_action": "已完成"
+    },
+    {
+      "item": 3,
+      "e01_step": "2b",
+      "requirement": "真实回头弯：3个预定参数点 × 2/1/0.5ms = 9条",
+      "required_trajectories": 9,
+      "evidence": [
+        {
+          "path": "20260909_E01_HAIRPIN01/P0_2ms",
+          "present": true,
+          "status": "FAIL",
+          "reason": "STOP_ULTIMATE_FORCE",
+          "passing": false,
+          "complete_registered_trajectory": true
+        }
+      ],
+      "science_gate": "同上数值分辨率门",
+      "figures": [],
+      "identities": "plant identity 未变；参数点与步长身份需按原条目冻结后执行",
+      "remaining_action": "仅1条且其中状态为 FAIL(STOP_ULTIMATE_FORCE)；**失败轨迹按§6保留为FAIL，不删除、不改门**；缺8条"
+    },
+    {
+      "item": 4,
+      "e01_step": "2c",
+      "requirement": "转向切换：3个预定参数点 × 2/1/0.5ms = 9条",
+      "required_trajectories": 9,
+      "evidence": [
+        {
+          "path": "20260909_E01_HS01",
+          "has_metrics": true,
+          "status": "PASS",
+          "note": ""
+        },
+        {
+          "path": "20260909_E01_HS02",
+          "has_metrics": true,
+          "status": "PASS",
+          "note": ""
+        },
+        {
+          "path": "20260909_E01_HS03",
+          "has_metrics": true,
+          "status": "PASS",
+          "note": ""
+        },
+        {
+          "path": "20260909_E01_HS04",
+          "has_metrics": true,
+          "status": "PASS",
+          "note": ""
+        },
+        {
+          "path": "20260909_E01_HG01",
+          "has_metrics": true,
+          "status": "NO_METRICS",
+          "note": "geometry only, no dynamics"
+        },
+        {
+          "path": "20260909_E01_HG02",
+          "has_metrics": true,
+          "status": "NO_METRICS",
+          "note": "geometry only, no dynamics"
+        }
+      ],
+      "science_gate": "同上数值分辨率门",
+      "figures": [],
+      "identities": "参数点与步长身份需冻结",
+      "remaining_action": "现有HS/HG目录为短测试与几何证据，**未构成转向切换的3参数点×3步长矩阵**；按§6应冻结确切数量(9条)后执行，不发明已完成判定"
+    },
+    {
+      "item": 5,
+      "e01_step": "3",
+      "requirement": "参考时间对齐比较真实峰值、冲量、能量、位置与横摆；不得先平滑再比较",
+      "required_trajectories": 0,
+      "evidence": [
+        {
+          "path": "20260909_E01_100M05/convergence_100m.json",
+          "present": true
+        }
+      ],
+      "science_gate": "最终两档相对差 ≤2%；近零用预登记绝对分辨率；位置 ≤1mm、航向 ≤0.01°",
+      "figures": [
+        "20260909_E01_100M05/figure_convergence_100m.png"
+      ],
+      "identities": "数值分辨率门，非设备精度标准",
+      "remaining_action": "100m子门有收敛报告；回头弯与转向切换无对应收敛报告"
+    },
+    {
+      "item": 6,
+      "e01_step": "4",
+      "requirement": "100m诊断增加100ms延迟与0.4s中断各3族（2ms主积分），共6条新轨迹，与前述3条正常配对",
+      "required_trajectories": 6,
+      "evidence": [
+        {
+          "searched_glob": "*DELAY*/*OUTAGE*/*NET*/*COMM*",
+          "found": []
+        }
+      ],
+      "science_gate": "只用于显示通信如何传到单车/货物受力，不证明最终控制优势",
+      "figures": [],
+      "identities": "plant / 输入器：通信诊断输入器尚未登记；候选不参与",
+      "remaining_action": "**未找到任何延迟/中断植物诊断证据**；按§6冻结确切数量（6条）后执行"
+    },
+    {
+      "item": 7,
+      "e01_step": "5",
+      "requirement": "记录四点箭头图、各车横摆/系统横摆、Fx/Fy/Fz分图、左右/前后拉伸代理、输入与实际转角，标记30m、两次阶跃和制动",
+      "required_trajectories": 0,
+      "evidence": [
+        {
+          "path": "20260909_E01_100M05/figure_100m_P0_0p5ms.png",
+          "bytes": 432816
+        },
+        {
+          "path": "20260909_E01_100M05/figure_connector_directions_100m.png",
+          "bytes": 79365
+        },
+        {
+          "path": "20260909_E01_100M05/figure_convergence_100m.png",
+          "bytes": 86598
+        }
+      ],
+      "science_gate": "图注须写方法全名、信息边界、工况/参数/种子数、时间范围与失败状态（§25.3）",
+      "figures": [
+        "20260909_E01_100M05/figure_100m_P0_0p5ms.png",
+        "20260909_E01_100M05/figure_connector_directions_100m.png",
+        "20260909_E01_100M05/figure_convergence_100m.png"
+      ],
+      "identities": "§25.4 的 E01 行要求含失败接受段覆盖图",
+      "remaining_action": "100m有四张图；回头弯与转向切换无图；失败轨迹（HAIRPIN01）无诊断图"
+    }
+  ],
+  "outstanding_actions": [
+    "freeze the exact count and identities for the steering-switch matrix (9 trajectories) before executing",
+    "freeze the exact count and identities for the hairpin matrix (9 trajectories, of which 1 exists as FAIL)",
+    "freeze and execute the six communication-plant trajectories (100 ms delay and 0.4 s outage, 3 families each)",
+    "register the unit-test residuals against the 1e-8 normalised gate",
+    "produce the missing figures, including a diagnostic figure over the accepted segment of the failed hairpin run"
+  ],
+  "what_this_releases": "Nothing by itself. gates/plant.json stays NOT READY until the outstanding items are executed and independently reviewed.",
+  "claim_boundary": "This matrix inventories evidence; it is not a plant gate PASS. It does not authorise control ranking, and it does not convert the existing 100M05 sub-gate into a full E01 result."
+}
